@@ -1,0 +1,77 @@
+[
+  {
+    "source": "Grindstone-Coaching-Binder.pdf",
+    "site_path": "downloads/coaching-binder.pdf",
+    "sha256": "87d946876edd35683e3fc324a45bde8efc12314826b1fb27bb4436e1154308df"
+  },
+  {
+    "source": "Grindstone-Master-Binder-Index.pdf",
+    "site_path": "downloads/binder-index.pdf",
+    "sha256": "30653a7f435abece3c0dea592f678fd70b9933fc5669142fbc44302b648c109d"
+  },
+  {
+    "source": "Grindstone-Coach-Moves-Reference.pdf",
+    "site_path": "downloads/moves-reference.pdf",
+    "sha256": "6260279b794d59189fb90345c5810c3413f7d61e9179c00c9ee6c3075b1b8cf4"
+  },
+  {
+    "source": "Grindstone-End-of-Practice-Games.pdf",
+    "site_path": "downloads/practice-games.pdf",
+    "sha256": "aca390ceda10a728143afc6c76d130f81e72185a3ab1c9f00a78058aba5ef7ec"
+  },
+  {
+    "source": "Grindstone-Program-Blueprint.pdf",
+    "site_path": "downloads/program-blueprint.pdf",
+    "sha256": "bbc0c23f2916225544ec51c6a967a9fce76f2177d0b1dea0386bd028a2528cca"
+  },
+  {
+    "source": "Grindstone-Coach-Toolkit.pdf",
+    "site_path": "downloads/coach-toolkit.pdf",
+    "sha256": "8ed870402d7ad0f7bc083058da96fd201ead53640246c2549524d189129a50af"
+  },
+  {
+    "source": "Grindstone-Practices-Ages-4-6.pdf",
+    "site_path": "downloads/practices-4-6.pdf",
+    "sha256": "b69bdbed0138dc1fd4c4b9035a67d0f814b4f4ced14a4bd0df359765e3a9ffcd"
+  },
+  {
+    "source": "Grindstone-Coach-Handout-Ages-4-6.pdf",
+    "site_path": "downloads/quick-cues-4-6.pdf",
+    "sha256": "35a71639f143823e7c1f9244d80dca4f2ad62622abd840ea8f915c7072a4fe27"
+  },
+  {
+    "source": "Grindstone-Practices-Ages-7-10.pdf",
+    "site_path": "downloads/practices-7-10.pdf",
+    "sha256": "aeae61f49f5a5912a7634a9f14df8ea1785fb2880935fcb251abe0e25265020c"
+  },
+  {
+    "source": "Grindstone-Coach-Handout-Ages-7-10.pdf",
+    "site_path": "downloads/quick-cues-7-10.pdf",
+    "sha256": "742eaef2b3ad62a286cf5d3ad8b92fc11215f55ca7db2e7e571b564ddd6d7b75"
+  },
+  {
+    "source": "Grindstone-Practices-Ages-11-14.pdf",
+    "site_path": "downloads/practices-11-14.pdf",
+    "sha256": "0181840079b37404d4e7a0fff4a02a21d35937cf63a28379487cd664407a9ac5"
+  },
+  {
+    "source": "Grindstone-Coach-Handout-Ages-11-14.pdf",
+    "site_path": "downloads/quick-cues-11-14.pdf",
+    "sha256": "f49fdac9fb60f3c86484ed418248b1a15960b796dd759f2152da385fb2b3eccd"
+  },
+  {
+    "source": "grindstone-logo.png",
+    "site_path": "assets/grindstone-logo.png",
+    "sha256": "24526665033869579a0118ca2c4d6ab2ae53ec1c85fcfba79e51953fb94fd5d3"
+  },
+  {
+    "source": "mat-rats-logo.png",
+    "site_path": "assets/mat-rats-logo.png",
+    "sha256": "47681ed488c995f680b57dd9144363a902d13ba015db987428248eb0044993c0"
+  },
+  {
+    "source": "Grindstone-Coaching-Library.zip",
+    "site_path": "downloads/coaching-library.zip",
+    "sha256": "50d3f4aad544f7fd02227dd8f39a264e50aa6832fbb3235994ab1e74e4cabef6"
+  }
+]
