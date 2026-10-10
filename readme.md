@@ -6,7 +6,7 @@ A self-contained, buildless website for GitHub Pages. Open `index.html` directly
 
 - 72 reviewed moves, complete instruction and research.
 - 90 practices across ages 4-6, 7-10, and 11-14.
-- 30 original games plus two team favorites: Ankle Tag (G31) and Bulldog (G32), with related demonstrations and clear variation notes.
+- 37 games: the original 30, two team favorites, and five coaching adaptations, with demonstration/source links and clear variation notes.
 - Full program blueprint, coach toolkit, and print downloads.
 - Genuine Shorts when suitable; standard videos when the more useful source is a full lesson.
 - No accounts, analytics, API keys, or build dependencies. Saved items use browser-local storage only.
@@ -34,12 +34,12 @@ Public-facing video notes state whether footage, source linkage, or metadata wer
 
 ## Video coverage at handoff
 
-Checked October 10, 2026: all 72 moves and 31 of 32 games have a linked demonstration. Across these 103 references, 48 use actual YouTube Shorts, 51 use standard YouTube videos, and four preserve the original Vimeo instruction. Links may be reused for shared components. G06 Team Shape Factory is explicitly marked for a team-recorded demonstration because no suitable public clip was verified. Related clips do not replace the written game rules.
+Checked October 10, 2026: all 72 moves and 36 of 37 games have a linked demonstration. Across these 108 references, 48 use actual YouTube Shorts, 56 use standard YouTube videos, and four preserve the original Vimeo instruction. Links may be reused for shared components. G06 Team Shape Factory needs a coach-led or team-recorded demonstration because no suitable public clip was verified. G36 Freeze & Rescue links the UK Coaching handout and a related Better Health Families video linked by UI Coach; the similarly named USA Wrestling video shows a different activity and is not used. Related clips do not replace the written game rules.
 
-## Team favorites addendum
+## Extra games addendum
 
-team-games.json is the source for G31 Ankle Tag and G32 Bulldog, their related videos, and the addendum download entry. These are team favorites shared by a coach, not newly invented Grindstone games. Added timing, reset choices, equipment options, and age adaptations are explicitly suggestions. Both standard YouTube links are official USA Wrestling curriculum references; their metadata was verified, but their footage was not watched.
+team-games.json preserves seven additions: Ankle Tag (G31), Bulldog (G32), Tail Tag (G33), Towel Tug (G34), Circle the Bear (G35), Freeze & Rescue (G36), and Power Ball (G37). The first two are team favorites shared by a coach; the others are coaching adaptations of named source games. Added timing, scoring/reset choices, equipment options, and age adaptations are explicitly suggestions. Six standard YouTube links are official USA Wrestling curriculum references; their metadata was verified, but footage was not watched. Freeze & Rescue uses the UK Coaching written source plus a related Better Health Families video linked from UI Coach. Its source linkage and metadata were checked; footage was not watched.
 
-downloads/team-games.pdf is a separate two-page Letter handout. Print double-sided, long-edge flip, at 100% and append after the original binder's page 208. Its numbered pages are 209 (G31) and 210 (G32), with alternating binding margins. The original 208-page binder, original index, PDFs, and library ZIP remain unchanged and do not contain these additions. The website downloads page and this addendum provide the new game index.
+downloads/team-games.pdf is a separate eight-page Letter addendum: an index plus seven game cards. Print double-sided, long-edge flip, at 100% and append after the original binder's page 208. Binder page 209 is the new index; pages 210-216 are G31-G37. Alternating binding margins are preserved. The total is 216 pages / 108 sheets when this four-sheet addendum follows the original 208-page binder. The original index, PDFs, binder, and library ZIP remain unchanged and do not contain these additions.
 
-tools/build-team-games.py rebuilds only this addendum from team-games.json using ReportLab. The main data builder preserves the additions on rebuild. No build is required for the published website.
+tools/build-team-games.py rebuilds only this addendum from team-games.json using ReportLab. The main data builder preserves all seven additions on rebuild. No build is required for the published website.

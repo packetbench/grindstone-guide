@@ -34,8 +34,8 @@
         "One touch, reset."
       ],
       "print_path": "downloads/team-games.pdf",
-      "print_page": 1,
-      "binder_page": 209,
+      "print_page": 2,
+      "binder_page": 210,
       "provenance": "Team favorite shared by a Grindstone coach. Round lengths, scoring/reset format, equipment choices, and age adaptations are suggested coaching choices.",
       "sources": [
         {
@@ -48,7 +48,9 @@
           "url": "https://www.themat.com/news/2019/january/03/5-great-games",
           "note": "Related wrestling-game ideas; not evidence for the exact paired ankle-touch rules."
         }
-      ]
+      ],
+      "origin_label": "Team favorite",
+      "print_summary": "Paired, touch-only ankle tag."
     },
     {
       "id": "G32",
@@ -83,8 +85,8 @@
         "Hip touches: release and reset."
       ],
       "print_path": "downloads/team-games.pdf",
-      "print_page": 2,
-      "binder_page": 210,
+      "print_page": 3,
+      "binder_page": 211,
       "provenance": "Team favorite shared by a Grindstone coach. The hip-to-mat rule is the team version. Timing, release/reset details, starting-shark rotation, and age adaptations are suggested coaching choices.",
       "sources": [
         {
@@ -97,7 +99,252 @@
           "url": "https://www.playtheirway.org/resources/coaching-tips/how-to-coach-wrestling-to-children/",
           "note": "Describes a crawling/hug Bulldog variation; it does not establish this team's hip-to-mat rule."
         }
-      ]
+      ],
+      "origin_label": "Team favorite",
+      "print_summary": "Also called Sharks and Minnows. Team rule: hip to mat = new shark."
+    },
+    {
+      "id": "G33",
+      "name": "Tail Tag",
+      "aliases": [
+        "Fox Tail",
+        "flag tag"
+      ],
+      "minutes": 4,
+      "format": "A paired flag game adapted from Fox Tail: protect your tail and collect your partner's. Suggested timing: 4 minutes.",
+      "equipment": "One soft cloth flag per athlete and clear mat space. Use loose flags with no hard parts; never tie or fasten them to the body.",
+      "setup": "Match partners by size, experience, and control. Each athlete loosely tucks a cloth into the back of the waistband with an easy-to-grab end showing. Give every pair its own clear area. Show a gentle flag pull and the stop signal.",
+      "play": "Partners circle to protect their own flag while trying to pull the other flag free. Only the flag is a target. The scoring and reset below are suggested coaching choices.",
+      "steps": [
+        "Begin facing your assigned partner with knees soft and eyes up. Keep the flag loose enough to come free easily.",
+        "Use footwork to reach the flag. Grasp only the exposed cloth; never grab the waistband, clothing, or body.",
+        "One flag pulled free earns one point. Stop, separate, return the flag, and tuck it loosely before restarting.",
+        "Suggested rounds: 15-20 seconds followed by a reset. Switch partners or roles only when the coach directs."
+      ],
+      "variation": "Suggested age adaptations: ages 4-6 / Pup and new athletes: walking only, one attacker and one defender; switch roles each round. Ages 7-10: both may attack after showing control. Ages 11-14: challenge athletes to change direction while staying balanced; keep the same light-contact rules. Choose the walking version whenever space or control is limited.",
+      "boundary": "Only grab the loose flag. No tying flags, gripping clothing or the body, pushing, blocking with contact, tackling, diving, or pulling someone off balance. Stop to fix a stuck flag; never tug harder. Reset if athletes leave their area.",
+      "cues": [
+        "Flag only.",
+        "Move your feet; protect your tail.",
+        "Pull, pause, reset."
+      ],
+      "provenance": "Coaching adaptation of Fox Tail, named in USA Wrestling's games curriculum. The written round lengths, scoring/reset format, and age choices are suggestions rather than a claim of exact video rules.",
+      "sources": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7",
+          "note": "Official source for the related game name and demonstration. Suggested timing, pairings, scoring/reset choices, and age adaptations below are coaching choices."
+        }
+      ],
+      "team_favorite": true,
+      "origin_label": "Coaching adaptation",
+      "ages": "Pup, Beginner & Advanced",
+      "age_groups": [
+        "4-6",
+        "7-10",
+        "11-14"
+      ],
+      "print_path": "downloads/team-games.pdf",
+      "print_page": 4,
+      "binder_page": 212,
+      "print_summary": "A paired flag game adapted from Fox Tail: protect your tail and collect your partner's."
+    },
+    {
+      "id": "G34",
+      "name": "Towel Tug",
+      "aliases": [
+        "Bone Fight",
+        "towel pull"
+      ],
+      "minutes": 4,
+      "format": "A controlled grip-and-balance game adapted from Bone Fight. Suggested timing: 4 minutes.",
+      "equipment": "One short, soft towel per pair and clear mat space. No knots, handles, straps, or hard attachments.",
+      "setup": "Match partners by size, experience, and control. Partners face each other in a balanced stance and each holds one end of the towel with one hand. Keep the towel below shoulder height and leave room for footwork. Demonstrate gentle pressure and a safe release.",
+      "play": "Keep your balance and move your feet while applying gentle pressure through the towel. If a partner releases the towel, stop immediately. The one-point/reset format below is a suggested coaching choice.",
+      "steps": [
+        "Take a comfortable stance with soft knees and eyes up. Hold the towel in an open, releasable grip; never wrap it around the hand or wrist.",
+        "On the signal, use gentle steady pressure and small steps. The purpose is balance and grip control, not pulling someone down.",
+        "A voluntary grip release ends the exchange and gives the partner one point. Both relax, return to the starting position, and reset.",
+        "Release immediately if you lose balance. Suggested older-athlete rounds: up to 20 seconds, then reset or change hands."
+      ],
+      "variation": "Suggested age adaptations: ages 4-6 / Pup and new athletes: cooperative balance only, with very light shared tension and no contest or points. Ages 7-10: brief gentle exchanges after a controlled release rehearsal. Ages 11-14: add small direction changes or switch the gripping hand between rounds; do not increase force.",
+      "boundary": "No wrist wraps, jerks, body contact, twisting arms, falling backward, or dropping body weight to win. Never chase a released towel or keep pulling after a stop. Release before losing balance; stop the game if gentle pressure cannot be maintained.",
+      "cues": [
+        "Soft knees, small steps.",
+        "Gentle pressure; no jerks.",
+        "Lose balance? Let go."
+      ],
+      "provenance": "Coaching adaptation of Bone Fight, named in USA Wrestling's games curriculum. The short towel, one-hand grip, light-pressure format, scoring, and age adaptations are suggested choices.",
+      "sources": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7",
+          "note": "Official source for the related game name and demonstration. Suggested timing, pairings, scoring/reset choices, and age adaptations below are coaching choices."
+        }
+      ],
+      "team_favorite": true,
+      "origin_label": "Coaching adaptation",
+      "ages": "Pup, Beginner & Advanced",
+      "age_groups": [
+        "4-6",
+        "7-10",
+        "11-14"
+      ],
+      "print_path": "downloads/team-games.pdf",
+      "print_page": 5,
+      "binder_page": 213,
+      "print_summary": "A controlled grip-and-balance game adapted from Bone Fight."
+    },
+    {
+      "id": "G35",
+      "name": "Circle the Bear",
+      "aliases": [
+        "Spinning Bear",
+        "bear circle"
+      ],
+      "minutes": 4,
+      "format": "A controlled angle-and-footwork game adapted from Spinning Bear. Suggested timing: 4 minutes.",
+      "equipment": "Clear mat space; no equipment needed.",
+      "setup": "Match partners by size and readiness. One athlete is the bear, in a comfortable hands-and-feet base. The other begins in a low stance in front, with light open-hand contact on the shoulders. Demonstrate gentle contact and a controlled pivot before the game.",
+      "play": "The circling athlete tries to move behind the bear while the bear pivots to keep facing the partner. This is a footwork task, not a shove or takedown. The role changes below are suggested.",
+      "steps": [
+        "Begin only when both athletes are balanced and comfortable. Keep the bear's head free and hands supported on the mat.",
+        "The partner circles with small steps, using only light shoulder contact. The bear moves hands and feet to turn and face the partner.",
+        "If the partner gets behind, pause and return to the front. No jump-on, ride, tackle, or extra finish follows.",
+        "Suggested rounds: 15 seconds, then stop and switch roles. Reset sooner if the bear's base collapses or either athlete loses control."
+      ],
+      "variation": "Suggested age adaptations: ages 4-6 / Pup and new athletes: both remain standing for a no-touch walking circle; one circles while the other turns to face. Ages 7-10: rehearse a comfortable bear base before using light contact. Ages 11-14: add direction changes while keeping slow, controlled footwork. Readiness decides the version.",
+      "boundary": "No head or neck pressure, shoving the bear down, pulling arms, jumping on the back, or forcing a trapped limb. Never continue on a collapsed base. If hands, wrists, or shoulders become uncomfortable, stop and use the standing, no-touch version.",
+      "cues": [
+        "Light hands, moving feet.",
+        "Turn to face your partner.",
+        "Base drops? Stop and reset."
+      ],
+      "provenance": "Coaching adaptation of Spinning Bear, named in USA Wrestling's games curriculum. The contact limits, no-touch starting version, 15-second rounds, and role changes are suggested coaching choices.",
+      "sources": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7",
+          "note": "Official source for the related game name and demonstration. Suggested timing, pairings, scoring/reset choices, and age adaptations below are coaching choices."
+        }
+      ],
+      "team_favorite": true,
+      "origin_label": "Coaching adaptation",
+      "ages": "Pup, Beginner & Advanced",
+      "age_groups": [
+        "4-6",
+        "7-10",
+        "11-14"
+      ],
+      "print_path": "downloads/team-games.pdf",
+      "print_page": 6,
+      "binder_page": 214,
+      "print_summary": "A controlled angle-and-footwork game adapted from Spinning Bear."
+    },
+    {
+      "id": "G36",
+      "name": "Freeze & Rescue",
+      "aliases": [
+        "Stuck in the Mud",
+        "Stuck in Mud",
+        "freeze tag",
+        "rescue tag"
+      ],
+      "minutes": 5,
+      "format": "A freeze-tag game with a crawling teammate rescue, adapted from UK Coaching's Stuck in the Mud. Suggested timing: 5 minutes.",
+      "equipment": "Clear mat space with visible boundaries and enough room between frozen athletes.",
+      "setup": "Choose one tagger to start and demonstrate a gentle open-hand touch to the torso or shoulder. Show the frozen position: feet comfortably apart, body still. Rehearse one teammate crawling slowly between the legs without contacting them.",
+      "play": "A tagged athlete freezes. A free teammate can rescue them by crawling carefully between their legs. The frozen athlete stays still until the rescuer is fully clear. The following spacing and reset choices are suggestions.",
+      "steps": [
+        "On the signal, free players move within the boundaries. Taggers use a light torso or shoulder touch only.",
+        "Tagged players stop with feet apart. If the location is crowded, pause and have the coach space everyone before restarting.",
+        "One teammate at a time crawls through to rescue. Taggers give the pair room and do not tag either athlete during the rescue.",
+        "After the rescuer is fully clear, both rejoin play. Use short rounds, rotate taggers, and reset when frozen athletes are too close together."
+      ],
+      "variation": "Suggested age adaptations: ages 4-6 / Pup and new athletes: walking only, one tagger, and a slow rescue rehearsal before play. Ages 7-10 and 11-14: add a tagger only while spacing and gentle touches remain controlled. If crawling through legs is uncomfortable or impractical, use a gentle hand-to-hand touch rescue instead. Suggested rounds: 30-45 seconds.",
+      "boundary": "No lifting, tackling, pushing, leg grabbing, or diving through legs. Frozen athletes must not move their feet until the rescuer is through. Never crowd, block, or chase into an active rescue. Stop immediately if anyone is trapped or uncomfortable.",
+      "cues": [
+        "Light touch, then freeze.",
+        "Stay still for your rescuer.",
+        "One at a time; crawl slowly."
+      ],
+      "provenance": "Coaching adaptation of Stuck in the Mud in UK Coaching / Play Their Way's wrestling-games handout. This is freeze tag with crawling rescues; it is different from USA Wrestling's kneeling ankle-control game with a similar name. Timing, space, and age choices here are suggestions.",
+      "sources": [
+        {
+          "title": "UK Coaching / Play Their Way: Wrestling games for children",
+          "url": "https://www.playtheirway.org/getmedia/3dffabfa-0370-45cd-9e18-908c8437437b/Trevor-Hoskin-wrestling-games-for-children.pdf",
+          "note": "Primary coaching handout: Stuck in the Mud uses freeze tag and a teammate crawling between a frozen player's legs to rescue them. The spacing, tagger count, and contact limits here are suggested adaptations."
+        },
+        {
+          "title": "Play Their Way: How to coach wrestling to children",
+          "url": "https://www.playtheirway.org/resources/coaching-tips/how-to-coach-wrestling-to-children/",
+          "note": "Primary coaching article linking the wrestling-games handout and age-appropriate play guidance."
+        },
+        {
+          "title": "UI Coach: Stuck in the Mud",
+          "url": "https://www.uicoach.org/recess-games/stuckinthemud",
+          "note": "Primary activity page describes frozen legs-apart/crawl-through rescue and links the Better Health Families demonstration. The written Grindstone card adds selected contact limits, age adaptations, timing, and resets."
+        }
+      ],
+      "team_favorite": true,
+      "origin_label": "Coaching adaptation",
+      "ages": "Pup, Beginner & Advanced",
+      "age_groups": [
+        "4-6",
+        "7-10",
+        "11-14"
+      ],
+      "print_path": "downloads/team-games.pdf",
+      "print_page": 7,
+      "binder_page": 215,
+      "print_summary": "A freeze-tag game with a crawling teammate rescue, adapted from UK Coaching's Stuck in the Mud."
+    },
+    {
+      "id": "G37",
+      "name": "Power Ball",
+      "aliases": [
+        "Powerball",
+        "passing game",
+        "end zone"
+      ],
+      "minutes": 5,
+      "format": "A passing-and-movement game adapted from USA Wrestling's Power Ball. Suggested timing: 5 minutes.",
+      "equipment": "One soft ball and a clear mat area with two marked end zones. Avoid walls, chairs, and overlapping groups.",
+      "setup": "Make two balanced teams and point out each team's attacking end zone. Demonstrate a controlled pass, a safe catch, and two steps with the ball. Agree that this version scores only by completing a pass to a teammate standing in the attacking end zone.",
+      "play": "Pass and move to create space. The ball holder may take at most two steps before passing. A completed pass to a teammate standing in the attacking end zone scores one point. The restart and turnover choices below are suggestions.",
+      "steps": [
+        "Start with a pass from the coach or the agreed starting line. Off-ball teammates move into open space; the holder uses at most two steps and then passes.",
+        "Defenders may intercept a ball in flight. They may not strip, knock, or pull a ball from someone's hands.",
+        "A dropped ball or a ball out of bounds is a turnover. Stop, give possession to the other team at that spot, and allow a clear restart pass.",
+        "After a completed end-zone pass scores, reset both teams and give the other team the ball. Use short rounds and rotate roles so everyone receives passes."
+      ],
+      "variation": "Suggested age adaptations: ages 4-6 / Pup and new athletes: cooperative walking passes with no defenders; count successful passes together. Ages 7-10: introduce one gentle interception-only defender before a team game. Ages 11-14: use the full passing game only while space, catches, and stopping remain controlled. Suggested rounds: 45-60 seconds.",
+      "boundary": "No stripping a held ball, tackling, charging, body blocking, or diving into players. Do not wrestle for a loose ball; stop and use the turnover rule. Use a soft ball, controlled passes, and a clear lane to the receiver. Stop if players collide or crowd the end zone.",
+      "cues": [
+        "Two steps, then pass.",
+        "Find space; show your hands.",
+        "Intercept the pass, not the player."
+      ],
+      "provenance": "Coaching adaptation of Power Ball, named in USA Wrestling's games curriculum. The end-zone scoring method, two-step limit, restart format, and age adaptations here are explicitly the selected coaching rules; the related video may differ.",
+      "sources": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7",
+          "note": "Official source for the related game name and demonstration. Suggested timing, pairings, scoring/reset choices, and age adaptations below are coaching choices."
+        }
+      ],
+      "team_favorite": true,
+      "origin_label": "Coaching adaptation",
+      "ages": "Pup, Beginner & Advanced",
+      "age_groups": [
+        "4-6",
+        "7-10",
+        "11-14"
+      ],
+      "print_path": "downloads/team-games.pdf",
+      "print_page": 8,
+      "binder_page": 216,
+      "print_summary": "A passing-and-movement game adapted from USA Wrestling's Power Ball."
     }
   ],
   "videos": {
@@ -136,15 +383,106 @@
           "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7"
         }
       ]
+    },
+    "G33": {
+      "id": "G33",
+      "video": {
+        "url": "https://www.youtube.com/watch?v=TsyfHK_OD4k",
+        "title": "Level 1 - Drills, Activities and Games - Fox Tail",
+        "channel": "USA Wrestling",
+        "format": "video",
+        "match": "related",
+        "note": "Related Fox Tail demonstration. Use the written card for the selected contact limits, age adaptations, timing, scoring, and reset choices; these are not claimed to be the video's exact rules.",
+        "verified_by": "Checked October 10, 2026: exact video ID linked from the official USA Wrestling games curriculum and YouTube oEmbed metadata verified. Footage was not watched; not a YouTube Short."
+      },
+      "usa_wrestling": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7"
+        }
+      ]
+    },
+    "G34": {
+      "id": "G34",
+      "video": {
+        "url": "https://www.youtube.com/watch?v=cjyHiU_bhl0",
+        "title": "Level 1 - Drills, Activities and Games - Bone Fight",
+        "channel": "USA Wrestling",
+        "format": "video",
+        "match": "related",
+        "note": "Related Bone Fight demonstration. Use the written card for the selected contact limits, age adaptations, timing, scoring, and reset choices; these are not claimed to be the video's exact rules.",
+        "verified_by": "Checked October 10, 2026: exact video ID linked from the official USA Wrestling games curriculum and YouTube oEmbed metadata verified. Footage was not watched; not a YouTube Short."
+      },
+      "usa_wrestling": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7"
+        }
+      ]
+    },
+    "G35": {
+      "id": "G35",
+      "video": {
+        "url": "https://www.youtube.com/watch?v=n7a-Ab6RwXs",
+        "title": "Level 1 - Drills, Activities and Games - Spinning Bear",
+        "channel": "USA Wrestling",
+        "format": "video",
+        "match": "related",
+        "note": "Related Spinning Bear demonstration. Use the written card for the selected contact limits, age adaptations, timing, scoring, and reset choices; these are not claimed to be the video's exact rules.",
+        "verified_by": "Checked October 10, 2026: exact video ID linked from the official USA Wrestling games curriculum and YouTube oEmbed metadata verified. Footage was not watched; not a YouTube Short."
+      },
+      "usa_wrestling": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7"
+        }
+      ]
+    },
+    "G37": {
+      "id": "G37",
+      "video": {
+        "url": "https://www.youtube.com/watch?v=TfpTpx0Y4es",
+        "title": "Level 1 - Drills, Activities and Games - Power Ball",
+        "channel": "USA Wrestling",
+        "format": "video",
+        "match": "related",
+        "note": "Related Power Ball demonstration. Use the written card for the selected contact limits, age adaptations, timing, scoring, and reset choices; these are not claimed to be the video's exact rules.",
+        "verified_by": "Checked October 10, 2026: exact video ID linked from the official USA Wrestling games curriculum and YouTube oEmbed metadata verified. Footage was not watched; not a YouTube Short."
+      },
+      "usa_wrestling": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7"
+        }
+      ]
+    },
+    "G36": {
+      "id": "G36",
+      "video": {
+        "url": "https://www.youtube.com/watch?v=OOhGdvcWMxQ",
+        "title": "Stuck in the Mud",
+        "channel": "Better Health Families",
+        "format": "video",
+        "match": "related",
+        "note": "Related freeze-tag demonstration linked from UI Coach's legs-apart/crawl-through rescue activity. Use the written Grindstone card for contact limits, rescue spacing, age adaptations, and resets; the whole rule set is not claimed to match the video. This is not the similarly named USA Wrestling kneeling ankle-control activity.",
+        "verified_by": "Checked October 10, 2026: UI Coach source linkage to the exact video ID and YouTube oEmbed title/publisher metadata verified. Footage was not watched; not a YouTube Short."
+      },
+      "usa_wrestling": []
     }
   },
   "downloads": [
     {
-      "title": "Team favorite games addendum",
-      "description": "Ankle Tag (G31) and Bulldog (G32). Two pages / one double-sided sheet. Append after binder page 208 as pages 209-210; the original binder and archive are unchanged.",
+      "title": "Extra games addendum",
+      "description": "Index plus seven games: G31-G37. Eight pages / four double-sided sheets. Append after binder page 208 as pages 209-216. The original binder and archive are unchanged.",
       "type": "PDF",
-      "pages": 2,
+      "pages": 8,
       "path": "downloads/team-games.pdf"
     }
-  ]
+  ],
+  "index": {
+    "title": "Extra games index",
+    "print_page": 1,
+    "binder_page": 209,
+    "description": "Two team favorites and five coaching adaptations. Choose a familiar activity and the version that fits your athletes' readiness."
+  }
 }
