@@ -1,0 +1,150 @@
+{
+  "games": [
+    {
+      "id": "G31",
+      "name": "Ankle Tag",
+      "aliases": [
+        "Toe Tag",
+        "anklets",
+        "ankle bands"
+      ],
+      "team_favorite": true,
+      "ages": "Pup, Beginner & Advanced",
+      "age_groups": [
+        "4-6",
+        "7-10",
+        "11-14"
+      ],
+      "minutes": 4,
+      "format": "Team favorite: paired, touch-only ankle tag. Suggested timing: 4 minutes.",
+      "equipment": "Clear mat space. Optional: soft, flat, washable wrestling ankle bands as visible targets only; no hard parts or loose ends.",
+      "setup": "Match partners by size, experience, and control. Give each pair a clear area with space between pairs. Demonstrate a gentle open-hand ankle touch and the stop signal.",
+      "play": "Stay with your assigned partner. A gentle touch to an ankle scores one point; no grip or takedown. The reset and scoring below are suggested coaching choices.",
+      "steps": [
+        "Begin in a comfortable wrestling stance with eyes up and hands ready. Move your feet to stay balanced.",
+        "Reach with an open hand and gently touch your partner's ankle. Never hold the ankle, shoe, sock, or band.",
+        "After a touch, say \"one,\" separate, and return to stance before restarting. Stop and reset if the pair leaves its area.",
+        "Use the suggested short rounds below, then pause to reset or switch the attacker. Keep every athlete involved."
+      ],
+      "variation": "Suggested age adaptations: ages 4-6 / Pup: 15-20 seconds, cooperative, one attacker at a time; switch roles. Ages 7-10: 20-30 seconds, both may score when they show control. Ages 11-14: 30-40 seconds, add a footwork challenge while keeping the same gentle touch rule. Choose a shorter round whenever control fades.",
+      "boundary": "Touch only. No diving, gripping, pushing, tripping, sweeping, or takedowns. Never grab, pull, or remove an ankle band. A band is a visual target, not a flag to collect. Stop immediately if partners collide, fall, or become rough.",
+      "cues": [
+        "Touch, do not grab.",
+        "Move your feet; stay balanced.",
+        "One touch, reset."
+      ],
+      "print_path": "downloads/team-games.pdf",
+      "print_page": 1,
+      "binder_page": 209,
+      "provenance": "Team favorite shared by a Grindstone coach. Round lengths, scoring/reset format, equipment choices, and age adaptations are suggested coaching choices.",
+      "sources": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7",
+          "note": "Official related demonstrations; the team rules below are not presented as USA Wrestling rules."
+        },
+        {
+          "title": "USA Wrestling: 5 Great Games",
+          "url": "https://www.themat.com/news/2019/january/03/5-great-games",
+          "note": "Related wrestling-game ideas; not evidence for the exact paired ankle-touch rules."
+        }
+      ]
+    },
+    {
+      "id": "G32",
+      "name": "Bulldog",
+      "aliases": [
+        "Sharks and Minnows",
+        "Sharks & Minnows"
+      ],
+      "team_favorite": true,
+      "ages": "Pup, Beginner & Advanced",
+      "age_groups": [
+        "4-6",
+        "7-10",
+        "11-14"
+      ],
+      "minutes": 5,
+      "format": "Team favorite: kneeling Sharks and Minnows. A hip to the mat turns a minnow into a shark. Suggested timing: 5 minutes.",
+      "equipment": "Clear mat space and two visible end lines. Keep the playing area away from walls, chairs, and other groups.",
+      "setup": "Everyone moves on hands and knees. Choose one starting shark in the middle; minnows begin behind one end line. Use a short crossing lane and enough space to separate pairs. Coach first demonstrates a controlled body action the athletes have already learned that guides a partner's hip gently to the mat. If they cannot show it cooperatively, use the torso-touch adaptation.",
+      "play": "On the coach's signal, minnows crawl toward the opposite end line. The team's core rule is hip to mat = new shark. The release, entry timing, and rotation below are suggested coaching choices.",
+      "steps": [
+        "Allow only one shark to engage each minnow. Other sharks must choose an unengaged minnow; never add a second athlete to an active pair.",
+        "Using only the previously taught controlled body action, the shark guides the minnow's hip gently to the mat. Keep contact controlled; no lifting or forcing.",
+        "As soon as the hip touches, the shark releases. Both athletes separate. The new shark joins on the next crossing, after the current crossing ends.",
+        "Reset everyone on hands and knees before the next signal. Use short rounds, rotate the starting shark, and restart before crowding or fatigue spoils control."
+      ],
+      "variation": "Suggested age adaptations: Pup / ages 4-6 and any new athlete: gentle torso touch only, with no tipping; touched minnows join as sharks on the next crossing. Ages 7-10 and 11-14: rehearse the selected controlled hip finish with a cooperative partner first; use it only when every athlete can perform and receive it calmly. Readiness, not age, decides the version. Suggested format: 30-45-second rounds with a reset and a new starting shark.",
+      "boundary": "No piling on, lifts, headlocks, neck pulls, twisting trapped legs, or dragging by joints or clothing. No standing, running, tackling, or force progression. Release immediately at the hip touch or stop signal. Pause the whole game if an athlete is trapped, uncomfortable, or loses control; return to touch-only play.",
+      "cues": [
+        "Hands and knees.",
+        "One shark, one minnow.",
+        "Hip touches: release and reset."
+      ],
+      "print_path": "downloads/team-games.pdf",
+      "print_page": 2,
+      "binder_page": 210,
+      "provenance": "Team favorite shared by a Grindstone coach. The hip-to-mat rule is the team version. Timing, release/reset details, starting-shark rotation, and age adaptations are suggested coaching choices.",
+      "sources": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7",
+          "note": "Official related demonstrations; the team rules below are not presented as USA Wrestling rules."
+        },
+        {
+          "title": "Play Their Way: How to coach wrestling to children",
+          "url": "https://www.playtheirway.org/resources/coaching-tips/how-to-coach-wrestling-to-children/",
+          "note": "Describes a crawling/hug Bulldog variation; it does not establish this team's hip-to-mat rule."
+        }
+      ]
+    }
+  ],
+  "videos": {
+    "G31": {
+      "id": "G31",
+      "video": {
+        "url": "https://www.youtube.com/watch?v=_sVdY3tjqjg",
+        "title": "Level 1 - Drills, Activities and Games - Toe Tag",
+        "channel": "USA Wrestling",
+        "format": "video",
+        "match": "related",
+        "note": "Related toe-tag demonstration. The team card uses gentle ankle touches in matched pairs; optional bands are visible targets only, never grabbed or removed. Keep hand-to-ankle touches; do not use foot-stepping versions.",
+        "verified_by": "Checked October 10, 2026: exact video ID linked from the official USA Wrestling games curriculum and YouTube oEmbed metadata verified. Footage was not watched; not a YouTube Short."
+      },
+      "usa_wrestling": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7"
+        }
+      ]
+    },
+    "G32": {
+      "id": "G32",
+      "video": {
+        "url": "https://www.youtube.com/watch?v=ByuqM7Itd1o",
+        "title": "Level 1 - Drills, Activities and Games - Sharks & Minnows",
+        "channel": "USA Wrestling",
+        "format": "video",
+        "match": "related",
+        "note": "Related Sharks & Minnows demonstration. The team card uses hands-and-knees movement and a hip-to-mat rule; do not assume the video shows these exact contact limits or reset rules.",
+        "verified_by": "Checked October 10, 2026: exact video ID linked from the official USA Wrestling games curriculum and YouTube oEmbed metadata verified. Footage was not watched; not a YouTube Short."
+      },
+      "usa_wrestling": [
+        {
+          "title": "USA Wrestling: Drills, Activities & Games",
+          "url": "https://www.usawmembership.com/usa_wrestling_core_curriculum/7"
+        }
+      ]
+    }
+  },
+  "downloads": [
+    {
+      "title": "Team favorite games addendum",
+      "description": "Ankle Tag (G31) and Bulldog (G32). Two pages / one double-sided sheet. Append after binder page 208 as pages 209-210; the original binder and archive are unchanged.",
+      "type": "PDF",
+      "pages": 2,
+      "path": "downloads/team-games.pdf"
+    }
+  ]
+}

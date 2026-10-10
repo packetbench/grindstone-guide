@@ -46,6 +46,10 @@ for name in ['video-pups-beginner.json','video-beginner-advanced.json','video-ad
                 v=x['video'];v['format']='shorts' if 'short' in str(v.get('format','')).lower() else 'video'
                 if isinstance(v.get('verified_by'),list):v['verified_by']='; '.join(v['verified_by'])
             videos[x['id']]=x
+team=read(SITE/'team-games.json')
+assert {g['id'] for g in team['games']}=={'G31','G32'}
+assert not ({g['id'] for g in games['games']} & {g['id'] for g in team['games']})
+videos.update(team['videos'])
 md=MarkdownIt('default',{'html':False})
 guides=[]
 for ident,name,title,label,desc in [
@@ -90,8 +94,9 @@ dict(title='USA Wrestling: Folkstyle Level 2',url='https://www.usawmembership.co
 dict(title='USA Wrestling: Folkstyle Level 3',url='https://www.usawmembership.com/usa_wrestling_core_curriculum/3',description='Further technique options for coaches selecting appropriate progressions.'),
 dict(title='USA Wrestling: Drills, Activities & Games',url='https://www.usawmembership.com/usa_wrestling_core_curriculum/7',description='Official movement and game demonstrations. Select activities according to readiness.'),
 dict(title='USA Wrestling: Techniques by Age',url='https://www.themat.com/news/2019/october/10/techniques-by-age',description='Coaching guidance on foundations, experience, and skill progression.')]
-data=dict(moves=moves,games=games['games'],practices=practices,research=research,videos=videos,guides=guides,downloads=downloads,resources=resources,move_pages=master['entry_pages'],game_pages=games['entry_pages'],video_checked='2026-10-10')
-assert len(moves)==72 and len(data['games'])==30 and len(practices)==90
+downloads.extend(team['downloads'])
+data=dict(moves=moves,games=games['games']+team['games'],practices=practices,research=research,videos=videos,guides=guides,downloads=downloads,resources=resources,move_pages=master['entry_pages'],game_pages=games['entry_pages'],video_checked='2026-10-10')
+assert len(moves)==72 and len(games['games'])==30 and len(data['games'])==32 and len(practices)==90
 put('data.js','window.GRINDSTONE = '+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('<','\\u003c')+';\n')
 put('copy-integrity.json',json.dumps(integrity,indent=2))
 print(json.dumps({'moves':len(moves),'games':len(data['games']),'practices':len(practices),'video_records':len(videos),'preserved_copies':len(integrity),'max_planned_path':max(len(str(p)) for p in planned)},indent=2))
