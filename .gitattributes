@@ -5,3 +5,5 @@
 *.pdf binary
 *.zip binary
 *.png binary
+*.pptx binary
+*.docx binary

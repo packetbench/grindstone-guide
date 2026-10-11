@@ -43,3 +43,36 @@ team-games.json preserves seven additions: Ankle Tag (G31), Bulldog (G32), Tail 
 downloads/team-games.pdf is a separate eight-page Letter addendum: an index plus seven game cards. Print double-sided, long-edge flip, at 100% and append after the original binder's page 208. Binder page 209 is the new index; pages 210-216 are G31-G37. Alternating binding margins are preserved. The total is 216 pages / 108 sheets when this four-sheet addendum follows the original 208-page binder. The original index, PDFs, binder, and library ZIP remain unchanged and do not contain these additions.
 
 tools/build-team-games.py rebuilds only this addendum from team-games.json using ReportLab. The main data builder preserves all seven additions on rebuild. No build is required for the published website.
+
+## Families and volunteer resources
+
+The Families hub adds a 16-question searchable FAQ, a meet-day checklist,
+folkstyle match basics, family expectations, and health guidance. Volunteer
+coaching inquiries use the club's official Contact page; this site does not
+promise openings, an assistant assignment, a particular weekly commitment, or
+which inbox the club monitors.
+
+- Routes: #families, #family/faq, #family/meet-day, #family/match-basics,
+  #family/expectations, #family/health, and #volunteer.
+- Content: family-data.js contains the family pages and download metadata.
+  It is separate from the preserved coaching data and survives build-data.py.
+- Downloads are grouped for coaches, families, and presenters. The four-page
+  parent guide already includes the FAQ and penalties; those two one-page
+  files are optional extracts. Family resources do not expand the coach binder.
+- A single 16-slide presentation is published. The curated family-kit.zip
+  contains the 12 selected public documents, with one presentation and no
+  internal publishing notes or redundant presentation variants.
+- tools/sync-family.py copies the selected September 26, 2026 documents from
+  the neighboring Wrestiling/output directory and checks exact hashes, PDF
+  page counts, and presentation slide count. It refuses differing existing
+  destinations so future replacements receive an explicit review.
+- family-integrity.json records preserved source filenames, hashes, current
+  page counts, and the archive manifest. The current skin reference has three
+  examples and three photo credits; earlier four-example QA is superseded.
+- Web source review: October 11, 2026. Rules are labeled NFHS folkstyle with
+  youth/event modifications; seasonal dates, fees, logistics, placement, and
+  participation expectations remain questions for the club. Health and weight
+  concerns are directed to healthcare professionals. The original downloadable
+  documents retain their September 26 preparation date.
+- Existing QR codes stay in printable documents and lead to their original
+  club/contact/USA Wrestling destinations. Web pages use ordinary labeled links.

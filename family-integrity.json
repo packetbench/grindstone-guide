@@ -1,0 +1,95 @@
+{
+  "verified": "2026-10-11",
+  "source_prepared": "2026-09-26",
+  "source_package": "Wrestiling/output",
+  "method": "Preserved bytes; current page and slide counts verified. Source dates remain visible.",
+  "canonical_presentation": "Grindstone-Parent-Orientation-Final.pptx",
+  "skin_reference_scope": "Three examples: ringworm, impetigo, staph/MRSA. Three photo credits. Older four-example QA is superseded.",
+  "files": [
+    {
+      "source": "Grindstone-Parent-Handout.pdf",
+      "site_path": "downloads/parent-guide.pdf",
+      "sha256": "c319b01bf4c96073b0aad698f803a30e1b0aa1d86cf168b5b660c5100651d4ec",
+      "bytes": 230986,
+      "pages": 4
+    },
+    {
+      "source": "Grindstone-Parent-FAQ.pdf",
+      "site_path": "downloads/parent-faq.pdf",
+      "sha256": "85f39f75c410de26d65fba7a2004770a7ffbdbb50acf4e6461e8fe799fa54816",
+      "bytes": 128693,
+      "pages": 1
+    },
+    {
+      "source": "Grindstone-Common-Penalties.pdf",
+      "site_path": "downloads/common-penalties.pdf",
+      "sha256": "cc0681b4f7541e036292f9118413193fe5a5c6c39a4defe4cd7e487cf46e7844",
+      "bytes": 86987,
+      "pages": 1
+    },
+    {
+      "source": "Grindstone-Code-of-Conduct.pdf",
+      "site_path": "downloads/family-conduct.pdf",
+      "sha256": "1e788ce4d372a4beb4a931b97b2742b91c8f682415d44d8c37821dd43920dbe7",
+      "bytes": 97824,
+      "pages": 1
+    },
+    {
+      "source": "Grindstone-Skin-Health-Handout.pdf",
+      "site_path": "downloads/skin-health.pdf",
+      "sha256": "90d28e6ee806f544370f2beb02c2ae6aae91c7744eb90d3cf70bdf8ca258cc8c",
+      "bytes": 207410,
+      "pages": 1
+    },
+    {
+      "source": "Grindstone-Matside-Welcome-Sign.pdf",
+      "site_path": "downloads/matside-welcome.pdf",
+      "sha256": "5c01ad48510e773f48b45b607de65cc96e6a19026f935784fc45bd894ae4e1b1",
+      "bytes": 139384,
+      "pages": 1
+    },
+    {
+      "source": "Grindstone-Volunteer-Coach-Handout.pdf",
+      "site_path": "downloads/volunteer-coaching.pdf",
+      "sha256": "2f8831eea0a5b1f4b63ffc40db355423198120d21c7fe0b5a6dd859eb09fbfce",
+      "bytes": 120793,
+      "pages": 1
+    },
+    {
+      "source": "Grindstone-Parent-Orientation-Final.pptx",
+      "site_path": "downloads/parent-orientation.pptx",
+      "sha256": "5abc20640dea34e78f4c0f2f4b23ba4c683d0d5263c1a80ed7ede603cf3968b9",
+      "bytes": 152032,
+      "slides": 16
+    },
+    {
+      "source": "Grindstone-Speaker-Script.docx",
+      "site_path": "downloads/presenter-script.docx",
+      "sha256": "c533135512ccb45b406e1fce2c70dd3729c8e82a09d48e53436463810fdc9c66",
+      "bytes": 103206
+    },
+    {
+      "source": "Grindstone-Parent-Presentation-Outline.docx",
+      "site_path": "downloads/presentation-outline.docx",
+      "sha256": "3de61160c8063d2ed2693c088fc73a05ad150a2d00aeb107993317a534958baa",
+      "bytes": 99589
+    },
+    {
+      "source": "Grindstone-Research-and-Sources.md",
+      "site_path": "downloads/parent-sources.md",
+      "sha256": "fe5b466ae3f953853581e04a9d851742a555841ebca3eace9fc066be48b5aed1",
+      "bytes": 17821
+    },
+    {
+      "source": "Grindstone-Skin-Health-Sources.md",
+      "site_path": "downloads/skin-sources.md",
+      "sha256": "a52a1b2102baa0dc69a37d39ef8b1a0d4db26badccb75307e2df38986e50a87c",
+      "bytes": 3449
+    }
+  ],
+  "archive": {
+    "site_path": "downloads/family-kit.zip",
+    "entries": 12,
+    "sha256": "127d8eeb0e67a41a15b315a77b4166496a26767e2541dec8c757da26b7cbcee3"
+  }
+}
