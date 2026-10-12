@@ -7,9 +7,11 @@ window.GRINDSTONE_COACHES = {
       "role": "Valkyries program leader",
       "summary": "Mike Handleman leads the Valkyries, Grindstone’s girls wrestling program.",
       "paragraphs": [
-        "Mike wrestled at Delaware Valley, where he earned four varsity letters. He competed at 133 pounds, with college competition including the East Stroudsburg Open and the East Coast Duals.",
-        "The Valkyries gives girls ages 5–14 a dedicated place to learn, train and compete together. The program Mike leads welcomes beginners alongside experienced wrestlers, emphasizing strong fundamentals, confidence, discipline, resilience and sportsmanship.",
-        "Girls’ tournaments in Maryland, Pennsylvania and Virginia offer opportunities to build experience beyond the practice room. Competition is optional, and the coaching staff helps families choose events that suit their wrestler’s experience, comfort and goals."
+        "Mike’s wrestling background runs from Arundel High School in Maryland to collegiate competition at Delaware Valley, where he earned four varsity letters.",
+        "At Arundel, Mike qualified for the Maryland 4A/3A state tournament in three consecutive seasons: at 112 pounds as a sophomore in 2001, 125 pounds as a junior in 2002 and 130 pounds as a senior in 2003.",
+        "At Delaware Valley, Mike competed at 133 pounds under head coach Brandon Totten. His college competition included the East Stroudsburg Open, Shorty Hitchcock Memorial Classic and East Coast Duals. He earned a 10–5 win over Shippensburg’s Tyler Gilson at the 2005 East Stroudsburg Open.",
+        "Mike brings that wrestling experience to the Valkyries, providing a dedicated place for girls ages 5–14 to learn, train and compete together. The program welcomes beginners and experienced wrestlers, with an emphasis on fundamentals, confidence and sportsmanship.",
+        "Competition is optional. Girls’ tournaments in Maryland, Pennsylvania and Virginia give families opportunities to choose events that suit their wrestler’s experience and goals."
       ],
       "highlights": [
         {
@@ -18,7 +20,7 @@ window.GRINDSTONE_COACHES = {
         },
         {
           "label": "Wrestling background",
-          "text": "Delaware Valley · Four-year varsity letterman."
+          "text": "Arundel · Three-time Maryland state qualifier. Delaware Valley · Four-year varsity letterman."
         },
         {
           "label": "Girls’ wrestling",
@@ -37,6 +39,30 @@ window.GRINDSTONE_COACHES = {
         {
           "title": "Shippensburg athletics • 2006–07 collegiate wrestling results",
           "url": "https://shipraiders.com/custompages/WRESTLING/wresstats0607.pdf"
+        },
+        {
+          "title": "Delaware Valley • 2007 yearbook, wrestling team (printed page 151)",
+          "url": "https://archive.org/details/cornucopia2007dela/page/n155/mode/1up"
+        },
+        {
+          "title": "Maryland 4A/3A state brackets • 2001, 112 pounds",
+          "url": "https://aacosports.com/Old/pdf/2001_4state.pdf#page=2"
+        },
+        {
+          "title": "Maryland 4A/3A state brackets • 2002, 125 pounds",
+          "url": "https://aacosports.com/Old/pdf/2002_4state.pdf#page=4"
+        },
+        {
+          "title": "Maryland 4A/3A state brackets • 2003, 130 pounds",
+          "url": "https://www.aacosports.com/Old/pdf/2003_4state.pdf#page=5"
+        },
+        {
+          "title": "Delaware Valley • Coach Brandon Totten’s program history",
+          "url": "https://athletics.delval.edu/sports/wrestling/roster/coaches/brandon-totten/101"
+        },
+        {
+          "title": "Shippensburg athletics • 2005–06 wrestling results",
+          "url": "https://static.shipraiders.com/custompages/WRESTLING/wresstats0506.pdf"
         }
       ],
       "photo": {
@@ -51,6 +77,8 @@ window.GRINDSTONE_COACHES = {
       "role": "Youth coach · Community sponsorships",
       "summary": "Eric Westervelt coaches across Grindstone’s age groups, most often with wrestlers ages 7–10, and has played a major role in funding the program through local business sponsorships.",
       "paragraphs": [
+        "Eric wrestled at Westminster High School under coach Henry Mohlhenrich. In his first varsity season, 1997–98, he opened with two pins at 171 pounds. Later that season, wrestling at 189, his pin against Damascus helped Westminster reach the Maryland Class 4A/3A state dual final. The Owls finished as state dual runners-up.",
+        "As a senior, Eric finished second at 171 pounds in the 1999 Carroll County tournament and earned Carroll County Times All-County second-team recognition. Earlier that month, he had turned a 16–3 deficit against South Carroll’s Chris Currence into a pin with a cradle—a memorable comeback documented in the local newspaper.",
         "Eric’s contribution reaches well beyond practice. By reaching out to local businesses and bringing them on board as sponsors, he has helped provide the financial support that keeps Grindstone going. His efforts connect the club with the community around it.",
         "On the mat, Eric moves between groups as needed and is a familiar presence with the 7–10 wrestlers. His commitment to the program includes both working directly with young athletes and building support for the team as a whole.",
         "Eric is a U.S. Marine Corps veteran with a professional background in recreation and parks. His work has included maintaining athletic fields and helping keep public recreation spaces safe and ready for use."
@@ -61,6 +89,10 @@ window.GRINDSTONE_COACHES = {
           "text": "Wrestlers ages 7–10, with coaching across groups."
         },
         {
+          "label": "Westminster wrestling",
+          "text": "1998 state dual runner-up team · 1999 county runner-up at 171 pounds · All-County second team."
+        },
+        {
           "label": "Supporting Grindstone",
           "text": "Reaching out to local businesses and securing sponsorships that help fund the program."
         },
@@ -69,12 +101,38 @@ window.GRINDSTONE_COACHES = {
           "text": "U.S. Marine Corps veteran with a background in recreation and parks."
         }
       ],
-      "sources": [],
+      "sources": [
+        {
+          "title": "Carroll County Times • Eric’s first varsity season and opening-night pins (December 10, 1997)",
+          "url": "https://cctimes.carr.org/documents/CCT_12101997.pdf#page=7"
+        },
+        {
+          "title": "Carroll County Times • Westminster’s state dual final run (February 15, 1998)",
+          "url": "https://cctimes.carr.org/documents/CCT_02151998.pdf#page=13"
+        },
+        {
+          "title": "Carroll County Times • County final, comeback match and action photo (February 21, 1999)",
+          "url": "https://cctimes.carr.org/documents/CCT_02211999.pdf#page=9"
+        },
+        {
+          "title": "Carroll County Times • All-County wrestling team (March 18, 1999)",
+          "url": "https://cctimes.carr.org/documents/CCT_03181999.pdf#page=6"
+        }
+      ],
       "photo": {
         "src": "assets/eric-westervelt.jpg",
         "alt": "Eric Westervelt’s profile portrait.",
         "caption": "Eric Westervelt."
-      }
+      },
+      "gallery": [
+        {
+          "src": "assets/eric-wrestling-1999.png",
+          "alt": "Eric Westervelt wrestling Chris Currence in the 1999 Carroll County 171-pound final; the newspaper caption identifies Eric in front and Currence behind him.",
+          "caption": "Eric competing for Westminster in the 1999 Carroll County 171-pound final. Photo: Stephen Cherry, Carroll County Times, February 21, 1999. Reproduced from the newspaper scan.",
+          "source_url": "https://cctimes.carr.org/documents/CCT_02211999.pdf#page=9",
+          "source_label": "Original newspaper • Carroll County Public Library archive"
+        }
+      ]
     },
     {
       "id": "ryan-devries",
@@ -82,11 +140,15 @@ window.GRINDSTONE_COACHES = {
       "role": "Youth coach · Ages 7–10 and across groups",
       "summary": "Ryan DeVries moves between Grindstone’s groups, most often working with wrestlers ages 7–10.",
       "paragraphs": [
-        "Ryan wears his heart on his sleeve and celebrates his wrestlers’ growth. He cares deeply about the athletes he coaches and takes their progress to heart.",
-        "Outside wrestling, Ryan’s background spans engineering, operations leadership and workforce training. He earned a bachelor’s degree in Industrial Engineering and a master’s degree in Workforce Development and Training from Eastern Illinois University.",
-        "His professional experience includes manufacturing engineering, employee training, workplace safety and leading production teams. At Grindstone, families will most often find him with the 7–10 group, while he also helps coach wrestlers in other practice groups."
+        "Ryan wrestled at heavyweight for Eastern Illinois University under head coach Ralph McCausland. As a freshman, he won all four of his matches at the 2002 Missouri Open to capture the heavyweight title in the freshman/sophomore division. McCausland singled out Ryan and fellow freshman Ken Robertson for their impressive performances.",
+        "Ryan wears his heart on his sleeve and celebrates his wrestlers’ growth. He cares deeply about the athletes he coaches and takes their progress to heart. Families will most often find him with the 7–10 group, while he also helps coach wrestlers in other practice groups.",
+        "Outside wrestling, Ryan’s background spans engineering, operations leadership and workforce training. He earned a bachelor’s degree in Industrial Engineering and a master’s degree in Workforce Development and Training from Eastern Illinois University. His professional work has included manufacturing engineering, employee training, workplace safety and leading production teams."
       ],
       "highlights": [
+        {
+          "label": "College wrestling",
+          "text": "Eastern Illinois heavyweight · 2002 Missouri Open freshman/sophomore division champion."
+        },
         {
           "label": "Across the program",
           "text": "Coaches wrestlers in several practice groups."
@@ -100,7 +162,16 @@ window.GRINDSTONE_COACHES = {
           "text": "Eastern Illinois University · Industrial Engineering and Workforce Development and Training."
         }
       ],
-      "sources": [],
+      "sources": [
+        {
+          "title": "The Daily Eastern News • Ryan’s 4–0 Missouri Open championship",
+          "url": "https://www.dailyeasternnews.com/2002/12/03/grapplers-show-promise-in-missouri-open/"
+        },
+        {
+          "title": "Eastern Illinois • 2003 Warbler yearbook, wrestling results (printed page 133)",
+          "url": "https://thekeep.eiu.edu/warbler/79/"
+        }
+      ],
       "photo": {
         "src": "assets/ryan-devries.jpg",
         "alt": "Ryan DeVries’s profile portrait.",
@@ -180,9 +251,15 @@ window.GRINDSTONE_COACHES = {
       "role": "Youth coach · Pups and older group",
       "summary": "Thomas Schnepp will split his coaching time between the Pups and the older group this season.",
       "paragraphs": [
-        "Thomas also helps develop practical resources for Grindstone’s coaches and families. His work on the team library brings together practice plans, move guides, games and family information, with an emphasis on making the materials easy to find and use at practice."
+        "Thomas wrestled in high school in Eaton Rapids, Michigan. His coaching role at Grindstone brings him into the room with wrestlers at different stages of learning the sport.",
+        "He also helps develop practical resources for Grindstone’s coaches and families. His work on the team library brings together practice plans, move guides, games and family information, with an emphasis on making the materials easy to find and use at practice.",
+        "That work includes adapting activities for different ages, giving coaches clear teaching steps and cues, and keeping games readily available to help young athletes stay engaged. It is another way Thomas contributes to the program alongside his time on the mat."
       ],
       "highlights": [
+        {
+          "label": "Wrestling background",
+          "text": "High-school wrestling in Eaton Rapids, Michigan."
+        },
         {
           "label": "On the mat",
           "text": "Splitting time between the Pups and the older group this season."

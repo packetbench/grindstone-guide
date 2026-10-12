@@ -136,14 +136,15 @@ function coachDirectory(){
 }
 function coachProfile(id){
  const coach=(C.profiles||[]).find(person=>person.id===id);if(!coach)return notFound();
- const photo=coach.photo,highlights=coach.highlights||[],hasAside=photo||highlights.length;
+ const photo=coach.photo,highlights=coach.highlights||[],historicalPhotos=coach.gallery||[],hasAside=photo||historicalPhotos.length||highlights.length;
+ const historicalGallery=historicalPhotos.length?'<section class="coach-gallery" aria-label="Wrestling photos"><h2>From the wrestling archives</h2>'+historicalPhotos.map(item=>'<figure class="coach-photo"><div class="coach-photo-frame profile"><img data-coach-image src="'+esc(item.src)+'" alt="'+esc(item.alt||coach.name)+'" loading="lazy" decoding="async"><div class="coach-photo-fallback"><span>Historical photo unavailable</span></div></div><figcaption><p>'+esc(item.caption||"")+'</p>'+(item.source_url?ext(item.source_url,esc(item.source_label||"Original source"),"photo-credit"):"")+'</figcaption></figure>').join("")+'</section>':"";
  const gallery=photo?'<figure class="coach-photo"><div class="coach-photo-frame profile"><img data-coach-image src="'+esc(photo.src)+'" alt="'+esc(photo.alt||coach.name)+'" loading="lazy" decoding="async"><div class="coach-photo-fallback"><span class="coach-monogram" aria-hidden="true">'+esc(coachInitials(coach.name))+'</span><span>Photo unavailable</span></div></div>'+((photo.caption||photo.source_url)?'<figcaption>'+(photo.caption?'<p>'+esc(photo.caption)+'</p>':"")+(photo.source_url?ext(photo.source_url,esc(photo.source_label||"Photo source"),"photo-credit"):"")+'</figcaption>':"")+'</figure>':"";
  return '<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#about">About us</a> <span aria-hidden="true">/</span> <a href="#about/coaches">Our coaches</a></nav>'+
  '<div class="detail-heading"><div>'+pageTitle("MEET THE COACH",esc(coach.name),esc(coach.role||""))+'</div><div class="detail-actions"><button class="button outline" data-print>Print this page</button></div></div>'+
  '<div class="coach-profile-layout'+(hasAside?"":" no-aside")+'"><article class="prose coach-bio">'+(coach.summary?'<p class="coach-intro">'+esc(coach.summary)+'</p>':"")+(coach.paragraphs||[]).map(text=>'<p>'+esc(text)+'</p>').join("")+
  ((coach.sources||[]).length?'<h2>Learn more</h2><ul class="link-list">'+coach.sources.map(source=>'<li>'+ext(source.url,esc(source.title))+'</li>').join("")+'</ul>':"")+
  '<div class="buttons"><a class="button outline" href="#about/coaches">Meet the whole coaching team →</a></div></article>'+
- (hasAside?'<aside class="coach-profile-aside" aria-label="More about '+esc(coach.name)+'">'+gallery+(highlights.length?'<section class="panel"><h2>At a glance</h2><dl class="coach-milestones">'+highlights.map(item=>'<div><dt>'+esc(item.label)+'</dt><dd>'+esc(item.text)+'</dd></div>').join("")+'</dl></section>':"")+'</aside>':"")+'</div>';
+ (hasAside?'<aside class="coach-profile-aside" aria-label="More about '+esc(coach.name)+'">'+gallery+historicalGallery+(highlights.length?'<section class="panel"><h2>At a glance</h2><dl class="coach-milestones">'+highlights.map(item=>'<div><dt>'+esc(item.label)+'</dt><dd>'+esc(item.text)+'</dd></div>').join("")+'</dl></section>':"")+'</aside>':"")+'</div>';
 }
 function kyleBio(){
  const coach=K.coach;if(!coach)return notFound();

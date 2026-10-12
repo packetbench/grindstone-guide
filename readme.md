@@ -233,3 +233,18 @@ local review changes until the user explicitly approves publication.
 
 
 Bio link preference: the user requested no LinkedIn links in public biographies, including photo credits. Research provenance may mention the service here, but the rendered bio data contains no LinkedIn URLs.
+
+## Coach research review - October 12, 2026
+
+Publication checkpoint: user-reviewed commit 42efb62 was pushed to main and its Pages run completed successfully. Later research on codex/coach-research remains a local preview until separately approved.
+
+- Thomas confirmed high-school wrestling in Eaton Rapids, Michigan. His bio uses that statement and his confirmed work with the Pups, older group and coaching library. Wrestling years, results and an old photo remain unverified.
+- Ryan confirmed as the EIU wrestler. Contemporary reporting and the 2003 Warbler support a 4-0 Missouri Open freshman/sophomore heavyweight title in 2002; this is a tournament record, not a season record. Prep results for a Proviso West/Elmhurst namesake remain excluded pending a school identity bridge. No complete college career total or captioned historic photo found.
+- Mike: Delaware Valley Cornucopia 2007, printed page 151 (archive leaf n155), explicitly connects Mike Handleman to Crofton/Arundel and the 133-pound group. State brackets support 2001-2003 qualifying appearances at 112/125/130. College attendance and four letters do not independently establish every competitive season. The yearbook junior label remains unresolved. Uncaptioned DelVal action photos are not attributed to Mike.
+- Eric: contemporary Carroll County Times reports establish first varsity season 1997-98, a pin in the 1998 state-dual semifinal, 1999 county runner-up and All-County second team. The team state-dual finish is not an individual state medal. The 18-12 regional-preview record and sixth seed are not used as a final record or sixth-place result.
+- Eric archival image: assets/eric-wrestling-1999.png is rendered from the identified photo region on PDF page 9 of CCT_02211999.pdf, not enhanced or synthesized. Original Stephen Cherry credit retained. The newspaper caption explicitly identifies Chris Currence behind Eric. Source: https://cctimes.carr.org/documents/CCT_02211999.pdf#page=9
+- Kyle: school yearbooks corroborate four high-school seasons, junior wrestling honors, senior football awards and NHS membership. College dates, totals and a captioned college photograph remain unverified after CSU record-book and archive research; no single isolated year is presented as his full college career.
+- Jerome: existing primary-source college/prep history and Up2Us portrait retained. Archived OU links and guides did not yield a captioned college image. No unrelated sensitive personal history has been added.
+- Jessica M. and Cody Hughes remain recognized together using the user-confirmed roles. No unsupported athletic biography, individual headshot or sponsor has been invented.
+
+All rendered biographies continue to omit LinkedIn links. Existing moves, games, videos, practices and downloadable materials are unchanged by this research pass.

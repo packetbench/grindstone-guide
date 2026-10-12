@@ -653,8 +653,9 @@ window.GRINDSTONE_KYLE = {
     "role": "Head of Grindstone Wrestling • Coach since 2021",
     "intro": "Coach Kyle Rutledge has coached with Grindstone Wrestling since 2021 and officially became head of the club in 2025. He brings a background in Ohio high school and collegiate wrestling to his leadership of the Westminster youth program.",
     "paragraphs": [
-      "Kyle wrestled for Columbia High School in Columbia Station, Ohio. His high school career developed from a sectional runner-up finish as a sophomore to a sectional championship and district runner-up finish as a junior, competing at 171 pounds.",
+      "Kyle wrestled for Columbia High School in Columbia Station, Ohio, appearing on the school’s wrestling teams throughout his four high-school years. His career developed from a sectional runner-up finish as a sophomore to a sectional championship and district runner-up finish as a junior at 171 pounds. As a junior, he also shared Columbia’s wrestling Raider Award and earned Lorain County All-Star recognition.",
       "As a senior, Kyle moved to 189 pounds and won sectional, district and state championships. At the 1993 Ohio Division III state tournament, he defeated Keith Capizzi of Sandusky St. Mary’s Central Catholic 6–5 in the championship final. Columbia’s 1993 yearbook also records the team’s third-place state finish.",
+      "Kyle was also a standout football player and a National Honor Society member. In his senior year, Columbia recognized him with its football Player of the Year and Captain’s awards, alongside MAC-8 first-team honors.",
       "He continued his wrestling career at Cleveland State University.",
       "His coaching also extends to Grindstone’s youth camps. Kyle is the instructor listed for the club’s 2026 youth camp at Winters Mill High School, a program for ages 8–18 focused on wrestling technique and mindset.",
       "Today, Kyle leads Grindstone’s next chapter. Coach Kyle’s Corner of Excellence gathers instructional videos for coaches and wrestlers, connecting his role at the club with a practical resource for developing skills."
@@ -719,6 +720,26 @@ window.GRINDSTONE_KYLE = {
       {
         "title": "Lorain Public Library System • 1993 Columbia Emerald yearbook",
         "url": "https://lorain.omeka.net/items/show/576"
+      },
+      {
+        "title": "Columbia’s 1990 yearbook • Wrestling team (PDF page 110)",
+        "url": "https://s3.amazonaws.com/omeka-lorain/original/41d91cd484010d751dd246e682959105.pdf#page=110"
+      },
+      {
+        "title": "Columbia’s 1991 yearbook • Wrestling team (PDF page 100)",
+        "url": "https://s3.amazonaws.com/omeka-lorain/original/a1b320fcd561e718978ebdf893a42c68.pdf#page=100"
+      },
+      {
+        "title": "Columbia’s 1992 yearbook • Wrestling honors (PDF page 77)",
+        "url": "https://s3.amazonaws.com/omeka-lorain/original/f112124bc837ab02c583237fec8ae2ed.pdf#page=77"
+      },
+      {
+        "title": "Columbia’s 1993 yearbook • Football honors (PDF page 48)",
+        "url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=48"
+      },
+      {
+        "title": "Columbia’s 1993 yearbook • National Honor Society (PDF page 88)",
+        "url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=88"
       },
       {
         "title": "Lorain County wrestling history • high school progression and Cleveland State background (page 7)",
