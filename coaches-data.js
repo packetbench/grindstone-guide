@@ -26,10 +26,6 @@ window.GRINDSTONE_COACHES = {
           "url": "https://www.grindstonewrestling.org/copy-of-mat-rats"
         },
         {
-          "title": "Mike Handleman • Delaware Valley background",
-          "url": "https://www.linkedin.com/in/mike-handleman-34418967"
-        },
-        {
           "title": "Arizona State athletics • 2005 East Stroudsburg Open results",
           "url": "https://thesundevils.com/east-stroudsburg-open-stats"
         }
@@ -37,9 +33,7 @@ window.GRINDSTONE_COACHES = {
       "photo": {
         "src": "assets/mike-handleman.jpg",
         "alt": "Mike Handleman’s profile portrait, supplied by the club.",
-        "caption": "Mike Handleman. Profile photo supplied for the Grindstone coaching team page.",
-        "source_url": "https://www.linkedin.com/in/mike-handleman-34418967",
-        "source_label": "Mike Handleman • LinkedIn profile"
+        "caption": "Mike Handleman. Profile photo supplied for the Grindstone coaching team page."
       }
     },
     {
@@ -58,12 +52,7 @@ window.GRINDSTONE_COACHES = {
           "text": "Wrestlers ages 7–10."
         }
       ],
-      "sources": [
-        {
-          "title": "Eric Westervelt • LinkedIn profile",
-          "url": "https://www.linkedin.com/in/ericwestervelt81/"
-        }
-      ]
+      "sources": []
     },
     {
       "id": "ryan-devries",
@@ -83,12 +72,7 @@ window.GRINDSTONE_COACHES = {
           "text": "Wrestlers ages 7–10."
         }
       ],
-      "sources": [
-        {
-          "title": "Ryan DeVries • LinkedIn profile",
-          "url": "https://www.linkedin.com/in/ryan-devries-76996861/"
-        }
-      ]
+      "sources": []
     },
     {
       "id": "jerome-featherstone",

@@ -129,7 +129,7 @@ profile is displayed.
 Photo provenance:
 
 - `assets/mike-handleman.jpg` is an unchanged 800 x 800 JPEG from the exact
-  LinkedIn image URL supplied by the user. Its profile-source link is visible.
+  LinkedIn image URL supplied by the user. The supplied portrait is displayed with a caption; its LinkedIn credit link was removed at the user’s request.
   SHA256: `a99ccf9bc673878850e7e45147e5bcc0e8dab7890ae6249e2bb02b806050743a`.
 - Jerome's 1080 x 1080 photograph is displayed from the original Up2Us Sports
   image URL, with a visible credit linking the March 14, 2018 article. The
@@ -146,3 +146,50 @@ The directory and profiles include responsive layouts, About Us navigation,
 source credits, print controls and image-unavailable fallbacks. All changes
 remain on the feature branch for local review; publication still requires
 explicit approval.
+
+
+## Written guides for Coach Kyle's collection
+
+All 22 entries now have complete instruction in `kyle-instruction-data.js`,
+separate from the preserved original move/game data and video metadata.
+Each guide includes purpose, readiness, setup, 5-8 numbered steps, coaching
+cues, common mistakes and corrections, a practice drill, adaptations for
+ages 4-6 / 7-10 / 11-14, action-specific boundaries, sources, and an explicit
+description of its relationship to the linked video.
+
+The existing `#moves/kyle/K01` through `#moves/kyle/K22` routes display these
+instructions with section jump links and printing. Instruction text is
+searchable in the Corner, main Moves library, and Games library. Filters
+distinguish original written guides from Coach Kyle's collection without
+duplicating records: 72 original moves plus 21 Kyle entries, and 37 original
+games plus K01. The 90 practice plans and existing printable files are preserved.
+
+Evidence and variation notes:
+
+- The guides are coaching progressions using the reviewed library and cited
+  primary instruction. They are not presented as transcripts of all 22 clips.
+- K01 contains a complete Grindstone touch-only game adaptation. Selected
+  opening frames were inspected, but the submitted clip's exact game rules
+  and scoring were not established.
+- K10 teaches a high-single front trip. Selected frames of the supplied clip
+  around 31-40 seconds confirm a raised-leg position and forward landing
+  onto the hands; exact grip transfer and leg-block contact remain unverified.
+  The written progression follows its cited references and is distinct from
+  a backward heel sweep or run-the-pipe finish.
+- K15 preserves the supplied failed-shot label versus publisher head-defense
+  mismatch. Its main instruction teaches the defensive position.
+- K06 uses a grounded single-leg defense foundation; K19 uses a shoulder-roll
+  foundation; K21 uses a spiral-ride progression against a hands-supported
+  raised base. Each page identifies the distinction from its unreviewed clip.
+- K18's Peterson and other advanced finishes require the listed prerequisite
+  skills and a cooperative progression; the Pup adaptations use foundations
+  rather than automatically assigning the full movement by age.
+- Source links distinguish internal library references from external publishers.
+  New research checks do not imply endorsement by the linked organizations.
+
+The new data file must be included alongside `kyle-data.js` when serving the
+site. A full page refresh loads it into an already-open preview. These remain
+local review changes until the user explicitly approves publication.
+
+
+Bio link preference: the user requested no LinkedIn links in public biographies, including photo credits. Research provenance may mention the service here, but the rendered bio data contains no LinkedIn URLs.

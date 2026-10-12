@@ -58,7 +58,7 @@ window.GRINDSTONE_KYLE = {
         "channel": "Iron Faith Wrestling",
         "format": "shorts",
         "thumbnail": "https://i.ytimg.com/vi/xSYQ22AI4Zw/hq2.jpg",
-        "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
+        "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Selected paused frames from the opening six seconds were also inspected; full audiovisual playback, game rules and scoring were not reviewed.",
         "status": "verified"
       },
       "kind": "game"
@@ -308,7 +308,7 @@ window.GRINDSTONE_KYLE = {
         "channel": "Pursuit Wrestling",
         "format": "shorts",
         "thumbnail": "https://i.ytimg.com/vi/iHWlpyBA_wY/hq2.jpg",
-        "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
+        "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Selected paused frames around 31–40 seconds were inspected to check the raised-leg position and forward landing onto the hands. This was not a complete audiovisual review, and the exact grip transfer and leg-block contact were not verified.",
         "status": "verified"
       },
       "kind": "move"
