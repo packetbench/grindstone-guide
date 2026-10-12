@@ -76,3 +76,12 @@ which inbox the club monitors.
   documents retain their September 26 preparation date.
 - Existing QR codes stay in printable documents and lead to their original
   club/contact/USA Wrestling destinations. Web pages use ordinary labeled links.
+
+
+## Coach Kyle and sponsors preview
+
+October 12, 2026 update: `kyle-data.js` contains the 22 submitted videos in six categories, with 20 supplied Shorts links and two standard videos. Routes are `#kyle`, `#kyle/K01` through `#kyle/K22`, and category/search/featured filters. Cards use original YouTube thumbnail URLs and a local logo fallback; no remote media is bundled. Original titles, supplied labels, and source-check limitations are preserved. Metadata and thumbnail availability were checked via official YouTube oEmbed; footage was not reviewed. K15 has a visible supplied-label/publisher-title mismatch for review.
+
+`#sponsors` is ready for club supporters. `sponsors-data.js` intentionally has an empty `sponsors` array. Future entries accept `name`, `url`, `logo`, and `description`. Add only user-confirmed supporters and approved assets.
+
+Publication requires user review: work on a `codex/` feature branch, show a local preview, and obtain explicit approval of the current changes before pushing or merging to `main` or deploying. See `AGENTS.md`. The existing Pages workflow deploys on main pushes, so a push is also a publication action.
