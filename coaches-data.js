@@ -251,14 +251,14 @@ window.GRINDSTONE_COACHES = {
       "role": "Youth coach · Pups and older group",
       "summary": "Thomas Schnepp will split his coaching time between the Pups and the older group this season.",
       "paragraphs": [
-        "Thomas wrestled in high school in Eaton Rapids, Michigan. His coaching role at Grindstone brings him into the room with wrestlers at different stages of learning the sport.",
+        "Thomas wrestled for Eaton Rapids High School in Michigan and graduated in 2010. His coaching role at Grindstone brings him into the room with wrestlers at different stages of learning the sport.",
         "He also helps develop practical resources for Grindstone’s coaches and families. His work on the team library brings together practice plans, move guides, games and family information, with an emphasis on making the materials easy to find and use at practice.",
         "That work includes adapting activities for different ages, giving coaches clear teaching steps and cues, and keeping games readily available to help young athletes stay engaged. It is another way Thomas contributes to the program alongside his time on the mat."
       ],
       "highlights": [
         {
           "label": "Wrestling background",
-          "text": "High-school wrestling in Eaton Rapids, Michigan."
+          "text": "Eaton Rapids High School, Michigan · Class of 2010."
         },
         {
           "label": "On the mat",

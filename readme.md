@@ -238,7 +238,7 @@ Bio link preference: the user requested no LinkedIn links in public biographies,
 
 Publication checkpoint: user-reviewed commit 42efb62 was pushed to main and its Pages run completed successfully. Later research on codex/coach-research remains a local preview until separately approved.
 
-- Thomas confirmed high-school wrestling in Eaton Rapids, Michigan. His bio uses that statement and his confirmed work with the Pups, older group and coaching library. Wrestling years, results and an old photo remain unverified.
+- Thomas confirmed wrestling at Eaton Rapids High School, Michigan, and graduation in 2010. His bio uses that statement and his confirmed work with the Pups, older group and coaching library. Specific wrestling seasons, results and an old photo remain unverified; his 2010 graduation is user-confirmed.
 - Ryan confirmed as the EIU wrestler. Contemporary reporting and the 2003 Warbler support a 4-0 Missouri Open freshman/sophomore heavyweight title in 2002; this is a tournament record, not a season record. Prep results for a Proviso West/Elmhurst namesake remain excluded pending a school identity bridge. No complete college career total or captioned historic photo found.
 - Mike: Delaware Valley Cornucopia 2007, printed page 151 (archive leaf n155), explicitly connects Mike Handleman to Crofton/Arundel and the 133-pound group. State brackets support 2001-2003 qualifying appearances at 112/125/130. College attendance and four letters do not independently establish every competitive season. The yearbook junior label remains unresolved. Uncaptioned DelVal action photos are not attributed to Mike.
 - Eric: contemporary Carroll County Times reports establish first varsity season 1997-98, a pin in the 1998 state-dual semifinal, 1999 county runner-up and All-County second team. The team state-dual finish is not an individual state medal. The 18-12 regional-preview record and sixth seed are not used as a final record or sixth-place result.
@@ -248,3 +248,5 @@ Publication checkpoint: user-reviewed commit 42efb62 was pushed to main and its 
 - Jessica M. and Cody Hughes remain recognized together using the user-confirmed roles. No unsupported athletic biography, individual headshot or sponsor has been invented.
 
 All rendered biographies continue to omit LinkedIn links. Existing moves, games, videos, practices and downloadable materials are unchanged by this research pass.
+
+Publication authorization update: the user subsequently requested immediate publication as coach research is ready. Completed coach updates may now be published under that scoped authorization.

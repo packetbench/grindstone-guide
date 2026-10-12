@@ -10,3 +10,7 @@ Effective October 12, 2026, at the user's request:
 - Preserve the original resource library and existing downloads. Distinguish video metadata checks from footage review.
 
 The mandatory file and folder policy in `..\..\AGENTS.md` also applies. Preflight full absolute paths and every generated descendant before writing; use short lowercase ASCII names for new outputs except required tool-native names such as this file. Coordinate shared-file ownership and preserve original/frozen evidence.
+
+## Current coach research authorization
+
+Later on October 12, 2026, the user explicitly instructed: "once you have stuff push it to the site immediately". This authorizes publishing completed updates from the current coach-biography and historical-photo research as they are ready, including the accumulated research preview and Thomas’s confirmed Eaton Rapids / class of 2010 background. This scoped authorization supersedes the separate-review requirement above for this work. Continue verifying claims and checking the site before publication; the default review requirement remains for unrelated future changes.
