@@ -125,12 +125,13 @@ function about(){
 }
 function coachInitials(name){return String(name||"").replace(/^Coach\s+/i,"").trim().split(/\s+/).map(word=>word[0]||"").slice(0,2).join("").toUpperCase();}
 function coachCard(coach,href){
- return '<article class="card team-coach-card"><div class="coach-monogram" aria-hidden="true">'+esc(coachInitials(coach.name))+'</div><p class="eyebrow">'+esc(coach.role||"Grindstone coach")+'</p><h2><a href="'+esc(href)+'">'+esc(coach.name)+'</a></h2><p>'+esc(coach.summary||"")+'</p><a class="card-link" href="'+esc(href)+'">Meet '+esc(String(coach.name||"the coach").replace(/^Coach\s+/i,"").split(/\s+/)[0])+' →</a></article>';
+ const photo=coach.photo,portrait='<div class="coach-photo-frame coach-card-portrait'+(photo?.src?"":" is-fallback")+'">'+(photo?.src?'<img data-coach-image src="'+esc(photo.src)+'" alt="'+esc(photo.alt||"Portrait of "+coach.name)+'" loading="lazy" decoding="async">':"")+'<span class="coach-monogram" aria-hidden="true">'+esc(coachInitials(coach.name))+'</span></div>';
+ return '<article class="card team-coach-card">'+portrait+'<p class="eyebrow">'+esc(coach.role||"Grindstone coach")+'</p><h2><a href="'+esc(href)+'">'+esc(coach.name)+'</a></h2><p>'+esc(coach.summary||"")+'</p><a class="card-link" href="'+esc(href)+'">Meet '+esc(String(coach.name||"the coach").replace(/^Coach\s+/i,"").split(/\s+/)[0])+' →</a></article>';
 }
 function coachDirectory(){
  const profiles=C.profiles||[],supporters=C.supporters||[],kyle=K.coach;
  return '<a class="back" href="#about">← About Grindstone</a>'+pageTitle("THE PEOPLE IN YOUR CORNER","Our coaches",esc(C.intro||"Meet the people who work with Grindstone’s young wrestlers."))+
- '<div class="grid coach-directory">'+(kyle?coachCard({name:kyle.name,role:kyle.role,summary:kyle.intro},"#about/kyle"):"")+profiles.map(coach=>coachCard(coach,"#about/coach/"+coach.id)).join("")+'</div>'+
+ '<div class="grid coach-directory">'+(kyle?coachCard({name:kyle.name,role:kyle.role,summary:kyle.intro,photo:kyle.gallery?.[0]},"#about/kyle"):"")+profiles.map(coach=>coachCard(coach,"#about/coach/"+coach.id)).join("")+'</div>'+
  (supporters.length?'<section class="coach-supporters"><div class="section-head"><div><p class="eyebrow">BEHIND THE PROGRAM</p><h2>People who help make it happen</h2></div></div><div class="grid two">'+supporters.map(person=>'<article class="card"><h3>'+esc(person.name)+'</h3>'+(person.role?'<p class="eyebrow">'+esc(person.role)+'</p>':"")+(person.summary?'<p>'+esc(person.summary)+'</p>':"")+(person.paragraphs||[]).map(text=>'<p>'+esc(text)+'</p>').join("")+((person.sources||[]).length?'<ul class="link-list">'+person.sources.map(source=>'<li>'+ext(source.url,esc(source.title))+'</li>').join("")+'</ul>':"")+'</article>').join("")+'</div></section>':"");
 }
 function coachProfile(id){

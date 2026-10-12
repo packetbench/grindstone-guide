@@ -113,7 +113,7 @@ Copied image SHA256 values:
 The directory at `#about/coaches` links to Kyle's existing biography and five new
 profiles at `#about/coach/<id>`: mike-handleman, eric-westervelt, ryan-devries,
 jerome-featherstone, and thomas-schnepp. `coaches-data.js` supplies the editable
-profiles, source links, optional photos, and an empty supporters list. The
+profiles, source links, optional photos, and program volunteer recognition. The
 earlier ryan-devaris route redirects to ryan-devries for existing preview links.
 
 Grindstone roles and personal coaching details were supplied by the user.
@@ -122,28 +122,68 @@ Mad House Boxing identity, supplied Ryan's and Eric's LinkedIn profiles, and
 approved Ryan's warm personal description. Ryan's name follows the confirmed
 profile spelling, Ryan DeVries. College results and school history for Ryan
 and Eric remain research leads until linked to these exact coaches; they are
-not presented as established career facts. Cody Hughes's wife's contributions
-are known, but her name is not yet confirmed, so no anonymous or invented
-profile is displayed.
+not presented as established career facts. The user confirmed Jessica M.
+Hughes's name and her work in team coordination, events, community outreach
+and general program support. The user also confirmed Cody’s steady presence
+and requested that they be recognized as a team. A single “Jessica M. and
+Cody Hughes” card appears under “People who help make it happen,” separate
+from the coaching profiles and commercial sponsors.
 
 Photo provenance:
 
 - `assets/mike-handleman.jpg` is an unchanged 800 x 800 JPEG from the exact
   LinkedIn image URL supplied by the user. The supplied portrait is displayed with a caption; its LinkedIn credit link was removed at the user’s request.
   SHA256: `a99ccf9bc673878850e7e45147e5bcc0e8dab7890ae6249e2bb02b806050743a`.
-- Jerome's 1080 x 1080 photograph is displayed from the original Up2Us Sports
-  image URL, with a visible credit linking the March 14, 2018 article. The
+- Kyle’s archive portrait is preserved unchanged as assets/kyle-rutledge.webp
+  with its original school-archive credit. SHA256:
+  dfdd4d15465c95278369682bd85a4d304705a371d7999e97d34d52a215d8b6af.
+- Jerome’s 1080 x 1080 photograph is preserved unchanged as
+  assets/jerome-featherstone.jpg from the original Up2Us Sports image URL,
+  with a visible credit linking the March 14, 2018 article. SHA256:
+  ef26e853d29bee8f96a2e4ea30f7d302e944ce5d53d2f57f791e47a5d9442931. The
   article places the photo beside a testimonial explicitly naming Jerome
   Featherstone. It replaces the small 150 x 150 Mad House staff thumbnail.
   The original image was visually inspected; no generated alteration or
   identity inference from appearance was used.
-- No portraits are inferred from similarly named people. Ryan and Eric's
-  LinkedIn pages require sign-in in the available browser, so their photos
-  are not included yet. Attributed third-party images are not claimed as
-  Grindstone-owned or openly licensed.
+- Eric and Ryan now have local portraits from the exact professional profiles
+  previously confirmed by the user. Their displayed profile-photo elements
+  supplied the image URLs; no identity inference from appearance was used.
+  Eric: 500 x 500, assets/eric-westervelt.jpg, SHA256
+  a32fafce935b57748cc93a229bf1b073b140d63de5eb063f05f7194a28b8940d.
+  Ryan: 800 x 800, assets/ryan-devries.jpg, SHA256
+  cba99dfb96d30aa349be43266b084181186e2f08966c3fb483f1fa4dd880c7d4.
+  No LinkedIn links appear in the bios or photo credits.
+- Thomas still needs a suitable portrait; his own profile displays an initial.
+  Jessica’s named profile was linked from her public Mat Rats comment, but its
+  current image is a distant kayaking scene. No individual headshot was inferred
+  from family photographs. Jessica and Cody have text recognition for now.
+  Attributed third-party images are not claimed as Grindstone-owned or openly licensed.
+
+Expanded biography research (October 12, 2026):
+
+- Mike: Shippensburg’s 2006–07 results add primary corroboration across college
+  seasons. Program details follow the official Valkyries page. The unnamed
+  first-person founding story is not attributed to Mike.
+- Eric: the user confirmed his major contribution to club funding through local
+  business sponsorship outreach. His confirmed professional profile supports
+  Marine Corps service and recreation/parks work; neither a Westminster nor a
+  Shenendehowa wrestling history is asserted without an identity bridge.
+- Ryan: his confirmed profile directly lists BS Industrial Engineering and MS
+  Workforce Development and Training at Eastern Illinois, plus operations and
+  training work. Same-name EIU wrestling and Proviso West records remain
+  unconfirmed and excluded; no college wrestling career is inferred from attendance.
+- Jerome: NEISWA history verifies the 2004 Salisbury 171-pound title; Oklahoma’s
+  official media guide lists a 2005 varsity letter; university and Lehigh records
+  support competition at 157/165 pounds across 2004–05 and 2005–06. These are
+  documented seasons, not a claim about his full career duration.
+- Kyle: Carroll County’s 2026 camp guide confirms an instructor role for
+  Grindstone’s youth camp. Exact Cleveland State career dates and an explicitly
+  captioned college photograph remain unresolved. Existing school photos remain.
 
 The directory and profiles include responsive layouts, About Us navigation,
-source credits, print controls and image-unavailable fallbacks. All changes
+portrait directory cards, source credits, print controls and image-unavailable
+fallbacks. Local portrait assets let the preview work without external image
+requests. All changes
 remain on the feature branch for local review; publication still requires
 explicit approval.
 

@@ -656,6 +656,7 @@ window.GRINDSTONE_KYLE = {
       "Kyle wrestled for Columbia High School in Columbia Station, Ohio. His high school career developed from a sectional runner-up finish as a sophomore to a sectional championship and district runner-up finish as a junior, competing at 171 pounds.",
       "As a senior, Kyle moved to 189 pounds and won sectional, district and state championships. At the 1993 Ohio Division III state tournament, he defeated Keith Capizzi of Sandusky St. Mary’s Central Catholic 6–5 in the championship final. Columbia’s 1993 yearbook also records the team’s third-place state finish.",
       "He continued his wrestling career at Cleveland State University.",
+      "His coaching also extends to Grindstone’s youth camps. Kyle is the instructor listed for the club’s 2026 youth camp at Winters Mill High School, a program for ages 8–18 focused on wrestling technique and mindset.",
       "Today, Kyle leads Grindstone’s next chapter. Coach Kyle’s Corner of Excellence gathers instructional videos for coaches and wrestlers, connecting his role at the club with a practical resource for developing skills."
     ],
     "milestones": [
@@ -682,7 +683,7 @@ window.GRINDSTONE_KYLE = {
     ],
     "gallery": [
       {
-        "src": "https://d37gmw8mb4x4vd.cloudfront.net/1550/4809752E487806ABD313057F329BEC0C.webp?key=4809752E487806ABD313057F329BEC0C.webp&v=1",
+        "src": "assets/kyle-rutledge.webp",
         "alt": "Columbia High School’s framed portrait of Kyle Rutledge, labeled 1993 State Champion Wrestling.",
         "caption": "Kyle’s 1993 state-champion portrait in Columbia High School’s athletics archive.",
         "source_url": "https://display.gogipper.com/827/37901/37904/38277/39230/",
@@ -722,6 +723,10 @@ window.GRINDSTONE_KYLE = {
       {
         "title": "Lorain County wrestling history • high school progression and Cleveland State background (page 7)",
         "url": "https://939c9b01811224bb3dcf-d6f090436a6f3838a347f2f22505b78d.ssl.cf5.rackcdn.com/uploads/editions/5583/original_4ce1cf4f9189e7e1f3229b3af34aff335131086e.pdf#page=7"
+      },
+      {
+        "title": "Carroll County Recreation & Parks • 2026 Grindstone youth camp (page 9)",
+        "url": "https://ccgprod2.carrollcountymd.gov/media/nzyhogjv/ccrp_program-guide_camps_2026.pdf#page=9"
       }
     ]
   },
