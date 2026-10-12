@@ -60,7 +60,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/xSYQ22AI4Zw/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "game"
     },
     {
       "id": "K02",
@@ -88,7 +89,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/brvx9MPnfhA/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K03",
@@ -116,7 +118,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/RK1tz6CXGzo/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K04",
@@ -142,7 +145,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/A9o230Ai0Xs/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K05",
@@ -169,7 +173,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/U32MAW-r5CE/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K06",
@@ -196,7 +201,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/4hGg0Erm_yo/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K07",
@@ -222,7 +228,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/J0Uc0U0UYTk/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K08",
@@ -249,7 +256,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/URFxDrRdok0/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K09",
@@ -275,7 +283,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/5qPezf-0pmw/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K10",
@@ -301,7 +310,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/iHWlpyBA_wY/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K11",
@@ -328,7 +338,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/slA2YDe4qKA/hq2.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K12",
@@ -354,7 +365,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/3068BqqXQM8/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K13",
@@ -380,7 +392,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/5FvVzB1048o/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K14",
@@ -406,7 +419,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/vpH8fIQ_d7w/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K15",
@@ -432,7 +446,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/viX_aTJG3a8/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K16",
@@ -460,7 +475,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/fiZF0esEwcE/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K17",
@@ -487,7 +503,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/Eu-pZ72VwYk/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K18",
@@ -514,7 +531,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/4f-Ds-oe3Qg/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K19",
@@ -541,7 +559,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/XDCzq-s7xLQ/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K20",
@@ -568,7 +587,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/tgAe5jY11-0/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K21",
@@ -595,7 +615,8 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/W4rrLfKohME/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     },
     {
       "id": "K22",
@@ -623,7 +644,127 @@ window.GRINDSTONE_KYLE = {
         "thumbnail": "https://i.ytimg.com/vi/uo7oVb7RtPw/hqdefault.jpg",
         "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
         "status": "verified"
-      }
+      },
+      "kind": "move"
     }
-  ]
+  ],
+  "coach": {
+    "name": "Coach Kyle Rutledge",
+    "role": "Head of Grindstone Wrestling • Coach since 2021",
+    "intro": "Coach Kyle Rutledge has coached with Grindstone Wrestling since 2021 and officially became head of the club in 2025. He brings a background in Ohio high school and collegiate wrestling to his leadership of the Westminster youth program.",
+    "paragraphs": [
+      "Kyle wrestled for Columbia High School in Columbia Station, Ohio. His high school career developed from a sectional runner-up finish as a sophomore to a sectional championship and district runner-up finish as a junior, competing at 171 pounds.",
+      "As a senior, Kyle moved to 189 pounds and won sectional, district and state championships. At the 1993 Ohio Division III state tournament, he defeated Keith Capizzi of Sandusky St. Mary’s Central Catholic 6–5 in the championship final. Columbia’s 1993 yearbook also records the team’s third-place state finish.",
+      "He continued his wrestling career at Cleveland State University.",
+      "Today, Kyle leads Grindstone’s next chapter. Coach Kyle’s Corner of Excellence gathers instructional videos for coaches and wrestlers, connecting his role at the club with a practical resource for developing skills."
+    ],
+    "milestones": [
+      {
+        "label": "Columbia High School",
+        "text": "Progressed from a sectional runner-up to a sectional, district and state champion."
+      },
+      {
+        "label": "1993 • Ohio state champion",
+        "text": "Won the Division III 189-pound title with a 6–5 victory in the final."
+      },
+      {
+        "label": "Cleveland State University",
+        "text": "Continued his wrestling career at the collegiate level."
+      },
+      {
+        "label": "2021 • Grindstone coach",
+        "text": "Began coaching with Grindstone Wrestling."
+      },
+      {
+        "label": "2025 • Club leadership",
+        "text": "Officially became head of Grindstone Wrestling."
+      }
+    ],
+    "gallery": [
+      {
+        "src": "https://d37gmw8mb4x4vd.cloudfront.net/1550/4809752E487806ABD313057F329BEC0C.webp?key=4809752E487806ABD313057F329BEC0C.webp&v=1",
+        "alt": "Columbia High School’s framed portrait of Kyle Rutledge, labeled 1993 State Champion Wrestling.",
+        "caption": "Kyle’s 1993 state-champion portrait in Columbia High School’s athletics archive.",
+        "source_url": "https://display.gogipper.com/827/37901/37904/38277/39230/",
+        "source_label": "Columbia High School athletics archive",
+        "view": "portrait"
+      },
+      {
+        "src": "assets/kyle-team.png",
+        "alt": "Columbia’s 1993 wrestling team. The yearbook caption identifies Kyle Rutledge in the center of the seated front row, holding a trophy.",
+        "caption": "Columbia High School wrestling team, 1993. Kyle is seated in the center of the front row. The yearbook records a third-place state finish.",
+        "source_url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=58",
+        "source_label": "1993 Emerald yearbook, wrestling page • Lorain Public Library System",
+        "view": "yearbook-team"
+      },
+      {
+        "src": "assets/kyle-athletic.png",
+        "alt": "The 1993 yearbook’s Most Athletic photo, captioned Joanna Pietch and Kyle Rutledge, with Kyle on the right.",
+        "caption": "Senior Most Athletic recognition, 1993. The yearbook caption names Joanna Pietch and Kyle Rutledge.",
+        "source_url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=114",
+        "source_label": "1993 Emerald yearbook, senior recognition page • Lorain Public Library System",
+        "view": "yearbook-athletic"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Ohio High School Athletic Association • 1993 state tournament results",
+        "url": "https://www.ohsaa.org/sports/wr/boys/PastResults/1993.pdf"
+      },
+      {
+        "title": "Columbia High School • Kyle Rutledge state-champion profile",
+        "url": "https://display.gogipper.com/827/37901/37904/38277/39230/"
+      },
+      {
+        "title": "Lorain Public Library System • 1993 Columbia Emerald yearbook",
+        "url": "https://lorain.omeka.net/items/show/576"
+      },
+      {
+        "title": "Lorain County wrestling history • high school progression and Cleveland State background (page 7)",
+        "url": "https://939c9b01811224bb3dcf-d6f090436a6f3838a347f2f22505b78d.ssl.cf5.rackcdn.com/uploads/editions/5583/original_4ce1cf4f9189e7e1f3229b3af34aff335131086e.pdf#page=7"
+      }
+    ]
+  },
+  "about": {
+    "title": "About Grindstone",
+    "intro": "Grindstone Wrestling Club has served young wrestlers in the Westminster area since 2015. Our volunteer-run program welcomes athletes as they learn, improve and grow through wrestling.",
+    "paragraphs": [
+      "Grindstone is a sanctioned program of the Westminster Area Recreation Council. The club measures success through each wrestler’s development throughout the season and supports young athletes of different abilities.",
+      "Mat Rats welcomes boys and girls ages 4–14, with opportunities from first-year Pup wrestlers through advanced athletes. The program builds wrestling fundamentals, body awareness, confidence, discipline and sportsmanship.",
+      "The Valkyries is Grindstone’s dedicated girls team for ages 5–14, serving Carroll County and neighboring communities. Girls develop their skills, friendships and confidence while training and competing alongside other girls.",
+      "Coaches and club staff serve as volunteers. Families help create the supportive community around each wrestler; the official club website is the best starting point for registration, current program details and getting involved."
+    ],
+    "values": [
+      {
+        "title": "Keep improving",
+        "text": "Celebrate progress in skills, effort and confidence throughout the season."
+      },
+      {
+        "title": "Support each other",
+        "text": "Encourage teammates through challenging practices, victories and setbacks."
+      },
+      {
+        "title": "Grow through wrestling",
+        "text": "Build resilience, discipline and sportsmanship that young athletes can carry beyond the mat."
+      }
+    ],
+    "sources": [
+      {
+        "title": "Official Grindstone website • club story and philosophy",
+        "url": "https://www.grindstonewrestling.org/"
+      },
+      {
+        "title": "Mat Rats • boys and girls ages 4–14",
+        "url": "https://www.grindstonewrestling.org/mat-rats"
+      },
+      {
+        "title": "Valkyries • girls ages 5–14",
+        "url": "https://www.grindstonewrestling.org/copy-of-mat-rats"
+      },
+      {
+        "title": "Volunteering with Grindstone",
+        "url": "https://www.grindstonewrestling.org/copy-of-mat-rats-1"
+      }
+    ]
+  }
 };

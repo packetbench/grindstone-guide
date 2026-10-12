@@ -78,10 +78,32 @@ which inbox the club monitors.
   club/contact/USA Wrestling destinations. Web pages use ordinary labeled links.
 
 
-## Coach Kyle and sponsors preview
+## Coach Kyle, About Us and sponsors preview
 
-October 12, 2026 update: `kyle-data.js` contains the 22 submitted videos in six categories, with 20 supplied Shorts links and two standard videos. Routes are `#kyle`, `#kyle/K01` through `#kyle/K22`, and category/search/featured filters. Cards use original YouTube thumbnail URLs and a local logo fallback; no remote media is bundled. Original titles, supplied labels, and source-check limitations are preserved. Metadata and thumbnail availability were checked via official YouTube oEmbed; footage was not reviewed. K15 has a visible supplied-label/publisher-title mismatch for review.
+October 12, 2026 update: `kyle-data.js` contains the 22 submitted videos in six categories: 20 supplied Shorts links and two standard videos. The Corner is nested under Moves at `#moves/kyle`, with detail routes `#moves/kyle/K01` through `#moves/kyle/K22`. Legacy `#kyle` links redirect. All 21 non-game videos also appear in the main Moves library; K01 appears in Games. Written/video filters preserve the original written collections. Downloads is linked in the shared footer.
+
+Video cards use original YouTube thumbnail URLs and a local logo fallback; no YouTube media is bundled. Original titles, supplied labels, and source-check limitations are preserved. Metadata and thumbnail availability were checked through official YouTube oEmbed; footage was not reviewed. K15 has a visible supplied-label/publisher-title mismatch for review.
+
+The About Us hub is at `#about`, with Kyle’s biography at `#about/kyle`. The club story, programs and values are summarized from Grindstone’s official Home, Mat Rats, Valkyries and Volunteers pages, checked October 12, 2026. Current season prices and schedules are left to the official club site.
+
+Kyle’s 2021 coaching start and 2025 appointment as head of Grindstone were supplied by the user. His 1993 Ohio Division III 189-pound title and 6–5 final are documented in official OHSAA results. The Lorain County wrestling history records his high school progression and Cleveland State participation. Full college career dates and results remain unverified; the public biography does not turn a single 1994 reference into an assumed career duration. No Hall of Fame induction or college award is claimed.
+
+Historical photo provenance:
+
+- The state-champion portrait is displayed from the original image URL exposed by Columbia High School’s Kyle Rutledge athletics profile. Its label explicitly identifies Kyle and the 1993 wrestling title. This is an athletics / All Ohio entry, not a Hall of Fame induction record.
+- `assets/kyle-team.png` is an unchanged render of PDF page 58 (printed page 54) from Columbia’s 1993 Emerald yearbook in the Lorain Public Library System collection. The team caption identifies Kyle in the center of the seated front row.
+- `assets/kyle-athletic.png` is an unchanged render of PDF page 114 from the same yearbook. Its Most Athletic caption identifies Joanna Pietch and Kyle Rutledge.
+- Full original page pixels are preserved in these PNGs. CSS crops only the displayed viewport, and visible captions link to each source page. Images are attributed source material, not claimed as Grindstone-owned or openly licensed.
+
+Yearbook record: https://lorain.omeka.net/items/show/576
+
+Original PDF: https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf
 
 `#sponsors` is ready for club supporters. `sponsors-data.js` intentionally has an empty `sponsors` array. Future entries accept `name`, `url`, `logo`, and `description`. Add only user-confirmed supporters and approved assets.
 
 Publication requires user review: work on a `codex/` feature branch, show a local preview, and obtain explicit approval of the current changes before pushing or merging to `main` or deploying. See `AGENTS.md`. The existing Pages workflow deploys on main pushes, so a push is also a publication action.
+
+Copied image SHA256 values:
+
+- kyle-team.png: `0c78f87e518ddb35dc06f0230776093bbdd80c0079bdd5127406c5611ec8198d`
+- kyle-athletic.png: `008801eced2629ebc1678175f3567721155e62ff18ca280379e1f968404e27b2`
