@@ -10,6 +10,7 @@ window.GRINDSTONE_COACHES = {
         "Mike’s wrestling background runs from Arundel High School in Maryland to collegiate competition at Delaware Valley, where he earned four varsity letters.",
         "At Arundel, Mike qualified for the Maryland 4A/3A state tournament in three consecutive seasons: at 112 pounds as a sophomore in 2001, 125 pounds as a junior in 2002 and 130 pounds as a senior in 2003.",
         "At Delaware Valley, Mike competed at 133 pounds under head coach Brandon Totten. His college competition included the East Stroudsburg Open, Shorty Hitchcock Memorial Classic and East Coast Duals. He earned a 10–5 win over Shippensburg’s Tyler Gilson at the 2005 East Stroudsburg Open.",
+        "Mike’s competition experience also includes mixed martial arts. On June 17, 2023, he defeated Edward Barker II at Cagezilla 73 in Manassas, Virginia, winning by submission 1 minute, 18 seconds into the first round.",
         "Mike brings that wrestling experience to the Valkyries, providing a dedicated place for girls ages 5–14 to learn, train and compete together. The program welcomes beginners and experienced wrestlers, with an emphasis on fundamentals, confidence and sportsmanship.",
         "Competition is optional. Girls’ tournaments in Maryland, Pennsylvania and Virginia give families opportunities to choose events that suit their wrestler’s experience and goals."
       ],
@@ -63,6 +64,21 @@ window.GRINDSTONE_COACHES = {
         {
           "title": "Shippensburg athletics • 2005–06 wrestling results",
           "url": "https://static.shipraiders.com/custompages/WRESTLING/wresstats0506.pdf"
+        },
+        {
+          "title": "Virginia commission • Cagezilla 73 official results, June 17, 2023 (page 6)",
+          "url": "https://www.dpor.virginia.gov/sites/default/files/boards/Boxing/VCSS%20Annual%20Report%202023.pdf#page=6"
+        }
+      ],
+      "gallery_title": "In competition",
+      "gallery_label": "Mike Handleman competition photo",
+      "gallery": [
+        {
+          "src": "https://photos.smugmug.com/photos/i-mJnSWqb/0/LkMSKZZ3QjXcJRSw2jNnQ3kZrwMr7xfr9vTN35n8v/X2/i-mJnSWqb-X2.jpg",
+          "alt": "Mike Handleman standing in the cage wearing gray shorts and MMA gloves at Cagezilla 73.",
+          "caption": "Mike Handleman at Cagezilla 73 in Manassas, Virginia, on June 17, 2023. Photograph by Taylor Sims.",
+          "source_url": "https://www.smugmug.com/gallery/n-RxnBZf/i-mJnSWqb/A",
+          "source_label": "Taylor Sims • View the original photo"
         }
       ],
       "photo": {
