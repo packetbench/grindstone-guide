@@ -235,6 +235,14 @@ window.GRINDSTONE_COACHES = {
         {
           "title": "Mad House Boxing • Meet the coaches",
           "url": "https://www.madhouseboxingclub.com/meet-the-coaches"
+        },
+        {
+          "title": "The Oklahoma Daily • Two captioned Red–White scrimmage photographs (October 31, 2005, page 9)",
+          "url": "https://gateway.okhistory.org/ark:/67531/metadc1811801/m1/9/"
+        },
+        {
+          "title": "The Oklahoma Daily • College wrestling photograph (November 18, 2005, page 2B)",
+          "url": "https://gateway.okhistory.org/ark:/67531/metadc1811815/m1/10/"
         }
       ],
       "photo": {
@@ -243,7 +251,30 @@ window.GRINDSTONE_COACHES = {
         "caption": "Jerome Featherstone, featured by Up2Us Sports in 2018.",
         "source_url": "https://www.up2us.org/blog/2018/3/12/americorps-members-are-making-an-impact-through-up2us-coach-and-americorps-vista",
         "source_label": "Photo: Up2Us Sports"
-      }
+      },
+      "gallery": [
+        {
+          "src": "assets/jerome-ou-2005-oct.jpg",
+          "alt": "Jerome Featherstone wrestling Shane Vernon at Oklahoma’s October 2005 Red–White scrimmage. The printed caption identifies Vernon on the left and Jerome beside him.",
+          "caption": "Jerome competing against Shane Vernon in Oklahoma’s Red–White scrimmage, October 2005. Photo: John Ferrante / The Oklahoma Daily, published October 31, 2005, page 9. Original newspaper scan with its caption and credit.",
+          "source_url": "https://gateway.okhistory.org/ark:/67531/metadc1811801/m1/9/",
+          "source_label": "Original newspaper • Oklahoma Historical Society"
+        },
+        {
+          "src": "assets/jerome-ou-2005-scrimmage.jpg",
+          "alt": "Jerome Featherstone underneath Shane Vernon during the 2005 Oklahoma Red–White scrimmage, identified by the newspaper’s original caption.",
+          "caption": "Another moment from Jerome’s close Red–White scrimmage match with Shane Vernon. Photo: John Ferrante / The Oklahoma Daily, October 31, 2005, page 9. The original caption identifies Jerome underneath Vernon.",
+          "source_url": "https://gateway.okhistory.org/ark:/67531/metadc1811801/m1/9/",
+          "source_label": "Original newspaper • Oklahoma Historical Society"
+        },
+        {
+          "src": "assets/jerome-ou-2005-nov.jpg",
+          "alt": "Jerome Featherstone, identified on the right by the original caption, wrestling Shane Vernon at Oklahoma’s October 2005 Red–White scrimmage.",
+          "caption": "Jerome, on the right, wrestling Shane Vernon at Oklahoma’s October 2005 Red–White scrimmage. Photo: John Ferrante / The Oklahoma Daily, published November 18, 2005, page 2B. Reproduced from the newspaper archive.",
+          "source_url": "https://gateway.okhistory.org/ark:/67531/metadc1811815/m1/10/",
+          "source_label": "Original newspaper • Oklahoma Historical Society"
+        }
+      ]
     },
     {
       "id": "thomas-schnepp",
