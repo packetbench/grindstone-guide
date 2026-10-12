@@ -140,14 +140,18 @@ window.GRINDSTONE_COACHES = {
       "role": "Youth coach · Ages 7–10 and across groups",
       "summary": "Ryan DeVries moves between Grindstone’s groups, most often working with wrestlers ages 7–10.",
       "paragraphs": [
-        "Ryan wrestled at heavyweight for Eastern Illinois University under head coach Ralph McCausland. As a freshman, he won all four of his matches at the 2002 Missouri Open to capture the heavyweight title in the freshman/sophomore division. McCausland singled out Ryan and fellow freshman Ken Robertson for their impressive performances.",
+        "Ryan wrestled at Proviso West High School in Illinois before competing for Eastern Illinois University under head coach Ralph McCausland. At Proviso West, he won the 2001 IHSA regional championship at 215 pounds. As an EIU freshman in 2002–03, he finished 6–4 at heavyweight and won all four of his matches at the Missouri Open to capture the freshman/sophomore division title.",
         "Ryan wears his heart on his sleeve and celebrates his wrestlers’ growth. He cares deeply about the athletes he coaches and takes their progress to heart. Families will most often find him with the 7–10 group, while he also helps coach wrestlers in other practice groups.",
         "Outside wrestling, Ryan’s background spans engineering, operations leadership and workforce training. He earned a bachelor’s degree in Industrial Engineering and a master’s degree in Workforce Development and Training from Eastern Illinois University. His professional work has included manufacturing engineering, employee training, workplace safety and leading production teams."
       ],
       "highlights": [
         {
           "label": "College wrestling",
-          "text": "Eastern Illinois heavyweight · 2002 Missouri Open freshman/sophomore division champion."
+          "text": "Eastern Illinois heavyweight · 6–4 in 2002–03 · Missouri Open freshman/sophomore division champion."
+        },
+        {
+          "label": "High-school wrestling",
+          "text": "Proviso West, Illinois · 2001 IHSA regional champion at 215 pounds."
         },
         {
           "label": "Across the program",
@@ -170,13 +174,38 @@ window.GRINDSTONE_COACHES = {
         {
           "title": "Eastern Illinois • 2003 Warbler yearbook, wrestling results (printed page 133)",
           "url": "https://thekeep.eiu.edu/warbler/79/"
+        },
+        {
+          "title": "Eastern Illinois • Archived 2002–03 roster (Proviso West background)",
+          "url": "https://web.archive.org/web/20021112202745/http://www.eiu.edu:80/~sprtinfo/sports/wrstling/roster.htm"
+        },
+        {
+          "title": "Eastern Illinois • 2004 media guide, previous season’s individual results (printed page 7)",
+          "url": "https://web.archive.org/web/20040711103919id_/http://www.eiu.edu:80/~sprtinfo/sports/wrstling/04_Wrestling-Guide.pdf#page=9"
+        },
+        {
+          "title": "IHSA • 2001 Proviso West regional wrestling results",
+          "url": "https://www.ihsa.org/archive/wr/2000-01/wri861.htm"
+        },
+        {
+          "title": "Proviso West • 2000 yearbook wrestling photographs, Bellwood Public Library",
+          "url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20000101_english_64&df=1&dt=5"
         }
       ],
       "photo": {
         "src": "assets/ryan-devries.jpg",
         "alt": "Ryan DeVries’s profile portrait.",
         "caption": "Ryan DeVries."
-      }
+      },
+      "gallery": [
+        {
+          "src": "assets/ryan-wrestling-2000.png",
+          "alt": "Ryan DeVries wearing wrestling headgear in the 2000 Proviso West yearbook, identified by the original caption.",
+          "caption": "Ryan during his Proviso West wrestling years, pictured in the 2000 yearbook. The original caption gives his nickname, “Big Country.” Source: Proviso West yearbook, Bellwood Public Library digital archive, scan page 64.",
+          "source_url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20000101_english_64&df=1&dt=5",
+          "source_label": "Original yearbook • Bellwood Public Library"
+        }
+      ]
     },
     {
       "id": "jerome-featherstone",
@@ -282,14 +311,14 @@ window.GRINDSTONE_COACHES = {
       "role": "Youth coach · Pups and older group",
       "summary": "Thomas Schnepp will split his coaching time between the Pups and the older group this season.",
       "paragraphs": [
-        "Thomas wrestled for Eaton Rapids High School in Michigan and graduated in 2010. His coaching role at Grindstone brings him into the room with wrestlers at different stages of learning the sport.",
+        "Thomas wrestled for Eaton Rapids High School in Michigan throughout all four years of high school, graduating in 2010. Depending on the season and the team’s needs, he competed in weight classes from 171 pounds through heavyweight. He now brings that experience to Grindstone, splitting his coaching time between the Pups and the older group.",
         "He also helps develop practical resources for Grindstone’s coaches and families. His work on the team library brings together practice plans, move guides, games and family information, with an emphasis on making the materials easy to find and use at practice.",
         "That work includes adapting activities for different ages, giving coaches clear teaching steps and cues, and keeping games readily available to help young athletes stay engaged. It is another way Thomas contributes to the program alongside his time on the mat."
       ],
       "highlights": [
         {
           "label": "Wrestling background",
-          "text": "Eaton Rapids High School, Michigan · Class of 2010."
+          "text": "Eaton Rapids High School, Michigan · Four years on the wrestling team · Class of 2010 · 171 pounds through heavyweight."
         },
         {
           "label": "On the mat",
