@@ -1,7 +1,7 @@
 /* Grindstone static coach library. No accounts, trackers, or build dependencies. */
 (() => {
 "use strict";
-const D=window.GRINDSTONE, S=window.GRINDSTONE_SPONSORS||{sponsors:[]}, K=window.GRINDSTONE_KYLE||{categories:[],entries:[]}, F=window.GRINDSTONE_FAMILY||{pages:[],faq:[],downloads:[]}, main=document.getElementById("main");
+const D=window.GRINDSTONE, C=window.GRINDSTONE_COACHES||{profiles:[],supporters:[]}, S=window.GRINDSTONE_SPONSORS||{sponsors:[]}, K=window.GRINDSTONE_KYLE||{categories:[],entries:[]}, F=window.GRINDSTONE_FAMILY||{pages:[],faq:[],downloads:[]}, main=document.getElementById("main");
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const arr=v=>Array.isArray(v)?v:[v].filter(Boolean);
 const ext=(url,label,cls="")=>'<a class="'+cls+'" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+label+' <span aria-hidden="true">↗</span></a>';
@@ -88,13 +88,34 @@ function about(){
  return pageTitle("ABOUT GRINDSTONE",esc(club.title||"About us"),esc(club.intro||""))+
  '<div class="prose about-story">'+(club.paragraphs||[]).map(text=>'<p>'+esc(text)+'</p>').join("")+'</div>'+
  ((club.values||[]).length?'<div class="section-head"><h2>What guides the club</h2></div><div class="grid">'+club.values.map(value=>'<article class="card"><h3>'+esc(value.title)+'</h3><p>'+esc(value.text)+'</p></article>').join("")+'</div>':"")+
- (coach?'<section class="kyle-callout"><div><p class="eyebrow">MEET THE COACH</p><h2>'+esc(coach.name||"Coach Kyle")+'</h2><p>'+esc(coach.intro||"Learn about Coach Kyle’s wrestling background and work with Grindstone.")+'</p></div><a class="button light" href="#about/kyle">About Coach Kyle →</a></section>':"")+
+ '<section class="kyle-callout"><div><p class="eyebrow">THE PEOPLE IN YOUR CORNER</p><h2>Our coaches</h2><p>'+esc(C.intro||"Meet the people who work with Grindstone’s young wrestlers.")+'</p></div><a class="button light" href="#about/coaches">Meet the coaching team →</a></section>'+
  ((club.sources||[]).length?section("From the official club website",'<ul class="link-list">'+club.sources.map(source=>'<li>'+ext(source.url,esc(source.title))+'</li>').join("")+'</ul>'):"");
+}
+function coachInitials(name){return String(name||"").replace(/^Coach\s+/i,"").trim().split(/\s+/).map(word=>word[0]||"").slice(0,2).join("").toUpperCase();}
+function coachCard(coach,href){
+ return '<article class="card team-coach-card"><div class="coach-monogram" aria-hidden="true">'+esc(coachInitials(coach.name))+'</div><p class="eyebrow">'+esc(coach.role||"Grindstone coach")+'</p><h2><a href="'+esc(href)+'">'+esc(coach.name)+'</a></h2><p>'+esc(coach.summary||"")+'</p><a class="card-link" href="'+esc(href)+'">Meet '+esc(String(coach.name||"the coach").replace(/^Coach\s+/i,"").split(/\s+/)[0])+' →</a></article>';
+}
+function coachDirectory(){
+ const profiles=C.profiles||[],supporters=C.supporters||[],kyle=K.coach;
+ return '<a class="back" href="#about">← About Grindstone</a>'+pageTitle("THE PEOPLE IN YOUR CORNER","Our coaches",esc(C.intro||"Meet the people who work with Grindstone’s young wrestlers."))+
+ '<div class="grid coach-directory">'+(kyle?coachCard({name:kyle.name,role:kyle.role,summary:kyle.intro},"#about/kyle"):"")+profiles.map(coach=>coachCard(coach,"#about/coach/"+coach.id)).join("")+'</div>'+
+ (supporters.length?'<section class="coach-supporters"><div class="section-head"><div><p class="eyebrow">BEHIND THE PROGRAM</p><h2>People who help make it happen</h2></div></div><div class="grid two">'+supporters.map(person=>'<article class="card"><h3>'+esc(person.name)+'</h3>'+(person.role?'<p class="eyebrow">'+esc(person.role)+'</p>':"")+(person.summary?'<p>'+esc(person.summary)+'</p>':"")+(person.paragraphs||[]).map(text=>'<p>'+esc(text)+'</p>').join("")+((person.sources||[]).length?'<ul class="link-list">'+person.sources.map(source=>'<li>'+ext(source.url,esc(source.title))+'</li>').join("")+'</ul>':"")+'</article>').join("")+'</div></section>':"");
+}
+function coachProfile(id){
+ const coach=(C.profiles||[]).find(person=>person.id===id);if(!coach)return notFound();
+ const photo=coach.photo,highlights=coach.highlights||[],hasAside=photo||highlights.length;
+ const gallery=photo?'<figure class="coach-photo"><div class="coach-photo-frame profile"><img data-coach-image src="'+esc(photo.src)+'" alt="'+esc(photo.alt||coach.name)+'" loading="lazy" decoding="async"><div class="coach-photo-fallback"><span class="coach-monogram" aria-hidden="true">'+esc(coachInitials(coach.name))+'</span><span>Photo unavailable</span></div></div>'+((photo.caption||photo.source_url)?'<figcaption>'+(photo.caption?'<p>'+esc(photo.caption)+'</p>':"")+(photo.source_url?ext(photo.source_url,esc(photo.source_label||"Photo source"),"photo-credit"):"")+'</figcaption>':"")+'</figure>':"";
+ return '<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#about">About us</a> <span aria-hidden="true">/</span> <a href="#about/coaches">Our coaches</a></nav>'+
+ '<div class="detail-heading"><div>'+pageTitle("MEET THE COACH",esc(coach.name),esc(coach.role||""))+'</div><div class="detail-actions"><button class="button outline" data-print>Print this page</button></div></div>'+
+ '<div class="coach-profile-layout'+(hasAside?"":" no-aside")+'"><article class="prose coach-bio">'+(coach.summary?'<p class="coach-intro">'+esc(coach.summary)+'</p>':"")+(coach.paragraphs||[]).map(text=>'<p>'+esc(text)+'</p>').join("")+
+ ((coach.sources||[]).length?'<h2>Learn more</h2><ul class="link-list">'+coach.sources.map(source=>'<li>'+ext(source.url,esc(source.title))+'</li>').join("")+'</ul>':"")+
+ '<div class="buttons"><a class="button outline" href="#about/coaches">Meet the whole coaching team →</a></div></article>'+
+ (hasAside?'<aside class="coach-profile-aside" aria-label="More about '+esc(coach.name)+'">'+gallery+(highlights.length?'<section class="panel"><h2>At a glance</h2><dl class="coach-milestones">'+highlights.map(item=>'<div><dt>'+esc(item.label)+'</dt><dd>'+esc(item.text)+'</dd></div>').join("")+'</dl></section>':"")+'</aside>':"")+'</div>';
 }
 function kyleBio(){
  const coach=K.coach;if(!coach)return notFound();
  const gallery=(coach.gallery||[]).map(photo=>'<figure class="coach-photo"><div class="coach-photo-frame '+esc(photo.view||"portrait")+'"><img src="'+esc(photo.src)+'" alt="'+esc(photo.alt)+'" loading="lazy" decoding="async"></div><figcaption><p>'+esc(photo.caption)+'</p>'+(photo.source_url?ext(photo.source_url,esc(photo.source_label||"Original source"),"photo-credit"):"")+'</figcaption></figure>').join("");
- return '<a class="back" href="#about">← About Grindstone</a>'+pageTitle("MEET THE COACH",esc(coach.name||"Coach Kyle"),esc(coach.role||""))+
+ return '<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#about">About us</a> <span aria-hidden="true">/</span> <a href="#about/coaches">Our coaches</a></nav>'+pageTitle("MEET THE COACH",esc(coach.name||"Coach Kyle"),esc(coach.role||""))+
  '<div class="coach-bio-layout"><article class="prose coach-bio"><p class="coach-intro">'+esc(coach.intro||"")+'</p>'+(coach.paragraphs||[]).map(text=>'<p>'+esc(text)+'</p>').join("")+
  ((coach.milestones||[]).length?'<h2>On the mat and in the corner</h2><dl class="coach-milestones">'+coach.milestones.map(m=>'<div><dt>'+esc(m.label)+'</dt><dd>'+esc(m.text)+'</dd></div>').join("")+'</dl>':"")+
  ((coach.sources||[]).length?'<h2>Sources & photo credits</h2><ul class="link-list">'+coach.sources.map(s=>'<li>'+ext(s.url,esc(s.title))+'</li>').join("")+'</ul>':"")+
@@ -256,6 +277,7 @@ function savedPage(){
 function notFound(){return pageTitle("COACH LIBRARY","That page isn’t in the playbook.","Use the library navigation to find a move, game, or practice.")+'<a class="button" href="#home">Back to the library</a>';}
 function render(){
  const {path,params}=route(),parts=path.split("/");
+ if(path==="about/coach/ryan-devaris"){history.replaceState(null,"","#about/coach/ryan-devries"+(params.size?"?"+params:""));return render();}
  if(path==="moves/kyle/bio"){history.replaceState(null,"","#about/kyle"+(params.size?"?"+params:""));return render();}
  if(parts[0]==="kyle"){history.replaceState(null,"","#moves/"+path+(params.size?"?"+params:""));return render();}
  let html;
@@ -269,6 +291,8 @@ function render(){
  else if(path==="moves/kyle")html=kyleList(params);
  else if(path==="about")html=about();
  else if(path==="about/kyle")html=kyleBio();
+ else if(path==="about/coaches")html=coachDirectory();
+ else if(parts[0]==="about"&&parts[1]==="coach")html=coachProfile(parts[2]);
  else if(parts[0]==="moves"&&parts[1]==="kyle")html=kyleDetail(parts[2]);
  else if(path==="families")html=families();
  else if(path==="family/faq")html=familyFaq(params);
@@ -288,7 +312,7 @@ function render(){
  window.scrollTo({top:0,behavior:"instant"});
  if(path==="downloads"&&["coaches","families","presenters"].includes(params.get("group")))requestAnimationFrame(()=>{const target=document.getElementById("downloads-"+params.get("group"));target?.scrollIntoView({behavior:"instant"});target?.focus({preventScroll:true});});
 }
-document.addEventListener("error",e=>{const image=e.target;if(image instanceof HTMLImageElement&&image.hasAttribute("data-kyle-image")){image.hidden=true;image.closest(".kyle-thumbnail")?.classList.add("is-fallback");}if(image instanceof HTMLImageElement&&image.hasAttribute("data-sponsor-image")){image.hidden=true;image.closest(".sponsor-logo")?.classList.add("is-fallback");}},true);
+document.addEventListener("error",e=>{const image=e.target;if(image instanceof HTMLImageElement&&image.hasAttribute("data-coach-image")){image.hidden=true;image.closest(".coach-photo-frame")?.classList.add("is-fallback");}if(image instanceof HTMLImageElement&&image.hasAttribute("data-kyle-image")){image.hidden=true;image.closest(".kyle-thumbnail")?.classList.add("is-fallback");}if(image instanceof HTMLImageElement&&image.hasAttribute("data-sponsor-image")){image.hidden=true;image.closest(".sponsor-logo")?.classList.add("is-fallback");}},true);
 document.addEventListener("click",e=>{
  if(e.target.closest("[data-kyle-clear]"))document.getElementById("kyle-form")?.reset();
  const skip=e.target.closest(".skip");if(skip){e.preventDefault();main.focus({preventScroll:true});main.scrollIntoView({behavior:"instant"});return;}

@@ -107,3 +107,42 @@ Copied image SHA256 values:
 
 - kyle-team.png: `0c78f87e518ddb35dc06f0230776093bbdd80c0079bdd5127406c5611ec8198d`
 - kyle-athletic.png: `008801eced2629ebc1678175f3567721155e62ff18ca280379e1f968404e27b2`
+
+## Coaching team preview
+
+The directory at `#about/coaches` links to Kyle's existing biography and five new
+profiles at `#about/coach/<id>`: mike-handleman, eric-westervelt, ryan-devries,
+jerome-featherstone, and thomas-schnepp. `coaches-data.js` supplies the editable
+profiles, source links, optional photos, and an empty supporters list. The
+earlier ryan-devaris route redirects to ryan-devries for existing preview links.
+
+Grindstone roles and personal coaching details were supplied by the user.
+The user confirmed Mike's Delaware Valley identity and Jerome's Oklahoma /
+Mad House Boxing identity, supplied Ryan's and Eric's LinkedIn profiles, and
+approved Ryan's warm personal description. Ryan's name follows the confirmed
+profile spelling, Ryan DeVries. College results and school history for Ryan
+and Eric remain research leads until linked to these exact coaches; they are
+not presented as established career facts. Cody Hughes's wife's contributions
+are known, but her name is not yet confirmed, so no anonymous or invented
+profile is displayed.
+
+Photo provenance:
+
+- `assets/mike-handleman.jpg` is an unchanged 800 x 800 JPEG from the exact
+  LinkedIn image URL supplied by the user. Its profile-source link is visible.
+  SHA256: `a99ccf9bc673878850e7e45147e5bcc0e8dab7890ae6249e2bb02b806050743a`.
+- Jerome's 1080 x 1080 photograph is displayed from the original Up2Us Sports
+  image URL, with a visible credit linking the March 14, 2018 article. The
+  article places the photo beside a testimonial explicitly naming Jerome
+  Featherstone. It replaces the small 150 x 150 Mad House staff thumbnail.
+  The original image was visually inspected; no generated alteration or
+  identity inference from appearance was used.
+- No portraits are inferred from similarly named people. Ryan and Eric's
+  LinkedIn pages require sign-in in the available browser, so their photos
+  are not included yet. Attributed third-party images are not claimed as
+  Grindstone-owned or openly licensed.
+
+The directory and profiles include responsive layouts, About Us navigation,
+source credits, print controls and image-unavailable fallbacks. All changes
+remain on the feature branch for local review; publication still requires
+explicit approval.
