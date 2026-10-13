@@ -250,3 +250,9 @@ Publication checkpoint: user-reviewed commit 42efb62 was pushed to main and its 
 All rendered biographies continue to omit LinkedIn links. Existing moves, games, videos, practices and downloadable materials are unchanged by this research pass.
 
 Publication authorization update: the user subsequently requested immediate publication as coach research is ready. Completed coach updates may now be published under that scoped authorization.
+
+## Shared move categories
+
+move-tags.js defines the shared browsing labels and maps every original and Coach Kyle entry to one primary category. Facebook entries keep their existing category IDs from video-additions.js. Add a mapping when introducing a written or Kyle move; do not infer a teaching tier from its category. Distinct entries, source links and original coaching instructions remain separate.
+
+The main library filters all 110 move entries by #moves?category=<id>. Clickable category labels open that view from any collection. Coach Kyle’s collection uses #moves/kyle?tag=<id> for new filters; its earlier category links retain their original membership. Original category names remain searchable. Changes stay on the preview branch pending review.
