@@ -1350,7 +1350,7 @@ window.GRINDSTONE_KYLE_INSTRUCTION = {
           "url": "https://www.youtube.com/shorts/XDCzq-s7xLQ"
         }
       ],
-      "verification": "The written guide is a lateral shoulder-roll foundation based on documented Granby mechanics. The selected clip is titled Head-Spin to Roll-Out; its exact start, head contact, and outcome were not reviewed. Do not present this foundation as a verified transcription of that sequence."
+      "verification": "These steps teach the shoulder-roll foundation. The selected video adds a head-supported phase with the rider attached; that advanced sequence is not part of this drill. Rolling alone does not establish an escape."
     },
     "K20": {
       "purpose": "Use cross-wrist control to break the opponent's base, keep them from rebuilding freely, and create a controlled turn. This foundation links a chop to the cross-wrist ride and a half-nelson option; a series is a set of responses, not one forced finish.",

@@ -51,3 +51,6 @@
 /* Shared move categories */
 a.category-tag{text-decoration:none;white-space:normal;line-height:1.4;border:1px solid #bed0df}a.category-tag:hover{background:var(--navy);color:white;border-color:var(--navy)}a.category-tag:focus-visible{outline:3px solid #b38114;outline-offset:3px}.category-field select{max-width:100%}.card-bottom .category-tag{max-width:70%}
 @media(max-width:720px){.filters .category-field{flex-basis:100%}.category-field select{width:100%}}
+
+/* Shared filters and saved entries across every collection. */
+.unassigned-filter{display:flex;align-items:center;gap:10px;flex-basis:100%;min-height:44px;font-size:14px;cursor:pointer}.unassigned-filter input{width:18px;height:18px;flex-shrink:0;accent-color:var(--blue)}.badge.unassigned{background:#f3ecd9;color:#705719}.save-button{width:44px;height:44px;flex-shrink:0}.card:not(.kyle-card)>.badges,.practice-video-card>.badges{padding-right:44px}.kyle-card>.save-button{z-index:1}.practice-video-card{position:relative}

@@ -536,20 +536,20 @@ window.GRINDSTONE_KYLE = {
     },
     {
       "id": "K19",
-      "name": "Roll-Out Escape",
+      "name": "Roll-Out Foundation",
       "user_label": "Escape - Roll Out",
       "category": "bottom",
-      "description": "A head-spin-to-roll-out movement reference from the bottom-position collection. Review the exact starting control and finish before choosing it for a practice.",
+      "description": "Practice a lateral shoulder roll, recover your base, and turn to face your partner. The written lesson builds this foundation; Coach Kyle’s selected video shows a more advanced head-spin-to-roll-out sequence.",
       "focus": [
-        "Identify the starting control and where the sequence finishes.",
-        "Have the coach assess readiness for the movement before partner repetitions."
+        "Roll laterally across the shoulders, then rebuild a stable base and face the partner.",
+        "Keep the foundation drill separate from the head-supported phase shown in the selected video."
       ],
       "related_moves": [
         "P05",
         "B14"
       ],
       "featured": false,
-      "note": "The source title confirms a head-spin/roll-out sequence, but not the exact starting position or escape outcome. Related guides are bottom-position foundations, not this roll.",
+      "note": "The video includes a head-supported phase that is not part of this written shoulder-roll drill. Use the steps below for the foundation and the selected clip to discuss the later progression. Completing a roll does not guarantee an escape if the rider remains attached.",
       "video": {
         "id": "XDCzq-s7xLQ",
         "url": "https://www.youtube.com/shorts/XDCzq-s7xLQ",
@@ -557,7 +557,7 @@ window.GRINDSTONE_KYLE = {
         "channel": "Pursuit Wrestling",
         "format": "shorts",
         "thumbnail": "https://i.ytimg.com/vi/XDCzq-s7xLQ/hqdefault.jpg",
-        "verified_by": "Official YouTube oEmbed metadata and thumbnail availability checked October 12, 2026. Footage and playback were not reviewed.",
+        "verified_by": "Official YouTube metadata checked October 12, 2026. Selected footage sampled at 0:59, 1:04 and 1:09 shows rolling under an attached rider and a head-supported phase; this was not a full playback or audio review.",
         "status": "verified"
       },
       "kind": "move"
