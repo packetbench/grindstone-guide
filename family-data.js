@@ -1,7 +1,103 @@
 window.GRINDSTONE_FAMILY = {
   "reviewed": "2026-10-11",
-  "intro": "A little preparation makes the day easier. Find the team, understand the match, and help your wrestler feel supported. Start with the meet-day guide, browse the questions families ask most, or keep a printable copy in your bag.",
+  "intro": "Start with your first practice, find the right program, and learn what to expect at a meet. These guides help families prepare, ask useful questions and support their wrestler throughout the season.",
   "pages": [
+    {
+      "id": "first-practice",
+      "title": "Your first Grindstone practice",
+      "description": "Choose your program, confirm the details, pack the bag, and arrive ready to learn.",
+      "reviewed": "2026-10-13",
+      "sections": [
+        {
+          "title": "Start with your program",
+          "html": "<p>New wrestlers are welcome. Grindstone offers the Mat Rats coed program, including Pups, and the Valkyries girls program. Your child does not need to know wrestling moves before joining.</p><p><a href=\"#family/programs-levels\">Compare the programs, age groups and teaching levels</a>. The club confirms your practice placement based on age and experience.</p>"
+        },
+        {
+          "title": "Find your practice location",
+          "html": "<div class=\"practice-locations\"><article class=\"practice-location\" id=\"location-westminster\"><p class=\"eyebrow\">MAT RATS RECREATIONAL TEAM</p><h3>Westminster High School</h3><figure class=\"location-photo\"><img src=\"https://upload.wikimedia.org/wikipedia/commons/e/e7/Westminster_Senior_High_School_%28Westminster%2C_Maryland%29.jpg\" alt=\"Westminster High School campus in an archival photograph\" loading=\"lazy\" width=\"691\" height=\"461\"><figcaption>Archive photo, uploaded 2007. <a href=\"https://commons.wikimedia.org/wiki/File:Westminster_Senior_High_School_(Westminster,_Maryland).jpg\" target=\"_blank\" rel=\"noopener noreferrer\">Wallstreethotrod / Wikimedia Commons</a> · Public domain.</figcaption></figure><p>1225 Washington Road<br>Westminster, MD 21157</p><p class=\"location-cue\"><strong>Where to enter:</strong> Use the main entrance or the concert entrance.</p><div class=\"buttons\"><a href=\"https://www.google.com/maps/search/?api=1&amp;query=Westminster%20High%20School%2C%201225%20Washington%20Road%2C%20Westminster%20MD%2021157\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"button outline small\">View school on map</a><a href=\"https://www.google.com/maps/dir/?api=1&amp;destination=Westminster%20High%20School%2C%201225%20Washington%20Road%2C%20Westminster%20MD%2021157\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"button small\">Get directions</a></div><p class=\"fine\"><a href=\"https://whs.carrollk12.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">Official school information</a></p></article><article class=\"practice-location\" id=\"location-winters-mill\"><p class=\"eyebrow\">PUPS & VALKYRIES</p><h3>Winters Mill High School</h3><figure class=\"location-photo\"><img src=\"https://resources.finalsite.net/images/f_auto,q_auto/v1649249246/carrollk12org/zbhcbz2rrfasl8lhsyvt/WMH_Hero.png\" alt=\"Winters Mill High School building\" loading=\"lazy\" width=\"960\" height=\"540\"><figcaption>Campus photo: <a href=\"https://wmh.carrollk12.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Winters Mill High School / Carroll County Public Schools</a>. Use the baseball-field entrance note below for wrestling.</figcaption></figure><p>560 Gorsuch Road<br>Westminster, MD 21157</p><p class=\"location-cue\"><strong>Where to enter:</strong> Use the entrance by the baseball field.</p><p class=\"fine\"><a href=\"https://wmh.carrollk12.org/resources/student-resources\" target=\"_blank\" rel=\"noopener noreferrer\">School parking information and traffic diagram</a> (Driving section).</p><div class=\"buttons\"><a href=\"https://www.google.com/maps/search/?api=1&amp;query=Winters%20Mill%20High%20School%2C%20560%20Gorsuch%20Road%2C%20Westminster%20MD%2021157\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"button outline small\">View school on map</a><a href=\"https://www.google.com/maps/dir/?api=1&amp;destination=Winters%20Mill%20High%20School%2C%20560%20Gorsuch%20Road%2C%20Westminster%20MD%2021157\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"button small\">Get directions</a></div><p class=\"fine\"><a href=\"https://wmh.carrollk12.org/about\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">Official school information</a></p></article></div><p>Check TeamSnap before leaving for group times, cancellations and any change to the entrance or location. Map pins identify the school; use the entrance notes above when you arrive.</p>"
+        },
+        {
+          "title": "TeamSnap, times and registration",
+          "html": "<p><strong>TeamSnap is the team’s communication channel.</strong> Check your group’s schedule and messages for practice times, arrival instructions, cancellations and changes. If you have not received access, ask the club to add your family before your first practice.</p><p>For current registration, fees and required forms, use the official <a href=\"https://www.grindstonewrestling.org/mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">Mat Rats & Pups page</a> or <a href=\"https://www.grindstonewrestling.org/copy-of-mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">Valkyries page</a>. Follow the club’s latest season announcement if an older season remains on a webpage.</p><p>For help with placement or TeamSnap access, <a href=\"mailto:grindstonewrestlingmd@gmail.com\">email grindstonewrestlingmd@gmail.com</a> or use the <a href=\"https://www.grindstonewrestling.org/contact\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">club contact page</a>. Include your child’s age, previous wrestling experience and the program you are interested in.</p>"
+        },
+        {
+          "title": "Pack a simple practice bag",
+          "html": "<ul><li>Comfortable athletic clothes that allow movement; ask the coach about any clothing restrictions.</li><li>A labeled personal water bottle.</li><li>Wrestling shoes and any headgear or other equipment requested for your group.</li><li>Street shoes for outside the wrestling area and a change of clothes for afterward.</li></ul><p>Before buying gear, ask what is required on day one and what the registration package includes. Change into clean mat footwear at the room, keep jewelry off the mat and follow the coach’s equipment instructions.</p>"
+        },
+        {
+          "title": "Growing feet, shared gear",
+          "html": "<p>Grindstone keeps donated wrestling shoes and headgear from previous seasons to help outfit children who need them. Many wrestlers outgrow shoes well before wearing them out; passing usable gear along helps another family and reduces waste.</p><p>Ask a coach about available sizes and fit before buying new equipment. If you have outgrown gear to donate, check with the club about its condition and where to bring it.</p>"
+        },
+        {
+          "title": "When you arrive",
+          "html": "<ol><li>Find the coach or team helper and confirm your child’s group.</li><li>Point out the water and gear area; find out where caregivers should wait and how pickup works.</li><li>Tell the coach about an injury, participation restriction or support need that affects practice.</li><li>Help your child listen for the stop signal, then let the coach introduce a partner and the first activity.</li></ol><p>If you will be late or absent, notify the team contact. When arriving late, check in with the coach before joining the activity.</p>"
+        },
+        {
+          "title": "What the first session can feel like",
+          "html": "<p>Expect some explanation, movement, partner work, short breaks and practice learning the room’s routines. Coaches adapt the amount of instruction and contact to the group. A hesitant child may need a quiet introduction, a demonstration or an easier first repetition.</p><p>The first goal is to understand the stop signal, try a movement and work kindly with a partner. Ask the coach for help if your child is overwhelmed. Encourage effort without coaching over the instructor.</p>"
+        },
+        {
+          "title": "After practice",
+          "html": "<p>Ask, “What did you try?” or “What would you like to do again?” A first day does not need to be perfect. Confirm the next session and team messages before leaving, then follow the club’s gear-cleaning guidance.</p><p><a href=\"#family/expectations\">Supporting your wrestler</a> · <a href=\"#family/health\">Health habits and getting help</a> · <a href=\"#family/meet-day\">Preparing for the first meet</a></p>"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Grindstone Mat Rats and Pups program",
+          "url": "https://www.grindstonewrestling.org/mat-rats"
+        },
+        {
+          "title": "Grindstone Valkyries program",
+          "url": "https://www.grindstonewrestling.org/copy-of-mat-rats"
+        },
+        {
+          "title": "Grindstone club contact",
+          "url": "https://www.grindstonewrestling.org/contact"
+        },
+        {
+          "title": "Westminster High School address",
+          "url": "https://whs.carrollk12.org/"
+        },
+        {
+          "title": "Winters Mill High School address",
+          "url": "https://wmh.carrollk12.org/about"
+        }
+      ]
+    },
+    {
+      "id": "programs-levels",
+      "title": "Programs, ages and teaching levels",
+      "description": "Find the right team information and understand how coaches use this library.",
+      "reviewed": "2026-10-13",
+      "sections": [
+        {
+          "title": "The club program is where you belong",
+          "html": "<table class=\"program-table\"><thead><tr><th scope=\"col\">Program</th><th scope=\"col\">Published ages</th><th scope=\"col\">Where to start</th></tr></thead><tbody><tr><th scope=\"row\">Pups</th><td data-label=\"Published ages\">First-year wrestlers, 4–6</td><td data-label=\"About this program\">The introductory clinic within Mat Rats. The club describes a focus on movement, skills and fun, without competitions. <a href=\"https://www.grindstonewrestling.org/mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\">Pups information</a>.</td></tr><tr><th scope=\"row\">Mat Rats recreational team</th><td data-label=\"Published ages\">6–14</td><td data-label=\"About this program\">Coed wrestling for beginners through experienced athletes. Practice placement considers age and experience. <a href=\"https://www.grindstonewrestling.org/mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\">Mat Rats information</a>.</td></tr><tr><th scope=\"row\">Valkyries</th><td data-label=\"Published ages\">Girls, 5–14</td><td data-label=\"About this program\">A dedicated girls program welcoming new and experienced wrestlers. Competition is optional. <a href=\"https://www.grindstonewrestling.org/copy-of-mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\">Valkyries information</a>.</td></tr></tbody></table><p>These descriptions come from the official club pages. The club confirms placement, current availability, schedules and registration details; a birthday alone does not determine a move’s readiness.</p>"
+        },
+        {
+          "title": "The practice age group helps a coach choose a plan",
+          "html": "<p>The library offers 30 plans for each planning group: <a href=\"#practices?age=4-6\">4–6</a>, <a href=\"#practices?age=7-10\">7–10</a> and <a href=\"#practices?age=11-14\">11–14</a>. These organize lesson length, language and challenge; they are not separate registration programs.</p><p>Use the <a href=\"#season\">season learning path</a> to find a starting phase, review familiar skills and choose a next step. Valkyries coaches can use the same teaching library and adapt plans to their athletes.</p>"
+        },
+        {
+          "title": "The teaching tier describes a lesson, not a child",
+          "html": "<dl><dt><strong>Pup</strong></dt><dd>Movement and introductory foundations, usually with simple solo or cooperative tasks.</dd><dt><strong>Beginner</strong></dt><dd>Basic positions and partner techniques. Check the specific guide’s prerequisites before adding resistance.</dd><dt><strong>Advanced</strong></dt><dd>Linked attacks, counters and more demanding control. Experience with the prerequisite positions matters more than age.</dd></dl><p>An older beginner can use a Pup movement drill. A younger experienced wrestler still needs a coach’s readiness check for an advanced guide. Kyle and Facebook entries may have an unassigned tier; read their setup and adaptations rather than treating that label as a recommendation.</p>"
+        },
+        {
+          "title": "Choose the next challenge together",
+          "html": "<p>A coach looks for the athlete to follow the stop signal, move with control, respect a partner and explain or show the key action. Start cooperatively; add only one new challenge at a time. If a position breaks down, return to the simpler step and practice it successfully.</p><p>A useful family question is, “What is one thing we are working on next?” An athlete can need a foundation in one position while being ready for a harder task in another.</p><p><a href=\"#family/first-practice\">Get ready for your first practice</a> · <a href=\"#about/coaches\">Meet the coaches and helpers</a> · <a href=\"#season\">Explore the season path</a></p>"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Grindstone Mat Rats: Pups and recreational team",
+          "url": "https://www.grindstonewrestling.org/mat-rats"
+        },
+        {
+          "title": "Grindstone Valkyries",
+          "url": "https://www.grindstonewrestling.org/copy-of-mat-rats"
+        }
+      ]
+    },
     {
       "id": "meet-day",
       "title": "Your first wrestling meet",
@@ -176,6 +272,22 @@ window.GRINDSTONE_FAMILY = {
     }
   ],
   "faq": [
+    {
+      "question": "Can the club help with wrestling shoes or headgear?",
+      "answer": "Grindstone keeps donated shoes and headgear from earlier seasons to help outfit children and give outgrown gear another useful season. Ask a coach about sizes, fit and donations. <a href=\"#family/first-practice\">Prepare for your first practice</a>."
+    },
+    {
+      "question": "Which Grindstone program and practice group should we choose?",
+      "answer": "Compare <a href=\"#family/programs-levels\">Pups, Mat Rats and Valkyries</a>, then confirm placement with the club. The library’s age groups and teaching tiers organize lessons; they do not assign team membership."
+    },
+    {
+      "question": "Where are the first-practice time, location and registration details?",
+      "answer": "Mat Rats recreational practices are at Westminster High School; Pups and Valkyries are at Winters Mill High School. TeamSnap carries group times, cancellations and updates. See <a href=\"#family/first-practice\">addresses, entrance notes, directions and registration links</a>."
+    },
+    {
+      "question": "Does an Advanced label mean a move is for every older wrestler?",
+      "answer": "No. Teaching tiers describe lessons, not ages. A coach checks the specific guide’s prerequisites and the athlete’s control before adding difficulty. Read <a href=\"#family/programs-levels\">how programs, ages and levels fit together</a>."
+    },
     {
       "question": "When should we arrive?",
       "answer": "Read the team message for arrival time, weigh-ins, check-in and the meeting place. Arrival may be earlier than the start of wrestling. Find your coach when you arrive. <a href=\"#family/meet-day\">Use the meet-day checklist</a>."
