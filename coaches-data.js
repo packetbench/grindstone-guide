@@ -327,7 +327,7 @@ window.GRINDSTONE_COACHES = {
       "role": "Youth coach · Pups and older group",
       "summary": "Thomas Schnepp will split his coaching time between the Pups and the older group this season.",
       "paragraphs": [
-        "Thomas wrestled for Eaton Rapids High School in Michigan throughout all four years of high school, graduating in 2010. Depending on the season and the team’s needs, he competed in weight classes from 171 pounds through heavyweight. He now brings that experience to Grindstone, splitting his coaching time between the Pups and the older group.",
+        "Thomas wrestled for Eaton Rapids High School in Michigan throughout all four years of high school, graduating in 2010. He was a member of Eaton Rapids’ 2009 regional championship team. Depending on the season and the team’s needs, he competed in weight classes from 171 pounds through heavyweight. He now brings that experience to Grindstone, splitting his coaching time between the Pups and the older group.",
         "He also helps develop practical resources for Grindstone’s coaches and families. His work on the team library brings together practice plans, move guides, games and family information, with an emphasis on making the materials easy to find and use at practice.",
         "That work includes adapting activities for different ages, giving coaches clear teaching steps and cues, and keeping games readily available to help young athletes stay engaged. It is another way Thomas contributes to the program alongside his time on the mat."
       ],
@@ -345,7 +345,27 @@ window.GRINDSTONE_COACHES = {
           "text": "Helping organize coaching and family resources in the team library."
         }
       ],
-      "sources": []
+      "sources": [
+        {
+          "title": "Eaton Rapids team photo • Regional Champs! (posted March 2, 2009)",
+          "url": "https://www.facebook.com/photo.php?fbid=1091665017774&set=t.1134555199&type=3"
+        },
+        {
+          "title": "MHSAA • 2009 team regional and state tournament results",
+          "url": "https://my.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/09tmreg.html"
+        }
+      ],
+      "gallery_title": "Eaton Rapids wrestling years",
+      "gallery_label": "Photos from Thomas Schnepp’s high-school wrestling years",
+      "gallery": [
+        {
+          "src": "assets/thomas-regional-team-2009.jpg",
+          "alt": "Eaton Rapids wrestling team in the photograph captioned Regional Champs!",
+          "caption": "Eaton Rapids’ regional championship team, 2009. Posted by Lori Loomis Chapman on March 2, 2009, with the caption “Regional Champs!” Thomas is tagged in the original photo.",
+          "source_url": "https://www.facebook.com/photo.php?fbid=1091665017774&set=t.1134555199&type=3",
+          "source_label": "Original team photo • Lori Loomis Chapman"
+        }
+      ]
     }
   ],
   "supporters": [
