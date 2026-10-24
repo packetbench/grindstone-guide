@@ -109,28 +109,42 @@ window.COACH_DRAFTS = {
       },
       "gallery": [
         {
-          "src": "assets/kyle-team.png",
+          "src": "native-ten/kyle-1993-p58.jpg",
           "alt": "Columbia’s 1993 wrestling team. The yearbook caption identifies Kyle Rutledge in the center of the seated front row, holding a trophy.",
-          "caption": "Columbia High School wrestling team, 1993. Kyle is seated in the center of the front row. The yearbook records a third-place state finish.",
+          "caption": "Columbia High School wrestling team, 1993. Kyle is seated in the center of the front row. The team placed third at state; Kyle is listed as state champion. Original full-resolution JPEG extracted directly from the source PDF; no enlargement, reconstruction or recompression.",
           "source_url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=58",
           "source_label": "1993 Emerald yearbook, wrestling page • Lorain Public Library System",
-          "view": "yearbook-team"
+          "view": "yearbook-team",
+          "coach": "kyle-rutledge",
+          "name": "Kyle Rutledge",
+          "selection": "gallery",
+          "kind": "Historical image",
+          "native": true
         },
         {
-          "src": "assets/kyle-athletic.png",
+          "src": "native-ten/kyle-1993-p114.jpg",
           "alt": "The 1993 yearbook’s Most Athletic photo, captioned Joanna Pietch and Kyle Rutledge, with Kyle on the right.",
-          "caption": "Senior Most Athletic recognition, 1993. The yearbook caption names Joanna Pietch and Kyle Rutledge.",
+          "caption": "Senior Most Athletic recognition, 1993. The yearbook caption names Joanna Pietch and Kyle Rutledge. Original full-resolution JPEG extracted directly from the source PDF; no enlargement, reconstruction or recompression.",
           "source_url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=114",
           "source_label": "1993 Emerald yearbook, senior recognition page • Lorain Public Library System",
-          "view": "yearbook-athletic"
+          "view": "yearbook-athletic",
+          "coach": "kyle-rutledge",
+          "name": "Kyle Rutledge",
+          "selection": "gallery",
+          "kind": "Historical image",
+          "native": true
         },
         {
-          "src": "assets/kyle-1993-page-77.png",
+          "src": "native-ten/kyle-1993-p77.jpg",
           "alt": "Columbia’s 1993 Senior Court page, with Kyle Rutledge explicitly labeled in the lower-left portrait.",
-          "caption": "New selection: Kyle’s labeled Senior Court portrait appears at lower left. The complete page is retained with its printed identification.",
+          "caption": "New selection: Kyle’s labeled Senior Court portrait appears at lower left. The complete page is retained with its printed identification. Original full-resolution JPEG extracted directly from the source PDF; no enlargement, reconstruction or recompression.",
           "source_url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=77",
           "source_label": "1993 Emerald yearbook · PDF page 77",
-          "selection": "gallery"
+          "selection": "gallery",
+          "coach": "kyle-rutledge",
+          "name": "Kyle Rutledge",
+          "kind": "Historical image",
+          "native": true
         },
         {
           "src": "club-intros/kyle-intro.jpg",
@@ -163,7 +177,8 @@ window.COACH_DRAFTS = {
         "The draft lead is now a native crop from Kyle’s October 8, 2024 Mat Rats coach introduction. The complete introduction graphic, earlier state-champion portrait and school-yearbook originals remain in the archive. No enlargement, AI reconstruction or enhancement was used.",
         "Second pass checked Cleveland State archive routes and later college match reporting. Existing Columbia yearbooks remain the richest labeled photo source. The unrelated Pittsburg State track coach and Chicago ultimate player were excluded.",
         "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
-        "Latest pass checked Cleveland Memory’s CSU/Fenn collection and broader archive results; no additional attributable college photograph. Physical Cleveland State archives remain a lead. Public USAW training added."
+        "Latest pass checked Cleveland Memory’s CSU/Fenn collection and broader archive results; no additional attributable college photograph. Physical Cleveland State archives remain a lead. Public USAW training added.",
+        "Twenty school pages now have original embedded JPEG versions, roughly 2,350 × 3,190 pixels, recovered from the already-preserved source PDFs. These contain three to four-and-a-half times the pixels of the earlier display copies. Existing captions and identity limits are unchanged; every reduced copy remains available."
       ],
       "profile_review_status": "Draft awaiting user review"
     },
@@ -1774,7 +1789,8 @@ window.COACH_DRAFTS = {
         "New pass checked McDaniel 2008–2010 yearbook OCR, athletics search, old photographer albums and Parkville photo links. Three unassigned Sinclair previews are preserved as context, not selected as Brad portraits. Parkville’s public image links are dead and its album index requires login.",
         "The public athlete profile has no videos. Three new originals preserve a proposed individual portrait, the Lucky Ducks champions and the full event group. Earlier unassigned McDaniel photos remain in the collection.",
         "The organizer’s full 2025 results independently confirm the Dead 185 title and Lucky Ducks team championship. Homepage and three official gallery pages supplied no named Brad bout video or image. The exact April 7, 2025 organizer Instagram carousel was found, but its captions, slides and tags remained behind login; it stays in the search queue.",
-        "New primary archives add the 2002 MIS bracket, 2004 National Prep bracket and 2007 McDaniel yearbook roster. The yearbook’s five action photographs have no individual captions; the only named portrait is Coach Gardner. Both original page images are preserved as team context, without assigning Brad to an athlete. The 26–9 figure printed in the 2004 bracket is an entry record, not a final season record."
+        "New primary archives add the 2002 MIS bracket, 2004 National Prep bracket and 2007 McDaniel yearbook roster. The yearbook’s five action photographs have no individual captions; the only named portrait is Coach Gardner. Both original page images are preserved as team context, without assigning Brad to an athlete. The 26–9 figure printed in the 2004 bracket is an entry record, not a final season record.",
+        "The 2006 McDaniel page now displays the original 1266 × 1666 JPEG embedded in the saved PDF, replacing a reduced 549 × 723 display copy. The earlier file remains in the collection. Its four action photographs are still unassigned."
       ],
       "highlights": [
         {
@@ -1906,13 +1922,16 @@ window.COACH_DRAFTS = {
       ],
       "gallery": [
         {
-          "src": "assets/brad-team-page-2006.png",
+          "src": "native-ten/brad-2006-p77.jpg",
           "alt": "McDaniel’s 2006 wrestling page lists Brad Gabrish at 149 pounds; photographed athletes are not individually labeled.",
-          "caption": "Team context only: Brad appears in the roster at 149 pounds. The four action photos are not individually captioned, so none is claimed to show Brad.",
+          "caption": "Team context only: Brad appears in the roster at 149 pounds. The four action photos are not individually captioned, so none is claimed to show Brad. Original full-resolution JPEG extracted directly from the source PDF; no enlargement, reconstruction or recompression.",
           "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2006.pdf#page=77",
           "source_label": "McDaniel 2006 yearbook · printed page 69",
           "selection": "context",
-          "kind": "Team context"
+          "kind": "Team context",
+          "coach": "brad-gabrish",
+          "name": "Brad Gabrish",
+          "native": true
         },
         {
           "src": "brad-bouts/bb-team-2025.jpg",

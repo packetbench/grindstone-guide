@@ -336,6 +336,26 @@
           "status": "pending",
           "source_url": "https://www.facebook.com/leafhomebuilders",
           "source_label": "Unresolved public business lead"
+        },
+        {
+          "id": "brian-leaf-31",
+          "text": "\"Brian Leaf\" \"Norchester\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Norchester%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Norchester%22",
+          "purpose": "The school’s own directory identifies Norchester Wildcats as its K–8 feeder. This is only a conditional route for the unconfirmed Owen J. Roberts Class of 2007 candidate; no Brian membership is established. Seek a named youth-team caption, scrapbook or roster key. Five 2004–06 varsity dual lineups lacked Leaf, but those partial records do not rule out youth participation. The public archive index confirms this exact capture, but the snapshot returned HTTP 429; its roster/photo contents remain uninspected. Retry only when archive access changes.",
+          "source_url": "https://web.archive.org/web/20061228095830/http://www.norchesterwrestling.com/",
+          "source_label": "Norchester · exact December 28, 2006 capture",
+          "status": "pending"
+        },
+        {
+          "id": "brian-leaf-32",
+          "text": "\"Owen J. Roberts\" \"2007\" \"Ledger\" wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Owen%20J.%20Roberts%22%20%222007%22%20%22Ledger%22%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Owen%20J.%20Roberts%22%20%222007%22%20%22Ledger%22%20wrestling",
+          "purpose": "Seek a 2004–07 yearbook index or named wrestling-team caption. The candidate school remains unconfirmed. The inspected alumni directories did not expose a period scan; do not repeat the five opponent dual lineups or statewide surname database.",
+          "source_url": "https://nces.ojrsd.com/about-us/activities/community-sports-leagues",
+          "source_label": "Conditional OJR archive route",
+          "status": "pending"
         }
       ]
     },
@@ -552,6 +572,26 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Western%20Maryland%20College%20yearbook",
           "posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Western%20Maryland%20College%20yearbook",
           "purpose": "Use a known attendance year to target the official yearbook and commencement archive."
+        },
+        {
+          "id": "eric-westervelt-13",
+          "text": "\"Eric M. Westervelt\" \"McDaniel\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Eric%20M.%20Westervelt%22%20%22McDaniel%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Eric%20M.%20Westervelt%22%20%22McDaniel%22",
+          "purpose": "A public Maryland professional roster supplies this middle initial alongside Howard County Recreation & Parks, but its connection to Coach Eric is still proposed. Seek an explicit public education statement before choosing more college volumes. The 2000–03 yearbooks have now all been searched; incomplete OCR is not proof of absence.",
+          "source_url": "https://mda.maryland.gov/Documents/Not%20for%20Hire_071123.pdf#page=10",
+          "source_label": "July 2023 public professional roster · namesake lead",
+          "status": "pending"
+        },
+        {
+          "id": "eric-westervelt-14",
+          "text": "\"Eric Westervelt\" \"Western Regional Park\" biography",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Eric%20Westervelt%22%20%22Western%20Regional%20Park%22%20biography",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Eric%20Westervelt%22%20%22Western%20Regional%20Park%22%20biography",
+          "purpose": "Seek a public professional biography or authored alumni post that states an attendance year. The park/employer record is a namesake lead, not a confirmed coach identity. Do not infer college wrestling or use private friend-connected material.",
+          "source_url": "https://archivesspace.mcdaniel.edu/repositories/3/archival_objects/1641",
+          "source_label": "Commencement-program finding aid · use after a year is known",
+          "status": "pending"
         }
       ]
     },
@@ -669,7 +709,9 @@
           "text": "Grindstone public posts tagging Andy Millman or Jordan Millman as coaches",
           "photos_url": "https://www.facebook.com/search/photos/?q=Grindstone%20public%20posts%20tagging%20Andy%20Millman%20or%20Jordan%20Millman%20as%20coaches",
           "posts_url": "https://www.facebook.com/search/posts/?q=Grindstone%20public%20posts%20tagging%20Andy%20Millman%20or%20Jordan%20Millman%20as%20coaches",
-          "purpose": "Final direct profile-to-roster bridge; Mat Rats Blue-team post now supports the local wrestling connection but does not state a coaching title."
+          "purpose": "The club’s internal Millman search returned no results. Jordan’s wrestling search returned the already-retained Blue-team gear post, and coach returned unrelated third-party tagged material, not an authored role statement. An explicitly public volunteer/banquet caption or club introduction remains useful. No photos or roles were assigned from these results.",
+          "source_url": "https://www.facebook.com/profile/100041217559124/search/?q=coach",
+          "source_label": "Proposed Jordan profile · coach search"
         }
       ]
     },
@@ -856,9 +898,9 @@
           "text": "Tyler Lease WintersMillWrestling",
           "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20WintersMillWrestling",
           "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20WintersMillWrestling",
-          "purpose": "School page opens, but its Search command remained on a blank loading screen in this pass. The direct search fallback was unavailable. Manual page Search for Tyler Lease is still unresolved; do not treat this as a negative result.",
-          "source_url": "https://www.facebook.com/WintersMillWrestling/",
-          "source_label": "Winters Mill Wrestling page",
+          "purpose": "The previously stalled page search now completed. Its visible result named a different Tyler in regional match results, not Tyler Lease. No new coach role or portrait was established. A new specifically named caption remains useful; do not repeat this unchanged search.",
+          "source_url": "https://www.facebook.com/profile/100063519762289/search/?q=Tyler",
+          "source_label": "Winters Mill public page · Tyler search",
           "page_search_query": "Tyler Lease",
           "status": "unresolved-ui",
           "source_manifest": "seven-followup.json"
@@ -1212,10 +1254,13 @@
         },
         {
           "id": "daniel-skelonc-09",
-          "text": "Daniel ",
-          "photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20",
-          "posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20",
-          "purpose": "Check legacy public club posts. Avoid assigning uncaptioned group members."
+          "text": "Skelonc Winters Mill Wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Skelonc%20Winters%20Mill%20Wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Skelonc%20Winters%20Mill%20Wrestling",
+          "purpose": "The legacy public page surname search completed with no results. This does not reject the proposed identity; seek a new named club introduction or archive caption rather than repeating the unchanged search.",
+          "source_url": "https://www.facebook.com/profile/100063519762289/search/?q=Skelonc",
+          "source_label": "Winters Mill public page · Skelonc search",
+          "page_search_query": "Skelonc"
         },
         {
           "id": "daniel-skelonc-10",
@@ -1223,6 +1268,33 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=Cedar%20Springs%20wrestling%202002%20Dan%20Skelonc%20",
           "posts_url": "https://www.facebook.com/search/posts/?q=Cedar%20Springs%20wrestling%202002%20Dan%20Skelonc%20",
           "purpose": "Public alumni/team photo caption search; specifically seek 2002 state qualifier team pictures or 2003 yearbook wrestling spread."
+        },
+        {
+          "id": "daniel-skelonc-11",
+          "text": "2002 MHSAA Division 2 145 Dan Skelonc Cedar Springs",
+          "photos_url": "https://www.facebook.com/search/photos/?q=2002%20MHSAA%20Division%202%20145%20Dan%20Skelonc%20Cedar%20Springs",
+          "posts_url": "https://www.facebook.com/search/posts/?q=2002%20MHSAA%20Division%202%20145%20Dan%20Skelonc%20Cedar%20Springs",
+          "source_url": "https://web.archive.org/web/20031219152414/http://www.20-20photo.com:80/archive2002/2002_mi_bwr_finals.html",
+          "source_label": "Archived 2002 finals photo gallery",
+          "purpose": "MHSAA links this exact event photo gallery. Archive captures exist, but reading them returned HTTP 429. When available, inspect Division 2 145-lb captions for Dan Skelonc and Cedar Springs. No Daniel photo has been found here yet; the live domain is now unrelated."
+        },
+        {
+          "id": "daniel-skelonc-12",
+          "text": "Grand Rapids Press Skelonc February March 2002",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Grand%20Rapids%20Press%20Skelonc%20February%20March%202002",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Grand%20Rapids%20Press%20Skelonc%20February%20March%202002",
+          "source_url": "https://kdl.org/resources-types/newspapers/",
+          "source_label": "KDL newspaper resources",
+          "purpose": "If you already have legitimate library access, search February 1-March 15, 2002 for Skelonc and Cedar Springs state-qualifier coverage. KDL lists Grand Rapids Press full text from 2000. Its separate historical photo archive ends in 1970 and will not cover this event. No search of the licensed resource has been completed."
+        },
+        {
+          "id": "daniel-skelonc-13",
+          "text": "Skelonc Cedar Springs Cadence February March 2002",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Skelonc%20Cedar%20Springs%20Cadence%20February%20March%202002",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Skelonc%20Cedar%20Springs%20Cadence%20February%20March%202002",
+          "source_url": "https://digmichnews.cmich.edu/?a=cl&cl=CL1&e=-------en-10--1--txt-txIN----------&sp=KentC",
+          "source_label": "Cadence newspaper collection",
+          "purpose": "The official KDL resource page lists Cadence coverage from 1975-2008. Search February-March 2002 for named opponent or event captions when the public collection is available; current requests returned HTTP 403. This remains a proposed historical identity, not a confirmed coach match."
         }
       ]
     }
@@ -1379,7 +1451,7 @@
           "text": "\"Jessica Hughes\" \"North Carroll\" lacrosse",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Jessica%20Hughes%22%20%22North%20Carroll%22%20lacrosse",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Jessica%20Hughes%22%20%22North%20Carroll%22%20lacrosse",
-          "purpose": "The council lists this name in girls lacrosse, but no source links it to jessica.m.larue, Cody or Grindstone. Check named introductions and explicit profile links before adopting any role or photograph.",
+          "purpose": "North Carroll’s contact entry remains separate from the Hughes family. The live public Instagram grid exposed twelve post links, but opening the May 22, 2025 season carousel required login. Review named public introductions or person tags in your authorized session; captions and tags remain unreviewed. No official Facebook link was found; the two Instagram bio links are registration and merchandise. Require an explicit link to jessica.m.larue before adopting a role or photograph.",
           "status": "pending",
           "source_url": "https://www.instagram.com/northcarrollgirlslax",
           "source_label": "Official North Carroll girls lacrosse account · unresolved namesake"

@@ -1,11 +1,11 @@
 {
   "integrated_on": "2026-10-24",
-  "source_checkpoint": "coach-publish-v8/coach-drafts",
-  "received_manifest_sha256": "df6ab955359d70542eff9fa046359781a72782a39081704bb40967e3fdf5e404",
+  "source_checkpoint": "coach-publish-v9/coach-drafts",
+  "received_manifest_sha256": "60e1ef231a35d89fd6c2beead0e41899122470a23b60c6327da069bebc41d9a8",
   "previous_integration": {
-    "git_commit": "d2368f47c14a979111edffd219d32c5084dbaa24",
-    "sha256": "7e6a30fc932fed46d66cbdfb7ebbb736f0537accfc6daadc774c74ac18929966",
-    "received_manifest_sha256": "fe4a511bbaba0b3e2a6c1d80bce1e9808dd907c4d74e86812a216a78e62145f9"
+    "git_commit": "423f9fcff691dd6d0d72df61b147fa22fb11be34",
+    "sha256": "e00b839f916df04d315ffb850ab9538b6dbb45c7075ba828b3fee3f4fa7eaf38",
+    "received_manifest_sha256": "df6ab955359d70542eff9fa046359781a72782a39081704bb40967e3fdf5e404"
   },
   "notes": [
     "The received public-manifest.json is preserved byte for byte. This record maps source-relative paths to the deployed coach-drafts paths.",
@@ -17,8 +17,8 @@
   "changed": [
     {
       "path": "app.js",
-      "received_sha256": "7e3191b5e269c2ffb966d8acd5fc4ece8d21c2197015c52fe87738db25aa4f5f",
-      "integrated_sha256": "19abcae8bb35d9a8a29736e540bbb440400f3bf1f9d0502f6d8d2b1785835a4e"
+      "received_sha256": "bf0b67a0d9b2bfc850df3ba3c09cd76a34044a591f90ccccdab7edc080ce8bcf",
+      "integrated_sha256": "9cf516b9a6ae7683d3ff1524f625bf3e8d74d5c95b98fbed936cb5041d16a25f"
     },
     {
       "path": "club-gallery.html",
@@ -32,8 +32,8 @@
     },
     {
       "path": "facebook-queue.html",
-      "received_sha256": "6b0db57c861dc4352d620abde43ae0e03b4ed0e6c66fb0d732f9dc42bf396cf7",
-      "integrated_sha256": "947c734c94dd6c4fce1b487f9f853c700ddfdd5c342f13172523bcf5c3f3caf1"
+      "received_sha256": "53b7bd811c381ea2a000c85937aaf22c6d5b884e92875bd9fab2061bafe6e349",
+      "integrated_sha256": "6ae4295fc0fc1e4d5d516a7c88d438e8e0cba36ccfcdd83f8c95d6c021d3cb31"
     },
     {
       "path": "hughes-family.html",
@@ -43,12 +43,12 @@
     {
       "path": "index.html",
       "received_sha256": "7d382366fee1059bb1fe1aef860afc33cb5c1a6e2d51f46f9f8c273ec7ebbd8b",
-      "integrated_sha256": "04205d0ea45fb8912b780878dedb81e655b57d45a9b31d456b4f91cca5e19592"
+      "integrated_sha256": "6534fda1cccd3f25c6529187d7f432ab2965aad12de533b4f342885f894a9193"
     },
     {
       "path": "profiles.js",
-      "received_sha256": "7a1b2ac6c32e9b5acdf48fd7de0cfd1cee2960704224a943f423346b428ffd7c",
-      "integrated_sha256": "2a7d22df5f63f6cdbf253367f9319c8bd0300c18500a7f1c5797c360baec4048"
+      "received_sha256": "79320328fb11fff08ba722b2ef7d147979b59db2c2bacee1591ca5bcdbcc27c9",
+      "integrated_sha256": "ea263dbf1f52aedac9da87d969493148f26fe9a7e24040526727786a38b6961f"
     }
   ],
   "files": [
@@ -69,8 +69,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 18671,
-      "sha256": "19abcae8bb35d9a8a29736e540bbb440400f3bf1f9d0502f6d8d2b1785835a4e"
+      "bytes": 18684,
+      "sha256": "9cf516b9a6ae7683d3ff1524f625bf3e8d74d5c95b98fbed936cb5041d16a25f"
     },
     {
       "path": "assets/brad-team-page-2006.png",
@@ -754,8 +754,8 @@
     },
     {
       "path": "facebook-queue.html",
-      "bytes": 230808,
-      "sha256": "947c734c94dd6c4fce1b487f9f853c700ddfdd5c342f13172523bcf5c3f3caf1"
+      "bytes": 248085,
+      "sha256": "6ae4295fc0fc1e4d5d516a7c88d438e8e0cba36ccfcdd83f8c95d6c021d3cb31"
     },
     {
       "path": "facebook-queue.js",
@@ -764,13 +764,13 @@
     },
     {
       "path": "facebook-queue.json",
-      "bytes": 80138,
-      "sha256": "2ed1c20acebd6371c414c0da59cdd3c2fb631fc6ad049c009dced2dbdbd8f62b"
+      "bytes": 87745,
+      "sha256": "6ec48ff92f3223e606e01d2a4bafe48f11fe0c88534cb749065c109e331514d4"
     },
     {
       "path": "gallery-data.js",
-      "bytes": 130241,
-      "sha256": "f26553a98672d8f7559475e079303ce87af5da34c073b5cd33857dcfbf47c66b"
+      "bytes": 152569,
+      "sha256": "8ca9aa5dfaf8a864b3ae79a1e74054b9b398ca5c551fd5ced3733e53cd137a48"
     },
     {
       "path": "hughes-family.html",
@@ -825,7 +825,7 @@
     {
       "path": "index.html",
       "bytes": 1296,
-      "sha256": "04205d0ea45fb8912b780878dedb81e655b57d45a9b31d456b4f91cca5e19592"
+      "sha256": "6534fda1cccd3f25c6529187d7f432ab2965aad12de533b4f342885f894a9193"
     },
     {
       "path": "jerome-boxing/jb-candidate-2015.jpg",
@@ -1058,19 +1058,124 @@
       "sha256": "08af8e722661927f886d0006b13aa3d9f8c72af82a4ffb3afb6e1d97d493fe38"
     },
     {
+      "path": "native-ten/brad-2006-p77.jpg",
+      "bytes": 165453,
+      "sha256": "edeabd98716ccb29805034edc668dbc63ecd9a9be86ba29e740926548b5dedeb"
+    },
+    {
+      "path": "native-ten/kyle-1990-p110.jpg",
+      "bytes": 321072,
+      "sha256": "059c8b8b652879804ad130523c0ae573d8dc05156551797c9e8996efa0d22064"
+    },
+    {
+      "path": "native-ten/kyle-1990-p112.jpg",
+      "bytes": 342904,
+      "sha256": "62f0202a91a3d0a76d8c8fafc247e1ded366230e2638e2b3215a1c9f90ab7d5e"
+    },
+    {
+      "path": "native-ten/kyle-1990-p15.jpg",
+      "bytes": 311932,
+      "sha256": "917103ebb56a5ecf5022f8f65f710f3acc21f7440131e557720cb71818336f48"
+    },
+    {
+      "path": "native-ten/kyle-1991-p100.jpg",
+      "bytes": 332788,
+      "sha256": "560ca2f14bc905660793dcbaa5a81925ff19a96e36d23cfad122a607436c006b"
+    },
+    {
+      "path": "native-ten/kyle-1991-p55.jpg",
+      "bytes": 372305,
+      "sha256": "3f93ece38cb61ac99493ec4b4bc362f5ad7f7802646ddf1694a4c0dfeae70745"
+    },
+    {
+      "path": "native-ten/kyle-1991-p56.jpg",
+      "bytes": 370145,
+      "sha256": "7e82bb38c70a44ff225675bdd40c4dd989c1db85f7e2790826dbe3da7bd145ce"
+    },
+    {
+      "path": "native-ten/kyle-1991-p57.jpg",
+      "bytes": 417847,
+      "sha256": "ba99f0492927d169279c0984169d1fe10e30c9c8db04ac36fe96cb36cacd9d7a"
+    },
+    {
+      "path": "native-ten/kyle-1991-p64.jpg",
+      "bytes": 376998,
+      "sha256": "408e9ab344ad5dadb61f166449d8172375201c4f5148e80c0ad12c853ec4f95b"
+    },
+    {
+      "path": "native-ten/kyle-1992-p20.jpg",
+      "bytes": 315464,
+      "sha256": "59fe5b118dc31577d7f0e3c2bdf80f54065e3cf07831dda491f0b81e6c7924bc"
+    },
+    {
+      "path": "native-ten/kyle-1992-p44.jpg",
+      "bytes": 346111,
+      "sha256": "782601cdfe0681f2391a6ba0d7dbc0173ee62ffbd52793e95f7dd2c1af071cc2"
+    },
+    {
+      "path": "native-ten/kyle-1992-p64.jpg",
+      "bytes": 373749,
+      "sha256": "d9dbc607459a7ebbecf88d66d844758ab58ab84c1351a9b826abc0cff8d5b652"
+    },
+    {
+      "path": "native-ten/kyle-1992-p77.jpg",
+      "bytes": 357565,
+      "sha256": "961bb178a11327807193f81597222e2eac6bfba433a3e1f5017094875e62d3b7"
+    },
+    {
+      "path": "native-ten/kyle-1993-p114.jpg",
+      "bytes": 337406,
+      "sha256": "3d02ed0616b21a4d53b831eedbeb466b7a248dcd39fff067e7fddc23f3ec2874"
+    },
+    {
+      "path": "native-ten/kyle-1993-p48.jpg",
+      "bytes": 405908,
+      "sha256": "4ed8400f14a896eca3659ae39439111a0b2ef83bc84cd36061d8868bbdac77c7"
+    },
+    {
+      "path": "native-ten/kyle-1993-p58.jpg",
+      "bytes": 300697,
+      "sha256": "b0a24c57324373e76830ebf97a22aa709dedb5fbf20cd6fe48b0910fc0efb124"
+    },
+    {
+      "path": "native-ten/kyle-1993-p77.jpg",
+      "bytes": 360470,
+      "sha256": "fb2a839cb10a6fea33c09bd3bd37c31fb62ea65ce74470596fcd4edcbb9c836f"
+    },
+    {
+      "path": "native-ten/kyle-1993-p88.jpg",
+      "bytes": 351826,
+      "sha256": "f084aaac8ec8b78d46d6b6dcf3389b10bee13aeda58467f31bd863c9279db162"
+    },
+    {
+      "path": "native-ten/kyle-1993-p92.jpg",
+      "bytes": 442826,
+      "sha256": "95a272b2515f058632d36868289a17572f8fe6932ae70b45c83075a5c10a5898"
+    },
+    {
+      "path": "native-ten/kyle-1993-p93.jpg",
+      "bytes": 394681,
+      "sha256": "de36000912676d810c2243c0fe1a18d757efd6652d55ab991e28de4175a2396d"
+    },
+    {
+      "path": "native-ten/kyle-1993-p98.jpg",
+      "bytes": 341280,
+      "sha256": "9c8b1fb9e402edf277dcf7ae01527bf1b7d1b1550c4aa0c4d17668469becde81"
+    },
+    {
       "path": "photo-index.json",
-      "bytes": 130218,
-      "sha256": "780a926fc2937ca8ab540601b3f879a758f984fbfe5b83ef773450d278625131"
+      "bytes": 152546,
+      "sha256": "ccac5b5c700b81956b36824b8e805a9c71e2563481c3a0a7041e7818f9ca73aa"
     },
     {
       "path": "profiles.js",
-      "bytes": 155634,
-      "sha256": "2a7d22df5f63f6cdbf253367f9319c8bd0300c18500a7f1c5797c360baec4048"
+      "bytes": 157282,
+      "sha256": "ea263dbf1f52aedac9da87d969493148f26fe9a7e24040526727786a38b6961f"
     },
     {
       "path": "public-manifest.json",
-      "bytes": 37903,
-      "sha256": "df6ab955359d70542eff9fa046359781a72782a39081704bb40967e3fdf5e404"
+      "bytes": 41477,
+      "sha256": "60e1ef231a35d89fd6c2beead0e41899122470a23b60c6327da069bebc41d9a8"
     },
     {
       "path": "queue.css",
