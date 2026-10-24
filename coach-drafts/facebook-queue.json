@@ -1,0 +1,757 @@
+{
+  "version": 1,
+  "prepared": "2026-10-24",
+  "title": "Grindstone coach research: Facebook search queue",
+  "purpose": "A search queue for the user. Independent public-source research continues alongside it; queued searches are not a stopping condition.",
+  "notes": [
+    "Search strings are leads, not proof of identity or career claims.",
+    "Use named captions, team labels and source context when saving a candidate. Do not identify a person by facial similarity.",
+    "Keep authentic images and source links. Do not use AI photo reconstruction.",
+    "Checks and notes save only in this browser. Export a JSON backup to keep or share your progress. Facebook may ask you to sign in; these links do not perform searches automatically."
+  ],
+  "coaches": [
+    {
+      "id": "kyle-rutledge",
+      "name": "Kyle Rutledge",
+      "context": "Columbia High School and Cleveland State are established research routes. Search team albums as well as his name.",
+      "queries": [
+        {
+          "id": "kyle-rutledge-01",
+          "text": "Kyle Rutledge Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kyle%20Rutledge%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kyle%20Rutledge%20Grindstone"
+        },
+        {
+          "id": "kyle-rutledge-02",
+          "text": "Kyle Rutledge Columbia wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kyle%20Rutledge%20Columbia%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kyle%20Rutledge%20Columbia%20wrestling"
+        },
+        {
+          "id": "kyle-rutledge-03",
+          "text": "Columbia wrestling 1993",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Columbia%20wrestling%201993",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Columbia%20wrestling%201993"
+        },
+        {
+          "id": "kyle-rutledge-04",
+          "text": "Kyle Rutledge Cleveland State",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kyle%20Rutledge%20Cleveland%20State",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kyle%20Rutledge%20Cleveland%20State"
+        },
+        {
+          "id": "kyle-rutledge-05",
+          "text": "Columbia Station wrestling 1990 1993",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Columbia%20Station%20wrestling%201990%201993",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Columbia%20Station%20wrestling%201990%201993"
+        },
+        {
+          "id": "kyle-rutledge-06",
+          "text": "Grindstone Coach Kyle",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Grindstone%20Coach%20Kyle",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Grindstone%20Coach%20Kyle"
+        }
+      ]
+    },
+    {
+      "id": "thomas-schnepp",
+      "name": "Thomas Schnepp",
+      "context": "Also search Tom. Eaton Rapids, class of 2010, and the 2009 regional team are established leads.",
+      "queries": [
+        {
+          "id": "thomas-schnepp-01",
+          "text": "Thomas Schnepp Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Thomas%20Schnepp%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Thomas%20Schnepp%20Grindstone"
+        },
+        {
+          "id": "thomas-schnepp-02",
+          "text": "Tom Schnepp Eaton Rapids wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tom%20Schnepp%20Eaton%20Rapids%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tom%20Schnepp%20Eaton%20Rapids%20wrestling"
+        },
+        {
+          "id": "thomas-schnepp-03",
+          "text": "Thomas Schnepp Eaton Rapids",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Thomas%20Schnepp%20Eaton%20Rapids",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Thomas%20Schnepp%20Eaton%20Rapids"
+        },
+        {
+          "id": "thomas-schnepp-04",
+          "text": "Eaton Rapids wrestling regional champions 2009",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Eaton%20Rapids%20wrestling%20regional%20champions%202009",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Eaton%20Rapids%20wrestling%20regional%20champions%202009"
+        },
+        {
+          "id": "thomas-schnepp-05",
+          "text": "Eaton Rapids wrestling 2010",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Eaton%20Rapids%20wrestling%202010",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Eaton%20Rapids%20wrestling%202010"
+        },
+        {
+          "id": "thomas-schnepp-06",
+          "text": "Tom Schnepp wrestling heavyweight",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tom%20Schnepp%20wrestling%20heavyweight",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tom%20Schnepp%20wrestling%20heavyweight"
+        }
+      ]
+    },
+    {
+      "id": "brian-leaf",
+      "name": "Brian Leaf",
+      "context": "Confirmed background: Pennsylvania youth wrestling, heavyweight. The user ruled out the Mustang/PINKS racer; see Who we are not. The Brian Wayne Leaf recreation record remains an unconfirmed lead.",
+      "queries": [
+        {
+          "id": "brian-leaf-01",
+          "text": "Brian Leaf Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20Grindstone"
+        },
+        {
+          "id": "brian-leaf-02",
+          "text": "Brian Wayne Leaf",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Wayne%20Leaf",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Wayne%20Leaf"
+        },
+        {
+          "id": "brian-leaf-03",
+          "text": "Brian Leaf Westminster wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20Westminster%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20Westminster%20wrestling"
+        },
+        {
+          "id": "brian-leaf-04",
+          "text": "Brian Leaf Mat Rats",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20Mat%20Rats",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20Mat%20Rats"
+        },
+        {
+          "id": "brian-leaf-13",
+          "text": "Brian Leaf Pennsylvania heavyweight wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20Pennsylvania%20heavyweight%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20Pennsylvania%20heavyweight%20wrestling"
+        },
+        {
+          "id": "brian-leaf-06",
+          "text": "Grindstone Wrestling Brian",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Grindstone%20Wrestling%20Brian",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Grindstone%20Wrestling%20Brian"
+        },
+        {
+          "id": "brian-leaf-07",
+          "text": "Brian Leaf Pennsylvania wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20Pennsylvania%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20Pennsylvania%20wrestling"
+        },
+        {
+          "id": "brian-leaf-08",
+          "text": "Brian Leaf heavyweight",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20heavyweight",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20heavyweight"
+        },
+        {
+          "id": "brian-leaf-09",
+          "text": "Brian Leaf PA junior wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20PA%20junior%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20PA%20junior%20wrestling"
+        },
+        {
+          "id": "brian-leaf-10",
+          "text": "Brian Leaf 275",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20275",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20275"
+        },
+        {
+          "id": "brian-leaf-11",
+          "text": "Brian Leaf 285",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20285",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20285"
+        },
+        {
+          "id": "brian-leaf-12",
+          "text": "Brian Leaf Pennsylvania yearbook",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20Pennsylvania%20yearbook",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20Pennsylvania%20yearbook"
+        }
+      ]
+    },
+    {
+      "id": "kaia-condon",
+      "name": "Kaia Condon",
+      "context": "Einstein, McDaniel and Whitman are useful established routes. Look for named roster portraits, captions and event albums.",
+      "queries": [
+        {
+          "id": "kaia-condon-01",
+          "text": "Kaia Condon Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20Grindstone"
+        },
+        {
+          "id": "kaia-condon-02",
+          "text": "Kaia Condon Einstein",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20Einstein",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20Einstein"
+        },
+        {
+          "id": "kaia-condon-03",
+          "text": "Kaia Condon McDaniel",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20McDaniel",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20McDaniel"
+        },
+        {
+          "id": "kaia-condon-04",
+          "text": "Kaia Condon Whitman 2024",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20Whitman%202024",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20Whitman%202024"
+        },
+        {
+          "id": "kaia-condon-05",
+          "text": "Kaia Condon Whitman 2025",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20Whitman%202025",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20Whitman%202025"
+        },
+        {
+          "id": "kaia-condon-06",
+          "text": "Kaia Condon DCSAA 2023",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20DCSAA%202023",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20DCSAA%202023"
+        },
+        {
+          "id": "kaia-condon-07",
+          "text": "Kaia Condon wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20wrestling"
+        }
+      ]
+    },
+    {
+      "id": "jerome-featherstone",
+      "name": "Jerome Featherstone",
+      "context": "School wrestling, college competition, youth coaching and boxing provide distinct photo routes.",
+      "queries": [
+        {
+          "id": "jerome-featherstone-01",
+          "text": "Jerome Featherstone Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Grindstone"
+        },
+        {
+          "id": "jerome-featherstone-02",
+          "text": "Jerome Featherstone Boys Latin",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Boys%20Latin",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Boys%20Latin"
+        },
+        {
+          "id": "jerome-featherstone-03",
+          "text": "Jerome Featherstone Salisbury 2004",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Salisbury%202004",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Salisbury%202004"
+        },
+        {
+          "id": "jerome-featherstone-04",
+          "text": "Jerome Featherstone Oklahoma 2005",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Oklahoma%202005",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Oklahoma%202005"
+        },
+        {
+          "id": "jerome-featherstone-05",
+          "text": "Jerome Featherstone Shogun 25",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Shogun%2025",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Shogun%2025"
+        },
+        {
+          "id": "jerome-featherstone-06",
+          "text": "Jerome Featherstone Shogun 28",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Shogun%2028",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Shogun%2028"
+        },
+        {
+          "id": "jerome-featherstone-07",
+          "text": "Jerome Featherstone Beat the Streets",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Beat%20the%20Streets",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Beat%20the%20Streets"
+        },
+        {
+          "id": "jerome-featherstone-08",
+          "text": "Jerome Featherstone Mad House Boxing",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Mad%20House%20Boxing",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Mad%20House%20Boxing"
+        }
+      ]
+    },
+    {
+      "id": "eric-westervelt",
+      "name": "Eric Westervelt",
+      "context": "Westminster wrestling in 1997–1999 and the 171-pound county final are documented leads. Retain original photographs and captions.",
+      "queries": [
+        {
+          "id": "eric-westervelt-01",
+          "text": "Eric Westervelt Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Grindstone"
+        },
+        {
+          "id": "eric-westervelt-02",
+          "text": "Eric Westervelt Westminster wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Westminster%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Westminster%20wrestling"
+        },
+        {
+          "id": "eric-westervelt-03",
+          "text": "Westminster wrestling 1998 Eric Westervelt",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Westminster%20wrestling%201998%20Eric%20Westervelt",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Westminster%20wrestling%201998%20Eric%20Westervelt"
+        },
+        {
+          "id": "eric-westervelt-04",
+          "text": "Eric Westervelt Carroll County 1999",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Carroll%20County%201999",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Carroll%20County%201999"
+        },
+        {
+          "id": "eric-westervelt-05",
+          "text": "Westminster wrestling 1999 171",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Westminster%20wrestling%201999%20171",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Westminster%20wrestling%201999%20171"
+        },
+        {
+          "id": "eric-westervelt-06",
+          "text": "Eric Westervelt Chris Currence",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Chris%20Currence",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Chris%20Currence"
+        },
+        {
+          "id": "eric-westervelt-07",
+          "text": "Henry Mohlhenrich Westminster wrestling 1998 1999",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Henry%20Mohlhenrich%20Westminster%20wrestling%201998%201999",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Henry%20Mohlhenrich%20Westminster%20wrestling%201998%201999"
+        }
+      ]
+    },
+    {
+      "id": "ryan-devries",
+      "name": "Ryan DeVries",
+      "context": "Search DeVries and De Vries. Proviso West and Eastern Illinois are research routes for finding additional labeled material.",
+      "queries": [
+        {
+          "id": "ryan-devries-01",
+          "text": "Ryan DeVries Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Ryan%20DeVries%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Ryan%20DeVries%20Grindstone"
+        },
+        {
+          "id": "ryan-devries-02",
+          "text": "Ryan DeVries Proviso West wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Ryan%20DeVries%20Proviso%20West%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Ryan%20DeVries%20Proviso%20West%20wrestling"
+        },
+        {
+          "id": "ryan-devries-03",
+          "text": "Ryan De Vries wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Ryan%20De%20Vries%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Ryan%20De%20Vries%20wrestling"
+        },
+        {
+          "id": "ryan-devries-04",
+          "text": "Proviso West wrestling 2000 2001 2002",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Proviso%20West%20wrestling%202000%202001%202002",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Proviso%20West%20wrestling%202000%202001%202002"
+        },
+        {
+          "id": "ryan-devries-05",
+          "text": "Ryan DeVries Eastern Illinois",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Ryan%20DeVries%20Eastern%20Illinois",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Ryan%20DeVries%20Eastern%20Illinois"
+        },
+        {
+          "id": "ryan-devries-06",
+          "text": "EIU wrestling 2002 2003",
+          "photos_url": "https://www.facebook.com/search/photos/?q=EIU%20wrestling%202002%202003",
+          "posts_url": "https://www.facebook.com/search/posts/?q=EIU%20wrestling%202002%202003"
+        },
+        {
+          "id": "ryan-devries-07",
+          "text": "Grindstone Ryan",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Grindstone%20Ryan",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Grindstone%20Ryan"
+        }
+      ]
+    },
+    {
+      "id": "jordan-millman",
+      "name": "Jordan Millman",
+      "context": "The roster is established; spelling variants are search experiments. No school or relationship to another coach is assumed.",
+      "queries": [
+        {
+          "id": "jordan-millman-01",
+          "text": "Jordan Millman Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jordan%20Millman%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jordan%20Millman%20Grindstone"
+        },
+        {
+          "id": "jordan-millman-02",
+          "text": "Jordan Millman Westminster",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jordan%20Millman%20Westminster",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jordan%20Millman%20Westminster"
+        },
+        {
+          "id": "jordan-millman-03",
+          "text": "Jordan Millman wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jordan%20Millman%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jordan%20Millman%20wrestling"
+        },
+        {
+          "id": "jordan-millman-04",
+          "text": "Jordan Milman wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jordan%20Milman%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jordan%20Milman%20wrestling"
+        },
+        {
+          "id": "jordan-millman-05",
+          "text": "Jordan Milliman Maryland",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jordan%20Milliman%20Maryland",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jordan%20Milliman%20Maryland"
+        },
+        {
+          "id": "jordan-millman-06",
+          "text": "Grindstone Wrestling Jordan",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Grindstone%20Wrestling%20Jordan",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Grindstone%20Wrestling%20Jordan"
+        }
+      ]
+    },
+    {
+      "id": "andy-millman",
+      "name": "Andy Millman",
+      "context": "Andrew J. Millman is a local recreation lead. The Captain Jerry’s business owner is a working identity candidate, not a confirmed coaching connection.",
+      "queries": [
+        {
+          "id": "andy-millman-01",
+          "text": "Andy Millman Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20Grindstone"
+        },
+        {
+          "id": "andy-millman-02",
+          "text": "Andrew Millman Westminster",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andrew%20Millman%20Westminster",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andrew%20Millman%20Westminster"
+        },
+        {
+          "id": "andy-millman-03",
+          "text": "Andrew J Millman wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andrew%20J%20Millman%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andrew%20J%20Millman%20wrestling"
+        },
+        {
+          "id": "andy-millman-04",
+          "text": "Andy Millman Mat Rats",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20Mat%20Rats",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20Mat%20Rats"
+        },
+        {
+          "id": "andy-millman-05",
+          "text": "Grindstone Wrestling Andy",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Grindstone%20Wrestling%20Andy",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Grindstone%20Wrestling%20Andy"
+        },
+        {
+          "id": "andy-millman-06",
+          "text": "Andrew Millman Manchester Maryland",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andrew%20Millman%20Manchester%20Maryland",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andrew%20Millman%20Manchester%20Maryland"
+        },
+        {
+          "id": "andy-millman-07",
+          "text": "Andy Millman Captain Jerrys",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20Captain%20Jerrys",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20Captain%20Jerrys"
+        },
+        {
+          "id": "andy-millman-08",
+          "text": "Andrew Millman Captain Cool",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andrew%20Millman%20Captain%20Cool",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andrew%20Millman%20Captain%20Cool"
+        },
+        {
+          "id": "andy-millman-09",
+          "text": "Captain Jerrys Andy",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Captain%20Jerrys%20Andy",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Captain%20Jerrys%20Andy"
+        },
+        {
+          "id": "andy-millman-10",
+          "text": "Andy Millman Hampstead",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20Hampstead",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20Hampstead"
+        }
+      ]
+    },
+    {
+      "id": "tyler-lease",
+      "name": "Tyler Lease",
+      "context": "Westminster American youth baseball and Webb Environmental are local same-name candidates. Leese is a newspaper spelling variant to try.",
+      "queries": [
+        {
+          "id": "tyler-lease-01",
+          "text": "Tyler Lease Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Grindstone"
+        },
+        {
+          "id": "tyler-lease-02",
+          "text": "Tyler Lease Westminster",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Westminster",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Westminster"
+        },
+        {
+          "id": "tyler-lease-03",
+          "text": "Tyler Lease wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20wrestling"
+        },
+        {
+          "id": "tyler-lease-04",
+          "text": "Tyler Lease Mat Rats",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Mat%20Rats",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Mat%20Rats"
+        },
+        {
+          "id": "tyler-lease-05",
+          "text": "Tyler Lease Westminster American",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Westminster%20American",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Westminster%20American"
+        },
+        {
+          "id": "tyler-lease-06",
+          "text": "Tyler Leese Westminster baseball",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Leese%20Westminster%20baseball",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Leese%20Westminster%20baseball"
+        },
+        {
+          "id": "tyler-lease-07",
+          "text": "Tyler Lease Webb Environmental",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Webb%20Environmental",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Webb%20Environmental"
+        }
+      ]
+    },
+    {
+      "id": "mike-handleman",
+      "name": "Mike Handleman",
+      "context": "Search Mike and Michael. School, college, MMA and Valkyries coaching albums may each contain useful named photographs.",
+      "queries": [
+        {
+          "id": "mike-handleman-01",
+          "text": "Mike Handleman Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Grindstone"
+        },
+        {
+          "id": "mike-handleman-02",
+          "text": "Michael Handleman wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Michael%20Handleman%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Michael%20Handleman%20wrestling"
+        },
+        {
+          "id": "mike-handleman-03",
+          "text": "Mike Handleman Arundel",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Arundel",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Arundel"
+        },
+        {
+          "id": "mike-handleman-04",
+          "text": "Michael Handleman Delaware Valley wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Michael%20Handleman%20Delaware%20Valley%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Michael%20Handleman%20Delaware%20Valley%20wrestling"
+        },
+        {
+          "id": "mike-handleman-05",
+          "text": "Mike Handleman DelVal",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20DelVal",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20DelVal"
+        },
+        {
+          "id": "mike-handleman-06",
+          "text": "Mike Handleman Cagezilla 73",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Cagezilla%2073",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Cagezilla%2073"
+        },
+        {
+          "id": "mike-handleman-07",
+          "text": "Mike Handleman Taylor Sims",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Taylor%20Sims",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Taylor%20Sims"
+        },
+        {
+          "id": "mike-handleman-08",
+          "text": "Mike Handleman Danger Zone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Danger%20Zone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Danger%20Zone"
+        },
+        {
+          "id": "mike-handleman-09",
+          "text": "Mike Handleman Valkyries",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Valkyries",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Valkyries"
+        }
+      ]
+    },
+    {
+      "id": "brad-gabrish",
+      "name": "Brad Gabrish",
+      "context": "Search Brad, Bradley and the documented Grabish spelling variation. Calvert Hall, McDaniel and Parkville are separate archive routes.",
+      "queries": [
+        {
+          "id": "brad-gabrish-01",
+          "text": "Brad Gabrish Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brad%20Gabrish%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brad%20Gabrish%20Grindstone"
+        },
+        {
+          "id": "brad-gabrish-02",
+          "text": "Bradley Gabrish wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Bradley%20Gabrish%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Bradley%20Gabrish%20wrestling"
+        },
+        {
+          "id": "brad-gabrish-03",
+          "text": "Brad Grabish wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brad%20Grabish%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brad%20Grabish%20wrestling"
+        },
+        {
+          "id": "brad-gabrish-04",
+          "text": "Brad Gabrish Calvert Hall 2005",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brad%20Gabrish%20Calvert%20Hall%202005",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brad%20Gabrish%20Calvert%20Hall%202005"
+        },
+        {
+          "id": "brad-gabrish-05",
+          "text": "Bradley Gabrish Calvert Hall",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Bradley%20Gabrish%20Calvert%20Hall",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Bradley%20Gabrish%20Calvert%20Hall"
+        },
+        {
+          "id": "brad-gabrish-06",
+          "text": "Brad Gabrish McDaniel 2006",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brad%20Gabrish%20McDaniel%202006",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brad%20Gabrish%20McDaniel%202006"
+        },
+        {
+          "id": "brad-gabrish-07",
+          "text": "Brad Grabish McDaniel",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brad%20Grabish%20McDaniel",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brad%20Grabish%20McDaniel"
+        },
+        {
+          "id": "brad-gabrish-08",
+          "text": "Brad Gabrish Parkville 2010",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brad%20Gabrish%20Parkville%202010",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brad%20Gabrish%20Parkville%202010"
+        }
+      ]
+    },
+    {
+      "id": "daniel-skelonc",
+      "name": "Daniel Skelonc",
+      "context": "The Michigan wrestler is a tentative identity candidate. Cedar Springs and the 1997 youth results are leads to test, not confirmation of the Grindstone match.",
+      "queries": [
+        {
+          "id": "daniel-skelonc-01",
+          "text": "Daniel Skelonc Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20Skelonc%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20Skelonc%20Grindstone"
+        },
+        {
+          "id": "daniel-skelonc-02",
+          "text": "Dan Skelonc wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Dan%20Skelonc%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Dan%20Skelonc%20wrestling"
+        },
+        {
+          "id": "daniel-skelonc-03",
+          "text": "Daniel Skelonc Maryland",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20Skelonc%20Maryland",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20Skelonc%20Maryland"
+        },
+        {
+          "id": "daniel-skelonc-04",
+          "text": "Dan Skelonc Cedar Springs",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Dan%20Skelonc%20Cedar%20Springs",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Dan%20Skelonc%20Cedar%20Springs"
+        },
+        {
+          "id": "daniel-skelonc-05",
+          "text": "Cedar Springs wrestling 2002 Skelonc",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Cedar%20Springs%20wrestling%202002%20Skelonc",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Cedar%20Springs%20wrestling%202002%20Skelonc"
+        },
+        {
+          "id": "daniel-skelonc-06",
+          "text": "Daniel Skelonc Michigan wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20Skelonc%20Michigan%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20Skelonc%20Michigan%20wrestling"
+        },
+        {
+          "id": "daniel-skelonc-07",
+          "text": "Daniel Skelonc Northeast Kids Regionals 1997",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20Skelonc%20Northeast%20Kids%20Regionals%201997",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20Skelonc%20Northeast%20Kids%20Regionals%201997"
+        }
+      ]
+    }
+  ],
+  "support": [
+    {
+      "id": "jessica-cody-hughes",
+      "name": "Jessica M. and Cody Hughes",
+      "role": "Program support",
+      "context": "Program support: team coordination, events and community outreach. This section is separate from the 13 coaches. Search event captions and named volunteer photos.",
+      "queries": [
+        {
+          "id": "jessica-cody-hughes-01",
+          "text": "Jessica Hughes Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jessica%20Hughes%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jessica%20Hughes%20Grindstone"
+        },
+        {
+          "id": "jessica-cody-hughes-02",
+          "text": "Jessica Hughes Mat Rats",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jessica%20Hughes%20Mat%20Rats",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jessica%20Hughes%20Mat%20Rats"
+        },
+        {
+          "id": "jessica-cody-hughes-03",
+          "text": "Jessica M Hughes Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jessica%20M%20Hughes%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jessica%20M%20Hughes%20Grindstone"
+        },
+        {
+          "id": "jessica-cody-hughes-04",
+          "text": "Cody Hughes Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Cody%20Hughes%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Cody%20Hughes%20Grindstone"
+        },
+        {
+          "id": "jessica-cody-hughes-05",
+          "text": "Hughes family Grindstone Wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Hughes%20family%20Grindstone%20Wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Hughes%20family%20Grindstone%20Wrestling"
+        },
+        {
+          "id": "jessica-cody-hughes-06",
+          "text": "Jessica Cody Grindstone",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jessica%20Cody%20Grindstone",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jessica%20Cody%20Grindstone"
+        },
+        {
+          "id": "jessica-cody-hughes-07",
+          "text": "Hughes Grindstone banquet",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Hughes%20Grindstone%20banquet",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Hughes%20Grindstone%20banquet"
+        }
+      ]
+    }
+  ]
+}

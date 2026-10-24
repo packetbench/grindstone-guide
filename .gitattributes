@@ -7,3 +7,6 @@
 *.png binary
 *.pptx binary
 *.docx binary
+
+# Preserve received public coach checkpoint and manifest bytes.
+coach-drafts/** -text whitespace=blank-at-eol,space-before-tab,cr-at-eol
