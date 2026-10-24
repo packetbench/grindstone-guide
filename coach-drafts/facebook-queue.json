@@ -272,9 +272,12 @@
         {
           "id": "brian-leaf-23",
           "text": "\"Brian Leaf\" \"Westminster Mat Rats\"",
-          "purpose": "Look specifically for a named club tag or photograph; previously empty page searches may miss comments or album captions.",
+          "purpose": "Look specifically for a named club tag or photograph. This album is already part of the club-gallery review; revisit only for added names or tags, preserving the original photo permalink. Do not assign Brian by appearance.",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Westminster%20Mat%20Rats%22",
-          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Westminster%20Mat%20Rats%22"
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Westminster%20Mat%20Rats%22",
+          "source_url": "https://www.facebook.com/media/set/?vanity=WestminsterMatRats&set=a.1776137917279154",
+          "source_label": "2025–26 Mat Rats album — later caption/tag updates",
+          "source_manifest": "brian-tags.json"
         },
         {
           "id": "brian-leaf-24",
@@ -296,6 +299,33 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Owen%20J%20Roberts%22%20wrestling",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Owen%20J%20Roberts%22%20wrestling",
           "purpose": "Test the weak prior school candidate only; not a claim that this is the coach."
+        },
+        {
+          "id": "brian-leaf-27",
+          "text": "\"Brian Leaf\" \"Mat Rats\" \"2026\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Mat%20Rats%22%20%222026%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Mat%20Rats%22%20%222026%22",
+          "purpose": "Look for a new-season introduction or newly added public name tag; the known 2024 Kyle, Eric and Ryan introductions have already been checked.",
+          "status": "pending",
+          "source_manifest": "brian-tags.json"
+        },
+        {
+          "id": "brian-leaf-28",
+          "text": "\"Coach Brian\" \"Westminster\" wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Coach%20Brian%22%20%22Westminster%22%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Coach%20Brian%22%20%22Westminster%22%20wrestling",
+          "purpose": "Look for a first-name coach caption that names the club. Preserve an explicit full-name tag or obtain human confirmation before assigning a portrait.",
+          "status": "pending",
+          "source_manifest": "brian-tags.json"
+        },
+        {
+          "id": "brian-leaf-29",
+          "text": "\"Brian Leaf\" \"Grindstone\" volunteer",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Grindstone%22%20volunteer",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Grindstone%22%20volunteer",
+          "purpose": "Check public volunteer-appreciation or banquet captions and original profile-tag links for a club-to-person bridge.",
+          "status": "pending",
+          "source_manifest": "brian-tags.json"
         }
       ]
     },
@@ -798,21 +828,36 @@
           "text": "Tyler WestminsterMatRats",
           "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20WestminsterMatRats",
           "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20WestminsterMatRats",
-          "purpose": "Use page Search for named Coach Tyler introductions, event captions or explicit profile tags. Review only public items."
+          "purpose": "Page search completed October 24, 2026: no results for Tyler. This is not proof that relevant posts do not exist. Check new named captions or explicit tags when available.",
+          "source_url": "https://www.facebook.com/profile/100046488894033/search/?q=Tyler",
+          "source_label": "Mat Rats page search",
+          "page_search_query": "Tyler",
+          "status": "completed-no-result",
+          "source_manifest": "seven-followup.json"
         },
         {
           "id": "tyler-lease-09",
-          "text": "Tyler Lease ",
-          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20",
-          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20",
-          "purpose": "Check legacy public club captions for a direct wrestling bridge."
+          "text": "Tyler Lease WintersMillWrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20WintersMillWrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20WintersMillWrestling",
+          "purpose": "School page opens, but its Search command remained on a blank loading screen in this pass. The direct search fallback was unavailable. Manual page Search for Tyler Lease is still unresolved; do not treat this as a negative result.",
+          "source_url": "https://www.facebook.com/WintersMillWrestling/",
+          "source_label": "Winters Mill Wrestling page",
+          "page_search_query": "Tyler Lease",
+          "status": "unresolved-ui",
+          "source_manifest": "seven-followup.json"
         },
         {
           "id": "tyler-lease-10",
           "text": "Tyler WebbEnvironmental",
           "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20WebbEnvironmental",
           "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20WebbEnvironmental",
-          "purpose": "Follow explicit named staff tags or public company-event captions; this source alone does not establish coaching."
+          "purpose": "Page search completed October 24, 2026. Public employer posts mention Tyler but do not establish a wrestling or coaching link. Follow up only on new explicitly named sports or staff-photo captions.",
+          "source_url": "https://www.facebook.com/profile/100063648157340/search/?q=Tyler",
+          "source_label": "Webb Environmental page search",
+          "page_search_query": "Tyler",
+          "status": "completed-no-coaching-link",
+          "source_manifest": "seven-followup.json"
         }
       ]
     },
@@ -1071,6 +1116,17 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Lucky%20Ducks%22%20%22Tony%20Zeller%22",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Lucky%20Ducks%22%20%22Tony%20Zeller%22",
           "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
+        },
+        {
+          "id": "brad-gabrish-30",
+          "text": "Brad Gabrish Lucky Ducks joeytakedowns",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Brad%20Gabrish%20Lucky%20Ducks%20joeytakedowns",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Brad%20Gabrish%20Lucky%20Ducks%20joeytakedowns",
+          "purpose": "Open the linked April 7, 2025 organizer carousel in your authorized Instagram session. The public index established its date, but its caption, slides, tags and comments were behind a login prompt. Check for Brad or Lucky Ducks, positional tags and photographer credit. The date alone does not establish who is pictured. Preserve a different full original if found; avoid duplicating the already retained Facebook team/event photographs.",
+          "status": "pending",
+          "source_url": "https://www.instagram.com/joeytakedowns/p/DIKH-bwtsEK/",
+          "source_label": "April 7, 2025 organizer Instagram carousel",
+          "source_manifest": "brad-social.json"
         }
       ]
     },

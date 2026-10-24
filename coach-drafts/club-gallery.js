@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   const data = JSON.parse(document.getElementById("club-data").textContent);
-  const photos = data.photos;
+  const photos = [...data.photos].sort((a, b) => Number(b.collection === "season") - Number(a.collection === "season") || Number(a.asset_type === "graphic") - Number(b.asset_type === "graphic"));
   const storagePrefix = "grindstone-club-photo-review-v1:";
   const states = new Map();
   const cards = new Map();
@@ -70,15 +70,16 @@
     photos.forEach(photo => {
       const state = states.get(photo.id);
       const matchesGroup = filter === "all" ||
+        (filter === "season" && photo.collection === "season") ||
         (filter === "candidates" && photo.review_candidate) ||
         (filter === "priority" && photo.coaching_candidate) ||
         (filter === "reviewed" && hasReview(state));
-      const haystack = [photo.id, photo.path, state.coach_names, state.notes].join(" ").toLowerCase();
+      const haystack = [photo.id, photo.path, photo.caption, photo.kind, state.coach_names, state.notes].join(" ").toLowerCase();
       const visible = matchesGroup && (!query || haystack.includes(query));
       cards.get(photo.id).hidden = !visible;
       if (visible) count += 1;
     });
-    document.getElementById("result-count").textContent = "Showing " + count + " of " + photos.length + " photos" + (query ? " matching your search." : ".");
+    document.getElementById("result-count").textContent = "Showing " + count + " of " + photos.length + " images" + (query ? " matching your search." : ".");
     document.getElementById("empty-result").hidden = count !== 0;
     document.querySelectorAll("[data-filter]").forEach(button => {
       button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
@@ -106,7 +107,7 @@
     imageLink.setAttribute("aria-label", "Open original " + photo.id + " at full resolution");
     const img = el("img");
     img.src = photo.path;
-    img.alt = "Grindstone club gallery photo " + photo.id + "; people awaiting identification";
+    img.alt = photo.caption || "Grindstone club gallery photo " + photo.id + "; people awaiting identification";
     img.width = photo.width;
     img.height = photo.height;
     img.loading = "lazy";
@@ -117,12 +118,13 @@
     const caption = el("figcaption", "club-photo-caption");
     const links = el("div", "club-links");
     links.append(link("Open original", photo.path), link("Public image", photo.url), link("Club source", photo.source_url));
+    if (photo.caption) caption.append(el("p", "", photo.caption));
     caption.append(links);
     const size = photo.bytes >= 1000000 ? (photo.bytes / 1000000).toFixed(2) + " MB" : Math.round(photo.bytes / 1000) + " KB";
     caption.append(el("p", "image-meta", photo.width + " × " + photo.height + " px · " + size + " · Original file retained"));
     const provenance = el("details");
     provenance.append(el("summary", "", "File provenance"));
-    provenance.append(el("p", "", "Published in the public Grindstone Wrestling Club gallery. Individual photographer and adult names are not supplied in this source."));
+    provenance.append(el("p", "", photo.provenance || "Published in the public Grindstone Wrestling Club gallery. Individual photographer and adult names are not supplied in this source."));
     provenance.append(el("code", "", photo.path), el("code", "", "SHA-256: " + photo.sha256));
     caption.append(provenance);
     figure.append(caption);
@@ -218,7 +220,7 @@
     download.remove();
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
     const status = document.getElementById("status");
-    status.textContent = "Review JSON exported with all 41 photo records.";
+    status.textContent = "Review JSON exported with all " + photos.length + " image records.";
     window.clearTimeout(statusTimer);
     statusTimer = window.setTimeout(() => { status.textContent = ""; }, 6000);
   });

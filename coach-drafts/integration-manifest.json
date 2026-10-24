@@ -1,18 +1,18 @@
 {
   "integrated_on": "2026-10-24",
-  "source_checkpoint": "coach-publish-v6/coach-drafts",
-  "received_manifest_sha256": "cd23f7be25d440789320305be03e7ed3771acefe18b20e6bcfded48826a4e1b8",
+  "source_checkpoint": "coach-publish-v7/coach-drafts",
+  "received_manifest_sha256": "fe4a511bbaba0b3e2a6c1d80bce1e9808dd907c4d74e86812a216a78e62145f9",
   "previous_integration": {
-    "git_commit": "79bc8e28c174cc6391514f6da08e7e3a3f2d1feb",
-    "sha256": "63693b95b90846039dd868e5034b308aea38f1bf5ba318f687c56a1e0061c7c1",
-    "received_manifest_sha256": "5b8aadcbfd1990c0aa0095ce6ede36520e3ac4fbef3fc459d6c771ef8e8b3bf1"
+    "git_commit": "4d3f5731c64000f01a9ba792e34bead4705b432c",
+    "sha256": "9b843c4e414dca76d7e81e0f780333412b747a0ad4ed5ca5f70625da4478e668",
+    "received_manifest_sha256": "cd23f7be25d440789320305be03e7ed3771acefe18b20e6bcfded48826a4e1b8"
   },
   "notes": [
     "The received public-manifest.json is preserved byte for byte. This record maps source-relative paths to the deployed coach-drafts paths.",
     "Only coach research is included. The Foundation Series and other planning work remain on the preview branch.",
     "Integration preserves the public draft label, removes LinkedIn biography links, retains the browser-local review explanation, and versions local scripts/styles.",
     "All source images and originals are preserved byte for byte. Previous deployed bytes and the prior integration record remain recoverable from the identified Git commit.",
-    "The review notice is deduplicated, Kyle’s lead-portrait note stays current, and Andy’s earlier research note is reconciled with the new provisional event connection."
+    "Original club review IDs and source records remain intact. The gallery empty-result label matches All images, and export status derives its count from the current collection."
   ],
   "changed": [
     {
@@ -22,13 +22,18 @@
     },
     {
       "path": "club-gallery.html",
-      "received_sha256": "fd40db5b8d99d39ded924e318775e66e5ed2ce87b8911e96440cf92287e1bf2c",
-      "integrated_sha256": "978951a98743c10a52cd905eb172f2a370e346606fc57691853d2a738eb4927f"
+      "received_sha256": "b9e3dc704bf609cef7902795efbdfa9ae81c3af744a367da5b436cb8d300dd60",
+      "integrated_sha256": "b230aacb0e348b3f628cc02fde164c4e7d3e63f87e3b65439b0a25a5f5a92e34"
+    },
+    {
+      "path": "club-gallery.js",
+      "received_sha256": "8515d33dc86d86f0ca1b30c141d55d8173edccdffcea9b608948ba9ea941f7bd",
+      "integrated_sha256": "11fc9a3078a5b976fa632c8749ee4895e8ecae677a22ef0d2c7a4dbc5d0f1e36"
     },
     {
       "path": "facebook-queue.html",
-      "received_sha256": "3ac494dae9547573ca2694ecfd28f6ae4828bdeac60e4a2699778f597233ebeb",
-      "integrated_sha256": "7e588683a60879f05be0fa500f1ddb73d6e602b74b40ff8f74fbda76978b8716"
+      "received_sha256": "adf0974a99fc1243b5bd44d1aa9ba3bbeada7b29fd51118d7bcb22649c7f91cb",
+      "integrated_sha256": "24913bd18b3e6965c63df85b586eb1b66793615ff448a432dfa3ca42a8b34691"
     },
     {
       "path": "hughes-family.html",
@@ -38,12 +43,12 @@
     {
       "path": "index.html",
       "received_sha256": "7d382366fee1059bb1fe1aef860afc33cb5c1a6e2d51f46f9f8c273ec7ebbd8b",
-      "integrated_sha256": "1f765c694bc3919416bb084dd54c9c1085da0091706343e065f61ddc3e75d2e1"
+      "integrated_sha256": "afd302dc813cbccc71be5b4d6e3b7c3765718924527b04530da7fdc883c770a0"
     },
     {
       "path": "profiles.js",
-      "received_sha256": "61611536ad888954350179ce95af55c39e6d978da34f2f5b00dce02a8d4070d6",
-      "integrated_sha256": "1e81ff810fcf0d88e6a1b0e22118625773665b2e6d01f382d0286b564fd5102d"
+      "received_sha256": "b742c579748b9a7bc8bf0e9043312018be05a5725691f67aa033ec605116c1aa",
+      "integrated_sha256": "a5d68f21d1e3e98adf57468643e3697308cf80085adaa8890611052f3ab4736e"
     }
   ],
   "files": [
@@ -349,18 +354,18 @@
     },
     {
       "path": "club-gallery.html",
-      "bytes": 24458,
-      "sha256": "978951a98743c10a52cd905eb172f2a370e346606fc57691853d2a738eb4927f"
+      "bytes": 70958,
+      "sha256": "b230aacb0e348b3f628cc02fde164c4e7d3e63f87e3b65439b0a25a5f5a92e34"
     },
     {
       "path": "club-gallery.js",
-      "bytes": 10066,
-      "sha256": "f7cd0bc8aa4d1744e5c2f656486dae18849302925a0dc156f020b3008e806b0a"
+      "bytes": 10450,
+      "sha256": "11fc9a3078a5b976fa632c8749ee4895e8ecae677a22ef0d2c7a4dbc5d0f1e36"
     },
     {
       "path": "club-index.json",
-      "bytes": 24854,
-      "sha256": "1a63cee7548d335c4e3fd48a21a0387456bf61f7922f0a7c8e9d7f7fbb6d126a"
+      "bytes": 75771,
+      "sha256": "60bc38ffe29e0e93f0976f842b0af362de171117746fd472e18c48a68a42d7a4"
     },
     {
       "path": "club-intros/eric-intro.jpg",
@@ -583,9 +588,159 @@
       "sha256": "d6882e1b60bc215fb5fd65401dcfc74f03ca63ae09c6e5eb576b7ffddfe4b35a"
     },
     {
+      "path": "club-season/season-01.jpg",
+      "bytes": 117964,
+      "sha256": "8fac827705117ec318f9d582e5f6e2c082b38d0a9d7f22712f22aea1aa22ce23"
+    },
+    {
+      "path": "club-season/season-02.jpg",
+      "bytes": 443837,
+      "sha256": "70229dc6192f9ffa96152b7f89db35414fea247c9cc1c510e096c92ecd30b775"
+    },
+    {
+      "path": "club-season/season-03.jpg",
+      "bytes": 316909,
+      "sha256": "397647c2dfa96d4f4c76ebcc93ac43ab7e3771a9c6a39c7323bcc87476337cf5"
+    },
+    {
+      "path": "club-season/season-04.jpg",
+      "bytes": 300786,
+      "sha256": "140a987c9b36789db3a3c9e52f5085e29feafdeb7cf6ec4b26f0d6297b981d0e"
+    },
+    {
+      "path": "club-season/season-05.jpg",
+      "bytes": 461806,
+      "sha256": "59f2a58566e6cc4f769fa4bac363fbed4e8496eec8657664f9f468d6c6c06700"
+    },
+    {
+      "path": "club-season/season-06.jpg",
+      "bytes": 402890,
+      "sha256": "8e25a5333bd72b52ee311020436c7d6444b264a459412c530768c42bc04665bc"
+    },
+    {
+      "path": "club-season/season-07.jpg",
+      "bytes": 417440,
+      "sha256": "56c1eeb33a1cac21d882a0dd8170d189f01ed3a3f56e4e7c85f161d8a09f7e23"
+    },
+    {
+      "path": "club-season/season-08.jpg",
+      "bytes": 400494,
+      "sha256": "90230220a2ae3930a376d5e80ca62bcbc9fc68a6441fe734ccdc48552e4ffdbe"
+    },
+    {
+      "path": "club-season/season-09.jpg",
+      "bytes": 461422,
+      "sha256": "df41e7754aa3013ecd3c04e27dcdc8262cd50e350a2418c729aebca81f3004dd"
+    },
+    {
+      "path": "club-season/season-10.jpg",
+      "bytes": 417709,
+      "sha256": "d8ce79455edb6edba07bb49319e6696b7a757cfb744b5935f468fad1707fb2f8"
+    },
+    {
+      "path": "club-season/season-11.jpg",
+      "bytes": 149421,
+      "sha256": "98efe65baf4f50841fa47705482add40f9dfc91cd82022ff59944b0315798c82"
+    },
+    {
+      "path": "club-season/season-12.jpg",
+      "bytes": 105589,
+      "sha256": "7bf4aced09ffd37ede9ca6814a2e0bee57ee6c0839da2c0d242755373e00b7a0"
+    },
+    {
+      "path": "club-season/season-13.jpg",
+      "bytes": 142731,
+      "sha256": "9bbe2ff8ceaf89d3d06904355aa60cce0d6ae8d9e1d8d776b702e9aabb80626a"
+    },
+    {
+      "path": "club-season/season-14.jpg",
+      "bytes": 383019,
+      "sha256": "0b604b581a8fd3ec0b77f0e8e4e7d76de4c1f3bd04ff9642120e6259ff046ecb"
+    },
+    {
+      "path": "club-season/season-15.jpg",
+      "bytes": 104948,
+      "sha256": "9bf006ca176576e44f0adea103b3a3765111c882cae6e0b2c7edd27d60f7a9a0"
+    },
+    {
+      "path": "club-season/season-16.jpg",
+      "bytes": 262748,
+      "sha256": "3e662a20e5cbe9f52d943838f71ad683efa07092cab9eab15edbbb4dbe30b7e4"
+    },
+    {
+      "path": "club-season/season-17.jpg",
+      "bytes": 100691,
+      "sha256": "1b8e201209fe3e06cd14675487b434145cc4d01b11d2278e1c2201068b391d5d"
+    },
+    {
+      "path": "club-season/season-18.jpg",
+      "bytes": 198330,
+      "sha256": "59769874b0cd7a9d40ab24aefd6578f539598123a9840b6abb1d06239db38e1c"
+    },
+    {
+      "path": "club-season/season-19.jpg",
+      "bytes": 145426,
+      "sha256": "735cf0672c8f7b83e9db34354eeb47701911d868602d815a02d593d34aab6cb5"
+    },
+    {
+      "path": "club-season/season-20.jpg",
+      "bytes": 521241,
+      "sha256": "a844e84d6e217427f2f1595d0694d1ad96afbfe74548424e002a9a8539788e39"
+    },
+    {
+      "path": "club-season/season-21.jpg",
+      "bytes": 478894,
+      "sha256": "ab7545100da606044beef4cefcf3aa16a1adbed933e4914347fc68a8c072a07a"
+    },
+    {
+      "path": "club-season/season-22.jpg",
+      "bytes": 182020,
+      "sha256": "5cf9a151be34a233ae411a2081a8a7fb12d8674a94869e6f9d37216c5b7248fa"
+    },
+    {
+      "path": "club-season/season-23.jpg",
+      "bytes": 271906,
+      "sha256": "f069c5b7d0838880fd8d61a31e2e7e158f2b0de43e8a941b113de408ea0b4b9a"
+    },
+    {
+      "path": "club-season/season-24.jpg",
+      "bytes": 267333,
+      "sha256": "ad77e1df327459e76a1ddaa8d0bc76872b894d2668d5cb400359e7be4901edd6"
+    },
+    {
+      "path": "club-season/season-25.jpg",
+      "bytes": 255882,
+      "sha256": "e71bba3a5ff50bd29c705195fa517b5147f9ad43be8917c873382cedc320a5d4"
+    },
+    {
+      "path": "club-season/season-26.jpg",
+      "bytes": 168565,
+      "sha256": "a0bf3c54032e5e420ed2c61699e6dfbeca04e6b8b1926716b7b7eff114b1ce70"
+    },
+    {
+      "path": "club-season/season-27.jpg",
+      "bytes": 188682,
+      "sha256": "56ba7e4e5e95024dc1480a785e36abe5287c94f1da13e93639cbf789b6af55a0"
+    },
+    {
+      "path": "club-season/season-28.jpg",
+      "bytes": 116396,
+      "sha256": "321fc49727ead1c3e1a859f6cabbbed180731001aae01686ac442ccd5c9dacb8"
+    },
+    {
+      "path": "club-season/season-29.jpg",
+      "bytes": 80559,
+      "sha256": "f80d2a562076ea8e826b219a47b6c997dacf17d6e1c825ef51c8512c290d54aa"
+    },
+    {
+      "path": "club-season/season-30.jpg",
+      "bytes": 17371,
+      "sha256": "3eee4bf38a544eaf275afcb9a7ab2e3318de2fa4357d9f5683525e25601f4676"
+    },
+    {
       "path": "facebook-queue.html",
-      "bytes": 208279,
-      "sha256": "7e588683a60879f05be0fa500f1ddb73d6e602b74b40ff8f74fbda76978b8716"
+      "bytes": 223194,
+      "sha256": "24913bd18b3e6965c63df85b586eb1b66793615ff448a432dfa3ca42a8b34691"
     },
     {
       "path": "facebook-queue.js",
@@ -594,8 +749,8 @@
     },
     {
       "path": "facebook-queue.json",
-      "bytes": 72296,
-      "sha256": "ec974bb6f6e4c0d5f8b98dcef1de73689a3733908cfc3055f63a0da167a498af"
+      "bytes": 76709,
+      "sha256": "7d8a85bbb761a2dce6fba1d48ba47323266ef28691f0b1ce9ee90134f2efd191"
     },
     {
       "path": "gallery-data.js",
@@ -655,7 +810,7 @@
     {
       "path": "index.html",
       "bytes": 1296,
-      "sha256": "1f765c694bc3919416bb084dd54c9c1085da0091706343e065f61ddc3e75d2e1"
+      "sha256": "afd302dc813cbccc71be5b4d6e3b7c3765718924527b04530da7fdc883c770a0"
     },
     {
       "path": "jerome-boxing/jb-candidate-2015.jpg",
@@ -894,18 +1049,18 @@
     },
     {
       "path": "profiles.js",
-      "bytes": 150350,
-      "sha256": "1e81ff810fcf0d88e6a1b0e22118625773665b2e6d01f382d0286b564fd5102d"
+      "bytes": 150584,
+      "sha256": "a5d68f21d1e3e98adf57468643e3697308cf80085adaa8890611052f3ab4736e"
     },
     {
       "path": "public-manifest.json",
-      "bytes": 32237,
-      "sha256": "cd23f7be25d440789320305be03e7ed3771acefe18b20e6bcfded48826a4e1b8"
+      "bytes": 37403,
+      "sha256": "fe4a511bbaba0b3e2a6c1d80bce1e9808dd907c4d74e86812a216a78e62145f9"
     },
     {
       "path": "queue.css",
-      "bytes": 4723,
-      "sha256": "4ff3cd8bcfbe0db35e6b4922c32b8d24662cd7d51756de5065a2596817cb0204"
+      "bytes": 5025,
+      "sha256": "85324259e2787ebd2874841f33c3b6c496b18173d40c02774bd2f6b93b52a3b3"
     },
     {
       "path": "ryan-school/ry-2000-p39.jpg",
@@ -976,6 +1131,11 @@
       "path": "ryan-school/ry-wrestling-2002.png",
       "bytes": 963961,
       "sha256": "ef901f1db0033fc56793ce3fb52b1cf1a9de639a9672dd10235e1532ed5b5ba8"
+    },
+    {
+      "path": "season-index.json",
+      "bytes": 51050,
+      "sha256": "35f5d5cbed7ed0012355187bc287a0d48bda00c3266855454484d5467596d61c"
     },
     {
       "path": "style.css",
