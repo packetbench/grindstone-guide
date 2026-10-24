@@ -349,6 +349,10 @@
 .builder-shortcuts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
 .practice-builder .builder-shortcuts button{min-height:44px;padding:9px 13px}
 .builder-placement-feedback:not(:empty){margin-top:14px;overflow-wrap:anywhere}
+.builder-placement-actions{display:flex;flex-wrap:wrap;gap:8px}.builder-placement-actions button{flex:1 1 140px;min-height:44px}
+.practice-builder .builder-placement-actions [data-action=append]{background:var(--blue);border-color:var(--blue);color:white}
+.practice-builder .builder-placement-actions:has([data-action=append]:not([hidden])) [data-action=add]{background:white;color:var(--blue)}
+.builder-add-help{font-size:12px;line-height:1.6}
 .builder-replace-review,.builder-placement-error,.builder-placement-success{padding:14px;border:1px solid #adc0c7;border-radius:7px;background:#eef5f5;font-size:13px;line-height:1.6}
 .builder-replace-review p{margin:0 0 12px}.builder-replace-review>div{display:flex;flex-wrap:wrap;gap:8px}
 .builder-placement-error{border-color:#bb514b;background:#fff3f1}

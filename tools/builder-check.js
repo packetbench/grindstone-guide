@@ -751,4 +751,199 @@ check('legacy warmups with explicit prompt metadata stay exempt through save, re
   }
 });
 
+
+function appendSource(type,id) {
+  picker('type',type);
+  if(!visibleIds().includes(id))root.listeners.change({target:{dataset:{picker:'matchAge'},type:'checkbox',checked:false}});
+  picker('selected',id);t.action('append',-1);
+}
+check('Add to this slot appends teaching without changing the slot or neighboring practice blocks',()=>{
+  resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
+  const index=2,slot=state().plan.blocks[index];blockField(index,'name','Our technique time');blockField(index,'cues','Keep my opening cue.');
+  picker('destination',slot.id);const before=state().plan;
+  appendSource('move','B17');appendSource('move','B07');
+  const after=state().plan,added=after.blocks[index];
+  assert.equal(after.blocks.length,before.blocks.length);assert.equal(t.timing(after.blocks).at(-1).end,60);
+  for(const key of ['id','name','type','sourceId','minutes','section','delivery','rotation','instructions','cues','frameworkPrompt'])
+    assert.equal(added[key],before.blocks[index][key],key+' must stay with the original slot');
+  assert.deepEqual(added.components.activities.map(item=>item.guide.sourceId),['B17','B07']);
+  assert.equal(added.components.activities[0].task,catalog.find(item=>item.id==='B17').instructions);
+  assert.deepEqual(after.blocks.filter((_,i)=>i!==index),before.blocks.filter((_,i)=>i!==index));
+  assert(!state().pendingReplacement);assert.equal(t.unfilledSlots().length,4);
+});
+check('appended guides survive actual export, import, named load, page reload and both print modes',()=>{
+  resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
+  const index=2;picker('destination',state().plan.blocks[index].id);appendSource('move','B17');appendSource('game','G31');
+  const activities=state().plan.blocks[index].components.activities;
+  t.action('save',-1);const savedId=state().plan.id;
+  blockField(index,'instructions','Temporary local change');root.querySelector('[data-saved-plan]').value=savedId;t.action('load',-1);
+  assert.deepEqual(state().plan.blocks[index].components.activities,activities);
+  t.reset();mount();assert.deepEqual(state().plan.blocks[index].components.activities,activities);
+  const priorBlob=ctx.Blob,priorDocument=ctx.document,priorTimer=ctx.window.setTimeout;let exportedText='';
+  ctx.Blob=class extends Blob {constructor(parts,options){super(parts,options);exportedText=parts.join('');}};
+  ctx.document={createElement:()=>({click(){}})};ctx.window.setTimeout=fn=>fn();
+  try {t.action('export',-1);} finally {ctx.Blob=priorBlob;ctx.document=priorDocument;ctx.window.setTimeout=priorTimer;}
+  const imported=t.parseImport(exportedText);
+  assert.deepEqual(imported.blocks[index].components.activities,activities);
+  assert.equal(imported.blocks[index].minutes,state().plan.blocks[index].minutes);
+  for(const details of [false,true]) {
+    const html=t.printHtml(details);
+    for(const activity of activities) {
+      assert(html.includes(t.esc(activity.name)));assert(html.includes(t.esc(activity.task)));
+      for(const key of ['readiness','boundary','ageNote','sourceNote'])if(activity.guide[key])assert(html.includes(t.esc(activity.guide[key])),key+' must print with added guide');
+    }
+    assert(html.indexOf(t.esc(activities[0].task))<html.indexOf(t.esc(activities[1].task)));
+    assert(/share|shared/i.test(html)&&/slot|block/i.test(html),'Printed activities must explain their shared time');
+  }
+});
+check('duplicate additions do not change the practice or consume the preceding Undo',()=>{
+  resetCase();addSource('move','P01');picker('destination',state().plan.blocks[0].id);
+  appendSource('move','P02');const before=JSON.stringify(state().plan);
+  appendSource('move','P02');assert.equal(JSON.stringify(state().plan),before);
+  assert(state().placementError);assert(/already|duplicate/i.test(state().placementNotice));
+  t.action('undo',-1);assert.equal(state().plan.blocks.length,1);assert.equal(state().plan.blocks[0].sourceId,'P01');
+  assert(!state().plan.blocks[0].components?.activities?.length);
+  appendSource('move','P01');assert(!state().plan.blocks[0].components?.activities?.length);
+  assert(state().placementError);
+});
+check('one slot can hold distinct selected Foundation skills without losing independent setups or source notes',()=>{
+  resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
+  const index=2;picker('destination',state().plan.blocks[index].id);picker('type','series');picker('selected','series:S24');
+  const {foundation}=stageMainSkills([0,2]);t.action('append',-1);
+  stageMainSkills([1]);t.action('append',-1);
+  const added=state().plan.blocks[index].components.activities;
+  assert.equal(added.length,2);assert.deepEqual(added[0].series.selections.map(item=>item.title),['Stand-up escape','Single leg']);
+  assert.deepEqual(added[1].series.selections.map(item=>item.title),['Double leg']);
+  assert(added[0].task.includes(foundation.branches[0].action)&&added[0].task.includes(foundation.branches[2].action));
+  assert(!added[0].task.includes(foundation.branches[1].action));assert(!added[1].task.includes(foundation.branches[0].action));
+  for(const activity of added) {
+    assert.equal(activity.series.kind,'foundation');assert(activity.task.includes('Teach each skill separately'));assert(activity.task.includes('receiving control'));
+    assert(activity.series.guides.length);assert(activity.guide.boundary);assert(activity.guide.sourceNote);
+  }
+  const before=JSON.stringify(state().plan);const staged=stageMainSkills([0,2]);
+  root.querySelectorAll=selector=>selector==='[data-component-branch="picker"]'?[...staged.fields].reverse():[];
+  root.listeners.change({target:{dataset:{componentBranch:'picker'}}});t.action('append',-1);
+  assert.equal(JSON.stringify(state().plan),before,'Reordered identical selections are still a duplicate');
+  const roundtrip=t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:state().plan}));
+  assert.deepEqual(roundtrip.blocks[index].components.activities,added);
+  for(const details of [false,true]) {
+    const html=t.printHtml(details);for(const activity of added)for(const guide of activity.series.guides) {
+      assert(html.includes(t.esc(guide.title)));if(guide.boundary)assert(html.includes(t.esc(guide.boundary)));
+    }
+  }
+});
+check('appending to a selected-series block retains its original teaching subset and structured rotation',()=>{
+  resetCase('age=7-10');const components=ctx.window.GRINDSTONE_COMPONENTS,foundation=catalog.find(item=>item.id==='series:S24');
+  let original=components.selectSeries(t.blockFrom(foundation,'series'),[components.testing.branchKey(pathway.series.find(item=>item.id==='S24').branches[0])],catalog);
+  original.components.rotation=components.testing.newRotation();original.rotation='Keep coach groups and stations.';original.minutes=20;
+  original.components.rotation.stations.forEach((station,index)=>{station.task='Existing task '+index;});
+  const raw=state().plan;raw.blocks=[original];t.replaceDraft(raw);
+  const before=state().plan.blocks[0];picker('destination',before.id);appendSource('move','B07');
+  const after=state().plan.blocks[0];
+  assert.deepEqual(after.components.series,before.components.series);assert.deepEqual(after.components.rotation,before.components.rotation);
+  assert.equal(after.instructions,before.instructions);assert.equal(after.minutes,20);assert.equal(after.rotation,before.rotation);
+  t.action('reload-guide',0);assert.deepEqual(state().plan.blocks[0].components.activities,after.components.activities);
+  assert.deepEqual(state().plan.blocks[0].components.rotation,before.components.rotation);
+});
+check('Undo removes only the latest appended work and can restore the untouched framework reminder',()=>{
+  resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
+  const index=2,before=state().plan;picker('destination',before.blocks[index].id);appendSource('move','B17');
+  assert.equal(t.unfilledSlots().length,4);t.action('undo',-1);assert.deepEqual(state().plan.blocks,before.blocks);assert.equal(t.unfilledSlots().length,5);
+  appendSource('move','B17');const one=state().plan.blocks[index];appendSource('move','B07');t.action('undo',-1);
+  assert.deepEqual(state().plan.blocks[index],one);assert.equal(state().plan.blocks[index].components.activities.length,1);
+});
+check('append requires a current destination and valid inputs and cannot write completed records',()=>{
+  resetCase();addSource('move','P01');const before=JSON.stringify(state().plan);
+  picker('selected','P02');t.action('append',-1);assert.equal(JSON.stringify(state().plan),before);
+  picker('destination','removed-slot');t.action('append',-1);assert.equal(JSON.stringify(state().plan),before);assert(state().placementError);
+  picker('destination',state().plan.blocks[0].id);
+  const query=root.querySelector.bind(root);root.querySelector=selector=>selector==='input:invalid, select:invalid, textarea:invalid'?{focus(){},reportValidity(){}}:query(selector);
+  t.action('append',-1);assert.equal(JSON.stringify(state().plan),before);root.querySelector=query;
+  root.listeners.input({target:{dataset:{handoffField:'taught'},value:'Completed the stance task.'}});t.completePlan();
+  const completed=JSON.stringify(state().plan);t.action('append',-1);assert.equal(JSON.stringify(state().plan),completed);
+});
+check('additional-work limits reject overflow without truncating or losing prior guide snapshots',()=>{
+  resetCase('age=7-10');picker('type','custom');t.action('add',-1);picker('destination',state().plan.blocks[0].id);
+  for(let i=1;i<=12;i++)appendSource('move','P'+String(i).padStart(2,'0'));
+  assert.equal(state().plan.blocks[0].components.activities.length,12);
+  const before=JSON.stringify(state().plan);appendSource('move','B17');assert.equal(JSON.stringify(state().plan),before);assert(state().placementError);
+  const raw=state().plan;raw.blocks[0].components.activities.push(raw.blocks[0].components.activities[0]);
+  assert.throws(()=>t.cleanPlan(raw),/12|many|maximum|most/i);
+});
+
+
+check('Fill this slot changes only its main guide and retains all appended work and timing',()=>{
+  resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
+  const index=2;picker('destination',state().plan.blocks[index].id);appendSource('move','B17');appendSource('move','B07');
+  const before=state().plan.blocks[index];
+  addSource('move','B08');const after=state().plan.blocks[index];
+  assert.equal(after.sourceId,'B08');assert.equal(after.instructions,catalog.find(item=>item.id==='B08').instructions);
+  assert.deepEqual(after.components.activities,before.components.activities);
+  for(const key of ['id','minutes','section','delivery','rotation','frameworkPrompt'])assert.equal(after[key],before[key]);
+  t.action('undo',-1);assert.deepEqual(state().plan.blocks[index],before);
+});
+function componentActivityHarness(blockIndex) {
+  const components=ctx.window.GRINDSTONE_COMPONENTS,original=components.bind;let bridge;
+  components.bind=function(element,options){bridge=options;return original(element,options);};
+  try {api.bind(root);} finally {components.bind=original;}
+  const listeners={},container={dataset:{},querySelectorAll(){return[];},querySelector(){return null;},addEventListener(name,listener){listeners[name]=listener;}};
+  original(container,bridge);
+  const host={dataset:{componentBlock:String(blockIndex)},querySelectorAll(){return[];},querySelector(){return{innerHTML:''};}};
+  function element(activityIndex,dataset,value='') {
+    const nodes=new Map(),card={dataset:{activityIndex:String(activityIndex)},querySelector(selector){if(!nodes.has(selector))nodes.set(selector,{hidden:false,textContent:''});return nodes.get(selector);}};
+    return {dataset,value,validity:{valid:true},closest(selector){return selector==='[data-component-block]'?host:selector==='[data-activity-index]'?card:null;}};
+  }
+  return {
+    input(index,key,value){listeners.input({target:element(index,{activityField:key},value)});},
+    click(index,action){const button=element(index,{componentAction:action});listeners.click({target:{closest(){return button;}}});}
+  };
+}
+check('activity edits, reordering and removal preserve the parent and restore reminders when no work remains',()=>{
+  resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
+  const index=2;picker('destination',state().plan.blocks[index].id);appendSource('move','B17');appendSource('move','B07');
+  const before=state().plan.blocks[index],h=componentActivityHarness(index);
+  h.input(0,'name','Stand-up partner turns');h.input(0,'task','Two turns each, then switch partners.');h.input(0,'cues','Hands first.\nFace your partner.');
+  const edited=state().plan.blocks[index];
+  assert.equal(edited.components.activities[0].name,'Stand-up partner turns');
+  assert.equal(edited.components.activities[0].task,'Two turns each, then switch partners.');
+  assert.equal(edited.components.activities[0].cues,'Hands first.\nFace your partner.');
+  assert.deepEqual(edited.components.activities[0].guide,before.components.activities[0].guide);
+  h.click(1,'activity-up');assert.deepEqual(state().plan.blocks[index].components.activities.map(item=>item.guide.sourceId),['B07','B17']);
+  h.click(0,'activity-down');assert.deepEqual(state().plan.blocks[index].components.activities.map(item=>item.guide.sourceId),['B17','B07']);
+  for(const key of ['minutes','id','instructions','cues','frameworkPrompt'])assert.equal(state().plan.blocks[index][key],before[key]);
+  t.action('save',-1);
+  const imported=t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:state().plan}));
+  assert.equal(imported.blocks[index].components.activities[0].task,'Two turns each, then switch partners.');
+  for(const full of [false,true]) {
+    const printed=t.printHtml(full);assert(printed.includes('Two turns each, then switch partners.'));
+    assert(printed.includes('Hands first.'));assert(printed.includes('component-shared-time'));
+  }
+  h.click(1,'activity-remove');assert.equal(state().plan.blocks[index].components.activities.length,1);assert.equal(t.unfilledSlots().length,4);
+  h.input(0,'task',' ');assert.equal(t.unfilledSlots().length,5,'An empty activity cannot fulfill a generic slot');
+  h.input(0,'task','One cooperative turn each.');assert.equal(t.unfilledSlots().length,4);
+  h.click(0,'activity-remove');assert.equal(state().plan.blocks[index].components.activities.length,0);assert.equal(t.unfilledSlots().length,5);
+  t.action('undo',-1);assert.equal(state().plan.blocks[index].components.activities[0].task,'One cooperative turn each.');assert.equal(t.unfilledSlots().length,4);
+});
+check('legacy whole-series guides overlap subsets while distinct explicit selections remain separate',()=>{
+  resetCase('age=7-10');const components=ctx.window.GRINDSTONE_COMPONENTS,item=catalog.find(guide=>guide.id==='series:S24'),full=t.blockFrom(item,'series');
+  let raw=state().plan;raw.blocks=[full];t.replaceDraft(raw);picker('destination',state().plan.blocks[0].id);
+  picker('type','series');picker('selected','series:S24');stageMainSkills([0]);const before=JSON.stringify(state().plan);t.action('append',-1);
+  assert.equal(JSON.stringify(state().plan),before);assert(state().placementError);
+  const manual=t.blockFrom(null,'custom'),withWhole=components.appendActivity(manual,full);
+  raw=state().plan;raw.blocks=[withWhole];t.replaceDraft(raw);picker('destination',state().plan.blocks[0].id);
+  picker('selected','series:S24');stageMainSkills([1]);const addedBefore=JSON.stringify(state().plan);t.action('append',-1);
+  assert.equal(JSON.stringify(state().plan),addedBefore);assert(state().placementError);
+  const foundation=pathway.series.find(guide=>guide.id==='S24'),subset=components.selectSeries(full,[components.testing.branchKey(foundation.branches[0])],catalog);
+  const withSubset=components.appendActivity(manual,subset);
+  assert.throws(()=>components.appendActivity(withSubset,full),/already|overlap|duplicate/i);
+});
+check('activity edits and controls cannot change completed records or discard invalid visible numbers',()=>{
+  resetCase();addSource('move','P01');picker('destination',state().plan.blocks[0].id);appendSource('move','P02');
+  const h=componentActivityHarness(0),before=JSON.stringify(state().plan),query=root.querySelector.bind(root);
+  root.querySelector=selector=>selector==='input:invalid, select:invalid, textarea:invalid'?{focus(){},reportValidity(){}}:query(selector);
+  h.click(0,'activity-remove');assert.equal(JSON.stringify(state().plan),before);root.querySelector=query;
+  root.listeners.input({target:{dataset:{handoffField:'taught'},value:'Practiced the selected work.'}});t.completePlan();
+  const complete=JSON.stringify(state().plan);h.input(0,'task','Bad edit');h.click(0,'activity-remove');assert.equal(JSON.stringify(state().plan),complete);
+});
+
 console.log('\n' + checks + ' builder checks passed. No files written.');

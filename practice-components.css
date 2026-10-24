@@ -60,4 +60,9 @@ p.component-warning{padding-left:.8rem}
 .component-station-picker>.component-choice input{flex:0 0 1.25rem}
 .component-station-picker [data-component-action=use-station-guide]{width:100%;background:var(--blue,#9a302e);border-color:var(--blue,#9a302e);color:white}
 .component-station-series{margin:1rem 0}.component-station-series>h5{font-size:1rem}
+.component-activities{margin:18px 0}.component-shared-time{padding:12px;background:var(--pale,#f5f3eb);font-size:13px;line-height:1.6}
+.component-activity{margin:14px 0;padding:16px;border:1px solid var(--line,#ccc);border-radius:7px;min-width:0;overflow-wrap:anywhere}
+.component-activity>h4{margin:0 0 12px;font-size:16px}.component-activity>label{display:block;margin:12px 0}.component-activity>details{margin-top:12px}.component-activity>details>summary{min-height:44px;align-content:center}
+@media(max-width:600px){.component-activity{padding:12px}.component-activity input,.component-activity textarea{font-size:16px}.component-activity .component-actions{flex-wrap:wrap}.component-activity .component-actions button{min-height:44px}}
+@media print{.component-activities{margin:8pt 0}.component-activity{break-inside:avoid;padding:7pt;margin:7pt 0}.component-shared-time{background:white;border:1pt solid #aaa;padding:6pt}.component-activity [hidden]{display:none!important}}
 @media(max-width:600px){.component-station-picker{padding:.7rem}.station-primary-filters,.station-filter-grid{grid-template-columns:1fr}.component-station-picker .component-choice{font-size:14px}.component-station-picker select:not([size]),.component-station-picker input[type=search]{font-size:16px}}
