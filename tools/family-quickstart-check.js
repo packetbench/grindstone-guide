@@ -1,0 +1,31 @@
+"use strict";
+// Read-only content and link checks for the seasonal family companion.
+const fs=require("fs"),path=require("path"),vm=require("vm"),assert=require("assert/strict");
+const root=process.env.GRINDSTONE_TEST_ROOT||path.resolve(__dirname,"..");
+const context={window:{}};vm.createContext(context);
+for(const file of ["family-data.js","practice-frameworks.js"])vm.runInContext(fs.readFileSync(path.join(root,file),"utf8"),context,{filename:file});
+const data=context.window.GRINDSTONE_FAMILY,quick=data.pages.find(p=>p.id==="season-quickstart"),setup=data.pages.find(p=>p.id==="teamsnap"),first=data.pages.find(p=>p.id==="first-practice");
+let checks=0;function check(test,message){assert(test,message);checks++;}
+check(!!quick&&!!setup,"Both family pages must exist");
+const quickHtml=quick.sections.map(s=>s.html).join(" "),setupHtml=setup.sections.map(s=>s.html).join(" ");
+for(const p of context.window.GRINDSTONE_FRAMEWORKS.programs)check(quickHtml.includes(p.name)&&quickHtml.includes(p.location),"Quickstart includes "+p.name+" at its scheduled school");
+const table=s=>s.match(/<table class="program-table">[\s\S]*?<\/table>/)?.[0];
+check(table(quickHtml)===table(first.sections[1].html),"Parent schedule and quickstart use the same published table");
+check(quickHtml.includes("main entrance or concert entrance"),"Keep both user-confirmed Westminster entrances");
+check(quickHtml.includes("rear wrestling-room entrance by the baseball fields"),"Winters Mill entrance is specific");
+check(/the Mat Rats opt-out expectation does not apply/i.test(quickHtml),"Valkyries remain outside the Mat Rats default");
+check(quickHtml.includes("coaches are finalizing the deadline"),"Do not invent an adopted opt-out deadline");
+check(!/\$100|6 of 8|6-of-8|four hours|4 hours|preceding Tuesday/i.test(quickHtml),"No unresolved deposits, eligibility threshold, service hours or attendance deadline");
+check(quickHtml.includes("Keep wrestling shoes off outdoor surfaces")&&quickHtml.includes("Keep street shoes off the mats")&&quickHtml.includes("Keep nails trimmed"),"Handout hygiene and footwear reminders retained");
+check(first.sections.length===8&&first.sections[3].title==="Pack a simple practice bag","Legacy first-practice section links preserved");
+check(quick.print_companion==="two-sided"&&quickHtml.includes("packetbench.github.io/grindstone-guide/#families"),"Print companion includes a usable full-guide link");
+check(setupHtml.includes("TeamSnap ONE")&&setupHtml.includes("TeamSnap (legacy)"),"Caregiver instructions distinguish current app versions");
+check(setupHtml.includes("all teams the player is on")&&setupHtml.includes("administrative access"),"Caregivers can understand contact access scope");
+check(setupHtml.includes("Changing another contact’s email is not the way to add a new caregiver"),"Do not conflate editing an email with inviting another caregiver");
+for(const page of [quick,setup])for(const source of page.sources||[])check(/^https:\/\//.test(source.url),"Sources use public HTTPS links");
+const routes=new Set(data.pages.map(p=>p.id).concat("faq"));
+for(const match of (quickHtml+setupHtml).matchAll(/href="#family\/([^"?]+)(?:\?[^" ]*)?"/g))check(routes.has(match[1]),"Internal family link exists: "+match[1]);
+for(const match of quickHtml.matchAll(/(?:src|href)="((?:assets|downloads)\/[^"#]+)"/g))check(fs.existsSync(path.join(root,match[1])),"Local referenced file exists: "+match[1]);
+const css=fs.readFileSync(path.join(root,"family-quickstart.css"),"utf8");
+check(css.includes("@page family-quickstart")&&css.includes("#family-season-quickstart-2{break-before:page}"),"Print layout separates the two intended sides");
+console.log(checks+" family quickstart checks passed.");

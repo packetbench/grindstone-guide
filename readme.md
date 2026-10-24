@@ -314,3 +314,16 @@ Prepared on `codex/site-audit-fixes` for preview and review; not approved for pu
 - A game whose copied guide duration differs from its timeline slot displays a warning until the coach explicitly adjusts the slot or confirms adapted rounds and rest. No rounds are silently stretched.
 - Legacy Kyle links no longer recurse; home counts include all collections; the preserved binder is clearly distinguished from current web guides. Coach links no longer claim the directory is the complete staff.
 - Run `node tools/stamp-assets.js` after changing shipped JavaScript/CSS. It updates root HTML asset URLs with content hashes; `node tools/stamp-assets.js --check` verifies them. Run builder/navigation checks before committing.
+
+## Weekly coaching workflow — October 24, 2026
+
+Prepared in the audit preview for review; not published.
+
+- Open #practices?view=week for optional weekly organization. A week holds a shared foundation, cue and outcome plus independent session copies. Suggested blank sessions align Blue/Black Core A and B, keep Pups on Tuesdays and allow separate Valkyries plans. No techniques are automatically assigned.
+- Edit an opened session in the existing builder and explicitly save it back to the week. Shared-focus changes never rewrite other sessions. Weeks use a separate browser storage key; export/import transfers independent JSON copies for the coaches text group. Owner and revision fields identify shared files. There is no server sync.
+- The after-practice handoff records actually taught, changed, worked, reliable and revisit. Save completed practice preserves a separate read-only snapshot. Save a copy clears completion metadata, date and handoff for the next practice. Original completed records remain in the named library.
+- Select branches when adding a series; foundation, receiving/reset, prerequisites, linked guide snapshots, age and source notes remain. Old full-series practices remain readable. Structured stations use one shared elapsed clock; choosing Use rotation total explicitly reconciles the outer block. Station tasks, guide snapshots, coach/equipment/group notes and adaptations survive saving and printing.
+- practice-weeks.js and practice-components.js extend the existing builder. Version-1 practice imports remain compatible. Missing source guides retain their saved text, and imported links never become executable catalog links.
+- #family/season-quickstart and #family/teamsnap provide the concise seasonal companion and caregiver setup. Deposits, hours, eligibility and opt-out operational decisions stay proposals. Existing handouts remain available.
+- C16 adds unloaded flat-ladder stepping; C17 reviews a familiar selected skill. C13 clarifies solo entry work. These are authored adaptations with source limits; ambiguous meeting-game names and loaded/inverted drills are not silently added.
+- Validation: node tools/builder-check.js; node tools/weeks-check.js; node tools/components-check.js; node tools/family-quickstart-check.js; node tools/navigation-check.js; node tools/stamp-assets.js --check. Run the stamp tool after shipped JS/CSS changes.

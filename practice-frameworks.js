@@ -5,11 +5,11 @@ window.GRINDSTONE_FRAMEWORKS = {
   programs: [
     {
       id: 'black', name: 'Mat Rats — Black', days: ['Monday', 'Wednesday', 'Friday'], start: '18:00', minutes: 120,
-      location: 'Westminster High School', entrance: 'Front door', defaultFramework: 'two-hour'
+      location: 'Westminster High School', entrance: 'Main entrance or concert entrance', defaultFramework: 'two-hour'
     },
     {
       id: 'blue', name: 'Mat Rats — Blue', days: ['Tuesday', 'Thursday'], start: '18:00', minutes: 120,
-      location: 'Westminster High School', entrance: 'Front door', defaultFramework: 'two-hour'
+      location: 'Westminster High School', entrance: 'Main entrance or concert entrance', defaultFramework: 'two-hour'
     },
     {
       id: 'pups', name: 'Pups', days: ['Tuesday'], start: '18:00', minutes: 60,

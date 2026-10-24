@@ -18,11 +18,11 @@ window.GRINDSTONE_FAMILY = {
         },
         {
           "title": "TeamSnap and registration",
-          "html": "<p><strong>TeamSnap is the team’s communication channel.</strong> Check your group’s schedule and messages for practice times, arrival instructions, cancellations and changes. If you have not received access, ask the club to add your family before your first practice.</p><p>For current registration, fees and required forms, use the official <a href=\"https://www.grindstonewrestling.org/mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">Mat Rats & Pups page</a> or <a href=\"https://www.grindstonewrestling.org/copy-of-mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">Valkyries page</a>. Follow the club’s latest season announcement if an older season remains on a webpage.</p><p>For help with placement or TeamSnap access, <a href=\"mailto:grindstonewrestlingmd@gmail.com\">email grindstonewrestlingmd@gmail.com</a> or use the <a href=\"https://www.grindstonewrestling.org/contact\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">club contact page</a>. Include your child’s age, previous wrestling experience and the program you are interested in.</p>"
+          "html": "<p><strong>TeamSnap is the team’s communication channel.</strong> Check your group’s schedule and messages for practice times, arrival instructions, cancellations and changes. If you have not received access, ask the club to add your family before your first practice.</p><p>For current registration, fees and required forms, use the official <a href=\"https://www.grindstonewrestling.org/mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">Mat Rats & Pups page</a> or <a href=\"https://www.grindstonewrestling.org/copy-of-mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">Valkyries page</a>. Follow the club’s latest season announcement if an older season remains on a webpage.</p><p>For help with placement or TeamSnap access, <a href=\"mailto:grindstonewrestlingmd@gmail.com\">email grindstonewrestlingmd@gmail.com</a> or use the <a href=\"https://www.grindstonewrestling.org/contact\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"\">club contact page</a>. Include your child’s age, previous wrestling experience and the program you are interested in.</p><p><a href=\"#family/teamsnap\">Set up caregiver access and check notifications →</a></p>"
         },
         {
           "title": "Pack a simple practice bag",
-          "html": "<ul><li>Comfortable athletic clothes that allow movement; ask the coach about any clothing restrictions.</li><li>A labeled personal water bottle.</li><li>Wrestling shoes and any headgear or other equipment requested for your group.</li><li>Street shoes for outside the wrestling area and a change of clothes for afterward.</li></ul><p>Before buying gear, ask what is required on day one and what the registration package includes. Change into clean mat footwear at the room, keep jewelry off the mat and follow the coach’s equipment instructions.</p>"
+          "html": "<ul><li>Comfortable athletic clothes that allow movement; ask the coach about any clothing restrictions.</li><li>A labeled personal water bottle.</li><li>Wrestling shoes and any headgear or other equipment requested for your group.</li><li>Street shoes for outside the wrestling area and a change of clothes for afterward.</li></ul><p>Before buying gear, ask what is required on day one and what the registration package includes. Change into clean mat footwear at the room, keep jewelry off the mat and follow the coach’s equipment instructions.</p><p><strong>Mat footwear:</strong> Do not wear wrestling shoes outside or street shoes on the mats. Keep nails trimmed and change shoes at the room.</p>"
         },
         {
           "title": "Growing feet, shared gear",
@@ -30,7 +30,7 @@ window.GRINDSTONE_FAMILY = {
         },
         {
           "title": "When you arrive",
-          "html": "<ol><li>Find the coach or team helper and confirm your child’s group.</li><li>Point out the water and gear area; find out where caregivers should wait and how pickup works.</li><li>Tell the coach about an injury, participation restriction or support need that affects practice.</li><li>Help your child listen for the stop signal, then let the coach introduce a partner and the first activity.</li></ol><p>If you will be late or absent, notify the team contact. When arriving late, check in with the coach before joining the activity.</p>"
+          "html": "<p>Arrive early enough to change shoes and be ready at the scheduled start.</p><ol><li>Find the coach or team helper and confirm your child’s group.</li><li>Point out the water and gear area; find out where caregivers should wait and how pickup works.</li><li>Tell the coach about an injury, participation restriction or support need that affects practice.</li><li>Help your child listen for the stop signal, then let the coach introduce a partner and the first activity.</li></ol><p>If you will be late or absent, notify the team contact. When arriving late, check in with the coach before joining the activity.</p>"
         },
         {
           "title": "What the first session can feel like",
@@ -38,7 +38,7 @@ window.GRINDSTONE_FAMILY = {
         },
         {
           "title": "After practice",
-          "html": "<p>Ask, “What did you try?” or “What would you like to do again?” A first day does not need to be perfect. Confirm the next session and team messages before leaving, then follow the club’s gear-cleaning guidance.</p><p><a href=\"#family/expectations\">Supporting your wrestler</a> · <a href=\"#family/health\">Health habits and getting help</a> · <a href=\"#family/meet-day\">Preparing for the first meet</a></p>"
+          "html": "<p>Ask, “What did you try?” or “What would you like to do again?” A first day does not need to be perfect. Confirm the next session and team messages before leaving, then follow the club’s gear-cleaning guidance.</p><p><a href=\"#family/expectations\">Supporting your wrestler</a> · <a href=\"#family/health\">Health habits and getting help</a> · <a href=\"#family/meet-day\">Preparing for the first meet</a></p><p><a href=\"#family/season-quickstart\">Keep the two-sided season quickstart with your gear.</a></p>"
         }
       ],
       "sources": [
@@ -270,6 +270,86 @@ window.GRINDSTONE_FAMILY = {
           "url": "https://www.usawmembership.com/usa_wrestling_rule_book"
         }
       ]
+    },
+    {
+      "id": "season-quickstart",
+      "title": "2026–27 season quickstart",
+      "description": "The practice schedule, family checklist and next steps in one place. Check TeamSnap for current changes.",
+      "reviewed": "2026-10-24",
+      "print_companion": "two-sided",
+      "sections": [
+        {
+          "title": "Your weekly practice",
+          "html": "<div class=\"quickstart-brand\"><img src=\"assets/grindstone-logo.png\" width=\"58\" height=\"58\" alt=\"Grindstone Wrestling\"><p><strong>2026–27 season · Prepared October 24, 2026</strong><br>From the club’s season handout. All times are local; TeamSnap carries changes and cancellations.</p></div><table class=\"program-table\"><thead><tr><th scope=\"col\">Program</th><th scope=\"col\">Days</th><th scope=\"col\">Time</th><th scope=\"col\">School</th></tr></thead><tbody><tr><th scope=\"row\">Mat Rats — Black</th><td data-label=\"Days\">Monday, Wednesday, Friday</td><td data-label=\"Time\">6:00–8:00 p.m.</td><td data-label=\"School\">Westminster High School</td></tr><tr><th scope=\"row\">Mat Rats — Blue</th><td data-label=\"Days\">Tuesday, Thursday</td><td data-label=\"Time\">6:00–8:00 p.m.</td><td data-label=\"School\">Westminster High School</td></tr><tr><th scope=\"row\">Pups</th><td data-label=\"Days\">Tuesday</td><td data-label=\"Time\">6:00–7:00 p.m.</td><td data-label=\"School\">Winters Mill High School</td></tr><tr><th scope=\"row\">Valkyries</th><td data-label=\"Days\">Monday, Wednesday, Friday</td><td data-label=\"Time\">6:30–8:00 p.m.</td><td data-label=\"School\">Winters Mill High School</td></tr></tbody></table><div class=\"quickstart-venues\"><p><strong>Westminster High School</strong> · 1225 Washington Road, Westminster, MD 21157.<br>Mat Rats Black and Blue: use the <strong>main entrance or concert entrance</strong>.</p><p><strong>Winters Mill High School</strong> · 560 Gorsuch Road, Westminster, MD 21157.<br>Pups and Valkyries: use the <strong>rear wrestling-room entrance by the baseball fields</strong>.</p></div><p class=\"no-print\"><a href=\"#family/first-practice?section=1\">School photos, maps and directions →</a></p>"
+        },
+        {
+          "title": "Before and after practice",
+          "html": "<ul class=\"quickstart-checklist\"><li>Check TeamSnap before leaving. Arrive early enough to change shoes and be ready at the start.</li><li>Pack athletic clothes, a labeled water bottle, wrestling shoes and headgear. Ask a coach about donated shoes/headgear before buying; sizes vary.</li><li>Keep wrestling shoes off outdoor surfaces. Keep street shoes off the mats. Change at the room and remove jewelry.</li><li>Keep nails trimmed. Tell the coach about an injury, illness or skin concern before contact; use the <a href=\"#family/health\">health guide</a> for next steps.</li><li>After training, shower and clean used clothing and gear. Encourage effort and ask what your wrestler enjoyed or learned.</li></ul><p class=\"no-print\"><a href=\"#family/first-practice\">Read the first-practice guide</a> · <a href=\"#family/health\">Health habits and getting help</a></p><p class=\"quickstart-print-tip no-print\">Printing: use the print button above for a two-page Letter companion. Print double-sided, flip on the long edge, at 100% scale; turn off browser headers and footers.</p>"
+        },
+        {
+          "title": "Get every caregiver connected",
+          "html": "<p>Complete your child’s TeamSnap profile, including the photo requested by the club. Keep personal details in the team system.</p><ol><li>Accept the club’s invitation and check that you can open the correct team and season.</li><li>Add each authorized caregiver who handles transport or updates—including a grandparent when appropriate—to the athlete’s contacts. Each caregiver uses their own access.</li><li>Have each caregiver open the next practice, read a team message and check their notification settings. Ask for help before relying on forwarded messages.</li></ol><p><a href=\"#family/teamsnap\">TeamSnap setup and troubleshooting</a>. No access yet? Contact <a href=\"mailto:grindstonewrestlingmd@gmail.com\">grindstonewrestlingmd@gmail.com</a>.</p>"
+        },
+        {
+          "title": "Competition depends on your program",
+          "html": "<p><strong>Mat Rats:</strong> The planned default is to attend applicable meets unless your family opts out. Follow each event’s TeamSnap instructions; coaches are finalizing the deadline and late-change process. Tell the team promptly when your wrestler cannot attend.</p><p><strong>Valkyries:</strong> A separate, more flexible system applies for now. Competition is optional; the Mat Rats opt-out expectation does not apply. Confirm event choices with Valkyries coaches.</p><p><strong>Pups:</strong> The introductory clinic does not include competitions.</p><p>For a meet, confirm arrival/check-in, uniform and equipment, and where to find your coach. Check with the coach before leaving. Encourage your child, let coaches coach and let officials handle the match.</p>"
+        },
+        {
+          "title": "Keep the full family guide handy",
+          "html": "<p><a href=\"#families\">Family guides</a> cover <a href=\"#family/meet-day\">meet day</a>, <a href=\"#family/match-basics\">scoring</a>, <a href=\"#family/expectations\">spectator expectations</a> and <a href=\"#family/health\">health concerns</a>. Ask the club about current registration, forms and ways to help.</p><div class=\"quickstart-link\"><strong>Full guide and current links</strong><br><a href=\"https://packetbench.github.io/grindstone-guide/#families\">packetbench.github.io/grindstone-guide/#families</a></div><p class=\"fine\">This companion summarizes confirmed season information and the stated competition direction. Event deadlines, deposits, service-hour commitments and tournament eligibility are not established by this sheet. Use the club’s current instructions for those details.</p>"
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "teamsnap",
+      "title": "TeamSnap setup for caregivers",
+      "description": "Make sure every authorized caregiver who handles practice or meet travel can see the team’s current information.",
+      "reviewed": "2026-10-24",
+      "sections": [
+        {
+          "title": "Start with the club invitation",
+          "html": "<ol><li>Open the invitation sent for your athlete and follow its sign-in or account-creation instructions.</li><li>Check the team and season name, then open the next practice to confirm you have access.</li><li>Complete the athlete profile fields requested by the club and add the requested athlete photo.</li></ol><p>Keep contact details and athlete information in the team system. Each caregiver should use their own account access; do not share a password or forward your invitation as another person’s access.</p>"
+        },
+        {
+          "title": "Add the people who need the updates",
+          "html": "<p>The athlete’s primary contact or team administrator can help add authorized caregivers, including grandparents who handle transport. Menu wording differs between TeamSnap versions; follow the instructions matching your app.</p><div class=\"teamsnap-options\"><section><h3>TeamSnap (legacy)</h3><p>Open <strong>Roster</strong>, choose your athlete and use <strong>Add Family Member</strong>. Enter the caregiver’s details, enable <strong>Invite to Join</strong> and save. The main contact must accept their invitation first.</p><p><a href=\"https://helpme-teams.teamsnap.com/article/2909-add-family-or-contacts-to-a-profile\" target=\"_blank\" rel=\"noopener noreferrer\">Official steps for web, iPhone and Android</a></p></section><section><h3>TeamSnap ONE</h3><p>Open the team, choose your player on the roster and select <strong>Add Contacts</strong>. Choose the appropriate contact role and send the invitation. A primary contact can add others; ask the team administrator if you need help.</p><p>Contact access in TeamSnap ONE can cover all teams the player is on. Check that this is appropriate before inviting someone.</p><p><a href=\"https://teams-help.teamsnap.com/article/2965-adding-or-removing-contacts-for-players\" target=\"_blank\" rel=\"noopener noreferrer\">Official TeamSnap ONE contact instructions</a></p></section></div><p>Add people under the athlete’s profile. If you also have a coach or administrator profile, ask the team administrator to confirm the right place rather than extending your administrative access.</p>"
+        },
+        {
+          "title": "Check access and notifications together",
+          "html": "<ul><li>Have each caregiver sign in and open the same upcoming practice or meet.</li><li>Confirm they can read a current team message and find any updated arrival or entrance instructions.</li><li>Review their app/email notification preferences and the phone’s app-notification setting.</li><li>Agree who updates availability and communicates with the team so caregivers do not send conflicting replies.</li></ul><p>Check TeamSnap before travel even when reminders are enabled. <a href=\"https://www.teamsnap.com/teams/member-setup\" target=\"_blank\" rel=\"noopener noreferrer\">TeamSnap’s setup guide</a> explains notification preferences and optional calendar syncing.</p>"
+        },
+        {
+          "title": "If the team or invitation is missing",
+          "html": "<p>Check the invitation address and your spam/junk folder. Ask the team administrator to verify the contact record and resend the invitation if needed. Changing another contact’s email is not the way to add a new caregiver.</p><p>Contact the club at <a href=\"mailto:grindstonewrestlingmd@gmail.com\">grindstonewrestlingmd@gmail.com</a> or through its <a href=\"https://www.grindstonewrestling.org/contact\" target=\"_blank\" rel=\"noopener noreferrer\">contact page</a>. Explain the team and the access problem; never send your password.</p>"
+        },
+        {
+          "title": "Use your program’s event instructions",
+          "html": "<p>Account access and event entry are different. Follow the event’s registration, arrival and equipment instructions.</p><p><strong>Mat Rats:</strong> Expected attendance is the planned default for applicable meets unless the family opts out; follow the posted event instructions while coaches finalize the workflow.</p><p><strong>Valkyries:</strong> Competition remains optional under a separate, flexible system. The Mat Rats default does not apply.</p><p><a href=\"#family/season-quickstart\">Return to the season quickstart</a> · <a href=\"#family/meet-day\">Prepare for meet day</a></p>"
+        }
+      ],
+      "sources": [
+        {
+          "title": "TeamSnap: member setup and notifications",
+          "url": "https://www.teamsnap.com/teams/member-setup"
+        },
+        {
+          "title": "TeamSnap: adding family contacts (legacy version)",
+          "url": "https://helpme-teams.teamsnap.com/article/2909-add-family-or-contacts-to-a-profile"
+        },
+        {
+          "title": "TeamSnap ONE: adding and managing player contacts",
+          "url": "https://teams-help.teamsnap.com/article/2965-adding-or-removing-contacts-for-players"
+        },
+        {
+          "title": "TeamSnap: managing roster profile information",
+          "url": "https://helpme.teamsnap.com/article/111-manage-roster-profile-information"
+        },
+        {
+          "title": "TeamSnap: invitation troubleshooting",
+          "url": "https://helpme.teamsnap.com/article/614-how-to-resend-an-invitation"
+        }
+      ]
     }
   ],
   "faq": [
@@ -356,6 +436,14 @@ window.GRINDSTONE_FAMILY = {
     {
       "question": "Should my child cut weight?",
       "answer": "No. Keep meals and hydration normal. Do not restrict food or water or deliberately sweat off weight for a lower class. Discuss weight or health concerns with your child’s pediatrician or another qualified healthcare professional, and tell the coach about growth or weight changes that affect event placement."
+    },
+    {
+      "question": "How do I add another caregiver to TeamSnap?",
+      "answer": "Add an authorized caregiver under the athlete’s contacts and make sure they receive their own access. TeamSnap and TeamSnap ONE use different menus. <a href=\"#family/teamsnap\">Follow the setup guide</a>, then have each caregiver open a current event and check notifications."
+    },
+    {
+      "question": "Is there a short season sheet we can print?",
+      "answer": "Use the <a href=\"#family/season-quickstart\">2026–27 season quickstart</a> for the schedule, entrances, family checklist and competition distinctions. Its print layout is designed for two sides of one Letter sheet; TeamSnap carries current changes."
     }
   ],
   "volunteer": {
@@ -403,6 +491,7 @@ window.GRINDSTONE_FAMILY = {
     ]
   },
   "downloads": [
+    {"id":"season-quickstart-2026","title":"2026–27 family quickstart","description":"Current schedule, entrances, gear and TeamSnap guidance. Two Letter pages for double-sided printing. Prepared October 24, 2026.","type":"PDF","pages":2,"path":"downloads/season-quickstart-2026.pdf","group":"families"},
     {
       "id": "family-guide",
       "title": "Parent guide",
@@ -509,7 +598,7 @@ window.GRINDSTONE_FAMILY = {
     {
       "id": "family-kit",
       "title": "Complete family and presenter kit",
-      "description": "All twelve public files above in one download, including the printable handouts and one final presentation. Source documents prepared September 26, 2026.",
+      "description": "Preserved September 2026 family and presenter kit: twelve original files, including printable handouts and the final presentation. The current season quickstart is a separate download.",
       "type": "ZIP",
       "path": "downloads/family-kit.zip",
       "group": "presenters"

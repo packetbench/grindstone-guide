@@ -1,0 +1,31 @@
+/* Seasonal family companion; the existing article renderer supplies the content. */
+.quickstart-brand{display:flex;align-items:center;gap:16px;margin:0 0 20px}.quickstart-brand img{flex:none}.quickstart-brand p{margin:0;font-size:14px;line-height:1.5}.quickstart-venues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:20px 0}.quickstart-venues p{margin:0;padding:16px;border-left:3px solid var(--gold);background:var(--paper);font-size:14px}.quickstart-checklist{padding-left:22px}.quickstart-print-tip{padding:14px 16px;background:var(--paper);font-size:14px;border:1px solid var(--line);border-radius:8px}.quickstart-link{padding:16px;background:var(--paper);border-left:3px solid var(--gold);margin:20px 0;overflow-wrap:anywhere}.teamsnap-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:20px 0}.teamsnap-options>section{border:1px solid var(--line);border-radius:9px;padding:18px}.teamsnap-options h3{margin-top:0}.teamsnap-options p:last-child{margin-bottom:0}
+@media(max-width:720px){.quickstart-brand{align-items:flex-start;gap:12px}.quickstart-brand img{width:46px;height:46px}.quickstart-venues,.teamsnap-options{grid-template-columns:1fr}.quickstart-venues{gap:12px}.quickstart-link{padding:14px;font-size:14px}.family-quickstart .prose{padding:20px}}
+@page family-quickstart{size:Letter;margin:.5in .55in}
+@media print{
+ main:has(.family-quickstart){page:family-quickstart;font:10.5pt/1.35 Arial,sans-serif}
+ main:has(.family-quickstart)>.detail-heading{margin:0 0 12pt;display:block}
+ main:has(.family-quickstart)>.detail-heading .page-title{margin:0}
+ main:has(.family-quickstart)>.detail-heading .page-title>p{display:none}
+ main:has(.family-quickstart)>.detail-heading h1{font-size:22pt;margin:0;line-height:1.15}
+ .family-quickstart,.family-quickstart .prose{display:block;border:0;padding:0;margin:0;break-inside:auto;overflow:visible}
+ .family-quickstart .prose>section{break-inside:avoid;margin:0 0 10pt}
+ .family-quickstart .prose h2{font-size:13pt;line-height:1.2;margin:12pt 0 7pt;padding:0 0 4pt;border-top:0;border-bottom:1px solid #aaa}
+ .family-quickstart .prose p{font-size:10.5pt;line-height:1.35;margin:0 0 7pt}
+ .family-quickstart .prose li{margin-bottom:5pt}
+ .family-quickstart .prose ul,.family-quickstart .prose ol{margin:0 0 8pt;padding-left:18pt}
+ .family-quickstart .quickstart-brand{gap:10pt;margin-bottom:8pt}
+ .family-quickstart .quickstart-brand img{width:40pt;height:40pt}
+ .family-quickstart .quickstart-brand p{font-size:9pt;margin:0}
+ .family-quickstart .program-table{display:table;width:100%;font-size:9pt;overflow:visible}
+ .family-quickstart .program-table th,.family-quickstart .program-table td{padding:5pt;border:1px solid #aaa}
+ .family-quickstart .quickstart-venues{display:grid;grid-template-columns:1fr 1fr;gap:12pt;margin:10pt 0}
+ .family-quickstart .quickstart-venues p{padding:7pt;background:white;border-left:2pt solid #777;font-size:9pt}
+ #family-season-quickstart-2{break-before:page}
+ #family-season-quickstart-2 h2:before{content:'GRINDSTONE WRESTLING · 2026–27';display:block;font-size:9pt;letter-spacing:.06em;margin-bottom:10pt}
+ .family-quickstart .quickstart-link{background:white;padding:9pt;border:1px solid #aaa;margin:8pt 0}
+ .family-quickstart .quickstart-link a{font-size:10pt;overflow-wrap:anywhere}
+ .family-quickstart .prose .fine{font-size:9pt;line-height:1.35}
+ .family-quickstart .family-reviewed,.family-quickstart .family-sources,.family-quickstart .family-related{display:none!important}
+ .family-quickstart a{color:black;text-decoration:none}
+}

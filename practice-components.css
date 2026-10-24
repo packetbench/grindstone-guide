@@ -1,0 +1,43 @@
+/* Optional practice-builder components: branch choices and one-clock station cards. */
+.practice-components,.component-picker{min-width:0;margin:1rem 0;padding:1rem;border:1px solid var(--border,#cbc4b7);border-radius:.6rem;background:var(--paper,#fffdf7)}
+.practice-components>details,.component-station>details{margin:.8rem 0}
+.component-options{min-width:0;border:1px solid #c3bba7;padding:.8rem;border-radius:.4rem}
+.component-options legend{font-weight:700;padding:0 .35rem}
+.component-choice{display:flex!important;align-items:flex-start;gap:.65rem;margin:.65rem 0;cursor:pointer}
+.component-choice input[type=checkbox]{width:1.25rem;min-width:1.25rem;height:1.25rem;margin:.15rem 0;accent-color:#655016}
+.component-choice span{min-width:0}
+.component-choice small{display:block;font-size:.9rem;line-height:1.45;margin-top:.25rem}
+.component-field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.practice-components label{display:flex;flex-direction:column;gap:.35rem;font-size:.95rem;font-weight:600}
+.practice-components input,.practice-components select,.practice-components textarea{box-sizing:border-box;width:100%;min-width:0;max-width:100%;font:inherit;font-size:16px;border:1px solid #bdb6a8;border-radius:.35rem;padding:.6rem;background:#fff;color:#202428}
+.practice-components textarea{resize:vertical;line-height:1.5}
+.practice-components input:invalid,.practice-components textarea:invalid{border-color:#98612a}
+.practice-components button,.component-picker button{min-height:44px;max-width:100%;white-space:normal;line-height:1.35}
+.practice-components summary{min-height:32px;padding:.4rem 0;cursor:pointer;font-weight:700}
+.component-stations{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;margin:1rem 0}
+.component-station{min-width:0;padding:1rem;border:1px solid #b9b29f;border-left:4px solid #b29442;border-radius:.4rem;background:#fff}
+.component-station>label{margin:.7rem 0}
+.component-station h4,.component-guide h5{margin:.2rem 0 .6rem;font-size:1rem}
+.component-guide{margin:1rem 0;padding:.8rem;background:#f6f4ed;border:1px solid #d5d0c3;border-radius:.35rem;overflow-wrap:anywhere}
+.component-guide p{line-height:1.5}
+.component-guide li{margin:.3rem 0;line-height:1.5}
+.component-preline{white-space:pre-line;overflow-wrap:anywhere}
+.component-warning{padding:.8rem .8rem .8rem 1.8rem;background:#fff5d9;color:#4d3816;border-left:4px solid #ad8127;line-height:1.5}
+p.component-warning{padding-left:.8rem}
+.component-timing{margin:1rem 0;overflow-wrap:anywhere}
+.component-links{display:flex;flex-wrap:wrap;gap:.5rem 1rem}
+.component-links a{display:inline-block;padding:.25rem 0;overflow-wrap:anywhere}
+.component-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.component-print{margin:1rem 0}
+.component-station-print{border:1px solid #aaa;padding:.7rem;margin:.7rem 0}
+.component-station-print h4{margin:.1rem 0 .7rem}
+@media(max-width:600px){.practice-components,.component-picker{padding:.7rem}.component-field-grid{grid-template-columns:minmax(0,1fr)}.component-station{padding:.7rem}.component-actions{flex-direction:column}.component-actions button{width:100%}}
+@media print{
+.component-print{font-size:10pt;line-height:1.4}
+.component-print h3,.component-print h4,.component-print h5{break-after:avoid}
+.component-print .component-guide,.component-print .component-station-print{break-inside:auto;background:#fff;padding:.5rem}
+.component-print .component-warning{background:#fff;border:1px solid #777;color:#000}
+.component-print .component-timing{break-inside:avoid}
+.component-print .component-links{font-size:9pt}
+.component-print .component-links a{color:#000}
+}

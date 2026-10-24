@@ -3,7 +3,7 @@
 const fs=require("fs"),path=require("path"),vm=require("vm"),assert=require("assert/strict");
 const root=process.env.GRINDSTONE_TEST_ROOT||path.resolve(__dirname,"..");
 const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
-const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","skill-pathway.js","practice-builder.js","in-progress-data.js","in-progress.js"];
+const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","skill-pathway.js","practice-weeks.js","practice-components.js","practice-builder.js","in-progress-data.js","in-progress.js"];
 const clone=value=>JSON.parse(JSON.stringify(value));
 const decode=text=>String(text).replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 function harness(initial="#moves",savedHistory){
@@ -200,7 +200,7 @@ for(const id of ["first-practice","programs-levels"]){const article=h.context.wi
 {
  const hub=harness('#families'),html=hub.elements.main.innerHTML;
  const links=Array.from(html.matchAll(/<a class="family-task" href="([^"]+)"/g),match=>decode(match[1]));
- assert.deepEqual(links,['#family/first-practice','#family/first-practice?section=1','#family/first-practice?section=3','#family/meet-day','#family/match-basics','#family/health']);
+ assert.deepEqual(links,['#family/season-quickstart','#family/teamsnap','#family/first-practice','#family/first-practice?section=1','#family/first-practice?section=3','#family/meet-day','#family/match-basics','#family/health']);
  for(const link of links){
   hub.navigate(link);assert.equal(hub.location.hash,link);assert(!hub.elements.main.innerHTML.includes('<h1>Page not found'));
   const section=new URLSearchParams(link.split('?')[1]||'').get('section');

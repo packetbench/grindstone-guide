@@ -8,14 +8,14 @@ const values = new Map(), writes = [];
 let failStorage = false, allowConfirm = true;
 const storage = { getItem: k => { if (failStorage) throw Error('disabled'); return values.get(k) || null; }, setItem: (k, val) => { if (failStorage) throw Error('full'); values.set(k, val); writes.push(k); } };
 const ctx = { window: { localStorage: storage, confirm: () => allowConfirm }, URL, URLSearchParams, console, Blob, setTimeout };
-for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'game-guides-a.js', 'game-guides-b.js', 'game-guides-c.js', 'game-guide-library.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js', 'practice-builder.js']) {
+for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'game-guides-a.js', 'game-guides-b.js', 'game-guides-c.js', 'game-guide-library.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js', 'practice-weeks.js', 'practice-components.js', 'practice-builder.js']) {
   if (!fs.existsSync(path.join(base, file))) throw Error('Missing ' + file);
   vm.runInNewContext(fs.readFileSync(path.join(base, file), 'utf8'), ctx, { filename: file });
 }
 const api = ctx.window.GRINDSTONE_BUILDER, t = api.testing;
 function fakeRoot() {
   const nodes = new Map(), listeners = {};
-  return { dataset: {}, listeners, querySelector(selector) { if (selector === ':invalid') return null; if (!nodes.has(selector)) nodes.set(selector, { innerHTML: '', textContent: '', value: '', checked: false, disabled: false, hidden: false, focus() {} }); return nodes.get(selector); }, querySelectorAll() { return []; }, addEventListener(name, fn) { listeners[name] = fn; } };
+  return { dataset: {}, listeners, querySelector(selector) { if (selector === ':invalid' || selector === '[data-week-content]') return null; if (!nodes.has(selector)) nodes.set(selector, { innerHTML: '', textContent: '', value: '', checked: false, disabled: false, hidden: false, focus() {} }); return nodes.get(selector); }, querySelectorAll() { return []; }, addEventListener(name, fn) { listeners[name] = fn; } };
 }
 let root;
 function mount(params = '') { api.render(new URLSearchParams(params)); root = fakeRoot(); api.bind(root); return root; }
@@ -375,4 +375,5 @@ check('builder search finds a guide by an exact coaching cue', () => {
   resetCase(); picker('search', 'Legs back, hips low.'); assert(visibleIds().includes('P07'));
 });
 
+check('detaching a selected series retains its full teaching snapshots in manual copies', () => { resetCase(); const c = ctx.window.GRINDSTONE_COMPONENTS; const source = t.normalizeCatalog().find(x => x.id === 'series:' + series.id); const block = c.selectSeries(t.blockFrom(source, 'series'), [c.testing.branchKey(series.branches[0])], t.normalizeCatalog()); const p = state().plan; p.blocks = [block]; t.replaceDraft(p); t.action('detach-guide', 0); const kept = state().plan.blocks[0]; assert.equal(kept.sourceId, ''); assert.equal(kept.type, 'custom'); assert.deepEqual(kept.components.series.guides, block.components.series.guides); const imported = t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:state().plan})); assert(imported.blocks[0].components.series.guides.length); for (const guide of block.components.series.guides) assert(t.printHtml(false).includes(t.esc(guide.title))); });
 console.log('\n' + checks + ' builder checks passed. No files written.');
