@@ -293,7 +293,8 @@ window.COACH_DRAFTS = {
         "Exact-name Pennsylvania, heavyweight, youth, high-school, results and spelling-variant searches have not yet established his school or club.",
         "PAJW, MAWA, Pennsylvania school/tournament and name-variant searches did not establish a school or photo. User-supplied youth heavyweight history retained. Confirmed wrong racer remains in Who we are not.",
         "New professional-directory lead is unresolved and could still belong to the rejected racing namesake. Public PA school, sports, alumni and company-photo checks supplied no attributable portrait in this pass.",
-        "Direct PA-Wrestling surname search returned no Brian/Bryan Leaf among 25 Leaf-substring records. Its high-school coverage does not rule out the user-supplied youth wrestling history. Recent public Mat Rats team captions also supplied no individual Brian tag. New school lead is queued, not assigned."
+        "Direct PA-Wrestling surname search returned no Brian/Bryan Leaf among 25 Leaf-substring records. Its high-school coverage does not rule out the user-supplied youth wrestling history. Recent public Mat Rats team captions also supplied no individual Brian tag. New school lead is queued, not assigned.",
+        "Additional youth-specific checks covered PJW champions, PA Mat Rankings and surviving 1999, 2008 and 2013 MAWA records without an attributable Brian Leaf match. Several 1997–2004 archive links are defunct or inaccessible. These incomplete records cannot establish that he did not wrestle; the user’s Pennsylvania heavyweight background is retained."
       ],
       "highlights": [
         {
@@ -341,9 +342,10 @@ window.COACH_DRAFTS = {
       "summary": "Kaia Condon is a current McDaniel College wrestler who brings experience from Maryland’s girls wrestling circuit and collegiate competition to Grindstone’s coaching team.",
       "paragraphs": [
         "Kaia’s wrestling background began at Albert Einstein High School in Kensington, Maryland. In January 2023, she won the 141–148-pound division at the DCSAA Girls Invitational and received the event’s most outstanding wrestler award.",
-        "She went on to earn consecutive podium finishes at the Maryland state championships. Wrestling at 130 pounds, Kaia placed fifth in 2023 and improved to fourth in 2024. Those results established her among the state’s leading competitors in her weight class during her high-school years.",
-        "Kaia wrestles for McDaniel College in Westminster. During the Green Terror’s 2025–26 season, she competed at both 180 and 207 pounds. She recorded her first college victory at the Princeton Open on November 2, 2025. A week later, she earned two wins by fall as McDaniel swept Arcadia and Alvernia in dual competition.",
+        "Kaia earned three consecutive podium finishes at the Maryland state championships: third at 135 pounds in 2022, fifth at 130 pounds in 2023, and fourth at 130 pounds in 2024. In the 2022 third-place bout, she pinned Meade’s Viviana Abalama in 2 minutes, 22 seconds.",
+        "Kaia wrestles for McDaniel College in Westminster. During the Green Terror’s 2025–26 season, she competed at both 180 and 207 pounds. She recorded her first college victory at the Princeton Open on November 2, 2025. A week later, she earned two wins by fall as McDaniel swept Arcadia and Alvernia in dual competition. McDaniel’s wrestling program recognized those two pins with its November 10 Performance of the Week feature.",
         "Her contributions continued through the winter. A pin helped finish McDaniel’s 34–14 win over Randolph at the November 23 Sam Case Classic. At the Ursinus Duals on January 11, 2026, she added two more falls, including a 19-second pin against East Stroudsburg. McDaniel described that result as the third-fastest fall in program history at the time.",
+        "Away from the mat, Kaia also contributed to school theatre. The Cappies’ 2023–24 critics’ choices list credits her alongside Natalie McMurry and the Albert Einstein lighting crew for the school’s production of Lavender.",
         "At Grindstone, Kaia is part of the 2026–27 Mat Rats and Valkyries coaching roster. Her path from Maryland high-school tournaments to collegiate competition gives young wrestlers a local example of the opportunities available as they progress in the sport."
       ],
       "review_title": "Identity confirmed; profile and photo choices await review",
@@ -358,6 +360,9 @@ window.COACH_DRAFTS = {
         "Retrieved 14 publicly displayed Flo match thumbnails. Twelve show Condon on the scoreboard, one is a weaker named-page candidate, and one mismatched 100-pound scoreboard was excluded from her gallery but preserved locally.",
         "Retrieved 11 original Marymount action images, each up to 2,000 pixels, as working matches to her January 17, 2026 207-pound bout. The official result, chronological photo sequence and named-opponent article provide the identity evidence.",
         "The USA Wrestling public name search returned a Kaia Condon record in Maryland. It does not itself provide a biography or portrait.",
+        "The original 2022 Trackwrestling bracket and a contemporary Maryland Girls Wrestling public post agree on third at 135 pounds, fall 2:22. This extends the documented state podium history to three consecutive years.",
+        "The new official McDaniel graphic explicitly names Kaia. Its embedded action photos were not identified by face, and their meet/date is not inferred from the recognition post date. No cropping, enlargement or AI editing was applied.",
+        "Cappies explicitly says its critics’ choices are not nominations; the biography claims participation in lighting, not a theatre award.",
         "Retrieved 11 Marymount action originals and 13 usable or candidate Flo match thumbnails. One additional mismatched Flo thumbnail is retained locally as rejected source evidence. Twelve McDaniel recap hero images and opposing-school galleries were reviewed; unrelated athletes were excluded. Two Sinclair albums remain CAPTCHA-limited manual leads."
       ],
       "photo": {
@@ -372,7 +377,7 @@ window.COACH_DRAFTS = {
       "highlights": [
         {
           "label": "Maryland state finishes",
-          "text": "5th in 2023 · 4th in 2024 · 130 pounds."
+          "text": "3rd in 2022 at 135 lb; 5th in 2023 and 4th in 2024 at 130 lb."
         },
         {
           "label": "College",
@@ -453,6 +458,26 @@ window.COACH_DRAFTS = {
           "title": "USA Wrestling · MPSSAA girls results",
           "url": "https://usawrestlingevents.com/results/3916?page=7",
           "supports": "Public result names Kaia Condon of Albert Einstein at 130 pounds with a 1:25 fall over Delaney Gray."
+        },
+        {
+          "title": "Trackwrestling · 2022 MPSSAA Girls State Championships",
+          "url": "https://www.trackwrestling.com/tw/predefinedtournaments/VerifyPassword.jsp?tournamentId=602019132",
+          "supports": "March 3–5, 2022; Brackets → 135 → Consolation. Kaia Condon, Albert Einstein: third, fall 2:22 over Viviana Abalama, bout 376."
+        },
+        {
+          "title": "Trackwrestling · named 2022 third-place bout",
+          "url": "https://www.trackwrestling.com/TextCam.jsp?eventType=predefined&eventId=602019132&matchId=31999462132",
+          "supports": "Names Kaia Condon and Viviana Abalama and confirms Condon won. May require opening the tournament first."
+        },
+        {
+          "title": "McDaniel Wrestling · Performance of the Week",
+          "url": "https://www.facebook.com/photo/?fbid=1346629403921905&set=a.462561812328673",
+          "supports": "Public November 10, 2025 named graphic and caption, two pins against Arcadia and Alvernia."
+        },
+        {
+          "title": "Cappies · 2023–24 critics’ choices",
+          "url": "https://content.cappies.com/shared/new/choices-listcat.php?all=1&region=NCA&year=2024",
+          "supports": "Names Kaia Condon with the Albert Einstein lighting crew for Lavender. These are critics’ show-night choices, not nominations or awards."
         }
       ],
       "leads": [
@@ -494,6 +519,30 @@ window.COACH_DRAFTS = {
       ],
       "gallery_title": "On the mat: college and high-school wrestling",
       "gallery": [
+        {
+          "src": "kaia-official/performance-week.jpg",
+          "coach": "kaia-condon",
+          "name": "Kaia Condon",
+          "alt": "McDaniel Wrestling named Kaia its Performance of the Week on November 10, 2025 after two pins against Arcadia and Alvernia. This official graphic includes a posed portrait and two competition photographs. The embedded photos’ capture dates are not specified. Complete 1080 × 1350 source image, unchanged.",
+          "caption": "McDaniel Wrestling named Kaia its Performance of the Week on November 10, 2025 after two pins against Arcadia and Alvernia. This official graphic includes a posed portrait and two competition photographs. The embedded photos’ capture dates are not specified. Complete 1080 × 1350 source image, unchanged.",
+          "source_url": "https://www.facebook.com/photo/?fbid=1346629403921905&set=a.462561812328673",
+          "source_label": "Original public source",
+          "kind": "Official college recognition / action photos",
+          "selection": "gallery",
+          "native": true
+        },
+        {
+          "src": "kaia-official/state-third-2022.png",
+          "coach": "kaia-condon",
+          "name": "Kaia Condon",
+          "alt": "Kaia Condon and Viviana Abalama in their 2022 Maryland state third-place wrestling match.",
+          "caption": "Kaia Condon (Albert Einstein) vs. Viviana Abalama (Meade), 135-pound third-place match, March 5, 2022. Kaia won by fall in 2:22. Original 400 x 225 FloWrestling preview; scoreboard and match title both name the wrestlers.",
+          "source_url": "https://www.flowrestling.org/events/7362654-2022-mpssaa-md-state-wrestling-championship/videos?playing=7552963",
+          "source_label": "Original public source",
+          "kind": "2022 state third-place match · public preview",
+          "selection": "gallery",
+          "native": true
+        },
         {
           "src": "marymount-photos/mm-148.jpg",
           "coach": "kaia-condon",
@@ -1236,7 +1285,8 @@ window.COACH_DRAFTS = {
       "paragraphs": [
         "Andy is part of the Mat Rats and Valkyries coaching roster supporting young wrestlers in the Westminster area.",
         "Away from coaching, this draft places Andy at Captain Jerry’s, a Baltimore custom apparel and promotional-products business. The company’s own history says Andy joined the family business in 2008 and became owner in 2011, continuing the business his grandfather Gerald founded in 1976. Its work includes screen printing, embroidery and promotional products. The connection between this business owner and Coach Andy remains a working assumption.",
-        "The proposed Andy profile also has a documented grappling background. Public Relson Gracie training photographs explicitly tag him in September 2015, and his March 2022 post describes attending an open mat at Gracie Charlottesville with Jordan. These sources support participation in grappling without establishing a belt rank or teaching credential."
+        "The proposed Andy profile also has a documented grappling background. Public Relson Gracie training photographs explicitly tag him in September 2015, and his March 2022 post describes attending an open mat at Gracie Charlottesville with Jordan. These sources support participation in grappling without establishing a belt rank or teaching credential.",
+        "A probable competitive connection points to Fight2Win109 in Baltimore in April 2019. Andy’s public profile promoted that exact event a week beforehand, and the published card and schedule name Andrew Millman against Michael Mehl. The event connection, Relson Gracie background and a matching academy review under Andrew make this a plausible continuation of his grappling story; the bout-to-coach identity is still awaiting confirmation."
       ],
       "review_title": "Proposed local identity with named photo sources",
       "identity_note": "Proposed Coach Andy match: Captain Jerry’s owner Andy Millman. Public photo tags connect the same profile to Relson Gracie training, an open mat with Jordan and Mat Rats season posts. The final roster-to-profile match remains for review.",
@@ -1245,8 +1295,9 @@ window.COACH_DRAFTS = {
         "Captain Jerry’s public page directly tags Jordan Millman. Her current profile photograph explicitly tags Andy at left and links his own profile, which also shares company posts.",
         "The two coach identities remain proposed. The public tags establish the photo and business trail; no family relationship is inferred.",
         "Five complete source photographs are preserved. Individual portraits are native crops of the largest recent photograph, with no enlargement, reconstruction or enhancement.",
-        "A separate Andrew Millman competed against Michael Mehl at Fight2Win109 in Baltimore in April 2019. No source yet connects that athlete to this business owner or coach; the result remains a lead. Its black thumbnail is retained only in the local research files.",
-        "New public posts connect the proposed profiles to Mat Rats and grappling. Group-photo subjects are not identified by appearance; captions and explicit tags supply the associations. Coaching roles remain draft assumptions pending review."
+        "An Andrew Millman is named on the Fight2Win109 card against Michael Mehl in Baltimore in April 2019. The proposed Andy profile promoted that event; this supports a possible connection but does not confirm the competitor-to-coach identity. The unusable black thumbnail remains only in the local research files.",
+        "New public posts connect the proposed profiles to Mat Rats and grappling. Group-photo subjects are not identified by appearance; captions and explicit tags supply the associations. Coaching roles remain draft assumptions pending review.",
+        "A probable Fight2Win connection has emerged for Andy: his public profile promoted Fight2Win109 on April 13, 2019, and the event's published schedule names Andrew Millman against Michael Mehl a week later. The Relson Gracie affiliation is consistent with Andy's documented training history. A separate public Gracie Charlottesville review under Andrew Millman also matches Andy's March 2022 open-mat visit. The specific bout-to-profile link still needs confirmation before adding it as a settled competitive credential."
       ],
       "highlights": [
         {
@@ -1289,6 +1340,21 @@ window.COACH_DRAFTS = {
           "title": "Jordan Millman · Mat Rats season, November 2025",
           "url": "https://www.facebook.com/joashley1991/posts/pfbid0nM6L1rGo8QKNWRUJCn3wkYoHGpTWxrZvGeJKX7BHK2nukM8G2d8RWnk9PXyh6bRAl",
           "supports": "Public post explicitly tags Andy; Jordan’s reply specifies the Blue team. No coaching title is stated."
+        },
+        {
+          "title": "Andy Millman · public Fight2Win109 cover",
+          "url": "https://www.facebook.com/photo?fbid=10214482546637237&set=a.4689705840410",
+          "supports": "Exact millman1 profile promotes April 20, 2019 event on April 13. Supports event connection, not proof of competing."
+        },
+        {
+          "title": "Viral BJJ · Fight2Win109 public schedule",
+          "url": "https://www.facebook.com/viralbjj/videos/310689819626827",
+          "supports": "Published schedule names Michael Mehl vs Andrew Millman at 7:28 p.m.; announced time, not verified actual start."
+        },
+        {
+          "title": "Gracie Charlottesville · public Andrew Millman review",
+          "url": "https://maps.google.com/maps/contrib/105347927095694784055",
+          "supports": "Academy open-mat review and attributed March 2022 group image match Andy’s documented visit context; contextual name variant, not a direct profile cross-link."
         }
       ],
       "leads": [
@@ -1300,7 +1366,7 @@ window.COACH_DRAFTS = {
         {
           "title": "FloGrappling · Michael Mehl vs Andrew Millman, Fight2Win109",
           "url": "https://www.flograppling.com/video/6457452-michael-mehl-vs-andrew-millman-fight-2-win-109",
-          "supports": "Named Baltimore grappling athlete; connection to Coach Andy remains unverified."
+          "supports": "Probable athlete connection now supported by Andy’s own promotion of the exact event, Relson training history and Andrew-name academy review. Specific bout identity remains unconfirmed; no winner or current rank inferred."
         }
       ],
       "photo": {
@@ -1447,7 +1513,8 @@ window.COACH_DRAFTS = {
         "South Dakota and Indiana sports namesakes were not substituted for the local candidate.",
         "The employer’s original JPEG and later PNG crop show the same photograph. Both publisher files are retained; no new facial reconstruction, sharpening or enlargement was applied. The coach-to-employer identity link remains provisional.",
         "Completed all eight exact-name newspaper search results, retaining only pages that actually name Tyler. No additional named Tyler photo was found. The 2001 picture names Jordan Wike and was not assigned to Tyler.",
-        "Two original publisher portrait renditions from Webb Environmental added as a provisional local exact-name match. Full-framed JPEG preferred over the later tighter crop; both preserved."
+        "Two original publisher portrait renditions from Webb Environmental added as a provisional local exact-name match. Full-framed JPEG preferred over the later tighter crop; both preserved.",
+        "The public Webb Environmental staff page again explicitly labeled the existing Tyler portrait. Its linked company Facebook page remains a useful route for named staff photos; this does not establish the club identity."
       ],
       "highlights": [
         {
@@ -1680,7 +1747,8 @@ window.COACH_DRAFTS = {
         "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
         "Added 2010 open and 2025 Bald & Fat results, plus Copper training record. McDaniel yearbooks/newspapers checked. Organizer’s 52 unnamed gallery images are older than the 2025 event and were not assigned to Brad.",
         "New pass checked McDaniel 2008–2010 yearbook OCR, athletics search, old photographer albums and Parkville photo links. Three unassigned Sinclair previews are preserved as context, not selected as Brad portraits. Parkville’s public image links are dead and its album index requires login.",
-        "The public athlete profile has no videos. Three new originals preserve a proposed individual portrait, the Lucky Ducks champions and the full event group. Earlier unassigned McDaniel photos remain in the collection."
+        "The public athlete profile has no videos. Three new originals preserve a proposed individual portrait, the Lucky Ducks champions and the full event group. Earlier unassigned McDaniel photos remain in the collection.",
+        "The organizer’s full 2025 results independently confirm the Dead 185 title and Lucky Ducks team championship. Homepage and three official gallery pages supplied no named Brad bout video or image. The organizer-linked joeytakedowns Instagram remains an unexamined caption/video route."
       ],
       "highlights": [
         {
@@ -1771,6 +1839,11 @@ window.COACH_DRAFTS = {
           "title": "FloWrestling · named 2025 bracket",
           "url": "https://www.flowrestling.org/nextgen/events/2m4vFZwIDY6KlflI/brackets?bracket=32DvcLrEwXdjc2yNgG&wrestlerId=1gH4ql3d9FtBPh59&wrestlerName=Brad%20Gabrish",
           "supports": "Quarterfinal #5 mat 2, semifinal #40 mat 2 and final #92 mat 3."
+        },
+        {
+          "title": "Bald & Fat Classic · official 2025 results",
+          "url": "https://docs.google.com/document/d/149bIi_BOUgP4xGHKj4AegQp8E8Z60mn6IWqCqjIWiLQ/edit?usp=sharing",
+          "supports": "Organizer result document confirms Brad Gabrish of Lucky Ducks first at Dead 185; Lucky Ducks team champions with 103.5 points."
         }
       ],
       "leads": [
@@ -1845,6 +1918,7 @@ window.COACH_DRAFTS = {
       "paragraphs": [
         "Daniel’s wrestling background includes both freestyle and Greco-Roman competition as a young athlete. At the 1997 Northeast Kids Regionals in Syracuse, he placed third in novice freestyle and second in novice Greco-Roman at 120 pounds.",
         "He continued at Cedar Springs High School in Michigan. As a junior, Dan qualified for the 2002 Division 2 individual state finals at 145 pounds. At the state tournament, he pinned Eaton Rapids’ Jake Strank in 4 minutes, 15 seconds.",
+        "A possible additional chapter in Daniel’s athletic background is distance running. The official 2000 Old Kent Riverbank Run results list a Cedar Springs teenager named Daniel Skelonc completing the 25K in 2:02:15 chip time. The exact name, hometown and school-era timing fit this draft’s Michigan athlete, though the connection to Coach Daniel remains provisional.",
         "Daniel is now named on Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster. This proposed biography connects his early experience across wrestling styles with his current youth-coaching role."
       ],
       "review_title": "Working match: wrestling history and a named portrait",
@@ -1858,7 +1932,8 @@ window.COACH_DRAFTS = {
         "Second pass checked the complete official 2002 Cedar Springs results: 32–20 listed record; win by fall in 4:15 over Jake Strank. No state medal or championship is claimed.",
         "No Maryland bridge was found in county volunteer lists or the Carroll County Times archive. User authorized this best-candidate draft.",
         "Cedar Springs Museum holds yearbooks and Cedar Springs Post issues from 1992 onward; target-year public scans were not located.",
-        "The public USA Wrestling Maryland name search returns two Daniel Skelonc records. No record is treated as proof of the proposed MPD or Cedar Springs connection, and membership identifiers are not published."
+        "The public USA Wrestling Maryland name search returns two Daniel Skelonc records. No record is treated as proof of the proposed MPD or Cedar Springs connection, and membership identifiers are not published.",
+        "The race row’s 33 is age-group placing, not age. The race-photo archive’s first page did not name Daniel; linked pages 2–4 were inaccessible. No uncaptioned runner photo was assigned."
       ],
       "highlights": [
         {
@@ -1890,6 +1965,11 @@ window.COACH_DRAFTS = {
           "title": "MPD · November 20, 2023 achievement awards",
           "url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
           "supports": "Official graphic explicitly names Detective Daniel Skelonc second from left; proposed coach portrait."
+        },
+        {
+          "title": "Classic Race Management · 2000 Old Kent 25K",
+          "url": "https://classicrace.com/results00/25k.htm",
+          "supports": "Daniel Skelonc, Cedar Springs, men 14–19; chip 2:02:15. Exact-name/city candidate, not a confirmed coach identity."
         }
       ],
       "photo": {

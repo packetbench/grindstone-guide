@@ -2,7 +2,7 @@
   "prepared": "2026-10-24",
   "profiles": 13,
   "portraits": 12,
-  "coach_images": 118,
+  "coach_images": 122,
   "rejected_matches": 1,
   "club_images": 41,
   "omitted": "AI reconstruction, local scripts, full PDFs, private review storage and absolute source paths",
@@ -19,13 +19,13 @@
     },
     {
       "path": "app.js",
-      "bytes": 18501,
-      "sha256": "aa536e147d8a07d8d2335a73bd7f5116730ad488680713772802892c526bd10d"
+      "bytes": 18529,
+      "sha256": "582dc47fcc53f8b2bb3174f4c224196085f25c279bb61c0517722d55c3f5fd98"
     },
     {
       "path": "facebook-queue.html",
-      "bytes": 196398,
-      "sha256": "257ddac9134c71b9760ea4503481a2575dff68db3de4165eadd280a295dab148"
+      "bytes": 208203,
+      "sha256": "3ac494dae9547573ca2694ecfd28f6ae4828bdeac60e4a2699778f597233ebeb"
     },
     {
       "path": "facebook-queue.js",
@@ -34,8 +34,8 @@
     },
     {
       "path": "facebook-queue.json",
-      "bytes": 67283,
-      "sha256": "fb5854a700d6ff22b8d017a01fe17ce5eb249d741c9f95bac2e6f78460a199cd"
+      "bytes": 72296,
+      "sha256": "ec974bb6f6e4c0d5f8b98dcef1de73689a3733908cfc3055f63a0da167a498af"
     },
     {
       "path": "queue.css",
@@ -126,6 +126,16 @@
       "path": "assets/kaia-condon.png",
       "bytes": 35188,
       "sha256": "866643042dbf246481f7ce31752bb14582b09325b9bb982ffa13177d39e673bb"
+    },
+    {
+      "path": "kaia-official/performance-week.jpg",
+      "bytes": 154477,
+      "sha256": "402f0f1dce3bef9b5848161f2fa04c6c2c3254486d8c55c4f9bb47d3910cdd18"
+    },
+    {
+      "path": "kaia-official/state-third-2022.png",
+      "bytes": 17827,
+      "sha256": "82465a76729c30ce72a7e3a04553894a2359db251c5c3e48bd946eb8399bf3cc"
     },
     {
       "path": "marymount-photos/mm-148.jpg",
@@ -663,6 +673,16 @@
       "sha256": "a34c3911aff7ca55fea7b169d3975ba2cd399cb056a08f31c6f824d6a146e7d6"
     },
     {
+      "path": "andy-bout/event-cover.jpg",
+      "bytes": 33782,
+      "sha256": "4e68ac0314898b6d253a497357ff004dccd5c694ae3940de5d3c6db026716cba"
+    },
+    {
+      "path": "andy-bout/review-group.jpg",
+      "bytes": 66710,
+      "sha256": "ec9d0b937ed8e5aa8e509f1acc28e6be81c072a2b7892e5963081a9043e7855c"
+    },
+    {
       "path": "assets/kyle-1993-page-20.png",
       "bytes": 1586743,
       "sha256": "1a75b8f7a771ac2b247657a700e60e57150d0e151480c0f38f319dfb695328d1"
@@ -924,18 +944,18 @@
     },
     {
       "path": "profiles.js",
-      "bytes": 143755,
-      "sha256": "ae47d571e66158bb95f5e1e6e1d7f7f96bde3bc7501ae2d1b7291f01a6bc02fe"
+      "bytes": 152291,
+      "sha256": "61611536ad888954350179ce95af55c39e6d978da34f2f5b00dce02a8d4070d6"
     },
     {
       "path": "gallery-data.js",
-      "bytes": 121011,
-      "sha256": "4122fef758e9f803bf86eb71b57f2d1d2ac7e4331174012f3c10182384d333ed"
+      "bytes": 126064,
+      "sha256": "fe793c3a7ae4db29fc83f4abf476a410014968627ed2320565f17fa2da4a3e1a"
     },
     {
       "path": "photo-index.json",
-      "bytes": 120988,
-      "sha256": "2c7f12eff5e9fc09f25d9a2d14828eda1d4cdaee761b9523611bf1e1c076b5cc"
+      "bytes": 126041,
+      "sha256": "5542ba9f47ae8eed45b6baf12964a6ad4321d78ebe20a74d5d8747b5b6ae0f5a"
     }
   ],
   "community_images": 8
