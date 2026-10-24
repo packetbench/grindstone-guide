@@ -1,24 +1,24 @@
 {
   "integrated_on": "2026-10-24",
-  "source_checkpoint": "coach-publish-v5/coach-drafts",
-  "received_manifest_sha256": "5b8aadcbfd1990c0aa0095ce6ede36520e3ac4fbef3fc459d6c771ef8e8b3bf1",
+  "source_checkpoint": "coach-publish-v6/coach-drafts",
+  "received_manifest_sha256": "cd23f7be25d440789320305be03e7ed3771acefe18b20e6bcfded48826a4e1b8",
   "previous_integration": {
-    "git_commit": "2a73ccfbf247e5ffe04623450686cf8ab9ddf37d",
-    "sha256": "91dc0d796751f197da04f0be7ba66507f7b1a67c895ed4f5291ea570c9aadc66",
-    "received_manifest_sha256": "ba2df50e217529f8f51fa51c74744ce5ea70d7c46a4d9b2cda2190cd7e3786f2"
+    "git_commit": "79bc8e28c174cc6391514f6da08e7e3a3f2d1feb",
+    "sha256": "63693b95b90846039dd868e5034b308aea38f1bf5ba318f687c56a1e0061c7c1",
+    "received_manifest_sha256": "5b8aadcbfd1990c0aa0095ce6ede36520e3ac4fbef3fc459d6c771ef8e8b3bf1"
   },
   "notes": [
     "The received public-manifest.json is preserved byte for byte. This record maps source-relative paths to the deployed coach-drafts paths.",
     "Only coach research is included. The Foundation Series and other planning work remain on the preview branch.",
     "Integration preserves the public draft label, removes LinkedIn biography links, retains the browser-local review explanation, and versions local scripts/styles.",
     "All source images and originals are preserved byte for byte. Previous deployed bytes and the prior integration record remain recoverable from the identified Git commit.",
-    "The duplicate local-review notice is omitted and Kyle’s research note now matches the new club-introduction lead portrait."
+    "The review notice is deduplicated, Kyle’s lead-portrait note stays current, and Andy’s earlier research note is reconciled with the new provisional event connection."
   ],
   "changed": [
     {
       "path": "app.js",
-      "received_sha256": "aa536e147d8a07d8d2335a73bd7f5116730ad488680713772802892c526bd10d",
-      "integrated_sha256": "c0f9ab35ae5ddbc304768aec3be83a42e0955598b71da2f3bc4405b95b256482"
+      "received_sha256": "582dc47fcc53f8b2bb3174f4c224196085f25c279bb61c0517722d55c3f5fd98",
+      "integrated_sha256": "33de2096774066cc3e8bca7b92a0db6ae7d99246a9456e784ddfcc71314ab647"
     },
     {
       "path": "club-gallery.html",
@@ -27,8 +27,8 @@
     },
     {
       "path": "facebook-queue.html",
-      "received_sha256": "257ddac9134c71b9760ea4503481a2575dff68db3de4165eadd280a295dab148",
-      "integrated_sha256": "9a7d703ee6d510ed46fdae5b7ea57985e94edfa3ea26cad22d591a215ebce71d"
+      "received_sha256": "3ac494dae9547573ca2694ecfd28f6ae4828bdeac60e4a2699778f597233ebeb",
+      "integrated_sha256": "7e588683a60879f05be0fa500f1ddb73d6e602b74b40ff8f74fbda76978b8716"
     },
     {
       "path": "hughes-family.html",
@@ -38,19 +38,29 @@
     {
       "path": "index.html",
       "received_sha256": "7d382366fee1059bb1fe1aef860afc33cb5c1a6e2d51f46f9f8c273ec7ebbd8b",
-      "integrated_sha256": "0053f77e165c90d1f61782369807fbdf510ea757b63bcba15761d730c3ba3de0"
+      "integrated_sha256": "1f765c694bc3919416bb084dd54c9c1085da0091706343e065f61ddc3e75d2e1"
     },
     {
       "path": "profiles.js",
-      "received_sha256": "ae47d571e66158bb95f5e1e6e1d7f7f96bde3bc7501ae2d1b7291f01a6bc02fe",
-      "integrated_sha256": "a77a57f082bfed6309fbc8a85ec0fc38f59a8323ac507c649d3e9ba69adef49b"
+      "received_sha256": "61611536ad888954350179ce95af55c39e6d978da34f2f5b00dce02a8d4070d6",
+      "integrated_sha256": "1e81ff810fcf0d88e6a1b0e22118625773665b2e6d01f382d0286b564fd5102d"
     }
   ],
   "files": [
     {
+      "path": "andy-bout/event-cover.jpg",
+      "bytes": 33782,
+      "sha256": "4e68ac0314898b6d253a497357ff004dccd5c694ae3940de5d3c6db026716cba"
+    },
+    {
+      "path": "andy-bout/review-group.jpg",
+      "bytes": 66710,
+      "sha256": "ec9d0b937ed8e5aa8e509f1acc28e6be81c072a2b7892e5963081a9043e7855c"
+    },
+    {
       "path": "app.js",
-      "bytes": 18616,
-      "sha256": "c0f9ab35ae5ddbc304768aec3be83a42e0955598b71da2f3bc4405b95b256482"
+      "bytes": 18644,
+      "sha256": "33de2096774066cc3e8bca7b92a0db6ae7d99246a9456e784ddfcc71314ab647"
     },
     {
       "path": "assets/brad-team-page-2006.png",
@@ -574,8 +584,8 @@
     },
     {
       "path": "facebook-queue.html",
-      "bytes": 196474,
-      "sha256": "9a7d703ee6d510ed46fdae5b7ea57985e94edfa3ea26cad22d591a215ebce71d"
+      "bytes": 208279,
+      "sha256": "7e588683a60879f05be0fa500f1ddb73d6e602b74b40ff8f74fbda76978b8716"
     },
     {
       "path": "facebook-queue.js",
@@ -584,13 +594,13 @@
     },
     {
       "path": "facebook-queue.json",
-      "bytes": 67283,
-      "sha256": "fb5854a700d6ff22b8d017a01fe17ce5eb249d741c9f95bac2e6f78460a199cd"
+      "bytes": 72296,
+      "sha256": "ec974bb6f6e4c0d5f8b98dcef1de73689a3733908cfc3055f63a0da167a498af"
     },
     {
       "path": "gallery-data.js",
-      "bytes": 121011,
-      "sha256": "4122fef758e9f803bf86eb71b57f2d1d2ac7e4331174012f3c10182384d333ed"
+      "bytes": 126064,
+      "sha256": "fe793c3a7ae4db29fc83f4abf476a410014968627ed2320565f17fa2da4a3e1a"
     },
     {
       "path": "hughes-family.html",
@@ -645,7 +655,7 @@
     {
       "path": "index.html",
       "bytes": 1296,
-      "sha256": "0053f77e165c90d1f61782369807fbdf510ea757b63bcba15761d730c3ba3de0"
+      "sha256": "1f765c694bc3919416bb084dd54c9c1085da0091706343e065f61ddc3e75d2e1"
     },
     {
       "path": "jerome-boxing/jb-candidate-2015.jpg",
@@ -721,6 +731,16 @@
       "path": "kaia-bouts/kb-13.png",
       "bytes": 126961,
       "sha256": "5059e885027641efa5c624d5b703c44a8dd15d1796026f3c63ce640d689a78c0"
+    },
+    {
+      "path": "kaia-official/performance-week.jpg",
+      "bytes": 154477,
+      "sha256": "402f0f1dce3bef9b5848161f2fa04c6c2c3254486d8c55c4f9bb47d3910cdd18"
+    },
+    {
+      "path": "kaia-official/state-third-2022.png",
+      "bytes": 17827,
+      "sha256": "82465a76729c30ce72a7e3a04553894a2359db251c5c3e48bd946eb8399bf3cc"
     },
     {
       "path": "marymount-photos/mm-144.jpg",
@@ -869,18 +889,18 @@
     },
     {
       "path": "photo-index.json",
-      "bytes": 120988,
-      "sha256": "2c7f12eff5e9fc09f25d9a2d14828eda1d4cdaee761b9523611bf1e1c076b5cc"
+      "bytes": 126041,
+      "sha256": "5542ba9f47ae8eed45b6baf12964a6ad4321d78ebe20a74d5d8747b5b6ae0f5a"
     },
     {
       "path": "profiles.js",
-      "bytes": 141846,
-      "sha256": "a77a57f082bfed6309fbc8a85ec0fc38f59a8323ac507c649d3e9ba69adef49b"
+      "bytes": 150350,
+      "sha256": "1e81ff810fcf0d88e6a1b0e22118625773665b2e6d01f382d0286b564fd5102d"
     },
     {
       "path": "public-manifest.json",
-      "bytes": 31553,
-      "sha256": "5b8aadcbfd1990c0aa0095ce6ede36520e3ac4fbef3fc459d6c771ef8e8b3bf1"
+      "bytes": 32237,
+      "sha256": "cd23f7be25d440789320305be03e7ed3771acefe18b20e6bcfded48826a4e1b8"
     },
     {
       "path": "queue.css",

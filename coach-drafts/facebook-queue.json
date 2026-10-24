@@ -275,13 +275,34 @@
           "purpose": "Look specifically for a named club tag or photograph; previously empty page searches may miss comments or album captions.",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Westminster%20Mat%20Rats%22",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Westminster%20Mat%20Rats%22"
+        },
+        {
+          "id": "brian-leaf-24",
+          "text": "\"Brian Leaf\" \"junior wrestling\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22junior%20wrestling%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22junior%20wrestling%22",
+          "purpose": "Find a public childhood team caption rather than rely on state-champion coverage."
+        },
+        {
+          "id": "brian-leaf-25",
+          "text": "\"Brian Leaf\" \"PJW\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22PJW%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22PJW%22",
+          "purpose": "Look for public state/area tournament captions or team alumni posts."
+        },
+        {
+          "id": "brian-leaf-26",
+          "text": "\"Brian Leaf\" \"Owen J Roberts\" wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Owen%20J%20Roberts%22%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Owen%20J%20Roberts%22%20wrestling",
+          "purpose": "Test the weak prior school candidate only; not a claim that this is the coach."
         }
       ]
     },
     {
       "id": "kaia-condon",
       "name": "Kaia Condon",
-      "context": "Einstein, McDaniel and Whitman are useful established routes. Look for named roster portraits, captions and event albums.",
+      "context": "Identity confirmed. Original 2022 bracket adds third at 135 to fifth in 2023 and fourth in 2024. Official McDaniel named recognition graphic preserved alongside the college portrait, action originals and match thumbnails.",
       "queries": [
         {
           "id": "kaia-condon-01",
@@ -342,6 +363,13 @@
           "text": "McDaniel women wrestling November 23 2025 Sinclair",
           "photos_url": "https://www.facebook.com/search/photos/?q=McDaniel%20women%20wrestling%20November%2023%202025%20Sinclair",
           "posts_url": "https://www.facebook.com/search/posts/?q=McDaniel%20women%20wrestling%20November%2023%202025%20Sinclair"
+        },
+        {
+          "id": "kaia-condon-11",
+          "text": "Kaia Condon MPSSAA 2022 135 third place",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20MPSSAA%202022%20135%20third%20place",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20MPSSAA%202022%20135%20third%20place",
+          "purpose": "Now verified in the original bracket; seek a named podium image or school album, third-place bout vs Viviana Abalama."
         }
       ]
     },
@@ -608,7 +636,7 @@
     {
       "id": "andy-millman",
       "name": "Andy Millman",
-      "context": "Public Relson Gracie 2015 tags and a 2022 Charlottesville open-mat post connect the proposed Andy profile to grappling. Mat Rats post supplies local context; Fight2Win identity remains unconfirmed.",
+      "context": "Exact public profile promoted Fight2Win109 a week before Andrew Millman’s named bout. Relson training and matching Andrew-name academy review make this a probable connection; competitor identity and any bout photos still need confirmation.",
       "queries": [
         {
           "id": "andy-millman-01",
@@ -708,6 +736,13 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20profile%20%E2%80%94%20April%202019%20Fight2Win109%20or%20Michael%20Mehl",
           "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20profile%20%E2%80%94%20April%202019%20Fight2Win109%20or%20Michael%20Mehl",
           "purpose": "Use Facebook's profile/date navigation to seek a self-authored competitor announcement or event photograph connecting millman1 to the named 2019 bout."
+        },
+        {
+          "id": "andy-millman-17",
+          "text": "Andy Millman Fight2Win109 April 2019",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20Fight2Win109%20April%202019",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20Fight2Win109%20April%202019",
+          "purpose": "Exact public profile promoted the event. Seek a self-identified bout post or photographer caption; published opponent Michael Mehl."
         }
       ]
     },
@@ -757,6 +792,27 @@
           "text": "Tyler Lease Webb Environmental",
           "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Webb%20Environmental",
           "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Webb%20Environmental"
+        },
+        {
+          "id": "tyler-lease-08",
+          "text": "Tyler WestminsterMatRats",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20WestminsterMatRats",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20WestminsterMatRats",
+          "purpose": "Use page Search for named Coach Tyler introductions, event captions or explicit profile tags. Review only public items."
+        },
+        {
+          "id": "tyler-lease-09",
+          "text": "Tyler Lease ",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20",
+          "purpose": "Check legacy public club captions for a direct wrestling bridge."
+        },
+        {
+          "id": "tyler-lease-10",
+          "text": "Tyler WebbEnvironmental",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20WebbEnvironmental",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20WebbEnvironmental",
+          "purpose": "Follow explicit named staff tags or public company-event captions; this source alone does not establish coaching."
         }
       ]
     },
@@ -1064,6 +1120,27 @@
           "text": "Daniel Skelonc Northeast Kids Regionals 1997",
           "photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20Skelonc%20Northeast%20Kids%20Regionals%201997",
           "posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20Skelonc%20Northeast%20Kids%20Regionals%201997"
+        },
+        {
+          "id": "daniel-skelonc-08",
+          "text": "Skelonc WestminsterMatRats",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Skelonc%20WestminsterMatRats",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Skelonc%20WestminsterMatRats",
+          "purpose": "Look for named Coach Daniel introduction, volunteer or event tags that connect school/MPD identity to club."
+        },
+        {
+          "id": "daniel-skelonc-09",
+          "text": "Daniel ",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20",
+          "purpose": "Check legacy public club posts. Avoid assigning uncaptioned group members."
+        },
+        {
+          "id": "daniel-skelonc-10",
+          "text": "Cedar Springs wrestling 2002 Dan Skelonc ",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Cedar%20Springs%20wrestling%202002%20Dan%20Skelonc%20",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Cedar%20Springs%20wrestling%202002%20Dan%20Skelonc%20",
+          "purpose": "Public alumni/team photo caption search; specifically seek 2002 state qualifier team pictures or 2003 yearbook wrestling spread."
         }
       ]
     }
