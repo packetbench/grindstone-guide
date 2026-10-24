@@ -479,7 +479,7 @@ check('named save and copy preserve the selected slot ID and replace it instead 
     t.action('confirm-replace',-1);
     assert.equal(state().plan.blocks.length,before.length); assert.equal(state().plan.blocks[2].sourceId,'B17');
     assert.equal(state().plan.blocks[2].minutes,slot.minutes);
-    assert(root.querySelector('.builder-placement-feedback').innerHTML.includes('Replaced slot 3'));
+    assert(root.querySelector('.builder-placement-feedback').innerHTML.includes('Filled slot 3'));
   }
 });
 check('saved block IDs stay stable and imported duplicate or unsafe IDs become unique', () => {
