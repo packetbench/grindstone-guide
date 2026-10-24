@@ -241,7 +241,8 @@ window.COACH_DRAFTS = {
         "The user explicitly rejected the PINKS/Mustang racing namesake on October 24, 2026. Racing photographs, stories and results must not be attributed to Coach Brian. The original evidence is preserved in Who we are not.",
         "Brian Wayne Leaf in the county recreation list remains an unresolved lead; rejecting the racer does not confirm or reject that separate record.",
         "Exact-name Pennsylvania, heavyweight, youth, high-school, results and spelling-variant searches have not yet established his school or club.",
-        "PAJW, MAWA, Pennsylvania school/tournament and name-variant searches did not establish a school or photo. User-supplied youth heavyweight history retained. Confirmed wrong racer remains in Who we are not."
+        "PAJW, MAWA, Pennsylvania school/tournament and name-variant searches did not establish a school or photo. User-supplied youth heavyweight history retained. Confirmed wrong racer remains in Who we are not.",
+        "New professional-directory lead is unresolved and could still belong to the rejected racing namesake. Public PA school, sports, alumni and company-photo checks supplied no attributable portrait in this pass."
       ],
       "highlights": [
         {
@@ -266,6 +267,11 @@ window.COACH_DRAFTS = {
           "title": "Carroll County · April 2026 volunteer list, page 38",
           "url": "https://www.carrollcountymd.gov/media/ax1iw0ys/carroll-county-recreation-and-parks-approved-volunteers-coaches-and-instructors-april-2026.pdf#page=38",
           "supports": "Brian Wayne Leaf, Westminster Area; possible local recreation match."
+        },
+        {
+          "title": "Leaf Builders LLC · provisional local professional lead",
+          "url": "https://www.buildzoom.com/contractor/leaf-builders-llc",
+          "supports": "Directory names Brian Wayne Leaf in Westminster, matching the recreation-list name. Neither source ties him to Grindstone or Pennsylvania wrestling; employment is not added to the biography."
         }
       ],
       "profile_review_status": "Draft awaiting user review"
@@ -797,13 +803,12 @@ window.COACH_DRAFTS = {
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
         "Rechecked all four original newspaper sources. School history is independently supported; club responsibilities, military service and recreation work are carried forward from the existing profile and earlier club-provided information.",
-        "Searched 40 newspaper issues, including name/OCR variants. No second explicitly captioned school-days photograph was located. Other athletes pictured on the same pages were excluded.",
         "Photo policy: use authentic source photographs. Do not use AI enhancement or reconstruction.",
         "The previous displayed crop had lost detail relative to the source PDF. It has been replaced with a direct 647 × 541 crop from the PDF’s native 4202 × 3465 JPEG2000 image, including the original caption and credit. No resizing, sharpening, denoising, contrast changes or AI processing were applied.",
         "Keep the modern portrait as the lead and this faithful source extraction in the historical gallery. The earlier degraded crop is retained only as a reference alternate.",
-        "A further direct archive pass reviewed 45 post-school newspaper result excerpts plus later exact-name searches; no second explicitly captioned wrestling image was recovered. The clearer authentic 1999 source crop remains selected.",
         "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
-        "Native source-PDF extraction preserves the historical wrestling photo without AI. Additional newspaper and school/alumni routes did not reveal another attributable public image; alumni album search requires login. USAW training added."
+        "Native source-PDF extraction preserves the historical wrestling photo without AI. Additional newspaper and school/alumni routes did not reveal another attributable public image; alumni album search requires login. USAW training added.",
+        "A new complete exact-name archive audit opened all 31 returned newspaper issues and retained matching native page scans plus full OCR and source hashes. Caption searches found the already selected February 1999 wrestling image; selected source spreads were also visually checked. This does not establish that other photographs do not exist."
       ],
       "leads": [
         {
@@ -989,21 +994,21 @@ window.COACH_DRAFTS = {
       "id": "jordan-millman",
       "name": "Jordan Millman",
       "roster_name": "Jordan Millman",
-      "status": "roster",
+      "status": "likely",
       "role": "Grindstone youth wrestling coach",
-      "summary": "Jordan Millman is part of Grindstone Wrestling’s coaching team for the 2026–2027 season.",
+      "summary": "Jordan Millman is on Grindstone’s 2026–27 coaching roster. This proposed local match brings experience in community events and live apparel printing.",
       "paragraphs": [
-        "Jordan is listed among the Mat Rat & Valkyries coaches serving the club’s youth wrestling community in the Westminster area."
+        "Jordan is listed among the Mat Rats and Valkyries coaches for the 2026–27 season. Her specific practice group and wrestling background are still being researched.",
+        "Away from the mat, this working profile connects Jordan with Captain Jerry’s and Spider Web Promotions. Her public posts describe bringing live apparel printing to community events, including Downtown Westminster’s Oyster Stroll.",
+        "In an October 2026 post, Jordan described developing that event work since September 2025 and reaching a thirteenth live-printing event. This supplies a more detailed picture of her local involvement while the proposed coach match is reviewed."
       ],
-      "review_title": "Roster-based draft",
-      "identity_note": "The supplied handout is the source for Jordan’s club role. No public competitive history, school connection or labeled coach photograph was established.",
-      "review_prompt": "Confirm Jordan’s name spelling, background and usual practice group. A portrait would complete this short draft.",
+      "review_title": "New local candidate with public photographs",
+      "identity_note": "This draft proposes the Jordan Millman linked by Captain Jerry’s public business page as Coach Jordan. The business, event and photo trail is documented, while the connection to Grindstone remains a working assumption.",
+      "review_prompt": "Review this proposed identity, writing and photo choices; add Jordan’s wrestling background or coaching responsibilities.",
       "research_notes": [
-        "Searched Millman, Milman, Milliman, Mill, Mills and Miller variants with Grindstone, Westminster, Carroll County and wrestling.",
-        "Checked indexed public club/social captions. Unrelated real-estate, overseas sports and other same-name results were excluded.",
-        "The shared surname does not establish any relationship to Andy Millman.",
-        "Second pass searched the full local newspaper archive, recreation lists, public social captions and Millman/Milman/Milliman variants. No additional credible local biography or labeled photograph surfaced. Club gallery photos are retained for manual identification.",
-        "Exact names and Jordon/Jordyn/Milman variants did not establish a new local school or portrait. No unrelated namesake promoted to a draft."
+        "New source trail: Captain Jerry’s public business page tags Jordan Millman and links facebook.com/joashley1991. Jordan’s profile-photo tag links Andy Millman.",
+        "Jordan’s assignment in the right side of her own public profile photographs is a working source-context hypothesis. No facial comparison was used.",
+        "The original full frames, photo pages and native portrait crop are retained. No family relationship, private details or unsupported wrestling record is inferred."
       ],
       "highlights": [
         {
@@ -1016,6 +1021,61 @@ window.COACH_DRAFTS = {
           "title": "Grindstone Wrestling Club",
           "url": "https://www.grindstonewrestling.org/",
           "supports": "General program context; the handout supplies Jordan’s coaching membership."
+        },
+        {
+          "title": "Captain Jerry’s · public business page",
+          "url": "https://www.facebook.com/captainjerrys",
+          "supports": "Direct tag to the proposed local Jordan profile."
+        },
+        {
+          "title": "Jordan Millman · public profile and photo album",
+          "url": "https://www.facebook.com/joashley1991",
+          "supports": "Named public profile, original photographs and event-work posts."
+        },
+        {
+          "title": "Jordan Millman · October 2026 live-printing post",
+          "url": "https://www.facebook.com/joashley1991/posts/pfbid02DGpG9XpD3UJQusNGM2WufWzSuVCMDLfpDNZeWCNevZNmL13yZZC71wkzWFPpR1Cnl",
+          "supports": "Westminster Oyster Stroll, Captain Jerry’s, Spider Web Promotions, and live-event work since September 2025."
+        }
+      ],
+      "photo": {
+        "src": "millman-photos/jordan-portrait.png",
+        "alt": "Proposed portrait of Jordan Millman from a public profile photograph.",
+        "caption": "Proposed Jordan Millman portrait. Native crop of the public May 2026 photograph; the complete original is retained below. Jordan is the proposed person at right, based on her own profile-photo context.",
+        "source_url": "https://www.facebook.com/photo/?fbid=1797414661642435&set=a.118051426245442",
+        "source_label": "Public profile photograph and original caption",
+        "native": true,
+        "archive": true,
+        "kind": "Proposed portrait"
+      },
+      "gallery_title": "Public portrait and outdoor photo options",
+      "gallery": [
+        {
+          "src": "millman-photos/jordan-andy-profile.jpg",
+          "alt": "Jordan Millman public profile photo, May 24, 2026, explicitly tagging Andy Millman at left. Proposed Jordan at right based on her own profile-photo context.",
+          "caption": "Jordan Millman public profile photo, May 24, 2026, explicitly tagging Andy Millman at left. Proposed Jordan at right based on her own profile-photo context. Working coach identity match; original served image retained without changes.",
+          "source_url": "https://www.facebook.com/photo/?fbid=1797414661642435&set=a.118051426245442",
+          "source_label": "Original public Facebook photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman",
+            "jordan-millman"
+          ],
+          "selection": "gallery",
+          "kind": "Proposed photo match"
+        },
+        {
+          "src": "millman-photos/jordan-outdoors-2024.jpg",
+          "alt": "Outdoor photograph from Jordan Millman's public profile-photo album, April 9, 2024.",
+          "caption": "Outdoor photograph from Jordan Millman's public profile-photo album, April 9, 2024. Working coach identity match; original served image retained without changes.",
+          "source_url": "https://www.facebook.com/photo/?fbid=1213553526695221&set=a.118051426245442",
+          "source_label": "Original public Facebook photograph",
+          "native": true,
+          "coaches": [
+            "jordan-millman"
+          ],
+          "selection": "gallery",
+          "kind": "Proposed photo match"
         }
       ],
       "profile_review_status": "Draft awaiting user review"
@@ -1026,20 +1086,19 @@ window.COACH_DRAFTS = {
       "roster_name": "Andy Millman",
       "status": "likely",
       "role": "Grindstone volunteer coach",
-      "summary": "Andy Millman is a volunteer coach with Grindstone Wrestling for the 2026–2027 season.",
+      "summary": "Andy Millman is part of Grindstone’s coaching roster. This working profile connects him with the owner of Baltimore’s Captain Jerry’s apparel business.",
       "paragraphs": [
         "Andy is part of the Mat Rats and Valkyries coaching roster supporting young wrestlers in the Westminster area.",
         "Away from coaching, this draft places Andy at Captain Jerry’s, a Baltimore custom apparel and promotional-products business. The company’s own history says Andy joined the family business in 2008 and became owner in 2011, continuing the business his grandfather Gerald founded in 1976. Its work includes screen printing, embroidery and promotional products. The connection between this business owner and Coach Andy remains a working assumption."
       ],
-      "review_title": "Local recreation and business candidate",
-      "identity_note": "This draft assumes Andy is Andrew J. Millman from the Westminster recreation list and Andy/Andrew Millman of Captain Jerry’s in Baltimore. The business paragraph is a proposed match for review.",
-      "review_prompt": "Confirm the Andrew/Andy match and add wrestling background, coaching group and a photo.",
+      "review_title": "Proposed local identity with named photo sources",
+      "identity_note": "This draft proposes Andy/Andrew Millman of Captain Jerry’s as Coach Andy. The company history and linked public profiles establish the business/photo connection; a direct Grindstone confirmation is still needed.",
+      "review_prompt": "Review this proposed identity, biography and portrait; add Andy’s wrestling background or coaching responsibilities.",
       "research_notes": [
-        "The business connection is a reasonable regional same-name hypothesis, not independently confirmed by Grindstone.",
-        "The company’s own LinkedIn description is signed Andrew Millman, Owner, and links Andy Millman as an employee.",
-        "The April 2026 county recreation list includes Andrew J. Millman with Westminster Area.",
-        "No relationship to Jordan Millman is inferred.",
-        "Company’s primary history expands the proposed business biography. Company media inventory, public social profiles and image searches yielded no named portrait; Facebook returned temporary block."
+        "Captain Jerry’s public page directly tags Jordan Millman. Her current profile photograph explicitly tags Andy at left and links his own profile, which also shares company posts.",
+        "The two coach identities remain proposed. The public tags establish the photo and business trail; no family relationship is inferred.",
+        "Five complete source photographs are preserved. Individual portraits are native crops of the largest recent photograph, with no enlargement, reconstruction or enhancement.",
+        "A separate Andrew Millman competed against Michael Mehl at Fight2Win109 in Baltimore in April 2019. No source yet connects that athlete to this business owner or coach; the result remains a lead. Its black thumbnail is retained only in the local research files."
       ],
       "highlights": [
         {
@@ -1057,6 +1116,16 @@ window.COACH_DRAFTS = {
           "title": "Captain Jerry’s · company history",
           "url": "https://captjerrys.com/about/",
           "supports": "Andy joined in 2008 and became owner in 2011; third-generation Baltimore family business."
+        },
+        {
+          "title": "Captain Jerry’s · public business page",
+          "url": "https://www.facebook.com/captainjerrys",
+          "supports": "Direct public Jordan tag and linked Andy/business context."
+        },
+        {
+          "title": "Andy Millman · linked public profile",
+          "url": "https://www.facebook.com/millman1",
+          "supports": "Public profile-photo originals and Captain Jerry’s posts."
         }
       ],
       "leads": [
@@ -1064,6 +1133,77 @@ window.COACH_DRAFTS = {
           "title": "Carroll County · April 17, 2026 volunteer list, page 45",
           "url": "https://www.carrollcountymd.gov/media/ax1iw0ys/carroll-county-recreation-and-parks-approved-volunteers-coaches-and-instructors-april-2026.pdf#page=45",
           "supports": "Andrew J. Millman is listed with Westminster Area; exact coach identity remains a working inference."
+        },
+        {
+          "title": "FloGrappling · Michael Mehl vs Andrew Millman, Fight2Win109",
+          "url": "https://www.flograppling.com/video/6457452-michael-mehl-vs-andrew-millman-fight-2-win-109",
+          "supports": "Named Baltimore grappling athlete; connection to Coach Andy remains unverified."
+        }
+      ],
+      "photo": {
+        "src": "millman-photos/andy-portrait.png",
+        "alt": "Proposed portrait of Andy Millman from a public profile photograph.",
+        "caption": "Proposed Andy Millman portrait. Native crop of the public May 2026 photograph; the complete original is retained below. Andy is explicitly tagged at left in the source.",
+        "source_url": "https://www.facebook.com/photo/?fbid=1797414661642435&set=a.118051426245442",
+        "source_label": "Public profile photograph and original caption",
+        "native": true,
+        "archive": true,
+        "kind": "Proposed portrait"
+      },
+      "gallery_title": "Portrait options and life beyond the mat",
+      "gallery": [
+        {
+          "src": "millman-photos/jordan-andy-profile.jpg",
+          "alt": "Jordan Millman public profile photo, May 24, 2026, explicitly tagging Andy Millman at left. Proposed Jordan at right based on her own profile-photo context.",
+          "caption": "Jordan Millman public profile photo, May 24, 2026, explicitly tagging Andy Millman at left. Proposed Jordan at right based on her own profile-photo context. Working coach identity match; original served image retained without changes.",
+          "source_url": "https://www.facebook.com/photo/?fbid=1797414661642435&set=a.118051426245442",
+          "source_label": "Original public Facebook photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman",
+            "jordan-millman"
+          ],
+          "selection": "gallery",
+          "kind": "Proposed photo match"
+        },
+        {
+          "src": "millman-photos/andy-profile-2023.jpg",
+          "alt": "Andy Millman public profile photograph, December 24, 2023, with companion.",
+          "caption": "Andy Millman public profile photograph, December 24, 2023, with companion. Working coach identity match; original served image retained without changes.",
+          "source_url": "https://www.facebook.com/photo/?fbid=10225337703609377&set=a.1395318362782",
+          "source_label": "Original public Facebook photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman"
+          ],
+          "selection": "gallery",
+          "kind": "Proposed photo match"
+        },
+        {
+          "src": "millman-photos/andy-skate-2023.jpg",
+          "alt": "Skateboarding photograph from Andy Millman's public profile-photo album, June 14, 2023.",
+          "caption": "Skateboarding photograph from Andy Millman's public profile-photo album, June 14, 2023. Working coach identity match; original served image retained without changes.",
+          "source_url": "https://www.facebook.com/photo?fbid=10224312727985627&set=a.1395318362782",
+          "source_label": "Original public Facebook photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman"
+          ],
+          "selection": "gallery",
+          "kind": "Proposed photo match"
+        },
+        {
+          "src": "millman-photos/andy-fishing-2022.jpg",
+          "alt": "Fishing photograph from Andy Millman's public profile-photo album, May 3, 2022.",
+          "caption": "Fishing photograph from Andy Millman's public profile-photo album, May 3, 2022. Working coach identity match; original served image retained without changes.",
+          "source_url": "https://www.facebook.com/photo?fbid=10222009018514330&set=a.1395318362782",
+          "source_label": "Original public Facebook photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman"
+          ],
+          "selection": "gallery",
+          "kind": "Proposed photo match"
         }
       ],
       "profile_review_status": "Draft awaiting user review"
@@ -1077,7 +1217,8 @@ window.COACH_DRAFTS = {
       "summary": "Tyler Lease is listed among Grindstone Wrestling Club’s coaches for the 2026–2027 season.",
       "paragraphs": [
         "Tyler is part of the season’s Mat Rats and Valkyries coaching roster, supporting Grindstone’s local youth wrestling program.",
-        "His local sports background includes playing for Westminster American in the District II Little League tournament in 2000. A Carroll County Times sports photograph captured him in action against Thurmont. The page uses that named local athlete as the working match for Coach Tyler while his wrestling background is researched."
+        "His local sports background includes playing for Westminster American in the District II Little League tournament in 2000. A Carroll County Times sports photograph captured him in action against Thurmont. The page uses that named local athlete as the working match for Coach Tyler while his wrestling background is researched.",
+        "The same local baseball name appears across several seasons: a 1998 report names Tyler as a Westminster Shorebirds player, and an April 2001 report lists him with the Westminster Owls travel-baseball team. These newspaper references broaden the proposed local sports history; they do not establish his wrestling background."
       ],
       "review_title": "Local employer portrait proposed for review",
       "identity_note": "This draft assumes the Tyler Lease named by local employer Webb Environmental and the captioned Westminster youth baseball player are Coach Tyler. The exact name and local context support these working matches; the coach connection still needs review.",
@@ -1087,6 +1228,7 @@ window.COACH_DRAFTS = {
         "Full source PDF and native image crop are retained.",
         "South Dakota and Indiana sports namesakes were not substituted for the local candidate.",
         "The employer’s original JPEG and later PNG crop show the same photograph. Both publisher files are retained; no new facial reconstruction, sharpening or enlargement was applied. The coach-to-employer identity link remains provisional.",
+        "Completed all eight exact-name newspaper search results, retaining only pages that actually name Tyler. No additional named Tyler photo was found. The 2001 picture names Jordan Wike and was not assigned to Tyler.",
         "Two original publisher portrait renditions from Webb Environmental added as a provisional local exact-name match. Full-framed JPEG preferred over the later tighter crop; both preserved."
       ],
       "highlights": [
@@ -1110,6 +1252,16 @@ window.COACH_DRAFTS = {
           "title": "Webb Environmental · Tyler Lease",
           "url": "https://webbenvironmental.com/verification/",
           "supports": "Public page names Tyler Lease; linked original photo is used as a provisional portrait."
+        },
+        {
+          "title": "Carroll County Times · April 19, 1998 youth baseball",
+          "url": "https://cctimes.carr.org/documents/CCT_04191998.pdf#page=14",
+          "supports": "Westminster Optimist Little League Shorebirds player Tyler Lease."
+        },
+        {
+          "title": "Carroll County Times · April 15, 2001 travel baseball",
+          "url": "https://cctimes.carr.org/documents/CCT_04152001.pdf#page=16",
+          "supports": "Tyler Lease listed among Westminster Owls players. The pictured player is Jordan Wike, not Tyler."
         }
       ],
       "photo": {
@@ -1307,7 +1459,8 @@ window.COACH_DRAFTS = {
         "Retrieved the complete 2006 McDaniel yearbook. Its wrestling page lists Brad at 149 pounds but does not identify the athletes in its action photos. The page is retained as team context, not an individual portrait.",
         "Verified the November 17, 2005 McDaniel Free Press report: fourth at 149 pounds at the Messiah Invitational. The inspected newspaper page has no athlete photographs.",
         "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
-        "Added 2010 open and 2025 Bald & Fat results, plus Copper training record. McDaniel yearbooks/newspapers checked. Organizer’s 52 unnamed gallery images are older than the 2025 event and were not assigned to Brad."
+        "Added 2010 open and 2025 Bald & Fat results, plus Copper training record. McDaniel yearbooks/newspapers checked. Organizer’s 52 unnamed gallery images are older than the 2025 event and were not assigned to Brad.",
+        "New pass checked McDaniel 2008–2010 yearbook OCR, athletics search, old photographer albums and Parkville photo links. Three unassigned Sinclair previews are preserved as context, not selected as Brad portraits. Parkville’s public image links are dead and its album index requires login."
       ],
       "highlights": [
         {
@@ -1390,6 +1543,16 @@ window.COACH_DRAFTS = {
           "title": "Carroll County · February 3, 2025 volunteer list, page 17",
           "url": "https://www.carrollcountymd.gov/media/onjdgdgx/approved-volunteers-232025.pdf#page=17",
           "supports": "Bradley A. Gabrish listed with Westminster Area."
+        },
+        {
+          "title": "David Sinclair · historical McDaniel wrestling gallery",
+          "url": "https://www.davidsinclairphotography.com/gallery/Wrestling/G0000mIBV96IaGms/C00004E_izYKf8X4",
+          "supports": "Three preserved period photos; none identifies Brad. Available in the retained research collection."
+        },
+        {
+          "title": "2003 National Prep bracket",
+          "url": "https://paiswt.com/web_documents/2003_NationalPreps.pdf",
+          "supports": "Calvert Hall’s Brad Gabrish is listed at 130 pounds, extending the school-photo search window."
         }
       ],
       "gallery": [
@@ -1423,7 +1586,7 @@ window.COACH_DRAFTS = {
       "research_notes": [
         "Current Grindstone membership is established by the supplied handout.",
         "The 1997 source gives Daniel Skelonc (MI); the 2002 source gives Dan Skelonc, Cedar Springs. Linking them to each other and to Grindstone is an explicit draft assumption.",
-        "No state championship or placing is claimed for 2002. No labeled portrait was located.",
+        "No state championship or placing is claimed for 2002. The later MPD award graphic supplies a named portrait, provisionally connected to this coach.",
         "Unrelated personal records were excluded from the coaching research.",
         "Second pass checked the complete official 2002 Cedar Springs results: 32–20 listed record; win by fall in 4:15 over Jake Strank. No state medal or championship is claimed.",
         "No Maryland bridge was found in county volunteer lists or the Carroll County Times archive. User authorized this best-candidate draft.",
