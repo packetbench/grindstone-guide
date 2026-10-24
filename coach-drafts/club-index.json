@@ -17,7 +17,9 @@
       "bytes": 278353,
       "sha256": "cd068148533cf9c38a1dfcdd4f59b856fc781ba82be9018de17928faee691820",
       "width": 365,
-      "height": 487
+      "height": 487,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club02",
@@ -30,7 +32,9 @@
       "bytes": 361718,
       "sha256": "3b6cfe9c307758d088cb4e167f5adf5b7c63359b29e2bb1db200ed4ff1206502",
       "width": 487,
-      "height": 650
+      "height": 650,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club03",
@@ -43,12 +47,14 @@
       "bytes": 1969847,
       "sha256": "5533f9a9e9f923b144ab97e0110a170c6090a0730b9402fc5965db8533964358",
       "width": 4032,
-      "height": 1816
+      "height": 1816,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club04",
-      "review_candidate": true,
-      "coaching_candidate": true,
+      "review_candidate": false,
+      "coaching_candidate": false,
       "path": "club-photos/club-04.png",
       "url": "https://static.wixstatic.com/media/29f884_963b6f7a3c69405b98270d1a6bb27f22~mv2.png",
       "kind": "public club gallery",
@@ -56,11 +62,13 @@
       "bytes": 4787039,
       "sha256": "85a1896cd3a528035aa6b5263433a60f23365fbf3281eb3c3b591fec806a0a83",
       "width": 2160,
-      "height": 1620
+      "height": 1620,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": true
     },
     {
       "id": "club05",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-05.png",
       "url": "https://static.wixstatic.com/media/29f884_9fca94f023624d1089b5e623f1c5e265~mv2.png",
@@ -69,7 +77,9 @@
       "bytes": 524676,
       "sha256": "e86dc291f716a2a41089f6d0ba0a66cae29796920e372995f18f53ae207b3010",
       "width": 650,
-      "height": 487
+      "height": 487,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club06",
@@ -82,7 +92,9 @@
       "bytes": 1870811,
       "sha256": "6059b130be840351a64b797c43b5b0f1b8207250a696f23be6368e8f5c332aad",
       "width": 4032,
-      "height": 1816
+      "height": 1816,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club07",
@@ -95,7 +107,9 @@
       "bytes": 245583,
       "sha256": "8eb2730677f5f4037cacb9f54f806ceea506e4b32aa16a7d63cccacdffaa86d8",
       "width": 365,
-      "height": 487
+      "height": 487,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club08",
@@ -108,7 +122,9 @@
       "bytes": 2067249,
       "sha256": "c9d44731c94a32627bf7fe82c5083d4f574ae82f9300acdd217131cfb537c8eb",
       "width": 2160,
-      "height": 1620
+      "height": 1620,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club09",
@@ -121,11 +137,13 @@
       "bytes": 1784363,
       "sha256": "44ca0b30a93ad8572765c278eacd198da8054dabbdee7a5857fe9ebe58067428",
       "width": 4032,
-      "height": 1816
+      "height": 1816,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club10",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-10.png",
       "url": "https://static.wixstatic.com/media/29f884_939405ea6d0d44ccbc52f2786852452e~mv2.png",
@@ -134,7 +152,9 @@
       "bytes": 426252,
       "sha256": "7c8c5e97b5153f784e42c15c119e1920a13da1ea3b958fcefeb21e998da99e71",
       "width": 650,
-      "height": 487
+      "height": 487,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club11",
@@ -147,7 +167,9 @@
       "bytes": 420564,
       "sha256": "a982dbe7befcaab0383471c69ee04e38abe5421630826263399da6c553d7fb66",
       "width": 487,
-      "height": 650
+      "height": 650,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club12",
@@ -160,7 +182,9 @@
       "bytes": 6944086,
       "sha256": "16cb4fbba3a1463e8af2a765ee455a8054c4d0228c326ee8607663b66fbbdc40",
       "width": 5184,
-      "height": 3456
+      "height": 3456,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club13",
@@ -173,7 +197,9 @@
       "bytes": 347144,
       "sha256": "fb4a4a7469695e815edbcd868e88755f37fe71bef2bff29059ecca9b9b239b75",
       "width": 487,
-      "height": 650
+      "height": 650,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club14",
@@ -186,11 +212,13 @@
       "bytes": 763633,
       "sha256": "66b4e6e308f37bf63529ae1567d2e91cc08f4eee8ef0dad1318adc2fdbf8f690",
       "width": 2048,
-      "height": 1365
+      "height": 1365,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club15",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-15.jpg",
       "url": "https://static.wixstatic.com/media/29f884_ca217626164d44738353b228b19a0698~mv2.jpg",
@@ -199,7 +227,9 @@
       "bytes": 782010,
       "sha256": "d8b050db6a7e78bf26ebf59e9a79bd7609d628619347e324fdf55afb00bc532a",
       "width": 1365,
-      "height": 2048
+      "height": 2048,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club16",
@@ -212,7 +242,9 @@
       "bytes": 1556297,
       "sha256": "c384d5304f3448ecccbd99ea1e1d09f04366d95352e40cb951256bf2b44ec316",
       "width": 4032,
-      "height": 1816
+      "height": 1816,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club17",
@@ -225,7 +257,9 @@
       "bytes": 786944,
       "sha256": "5f7c2cb79959aa9121ba3a3b9e05ba84d1d7a6b6d7ffa7d87a902d419ded9ced",
       "width": 1365,
-      "height": 2048
+      "height": 2048,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club18",
@@ -238,11 +272,13 @@
       "bytes": 730036,
       "sha256": "4f5a053fe9fdc8c529a728d0c23c053ebe2ac95b9a8f9da1784909db21b842ca",
       "width": 1365,
-      "height": 2048
+      "height": 2048,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club19",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-19.jpg",
       "url": "https://static.wixstatic.com/media/29f884_6c4ddb60b5b74722a4981078201f64a4~mv2.jpg",
@@ -251,7 +287,9 @@
       "bytes": 818170,
       "sha256": "bdbf3f1ba7251433dd4681fa74fa7fd2a0c7d0d2b67c6970009d005c048e963c",
       "width": 2048,
-      "height": 1365
+      "height": 1365,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club20",
@@ -264,7 +302,9 @@
       "bytes": 2057244,
       "sha256": "6b060dc31b4a9c1926b823e632df35ff5fb59597d50c5735d1f509511d241236",
       "width": 4032,
-      "height": 1816
+      "height": 1816,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club21",
@@ -277,12 +317,14 @@
       "bytes": 737798,
       "sha256": "c3486519322cdf2752f4f751c8734792f7b7e4acfc08188995cc54a350710bb7",
       "width": 2048,
-      "height": 1365
+      "height": 1365,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club22",
-      "review_candidate": true,
-      "coaching_candidate": true,
+      "review_candidate": false,
+      "coaching_candidate": false,
       "path": "club-photos/club-22.jpg",
       "url": "https://static.wixstatic.com/media/29f884_5505898c68a24fb688634af63c780364~mv2.jpg",
       "kind": "public club gallery",
@@ -290,7 +332,9 @@
       "bytes": 772412,
       "sha256": "f9c32a8b68bf8acb79614349b6d7fa6f4cf04e91ac99ed1714e457a4e21f7391",
       "width": 1365,
-      "height": 2048
+      "height": 2048,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": true
     },
     {
       "id": "club23",
@@ -303,7 +347,9 @@
       "bytes": 2376114,
       "sha256": "1896504a81e596d2601c2f50f8b38640998b17e8cac1956087944bb199526445",
       "width": 3456,
-      "height": 5184
+      "height": 5184,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club24",
@@ -316,7 +362,9 @@
       "bytes": 2104263,
       "sha256": "88fda7151bba29cd2d426d047ddb8e26327d2dd3d5beaaa99da8a0cde97be0e5",
       "width": 3456,
-      "height": 5184
+      "height": 5184,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club25",
@@ -329,7 +377,9 @@
       "bytes": 740761,
       "sha256": "abbc00c37bd1c8e5d0b1a0252326abaa58d8da74979a29e635ad5db862c343d7",
       "width": 2048,
-      "height": 1365
+      "height": 1365,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club26",
@@ -342,7 +392,9 @@
       "bytes": 1708421,
       "sha256": "3690a9460b258a0ef17b760be55a99406381dbcba2b317a771020bb4bfa279b1",
       "width": 4032,
-      "height": 1816
+      "height": 1816,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club27",
@@ -355,11 +407,13 @@
       "bytes": 1925544,
       "sha256": "3abd9d9a881ebe4c1757cdb531d0930608b3a30f6665c5cde4eb8e807887dc45",
       "width": 4032,
-      "height": 1816
+      "height": 1816,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club28",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-28.jpg",
       "url": "https://static.wixstatic.com/media/29f884_b77853b2f11f4c7599d0ba97449fca0c~mv2_d_4032_3024_s_4_2.jpg",
@@ -368,7 +422,9 @@
       "bytes": 1170472,
       "sha256": "52bb65dc8c0bd652037d88f1aaa43b52eaeb38aba3e3723c096eae38e20371a0",
       "width": 4032,
-      "height": 3024
+      "height": 3024,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club29",
@@ -381,7 +437,9 @@
       "bytes": 3077216,
       "sha256": "e81947f6b4594cf8cbbc4351fbd98a5e6add43298dd2cbaf0488ba95242a649a",
       "width": 3377,
-      "height": 2251
+      "height": 2251,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club30",
@@ -394,7 +452,9 @@
       "bytes": 1830974,
       "sha256": "c2e9b8ea02f0638e53e4defdc23f8eb34672528ef108e08c8a38855fa6a26b97",
       "width": 4032,
-      "height": 1816
+      "height": 1816,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club31",
@@ -407,7 +467,9 @@
       "bytes": 4349082,
       "sha256": "ff2f5c0e599a94c1b790166ca697ef5d34a0865cf10caa086952b6d80eb8f974",
       "width": 2667,
-      "height": 4000
+      "height": 4000,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club32",
@@ -420,11 +482,13 @@
       "bytes": 2064471,
       "sha256": "54084edf009cce93d71e6ff275a6b6d92a459c47e25f1b4849af6e9b6a417068",
       "width": 3276,
-      "height": 2184
+      "height": 2184,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club33",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-33.jpg",
       "url": "https://static.wixstatic.com/media/29f884_1c831d8bc47a44bb992e16fdb452fbe0~mv2.jpg",
@@ -433,12 +497,14 @@
       "bytes": 213379,
       "sha256": "fa0e41cdb56e63ca7f1d385dd6a26fd12206740b12ca149ad7a2e982b56d8a1a",
       "width": 1497,
-      "height": 841
+      "height": 841,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club34",
-      "review_candidate": true,
-      "coaching_candidate": true,
+      "review_candidate": false,
+      "coaching_candidate": false,
       "path": "club-photos/club-34.jpg",
       "url": "https://static.wixstatic.com/media/29f884_47805a9a3c8c48e88e7140af1348c82f~mv2.jpg",
       "kind": "public club gallery",
@@ -446,12 +512,14 @@
       "bytes": 136256,
       "sha256": "af7b1f0d94e5f24627cae0433bd85e2554c0d2c34bfc10943d260845e7beb8a0",
       "width": 842,
-      "height": 842
+      "height": 842,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": true
     },
     {
       "id": "club35",
-      "review_candidate": true,
-      "coaching_candidate": true,
+      "review_candidate": false,
+      "coaching_candidate": false,
       "path": "club-photos/club-35.jpg",
       "url": "https://static.wixstatic.com/media/29f884_a285db2e8b114d5c87a7c8855845567f~mv2_d_3412_1920_s_2.jpg",
       "kind": "public club gallery",
@@ -459,11 +527,13 @@
       "bytes": 1391828,
       "sha256": "8a7e8a4adfda29ff4d505b4cd9658e152e33232281d9173391f01ee271ac62fa",
       "width": 3412,
-      "height": 1920
+      "height": 1920,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": true
     },
     {
       "id": "club36",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-36.jpg",
       "url": "https://static.wixstatic.com/media/29f884_f7688361ef0e4007bee472112340bfca~mv2_d_4032_3024_s_4_2.jpg",
@@ -472,11 +542,13 @@
       "bytes": 1135162,
       "sha256": "4a159a5d9f54d007f975839764d885e8962c13551b5e56460c5cd2c8a7584433",
       "width": 4032,
-      "height": 3024
+      "height": 3024,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club37",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-37.jpg",
       "url": "https://static.wixstatic.com/media/29f884_c86c3101414145789f53f430133dfd9d~mv2_d_4032_3024_s_4_2.jpg",
@@ -485,11 +557,13 @@
       "bytes": 1666373,
       "sha256": "56f074f5bafdf7e6fcb82161149d40324dca51f3d718c7bb7b62c27decbd74cd",
       "width": 4032,
-      "height": 3024
+      "height": 3024,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club38",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-38.jpg",
       "url": "https://static.wixstatic.com/media/29f884_fdf06ed9c8ef4799acca71164ba51a78~mv2_d_3185_2390_s_2.jpg",
@@ -498,7 +572,9 @@
       "bytes": 1453883,
       "sha256": "6d56202361e9848daed9d9c94e80098b056cbd6b98d98da9aef01e9b6f01bb82",
       "width": 3185,
-      "height": 2390
+      "height": 2390,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club39",
@@ -511,11 +587,13 @@
       "bytes": 253989,
       "sha256": "150ab22023bc267654c758768eeabb110e18b80acdae189515343f42bfed8874",
       "width": 950,
-      "height": 1262
+      "height": 1262,
+      "previous_review_candidate": false,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club40",
-      "review_candidate": true,
+      "review_candidate": false,
       "coaching_candidate": false,
       "path": "club-photos/club-40.jpg",
       "url": "https://static.wixstatic.com/media/29f884_2270078eaa6f4a408aa103ff6c880f93~mv2_d_4000_2666_s_4_2.jpg",
@@ -524,12 +602,14 @@
       "bytes": 3193591,
       "sha256": "358be3936fd06a9c50e54db38fe1e56554492d5309555bfdbe686cbc8e187af4",
       "width": 4000,
-      "height": 2666
+      "height": 2666,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": false
     },
     {
       "id": "club41",
-      "review_candidate": true,
-      "coaching_candidate": true,
+      "review_candidate": false,
+      "coaching_candidate": false,
       "path": "club-photos/club-41.jpg",
       "url": "https://static.wixstatic.com/media/29f884_455331f3a0074563b8d43af69899a18e~mv2_d_1756_2342_s_2.jpg",
       "kind": "public club gallery",
@@ -537,7 +617,10 @@
       "bytes": 922438,
       "sha256": "d6882e1b60bc215fb5fd65401dcfc74f03ca63ae09c6e5eb576b7ffddfe4b35a",
       "width": 1756,
-      "height": 2342
+      "height": 2342,
+      "previous_review_candidate": true,
+      "previous_coaching_candidate": true
     }
-  ]
+  ],
+  "shortlist_status": "Previous coach-photo shortlist withdrawn after user feedback on October 24, 2026; originals remain available."
 }

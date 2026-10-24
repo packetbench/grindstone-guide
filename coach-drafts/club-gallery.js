@@ -8,7 +8,7 @@
   const grid = document.getElementById("club-grid");
   const search = document.getElementById("photo-search");
   const notice = document.getElementById("storage-notice");
-  let filter = "candidates";
+  let filter = "all";
   let statusTimer;
 
   function el(tag, className, text) {

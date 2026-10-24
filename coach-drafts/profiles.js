@@ -14,7 +14,8 @@ window.COACH_DRAFTS = {
         "Kyle was also a standout football player and a National Honor Society member. In his senior year, Columbia recognized him with its football Player of the Year and Captain’s awards, alongside MAC-8 first-team honors.",
         "He continued his wrestling career at Cleveland State University.",
         "His coaching also extends to Grindstone’s youth camps. Kyle is the instructor listed for the club’s 2026 youth camp at Winters Mill High School, a program for ages 8–18 focused on wrestling technique and mindset.",
-        "Today, Kyle leads Grindstone’s next chapter. Coach Kyle’s Corner of Excellence gathers instructional videos for coaches and wrestlers, connecting his role at the club with a practical resource for developing skills."
+        "Today, Kyle leads Grindstone’s next chapter. Coach Kyle’s Corner of Excellence gathers instructional videos for coaches and wrestlers, connecting his role at the club with a practical resource for developing skills.",
+        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Kyle Rutledge lists Copper, Bronze, Teal in its National Coaches Education Program field, checked October 24, 2026. Teal is the program’s course focused on coaching girls and women."
       ],
       "highlights": [
         {
@@ -78,6 +79,16 @@ window.COACH_DRAFTS = {
         {
           "title": "Carroll County Recreation & Parks • 2026 Grindstone youth camp (page 9)",
           "url": "https://ccgprod2.carrollcountymd.gov/media/nzyhogjv/ccrp_program-guide_camps_2026.pdf#page=9"
+        },
+        {
+          "title": "USA Wrestling · public membership lookup",
+          "url": "https://www.usawmembership.com/verify_membership",
+          "supports": "Kyle Rutledge; Maryland; public NCEP codes C, B, T. Checked October 24, 2026."
+        },
+        {
+          "title": "USA Wrestling · coaching certification levels",
+          "url": "https://www.themat.com/coaches/ncep-certification",
+          "supports": "Explains Copper, Bronze and Teal coaching education."
         }
       ],
       "photo": {
@@ -125,8 +136,11 @@ window.COACH_DRAFTS = {
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
         "Retrieved the complete 1990–1993 Columbia yearbooks and retained all source PDFs. Additional rendered pages preserve their original captions. The Senior Court portrait is the strongest new individually labeled historical image; earlier team pages are useful gallery context.",
         "Keep the existing state-champion image as the draft lead. A current coaching portrait would make a stronger present-day introduction.",
-        "Second pass checked Cleveland State archive routes and later college match reporting. Existing Columbia yearbooks remain the richest labeled photo source. The unrelated Pittsburg State track coach and Chicago ultimate player were excluded."
-      ]
+        "Second pass checked Cleveland State archive routes and later college match reporting. Existing Columbia yearbooks remain the richest labeled photo source. The unrelated Pittsburg State track coach and Chicago ultimate player were excluded.",
+        "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
+        "Latest pass checked Cleveland Memory’s CSU/Fenn collection and broader archive results; no additional attributable college photograph. Physical Cleveland State archives remain a lead. Public USAW training added."
+      ],
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "thomas-schnepp",
@@ -137,7 +151,8 @@ window.COACH_DRAFTS = {
         "Thomas wrestled for Eaton Rapids High School in Michigan throughout all four years of high school, graduating in 2010. He was a member of Eaton Rapids’ 2009 regional championship team. Depending on the season and the team’s needs, he competed in weight classes from 171 pounds through heavyweight. He now brings that experience to Grindstone, splitting his coaching time between the Pups and the older group.",
         "He also helps develop practical resources for Grindstone’s coaches and families. His work on the team library brings together practice plans, move guides, games and family information, with an emphasis on making the materials easy to find and use at practice.",
         "That work includes adapting activities for different ages, giving coaches clear teaching steps and cues, and keeping games readily available to help young athletes stay engaged. It is another way Thomas contributes to the program alongside his time on the mat.",
-        "Outside the wrestling room, Tom has also pursued technical education. A 2024 local graduation notice lists Thomas Schnepp of Finksburg among University of Maryland Global Campus graduates with a bachelor’s degree in cybersecurity technology. This is a proposed match to Coach Tom."
+        "Outside the wrestling room, Tom has also pursued technical education. A 2024 local graduation notice lists Thomas Schnepp of Finksburg among University of Maryland Global Campus graduates with a bachelor’s degree in cybersecurity technology. This is a proposed match to Coach Tom.",
+        "Eaton Rapids was a strong team during Tom’s school years. In 2008, the program reached Michigan’s Division 2 team state final after wins over Mount Pleasant and Oxford, finishing runner-up after a 33–30 final against Greenville. This is team history from his high-school era; the available result does not establish that he wrestled in that final."
       ],
       "highlights": [
         {
@@ -166,6 +181,11 @@ window.COACH_DRAFTS = {
           "title": "Carroll County Times · September 8, 2024, page 25",
           "url": "https://cctimes.carr.org/documents/CCT_09082024.pdf#page=25",
           "supports": "Thomas Schnepp of Finksburg, UMGC B.S. cybersecurity technology, 2023–24 graduates."
+        },
+        {
+          "title": "Michigan High School Athletic Association · 2008 team results",
+          "url": "https://my.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/08tmreg.html",
+          "supports": "Eaton Rapids team Division 2 runner-up; no individual-bout participation inferred."
         }
       ],
       "gallery_title": "Eaton Rapids wrestling years",
@@ -190,7 +210,8 @@ window.COACH_DRAFTS = {
         "Preserved the existing 2009 Eaton Rapids team photo. No additional publicly accessible, labeled Thomas photograph was found. Yearbook catalogs point to restricted or unavailable years; no private account access was attempted. A current individual portrait remains the main photo gap.",
         "Second pass found a local Thomas Schnepp of Finksburg named among University of Maryland Global Campus 2023–24 graduates, B.S. cybersecurity technology, in the September 8, 2024 Carroll County Times. Proposed same-person education detail.",
         "The 2009 Eaton Rapids state-quarterfinal lineup names Trevor Schnepp at 160 pounds. Trevor’s bout results are not assigned to Thomas.",
-        "The tagged 2009 regional team photograph now serves as the draft lead while a named individual portrait is sought."
+        "The tagged 2009 regional team photograph now serves as the draft lead while a named individual portrait is sought.",
+        "Verified the explicit Thomas tag in the existing public team photo. Adjacent friends-only photos were not retrieved. Public yearbook scans were not available; named search leads queued."
       ],
       "photo": {
         "src": "assets/thomas-regional-team-2009.jpg",
@@ -199,7 +220,8 @@ window.COACH_DRAFTS = {
         "source_url": "https://www.facebook.com/photo.php?fbid=1091665017774&set=t.1134555199&type=3",
         "source_label": "Original team photo • Lori Loomis Chapman",
         "archive": true
-      }
+      },
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "brian-leaf",
@@ -218,7 +240,8 @@ window.COACH_DRAFTS = {
         "Club-supplied background: Brian wrestled heavyweight as a youngster in Pennsylvania.",
         "The user explicitly rejected the PINKS/Mustang racing namesake on October 24, 2026. Racing photographs, stories and results must not be attributed to Coach Brian. The original evidence is preserved in Who we are not.",
         "Brian Wayne Leaf in the county recreation list remains an unresolved lead; rejecting the racer does not confirm or reject that separate record.",
-        "Exact-name Pennsylvania, heavyweight, youth, high-school, results and spelling-variant searches have not yet established his school or club."
+        "Exact-name Pennsylvania, heavyweight, youth, high-school, results and spelling-variant searches have not yet established his school or club.",
+        "PAJW, MAWA, Pennsylvania school/tournament and name-variant searches did not establish a school or photo. User-supplied youth heavyweight history retained. Confirmed wrong racer remains in Who we are not."
       ],
       "highlights": [
         {
@@ -244,7 +267,8 @@ window.COACH_DRAFTS = {
           "url": "https://www.carrollcountymd.gov/media/ax1iw0ys/carroll-county-recreation-and-parks-approved-volunteers-coaches-and-instructors-april-2026.pdf#page=38",
           "supports": "Brian Wayne Leaf, Westminster Area; possible local recreation match."
         }
-      ]
+      ],
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "kaia-condon",
@@ -252,23 +276,27 @@ window.COACH_DRAFTS = {
       "roster_name": "Kaia Condon",
       "status": "confirmed",
       "role": "Grindstone youth wrestling coach",
-      "summary": "Kaia Condon brings experience from Maryland’s girls wrestling circuit and McDaniel College’s women’s program to Grindstone’s coaching team.",
+      "summary": "Kaia Condon is a current McDaniel College wrestler who brings experience from Maryland’s girls wrestling circuit and collegiate competition to Grindstone’s coaching team.",
       "paragraphs": [
         "Kaia’s wrestling background began at Albert Einstein High School in Kensington, Maryland. In January 2023, she won the 141–148-pound division at the DCSAA Girls Invitational and received the event’s most outstanding wrestler award.",
         "She went on to earn consecutive podium finishes at the Maryland state championships. Wrestling at 130 pounds, Kaia placed fifth in 2023 and improved to fourth in 2024. Those results established her among the state’s leading competitors in her weight class during her high-school years.",
-        "Kaia continued her wrestling career at McDaniel College in Westminster, appearing on the Green Terror’s 2025–26 roster. She recorded her first college victory at the Princeton Open on November 2, 2025. A week later, she earned two wins by fall as McDaniel swept Arcadia and Alvernia in dual competition.",
+        "Kaia wrestles for McDaniel College in Westminster. During the Green Terror’s 2025–26 season, she competed at both 180 and 207 pounds. She recorded her first college victory at the Princeton Open on November 2, 2025. A week later, she earned two wins by fall as McDaniel swept Arcadia and Alvernia in dual competition.",
         "Her contributions continued through the winter. A pin helped finish McDaniel’s 34–14 win over Randolph at the November 23 Sam Case Classic. At the Ursinus Duals on January 11, 2026, she added two more falls, including a 19-second pin against East Stroudsburg. McDaniel described that result as the third-fastest fall in program history at the time.",
         "At Grindstone, Kaia is part of the 2026–27 Mat Rats and Valkyries coaching roster. Her path from Maryland high-school tournaments to collegiate competition gives young wrestlers a local example of the opportunities available as they progress in the sport."
       ],
-      "review_title": "Identity confirmed by you",
-      "identity_note": "You confirmed on October 24, 2026 that this is Kaia. The biography now combines her Einstein high-school results with her 2025–26 McDaniel season.",
+      "review_title": "Identity confirmed; profile and photo choices await review",
+      "identity_note": "You confirmed that this is Kaia and that she is a current college wrestler. This biography and its photo selections remain drafts for review. The new college action photographs are matched using meet records and photo-sequence evidence.",
       "review_prompt": "Review the writing and photo choices; add Kaia’s usual Grindstone practice group or coaching responsibilities.",
       "research_notes": [
         "Identity confirmed directly by the user on October 24, 2026.",
         "The college portrait is explicitly labeled Kaia Condon. The Einstein alumni collage also names her in its lower panel.",
-        "The official 2025–26 season is used throughout. No current 2026–27 McDaniel roster membership or academic year is inferred.",
         "The 19-second fall ranking is attributed to the January 11, 2026 report, not asserted as a current record.",
-        "Other McDaniel article photographs name Lena Black or Taylor Mead; those were not assigned to Kaia."
+        "Other McDaniel article photographs name Lena Black or Taylor Mead; those were not assigned to Kaia.",
+        "The user confirmed current college participation on October 24, 2026. The specific match results describe the 2025–26 season; no 2026–27 class year is inferred.",
+        "Retrieved 14 publicly displayed Flo match thumbnails. Twelve show Condon on the scoreboard, one is a weaker named-page candidate, and one mismatched 100-pound scoreboard was excluded from her gallery but preserved locally.",
+        "Retrieved 11 original Marymount action images, each up to 2,000 pixels, as working matches to her January 17, 2026 207-pound bout. The official result, chronological photo sequence and named-opponent article provide the identity evidence.",
+        "The USA Wrestling public name search returned a Kaia Condon record in Maryland. It does not itself provide a biography or portrait.",
+        "Retrieved 11 Marymount action originals and 13 usable or candidate Flo match thumbnails. One additional mismatched Flo thumbnail is retained locally as rejected source evidence. Twelve McDaniel recap hero images and opposing-school galleries were reviewed; unrelated athletes were excluded. Two Sinclair albums remain CAPTCHA-limited manual leads."
       ],
       "photo": {
         "src": "assets/kaia-condon.png",
@@ -343,6 +371,26 @@ window.COACH_DRAFTS = {
           "title": "McDaniel · November 23, 2025 Sam Case Classic",
           "url": "https://mcdanielathletics.com/news/2025/11/23/womens-wrestling-mcdaniel-splits-with-randolph-cedar-crest-in-sam-case-classic.aspx",
           "supports": "Fall in the 34–14 victory over Randolph."
+        },
+        {
+          "title": "Marymount · January 17, 2026 dual results",
+          "url": "https://marymountsaints.com/news/2026/1/17/womens-wrestling-wwrest-saints-dominate-mat-in-tri-meet-sweep.aspx",
+          "supports": "Kaia Condon competed for McDaniel against Katianna Martinez at 207 pounds; helps identify the gallery sequence."
+        },
+        {
+          "title": "Marymount · January 2026 photo gallery",
+          "url": "https://marymountsaints.com/galleries/womens-wrestling/womens-wrestling-tri-dual/571",
+          "supports": "Original Jacob Brown photographs; final bout sequence retained as the working Kaia action set."
+        },
+        {
+          "title": "Marymount · Katianna Martinez feature",
+          "url": "https://marymountsaints.com/news/2026/2/22/womens-wrestling-wwrest-martinez-qualifies-for-nationals-at-ncaa-regionals.aspx",
+          "supports": "Reuses a photograph from the same gallery sequence in a named Martinez feature."
+        },
+        {
+          "title": "USA Wrestling · MPSSAA girls results",
+          "url": "https://usawrestlingevents.com/results/3916?page=7",
+          "supports": "Public result names Kaia Condon of Albert Einstein at 130 pounds with a 1:25 fall over Delaney Gray."
         }
       ],
       "leads": [
@@ -370,9 +418,92 @@ window.COACH_DRAFTS = {
           "title": "McDaniel at York · December 6, 2025 collection",
           "url": "https://www.davidsinclairphotography.com/gallery-collection/12-06-25-Womens-Wrestling-York/C0000pMmwKyXhgbk",
           "supports": "Additional competition gallery lead; no photo assigned to Kaia."
+        },
+        {
+          "title": "November 23, 2025 McDaniel wrestling album",
+          "url": "https://www.davidsinclairphotography.com/gallery-collection/11-23-25-Wrestling/C0000hEB3CjrmkOk",
+          "supports": "Photographer album found through the public store. CAPTCHA blocked individual-photo inspection; retained as a manual lead, not a confirmed Kaia photo."
+        },
+        {
+          "title": "December 6, 2025 McDaniel women vs York album",
+          "url": "https://www.davidsinclairphotography.com/gallery-collection/12-06-25-Womens-Wrestling-York/C0000pMmwKyXhgbk",
+          "supports": "Photographer album found through the public store. CAPTCHA blocked individual-photo inspection; retained as a manual lead, not a confirmed Kaia photo."
         }
       ],
+      "gallery_title": "On the mat: college and high-school wrestling",
       "gallery": [
+        {
+          "src": "marymount-photos/mm-148.jpg",
+          "coach": "kaia-condon",
+          "name": "Kaia Condon",
+          "alt": "McDaniel and Marymount wrestlers during the January 17, 2026 dual meet; proposed Kaia Condon bout.",
+          "caption": "Working photo match: Kaia Condon for McDaniel (green) against Katianna Martinez of Marymount, January 17, 2026. Matched by the official bout result, gallery sequence and Marymount’s named Martinez feature. Photo: Jacob Brown / Marymount Athletics.",
+          "source_url": "https://marymountsaints.com/galleries/womens-wrestling/womens-wrestling-tri-dual/571",
+          "source_label": "Marymount Athletics · full meet gallery",
+          "kind": "College wrestling action · working match",
+          "selection": "gallery",
+          "native": true
+        },
+        {
+          "src": "marymount-photos/mm-152.jpg",
+          "coach": "kaia-condon",
+          "name": "Kaia Condon",
+          "alt": "McDaniel and Marymount wrestlers during the January 17, 2026 dual meet; proposed Kaia Condon bout.",
+          "caption": "Working photo match: Kaia Condon for McDaniel (green) against Katianna Martinez of Marymount, January 17, 2026. Matched by the official bout result, gallery sequence and Marymount’s named Martinez feature. Photo: Jacob Brown / Marymount Athletics.",
+          "source_url": "https://marymountsaints.com/galleries/womens-wrestling/womens-wrestling-tri-dual/571",
+          "source_label": "Marymount Athletics · full meet gallery",
+          "kind": "College wrestling action · working match",
+          "selection": "gallery",
+          "native": true
+        },
+        {
+          "src": "kaia-bouts/kb-01.png",
+          "coach": "kaia-condon",
+          "name": "Kaia Condon",
+          "alt": "Kaia Condon (Albert Einstein) vs. Lillian Markoff, Tuscarora — quarterfinal, 130 pounds, Maryland state championships, 2024-03-01. Public FloWrestling match image.",
+          "caption": "Kaia Condon (Albert Einstein) vs. Lillian Markoff, Tuscarora — quarterfinal, 130 pounds, Maryland state championships, 2024-03-01. Public FloWrestling match image.",
+          "source_url": "https://www.flowrestling.org/video/12217650-130-lbs-quarterfinal-lillian-markoff-tuscarora-vs-kaia-condon-albert-einstein",
+          "source_label": "FloWrestling · named match",
+          "kind": "High-school wrestling action",
+          "selection": "gallery",
+          "native": true
+        },
+        {
+          "src": "kaia-bouts/kb-07.png",
+          "coach": "kaia-condon",
+          "name": "Kaia Condon",
+          "alt": "Kaia Condon (Albert Einstein) vs. Michaela Carney, Boonsboro — consolation semifinal, 130 pounds, Maryland state championships, 2023-03-04. Public FloWrestling match image.",
+          "caption": "Kaia Condon (Albert Einstein) vs. Michaela Carney, Boonsboro — consolation semifinal, 130 pounds, Maryland state championships, 2023-03-04. Public FloWrestling match image.",
+          "source_url": "https://www.flowrestling.org/video/10691109-130-lbs-cons-semi-michaela-carney-boonsboro-vs-kaia-condon-albert-einstein",
+          "source_label": "FloWrestling · named match",
+          "kind": "High-school wrestling action",
+          "selection": "gallery",
+          "native": true
+        },
+        {
+          "src": "kaia-bouts/kb-09.png",
+          "coach": "kaia-condon",
+          "name": "Kaia Condon",
+          "alt": "Kaia Condon (Albert Einstein) vs. Delaney Gray, Queen Anne's — quarterfinal, 130 pounds, Maryland state championships, 2023-03-02. Public FloWrestling match image.",
+          "caption": "Kaia Condon (Albert Einstein) vs. Delaney Gray, Queen Anne's — quarterfinal, 130 pounds, Maryland state championships, 2023-03-02. Public FloWrestling match image.",
+          "source_url": "https://www.flowrestling.org/video/10670332-130-lbs-quarterfinal-delaney-gray-queen-annes-vs-kaia-condon-albert-einstein",
+          "source_label": "FloWrestling · named match",
+          "kind": "High-school wrestling action",
+          "selection": "gallery",
+          "native": true
+        },
+        {
+          "src": "kaia-bouts/kb-11.png",
+          "coach": "kaia-condon",
+          "name": "Kaia Condon",
+          "alt": "Kaia Condon (Albert Einstein) vs. Ada Gorman, Aberdeen — consolation round 5, 135 pounds, Maryland state championships, 2022-03-05. Public FloWrestling match image.",
+          "caption": "Kaia Condon (Albert Einstein) vs. Ada Gorman, Aberdeen — consolation round 5, 135 pounds, Maryland state championships, 2022-03-05. Public FloWrestling match image.",
+          "source_url": "https://www.flowrestling.org/video/7547035-135-lbs-cons-round-5-ada-gorman-aberdeen-vs-kaia-condon-albert-einstein",
+          "source_label": "FloWrestling · named match",
+          "kind": "High-school wrestling action",
+          "selection": "gallery",
+          "native": true
+        },
         {
           "src": "assets/kaia-mcdaniel-alumni.png",
           "alt": "Einstein alumni collage with Kaia Condon named in the lower panel.",
@@ -381,7 +512,8 @@ window.COACH_DRAFTS = {
           "source_label": "Albert Einstein High School Athletic Hall of Fame",
           "selection": "gallery"
         }
-      ]
+      ],
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "jerome-featherstone",
@@ -394,7 +526,9 @@ window.COACH_DRAFTS = {
         "Jerome’s coaching experience includes Maryland high-school wrestling and the Maryland Junior Wrestling League. He also served as an Up2Us coach in Baltimore, where he described learning from other coaches and sports to help young athletes develop.",
         "Alongside wrestling, Jerome brings experience in boxing, MMA, and strength and conditioning through his work with Mad House Boxing. He won the 2013 South Atlantic Amateur Golden Gloves championship. At Grindstone, that broad background supports his work with the Pups and promising wrestlers from other age groups.",
         "Jerome also competed in boxing and mixed martial arts after college. A 2022 profile traces his move into boxing and his work helping young Baltimore athletes through Beat the Streets. That experience adds another perspective to his coaching and athlete-development work.",
-        "Jerome’s competitive career also includes a Shogun Fights lightweight championship. He won the vacant title against Elijah Harris in November 2022 and successfully defended it against Tony Dabbondanza in March 2024. These are historical achievements, alongside his earlier wrestling and boxing results."
+        "Jerome’s competitive career also includes a Shogun Fights lightweight championship. He won the vacant title against Elijah Harris in November 2022 and successfully defended it against Tony Dabbondanza in March 2024. These are historical achievements, alongside his earlier wrestling and boxing results.",
+        "USA Wrestling’s public lookup provides another coaching reference: One of two Maryland records named Jerome Featherstone lists Bronze in its National Coaches Education Program field, checked October 24, 2026.",
+        "At Oklahoma, Jerome placed sixth at 157 pounds in the 2005 Missouri Open while competing unattached. His boxing career later took him to the 2013 National Golden Gloves team as the Washington, D.C. region’s 165-pound representative."
       ],
       "highlights": [
         {
@@ -470,6 +604,41 @@ window.COACH_DRAFTS = {
           "title": "Sherdog · Shogun Fights 28 results",
           "url": "https://www.sherdog.com/events/SF-Shogun-Fights-28-101913",
           "supports": "March 30, 2024 second-round TKO over Tony Dabbondanza."
+        },
+        {
+          "title": "USA Wrestling · public membership lookup",
+          "url": "https://www.usawmembership.com/verify_membership",
+          "supports": "Jerome Featherstone; Maryland; public NCEP codes B. Checked October 24, 2026."
+        },
+        {
+          "title": "USA Wrestling · coaching certification levels",
+          "url": "https://www.themat.com/coaches/ncep-certification",
+          "supports": "Explains Copper, Bronze and Teal coaching education."
+        },
+        {
+          "title": "Boxing archive photograph",
+          "url": "https://proamfighttalk.blogspot.com/2012/10/jake-smith-looking-to-stop-bullying.html",
+          "supports": "Explicit printed name beneath photograph."
+        },
+        {
+          "title": "Boxing archive photograph",
+          "url": "https://proamfighttalk.blogspot.com/2015/03/results-of-golden-gloves-at-sugar-ray_22.html",
+          "supports": "Proposed bout-sequence identity; no face matching. Results list 19 bouts; 19 photographs are in timestamp order. Jerome vs Jason Bell is result 18, matching photo 18 (22:59:11). The shirt reads Knockout Fitness, also listed as Jerome's gym in the March 7 bout sheet. This correlation is evidence, not a direct name caption."
+        },
+        {
+          "title": "Named staff photograph",
+          "url": "https://www.wellnessliving.com/explore/locations/boxing-kickboxing/us-md-eldersburg/madhouseboxingandsportsperformancegymllc/staff/517887/",
+          "supports": "Image alt text and staff page explicitly name Jerome Featherstone."
+        },
+        {
+          "title": "College and boxing competition archive",
+          "url": "https://boxingalongthebeltway.blogspot.com/2013/04/here-is-2013-dc-region-golden-gloves.html",
+          "supports": "Listed as the 165-pound DC-region representative for the 2013 National Golden Gloves Tournament of Champions in Salt Lake City."
+        },
+        {
+          "title": "College and boxing competition archive",
+          "url": "https://soonersports.com/news/2005/11/20/208371844",
+          "supports": "University of Oklahoma reports sixth place at 157 pounds, unattached, at the 2005 Missouri Open."
         }
       ],
       "photo": {
@@ -516,6 +685,15 @@ window.COACH_DRAFTS = {
           "source_url": "https://contentdm.ad.umbc.edu/digital/api/collection/Retriever/id/11730/download",
           "source_label": "The Retriever Weekly · printed page 19",
           "selection": "gallery"
+        },
+        {
+          "src": "jerome-boxing/jb-poster-2012.jpg",
+          "caption": "Jerome Featherstone is explicitly labeled at the upper left of the Bully Beatdown event poster, October 20, 2012, Du Burns Arena. Baltimore Boxing Promotions; preserved via Juan Marshall, ProAmFightTalk.",
+          "alt": "Jerome Featherstone is explicitly labeled at the upper left of the Bully Beatdown event poster, October 20, 2012, Du Burns Arena. Baltimore Boxing Promotions; preserved via Juan Marshall, ProAmFightTalk.",
+          "source_url": "https://proamfighttalk.blogspot.com/2012/10/jake-smith-looking-to-stop-bullying.html",
+          "source_label": "Juan Marshall / ProAmFightTalk",
+          "kind": "Named event poster",
+          "native": true
         }
       ],
       "status": "existing",
@@ -529,8 +707,12 @@ window.COACH_DRAFTS = {
         "Best lead image remains the 1080-pixel Up2Us portrait. New gallery selections are the clear April 2019 MMA image and the explicitly labeled May 2012 boxing poster. All three Oklahoma wrestling images remain preserved.",
         "The additional 150-pixel Mad House staff thumbnail is kept as an alternate but is too small to replace the current portrait. Photographer-only galleries and unlabeled athletes were not identified by visual similarity.",
         "Title history is written in the past tense; the October 2024 title loss means the page does not call him the current champion.",
-        "Sherdog currently displays a default placeholder silhouette rather than a usable athlete photograph. Generic promotion images were not used as portraits."
-      ]
+        "Sherdog currently displays a default placeholder silhouette rather than a usable athlete photograph. Generic promotion images were not used as portraits.",
+        "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
+        "The 2012 event poster names Jerome directly. The retained 2015 portrait is a proposed match from bout order, photo timestamps and the printed gym affiliation; it is not individually captioned.",
+        "Added an explicitly named 2012 boxing poster, retained a proposed 2015 bout-sequence portrait and a small named staff photograph. Added college/Golden Gloves results and public USAW training evidence."
+      ],
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "eric-westervelt",
@@ -542,7 +724,8 @@ window.COACH_DRAFTS = {
         "As a senior, Eric finished second at 171 pounds in the 1999 Carroll County tournament and earned Carroll County Times All-County second-team recognition. Earlier that month, he had turned a 16–3 deficit against South Carroll’s Chris Currence into a pin with a cradle—a memorable comeback documented in the local newspaper.",
         "Eric’s contribution reaches well beyond practice. By reaching out to local businesses and bringing them on board as sponsors, he has helped provide the financial support that keeps Grindstone going. His efforts connect the club with the community around it.",
         "On the mat, Eric moves between groups as needed and is a familiar presence with the 7–10 wrestlers. His commitment to the program includes both working directly with young athletes and building support for the team as a whole.",
-        "Eric is a U.S. Marine Corps veteran with a professional background in recreation and parks. His work has included maintaining athletic fields and helping keep public recreation spaces safe and ready for use."
+        "Eric is a U.S. Marine Corps veteran with a professional background in recreation and parks. His work has included maintaining athletic fields and helping keep public recreation spaces safe and ready for use.",
+        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Eric Westervelt lists Copper, Bronze, Teal in its National Coaches Education Program field, checked October 24, 2026. Teal is the program’s course focused on coaching girls and women."
       ],
       "highlights": [
         {
@@ -578,6 +761,16 @@ window.COACH_DRAFTS = {
         {
           "title": "Carroll County Times • All-County wrestling team (March 18, 1999)",
           "url": "https://cctimes.carr.org/documents/CCT_03181999.pdf#page=6"
+        },
+        {
+          "title": "USA Wrestling · public membership lookup",
+          "url": "https://www.usawmembership.com/verify_membership",
+          "supports": "Eric Westervelt; Maryland; public NCEP codes C, B, T. Checked October 24, 2026."
+        },
+        {
+          "title": "USA Wrestling · coaching certification levels",
+          "url": "https://www.themat.com/coaches/ncep-certification",
+          "supports": "Explains Copper, Bronze and Teal coaching education."
         }
       ],
       "photo": {
@@ -608,7 +801,9 @@ window.COACH_DRAFTS = {
         "Photo policy: use authentic source photographs. Do not use AI enhancement or reconstruction.",
         "The previous displayed crop had lost detail relative to the source PDF. It has been replaced with a direct 647 × 541 crop from the PDF’s native 4202 × 3465 JPEG2000 image, including the original caption and credit. No resizing, sharpening, denoising, contrast changes or AI processing were applied.",
         "Keep the modern portrait as the lead and this faithful source extraction in the historical gallery. The earlier degraded crop is retained only as a reference alternate.",
-        "A further direct archive pass reviewed 45 post-school newspaper result excerpts plus later exact-name searches; no second explicitly captioned wrestling image was recovered. The clearer authentic 1999 source crop remains selected."
+        "A further direct archive pass reviewed 45 post-school newspaper result excerpts plus later exact-name searches; no second explicitly captioned wrestling image was recovered. The clearer authentic 1999 source crop remains selected.",
+        "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
+        "Native source-PDF extraction preserves the historical wrestling photo without AI. Additional newspaper and school/alumni routes did not reveal another attributable public image; alumni album search requires login. USAW training added."
       ],
       "leads": [
         {
@@ -617,7 +812,8 @@ window.COACH_DRAFTS = {
           "supports": "The photographer credited on Eric’s school-days image worked for the Carroll County Times. A print/negative inquiry is a possible next step; no contact has been made."
         }
       ],
-      "gallery_title": "From Eric’s wrestling years"
+      "gallery_title": "From Eric’s wrestling years",
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "ryan-devries",
@@ -628,7 +824,8 @@ window.COACH_DRAFTS = {
         "Ryan wrestled at Proviso West High School in Illinois before competing for Eastern Illinois University under head coach Ralph McCausland. At Proviso West, he won the 2001 IHSA regional championship at 215 pounds. As an EIU freshman in 2002–03, he finished 6–4 at heavyweight and won all four of his matches at the Missouri Open to capture the freshman/sophomore division title.",
         "Ryan wears his heart on his sleeve and celebrates his wrestlers’ growth. He cares deeply about the athletes he coaches and takes their progress to heart. Families will most often find him with the 7–10 group, while he also helps coach wrestlers in other practice groups.",
         "Outside wrestling, Ryan’s background spans engineering, operations leadership and workforce training. He earned a bachelor’s degree in Industrial Engineering and a master’s degree in Workforce Development and Training from Eastern Illinois University. His professional work has included manufacturing engineering, employee training, workplace safety and leading production teams.",
-        "Ryan’s interest in teaching also appears in his academic work. His Eastern Illinois master’s thesis, completed in 2011, studied how instructional styles affected students’ knowledge in a computer-aided engineering drawing course. It adds a documented education and training dimension to his engineering background."
+        "Ryan’s interest in teaching also appears in his academic work. His Eastern Illinois master’s thesis, completed in 2011, studied how instructional styles affected students’ knowledge in a computer-aided engineering drawing course. It adds a documented education and training dimension to his engineering background.",
+        "Ryan also played football and baseball at Proviso West. The school’s 2002 yearbook identifies him in the varsity wrestling and football teams, while its homecoming report names him as a football captain during the fall 2001 season. An earlier yearbook places him on the 2000 baseball team."
       ],
       "highlights": [
         {
@@ -681,6 +878,36 @@ window.COACH_DRAFTS = {
           "title": "Eastern Illinois University · Ryan DeVries master’s thesis",
           "url": "https://thekeep.eiu.edu/theses/997/",
           "supports": "2011 M.S. Technology thesis, The effects of teaching styles on student knowledge."
+        },
+        {
+          "title": "Proviso West yearbook · 2002, printed page 10",
+          "url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20020101_english_14&df=1&dt=5",
+          "supports": "Ryan DeVries was a Proviso West football captain during the fall 2001 season."
+        },
+        {
+          "title": "Proviso West yearbook · 2002, printed page 25",
+          "url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20020101_english_29&df=1&dt=5",
+          "supports": "Ryan DeVries and James Falco working on CAD skills, Proviso West 2002 yearbook, printed page 25."
+        },
+        {
+          "title": "Proviso West yearbook · 2002, printed page 47",
+          "url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20020101_english_51&df=1&dt=5",
+          "supports": "Proviso West football team, 2002 yearbook, printed page 47. Caption lists Ryan DeVries first in row 6, corresponding to number 69 at the far left of the back row."
+        },
+        {
+          "title": "Proviso West yearbook · 2002, printed page 61",
+          "url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20020101_english_65&df=1&dt=5",
+          "supports": "Proviso West varsity wrestling team, 2002 yearbook, printed page 61. Ryan DeVries is listed third in the back row, between Arter Evans and Armando Aguirre."
+        },
+        {
+          "title": "Proviso West yearbook · 2002, printed page 116",
+          "url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20020101_english_120&df=1&dt=5",
+          "supports": "Ryan DeVries senior portrait, Proviso West 2002 yearbook, printed page 116."
+        },
+        {
+          "title": "Proviso West yearbook · 2000, printed page 35",
+          "url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20000101_english_39&df=1&dt=5",
+          "supports": "Proviso West baseball team, 2000 yearbook, printed page 35. Ryan DeVries is included in the caption beneath the upper-right team photograph."
         }
       ],
       "photo": {
@@ -695,6 +922,51 @@ window.COACH_DRAFTS = {
           "caption": "Ryan during his Proviso West wrestling years, pictured in the 2000 yearbook. The original caption gives his nickname, “Big Country.” Source: Proviso West yearbook, Bellwood Public Library digital archive, scan page 64.",
           "source_url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20000101_english_64&df=1&dt=5",
           "source_label": "Original yearbook • Bellwood Public Library"
+        },
+        {
+          "src": "ryan-school/ry-cad-2002.png",
+          "alt": "Ryan DeVries and James Falco working on CAD skills, Proviso West 2002 yearbook, printed page 25.",
+          "caption": "Ryan DeVries and James Falco working on CAD skills, Proviso West 2002 yearbook, printed page 25. Both students kept; full page preserves the explicit Ryan DeVries and James Falco caption.",
+          "source_url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20020101_english_29&df=1&dt=5",
+          "source_label": "Bellwood Public Library · Proviso West yearbook",
+          "kind": "Native yearbook crop",
+          "native": true
+        },
+        {
+          "src": "ryan-school/ry-football-2002.png",
+          "alt": "Proviso West football team, 2002 yearbook, printed page 47. Caption lists Ryan DeVries first in row 6, corresponding to number 69 at the far left of the back row.",
+          "caption": "Proviso West football team, 2002 yearbook, printed page 47. Caption lists Ryan DeVries first in row 6, corresponding to number 69 at the far left of the back row. Team photograph and complete printed caption.",
+          "source_url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20020101_english_51&df=1&dt=5",
+          "source_label": "Bellwood Public Library · Proviso West yearbook",
+          "kind": "Native yearbook crop",
+          "native": true
+        },
+        {
+          "src": "ryan-school/ry-wrestling-2002.png",
+          "alt": "Proviso West varsity wrestling team, 2002 yearbook, printed page 61. Ryan DeVries is listed third in the back row, between Arter Evans and Armando Aguirre.",
+          "caption": "Proviso West varsity wrestling team, 2002 yearbook, printed page 61. Ryan DeVries is listed third in the back row, between Arter Evans and Armando Aguirre. Upper varsity team only. Full page preserves adjacent row-by-row caption.",
+          "source_url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20020101_english_65&df=1&dt=5",
+          "source_label": "Bellwood Public Library · Proviso West yearbook",
+          "kind": "Native yearbook crop",
+          "native": true
+        },
+        {
+          "src": "ryan-school/ry-senior-label.png",
+          "alt": "Ryan DeVries senior portrait, Proviso West 2002 yearbook, printed page 116.",
+          "caption": "Ryan DeVries senior portrait, Proviso West 2002 yearbook, printed page 116. Native portrait with its printed name label.",
+          "source_url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20020101_english_120&df=1&dt=5",
+          "source_label": "Bellwood Public Library · Proviso West yearbook",
+          "kind": "Native yearbook crop",
+          "native": true
+        },
+        {
+          "src": "ryan-school/ry-baseball-2000.png",
+          "alt": "Proviso West baseball team, 2000 yearbook, printed page 35. Ryan DeVries is included in the caption beneath the upper-right team photograph.",
+          "caption": "Proviso West baseball team, 2000 yearbook, printed page 35. Ryan DeVries is included in the caption beneath the upper-right team photograph. Upper-right team photograph and its full printed caption.",
+          "source_url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20000101_english_39&df=1&dt=5",
+          "source_label": "Bellwood Public Library · Proviso West yearbook",
+          "kind": "Native yearbook crop",
+          "native": true
         }
       ],
       "status": "existing",
@@ -706,8 +978,12 @@ window.COACH_DRAFTS = {
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
         "Keep the existing clear modern portrait and captioned 2000 Proviso West wrestling image. Reviewed EIU’s 2003 yearbook and 2004 guide; results support the biography, but their photographs identify other wrestlers or lack a usable identification. No additional named Ryan image was established.",
-        "The thesis match is inferred from exact name, Eastern Illinois education and the existing technical-training background. The repository names the degree M.S. Technology; the existing biography’s program/concentration description is carried forward."
-      ]
+        "The thesis match is inferred from exact name, Eastern Illinois education and the existing technical-training background. The repository names the degree M.S. Technology; the existing biography’s program/concentration description is carried forward.",
+        "Preserved eight complete school-page scans and six native crops. Labels and team row captions identify Ryan; unnamed action photographs were not assigned to him.",
+        "Retrieved eight Proviso West source pages and six native crops: named senior portrait, wrestling, football, baseball and CAD classroom. Added football captain context. Sources and original PDFs remain preserved locally."
+      ],
+      "gallery_title": "From Proviso West to college wrestling",
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "jordan-millman",
@@ -726,7 +1002,8 @@ window.COACH_DRAFTS = {
         "Searched Millman, Milman, Milliman, Mill, Mills and Miller variants with Grindstone, Westminster, Carroll County and wrestling.",
         "Checked indexed public club/social captions. Unrelated real-estate, overseas sports and other same-name results were excluded.",
         "The shared surname does not establish any relationship to Andy Millman.",
-        "Second pass searched the full local newspaper archive, recreation lists, public social captions and Millman/Milman/Milliman variants. No additional credible local biography or labeled photograph surfaced. Club gallery photos are retained for manual identification."
+        "Second pass searched the full local newspaper archive, recreation lists, public social captions and Millman/Milman/Milliman variants. No additional credible local biography or labeled photograph surfaced. Club gallery photos are retained for manual identification.",
+        "Exact names and Jordon/Jordyn/Milman variants did not establish a new local school or portrait. No unrelated namesake promoted to a draft."
       ],
       "highlights": [
         {
@@ -740,7 +1017,8 @@ window.COACH_DRAFTS = {
           "url": "https://www.grindstonewrestling.org/",
           "supports": "General program context; the handout supplies Jordan’s coaching membership."
         }
-      ]
+      ],
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "andy-millman",
@@ -751,7 +1029,7 @@ window.COACH_DRAFTS = {
       "summary": "Andy Millman is a volunteer coach with Grindstone Wrestling for the 2026–2027 season.",
       "paragraphs": [
         "Andy is part of the Mat Rats and Valkyries coaching roster supporting young wrestlers in the Westminster area.",
-        "Away from coaching, Andy runs Captain Jerry’s, a Baltimore custom apparel and promotional-products business. The company’s public description names Andrew Millman as owner and describes its screen-printing and embroidery work."
+        "Away from coaching, this draft places Andy at Captain Jerry’s, a Baltimore custom apparel and promotional-products business. The company’s own history says Andy joined the family business in 2008 and became owner in 2011, continuing the business his grandfather Gerald founded in 1976. Its work includes screen printing, embroidery and promotional products. The connection between this business owner and Coach Andy remains a working assumption."
       ],
       "review_title": "Local recreation and business candidate",
       "identity_note": "This draft assumes Andy is Andrew J. Millman from the Westminster recreation list and Andy/Andrew Millman of Captain Jerry’s in Baltimore. The business paragraph is a proposed match for review.",
@@ -760,7 +1038,8 @@ window.COACH_DRAFTS = {
         "The business connection is a reasonable regional same-name hypothesis, not independently confirmed by Grindstone.",
         "The company’s own LinkedIn description is signed Andrew Millman, Owner, and links Andy Millman as an employee.",
         "The April 2026 county recreation list includes Andrew J. Millman with Westminster Area.",
-        "No relationship to Jordan Millman is inferred."
+        "No relationship to Jordan Millman is inferred.",
+        "Company’s primary history expands the proposed business biography. Company media inventory, public social profiles and image searches yielded no named portrait; Facebook returned temporary block."
       ],
       "highlights": [
         {
@@ -773,6 +1052,11 @@ window.COACH_DRAFTS = {
           "title": "Grindstone Wrestling Club",
           "url": "https://www.grindstonewrestling.org/",
           "supports": "General club context."
+        },
+        {
+          "title": "Captain Jerry’s · company history",
+          "url": "https://captjerrys.com/about/",
+          "supports": "Andy joined in 2008 and became owner in 2011; third-generation Baltimore family business."
         }
       ],
       "leads": [
@@ -781,7 +1065,8 @@ window.COACH_DRAFTS = {
           "url": "https://www.carrollcountymd.gov/media/ax1iw0ys/carroll-county-recreation-and-parks-approved-volunteers-coaches-and-instructors-april-2026.pdf#page=45",
           "supports": "Andrew J. Millman is listed with Westminster Area; exact coach identity remains a working inference."
         }
-      ]
+      ],
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "tyler-lease",
@@ -794,14 +1079,15 @@ window.COACH_DRAFTS = {
         "Tyler is part of the season’s Mat Rats and Valkyries coaching roster, supporting Grindstone’s local youth wrestling program.",
         "His local sports background includes playing for Westminster American in the District II Little League tournament in 2000. A Carroll County Times sports photograph captured him in action against Thurmont. The page uses that named local athlete as the working match for Coach Tyler while his wrestling background is researched."
       ],
-      "review_title": "Local sports photograph proposed for review",
-      "identity_note": "This draft assumes the captioned Westminster American baseball player from 2000 is Coach Tyler. His current Grindstone role is confirmed by the season handout.",
-      "review_prompt": "Does this historical photo belong to Tyler? Add his wrestling school or youth club if you know it.",
+      "review_title": "Local employer portrait proposed for review",
+      "identity_note": "This draft assumes the Tyler Lease named by local employer Webb Environmental and the captioned Westminster youth baseball player are Coach Tyler. The exact name and local context support these working matches; the coach connection still needs review.",
+      "review_prompt": "Review the proposed portrait and local sports history; add Tyler’s wrestling background or usual practice group.",
       "research_notes": [
         "Caption identifies Tyler Lease playing for Westminster American. Locality and exact name support the proposed match; the coach connection remains an assumption.",
         "Full source PDF and native image crop are retained.",
-        "A Westminster occupational record also names Tyler Lease with Webb Environmental; occupation is not yet included as a coach fact.",
-        "South Dakota and Indiana sports namesakes were not substituted for the local candidate."
+        "South Dakota and Indiana sports namesakes were not substituted for the local candidate.",
+        "The employer’s original JPEG and later PNG crop show the same photograph. Both publisher files are retained; no new facial reconstruction, sharpening or enlargement was applied. The coach-to-employer identity link remains provisional.",
+        "Two original publisher portrait renditions from Webb Environmental added as a provisional local exact-name match. Full-framed JPEG preferred over the later tighter crop; both preserved."
       ],
       "highlights": [
         {
@@ -819,18 +1105,35 @@ window.COACH_DRAFTS = {
           "title": "Carroll County Times · July 19, 2000 sports page",
           "url": "https://cctimes.carr.org/documents/CCT_07192000.pdf#page=7",
           "supports": "Captioned Tyler Lease baseball photograph and local youth-sports context."
+        },
+        {
+          "title": "Webb Environmental · Tyler Lease",
+          "url": "https://webbenvironmental.com/verification/",
+          "supports": "Public page names Tyler Lease; linked original photo is used as a provisional portrait."
         }
       ],
       "photo": {
-        "src": "assets/tyler-baseball-2000.png",
-        "archive": true,
-        "native": true,
-        "alt": "Captioned Tyler Lease youth baseball action photo, proposed as Coach Tyler’s historical image.",
-        "caption": "Working match: Westminster American’s Tyler Lease, July 2000. Photo: Ken Koons / Carroll County Times. The dark source scan is preserved without AI enhancement.",
-        "source_url": "https://cctimes.carr.org/documents/CCT_07192000.pdf#page=7",
-        "source_label": "Carroll County Times · July 19, 2000",
-        "kind": "Proposed historical image"
-      }
+        "src": "assets/tyler-webb-2021.jpeg",
+        "alt": "Tyler Lease in a Webb Environmental cap and hoodie, proposed as Coach Tyler’s portrait.",
+        "caption": "Proposed portrait: Tyler Lease, named on Webb Environmental’s public page. Original publisher image; the 2021 upload date is not a confirmed capture date.",
+        "source_url": "https://webbenvironmental.com/verification/",
+        "source_label": "Webb Environmental · named portrait",
+        "kind": "Proposed employer portrait"
+      },
+      "gallery_title": "Local sports and portrait sources",
+      "gallery": [
+        {
+          "src": "assets/tyler-baseball-2000.png",
+          "archive": true,
+          "native": true,
+          "alt": "Captioned Tyler Lease youth baseball action photo, proposed as Coach Tyler’s historical image.",
+          "caption": "Working match: Westminster American’s Tyler Lease, July 2000. Photo: Ken Koons / Carroll County Times. The dark source scan is preserved without AI enhancement.",
+          "source_url": "https://cctimes.carr.org/documents/CCT_07192000.pdf#page=7",
+          "source_label": "Carroll County Times · July 19, 2000",
+          "kind": "Proposed historical image"
+        }
+      ],
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "mike-handleman",
@@ -843,7 +1146,8 @@ window.COACH_DRAFTS = {
         "At Delaware Valley, Mike competed at 133 pounds under head coach Brandon Totten. His college competition included the East Stroudsburg Open, Shorty Hitchcock Memorial Classic and East Coast Duals. He earned a 10–5 win over Shippensburg’s Tyler Gilson at the 2005 East Stroudsburg Open.",
         "Mike’s competition experience also includes mixed martial arts. On June 17, 2023, he defeated Edward Barker II at Cagezilla 73 in Manassas, Virginia, winning by submission 1 minute, 18 seconds into the first round.",
         "Mike brings that wrestling experience to the Valkyries, providing a dedicated place for girls ages 5–14 to learn, train and compete together. The program welcomes beginners and experienced wrestlers, with an emphasis on fundamentals, confidence and sportsmanship.",
-        "The Washington Post recognized Mike with wrestling honorable mentions in 2001 and 2003."
+        "The Washington Post recognized Mike with wrestling honorable mentions in 2001 and 2003.",
+        "Mike’s earlier MMA record includes a first-round stoppage of John Vanderpool at the June 2013 Chaos in the Cage event. The Mix It Up Sports promoter’s results also record two 155-pound United States title-bout victories in 2019: a second-round stoppage of Jeremy Gregory in April and a split decision over Dimitriy Yakovlev in August. Those titles belong to the promoter’s competition series."
       ],
       "highlights": [
         {
@@ -914,17 +1218,47 @@ window.COACH_DRAFTS = {
           "title": "Washington Post · April 3, 2003 wrestling honors",
           "url": "https://www.washingtonpost.com/archive/local/2003/04/03/wrestling/d4520de5-9b2d-4f7b-88c5-93bea2730d68/",
           "supports": "Wrestling honorable mention."
+        },
+        {
+          "title": "Mix It Up Sports · official event results",
+          "url": "https://mixitupsports.com/results-no-shows-pullouts/",
+          "supports": "June 2013 win and April/August 2019 promoter title-bout results."
+        },
+        {
+          "title": "Virginia DPOR · 2023 combat sports report",
+          "url": "https://www.dpor.virginia.gov/sites/default/files/boards/Boxing/VCSS%20Annual%20Report%202023.pdf#page=6",
+          "supports": "June 17, 2023 Cagezilla 73 bout pairing with Edward Barker II; event context for images."
         }
       ],
-      "gallery_title": "In competition",
+      "gallery_title": "From Mike’s competition years",
       "gallery_label": "Mike Handleman competition photo",
       "gallery": [
         {
-          "src": "assets/mike-cagezilla-2023.jpg",
-          "alt": "Mike Handleman standing in the cage wearing gray shorts and MMA gloves at Cagezilla 73.",
-          "caption": "Mike Handleman at Cagezilla 73 in Manassas, Virginia, on June 17, 2023. Photograph by Taylor Sims.",
+          "src": "mike-bouts/mike-portrait-2023.jpg",
+          "alt": "Mike Handleman before his Cagezilla 73 bout, June 17, 2023. Photograph by Taylor Sims. Larger public gallery rendition of the existing identified photograph.",
+          "caption": "Mike Handleman before his Cagezilla 73 bout, June 17, 2023. Photograph by Taylor Sims. Larger public gallery rendition of the existing identified photograph.",
           "source_url": "https://www.smugmug.com/gallery/n-RxnBZf/i-mJnSWqb/A",
-          "source_label": "Taylor Sims • View the original photo"
+          "source_label": "Taylor Sims · Cagezilla 73 gallery",
+          "kind": "MMA event photograph",
+          "native": true
+        },
+        {
+          "src": "mike-bouts/mike-action-01.jpg",
+          "alt": "Mike Handleman, in gray and black wrestling shorts with red gloves, during his Cagezilla 73 bout with Edward Barker II. Photograph by Taylor Sims, June 17, 2023.",
+          "caption": "Working bout-sequence match: Mike Handleman, in gray and black wrestling shorts with red gloves, during his Cagezilla 73 bout with Edward Barker II. Photograph by Taylor Sims, June 17, 2023.",
+          "source_url": "https://www.smugmug.com/gallery/n-RxnBZf/i-kgXm2nS/A",
+          "source_label": "Taylor Sims · Cagezilla 73 gallery",
+          "kind": "MMA event photograph",
+          "native": true
+        },
+        {
+          "src": "mike-bouts/mike-action-02.jpg",
+          "alt": "Mike Handleman defending against a kick during his Cagezilla 73 bout with Edward Barker II. Mike wears gray and black wrestling shorts and red gloves. Photograph by Taylor Sims, June 17, 2023.",
+          "caption": "Working bout-sequence match: Mike Handleman defending against a kick during his Cagezilla 73 bout with Edward Barker II. Mike wears gray and black wrestling shorts and red gloves. Photograph by Taylor Sims, June 17, 2023.",
+          "source_url": "https://www.smugmug.com/gallery/n-RxnBZf/i-K7PMd9s/A",
+          "source_label": "Taylor Sims · Cagezilla 73 gallery",
+          "kind": "MMA event photograph",
+          "native": true
         }
       ],
       "photo": {
@@ -942,8 +1276,11 @@ window.COACH_DRAFTS = {
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
         "Season attendance and competition logistics were left out of this biography; use the current club policy for those details.",
         "Retained a local original-size copy of the already identified Cagezilla photo (1280 × 853), with Taylor Sims’s credit and original gallery link. Keep the current club-supplied portrait as the lead.",
-        "Reviewed Delaware Valley 2004–2007 material; no additional individually labeled Mike image was established. The Cagezilla gallery contains other images, but the accessible metadata did not reliably assign them to Mike."
-      ]
+        "Reviewed Delaware Valley 2004–2007 material; no additional individually labeled Mike image was established. The Cagezilla gallery contains other images, but the accessible metadata did not reliably assign them to Mike.",
+        "Retrieved three original 1,600-pixel Taylor Sims gallery renditions. The existing identified portrait is followed by two bout images with matching clothing and event sequence; the next image begins another bout. Both action photos remain proposed sequence matches. The earlier portrait file is retained unchanged.",
+        "Cagezilla 73 gallery yielded a larger existing photograph and two adjacent bout-action images. Next image starts a different bout. Added 2013/2019 promoter results. Public originals preserved without resizing."
+      ],
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "brad-gabrish",
@@ -955,7 +1292,9 @@ window.COACH_DRAFTS = {
       "paragraphs": [
         "A former Calvert Hall wrestler, Brad finished eighth at 145 pounds in the 2005 National Prep Championships. He also reached the 145-pound final at that year’s Maryland Independent High School championships.",
         "Brad went on to compete for McDaniel College at 149 pounds during the 2005–2006 season. Official January 2006 match reports identify him in the Green Terror lineup. In November 2005, he placed fourth at 149 pounds at the Messiah Invitational.",
-        "His earlier youth-coaching experience includes serving on Parkville Wrestling Club’s 2010–2011 assistant coaching staff. That background connects local prep and college competition with work in a Maryland youth wrestling program."
+        "His earlier youth-coaching experience includes serving on Parkville Wrestling Club’s 2010–2011 assistant coaching staff. That background connects local prep and college competition with work in a Maryland youth wrestling program.",
+        "Brad’s competition history extends beyond college. He won the 207-pound open bracket at the 2010 Dundalk Hawks Open. In April 2025, the Bald & Fat Tournament results list him representing Lucky Ducks and winning the 185-pound bracket in the event’s “DEAD” division. His route included an 11–1 major decision, a 17–1 technical fall and a forfeit in the final.",
+        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Bradley Gabrish lists Copper in its National Coaches Education Program field, checked October 24, 2026."
       ],
       "review_title": "Strong working match — Calvert Hall, McDaniel and Parkville",
       "identity_note": "The uncommon name, Maryland youth coaching, McDaniel competition and a matching Westminster-area recreation record support this draft identity. The handout establishes the current club role; no public source explicitly links all the historical records to Grindstone.",
@@ -966,7 +1305,9 @@ window.COACH_DRAFTS = {
         "No clearly labeled Brad portrait was found in the indexed college, prep-school or Parkville material.",
         "An initial-only 2025 tournament entry and unlabeled team images were not treated as identified photos.",
         "Retrieved the complete 2006 McDaniel yearbook. Its wrestling page lists Brad at 149 pounds but does not identify the athletes in its action photos. The page is retained as team context, not an individual portrait.",
-        "Verified the November 17, 2005 McDaniel Free Press report: fourth at 149 pounds at the Messiah Invitational. The inspected newspaper page has no athlete photographs."
+        "Verified the November 17, 2005 McDaniel Free Press report: fourth at 149 pounds at the Messiah Invitational. The inspected newspaper page has no athlete photographs.",
+        "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
+        "Added 2010 open and 2025 Bald & Fat results, plus Copper training record. McDaniel yearbooks/newspapers checked. Organizer’s 52 unnamed gallery images are older than the 2025 event and were not assigned to Brad."
       ],
       "highlights": [
         {
@@ -1022,6 +1363,26 @@ window.COACH_DRAFTS = {
           "title": "McDaniel 2006 yearbook · wrestling page",
           "url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2006.pdf#page=77",
           "supports": "Roster lists Brad Gabrish at 149 pounds. Individual athletes in the photographs are not named."
+        },
+        {
+          "title": "Dundalk Hawks Open · 2010 results, page 72",
+          "url": "https://www.eztourns.com/tournresults/2010%20Results/2010DundalkOpen.pdf#page=72",
+          "supports": "Brad Gabrish, Maryland, 207-pound open champion."
+        },
+        {
+          "title": "FloWrestling · 2025 Bald & Fat Tournament results",
+          "url": "https://www.flowrestling.org/events/12787486-2025-bald-fat-tournament",
+          "supports": "Lucky Ducks; 185-pound DEAD division winner; quarterfinal, semifinal and final results."
+        },
+        {
+          "title": "USA Wrestling · public membership lookup",
+          "url": "https://www.usawmembership.com/verify_membership",
+          "supports": "Bradley Gabrish; Maryland; public NCEP codes C. Checked October 24, 2026."
+        },
+        {
+          "title": "USA Wrestling · coaching certification levels",
+          "url": "https://www.themat.com/coaches/ncep-certification",
+          "supports": "Explains Copper, Bronze and Teal coaching education."
         }
       ],
       "leads": [
@@ -1041,7 +1402,8 @@ window.COACH_DRAFTS = {
           "selection": "context",
           "kind": "Team context"
         }
-      ]
+      ],
+      "profile_review_status": "Draft awaiting user review"
     },
     {
       "id": "daniel-skelonc",
@@ -1055,8 +1417,8 @@ window.COACH_DRAFTS = {
         "He continued at Cedar Springs High School in Michigan. As a junior, Dan qualified for the 2002 Division 2 individual state finals at 145 pounds. At the state tournament, he pinned Eaton Rapids’ Jake Strank in 4 minutes, 15 seconds.",
         "Daniel is now named on Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster. This proposed biography connects his early experience across wrestling styles with his current youth-coaching role."
       ],
-      "review_title": "Working match: Cedar Springs wrestler",
-      "identity_note": "This draft assumes Coach Daniel is the Daniel/Dan Skelonc in Michigan youth and Cedar Springs high-school results. Please flag it if that background belongs to someone else.",
+      "review_title": "Working match: wrestling history and a named portrait",
+      "identity_note": "This draft provisionally connects Coach Daniel with the Cedar Springs wrestler and the Detective Daniel Skelonc named in a Washington, D.C. award announcement. The portrait is explicitly labeled in that source; its connection to this coach remains a working match for review.",
       "review_prompt": "Is Daniel the wrestler from Cedar Springs, Michigan? If not, mark Wrong person and the historical paragraphs can be removed.",
       "research_notes": [
         "Current Grindstone membership is established by the supplied handout.",
@@ -1065,7 +1427,8 @@ window.COACH_DRAFTS = {
         "Unrelated personal records were excluded from the coaching research.",
         "Second pass checked the complete official 2002 Cedar Springs results: 32–20 listed record; win by fall in 4:15 over Jake Strank. No state medal or championship is claimed.",
         "No Maryland bridge was found in county volunteer lists or the Carroll County Times archive. User authorized this best-candidate draft.",
-        "Cedar Springs Museum holds yearbooks and Cedar Springs Post issues from 1992 onward; target-year public scans were not located."
+        "Cedar Springs Museum holds yearbooks and Cedar Springs Post issues from 1992 onward; target-year public scans were not located.",
+        "The public USA Wrestling Maryland name search returns two Daniel Skelonc records. No record is treated as proof of the proposed MPD or Cedar Springs connection, and membership identifiers are not published."
       ],
       "highlights": [
         {
@@ -1092,8 +1455,35 @@ window.COACH_DRAFTS = {
           "title": "MHSAA · Cedar Springs 2002 tournament results",
           "url": "https://my.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/02d2/02d2rtltm072.htm",
           "supports": "Historical school results; retrieval may be intermittent."
+        },
+        {
+          "title": "MPD · November 20, 2023 achievement awards",
+          "url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
+          "supports": "Official graphic explicitly names Detective Daniel Skelonc second from left; proposed coach portrait."
         }
-      ]
+      ],
+      "photo": {
+        "src": "assets/daniel-portrait-2023.png",
+        "archive": true,
+        "native": true,
+        "alt": "Named official portrait of Detective Daniel Skelonc, proposed as Coach Daniel.",
+        "caption": "Working identity match: Detective Daniel Skelonc, named in MPD’s November 2023 award graphic. Native crop; complete original is retained below.",
+        "source_url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
+        "source_label": "Metropolitan Police Department · November 20, 2023",
+        "kind": "Proposed portrait · named official source"
+      },
+      "gallery": [
+        {
+          "src": "assets/daniel-mpd-award-2023.png",
+          "native": true,
+          "alt": "Official award graphic naming Detective Daniel Skelonc second from left.",
+          "caption": "Full original graphic. The printed left-to-right caption identifies Detective Daniel Skelonc in the second portrait. The coach connection is a working match. Source: Metropolitan Police Department.",
+          "source_url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
+          "source_label": "MPD · original award announcement",
+          "selection": "gallery"
+        }
+      ],
+      "profile_review_status": "Draft awaiting user review"
     }
   ],
   "rejected_matches": [
