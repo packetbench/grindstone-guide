@@ -281,10 +281,10 @@ window.COACH_DRAFTS = {
       "role": "Grindstone youth wrestling coach",
       "summary": "Brian Leaf’s wrestling roots are in Pennsylvania, where he competed as a youngster in the heavyweight division. He is part of Grindstone’s 2026–27 coaching team.",
       "paragraphs": [
-        "Brian brings his early experience in Pennsylvania youth wrestling to the Mat Rats and Valkyries coaching roster. His heavyweight background comes directly from your recollection; the specific school, youth club and competitive years are still being researched."
+        "Brian brings his early experience in Pennsylvania youth wrestling to the Mat Rats and Valkyries coaching roster. The club supplied his youth heavyweight background; the specific school, youth club and competitive years are still being researched."
       ],
       "review_title": "Pennsylvania wrestling background confirmed",
-      "identity_note": "You confirmed Brian wrestled as a youngster in Pennsylvania in the heavyweight division. You also ruled out the PINKS/Mustang racer; that mistaken match now appears in “Who we are not.”",
+      "identity_note": "Club-supplied background confirms that Brian wrestled as a youngster in Pennsylvania in the heavyweight division. The club contact ruled out the PINKS/Mustang racer; that mistaken match appears in “Who we are not.”",
       "review_prompt": "Add Brian’s Pennsylvania school or youth club, competitive years, coaching responsibilities, or a photo you recognize.",
       "research_notes": [
         "Club-supplied background: Brian wrestled heavyweight as a youngster in Pennsylvania.",
@@ -294,12 +294,13 @@ window.COACH_DRAFTS = {
         "PAJW, MAWA, Pennsylvania school/tournament and name-variant searches did not establish a school or photo. User-supplied youth heavyweight history retained. Confirmed wrong racer remains in Who we are not.",
         "New professional-directory lead is unresolved and could still belong to the rejected racing namesake. Public PA school, sports, alumni and company-photo checks supplied no attributable portrait in this pass.",
         "Direct PA-Wrestling surname search returned no Brian/Bryan Leaf among 25 Leaf-substring records. Its high-school coverage does not rule out the user-supplied youth wrestling history. Recent public Mat Rats team captions also supplied no individual Brian tag. New school lead is queued, not assigned.",
-        "Additional youth-specific checks covered PJW champions, PA Mat Rankings and surviving 1999, 2008 and 2013 MAWA records without an attributable Brian Leaf match. Several 1997–2004 archive links are defunct or inaccessible. These incomplete records cannot establish that he did not wrestle; the user’s Pennsylvania heavyweight background is retained."
+        "Additional youth-specific checks covered PJW champions, PA Mat Rankings and surviving 1999, 2008 and 2013 MAWA records without an attributable Brian Leaf match. Several 1997–2004 archive links are defunct or inaccessible. These incomplete records cannot establish that he did not wrestle; the user’s Pennsylvania heavyweight background is retained.",
+        "The public Leaf Builders business page supplies a direct professional source, but its internal Brian search yielded service posts and no named owner portrait; its wrestling search returned no results. The exact-name USA Wrestling Pennsylvania lookup also returned no record. Neither check disproves the club-supplied youth wrestling history or identifies Coach Brian."
       ],
       "highlights": [
         {
           "label": "Wrestling background",
-          "text": "Pennsylvania youth heavyweight · confirmed by you."
+          "text": "Pennsylvania youth heavyweight · club-supplied background."
         },
         {
           "label": "At Grindstone",
@@ -329,6 +330,11 @@ window.COACH_DRAFTS = {
           "title": "Brian Leaf · unresolved Pennsylvania school profile",
           "url": "https://www.facebook.com/brian.leaf1",
           "supports": "Public profile lists Owen J. Roberts Class of 2007 and Spring City. No wrestling, Maryland or Grindstone connection established; school and portrait are not adopted."
+        },
+        {
+          "title": "Leaf Builders LLC · public business page",
+          "url": "https://www.facebook.com/leafhomebuilders",
+          "supports": "Public business posts name Brian Leaf and describe work in Maryland and Pennsylvania. No wrestling or Grindstone link was found. This remains an unresolved lead and may still be the rejected racing namesake; no employment or portrait is adopted."
         }
       ],
       "profile_review_status": "Draft awaiting user review"
@@ -632,7 +638,7 @@ window.COACH_DRAFTS = {
       "role": "Youth coach · Pups and athlete development",
       "summary": "Jerome Featherstone has worked with Grindstone’s Pups and with promising wrestlers from other age groups.",
       "paragraphs": [
-        "Jerome began wrestling at age four. His school career took him from Boys’ Latin in Maryland to Salisbury School in Connecticut, with a Maryland state title at 160 pounds, a National Prep runner-up finish in 2002 and fourth place in 2003. At Salisbury, he won the 2004 New England championship at 171 pounds.",
+        "Jerome began wrestling at age four. His school career took him from Boys’ Latin in Maryland to Salisbury School in Connecticut, with a Maryland state title at 160 pounds, a National Prep runner-up finish in 2002 and fourth place in 2003. At Salisbury, he won the 2004 New England championship at 171 pounds. The 2002 Maryland Independent Schools results also record him as the 152-pound runner-up for Boys’ Latin.",
         "He continued at the NCAA Division I level with the University of Oklahoma, earning a varsity wrestling letter in 2005. Wrestling at 157 and 165 pounds, he competed for the Sooners during the 2004–05 and 2005–06 seasons.",
         "Jerome’s coaching experience includes Maryland high-school wrestling and the Maryland Junior Wrestling League. He also served as an Up2Us coach in Baltimore, where he described learning from other coaches and sports to help young athletes develop.",
         "Alongside wrestling, Jerome brings experience in boxing, MMA, and strength and conditioning through his work with Mad House Boxing. He won the 2013 South Atlantic Amateur Golden Gloves championship. At Grindstone, that broad background supports his work with the Pups and promising wrestlers from other age groups.",
@@ -750,6 +756,11 @@ window.COACH_DRAFTS = {
           "title": "College and boxing competition archive",
           "url": "https://soonersports.com/news/2005/11/20/208371844",
           "supports": "University of Oklahoma reports sixth place at 157 pounds, unattached, at the 2005 Missouri Open."
+        },
+        {
+          "title": "Maryland Independent Schools · 2002 place summary",
+          "url": "https://www.landon.net/uploaded/IAC/wrestling/Old_Brackets/2002_MIS_tournament_brackets.pdf#page=2",
+          "supports": "Jerome Featherstone, Boys Latin, grade 11, second at 152 pounds. Distinct from his National Prep and other state results."
         }
       ],
       "photo": {
@@ -1140,7 +1151,7 @@ window.COACH_DRAFTS = {
       "summary": "Jordan Millman is on Grindstone’s 2026–27 coaching roster. This proposed local match brings experience in community events and live apparel printing.",
       "paragraphs": [
         "Jordan is listed among the Mat Rats and Valkyries coaches for the 2026–27 season. Her specific practice group and wrestling background are still being researched.",
-        "Away from the mat, this working profile connects Jordan with Captain Jerry’s and Spider Web Promotions. Her public posts describe bringing live apparel printing to community events, including Downtown Westminster’s Oyster Stroll.",
+        "Away from the mat, this working profile connects Jordan with Captain Jerry’s and Spider Web Promotions. Her public posts describe bringing live apparel printing to community events, including Downtown Westminster’s Oyster Stroll. The company’s own website explains the connection between those two names: Captain Jerry’s acquired SpiderWeb Promotions.",
         "In an October 2026 post, Jordan described developing that event work since September 2025 and reaching a thirteenth live-printing event. This supplies a more detailed picture of her local involvement while the proposed coach match is reviewed.",
         "The public trail now connects this proposed profile with wrestling and grappling as well. Andy’s March 2022 Gracie Charlottesville open-mat post explicitly tags Jordan. In November 2025, Jordan celebrated the start of Mat Rats season, tagged Andy and identified the Blue team in a reply. Those posts strengthen the local match while leaving the precise coaching role for review."
       ],
@@ -1189,6 +1200,11 @@ window.COACH_DRAFTS = {
           "title": "Jordan Millman · Mat Rats season, November 2025",
           "url": "https://www.facebook.com/joashley1991/posts/pfbid0nM6L1rGo8QKNWRUJCn3wkYoHGpTWxrZvGeJKX7BHK2nukM8G2d8RWnk9PXyh6bRAl",
           "supports": "Public post explicitly tags Andy; Jordan’s reply specifies the Blue team. No coaching title is stated."
+        },
+        {
+          "title": "Captain Jerry’s · SpiderWeb Promotions acquisition notice",
+          "url": "https://captjerrys.com/about/",
+          "supports": "Primary business context for the two company names in Jordan’s event post; no date, job title or personal acquisition role inferred."
         }
       ],
       "photo": {
@@ -1286,7 +1302,7 @@ window.COACH_DRAFTS = {
         "Andy is part of the Mat Rats and Valkyries coaching roster supporting young wrestlers in the Westminster area.",
         "Away from coaching, this draft places Andy at Captain Jerry’s, a Baltimore custom apparel and promotional-products business. The company’s own history says Andy joined the family business in 2008 and became owner in 2011, continuing the business his grandfather Gerald founded in 1976. Its work includes screen printing, embroidery and promotional products. The connection between this business owner and Coach Andy remains a working assumption.",
         "The proposed Andy profile also has a documented grappling background. Public Relson Gracie training photographs explicitly tag him in September 2015, and his March 2022 post describes attending an open mat at Gracie Charlottesville with Jordan. These sources support participation in grappling without establishing a belt rank or teaching credential.",
-        "A probable competitive connection points to Fight2Win109 in Baltimore in April 2019. Andy’s public profile promoted that exact event a week beforehand, and the published card and schedule name Andrew Millman against Michael Mehl. The event connection, Relson Gracie background and a matching academy review under Andrew make this a plausible continuation of his grappling story; the bout-to-coach identity is still awaiting confirmation."
+        "In April 2019, the Fight To Win 109 promoter scheduled Andy against Michael Mehl in Baltimore and linked his public profile directly in the match announcement. The archived card lists Andrew Millman of Relson Gracie in a 145-pound purple-belt gi matchup. The result has not been verified; the historical listing does not establish a current belt rank."
       ],
       "review_title": "Proposed local identity with named photo sources",
       "identity_note": "Proposed Coach Andy match: Captain Jerry’s owner Andy Millman. Public photo tags connect the same profile to Relson Gracie training, an open mat with Jordan and Mat Rats season posts. The final roster-to-profile match remains for review.",
@@ -1295,9 +1311,8 @@ window.COACH_DRAFTS = {
         "Captain Jerry’s public page directly tags Jordan Millman. Her current profile photograph explicitly tags Andy at left and links his own profile, which also shares company posts.",
         "The two coach identities remain proposed. The public tags establish the photo and business trail; no family relationship is inferred.",
         "Five complete source photographs are preserved. Individual portraits are native crops of the largest recent photograph, with no enlargement, reconstruction or enhancement.",
-        "Andy’s public profile promoted Fight2Win109 on April 13, 2019, and the published April 20 Baltimore schedule names Andrew Millman against Michael Mehl. The consistent Relson Gracie training history and Andrew-name academy review support a probable connection. The specific competitor-to-coach identity still needs confirmation, so the bout remains a lead rather than a settled credential. Its black thumbnail is retained only in the local research files.",
         "New public posts connect the proposed profiles to Mat Rats and grappling. Group-photo subjects are not identified by appearance; captions and explicit tags supply the associations. Coaching roles remain draft assumptions pending review.",
-        "A probable Fight2Win connection has emerged for Andy: his public profile promoted Fight2Win109 on April 13, 2019, and the event's published schedule names Andrew Millman against Michael Mehl a week later. The Relson Gracie affiliation is consistent with Andy's documented training history. A separate public Gracie Charlottesville review under Andrew Millman also matches Andy's March 2022 open-mat visit. The specific bout-to-profile link still needs confirmation before adding it as a settled competitive credential."
+        "The April 15, 2019 original public promoter schedule explicitly hyperlinks Andy Millman to millman1 in the Michael Mehl matchup. This establishes the proposed profile-to-scheduled-match connection. It is an inline caption link, not a positional photo tag. The roster-to-profile identity remains a draft, and neither a completed bout nor its result is asserted."
       ],
       "highlights": [
         {
@@ -1355,6 +1370,16 @@ window.COACH_DRAFTS = {
           "title": "Gracie Charlottesville · public Andrew Millman review",
           "url": "https://maps.google.com/maps/contrib/105347927095694784055",
           "supports": "Academy open-mat review and attributed March 2022 group image match Andy’s documented visit context; contextual name variant, not a direct profile cross-link."
+        },
+        {
+          "title": "Seth Daniels · original Fight To Win 109 schedule",
+          "url": "https://www.facebook.com/photo/?fbid=10217451952682884&set=a.1100976976783",
+          "supports": "April 15, 2019 public promoter caption links the scheduled Andy Millman directly to millman1; event scheduled April 20 in Baltimore."
+        },
+        {
+          "title": "Archived promoter card · Fight To Win 109",
+          "url": "https://promotions2838.rssing.com/chan-67545365/all_p18.html",
+          "supports": "Andrew Millman (Relson Gracie) versus Michael Mehl (Conquest BJJ), 145-pound purple-belt gi; historical card, not a result."
         }
       ],
       "leads": [
@@ -1366,7 +1391,7 @@ window.COACH_DRAFTS = {
         {
           "title": "FloGrappling · Michael Mehl vs Andrew Millman, Fight2Win109",
           "url": "https://www.flograppling.com/video/6457452-michael-mehl-vs-andrew-millman-fight-2-win-109",
-          "supports": "Probable athlete connection now supported by Andy’s own promotion of the exact event, Relson training history and Andrew-name academy review. Specific bout identity remains unconfirmed; no winner or current rank inferred."
+          "supports": "Named bout page, now connected to the proposed profile by the original promoter’s inline schedule link. No outcome verified; the retained black thumbnail is unusable."
         }
       ],
       "photo": {
@@ -1727,12 +1752,12 @@ window.COACH_DRAFTS = {
       "role": "Grindstone youth wrestling coach",
       "summary": "Brad Gabrish brings high-school, collegiate and youth-coaching experience to Grindstone’s 2026–2027 coaching team.",
       "paragraphs": [
-        "A former Calvert Hall wrestler, Brad finished eighth at 145 pounds in the 2005 National Prep Championships. He also reached the 145-pound final at that year’s Maryland Independent High School championships.",
-        "Brad went on to compete for McDaniel College at 149 pounds during the 2005–2006 season. Official January 2006 match reports identify him in the Green Terror lineup. In November 2005, he placed fourth at 149 pounds at the Messiah Invitational.",
+        "Brad’s Calvert Hall wrestling record reaches back to the 2002 Maryland Independent Schools tournament, where he competed at 135 pounds as a ninth-grader. He entered the 2004 National Prep Championships at 145 pounds as a junior and won two matches. The next year, he finished eighth at 145 pounds at National Preps and reached the Maryland Independent Schools final at that weight.",
+        "Brad went on to compete for McDaniel College at 149 pounds during the 2005–2006 season. Official January 2006 match reports identify him in the Green Terror lineup. In November 2005, he placed fourth at 149 pounds at the Messiah Invitational. Brad is also listed on the wrestling roster in McDaniel’s 2007 yearbook.",
         "His earlier youth-coaching experience includes serving on Parkville Wrestling Club’s 2010–2011 assistant coaching staff. That background connects local prep and college competition with work in a Maryland youth wrestling program.",
         "Brad’s competition history extends beyond college. He won the 207-pound open bracket at the 2010 Dundalk Hawks Open. In April 2025, the Bald & Fat Tournament results list him representing Lucky Ducks and winning the 185-pound bracket in the event’s “DEAD” division. His route included an 11–1 major decision, a 17–1 technical fall and a forfeit in the final.",
         "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Bradley Gabrish lists Copper in its National Coaches Education Program field, checked October 24, 2026.",
-        "The 2025 organizer recap also recognizes Lucky Ducks as team champions. Brad’s named quarterfinal was an 11–1 win over John Bau-Madsen; in the semifinal he defeated Jared Estep by technical fall, 17–1 in 2:16. Clayton Arnold forfeited the final. The championship-team photograph is retained with the full group, because no source gives a left-to-right name key."
+        "The 2025 organizer recap also recognizes Lucky Ducks as team champions with 103.5 points. The championship-team photograph is retained in full because the source supplies no left-to-right name key."
       ],
       "review_title": "Wrestling history with a new proposed portrait",
       "identity_note": "The proposed portrait comes from Bradley Gabrish’s public profile, which lists Calvert Hall Class of 2005 and matches the documented wrestler’s school year. The roster-to-profile match remains open for review. His position in the Lucky Ducks team photograph is not assigned.",
@@ -1748,7 +1773,8 @@ window.COACH_DRAFTS = {
         "Added 2010 open and 2025 Bald & Fat results, plus Copper training record. McDaniel yearbooks/newspapers checked. Organizer’s 52 unnamed gallery images are older than the 2025 event and were not assigned to Brad.",
         "New pass checked McDaniel 2008–2010 yearbook OCR, athletics search, old photographer albums and Parkville photo links. Three unassigned Sinclair previews are preserved as context, not selected as Brad portraits. Parkville’s public image links are dead and its album index requires login.",
         "The public athlete profile has no videos. Three new originals preserve a proposed individual portrait, the Lucky Ducks champions and the full event group. Earlier unassigned McDaniel photos remain in the collection.",
-        "The organizer’s full 2025 results independently confirm the Dead 185 title and Lucky Ducks team championship. Homepage and three official gallery pages supplied no named Brad bout video or image. The organizer-linked joeytakedowns Instagram remains an unexamined caption/video route."
+        "The organizer’s full 2025 results independently confirm the Dead 185 title and Lucky Ducks team championship. Homepage and three official gallery pages supplied no named Brad bout video or image. The exact April 7, 2025 organizer Instagram carousel was found, but its captions, slides and tags remained behind login; it stays in the search queue.",
+        "New primary archives add the 2002 MIS bracket, 2004 National Prep bracket and 2007 McDaniel yearbook roster. The yearbook’s five action photographs have no individual captions; the only named portrait is Coach Gardner. Both original page images are preserved as team context, without assigning Brad to an athlete. The 26–9 figure printed in the 2004 bracket is an entry record, not a final season record."
       ],
       "highlights": [
         {
@@ -1844,6 +1870,21 @@ window.COACH_DRAFTS = {
           "title": "Bald & Fat Classic · official 2025 results",
           "url": "https://docs.google.com/document/d/149bIi_BOUgP4xGHKj4AegQp8E8Z60mn6IWqCqjIWiLQ/edit?usp=sharing",
           "supports": "Organizer result document confirms Brad Gabrish of Lucky Ducks first at Dead 185; Lucky Ducks team champions with 103.5 points."
+        },
+        {
+          "title": "McDaniel · 2007 wrestling yearbook pages",
+          "url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=66",
+          "supports": "Printed page 64 explicitly lists Brad Gabrish in the wrestling roster. No weights or class years are printed. Page 65 discusses the team season and the 2007 NCAA championships."
+        },
+        {
+          "title": "Maryland Independent Schools · 2002 bracket",
+          "url": "https://www.landon.net/uploaded/IAC/wrestling/Old_Brackets/2002_MIS_tournament_brackets.pdf#page=14",
+          "supports": "Brad Gabrish, Calvert Hall, ninth grade, entered at 135 pounds. Two wins and two losses; no placing."
+        },
+        {
+          "title": "National Preps · 2004 bracket",
+          "url": "https://nepswa.com/wp-content/uploads/2013/05/NP-BRACKETS-2004.pdf#page=31",
+          "supports": "Brad Gabrish, Calvert Hall junior, entered at 145 pounds with a 26–9 record. Two wins; no placing. The entry record is not a final season record."
         }
       ],
       "leads": [
@@ -1891,6 +1932,26 @@ window.COACH_DRAFTS = {
           "source_label": "Original public photograph",
           "native": true,
           "kind": "Championship team / event context",
+          "selection": "gallery"
+        },
+        {
+          "src": "brad-school/mcd-66-1.jpg",
+          "alt": "McDaniel’s 2007 yearbook, printed page 64. Brad Gabrish is listed in the wrestling roster. Three action photographs are uncaptioned; the separate portrait is labeled Coach Gardner. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+          "caption": "McDaniel’s 2007 yearbook, printed page 64. Brad Gabrish is listed in the wrestling roster. Three action photographs are uncaptioned; the separate portrait is labeled Coach Gardner. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+          "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=66",
+          "source_label": "McDaniel Archives · original yearbook",
+          "native": true,
+          "kind": "Unassigned college team context",
+          "selection": "gallery"
+        },
+        {
+          "src": "brad-school/mcd-67-1.jpg",
+          "alt": "McDaniel’s 2007 yearbook, printed page 65. Two action photographs accompany the team results without individual captions. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+          "caption": "McDaniel’s 2007 yearbook, printed page 65. Two action photographs accompany the team results without individual captions. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+          "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=67",
+          "source_label": "McDaniel Archives · original yearbook",
+          "native": true,
+          "kind": "Unassigned college team context",
           "selection": "gallery"
         }
       ],

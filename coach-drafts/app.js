@@ -4,7 +4,7 @@
   const key='grindstone-coach-review-2026-10-23';
   let review={}; try{review=JSON.parse(localStorage.getItem(key)||'{}')}catch{}
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const href=s=>/^(https?:\/\/|assets\/|sources\/|marymount-photos\/|kaia-bouts\/|ryan-school\/|mike-bouts\/|jerome-boxing\/|millman-photos\/|brad-photos\/|club-intros\/|brian-club\/|millman-sport\/|brad-bouts\/|tom-public\/|kaia-official\/|andy-bout\/)/.test(s||'')?esc(s):'#';
+  const href=s=>/^(https?:\/\/|assets\/|sources\/|marymount-photos\/|kaia-bouts\/|ryan-school\/|mike-bouts\/|jerome-boxing\/|millman-photos\/|brad-photos\/|club-intros\/|brian-club\/|millman-sport\/|brad-bouts\/|tom-public\/|kaia-official\/|andy-bout\/|andy-eight\/|brad-school\/)/.test(s||'')?esc(s):'#';
   const link=(url,label)=>'<a href="'+href(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+'</a>';
   const initial=p=>p.name.replace(/^Coach /,'').split(/\s+/).map(x=>x[0]).slice(0,2).join('');
   const labels={confirmed:'Identity confirmed · draft',existing:'Existing profile · draft',likely:'Working identity match',roster:'Roster confirmed',tentative:'Tentative identity match'};

@@ -1052,6 +1052,40 @@ window.COACH_PHOTOS = {
       "height": 1536
     },
     {
+      "src": "brad-school/mcd-66-1.jpg",
+      "alt": "McDaniel’s 2007 yearbook, printed page 64. Brad Gabrish is listed in the wrestling roster. Three action photographs are uncaptioned; the separate portrait is labeled Coach Gardner. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+      "caption": "McDaniel’s 2007 yearbook, printed page 64. Brad Gabrish is listed in the wrestling roster. Three action photographs are uncaptioned; the separate portrait is labeled Coach Gardner. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+      "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=66",
+      "source_label": "McDaniel Archives · original yearbook",
+      "native": true,
+      "kind": "Unassigned college team context",
+      "selection": "gallery",
+      "coach": "brad-gabrish",
+      "name": "Brad Gabrish",
+      "path": "brad-school/mcd-66-1.jpg",
+      "bytes": 403850,
+      "sha256": "032205eeb73db1512c4efd6fd96e0b49c4a3eb495c809efb5772de8db821a5d5",
+      "width": 2507,
+      "height": 3297
+    },
+    {
+      "src": "brad-school/mcd-67-1.jpg",
+      "alt": "McDaniel’s 2007 yearbook, printed page 65. Two action photographs accompany the team results without individual captions. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+      "caption": "McDaniel’s 2007 yearbook, printed page 65. Two action photographs accompany the team results without individual captions. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+      "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=67",
+      "source_label": "McDaniel Archives · original yearbook",
+      "native": true,
+      "kind": "Unassigned college team context",
+      "selection": "gallery",
+      "coach": "brad-gabrish",
+      "name": "Brad Gabrish",
+      "path": "brad-school/mcd-67-1.jpg",
+      "bytes": 507490,
+      "sha256": "c2fb037c0f394ceea3e86b57fa972ad56f236f33de2434fb25c076595b7ac11d",
+      "width": 2559,
+      "height": 3322
+    },
+    {
       "src": "assets/daniel-portrait-2023.png",
       "archive": true,
       "native": true,
@@ -2115,6 +2149,23 @@ window.COACH_PHOTOS = {
       "sha256": "ec9d0b937ed8e5aa8e509f1acc28e6be81c072a2b7892e5963081a9043e7855c",
       "width": 512,
       "height": 384
+    },
+    {
+      "src": "andy-eight/f2w-schedule.jpg",
+      "coach": "andy-millman",
+      "name": "Andy Millman",
+      "alt": "Fight To Win 109 event poster; pictured headliners are not assigned to Andy.",
+      "caption": "Original promoter poster accompanying the April 15, 2019 schedule that links Andy’s proposed profile. Event context only; the poster does not depict an attributable Andy portrait.",
+      "source_url": "https://www.facebook.com/photo/?fbid=10217451952682884&set=a.1100976976783",
+      "source_label": "Seth Daniels · original public schedule",
+      "native": true,
+      "kind": "Event poster context",
+      "selection": "retained",
+      "path": "andy-eight/f2w-schedule.jpg",
+      "bytes": 37295,
+      "sha256": "cbf11bd886fe4cc042717141c9176c0c7d087389659c4a1099d7f55eaa8b8d88",
+      "width": 600,
+      "height": 400
     }
   ],
   "documents": [
@@ -2274,6 +2325,30 @@ window.COACH_PHOTOS = {
       "coach": "ryan-devries",
       "url": "https://bellwood.advantage-preservation.com/viewer/GetPdfFile?70134114",
       "kind": "Original yearbook page PDF"
+    },
+    {
+      "path": "brad-school/mcdaniel-2007.pdf",
+      "bytes": 91277212,
+      "sha256": "0143db9411cb57769fac6da93137d9e5df98efc48ca89b9aa9bf6c8758e85635",
+      "url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf",
+      "coach": "brad-gabrish",
+      "kind": "unchanged original public PDF"
+    },
+    {
+      "path": "brad-school/mis-2002.pdf",
+      "bytes": 1278365,
+      "sha256": "361d849b96dd89f2671e072886008957408537ea8d0bcaa04c4221bcd08f2e4a",
+      "url": "https://www.landon.net/uploaded/IAC/wrestling/Old_Brackets/2002_MIS_tournament_brackets.pdf",
+      "coach": "brad-gabrish",
+      "kind": "unchanged original public PDF"
+    },
+    {
+      "path": "brad-school/preps-2004.pdf",
+      "bytes": 1824816,
+      "sha256": "0e09fb86941c18c5917a6608b412c47feb83f503c22a20a863f1a8cff4adb3aa",
+      "url": "https://nepswa.com/wp-content/uploads/2013/05/NP-BRACKETS-2004.pdf",
+      "coach": "brad-gabrish",
+      "kind": "unchanged original public PDF"
     }
   ],
   "researchOnly": [

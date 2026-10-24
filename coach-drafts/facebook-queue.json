@@ -232,14 +232,14 @@
           "text": "\"Brian Leaf\" \"Leaf Builders\"",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Leaf%20Builders%22",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Leaf%20Builders%22",
-          "purpose": "Look for a public professional profile or caption that links the new local business candidate to the coach."
+          "purpose": "Look for a public professional profile or caption that links the new local business candidate to the coach. The business lead may still be the rejected PINKS racer; do not treat it as Coach Brian without a new wrestling or club connection."
         },
         {
           "id": "brian-leaf-18",
           "text": "\"Leaf Builders\" Westminster",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Leaf%20Builders%22%20Westminster",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Leaf%20Builders%22%20Westminster",
-          "purpose": "Look for a public company page with a named owner or team photograph."
+          "purpose": "Look for a public company page with a named owner or team photograph. The business lead may still be the rejected PINKS racer; do not treat it as Coach Brian without a new wrestling or club connection."
         },
         {
           "id": "brian-leaf-19",
@@ -326,6 +326,16 @@
           "purpose": "Check public volunteer-appreciation or banquet captions and original profile-tag links for a club-to-person bridge.",
           "status": "pending",
           "source_manifest": "brian-tags.json"
+        },
+        {
+          "id": "brian-leaf-30",
+          "text": "\"Leaf Builders\" \"wrestling\" Brian",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Leaf%20Builders%22%20%22wrestling%22%20Brian",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Leaf%20Builders%22%20%22wrestling%22%20Brian",
+          "purpose": "The direct business page names Brian Leaf, but its Brian and wrestling searches supplied no club connection or named portrait. Seek a public club sponsor tag or explicitly named wrestling connection; this could still be the rejected racer.",
+          "status": "pending",
+          "source_url": "https://www.facebook.com/leafhomebuilders",
+          "source_label": "Unresolved public business lead"
         }
       ]
     },
@@ -666,7 +676,7 @@
     {
       "id": "andy-millman",
       "name": "Andy Millman",
-      "context": "Exact public profile promoted Fight2Win109 a week before Andrew Millman’s named bout. Relson training and matching Andrew-name academy review make this a probable connection; competitor identity and any bout photos still need confirmation.",
+      "context": "The original promoter’s April 15, 2019 schedule links millman1 directly to the planned Michael Mehl matchup. The scheduled-participant connection is established; seek the result or named bout photographs. Final coach identity remains for review.",
       "queries": [
         {
           "id": "andy-millman-01",
@@ -751,7 +761,9 @@
           "text": "Andy Millman Relson Gracie",
           "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20Relson%20Gracie",
           "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20Relson%20Gracie",
-          "purpose": "Connect the named 2019 Fight2Win athlete to the proposed local Andy profile, or reject that match."
+          "purpose": "The original promoter now links millman1 directly in the scheduled Michael Mehl matchup. Seek a named result or athlete photograph; a schedule does not prove the bout occurred. The coach identity remains a draft.",
+          "source_url": "https://www.facebook.com/photo/?fbid=10217451952682884&set=a.1100976976783",
+          "source_label": "Original promoter schedule with inline Andy profile link"
         },
         {
           "id": "andy-millman-15",
@@ -765,14 +777,18 @@
           "text": "Andy Millman profile — April 2019 Fight2Win109 or Michael Mehl",
           "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20profile%20%E2%80%94%20April%202019%20Fight2Win109%20or%20Michael%20Mehl",
           "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20profile%20%E2%80%94%20April%202019%20Fight2Win109%20or%20Michael%20Mehl",
-          "purpose": "Use Facebook's profile/date navigation to seek a self-authored competitor announcement or event photograph connecting millman1 to the named 2019 bout."
+          "purpose": "The original promoter now links millman1 directly in the scheduled Michael Mehl matchup. Seek a named result or athlete photograph; a schedule does not prove the bout occurred. The coach identity remains a draft.",
+          "source_url": "https://www.facebook.com/photo/?fbid=10217451952682884&set=a.1100976976783",
+          "source_label": "Original promoter schedule with inline Andy profile link"
         },
         {
           "id": "andy-millman-17",
           "text": "Andy Millman Fight2Win109 April 2019",
           "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20Fight2Win109%20April%202019",
           "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20Fight2Win109%20April%202019",
-          "purpose": "Exact public profile promoted the event. Seek a self-identified bout post or photographer caption; published opponent Michael Mehl."
+          "purpose": "The original promoter now links millman1 directly in the scheduled Michael Mehl matchup. Seek a named result or athlete photograph; a schedule does not prove the bout occurred. The coach identity remains a draft.",
+          "source_url": "https://www.facebook.com/photo/?fbid=10217451952682884&set=a.1100976976783",
+          "source_label": "Original promoter schedule with inline Andy profile link"
         }
       ]
     },
@@ -1127,6 +1143,16 @@
           "source_url": "https://www.instagram.com/joeytakedowns/p/DIKH-bwtsEK/",
           "source_label": "April 7, 2025 organizer Instagram carousel",
           "source_manifest": "brad-social.json"
+        },
+        {
+          "id": "brad-gabrish-31",
+          "text": "\"Brad Gabrish\" \"Sam Gardner\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brad%20Gabrish%22%20%22Sam%20Gardner%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brad%20Gabrish%22%20%22Sam%20Gardner%22",
+          "purpose": "Seek named McDaniel alumni or team photographs. The five action images on the linked 2007 yearbook pages are unassigned; preserve full pages until a caption or review identifies them.",
+          "status": "pending",
+          "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=66",
+          "source_label": "McDaniel 2007 wrestling pages"
         }
       ]
     },
@@ -1347,6 +1373,16 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=Jessica%20M%20Hughes%20Cody%20Hughes%20Mat%20Rats%20banquet",
           "posts_url": "https://www.facebook.com/search/posts/?q=Jessica%20M%20Hughes%20Cody%20Hughes%20Mat%20Rats%20banquet",
           "purpose": "Seek a named club recognition or team event photo using the now-linked public profiles."
+        },
+        {
+          "id": "jessica-cody-hughes-23",
+          "text": "\"Jessica Hughes\" \"North Carroll\" lacrosse",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Jessica%20Hughes%22%20%22North%20Carroll%22%20lacrosse",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Jessica%20Hughes%22%20%22North%20Carroll%22%20lacrosse",
+          "purpose": "The council lists this name in girls lacrosse, but no source links it to jessica.m.larue, Cody or Grindstone. Check named introductions and explicit profile links before adopting any role or photograph.",
+          "status": "pending",
+          "source_url": "https://www.instagram.com/northcarrollgirlslax",
+          "source_label": "Official North Carroll girls lacrosse account · unresolved namesake"
         }
       ]
     }
