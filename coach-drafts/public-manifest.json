@@ -2,7 +2,7 @@
   "prepared": "2026-10-24",
   "profiles": 13,
   "portraits": 12,
-  "coach_images": 122,
+  "coach_images": 125,
   "rejected_matches": 1,
   "club_images": 71,
   "omitted": "AI reconstruction, local scripts, full PDFs, private review storage and absolute source paths",
@@ -19,13 +19,13 @@
     },
     {
       "path": "app.js",
-      "bytes": 18529,
-      "sha256": "582dc47fcc53f8b2bb3174f4c224196085f25c279bb61c0517722d55c3f5fd98"
+      "bytes": 18556,
+      "sha256": "7e3191b5e269c2ffb966d8acd5fc4ece8d21c2197015c52fe87738db25aa4f5f"
     },
     {
       "path": "facebook-queue.html",
-      "bytes": 223118,
-      "sha256": "adf0974a99fc1243b5bd44d1aa9ba3bbeada7b29fd51118d7bcb22649c7f91cb"
+      "bytes": 230732,
+      "sha256": "6b0db57c861dc4352d620abde43ae0e03b4ed0e6c66fb0d732f9dc42bf396cf7"
     },
     {
       "path": "facebook-queue.js",
@@ -34,8 +34,8 @@
     },
     {
       "path": "facebook-queue.json",
-      "bytes": 76709,
-      "sha256": "7d8a85bbb761a2dce6fba1d48ba47323266ef28691f0b1ce9ee90134f2efd191"
+      "bytes": 80138,
+      "sha256": "2ed1c20acebd6371c414c0da59cdd3c2fb631fc6ad049c009dced2dbdbd8f62b"
     },
     {
       "path": "queue.css",
@@ -368,6 +368,16 @@
       "sha256": "d20f353874dae4605f0a9715d56939930d20acfec45b9b10680c2dd69cd1b51f"
     },
     {
+      "path": "brad-school/mcd-66-1.jpg",
+      "bytes": 403850,
+      "sha256": "032205eeb73db1512c4efd6fd96e0b49c4a3eb495c809efb5772de8db821a5d5"
+    },
+    {
+      "path": "brad-school/mcd-67-1.jpg",
+      "bytes": 507490,
+      "sha256": "c2fb037c0f394ceea3e86b57fa972ad56f236f33de2434fb25c076595b7ac11d"
+    },
+    {
       "path": "assets/daniel-portrait-2023.png",
       "bytes": 64242,
       "sha256": "3af9305bb51604fad5b1ec2358d39572e93ee8f75bf40e9e83db8eaef4a4844f"
@@ -681,6 +691,11 @@
       "path": "andy-bout/review-group.jpg",
       "bytes": 66710,
       "sha256": "ec9d0b937ed8e5aa8e509f1acc28e6be81c072a2b7892e5963081a9043e7855c"
+    },
+    {
+      "path": "andy-eight/f2w-schedule.jpg",
+      "bytes": 37295,
+      "sha256": "cbf11bd886fe4cc042717141c9176c0c7d087389659c4a1099d7f55eaa8b8d88"
     },
     {
       "path": "assets/kyle-1993-page-20.png",
@@ -1099,18 +1114,18 @@
     },
     {
       "path": "profiles.js",
-      "bytes": 152626,
-      "sha256": "b742c579748b9a7bc8bf0e9043312018be05a5725691f67aa033ec605116c1aa"
+      "bytes": 157758,
+      "sha256": "7a1b2ac6c32e9b5acdf48fd7de0cfd1cee2960704224a943f423346b428ffd7c"
     },
     {
       "path": "gallery-data.js",
-      "bytes": 126064,
-      "sha256": "fe793c3a7ae4db29fc83f4abf476a410014968627ed2320565f17fa2da4a3e1a"
+      "bytes": 130241,
+      "sha256": "f26553a98672d8f7559475e079303ce87af5da34c073b5cd33857dcfbf47c66b"
     },
     {
       "path": "photo-index.json",
-      "bytes": 126041,
-      "sha256": "5542ba9f47ae8eed45b6baf12964a6ad4321d78ebe20a74d5d8747b5b6ae0f5a"
+      "bytes": 130218,
+      "sha256": "780a926fc2937ca8ab540601b3f879a758f984fbfe5b83ef773450d278625131"
     }
   ],
   "community_images": 8
