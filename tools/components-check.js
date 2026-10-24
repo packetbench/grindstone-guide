@@ -469,4 +469,118 @@ check('added-game timing metadata survives named save, reload, export/import, pr
   }finally{ctx.window.localStorage=previousStorage;bt.reset();}
 });
 
+
+const collectionResetTitles = new Set(['Release and reset','Keep stance and restart','Keep balance and reset the tie']);
+const canonicalMember = id => byId.has(id) ? id : byId.has('kyle:'+id) ? 'kyle:'+id : id;
+function chosenCollection(id,branches) {
+  const item=byId.get('series:'+id);
+  return api.selectSeries(blockFor(item),branches.map(key),catalog);
+}
+check('collection detection distinguishes every actual series and linked sequence from a plain move',()=>{
+  for(const collection of [...pathway.series,...pathway.sequences])assert(api.isCollection('series:'+collection.id),collection.id);
+  for(const id of ['P01','activity:C15','series:missing','S01',''])assert(!api.isCollection(id),id);
+  assert.strictEqual(api.expandedGuides(blockFor(byId.get('P01')),catalog),null);
+});
+check('all linked sequences split in declared order with original titles, timing and source constraints',()=>{
+  for(const sequence of pathway.sequences) {
+    const prepared=blockFor(byId.get('series:'+sequence.id)),before=clone(prepared);
+    const expanded=api.expandedGuides(prepared,catalog);
+    assert.deepEqual(clone(expanded.map(item=>item.id)),[...new Set(sequence.move_ids.map(canonicalMember))],sequence.id);
+    assert.deepEqual(prepared,before);
+    for(const item of expanded){
+      const original=byId.get(item.id);
+      for(const field of ['id','title','minutes'])assert.equal(item[field],original[field]);
+      assert.deepEqual(clone(item.types),clone(original.types));
+      assert(item.instructions.includes(original.instructions));assert(item.instructions.includes(sequence.summary));
+      assert(item.setup.includes(sequence.setup));assert(item.readiness.includes(sequence.readiness));
+      for(const boundary of [].concat(sequence.boundaries||[]))assert(item.boundary.includes(boundary));
+      for(const step of sequence.steps)assert(item.sourceNote.includes(step));
+      assert(item.boundary.includes('separate blocks do not require every move'));
+    }
+  }
+  assert.deepEqual(clone(api.expandedGuides(blockFor(byId.get('series:S01')),catalog).map(item=>item.id)),['P01','P02','P03','P04']);
+});
+check('every series selection combination expands just its shared foundation and actual chosen move references',()=>{
+  let selectionsChecked=0;
+  for(const collection of pathway.series)for(let mask=1;mask<(1<<collection.branches.length);mask++){
+    const branches=collection.branches.filter((_,i)=>mask&(1<<i)),prepared=chosenCollection(collection.id,branches),before=clone(prepared);
+    const techniques=branches.filter(branch=>!collectionResetTitles.has(branch.title));
+    if(!techniques.length){assert.throws(()=>api.expandedGuides(prepared,catalog),/reset decision/);assert.deepEqual(prepared,before);continue;}
+    const foundation=collection.kind==='foundation'?[]:collection.members.filter(member=>/^foundation$/i.test(member.role)).map(member=>member.move_id);
+    const expected=[...new Set([...foundation,...techniques.flatMap(branch=>branch.move_ids)].map(canonicalMember))];
+    const expanded=api.expandedGuides(prepared,catalog);
+    assert.deepEqual(clone(expanded.map(item=>item.id)),expected,collection.id+' mask '+mask);
+    assert.deepEqual(prepared,before);
+    for(const guide of expanded){
+      const original=byId.get(guide.id);assert(guide.instructions.includes(original.instructions));assert(guide.instructions.includes(collection.foundation));
+      for(const field of ['readiness','boundary','sourceNote','adaptation','ageNote'])if(original[field])assert(guide[field].includes(original[field]),collection.id+' '+field);
+      for(const branch of branches){
+        if(collectionResetTitles.has(branch.title)||branch.move_ids.map(canonicalMember).includes(guide.id)){
+          assert(guide.instructions.includes(branch.action),collection.id+' selected action');
+          if(branch.readiness)assert(guide.readiness.includes(branch.readiness));
+        }
+      }
+      for(const branch of collection.branches.filter(branch=>!branches.includes(branch)))assert(!guide.instructions.includes(branch.action),collection.id+' unselected action');
+      assert.doesNotThrow(()=>t.snapshot(guide));
+    }
+    selectionsChecked++;
+  }
+  assert(selectionsChecked>=100,'Coverage includes all 63 Foundation subsets and every other series subset');
+});
+check('foundation expansions deduplicate shared preparations and retain separate receiving roles',()=>{
+  const foundation=pathway.series.find(item=>item.id==='S24');
+  const subset=api.expandedGuides(chosenCollection('S24',[foundation.branches[1],foundation.branches[2]]),catalog);
+  assert.deepEqual(clone(subset.map(item=>item.id)),['B01','B03','B07','N24','B08']);
+  assert(!subset.some(item=>item.id==='N25'||item.id==='B17'));
+  for(const item of subset){assert(item.instructions.includes('own starting position'));assert(item.boundary.includes('never automatically add a mat return'));}
+  const all=api.expandedGuides(chosenCollection('S24',foundation.branches),catalog);assert.equal(all.length,14);assert.equal(new Set(all.map(item=>item.id)).size,14);
+  const k14=pathway.series.find(item=>item.id==='S17'),pick=k14.branches.find(branch=>branch.move_ids.includes('K14')&&!collectionResetTitles.has(branch.title));
+  assert(api.expandedGuides(chosenCollection('S17',[pick]),catalog).some(item=>item.id==='kyle:K14'));
+});
+check('reset support references do not become attack blocks and explicit empty or stale selections fail unchanged',()=>{
+  for(const collection of pathway.series){
+    const reset=collection.branches.find(branch=>collectionResetTitles.has(branch.title));if(!reset)continue;
+    const technique=collection.branches.find(branch=>!collectionResetTitles.has(branch.title));
+    const mixed=chosenCollection(collection.id,[technique,reset]),expanded=api.expandedGuides(mixed,catalog),only=api.expandedGuides(chosenCollection(collection.id,[technique]),catalog);
+    assert.deepEqual(clone(expanded.map(item=>item.id)),clone(only.map(item=>item.id)));
+    for(const guide of expanded)assert(guide.instructions.includes('Selected reset decision (no additional attack): '+reset.title));
+    const alone=chosenCollection(collection.id,[reset]),before=clone(alone);assert.throws(()=>api.expandedGuides(alone,catalog),/Choose a technique option/);assert.deepEqual(alone,before);
+  }
+  for(const mutate of [b=>b.components.series.selections=[],b=>b.components.series.selections[0].key='deleted-key',b=>b.components.series.guides=[]]){
+    const bad=clone(selected);mutate(bad);const before=clone(bad);assert.throws(()=>api.expandedGuides(bad,catalog));assert.deepEqual(bad,before);
+  }
+});
+check('missing required guides reject atomically while missing unrelated choices do not prevent selected practice',()=>{
+  const prepared=api.selectSeries(blockFor(),[first],catalog),before=clone(prepared),originalCatalog=clone(catalog);
+  assert.throws(()=>api.expandedGuides(prepared,catalog.filter(item=>item.id!=='P10')),/linked guide P10 is missing/);
+  assert.doesNotThrow(()=>api.expandedGuides(prepared,catalog.filter(item=>item.id!=='A16')));
+  assert.deepEqual(prepared,before);assert.deepEqual(clone(catalog),originalCatalog);
+  const sequence=blockFor(byId.get('series:S01'));assert.throws(()=>api.expandedGuides(sequence,catalog.filter(item=>item.id!=='P03')),/linked guide P03 is missing/);
+  const unexpected=clone(prepared);unexpected.components.series.guides.push(t.snapshot(byId.get('N25')));assert.throws(()=>api.expandedGuides(unexpected,catalog),/does not match/);
+  const copy=api.expandedGuides(prepared,catalog)[0],old=clone(byId.get(copy.id));copy.steps[0]='Changed locally';copy.types.push('game');assert.deepEqual(clone(byId.get(copy.id)),old);
+});
+check('legacy whole collections still expand while station selections retain their original bundled behavior',()=>{
+  for(const collection of pathway.series){
+    const legacy=blockFor(byId.get('series:'+collection.id));assert(!legacy.components);
+    assert(api.expandedGuides(legacy,catalog).length>0);assert(!legacy.components);
+  }
+  const station=t.stationWithGuide(t.cleanStation({name:'Station 1'}),source,[first],catalog);
+  assert.equal(station.guide.sourceId,'series:S13');assert.equal(station.series.guides.length,3);
+  assert(station.task.includes(series.branches[0].action));assert(!station.task.includes(series.branches[1].action));
+});
+check('expanded source and receiving instructions survive plan import, frozen completion and both print modes',()=>{
+  const builder=ctx.window.GRINDSTONE_BUILDER,bt=builder.testing;
+  builder.render(new URLSearchParams());const nodes=new Map();
+  const root={dataset:{},querySelector(selector){if(selector==='input:invalid, select:invalid, textarea:invalid'||selector==='[data-week-content]')return null;if(!nodes.has(selector))nodes.set(selector,{innerHTML:'',textContent:'',value:'',checked:false,disabled:false,hidden:false,focus(){}});return nodes.get(selector);},querySelectorAll(){return[];},addEventListener(){}};
+  builder.bind(root);
+  try {
+    const collection=pathway.series.find(item=>item.id==='S24'),expanded=api.expandedGuides(chosenCollection('S24',[collection.branches[5]]),catalog);
+    const plan={...bt.newPlan(),age:'11-14',blocks:expanded.map(item=>bt.blockFrom(item,'move'))};
+    const imported=bt.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan}));bt.replaceDraft(imported);
+    for(const details of [false,true]){const html=bt.printHtml(details);for(const item of expanded){assert(html.includes(bt.esc(item.title)));assert(html.includes(bt.esc(item.boundary)));assert(html.includes(bt.esc(item.sourceNote)));}}
+    const done={...clone(bt.getState().plan),status:'completed',completedAt:'2026-10-24T12:00:00.000Z'};
+    const clean=bt.cleanPlan(done);assert.deepEqual(clean.blocks,done.blocks);
+    for(const item of expanded){const b=clean.blocks.find(block=>block.sourceId===item.id);assert(b.instructions.includes(item.instructions));assert(b.boundary.includes(item.boundary));assert(b.sourceNote.includes(item.sourceNote));}
+  } finally {bt.reset();}
+});
 console.log(checks+' component checks passed.');

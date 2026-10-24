@@ -208,6 +208,70 @@
     next.sourceNote = [series.verification, ...list(series.sources).map(source => source.title + (source.note ? ': ' + source.note : ''))].filter(Boolean).join('\n') || next.sourceNote || '';
     return next;
   }
+
+  const sequenceData = id => (window.GRINDSTONE_PATHWAY?.sequences || []).find(item => 'series:' + item.id === id);
+  const isCollection = id => Boolean(seriesData(id) || sequenceData(id));
+  const resetOnlyTitles = {S14:['Release and reset'],S17:['Keep stance and restart'],S18:['Keep balance and reset the tie']};
+  function expandedGuides(prepared, catalog) {
+    const series = seriesData(prepared?.sourceId), sequence = sequenceData(prepared?.sourceId), collection = series || sequence;
+    if (!collection) return null;
+    const map = catalogMap(catalog), canonical = id => {
+      const found = sourceIdFor(id,map) || (map.has('facebook:' + id) ? 'facebook:' + id : '');
+      if (!found) throw Error('Cannot split ' + collection.title + ': linked guide ' + id + ' is missing. Your practice is unchanged.');
+      return found;
+    };
+    const join = values => [...new Set(values.map(lines).filter(Boolean))].join('\n\n');
+    const foundation = isFoundation(series), saved = prepared.components?.series;
+    let chosen = [], resetChoices = [], foundationIds = [], ids;
+    if (series) {
+      if (saved) {
+        if (saved.id !== prepared.sourceId || !Array.isArray(saved.selections) || !saved.selections.length) throw Error('Choose at least one available skill or option before splitting this series.');
+        const keys = saved.selections.map(item => item.key);
+        chosen = series.branches.filter(branch => keys.includes(branchKey(branch)));
+        if (new Set(keys).size !== keys.length || chosen.length !== keys.length) throw Error('A selected series option is no longer available. Review its choices before splitting; your saved instruction is unchanged.');
+      } else chosen = series.branches.slice(); // Legacy non-DOM callers retain their full collection.
+      resetChoices = chosen.filter(branch => (resetOnlyTitles[series.id] || []).includes(branch.title));
+      const techniques = chosen.filter(branch => !resetChoices.includes(branch));
+      if (!techniques.length) throw Error('This option is a reset decision, not a move sequence. Choose a technique option to split, or add a custom drill for the reset.');
+      foundationIds = foundation ? [] : list(series.members).filter(member => /^foundation$/i.test(member.role)).map(member => canonical(member.move_id));
+      const allSelected = new Set([...foundationIds,...chosen.flatMap(branch => list(branch.move_ids).map(canonical))]);
+      const required = [...new Set([...foundationIds,...techniques.flatMap(branch => list(branch.move_ids).map(canonical))])];
+      if (saved) {
+        if (!Array.isArray(saved.guides)) throw Error('Selected guide snapshots are missing. Choose the series options again before splitting.');
+        const savedIds = saved.guides.map(guide => canonical(guide.sourceId));
+        if (savedIds.some(id => !allSelected.has(id)) || required.some(id => !savedIds.includes(id))) throw Error('The saved guide list does not match the chosen options. Review the series choices before splitting; your practice is unchanged.');
+        ids = [...new Set(savedIds.filter(id => required.includes(id)))];
+      } else ids = required;
+    } else ids = [...new Set(list(sequence.move_ids).map(canonical))];
+    if (!ids.length) throw Error('This collection has no linked moves to split. Your practice is unchanged.');
+    const reset = sequence ? 'Use this move as its own practice task. Link only the transitions or choices described in the original drill after each movement and receiving role is reliable; separate blocks do not require every move in one attempt.'
+      : foundation ? 'Teach this skill in its own starting position. Release and rebuild that position after each attempt. Establish a separate setup and receiving role before another skill; never automatically add a mat return to an escape drill.'
+      : 'Reset to the shared foundation after each attempt. The partner supplies only a taught response. Separate move blocks do not mean performing every option in one attempt; stop and rebuild if receiving control is lost.';
+    return ids.map(id => {
+      const original = map.get(id), related = series ? chosen.filter(branch => !resetChoices.includes(branch) && list(branch.move_ids).some(moveId => canonical(moveId) === id)) : [];
+      const member = series?.members?.find(value => (sourceIdFor(value.move_id,map) || (map.has('facebook:' + value.move_id) ? 'facebook:' + value.move_id : '')) === id);
+      const branchText = branch => branch.title + '\nWhen: ' + branch.when + '\nTask: ' + branch.action + (branch.readiness ? '\nBefore this option: ' + branch.readiness : '');
+      const context = [
+        'From ' + collection.title + '. Practice ' + original.title + ' as a separate task.',
+        collection.foundation ? (foundation ? 'Match essentials: ' : 'Common foundation: ') + collection.foundation : collection.summary,
+        member?.note ? (member.role || 'Collection role') + ': ' + member.note : '',
+        ...related.map(branchText),
+        ...resetChoices.map(branch => 'Selected reset decision (no additional attack): ' + branchText(branch))
+      ];
+      const out = {...clone(original),
+        instructions:join([...context,'Move practice: ' + (original.instructions || original.summary || ''),reset]),
+        setup:join([original.setup,collection.setup ? 'Collection setup: ' + collection.setup : '']),
+        readiness:join([original.readiness,collection.readiness ? 'Collection readiness: ' + collection.readiness : '',...related.map(branch => branch.readiness),...resetChoices.map(branch => branch.readiness)]),
+        boundary:join([original.boundary,collection.boundaries,reset,...resetChoices.map(branch => branch.action)]),
+        adaptation:join([original.adaptation,prepared.adaptation]),
+        ageNote:join([original.ageNote,prepared.ageNote]),
+        sourceNote:join([original.sourceNote,'Collection: ' + collection.title,prepared.sourceNote,collection.verification,...list(collection.sources).map(source => [source.title,source.url,source.note].filter(Boolean).join(' — ')),sequence ? ['Original linked-drill instructions:',...list(sequence.steps)].join('\n') : ''])
+      };
+      snapshot(out); // Validate every child before the caller mutates its practice.
+      return out;
+    });
+  }
+
   function renderChoices(series, selections, context) {
     const keys = selections || [branchKey(series.branches[0])], foundation = isFoundation(series);
     return '<fieldset class="component-options"><legend>' + (foundation ? 'Core skills to teach today' : 'Options to teach today') + '</legend><p>' + (foundation ? 'Choose one or more skills appropriate for the pair. Each keeps its own setup, prerequisites and receiving controls. Teach them separately; selection does not create a move sequence.' : 'The shared foundation, readiness and reset guidance stay with every selection. Choose options already appropriate for the pair.') + '</p>' + series.branches.map(branch => '<label class="component-choice"><input type="checkbox" data-component-branch="' + esc(context) + '" value="' + branchKey(branch) + '"' + (keys.includes(branchKey(branch)) ? ' checked' : '') + '><span><strong>' + esc(branch.title) + '</strong><small>' + (foundation ? 'Skill purpose: ' : 'When: ') + esc(branch.when) + '</small>' + (branch.readiness ? '<small>' + (foundation ? 'Before this skill: ' : 'Before this option: ') + esc(branch.readiness) + '</small>' : '') + '</span></label>').join('') + '</fieldset>';
@@ -568,5 +632,5 @@
       } catch (err) { error(err); }
     });
   }
-  window.GRINDSTONE_COMPONENTS = {cleanBlock,renderPicker,applyPicker,renderBlock,printBlock,bind,refresh,selectSeries,reloadBlock,appendActivity,selectionStatus,rotationMinutes,problems,readinessProblems,testing:{branchKey,snapshot,cleanGuide,cleanStation,cleanSelectedSeries,cleanActivity,activityTimingMismatch,activityTimingHtml,stationWithGuide,stationPicker,stationMatches,stationPickerHtml,updateStationPicker,newRotation,guideHtml,trustedLinks}};
+  window.GRINDSTONE_COMPONENTS = {expandedGuides,isCollection,cleanBlock,renderPicker,applyPicker,renderBlock,printBlock,bind,refresh,selectSeries,reloadBlock,appendActivity,selectionStatus,rotationMinutes,problems,readinessProblems,testing:{branchKey,snapshot,cleanGuide,cleanStation,cleanSelectedSeries,cleanActivity,activityTimingMismatch,activityTimingHtml,stationWithGuide,stationPicker,stationMatches,stationPickerHtml,updateStationPicker,newRotation,guideHtml,trustedLinks}};
 })();

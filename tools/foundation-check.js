@@ -49,11 +49,26 @@ check('Pups excludes Foundation and new partnered moves by default; broader refe
  picker('matchAge',false);assert(ids().includes('N24'));assert(ids().includes('N25'));picker('type','series');assert(ids().includes('series:S24'));
  reset('program=pups&series=S24');assert(!ids().includes('series:S24'));
 });
-check('picker adds one selected skill by default alongside the full builder integrations',()=>{
+check('picker reviews the default skill and inserts its guides as separate blocks alongside builder integrations',()=>{
  reset('age=7-10&series=S24');assert.equal(state().picker.selected,'series:S24');t.action('add',-1);
- const block=state().plan.blocks[0];assert.equal(block.components.series.selections.length,1);assert.equal(block.components.series.selections[0].title,series.branches[0].title);
+ assert.equal(state().plan.blocks.length,0);assert(state().pendingReplacement?.blocks);
+ assert.deepEqual(state().pendingReplacement.blocks.map(block=>block.sourceId),['B14','B16','B17','B21']);
+ t.action('confirm-replace',-1);const blocks=state().plan.blocks,block=blocks[0];
+ assert.deepEqual(blocks.map(block=>block.sourceId),['B14','B16','B17','B21']);assert(blocks.every(block=>!block.components?.series));
+ assert.equal(blocks.reduce((sum,item)=>sum+item.minutes,0),source.minutes);assert(blocks.every(item=>item.instructions.includes(series.branches[0].action)));
  const html=builder.render(new URLSearchParams());assert(html.includes('data-week-'));assert(html.includes('data-handoff-'));assert(components.renderBlock(block,0,catalog).includes('data-component-action="add-rotation"'));
  assert(components.renderPicker(byId.get('series:S13')).includes('data-component-branch="picker"'));
+});
+check('selected Foundation moves remain independent across reviewed insertion, save, reload, import and print',()=>{
+ reset('age=7-10&series=S24');root.selectedKeys=[key(series.branches[2]),key(series.branches[5])];root.emit('change',{target:{dataset:{componentBranch:'picker'}}});t.action('add',-1);
+ const pending=state().pendingReplacement;assert(pending?.blocks);assert.deepEqual(pending.blocks.map(block=>block.sourceId),['B03','N24','B08','B15','N25']);
+ t.action('cancel-replace',-1);assert.equal(state().plan.blocks.length,0);t.action('add',-1);t.action('confirm-replace',-1);
+ const inserted=clone(state().plan.blocks);assert.equal(new Set(inserted.map(block=>block.id)).size,5);assert(inserted.every(block=>block.type==='move'&&!block.components?.series));
+ assert.equal(inserted.reduce((sum,block)=>sum+block.minutes,0),10);
+ for(const block of inserted){const guide=byId.get(block.sourceId);assert.equal(block.name,guide.title);if(guide.boundary)assert(block.boundary.includes(guide.boundary));}
+ t.action('save',-1);t.reset();mount();assert.deepEqual(state().plan.blocks,inserted);
+ const imported=t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:state().plan}));assert.deepEqual(clone(imported.blocks),inserted);
+ for(const full of [false,true]){const html=t.printHtml(full);assert.equal((html.match(/class="builder-print-block"/g)||[]).length,5);for(const block of inserted){assert(html.includes(t.esc(block.name)));assert(html.includes(t.esc(block.instructions)));}}
 });
 check('all 63 nonempty skill combinations retain exactly their selected guide snapshots on clean and reload',()=>{
  for(let mask=1;mask<64;mask++){
@@ -65,15 +80,15 @@ check('all 63 nonempty skill combinations retain exactly their selected guide sn
   assert(selected.instructions.includes('receiving control'));assert(!selected.instructions.includes('common foundation'));
  }
 });
-check('selected skills survive save, copy, load and JSON import with coach edits',()=>{
- reset('age=7-10&series=S24');root.selectedKeys=[key(series.branches[2]),key(series.branches[5])];root.emit('change',{target:{dataset:{componentBranch:'picker'}}});t.action('add',-1);
- let plan=state().plan;plan.blocks[0].instructions+=' Coach note: use the south mat.';plan.blocks[0].rotation='Coach A watches receiving.';putPlan(plan);t.action('save',-1);
+check('legacy bundled skills survive save, copy, load and JSON import with coach edits',()=>{
+ reset('age=7-10&series=S24');const selected=components.selectSeries(t.blockFrom(source,'series'),[key(series.branches[2]),key(series.branches[5])],catalog);
+ let plan=state().plan;plan.blocks=[selected];plan.blocks[0].instructions+=' Coach note: use the south mat.';plan.blocks[0].rotation='Coach A watches receiving.';putPlan(plan);t.action('save',-1);
  const firstId=state().plan.id,stored=clone(state().plan);t.action('duplicate',-1);assert.notEqual(state().plan.id,firstId);
  root.querySelector('[data-saved-plan]').value=firstId;t.action('load',-1);assert.deepEqual(state().plan.blocks,stored.blocks);
  const imported=t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:state().plan}));assert.equal(imported.id,'');assert.deepEqual(clone(imported.blocks),clone(state().plan.blocks));
  assert(imported.blocks[0].instructions.includes('Coach note:'));assert.equal(imported.blocks[0].rotation,'Coach A watches receiving.');
 });
-check('both print modes retain selected receiving limits, source scope, cues and exact linked instruction',()=>{
+check('both print modes retain legacy selected receiving limits, source scope, cues and exact linked instruction',()=>{
  const block=state().plan.blocks[0];
  for(const full of [false,true]){
   const html=t.printHtml(full);assert(html.includes('Selected core skills'));assert(!html.includes('Selected series options'));
@@ -86,8 +101,8 @@ check('reloading keeps selected skills and timing; detaching retains snapshots a
  t.action('detach-guide',0);assert.equal(state().plan.blocks[0].sourceId,'');assert.deepEqual(state().plan.blocks[0].components.series.selections,choices);assert(t.printHtml(false).includes('Hip Dump Mat Return'));
  const imported=t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:state().plan}));assert.deepEqual(clone(imported.blocks[0].components),clone(state().plan.blocks[0].components));
 });
-check('apply-selected-skills event updates only the chosen block and retains coach timing',()=>{
- reset('age=7-10&series=S24');t.action('add',-1);
+check('legacy apply-selected-skills event updates only the chosen bundled block and retains coach timing',()=>{
+ reset('age=7-10&series=S24');putPlan({...state().plan,blocks:[components.selectSeries(t.blockFrom(source,'series'),[key(series.branches[0])],catalog)]});
  const host={dataset:{componentBlock:'0'},querySelectorAll:()=>series.branches.map((branch,i)=>({value:key(branch),checked:i===1||i===4}))};
  const button={disabled:false,dataset:{componentAction:'apply-series'},closest:selector=>selector==='[data-component-block]'?host:null};
  root.emit('click',{target:{closest:selector=>selector==='[data-component-action]'?button:null}});

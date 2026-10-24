@@ -72,9 +72,10 @@ check('series link to their own guide while linked drills retain their phase rou
 check('pathway tab keeps the current group and an exact age-control name', () => { const html = api.render(new URLSearchParams()); assert(html.includes('data-pathway-link href="#season?age=7-10">Season pathway</a>')); assert(html.includes('id="builder-age" aria-label="Age group (optional)"')); assert(!html.includes('Season skill pathway')); });
 mount();
 check('changing the practice group updates the pathway tab link', () => { field('age', '11-14'); assert.equal(root.querySelector('[data-pathway-link]').href, '#season?age=11-14'); field('age', '7-10'); });
-addSource('move', 'P01'); addSource('game', 'G01'); addSource('move', 'kyle:K02'); addSource('move', 'facebook:V06'); addSource('series', 'series:' + series.id);
-check('mixed catalog builds a custom ordered plan with instruction', () => { assert.deepEqual(Array.from(state().plan.blocks.map(x => x.sourceId)), ['P01', 'G01', 'kyle:K02', 'facebook:V06', 'series:' + series.id]); assert(state().plan.blocks[0].steps.length); assert(state().plan.blocks[3].instructions.includes('Preview')); });
-check('adding a foundation series retains every option in the editable task', () => { const block = state().plan.blocks[4]; assert.equal(block.type, 'series'); assertSeriesInstructions(block.instructions); const clean = t.cleanPlan(JSON.parse(JSON.stringify(state().plan))); assertSeriesInstructions(clean.blocks[4].instructions); });
+addSource('move', 'P01'); addSource('game', 'G01'); addSource('move', 'kyle:K02'); addSource('move', 'facebook:V06');
+const legacyMixed=state().plan;legacyMixed.blocks.push(t.blockFrom(catalog.find(item=>item.id==='series:'+series.id),'series'));t.replaceDraft(legacyMixed);
+check('mixed catalog and an existing bundled series retain their ordered instructions', () => { assert.deepEqual(Array.from(state().plan.blocks.map(x => x.sourceId)), ['P01', 'G01', 'kyle:K02', 'facebook:V06', 'series:' + series.id]); assert(state().plan.blocks[0].steps.length); assert(state().plan.blocks[3].instructions.includes('Preview')); });
+check('legacy bundled series retains every option in its editable task without automatic splitting', () => { const block = state().plan.blocks[4]; assert.equal(block.type, 'series'); assertSeriesInstructions(block.instructions); const clean = t.cleanPlan(JSON.parse(JSON.stringify(state().plan))); assert.equal(clean.blocks.length,5);assertSeriesInstructions(clean.blocks[4].instructions); });
 check('legacy saved series blocks become drills and preserve their source and coach edits', () => { const raw = JSON.parse(JSON.stringify(state().plan)); raw.blocks = [t.blockFrom(catalog.find(x => x.id === 'series:' + sequence.id), 'series')]; raw.blocks[0].instructions = 'Coach-edited sequence from an existing practice.'; const clean = t.cleanPlan(raw); assert.equal(clean.blocks[0].type, 'drill'); assert.equal(clean.blocks[0].sourceId, 'series:' + sequence.id); assert.equal(clean.blocks[0].instructions, raw.blocks[0].instructions); });
 check('cumulative timing includes fractional-minute blocks', () => { const times = t.timing([{ minutes: 2 }, { minutes: 0.5 }, { minutes: 8 }]); assert.equal(JSON.stringify(times), JSON.stringify([{ start: 0, end: 2 }, { start: 2, end: 2.5 }, { start: 2.5, end: 10.5 }])); });
 check('up/down and remove/undo retain block text and order', () => { const before = state().plan.blocks.map(x => x.sourceId).join(); t.action('up', 2); assert.equal(state().plan.blocks[1].sourceId, 'kyle:K02'); t.action('down', 1); assert.equal(state().plan.blocks.map(x => x.sourceId).join(), before); t.action('remove', 0); assert.equal(state().plan.blocks.length, 4); t.action('undo', -1); assert.equal(state().plan.blocks.map(x => x.sourceId).join(), before); });
@@ -243,12 +244,12 @@ check('new series provide two distinct taught outcomes and no Pup placements', (
   const newIds = new Set(expandedSeries.map(item => item.id));
   for (const phase of pathway.groups.find(group => group.age_group === '4-6').phases) assert(!phase.series_ids.some(id => newIds.has(id)), 'Pup phase must not receive advanced series');
 });
-for (const item of expandedSeries) check(item.id + ' full choices and limitations survive save, reload, import and print', () => {
+for (const item of expandedSeries) check(item.id + ' legacy bundled choices and limitations survive save, reload, import and print', () => {
   resetCase('series=' + item.id);
   assert.equal(state().picker.selected, 'series:' + item.id); assert.equal(state().plan.blocks.length, 0);
   const normalized = catalog.find(entry => entry.id === 'series:' + item.id);
   assertSeriesInstructions(normalized.instructions, item); assert(normalized.instructions.includes(item.verification));
-  t.action('add', -1); t.action('save', -1); t.reset(); mount();
+  const legacy=state().plan;legacy.blocks=[t.blockFrom(normalized,'series')];t.replaceDraft(legacy);t.action('save', -1); t.reset(); mount();
   const savedPlan = state().saved[0], imported = t.parseImport(JSON.stringify({ format: 'grindstone-practice', version: 1, plan: savedPlan }));
   for (const plan of [savedPlan, state().plan, imported]) {
     const block = plan.blocks[0]; assert.equal(block.sourceId, 'series:' + item.id); assertSeriesInstructions(block.instructions, item);
@@ -521,10 +522,12 @@ check('main selected core skills survive destination and filter rerenders before
   assert(preview.includes('value="'+key(foundation.branches[2])+'" checked'));
   assert(!preview.includes('value="'+key(foundation.branches[0])+'" checked'));
   assert(preview.includes('<details class="builder-series-reference">'));
-  t.action('add',-1);t.action('confirm-replace',-1);
-  const block=state().plan.blocks[1];
-  assert.deepEqual(block.components.series.selections.map(item=>item.title),['Single leg']);
-  assert(block.instructions.includes(foundation.branches[2].action));assert(!block.instructions.includes(foundation.branches[0].action));
+  t.action('add',-1);assert(state().pendingReplacement?.blocks);const pending=state().pendingReplacement.blocks;
+  t.action('confirm-replace',-1);
+  const blocks=state().plan.blocks.slice(1,1+pending.length);
+  assert.deepEqual(blocks.map(block=>block.sourceId),['B03','N24','B08']);
+  assert(blocks.every(block=>!block.components?.series));
+  assert(blocks.every(block=>block.instructions.includes(foundation.branches[2].action)&&!block.instructions.includes(foundation.branches[0].action)));
 });
 check('empty main series choices fail before replacing the previous Undo snapshot', () => {
   resetCase('age=7-10');addSource('move','P01');addSource('move','P02');
@@ -806,11 +809,13 @@ check('duplicate additions do not change the practice or consume the preceding U
   appendSource('move','P01');assert(!state().plan.blocks[0].components?.activities?.length);
   assert(state().placementError);
 });
-check('one slot can hold distinct selected Foundation skills without losing independent setups or source notes',()=>{
+check('legacy added Foundation selections keep independent setups and source notes without automatic splitting',()=>{
   resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
   const index=2;picker('destination',state().plan.blocks[index].id);picker('type','series');picker('selected','series:S24');
-  const {foundation}=stageMainSkills([0,2]);t.action('append',-1);
-  stageMainSkills([1]);t.action('append',-1);
+  const {foundation}=stageMainSkills([0,2]),components=ctx.window.GRINDSTONE_COMPONENTS,item=catalog.find(entry=>entry.id==='series:S24');
+  let legacy=state().plan;
+  for(const indices of [[0,2],[1]]){const selected=components.selectSeries(t.blockFrom(item,'series'),indices.map(i=>components.testing.branchKey(foundation.branches[i])),catalog);legacy.blocks[index]=components.appendActivity(legacy.blocks[index],selected);}
+  t.replaceDraft(legacy);
   const added=state().plan.blocks[index].components.activities;
   assert.equal(added.length,2);assert.deepEqual(added[0].series.selections.map(item=>item.title),['Stand-up escape','Single leg']);
   assert.deepEqual(added[1].series.selections.map(item=>item.title),['Double leg']);
@@ -820,10 +825,10 @@ check('one slot can hold distinct selected Foundation skills without losing inde
     assert.equal(activity.series.kind,'foundation');assert(activity.task.includes('Teach each skill separately'));assert(activity.task.includes('receiving control'));
     assert(activity.series.guides.length);assert(activity.guide.boundary);assert(activity.guide.sourceNote);
   }
-  const before=JSON.stringify(state().plan);const staged=stageMainSkills([0,2]);
-  root.querySelectorAll=selector=>selector==='[data-component-branch="picker"]'?[...staged.fields].reverse():[];
-  root.listeners.change({target:{dataset:{componentBranch:'picker'}}});t.action('append',-1);
-  assert.equal(JSON.stringify(state().plan),before,'Reordered identical selections are still a duplicate');
+  const before=JSON.stringify(state().plan);
+  const duplicate=components.selectSeries(t.blockFrom(item,'series'),[2,0].map(i=>components.testing.branchKey(foundation.branches[i])),catalog);
+  assert.throws(()=>components.appendActivity(state().plan.blocks[index],duplicate),/already|overlap|duplicate/i);
+  assert.equal(JSON.stringify(state().plan),before,'Legacy duplicate rejection must preserve the saved structure');
   const roundtrip=t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:state().plan}));
   assert.deepEqual(roundtrip.blocks[index].components.activities,added);
   for(const details of [false,true]) {
@@ -926,14 +931,10 @@ check('activity edits, reordering and removal preserve the parent and restore re
 });
 check('legacy whole-series guides overlap subsets while distinct explicit selections remain separate',()=>{
   resetCase('age=7-10');const components=ctx.window.GRINDSTONE_COMPONENTS,item=catalog.find(guide=>guide.id==='series:S24'),full=t.blockFrom(item,'series');
-  let raw=state().plan;raw.blocks=[full];t.replaceDraft(raw);picker('destination',state().plan.blocks[0].id);
-  picker('type','series');picker('selected','series:S24');stageMainSkills([0]);const before=JSON.stringify(state().plan);t.action('append',-1);
-  assert.equal(JSON.stringify(state().plan),before);assert(state().placementError);
-  const manual=t.blockFrom(null,'custom'),withWhole=components.appendActivity(manual,full);
-  raw=state().plan;raw.blocks=[withWhole];t.replaceDraft(raw);picker('destination',state().plan.blocks[0].id);
-  picker('selected','series:S24');stageMainSkills([1]);const addedBefore=JSON.stringify(state().plan);t.action('append',-1);
-  assert.equal(JSON.stringify(state().plan),addedBefore);assert(state().placementError);
   const foundation=pathway.series.find(guide=>guide.id==='S24'),subset=components.selectSeries(full,[components.testing.branchKey(foundation.branches[0])],catalog);
+  const before=JSON.stringify(full);assert.throws(()=>components.appendActivity(full,subset),/already|overlap|duplicate/i);assert.equal(JSON.stringify(full),before);
+  const manual=t.blockFrom(null,'custom'),withWhole=components.appendActivity(manual,full);
+  assert.throws(()=>components.appendActivity(withWhole,subset),/already|overlap|duplicate/i);
   const withSubset=components.appendActivity(manual,subset);
   assert.throws(()=>components.appendActivity(withSubset,full),/already|overlap|duplicate/i);
 });
@@ -946,6 +947,139 @@ check('activity edits and controls cannot change completed records or discard in
   const complete=JSON.stringify(state().plan);h.input(0,'task','Bad edit');h.click(0,'activity-remove');assert.equal(JSON.stringify(state().plan),complete);
 });
 
+function stageSingleSplit(minutes=20) {
+  resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
+  const index=2;blockField(index,'minutes',String(minutes));
+  picker('destination',state().plan.blocks[index].id);picker('type','series');picker('selected','series:S24');stageMainSkills([2]);
+  return {index,before:state().plan};
+}
+check('selected series splits an empty framework slot into editable moves while keeping the exact total',()=>{
+  const {index,before}=stageSingleSplit();const prior=JSON.stringify(before);t.action('add',-1);
+  const pending=state().pendingReplacement;assert(pending?.blocks);assert.equal(pending.total,20);assert.equal(pending.kept,false);
+  assert.equal(JSON.stringify(state().plan),prior,'Review must not change the practice');
+  assert.deepEqual(pending.blocks.map(block=>block.sourceId),['B03','N24','B08']);
+  assert.deepEqual(pending.blocks.map(block=>block.minutes),[7,6.5,6.5]);
+  assert(root.querySelector('.builder-placement-feedback').innerHTML.includes('practice total stays the same'));
+  assert(root.querySelector('[data-action="append"]').hidden);assert.equal(root.querySelector('[data-action="add"]').textContent,'Split this slot into moves');
+  t.action('confirm-replace',-1);const after=state().plan,added=after.blocks.slice(index,index+3);
+  assert.equal(after.blocks.length,before.blocks.length+2);assert.equal(t.timing(after.blocks).at(-1).end,t.timing(before.blocks).at(-1).end);
+  assert.equal(after.target,before.target);assert.equal(added[0].id,before.blocks[index].id);
+  assert.equal(new Set(after.blocks.map(block=>block.id)).size,after.blocks.length);
+  assert.deepEqual(after.blocks.slice(0,index),before.blocks.slice(0,index));assert.deepEqual(after.blocks.slice(index+3),before.blocks.slice(index+1));
+  assert(added.every(block=>block.type==='move'&&!block.components?.series&&block.minutes*2===Math.floor(block.minutes*2)));
+  for(const block of added){const guide=catalog.find(item=>item.id===block.sourceId);assert.equal(block.name,guide.title);assert(block.instructions.includes(pathway.series.find(item=>item.id==='S24').branches[2].action));if(guide.boundary)assert(block.boundary.includes(guide.boundary));assert.equal(block.section,before.blocks[index].section);}
+  blockField(index+1,'name','Our single-leg entry');blockField(index+1,'instructions','Coach-edited cooperative entry rounds.');
+  assert.notEqual(state().plan.blocks[index].instructions,state().plan.blocks[index+1].instructions);
+  t.action('down',index);assert.equal(state().plan.blocks[index].name,'Our single-leg entry');
+  t.action('remove',index+1);assert.equal(state().plan.blocks.length,after.blocks.length-1);
+  t.action('undo',-1);assert.equal(state().plan.blocks.length,after.blocks.length);assert.equal(state().plan.blocks[index].instructions,'Coach-edited cooperative entry rounds.');
+});
+check('series insertion at the end is reviewed and standalone moves survive save, reload, export/import and print',()=>{
+  resetCase('age=7-10');addSource('move','P01');const original=state().plan.blocks[0];
+  picker('type','series');picker('selected','series:S24');stageMainSkills([2]);
+  assert.equal(root.querySelector('[data-action="add"]').textContent,'Add moves as separate blocks');
+  t.action('add',-1);assert.equal(state().plan.blocks.length,1);assert(state().pendingReplacement?.blocks);
+  t.action('confirm-replace',-1);assert.deepEqual(state().plan.blocks[0],original);
+  assert.deepEqual(state().plan.blocks.slice(1).map(block=>block.sourceId),['B03','N24','B08']);
+  assert.equal(state().plan.blocks.slice(1).reduce((sum,block)=>sum+block.minutes,0),10);
+  blockField(2,'instructions','Keep this edited entry lesson after saving.');t.action('save',-1);const id=state().plan.id,snapshot=state().plan;
+  t.reset();mount();assert.deepEqual(state().plan,snapshot);
+  t.action('new',-1);root.querySelector('[data-saved-plan]').value=id;t.action('load',-1);assert.deepEqual(state().plan,snapshot);
+  const previousBlob=ctx.Blob,previousDocument=ctx.document,previousTimer=ctx.window.setTimeout;let exportedText='';
+  ctx.Blob=class extends Blob{constructor(parts,options){super(parts,options);exportedText=parts.join('');}};ctx.document={createElement:()=>({click(){}})};ctx.window.setTimeout=fn=>fn();
+  try{t.action('export',-1);}finally{ctx.Blob=previousBlob;ctx.document=previousDocument;ctx.window.setTimeout=previousTimer;}
+  const imported=t.parseImport(exportedText);assert.deepEqual(imported.blocks,snapshot.blocks);
+  for(const details of [false,true]){const print=t.printHtml(details);assert.equal((print.match(/class="builder-print-block"/g)||[]).length,4);for(const block of snapshot.blocks)assert(print.includes(t.esc(block.name)));assert(print.includes('Keep this edited entry lesson after saving.'));}
+});
+check('linked drills split into their actual member guides rather than another bundled series block',()=>{
+  resetCase();picker('type','drill');picker('selected','series:S01');t.action('add',-1);
+  assert(state().pendingReplacement?.blocks);assert.deepEqual(state().pendingReplacement.blocks.map(block=>block.sourceId),['P01','P02','P03','P04']);
+  t.action('confirm-replace',-1);assert.deepEqual(state().plan.blocks.map(block=>block.sourceId),['P01','P02','P03','P04']);assert(state().plan.blocks.every(block=>!block.components?.series));
+});
+check('all Foundation skills expand once per referenced move instead of duplicating shared prerequisites',()=>{
+  resetCase('age=7-10');picker('type','series');picker('selected','series:S24');stageMainSkills([0,1,2,3,4,5]);
+  t.action('add',-1);const blocks=state().pendingReplacement?.blocks;assert(blocks);assert.equal(blocks.length,14);
+  const ids=blocks.map(block=>block.sourceId);assert.equal(new Set(ids).size,14);
+  for(const id of ['B01','B03','B14','B15','B16','B17','B21','B07','N24','B08','B22','B26','B28','N25'])assert(ids.includes(id));
+  assert.equal(blocks.reduce((sum,block)=>sum+block.minutes,0),10);assert(blocks.every(block=>block.minutes>=0.5&&Number.isInteger(block.minutes*2)));
+  t.action('confirm-replace',-1);t.action('undo',-1);assert.equal(state().plan.blocks.length,0);
+});
+check('reset-only series choices reject attack insertion while mixed choices retain the selected safe reset',()=>{
+  resetCase('age=11-14');const family=pathway.series.find(item=>item.branches.some(branch=>branch.title==='Release and reset'));
+  assert(family);picker('type','series');picker('selected','series:'+family.id);
+  const key=ctx.window.GRINDSTONE_COMPONENTS.testing.branchKey,reset=family.branches.find(branch=>branch.title==='Release and reset');
+  const fields=family.branches.map(branch=>({value:key(branch),checked:branch===reset})),queryAll=root.querySelectorAll;
+  root.querySelectorAll=selector=>selector==='[data-component-branch="picker"]'?fields:queryAll.call(root,selector);
+  root.listeners.change({target:{dataset:{componentBranch:'picker'}}});const before=JSON.stringify(state().plan);t.action('add',-1);
+  assert.equal(JSON.stringify(state().plan),before);assert(!state().pendingReplacement);assert(state().placementError);
+  assert(/reset|technique/i.test(state().placementNotice));
+  fields[0].checked=true;root.listeners.change({target:{dataset:{componentBranch:'picker'}}});t.action('add',-1);
+  const blocks=state().pendingReplacement?.blocks;assert(blocks);assert(blocks.some(block=>block.sourceId==='B08'));
+  assert(!blocks.some(block=>block.sourceId==='A05'),'A reset reference is not permission to insert the unselected attack');
+  assert(blocks.every(block=>block.instructions.includes(reset.action)));
+  t.action('confirm-replace',-1);assert(state().plan.blocks.every(block=>block.instructions.includes(reset.action)));
+});
+check('split retains existing work and notes, skips its repeated primary guide and preserves its station snapshots',()=>{
+  resetCase('age=7-10');addSource('move','B03');blockField(0,'minutes','20');blockField(0,'instructions','Keep our entry drill.');blockField(0,'rotation','Coach A helps this group.');
+  let raw=state().plan;raw.blocks[0].setup='Keep this setup.';raw.blocks[0].readiness='Keep our readiness check.';
+  raw.blocks[0].components={version:1,rotation:ctx.window.GRINDSTONE_COMPONENTS.testing.newRotation()};
+  t.replaceDraft(raw);picker('destination',state().plan.blocks[0].id);appendSource('move','P01');
+  const before=state().plan.blocks[0];picker('type','series');picker('selected','series:S24');stageMainSkills([2]);t.action('append',-1);
+  assert(state().pendingReplacement?.kept);assert.deepEqual(state().pendingReplacement.blocks.map(block=>block.sourceId),['B03','N24','B08']);
+  assert.equal(JSON.stringify(state().plan.blocks[0]),JSON.stringify(before));t.action('confirm-replace',-1);
+  const kept=state().plan.blocks[0];assert.deepEqual({...kept,minutes:before.minutes,timingConfirmed:before.timingConfirmed},before);
+  assert.equal(kept.minutes,7);assert.equal(state().plan.blocks.reduce((sum,block)=>sum+block.minutes,0),20);
+  assert(!state().plan.blocks[1].components?.rotation);assert(!state().plan.blocks[1].components?.activities);
+  t.action('undo',-1);assert.deepEqual(state().plan.blocks,[before]);
+});
+check('authored setup or a named manual task prevents a nominally empty slot from losing coach work',()=>{
+  const {index}=stageSingleSplit();let raw=state().plan;raw.blocks[index].setup='Use cones around the partner area.';t.replaceDraft(raw);
+  picker('destination',state().plan.blocks[index].id);picker('type','series');picker('selected','series:S24');stageMainSkills([2]);t.action('add',-1);
+  assert(state().pendingReplacement?.kept);assert.equal(state().pendingReplacement.blocks[0].setup,'Use cones around the partner area.');
+  assert.equal(state().pendingReplacement.blocks.length,4);t.action('confirm-replace',-1);assert.equal(state().plan.blocks[index].setup,'Use cones around the partner area.');
+  const custom=t.blockFrom(null,'custom');custom.name='Jog three laps';assert.equal(t.emptyFrameworkSlot(custom),false);
+});
+check('too-short series splits and stale confirmations fail without losing the preceding Undo',()=>{
+  const {index,before}=stageSingleSplit(1);t.action('add',-1);assert(!state().pendingReplacement);assert(state().placementError);
+  assert.equal(JSON.stringify(state().plan),JSON.stringify(before));assert(root.querySelector('.builder-placement-feedback').innerHTML.includes('at least 1.5 minutes'));
+  blockField(index,'minutes','20');t.action('add',-1);assert(state().pendingReplacement?.blocks);t.action('cancel-replace',-1);assert.equal(state().plan.blocks.length,before.blocks.length);
+  t.action('add',-1);blockField(index,'instructions','Changed the task after the split review.');const edited=JSON.stringify(state().plan);t.action('confirm-replace',-1);
+  assert.equal(JSON.stringify(state().plan),edited);assert(state().placementError);assert(!state().pendingReplacement);
+  t.action('undo',-1);assert.equal(state().plan.blocks.length,0,'Neither failed split nor Cancel may consume the framework Undo');
+});
+check('series split respects capacity and invalid controls at both review and confirmation',()=>{
+  const {index}=stageSingleSplit();let raw=state().plan;
+  while(raw.blocks.length<99){const block=t.blockFrom(null,'custom');raw.blocks.push(block);}t.replaceDraft(raw);
+  picker('destination',state().plan.blocks[index].id);picker('type','series');picker('selected','series:S24');stageMainSkills([2]);
+  const before=JSON.stringify(state().plan);t.action('add',-1);assert(!state().pendingReplacement);assert(state().placementError);assert.equal(JSON.stringify(state().plan),before);
+  stageSingleSplit();const query=root.querySelector.bind(root),invalid={focus(){},reportValidity(){}};
+  root.querySelector=selector=>selector==='input:invalid, select:invalid, textarea:invalid'?invalid:query(selector);
+  const unchanged=JSON.stringify(state().plan);t.action('add',-1);assert(!state().pendingReplacement);assert.equal(JSON.stringify(state().plan),unchanged);
+  root.querySelector=query;t.action('add',-1);assert(state().pendingReplacement?.blocks);
+  root.querySelector=selector=>selector==='input:invalid, select:invalid, textarea:invalid'?invalid:query(selector);
+  t.action('confirm-replace',-1);assert.equal(JSON.stringify(state().plan),unchanged);assert(state().pendingReplacement?.blocks);root.querySelector=query;
+});
+check('quick water controls insert two editable minutes after the chosen block and adjust clocks without changing target',()=>{
+  resetCase();addSource('move','P01');addSource('move','P02');blockField(0,'minutes','10');blockField(1,'minutes','10');field('target','20');field('startTime','18:00');
+  const before=state().plan,id=before.blocks[0].id;assert(root.querySelector('.builder-block-list').innerHTML.includes('data-action="water-after" data-slot-id="'+id+'"'));
+  const button={dataset:{action:'water-after',slotId:id},disabled:false,closest:()=>null};root.listeners.click({target:{closest:selector=>selector==='[data-action]'?button:null}});
+  const after=state().plan;assert.equal(after.blocks.length,3);assert.deepEqual(after.blocks[0],before.blocks[0]);assert.deepEqual(after.blocks[2],before.blocks[1]);
+  assert.equal(after.blocks[1].type,'water');assert.equal(after.blocks[1].section,'reset');assert.equal(after.blocks[1].minutes,2);assert.equal(after.blocks[1].sourceId,'');
+  assert.equal(after.target,20);assert.equal(t.timing(after.blocks).at(-1).end,22);assert(t.printHtml(false).includes('6:12 pm–6:22 pm'));
+  blockField(1,'minutes','1.5');blockField(1,'instructions','Water, quick check-in, then pairs return.');assert.equal(t.timing(state().plan.blocks).at(-1).end,21.5);
+  assert(t.printHtml(false).includes('Water, quick check-in, then pairs return.'));t.action('save',-1);t.reset();mount();assert.equal(state().plan.blocks[1].minutes,1.5);
+  t.action('water-after',state().plan.blocks.length-1);assert.equal(state().plan.blocks.at(-1).type,'water');t.action('undo',-1);assert.equal(state().plan.blocks.length,3);
+});
+check('quick water insertion is atomic at invalid controls, completed records and the 100-block limit',()=>{
+  resetCase();addSource('move','P01');const original=JSON.stringify(state().plan),query=root.querySelector.bind(root);
+  root.querySelector=selector=>selector==='input:invalid, select:invalid, textarea:invalid'?{focus(){},reportValidity(){}}:query(selector);
+  t.action('water-after',0);assert.equal(JSON.stringify(state().plan),original);root.querySelector=query;
+  t.action('water-after',0);assert.equal(state().plan.blocks.length,2);t.action('undo',-1);assert.equal(JSON.stringify(state().plan),original);
+  let raw=state().plan;while(raw.blocks.length<100)raw.blocks.push(t.blockFrom(null,'custom'));t.replaceDraft(raw);const full=JSON.stringify(state().plan);
+  t.action('water-after',0);assert.equal(JSON.stringify(state().plan),full);assert(root.querySelector('.builder-status').textContent.includes('100 blocks'));
+  raw=state().plan;raw.status='completed';raw.completedAt='2026-10-24T12:00:00.000Z';t.replaceDraft(raw);const completed=JSON.stringify(state().plan);
+  for(const action of ['water-after','add','append','confirm-replace']){t.action(action,0);assert.equal(JSON.stringify(state().plan),completed);}
+});
 check('Cancel returns keyboard focus to Fill this slot without changing the plan or Undo',()=>{
   resetCase();addSource('move','P01');addSource('move','P02');
   picker('selected','P03');picker('destination',state().plan.blocks[0].id);
