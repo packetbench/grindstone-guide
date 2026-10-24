@@ -6,7 +6,7 @@ let checks = 0;
 const check = (name,fn) => { fn(); checks++; console.log('PASS ' + name); };
 const clone = value => JSON.parse(JSON.stringify(value));
 const ctx = {window:{confirm:()=>true,localStorage:{getItem:()=>null,setItem(){}}},URL,URLSearchParams,console,setTimeout};
-for (const file of ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js','practice-components.js','practice-builder.js']) vm.runInNewContext(fs.readFileSync(path.join(base,file),'utf8'),ctx,{filename:file});
+for (const file of ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js','catalog-tags.js','practice-components.js','practice-builder.js']) vm.runInNewContext(fs.readFileSync(path.join(base,file),'utf8'),ctx,{filename:file});
 const api = ctx.window.GRINDSTONE_COMPONENTS, t = api.testing;
 const catalog = ctx.window.GRINDSTONE_BUILDER.testing.normalizeCatalog(), pathway = ctx.window.GRINDSTONE_PATHWAY;
 const byId = new Map(catalog.map(item=>[item.id,item]));
@@ -17,11 +17,16 @@ const selected = api.selectSeries(blockFor(),[first,second],catalog);
 const rotationBlock = () => ({...blockFor(),minutes:20,components:{version:1,rotation:t.newRotation()}});
 function hostFor(plan) {
   const timing = {innerHTML:''}, listeners = {}, changes = [], snapshots = [], inputs = [];
-  const host = {dataset:{componentBlock:'0'},querySelector:()=>timing,querySelectorAll:()=>inputs};
+  const panels = new Map();
+  const panelFor = index => {
+    if (!panels.has(index)) { const nodes = new Map(); panels.set(index,{querySelector(selector) { if (!nodes.has(selector)) nodes.set(selector,{innerHTML:'',textContent:'',value:'',checked:false,disabled:false}); return nodes.get(selector); }}); }
+    return panels.get(index);
+  };
+  const host = {dataset:{componentBlock:'0'},querySelector(selector) { const match = selector.match(/^\[data-station-picker="(\d+)"\]$/); return match ? panelFor(Number(match[1])) : timing; },querySelectorAll:()=>inputs};
   const container = {dataset:{},addEventListener:(name,fn)=>{listeners[name]=fn;},querySelectorAll:()=>[host]};
   api.bind(container,{getPlan:()=>plan,getAge:()=>plan.age,getCatalog:()=>catalog,beforeChange:()=>snapshots.push(clone(plan)),onChange:change=>changes.push(change)});
   function element(dataset={},value='') { return {dataset,value,checked:false,validity:{valid:true},setCustomValidity(message){this.error=message;this.validity.valid=!message;},closest:()=>host,hasAttribute(name){return name==='data-component-broad'&&'componentBroad' in this.dataset;}}; }
-  return {container,host,timing,listeners,changes,snapshots,inputs,element,
+  return {container,host,timing,listeners,changes,snapshots,inputs,element,panelFor,
     input(dataset,value){const el=element(dataset,value);listeners.input({target:el});return el;},
     change(dataset,value,checked=false){const el=element(dataset,value);el.checked=checked;listeners.change({target:el});return el;},
     click(action,index){const button=element({componentAction:action,stationIndex:String(index)});listeners.click({target:{closest:()=>button}});}
@@ -151,11 +156,11 @@ check('invalid shared timing reports an actionable validation error and can reco
 });
 check('copying a guide retains station arrangements and age/source guidance',()=>{
   const plan={age:'11-14',blocks:[rotationBlock()]}, h=hostFor(plan), station=plan.blocks[0].components.rotation.stations[0];station.coach='Coach West';
-  h.change({stationSource:'0'},'B18');assert.equal(station.coach,'Coach West');assert.equal(station.guide.readiness,byId.get('B18').readiness);assert.equal(station.guide.ageNote,byId.get('B18').ageNote);
+  h.change({stationSource:'0'},'B18');assert(!station.guide);h.click('use-station-guide',0);assert.equal(station.coach,'Coach West');assert.equal(station.guide.readiness,byId.get('B18').readiness);assert.equal(station.guide.ageNote,byId.get('B18').ageNote);
 });
 check('guide event cannot quietly select an out-of-group item without broader opt-in',()=>{
   const plan={age:'4-6',blocks:[rotationBlock()]}, h=hostFor(plan);h.change({stationSource:'0'},'A01');assert.equal(plan.blocks[0].components.rotation.stations[0].task,'');
-  h.change({componentBroad:''},'',true);h.change({stationSource:'0'},'A01');assert.equal(plan.blocks[0].components.rotation.stations[0].guide.sourceId,'A01');
+  h.change({stationFilter:'matchAge',stationIndex:'0'},'',false);h.change({stationSource:'0'},'A01');h.click('use-station-guide',0);assert.equal(plan.blocks[0].components.rotation.stations[0].guide.sourceId,'A01');
 });
 check('refresh updates a changed outer slot and rotation removal preserves original text',()=>{
   const plan={age:'11-14',blocks:[rotationBlock()]}, h=hostFor(plan), note=plan.blocks[0].rotation;plan.blocks[0].minutes=30;
@@ -191,6 +196,162 @@ check('Foundation Series keeps age and return prerequisites visible without addi
   for(const phrase of [guide.boundary,guide.readiness])assert(api.printBlock(block,catalog).includes(escForTest(phrase)));
   function escForTest(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   assert(block.boundary.includes('No surprise returns'));
+});
+
+
+check('station filters use shared facets, aliases and cues without changing any practice data',()=>{
+  const plan={age:'7-10',blocks:[rotationBlock()]},h=hostFor(plan),before=clone(plan);
+  h.input({stationFilter:'search',stationIndex:'0'},'run the pipe');
+  let state=t.stationPicker(plan.blocks[0].components.rotation.stations[0]);
+  assert(catalog.filter(item=>t.stationMatches(item,state,plan.age)).some(item=>item.id==='B08'));
+  h.input({stationFilter:'search',stationIndex:'0'},'');
+  for(const [key,value] of [['position','bottom'],['purpose','escape'],['use','teach'],['category','bottom']])h.change({stationFilter:key,stationIndex:'0'},value);
+  const matches=catalog.filter(item=>t.stationMatches(item,state,plan.age));
+  assert(matches.some(item=>item.id==='B17'));assert(!matches.some(item=>item.id==='B07'));
+  h.input({stationFilter:'search',stationIndex:'1'},'knees bent eyes ahead');
+  const other=t.stationPicker(plan.blocks[0].components.rotation.stations[1]);assert.equal(other.position,'');assert.equal(state.search,'');
+  assert(catalog.filter(item=>t.stationMatches(item,other,plan.age)).some(item=>item.id==='P01'));
+  assert.deepEqual(plan,before);assert.equal(h.changes.length,0);assert.equal(h.snapshots.length,0);
+  assert(h.panelFor(0).querySelector('[data-station-chips]').innerHTML.includes('Position: Bottom'));
+});
+check('search updates only station results and keeps its search field node and value',()=>{
+  const plan={age:'7-10',blocks:[rotationBlock()]},h=hostFor(plan),field=h.panelFor(0).querySelector('[data-station-filter="search"]');
+  field.value='stand';
+  const el=h.element({stationFilter:'search',stationIndex:'0'},'stand');
+  h.listeners.input({target:el});
+  assert.strictEqual(h.panelFor(0).querySelector('[data-station-filter="search"]'),field);
+  assert.equal(field.value,'stand');
+  assert(h.panelFor(0).querySelector('[data-station-source]').innerHTML.includes('B17'));
+  assert(!h.panelFor(0).querySelector('[data-station-source]').innerHTML.includes('value="B07"'));
+});
+check('Foundation Series selection stages a candidate and inserts only the checked skill',()=>{
+  const plan={age:'7-10',blocks:[rotationBlock()]},h=hostFor(plan),rotation=plan.blocks[0].components.rotation,station=rotation.stations[0];
+  station.coach='Coach Ryan';station.equipment='Cone';station.task='Keep my task until insertion';
+  const before=clone(plan),s=pathway.series.find(item=>item.id==='S24');
+  h.change({stationFilter:'family',stationIndex:'0'},'S24');
+  assert.equal(t.stationPicker(station).selected,'series:S24');assert.deepEqual(plan,before);
+  assert(h.panelFor(0).querySelector('[data-station-preview]').innerHTML.includes('Core skills to teach today'));
+  h.change({componentBranch:'station-0'},key(s.branches[0]),false);
+  assert.equal(h.panelFor(0).querySelector('[data-component-action="use-station-guide"]').disabled,true);
+  h.change({componentBranch:'station-0'},key(s.branches[2]),true);
+  h.click('use-station-guide',0);
+  assert.equal(station.series.kind,'foundation');assert.deepEqual(clone(station.series.selections.map(item=>item.title)),['Single leg']);
+  assert.equal(station.guide.sourceId,'series:S24');assert.equal(station.guide.title,'Foundation Series');assert.equal(station.name,'Foundation Series — Single leg');
+  assert(station.task.includes(s.branches[2].action));assert(!station.task.includes(s.branches[0].action));assert(!station.task.includes(s.branches[5].action));
+  assert(station.task.includes('Teach each skill separately'));assert(station.task.includes('receiving control'));
+  assert(station.series.guides.some(item=>item.sourceId==='N24'));assert(!station.series.guides.some(item=>item.sourceId==='N25'));
+  assert.equal(station.coach,'Coach Ryan');assert.equal(station.equipment,'Cone');
+  assert.deepEqual(clone(rotation.stations.slice(1)),before.blocks[0].components.rotation.stations.slice(1));
+  assert.equal(plan.blocks[0].minutes,before.blocks[0].minutes);assert.equal(api.rotationMinutes(rotation),20);
+  assert.equal(h.snapshots.length,1);
+});
+check('regular technique series keeps its foundation, selected response, receiving rules and snapshots in a station',()=>{
+  const plan={age:'11-14',blocks:[rotationBlock()]},h=hostFor(plan),station=plan.blocks[0].components.rotation.stations[1];
+  h.change({stationFilter:'type',stationIndex:'1'},'series');
+  h.change({stationSource:'1'},'series:S13');
+  h.change({componentBranch:'station-1'},first,false);
+  h.change({componentBranch:'station-1'},second,true);
+  h.click('use-station-guide',1);
+  assert.equal(station.guide.sourceId,'series:S13');
+  assert(station.task.includes(series.foundation));assert(station.task.includes(series.branches[1].action));assert(!station.task.includes(series.branches[0].action));
+  assert(station.task.includes('common foundation'));assert(station.task.includes('receiving control'));assert(station.task.includes('Reset:'));
+  assert.deepEqual(clone(station.series.selections.map(item=>item.key)),[second]);
+  assert(station.series.guides.length);
+});
+check('canceling explicit station insertion preserves task, guidance, timing and other stations',()=>{
+  const plan={age:'11-14',blocks:[rotationBlock()]},h=hostFor(plan);
+  plan.blocks[0].components.rotation.stations[0].task='Coach-authored setup and turns';
+  const before=clone(plan);
+  h.change({stationFilter:'family',stationIndex:'0'},'S24');assert.deepEqual(plan,before);
+  ctx.window.confirm=()=>false;
+  try {h.click('use-station-guide',0);} finally {ctx.window.confirm=()=>true;}
+  assert.deepEqual(plan,before);assert.equal(h.snapshots.length,0);assert.equal(h.changes.length,0);
+});
+check('station selected series survive full builder clean, export/import and both print modes',()=>{
+  const item=byId.get('series:S24'),s=pathway.series.find(item=>item.id==='S24'),b=rotationBlock();
+  b.components.rotation.stations[0]=t.stationWithGuide(b.components.rotation.stations[0],item,[key(s.branches[5])],catalog);
+  const station=b.components.rotation.stations[0];station.task+=' Coach reminder: use the agreed receiving partner.';
+  const builder=ctx.window.GRINDSTONE_BUILDER;builder.render(new URLSearchParams());
+  const plan={...builder.testing.newPlan(),name:'Station skills',age:'11-14',blocks:[b]};
+  const clean=builder.testing.cleanPlan(clone(plan)),imported=builder.testing.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:clean}));
+  assert.deepEqual(clone(imported.blocks[0].components.rotation.stations[0]),clone(station));
+  assert(!JSON.stringify(imported).includes('renderedAge'));assert(!JSON.stringify(imported).includes('groupTouched'));
+  const nodes=new Map(),root={dataset:{},querySelector(selector){if(selector===':invalid'||selector==='[data-week-content]')return null;if(!nodes.has(selector))nodes.set(selector,{innerHTML:'',textContent:'',value:'',checked:false,disabled:false,hidden:false,focus(){}});return nodes.get(selector);},querySelectorAll(){return[];},addEventListener(){}};
+  builder.bind(root);builder.testing.replaceDraft(clean);
+  for(const full of [false,true]) {
+    const printed=builder.testing.printHtml(full);
+    for(const value of [station.task,station.guide.readiness,station.guide.boundary,station.guide.sourceNote,...station.series.guides.flatMap(guide=>[guide.title,guide.readiness,guide.boundary,guide.ageNote,guide.sourceNote])].filter(Boolean))assert(printed.includes(escapeText(value)),'Missing station print guidance');
+    assert(printed.includes('Selected core skills'));assert(printed.includes('Mat return'));
+  }
+  function escapeText(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+});
+check('group changes refresh station eligibility while preserving filters and written tasks',()=>{
+  const plan={age:'11-14',blocks:[rotationBlock()]},h=hostFor(plan),station=plan.blocks[0].components.rotation.stations[0];station.task='Keep this task';
+  h.change({stationFilter:'family',stationIndex:'0'},'S24');
+  assert.equal(t.stationPicker(station).selected,'series:S24');
+  plan.age='4-6';api.refresh(h.container,plan);
+  assert.equal(t.stationPicker(station).family,'S24');assert.equal(t.stationPicker(station).selected,'');assert.equal(station.task,'Keep this task');
+  assert(!h.panelFor(0).querySelector('[data-station-source]').innerHTML.includes('value="series:S24"'));
+  assert(h.panelFor(0).querySelector('[data-station-group-note]').textContent.includes('4-6'));
+  h.change({stationFilter:'matchAge',stationIndex:'0'},'',false);h.change({stationFilter:'family',stationIndex:'0'},'S24');
+  assert.equal(t.stationPicker(station).selected,'series:S24');
+  assert.equal(t.stationPicker(plan.blocks[0].components.rotation.stations[1]).matchAge,true);
+});
+check('station filter state follows station identity after removal and is absent from copies',()=>{
+  const plan={age:'11-14',blocks:[rotationBlock()]},h=hostFor(plan),rotation=plan.blocks[0].components.rotation;
+  const secondStation=rotation.stations[1];
+  h.input({stationFilter:'search',stationIndex:'0'},'half');
+  h.input({stationFilter:'search',stationIndex:'1'},'single');
+  h.click('remove-station',0);
+  assert.strictEqual(rotation.stations[0],secondStation);assert.equal(t.stationPicker(rotation.stations[0]).search,'single');
+  assert.equal(t.stationPicker(clone(rotation.stations[0])).search,'');
+  const saved=api.cleanBlock(plan.blocks[0]);assert(!JSON.stringify(saved).includes('"search"'));
+});
+check('completed records cannot browse, select, insert or clear station guides',()=>{
+  const plan={age:'7-10',blocks:[rotationBlock()]},h=hostFor(plan),station=plan.blocks[0].components.rotation.stations[0];
+  h.change({stationFilter:'family',stationIndex:'0'},'S24');
+  plan.status='completed';
+  const before=clone(plan),stateBefore=clone(t.stationPicker(station));
+  h.input({stationFilter:'search',stationIndex:'0'},'new');h.change({stationSource:'0'},'B18');h.change({stationFilter:'matchAge',stationIndex:'0'},'',false);h.change({componentBranch:'station-0'},key(pathway.series[0].branches[1]),true);
+  h.click('use-station-guide',0);h.click('clear-station-filters',0);
+  assert.deepEqual(plan,before);assert.deepEqual(clone(t.stationPicker(station)),stateBefore);
+});
+check('removed station series branches and unknown guide links retain saved instruction safely',()=>{
+  const b=rotationBlock(),station=t.stationWithGuide(b.components.rotation.stations[0],source,[first],catalog);
+  b.components.rotation.stations[0]=station;
+  station.series.selections[0].key='branch-removed';station.series.guides[0].sourceId='unknown';
+  station.series.guides[0].video='https://bad.invalid';station.guide.path='javascript:bad';station.task+=' Original coach prose.';
+  const cleaned={...b,...api.cleanBlock(clone(b))},html=api.printBlock(cleaned,catalog);
+  assert.equal(cleaned.components.rotation.stations[0].task,station.task);
+  assert(html.includes('saved instruction is preserved'));assert(html.includes('Original coach prose'));assert(!html.includes('bad.invalid'));assert(!html.includes('javascript:bad'));
+  assert.throws(()=>api.cleanBlock({...b,components:{version:1,rotation:{...b.components.rotation,stations:[{...station,series:{...station.series,selections:[]}}]}}}));
+});
+check('replacing a series with one move removes only obsolete station-series instruction',()=>{
+  const b=rotationBlock(),initial=t.stationWithGuide(b.components.rotation.stations[0],source,[first],catalog);
+  initial.coach='Coach Eric';initial.rounds='Swap every minute';initial.name='North mat: Coach Eric';
+  const next=t.stationWithGuide(initial,byId.get('B18'),[],catalog);
+  assert(!next.series);assert.equal(next.guide.sourceId,'B18');assert.equal(next.coach,initial.coach);assert.equal(next.rounds,initial.rounds);assert.equal(next.name,'North mat: Coach Eric');
+  assert(initial.series);assert.equal(initial.guide.sourceId,'series:S13');
+});
+check('station controls never use main-picker action attributes or block branch context',()=>{
+  const b=rotationBlock();t.stationPicker(b.components.rotation.stations[0]).selected='series:S24';
+  const html=t.stationPickerHtml(b.components.rotation.stations[0],0,catalog,'7-10',false);
+  for(const attr of ['data-picker=','data-action=','data-clear-filter=','data-suggest-use=','data-component-branch="block"'])assert(!html.includes(attr));
+  assert(html.includes('data-component-branch="station-0"'));assert(html.indexOf('data-station-filter="family"')<html.indexOf('More filters'));
+});
+
+
+check('a removed saved station choice can be replaced explicitly without discarding its old task first',()=>{
+  const b=rotationBlock(),station=t.stationWithGuide(b.components.rotation.stations[0],source,[first],catalog);
+  station.series.selections[0].key='removed-key';station.task='Historical instruction that must stay until replacement';
+  b.components.rotation.stations[0]=station;
+  const plan={age:'11-14',blocks:[b]},h=hostFor(plan),before=clone(station);
+  h.change({stationFilter:'family',stationIndex:'0'},'S13');
+  assert.deepEqual(clone(t.stationPicker(station).selections['series:S13']),[]);
+  assert.equal(h.panelFor(0).querySelector('[data-component-action="use-station-guide"]').disabled,true);
+  assert.deepEqual(station,before);
+  h.change({componentBranch:'station-0'},second,true);h.click('use-station-guide',0);
+  assert.deepEqual(clone(station.series.selections.map(item=>item.key)),[second]);assert(station.task.includes(series.branches[1].action));
 });
 
 console.log(checks+' component checks passed.');

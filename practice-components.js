@@ -41,11 +41,50 @@
   function snapshot(item) {
     return cleanGuide({sourceId:item.id, title:item.title, task:item.instructions || item.summary || '', setup:item.setup, readiness:item.readiness, boundary:item.boundary, adaptation:item.adaptation, ageNote:item.ageNote, sourceNote:item.sourceNote, steps:item.steps, cues:item.cues});
   }
+
+  function cleanSelectedSeries(raw) {
+    const s = object(raw, 'Selected series');
+    const clean = {id:field(s.id, 'Series ID', 100),selections:list(s.selections).map(item => ({key:field(item.key, 'Branch key', 100),title:field(item.title, 'Branch title', 300)})),guides:[]};
+    if (s.kind != null) {
+      if (s.kind !== 'foundation') throw Error('Unsupported selected-series kind.');
+      clean.kind = s.kind;
+    }
+    if (!Array.isArray(s.selections) || s.selections.length < 1 || s.selections.length > 20 || new Set(clean.selections.map(item => item.key)).size !== s.selections.length) throw Error(isFoundation(s) ? 'Choose 1–20 distinct core skills.' : 'Choose 1–20 distinct series options.');
+    if (!Array.isArray(s.guides) || s.guides.length > MAX_GUIDES) throw Error('Too many selected-series guides.');
+    clean.guides = s.guides.map(cleanGuide);
+    return clean;
+  }
+  function stationGuideName(title,series) {
+    const choices = series?.selections || [];
+    return (title + (choices.length ? ' — ' + (choices.length === 1 ? choices[0].title : choices.length + (isFoundation(series) ? ' skills' : ' options')) : '')).slice(0,200);
+  }
+  function stationWithGuide(station,item,keys,catalog) {
+    const next = cleanStation(station), series = seriesData(item.id);
+    const generatedName = !station.name || /^Station \d+$/.test(station.name) || station.name === station.guide?.title || (station.guide && station.name === stationGuideName(station.guide.title,station.series));
+    if (series) {
+      const chosen = selectSeries({sourceId:item.id,setup:item.setup,readiness:item.readiness,boundary:item.boundary,ageNote:item.ageNote,sourceNote:item.sourceNote},keys,catalog);
+      next.task = chosen.instructions;
+      next.guide = snapshot({...item,instructions:chosen.instructions,setup:chosen.setup,readiness:chosen.readiness,boundary:chosen.boundary,ageNote:chosen.ageNote,sourceNote:chosen.sourceNote,steps:chosen.steps,cues:lines(chosen.cues).split('\n').filter(Boolean)});
+      next.series = cleanSelectedSeries(chosen.components.series);
+    } else {
+      next.task = item.instructions || item.summary || '';
+      next.guide = snapshot(item);
+      delete next.series;
+    }
+    next.name = generatedName ? stationGuideName(item.title,next.series) : station.name;
+    return next;
+  }
+  function stationSeriesHtml(station,catalog) {
+    if (!station.series) return '';
+    const saved = station.series, warning = selectionStatus({components:{series:saved}});
+    return '<div class="component-station-series"><h5>' + (isFoundation(saved) ? 'Selected core skills' : 'Selected series options') + '</h5><ul>' + saved.selections.map(item => '<li>' + esc(item.title) + '</li>').join('') + '</ul>' + (warning ? '<p class="component-warning">' + esc(warning) + '</p>' : '') + saved.guides.map(guide => guideHtml(guide,catalog,true)).join('') + '</div>';
+  }
   function cleanStation(raw) {
     object(raw, 'Station');
     const out = {name:field(raw.name, 'Station name', 200), task:field(raw.task, 'Station task', 16000)};
     for (const key of ['coach','equipment','space','group','rounds','simpler','success','stop']) out[key] = field(raw[key], 'Station ' + key, 4000);
     if (raw.guide) out.guide = cleanGuide(raw.guide);
+    if (raw.series) out.series = cleanSelectedSeries(raw.series);
     return out;
   }
   function cleanBlock(raw) {
@@ -53,17 +92,7 @@
     const value = object(raw.components, 'Practice components');
     if (value.version !== 1) throw Error('Unsupported practice-components version.');
     const clean = {version:1};
-    if (value.series != null) {
-      const s = object(value.series, 'Selected series');
-      clean.series = {id:field(s.id, 'Series ID', 100), selections:list(s.selections).map(item => ({key:field(item.key, 'Branch key', 100), title:field(item.title, 'Branch title', 300)})), guides:[]};
-      if (s.kind != null) {
-        if (s.kind !== 'foundation') throw Error('Unsupported selected-series kind.');
-        clean.series.kind = s.kind;
-      }
-      if (!Array.isArray(s.selections) || s.selections.length < 1 || s.selections.length > 20 || new Set(clean.series.selections.map(item => item.key)).size !== s.selections.length) throw Error(isFoundation(s) ? 'Choose 1–20 distinct core skills.' : 'Choose 1–20 distinct series options.');
-      if (!Array.isArray(s.guides) || s.guides.length > MAX_GUIDES) throw Error('Too many selected-series guides.');
-      clean.series.guides = s.guides.map(cleanGuide);
-    }
+    if (value.series != null) clean.series = cleanSelectedSeries(value.series);
     if (value.rotation != null) {
       const r = object(value.rotation, 'Station rotation');
       clean.rotation = {
@@ -174,12 +203,95 @@
     if (!r) return '';
     return '<div class="component-timing"><p><strong>Shared elapsed time: ' + rotationMinutes(r) + ' minutes.</strong> ' + r.briefingMinutes + ' briefing + ' + r.rounds + ' rounds × ' + r.workMinutes + ' work + ' + Math.max(0,r.rounds - 1) + ' changes × ' + r.changeMinutes + ' + ' + r.finishMinutes + ' finish. Stations run simultaneously; their individual task times are not added together.</p><p class="fine">Copied guides may describe a longer drill or game. Choose turns, recovery and a stopping point that fit each work period; copying a guide does not shorten its rules or rounds.</p>' + (r.rounds < r.stations.length ? '<p class="fine">There are fewer rounds than stations; not every group will visit every station.</p>' : '') + (problems(block).length ? '<ul class="component-warning">' + problems(block).map(text => '<li>' + esc(text) + '</li>').join('') + '</ul>' : '') + (controls ? '<button type="button" data-component-action="use-total">Use rotation total for this block</button>' : '') + '</div>';
   }
+
+  // Browsing state is local to each station object, never part of saved practice records.
+  const stationPickers = new WeakMap(), bindingContexts = new WeakMap();
+  const stationDefinitions = key => window.GRINDSTONE_CATALOG_TAGS?.definitions?.[key] || [];
+  const stationLabel = (key,id) => stationDefinitions(key).find(item => item.id === id)?.label || id;
+  const stationTypes = {move:'Move',series:'Technique / Foundation series',drill:'Drill',warmup:'Warm-up',game:'Game',strength:'Strength',endurance:'Endurance'};
+  function stationPicker(station,legacyBroad = false) {
+    if (!stationPickers.has(station)) stationPickers.set(station,{search:'',position:'',purpose:'',use:'',category:'',family:'',type:'',matchAge:!legacyBroad,groupTouched:false,selected:'',selections:{}});
+    const state = stationPickers.get(station);
+    if (!state.groupTouched) state.matchAge = !legacyBroad;
+    return state;
+  }
+  function stationMatches(item,state,age) {
+    if (state.matchAge && age && !item.age_groups?.includes(age)) return false;
+    if (state.type && !item.types?.includes(state.type)) return false;
+    if (state.position && !item.positions?.includes(state.position)) return false;
+    if (state.purpose && !item.purposes?.includes(state.purpose)) return false;
+    if (state.use && !item.uses?.includes(state.use)) return false;
+    if (state.category && item.category !== state.category) return false;
+    if (state.family && item.id !== 'series:' + state.family && !item.memberships?.some(member => member.id === state.family)) return false;
+    const haystack = [item.id,item.title,item.summary,item.category,item.categoryLabel,item.tier,item.searchText,...list(item.aliases),...list(item.cues),...list(item.memberships).map(member => member.title + ' ' + member.role)].join(' ').toLowerCase();
+    return state.search.trim().toLowerCase().split(/\s+/).filter(Boolean).every(word => haystack.includes(word));
+  }
+  function stationCategories(catalog) { return [...new Map(list(catalog).filter(item => item.category).map(item => [item.category,{id:item.category,label:item.categoryLabel || item.category}])).values()].sort((a,b) => a.label.localeCompare(b.label)); }
+  function stationFamilies() { return [...(window.GRINDSTONE_PATHWAY?.series || [])].sort((a,b) => Number(isFoundation(b)) - Number(isFoundation(a))); }
+  function stationKeys(station,state,item) {
+    const series = seriesData(item?.id);
+    if (!series) return [];
+    if (!Object.hasOwn(state.selections,item.id)) state.selections[item.id] = station.series?.id === item.id ? station.series.selections.map(branch => branch.key).filter(key => series.branches.some(branch => branchKey(branch) === key)) : [branchKey(series.branches[0])];
+    return state.selections[item.id];
+  }
+  function stationEligibilityText(state,age) {
+    if (!state.matchAge) return 'Browsing all groups and unassigned references for this station only. These are not recommendations for the selected group; check readiness and boundaries.';
+    return age ? 'Suggestions for ages ' + age + ' use documented ages or teaching tiers. Unassigned references are excluded. Uncheck to browse all groups; readiness and prerequisites still apply.' : 'Choose an age group above for teaching suggestions. Without a group selected, this catalog includes unassigned references; check readiness and prerequisites.';
+  }
+  function stationOptions(matches,state) {
+    return '<option value="">Choose a guide to preview</option>' + matches.map(item => '<option value="' + esc(item.id) + '"' + (state.selected === item.id ? ' selected' : '') + '>' + esc(item.title + ' · ' + item.id + (!item.age_groups?.length ? ' · group unassigned' : '')) + '</option>').join('');
+  }
+  function stationChips(state,index,catalog) {
+    const fields = {search:['Search',state.search],position:['Position',stationLabel('positions',state.position)],purpose:['Purpose',stationLabel('purposes',state.purpose)],use:['Use',stationLabel('uses',state.use)],category:['Category',stationCategories(catalog).find(item => item.id === state.category)?.label],family:['Series',stationFamilies().find(item => item.id === state.family)?.title],type:['Type',stationTypes[state.type]]};
+    const chips = Object.entries(fields).filter(([key]) => state[key]).map(([key,[label,value]]) => '<button type="button" data-component-action="clear-station-filter" data-station-index="' + index + '" data-station-clear="' + key + '" aria-label="' + esc('Remove station ' + (index + 1) + ' ' + label.toLowerCase() + ' filter') + '">' + esc(label + ': ' + (value || state[key])) + ' <span aria-hidden="true">×</span></button>');
+    if (!state.matchAge) chips.push('<button type="button" data-component-action="clear-station-filter" data-station-index="' + index + '" data-station-clear="matchAge">All groups + unassigned <span aria-hidden="true">×</span></button>');
+    return chips.join('');
+  }
+  function stationCandidate(station,state,index,catalog) {
+    const item = catalogMap(catalog).get(state.selected);
+    if (!item) return '<p class="fine">Choose a guide to preview. Your station task stays unchanged until you use it.</p>';
+    const series = seriesData(item.id);
+    return '<p><strong>' + esc(item.title) + '</strong></p><p class="fine">' + esc(item.summary || '') + '</p>' + (series ? renderChoices(series,stationKeys(station,state,item),'station-' + index) + '<p class="fine">Only checked ' + (isFoundation(series) ? 'skills' : 'options') + ' will be inserted, with their linked instructions and restrictions.</p>' : '') +
+      '<details><summary>Read guide, prerequisites and source notes</summary>' + guideHtml(snapshot(item),catalog,true) + '</details>';
+  }
+  function stationPickerHtml(station,index,catalog,age,legacyBroad) {
+    const state = stationPicker(station,legacyBroad), matches = list(catalog).filter(item => stationMatches(item,state,age));
+    state.renderedAge = age;
+    if (!matches.some(item => item.id === state.selected)) state.selected = '';
+    const select = (key,label,choices) => '<label>' + label + '<select data-station-filter="' + key + '" data-station-index="' + index + '"><option value="">All ' + label.toLowerCase() + '</option>' + choices.map(item => '<option value="' + esc(item.id) + '"' + (state[key] === item.id ? ' selected' : '') + '>' + esc(item.label) + '</option>').join('') + '</select></label>';
+    const series = catalogMap(catalog).get(state.selected), choices = seriesData(state.selected);
+    return '<section class="component-station-picker" data-station-picker="' + index + '"><h5>Find a guide for this station</h5>' +
+      '<div class="station-primary-filters"><label>Search guides<input type="search" data-station-filter="search" data-station-index="' + index + '" value="' + esc(state.search) + '" placeholder="Name, cue, alias or series"></label>' + select('family','Series',stationFamilies().map(item => ({id:item.id,label:item.title}))) + '</div>' +
+      '<details class="station-more-filters"><summary>More filters</summary><div class="station-filter-grid">' + select('position','Positions',stationDefinitions('positions')) + select('purpose','Purposes',stationDefinitions('purposes')) + select('use','Practice uses',stationDefinitions('uses')) + select('category','Categories',stationCategories(catalog)) + select('type','Guide types',Object.entries(stationTypes).map(([id,label]) => ({id,label}))) + '</div></details>' +
+      '<label class="component-choice"><input type="checkbox" data-station-filter="matchAge" data-station-index="' + index + '"' + (state.matchAge ? ' checked' : '') + '><span>Suggested for selected group</span></label><p class="fine" data-station-group-note>' + esc(stationEligibilityText(state,age)) + '</p>' +
+      '<div class="station-filter-chips" data-station-chips>' + stationChips(state,index,catalog) + '</div><button type="button" data-component-action="clear-station-filters" data-station-index="' + index + '">Clear station filters</button>' +
+      '<p class="fine" data-station-count role="status" aria-live="polite">' + matches.length + ' matching guides</p><label>Guide to preview<select data-station-source="' + index + '" size="5">' + stationOptions(matches,state) + '</select></label><div data-station-preview>' + stationCandidate(station,state,index,catalog) + '</div>' +
+      '<button type="button" data-component-action="use-station-guide" data-station-index="' + index + '"' + (!series || (choices && !stationKeys(station,state,series).length) ? ' disabled' : '') + '>Use ' + (choices ? 'checked ' + (isFoundation(choices) ? 'skills' : 'options') : 'guide') + ' in this station</button><p class="fine">Using a guide replaces this station’s task and linked instruction. Your timing, coach, equipment and arrangements stay.</p></section>';
+  }
+  function updateStationPicker(host,station,index,catalog,age,legacyBroad,refreshPreview = true) {
+    const panel = host.querySelector('[data-station-picker="' + index + '"]');
+    if (!panel?.querySelector) return;
+    const state = stationPicker(station,legacyBroad), matches = list(catalog).filter(item => stationMatches(item,state,age));
+    if (!matches.some(item => item.id === state.selected)) state.selected = '';
+    for (const key of ['search','family','position','purpose','use','category','type','matchAge']) {
+      const input = panel.querySelector('[data-station-filter="' + key + '"]');
+      if (input) { if (key === 'matchAge') input.checked = state.matchAge; else if (input.value !== state[key]) input.value = state[key]; }
+    }
+    const set = (selector,property,value) => { const node = panel.querySelector(selector); if (node) node[property] = value; };
+    set('[data-station-chips]','innerHTML',stationChips(state,index,catalog));
+    set('[data-station-group-note]','textContent',stationEligibilityText(state,age));
+    set('[data-station-count]','textContent',matches.length + ' matching guides' + (state.matchAge && age ? ' suggested for ages ' + age : ' across the catalog') + (matches.length ? '.' : '. Clear a filter to broaden the results.'));
+    set('[data-station-source]','innerHTML',stationOptions(matches,state));
+    if (refreshPreview) set('[data-station-preview]','innerHTML',stationCandidate(station,state,index,catalog));
+    const item = catalogMap(catalog).get(state.selected), series = seriesData(state.selected);
+    set('[data-component-action="use-station-guide"]','disabled',!item || (series && !stationKeys(station,state,item).length));
+    set('[data-component-action="use-station-guide"]','textContent','Use ' + (series ? 'checked ' + (isFoundation(series) ? 'skills' : 'options') : 'guide') + ' in this station');
+    state.renderedAge = age;
+  }
   function stationFields(station,index,catalog,age,showAll) {
-    const allowed = list(catalog).filter(item => !item.types.includes('series') && (showAll || !age || item.age_groups?.includes(age)));
-    const select = '<label>Fill from a guide (optional)<select data-station-source="' + index + '"><option value="">Choose a guide or write your own</option>' + allowed.map(item => '<option value="' + esc(item.id) + '">' + esc(item.title + ' · ' + item.id) + '</option>').join('') + '</select></label>';
     const input = (key,label,required = false) => '<label>' + label + '<input data-station-field="' + key + '" data-station-index="' + index + '" value="' + esc(station[key]) + '" maxlength="' + (key === 'name' ? 200 : 4000) + '"' + (required ? ' required' : '') + '></label>';
     const area = (key,label,required = false) => '<label>' + label + '<textarea data-station-field="' + key + '" data-station-index="' + index + '" rows="' + (key === 'task' ? 4 : 2) + '" maxlength="' + (key === 'task' ? 16000 : 4000) + '"' + (required ? ' required' : '') + '>' + esc(station[key]) + '</textarea></label>';
-    return '<article class="component-station"><h4>Station ' + (index + 1) + '</h4>' + input('name','Station name',true) + select + area('task','Task, partner roles and repetitions',true) + '<details><summary>Coach, equipment and adaptations</summary><div class="component-field-grid">' + input('coach','Coach / role') + input('equipment','Equipment') + input('space','Space / location') + input('group','Group size / partner arrangement') + area('rounds','Turns, recovery and role swaps within the work period') + area('simpler','Simpler version') + area('success','What success looks like') + area('stop','Stop and reset conditions') + '</div></details>' + (station.guide ? '<details><summary>Linked instruction, cues & boundaries</summary>' + guideHtml(station.guide,catalog,true) + '</details>' : '') + '<button type="button" data-component-action="remove-station" data-station-index="' + index + '">Remove station ' + (index + 1) + '</button></article>';
+    return '<article class="component-station"><h4>Station ' + (index + 1) + '</h4>' + input('name','Station name',true) + stationPickerHtml(station,index,catalog,age,showAll) + area('task','Task, partner roles and repetitions',true) + '<details><summary>Coach, equipment and adaptations</summary><div class="component-field-grid">' + input('coach','Coach / role') + input('equipment','Equipment') + input('space','Space / location') + input('group','Group size / partner arrangement') + area('rounds','Turns, recovery and role swaps within the work period') + area('simpler','Simpler version') + area('success','What success looks like') + area('stop','Stop and reset conditions') + '</div></details>' + (station.guide || station.series ? '<details><summary>Linked instruction, cues & boundaries</summary>' + guideHtml(station.guide,catalog,true) + stationSeriesHtml(station,catalog) + '</details>' : '') + '<button type="button" data-component-action="remove-station" data-station-index="' + index + '">Remove station ' + (index + 1) + '</button></article>';
   }
   function renderBlock(block,index,catalog,age = '') {
     const series = seriesData(block.sourceId), saved = block.components?.series, rotation = block.components?.rotation;
@@ -189,7 +301,7 @@
     else if (saved) html += '<p class="component-warning">' + esc(selectionStatus(block)) + '</p>';
     if (saved?.guides.length) html += '<details><summary>' + (foundation ? 'Selected core skills: linked teaching cards' : 'Selected options: linked teaching cards') + '</summary>' + saved.guides.map(guide => guideHtml(guide,catalog,true)).join('') + '</details>';
     if (!rotation) return html + '<button type="button" data-component-action="add-rotation">Add structured station rotation</button><p class="fine">Keep the existing partner/station notes. A rotation uses one shared clock for simultaneous stations.</p></section>';
-    html += '<h3>Simultaneous station rotation</h3><div class="component-field-grid">' + [['rounds','Number of rounds',1,30,1],['workMinutes','Work minutes per round',0.5,120,0.5],['changeMinutes','Minutes between rounds',0,30,0.5],['briefingMinutes','Briefing / demonstration minutes',0,60,0.5],['finishMinutes','Finish / reset minutes',0,60,0.5]].map(([key,label,min,max,step]) => '<label>' + label + '<input type="number" required min="' + min + '" max="' + max + '" step="' + step + '" data-rotation-field="' + key + '" value="' + rotation[key] + '"></label>').join('') + '</div><div data-component-timing>' + timingHtml(block,true) + '</div><p>Divide athletes into groups, give each a different starting station, then move to the next station on the shared signal. Include recovery and partner swaps inside each work period.</p><label class="component-choice"><input type="checkbox" data-component-broad' + (rotation.showAll ? ' checked' : '') + '><span>Include broader or unassigned coach references in station guide choices</span></label><div class="component-stations">' + rotation.stations.map((station,i) => stationFields(station,i,catalog,age,rotation.showAll)).join('') + '</div><div class="component-actions"><button type="button" data-component-action="add-station"' + (rotation.stations.length >= MAX_STATIONS ? ' disabled' : '') + '>Add a station</button><button type="button" data-component-action="remove-rotation">Remove structured rotation</button></div></section>';
+    html += '<h3>Simultaneous station rotation</h3><div class="component-field-grid">' + [['rounds','Number of rounds',1,30,1],['workMinutes','Work minutes per round',0.5,120,0.5],['changeMinutes','Minutes between rounds',0,30,0.5],['briefingMinutes','Briefing / demonstration minutes',0,60,0.5],['finishMinutes','Finish / reset minutes',0,60,0.5]].map(([key,label,min,max,step]) => '<label>' + label + '<input type="number" required min="' + min + '" max="' + max + '" step="' + step + '" data-rotation-field="' + key + '" value="' + rotation[key] + '"></label>').join('') + '</div><div data-component-timing>' + timingHtml(block,true) + '</div><p>Divide athletes into groups, give each a different starting station, then move to the next station on the shared signal. Include recovery and partner swaps inside each work period.</p><div class="component-stations">' + rotation.stations.map((station,i) => stationFields(station,i,catalog,age,rotation.showAll)).join('') + '</div><div class="component-actions"><button type="button" data-component-action="add-station"' + (rotation.stations.length >= MAX_STATIONS ? ' disabled' : '') + '>Add a station</button><button type="button" data-component-action="remove-rotation">Remove structured rotation</button></div></section>';
     return html;
   }
   function printBlock(block,catalog) {
@@ -198,7 +310,7 @@
     let html = '<section class="component-print">';
     if (component.series) html += '<h3>' + (isFoundation(component.series) || isFoundation(seriesData(component.series.id)) ? 'Selected core skills' : 'Selected series options') + '</h3><ul>' + component.series.selections.map(item => '<li>' + esc(item.title) + '</li>').join('') + '</ul>' + (selectionStatus(block) ? '<p>' + esc(selectionStatus(block)) + '</p>' : '') + component.series.guides.map(guide => guideHtml(guide,catalog,true)).join('');
     if (component.rotation) {
-      html += '<h3>Station rotation · one shared clock</h3>' + timingHtml(block,false) + component.rotation.stations.map((station,i) => '<article class="component-station-print"><h4>Station ' + (i + 1) + ': ' + esc(station.name || 'Name needed') + '</h4><p class="component-preline"><strong>Task:</strong> ' + esc(station.task || 'Task needed before use') + '</p>' + [['Coach',station.coach],['Equipment',station.equipment],['Space',station.space],['Group',station.group],['Turns & recovery',station.rounds],['Simpler version',station.simpler],['Success',station.success],['Stop / reset',station.stop]].filter(([,value]) => value).map(([label,value]) => '<p class="component-preline"><strong>' + label + ':</strong> ' + esc(value) + '</p>').join('') + guideHtml(station.guide,catalog,true) + '</article>').join('');
+      html += '<h3>Station rotation · one shared clock</h3>' + timingHtml(block,false) + component.rotation.stations.map((station,i) => '<article class="component-station-print"><h4>Station ' + (i + 1) + ': ' + esc(station.name || 'Name needed') + '</h4><p class="component-preline"><strong>Task:</strong> ' + esc(station.task || 'Task needed before use') + '</p>' + [['Coach',station.coach],['Equipment',station.equipment],['Space',station.space],['Group',station.group],['Turns & recovery',station.rounds],['Simpler version',station.simpler],['Success',station.success],['Stop / reset',station.stop]].filter(([,value]) => value).map(([label,value]) => '<p class="component-preline"><strong>' + label + ':</strong> ' + esc(value) + '</p>').join('') + guideHtml(station.guide,catalog,true) + stationSeriesHtml(station,catalog) + '</article>').join('');
     }
     return html + '</section>';
   }
@@ -206,10 +318,17 @@
     container?.querySelectorAll?.('[data-component-block]').forEach(host => {
       const block = plan.blocks[Number(host.dataset.componentBlock)], panel = host.querySelector('[data-component-timing]');
       if (block && panel) panel.innerHTML = timingHtml(block,true);
+      const context = bindingContexts.get(container), rotation = block?.components?.rotation;
+      if (context && rotation) rotation.stations.forEach((station,index) => {
+        const age = context.getAge?.() || '', state = stationPicker(station,rotation.showAll);
+        if (state.renderedAge !== age) updateStationPicker(host,station,index,context.getCatalog(),age,rotation.showAll);
+      });
     });
   }
   function bind(container, options) {
-    if (!container || container.dataset.componentsBound) return;
+    if (!container) return;
+    bindingContexts.set(container,options);
+    if (container.dataset.componentsBound) return;
     container.dataset.componentsBound = 'true';
     const changed = (message,render = true) => options.onChange?.({message,render});
     const locate = el => {
@@ -222,6 +341,7 @@
     function error(err) { changed(err.message,false); }
     container.addEventListener('input', event => {
       const el = event.target;
+      if (el.dataset.stationFilter === 'search') { filterStation(el); return; }
       if (!el.dataset.stationField && !el.dataset.rotationField) return;
       const found = locate(el); if (!found) return;
       const r = found.block.components?.rotation; if (!r) return;
@@ -243,20 +363,45 @@
         changed('',false);
       } catch (err) { el.setCustomValidity?.(err.message); error(err); }
     });
+
+    function stationContext(el) {
+      const found = locate(el), rotation = found?.block.components?.rotation;
+      if (!rotation) return null;
+      const index = Number(el.dataset.stationIndex ?? el.dataset.stationSource ?? el.dataset.componentBranch?.replace(/^station-/,''));
+      const station = rotation.stations[index];
+      return station ? {...found,rotation,station,stationIndex:index,state:stationPicker(station,rotation.showAll),catalog:options.getCatalog(),age:options.getAge?.() || ''} : null;
+    }
+    function filterStation(el) {
+      const found = stationContext(el), key = el.dataset.stationFilter;
+      if (!found || !['search','family','position','purpose','use','category','type','matchAge'].includes(key)) return;
+      const {state,station,stationIndex,catalog,age,rotation,host} = found;
+      state[key] = key === 'matchAge' ? el.checked : el.value;
+      if (key === 'matchAge') state.groupTouched = true;
+      if (key === 'family') {
+        const candidate = catalogMap(catalog).get('series:' + state.family);
+        state.selected = candidate && stationMatches(candidate,state,age) ? candidate.id : '';
+      }
+      updateStationPicker(host,station,stationIndex,catalog,age,rotation.showAll);
+    }
     container.addEventListener('change', event => {
       const el = event.target;
-      if (el.dataset.stationSource == null && !el.hasAttribute('data-component-broad')) return;
-      const found = locate(el); if (!found) return;
-      const r = found.block.components?.rotation; if (!r) return;
-      if (el.hasAttribute('data-component-broad')) { r.showAll = el.checked; changed('Station guide choices updated.'); return; }
-      const station = r.stations[Number(el.dataset.stationSource)], guide = catalogMap(options.getCatalog()).get(el.value);
-      if (!station || !guide) return;
-      const age = options.getAge?.();
-      if (guide.types.includes('series') || (!r.showAll && age && !guide.age_groups?.includes(age))) { el.value = ''; changed('Choose an age-matched guide or explicitly include broader references.',false); return; }
-      if (station.task && !window.confirm('Replace this station’s task and linked instruction with “' + guide.title + '”? Coach and station arrangements stay.')) { el.value = ''; return; }
-      options.beforeChange?.();
-      station.name = guide.title; station.task = guide.instructions || guide.summary || ''; station.guide = snapshot(guide);
-      changed('Guide copied to the station. Review turns, recovery and the simpler version.');
+      if (el.dataset.stationFilter) { filterStation(el); return; }
+      if (el.dataset.stationSource == null && !el.dataset.componentBranch?.startsWith('station-')) return;
+      const found = stationContext(el); if (!found) return;
+      const {state,station,stationIndex,catalog,age,rotation,host} = found;
+      if (el.dataset.stationSource != null) {
+        const candidate = catalogMap(catalog).get(el.value);
+        state.selected = candidate && stationMatches(candidate,state,age) ? candidate.id : '';
+        updateStationPicker(host,station,stationIndex,catalog,age,rotation.showAll);
+        return;
+      }
+      const item = catalogMap(catalog).get(state.selected), series = seriesData(item?.id);
+      if (!series || !series.branches.some(branch => branchKey(branch) === el.value)) return;
+      const selected = new Set(stationKeys(station,state,item));
+      if (el.checked) selected.add(el.value); else selected.delete(el.value);
+      state.selections[item.id] = [...selected];
+      // Keep the checkbox's focus while its checked state changes.
+      updateStationPicker(host,station,stationIndex,catalog,age,rotation.showAll,false);
     });
     container.addEventListener('click', event => {
       const button = event.target.closest('[data-component-action]');
@@ -274,6 +419,29 @@
           options.beforeChange?.(); block.components = {...(block.components || {}),version:1,rotation:newRotation()}; block.delivery = 'stations'; changed('Rotation added. Fill the station tasks and choose the shared timing.'); return;
         }
         const r = block.components?.rotation; if (!r) return;
+
+        if (['clear-station-filters','clear-station-filter','use-station-guide'].includes(action)) {
+          const stationIndex = Number(button.dataset.stationIndex), station = r.stations[stationIndex];
+          if (!station) return;
+          const state = stationPicker(station,r.showAll), catalog = options.getCatalog(), age = options.getAge?.() || '';
+          if (action !== 'use-station-guide') {
+            const keys = ['search','family','position','purpose','use','category','type'];
+            if (action === 'clear-station-filters') { keys.forEach(key => { state[key] = ''; }); state.matchAge = true; state.groupTouched = true; }
+            else if (keys.includes(button.dataset.stationClear)) state[button.dataset.stationClear] = '';
+            else if (button.dataset.stationClear === 'matchAge') { state.matchAge = true; state.groupTouched = true; }
+            updateStationPicker(host,station,stationIndex,catalog,age,r.showAll);
+            return;
+          }
+          const item = catalogMap(catalog).get(state.selected);
+          if (!item || !stationMatches(item,state,age)) { updateStationPicker(host,station,stationIndex,catalog,age,r.showAll); error(Error('Choose a matching guide, or explicitly browse broader references for this station.')); return; }
+          const next = stationWithGuide(station,item,stationKeys(station,state,item),catalog);
+          if (station.task && !window.confirm('Replace this station’s task and linked instruction with “' + item.title + '”? Coach, timing and station arrangements stay.')) return;
+          options.beforeChange?.();
+          Object.assign(station,next);
+          if (!next.series) delete station.series;
+          changed('Guide copied to this station. Review turns, recovery and the simpler version; the other stations and shared timing stay.');
+          return;
+        }
         if (action === 'remove-rotation') {
           if (!window.confirm('Remove these structured stations? The original partner/station text stays.')) return;
           options.beforeChange?.(); delete block.components.rotation; changed('Structured rotation removed. Existing notes are retained.'); return;
@@ -288,5 +456,5 @@
       } catch (err) { error(err); }
     });
   }
-  window.GRINDSTONE_COMPONENTS = {cleanBlock,renderPicker,applyPicker,renderBlock,printBlock,bind,refresh,selectSeries,reloadBlock,selectionStatus,rotationMinutes,problems,testing:{branchKey,snapshot,cleanGuide,cleanStation,newRotation,guideHtml,trustedLinks}};
+  window.GRINDSTONE_COMPONENTS = {cleanBlock,renderPicker,applyPicker,renderBlock,printBlock,bind,refresh,selectSeries,reloadBlock,selectionStatus,rotationMinutes,problems,testing:{branchKey,snapshot,cleanGuide,cleanStation,cleanSelectedSeries,stationWithGuide,stationPicker,stationMatches,stationPickerHtml,updateStationPicker,newRotation,guideHtml,trustedLinks}};
 })();
