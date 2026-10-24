@@ -4,7 +4,7 @@ A self-contained, buildless website for GitHub Pages. Open `index.html` directly
 
 ## Contents
 
-- 72 reviewed moves, complete instruction and research.
+- 72 original reviewed moves plus 3 new series lessons, with written instruction and research.
 - A blank practice builder with editable activities, series, timing, local saves, JSON backups and printable run sheets.
 - Six readiness-based season phases for each of ages 4-6, 7-10 and 11-14; skills/series, strength and endurance progress together.
 - 37 games: the original 30, two team favorites, and five coaching adaptations, with demonstration/source links and clear variation notes.
@@ -256,18 +256,26 @@ Publication authorization update: the user subsequently requested immediate publ
 
 move-tags.js defines the shared browsing labels and maps every original and Coach Kyle entry to one primary category. Facebook entries keep their existing category IDs from video-additions.js. Add a mapping when introducing a written or Kyle move; do not infer a teaching tier from its category. Distinct entries, source links and original coaching instructions remain separate.
 
-The main library filters all 110 move entries by #moves?category=<id>. Clickable category labels open that view from any collection. Coach Kyle’s collection uses #moves/kyle?tag=<id> for new filters; its earlier category links retain their original membership. Original category names remain searchable. Changes stay on the preview branch pending review.
+The main library filters all 113 move entries by #moves?category=<id>. Clickable category labels open that view from any collection. Coach Kyle’s collection uses #moves/kyle?tag=<id> for new filters; its earlier category links retain their original membership. Original category names remain searchable. Changes stay on the preview branch pending review.
 
 
 ## Practice builder and season pathway — October 23, 2026
 
 `#practices` opens the blank builder. `#season` opens the independent skill pathway. The current navigation no longer lists fixed practice plans; legacy `#practice/<age>/<number>` links lead to the builder for that age. Original data, PDFs and binder page numbers are preserved in Downloads.
 
-- `practice-builder.js` adapts original, Kyle and Facebook entries, 12 connected series and 15 training activities. It preserves the difference between written instruction and video-only references.
-- `pathway-data.js` contains 18 phases, the series, activities, readiness/regression guidance and six primary source links. Suggested doses are authored coaching starting points, not official prescriptions.
+- `practice-builder.js` adapts original, Kyle and Facebook entries, technique series, linked movement drills and 15 training activities. It preserves the difference between written instruction and video-only references.
+- `pathway-data.js` contains 18 phases, foundation-based series, linked drills, activities, readiness/regression guidance and primary source links. A series starts from a common position or control and offers different options for opponent reactions. Suggested doses are authored coaching starting points, not official prescriptions.
 - `skill-pathway.js` renders the pathway and preselects individual series/activities in the builder. Following a link never appends duplicate blocks automatically.
 - `practice-builder.css` supplies responsive layouts and a compact printed run sheet with optional full instruction.
+- `practice-frameworks.js` records the supplied 2026–27 program windows (Pups 60 minutes, Valkyries 90, Blue/Black 120) and editable time allocations. Program selection does not assign an age. Core A, Core B, an extension and a revisit provide shared teaching purposes across different attendance patterns.
+- Frameworks contain generic coaching tasks, not a fixed list of techniques. Applying a framework replaces blocks only after confirmation when a draft has content, and Undo restores the previous structure. Selecting a library guide for an existing slot preserves its time, practice section and station plan.
+- Program, start time, session purpose, learning stage, delivery format and station notes survive saving, JSON transfer and printing. Earlier version-1 files remain readable. Displayed clock times supplement elapsed times; a changed target never silently rescales existing work.
+- Series membership is many-to-many and identifies preparation, entry, foundation, option, finish and drill roles. The main move library supports `#moves?series=Sxx`; the builder has a matching series filter. Phase links offer an explicit “Use this session focus” action, preserving existing blocks.
+- `series-moves.js` and `series-bottom.js` contain three new coaching adaptations: N01 arm drag to single-leg pickup, N02 underhook to high single, and N11 sit-out knee-under stand-up. `series-library.js` integrates them into the existing move library, categories, favorites and builder. New cards print from the page; they are not assigned nonexistent original binder pages.
+- New move evidence comes from the named creator’s written lesson and publisher/video metadata. Complete footage was not inspected in this pass; video panels describe the component or full-series scope. Facebook focus notes, including advanced head/neck-loading restrictions, travel into builder boundaries and printouts.
 - Drafts and named practices use separate versioned local-storage keys; browser storage does not sync across devices. JSON import/export provides a backup and transfer option. The existing favorites key is unchanged.
 - Run `node tools/builder-check.js` and `node tools/navigation-check.js` for builder and route regressions. No build dependencies are required.
+
+The original S01–S12 teaching sequences now live in `sequences` and appear as linked movement drills. Their saved source IDs remain `series:Sxx`; old `?series=Sxx` links still select the same drill. `?sequence=Sxx` is the current drill link. Saved blocks retain their authored text and timing while legacy sequence block types are relabeled as drills. Foundation series begin at S13, include reaction/option branches and instructor references, and retain their option instructions through saving, JSON transfer and printing.
 
 This update remains on the preview branch until the user reviews and approves publication.

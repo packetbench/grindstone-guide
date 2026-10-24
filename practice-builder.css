@@ -236,6 +236,27 @@
 }
 
 /* Match the builder's nested picker, guide links and plain-text line breaks. */
+.builder-planning{padding:24px;background:#fffdf6;border:1px solid #dfd2ad;border-radius:12px;margin:20px 0}
+.builder-planning h2{font-size:1.4rem;margin:0 0 10px}.builder-planning>p{max-width:900px}
+.builder-planning-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:20px 0}
+.builder-planning :where(.builder-program-note,.builder-session-note,.builder-stage-note){font-size:14px}
+.builder-framework-preview>p{font-size:14px;color:var(--muted)}
+.builder-timeline{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:16px 0}
+.builder-timeline li{flex:1 1 130px;padding:12px;background:white;border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:7px;font-size:12px}
+.builder-timeline strong,.builder-timeline span{display:block}.builder-timeline strong{color:var(--blue);margin-bottom:6px}
+.builder-context:not(:empty){margin-top:20px;border-top:1px solid var(--line);padding-top:18px}
+.builder-context p{font-size:14px}.builder-memberships{padding:12px 12px 12px 28px;background:var(--pale);font-size:13px}
+.builder-toolbar{grid-template-columns:2fr 1fr 1fr 1fr}.builder-toolbar>label:last-child{grid-column:1/-1}
+.pathway-programs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.pathway-cycle{margin:25px 0}.pathway-cycle .button{margin-top:12px;white-space:normal}
+.pathway-windows{margin:24px 0;padding:22px;border:1px solid var(--line);border-radius:12px;background:#fffdf6}
+.pathway-windows>summary{min-height:44px;font-weight:750}.pathway-frameworks details{margin:14px 0;padding:15px;background:white;border:1px solid var(--line);border-radius:8px}
+.pathway-frameworks summary{min-height:44px;font-weight:700}.pathway-timeline{padding-left:0;list-style:none}
+.pathway-timeline li{padding:13px 0;border-bottom:1px solid var(--line);font-size:14px}.pathway-timeline-time{font-weight:750;color:var(--blue);display:block}
+.pathway-timeline li p{margin:7px 0}.pathway-member-group{padding:12px 0;border-top:1px solid var(--line)}
+.pathway-member-group h4{margin:4px 0}.pathway-members{margin:18px 0}.pathway-stages{margin:20px 0}
+@media(max-width:900px){.builder-planning-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.builder-planning{padding:18px}.builder-planning-grid,.pathway-programs{grid-template-columns:1fr}.builder-timeline li{flex-basis:100px}.pathway-windows{padding:17px}.builder-block-time{white-space:normal}.builder-toolbar{grid-template-columns:1fr 1fr}.library-filters .filter-primary>.field{grid-column:1/-1}}
 .practice-builder>.builder-no-print:first-child>p:not(.eyebrow){max-width:820px;color:var(--muted);font-size:16px;margin-bottom:24px}
 .builder-resource-controls>label{margin:15px 0}
 .builder-resource-controls>small{display:block;color:var(--muted);font-size:12px;line-height:1.5;margin:-7px 0 14px}
@@ -267,7 +288,21 @@
 .pathway-series-card h4{font-size:13px;margin:16px 0 9px}
 .pathway-series-card>.eyebrow{margin-bottom:9px}
 .pathway-series-card>.button{margin-top:16px;white-space:normal;text-align:center}
+.pathway-foundation{background:var(--navy);color:white;border-radius:7px;padding:16px 20px;margin:18px 0}
+.pathway-foundation h4{color:white;font-size:13px;margin:0 0 8px}
+.pathway-foundation p{color:white;margin:0;line-height:1.65}
+.pathway-branches{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px;margin:18px 0}
+.pathway-branch{border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:5px;padding:16px;background:var(--paper,#fff)}
+.pathway-branch h4{font-size:16px;line-height:1.4;margin:0 0 12px}
+.pathway-branch p{font-size:14px;line-height:1.65;margin:10px 0}
+.pathway-branch .pathway-links a{font-size:12px}
+.builder-resource-preview .pathway-foundation{padding:13px}
+.builder-resource-preview .pathway-branches{grid-template-columns:1fr}
 @media print{
+  .pathway-foundation{background:white;color:black;border:1pt solid #666}
+  .pathway-foundation :where(h4,p){color:black}
+  .pathway-branches{display:block}
+  .pathway-branch{break-inside:avoid;border-color:#aaa;margin:8pt 0}
   /* Print the selected phase and series; omit the optional activity browser. */
   .pathway-series:has(>details){display:none!important}
   .pathway-series-card>details::details-content{display:block;content-visibility:visible}
