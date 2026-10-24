@@ -1107,6 +1107,32 @@ check('slot name and minute edits update destination labels without rebuilding t
   assert.equal(root.querySelector('[data-picker="destination"]').innerHTML,destination);
   assert.equal(state().plan.blocks[2].minutes,20.5);assert.equal(rebuilt,0);
 });
+check('all game links select the correct guide without changing an existing practice',()=>{
+  resetCase();addSource('move','B03');field('name','Keep this real practice');
+  const before=JSON.stringify(state().plan), games=catalog.filter(item=>item.types.includes('game'));
+  assert.equal(games.length,39);
+  for(const game of games){
+    api.render(new URLSearchParams('game='+encodeURIComponent(game.id)));
+    assert.equal(state().picker.type,'game');assert.equal(state().picker.selected,game.id);
+    assert.equal(JSON.stringify(state().plan),before);
+  }
+  const selected=state().picker.selected;api.render(new URLSearchParams('game=B03'));
+  assert.equal(state().picker.selected,selected);assert.equal(JSON.stringify(state().plan),before);
+});
+check('all new game copies retain setup, reset, adaptations and source scope in saved and printed plans',()=>{
+  for(const game of catalog.filter(item=>item.types.includes('game'))){
+    resetCase();addSource('game',game.id);const block=state().plan.blocks[0];
+    assert(block.setup.includes('Players:')&&block.setup.includes('Reset:'),game.id);
+    assert.equal(block.minutes,game.minutes);assert.equal(block.guideMinutes,game.minutes);
+    t.action('save',-1);t.reset();mount();
+    assert.equal(state().plan.blocks[0].setup,block.setup);assert.equal(state().plan.blocks[0].adaptation,block.adaptation);
+    for(const detailed of [false,true])for(const value of [block.setup,block.adaptation,block.sourceNote].filter(Boolean))assert(t.printHtml(detailed).includes(t.esc(value)),game.id+' omitted setup or scope');
+  }
+  const castle=catalog.find(item=>item.id==='G16');assert(castle.sourceNote.includes('No public video'));assert.equal(castle.video,'');
+  assert(catalog.find(item=>item.id==='G12').sourceNote.includes('eight balanced seconds'));
+  assert(catalog.find(item=>item.id==='G19').sourceNote.includes('fully releases'));
+  for(const id of ['kyle:K01','facebook:V03'])for(const group of ['4-6','7-10','11-14'])assert(catalog.find(item=>item.id===id).age_groups.includes(group),id+' needs its documented age versions');
+});
 function completedFixture() {
   const raw=t.newPlan();Object.assign(raw,{id:'original-completed',parentId:'original-planned',name:'Tuesday foundation record',status:'completed',date:'2026-10-20',completedAt:'2026-10-20T23:05:00.000Z',owner:'Coach',revision:'After practice',focus:'Stand-up and double leg',weekContext:{label:'Week 2',cue:'Hands first',outcome:'Safe finish'},handoff:{taught:'Stand-up and double leg.',changed:'Shortened live rounds.',worked:'Partner feedback.',reliable:'Balanced first step.',revisit:'Clear hands before turning.'}});
   raw.blocks=[t.blockFrom(catalog.find(item=>item.id==='G01'),'game')];

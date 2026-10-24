@@ -23,7 +23,16 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Leave a gap.",
         "Red: balance for two."
       ],
-      "review_note": "Clarified signals, two-second success standard and a no-elimination team score. These are the written Grindstone game rules; related movement videos do not establish the game rules."
+      "review_note": "Clarified signals, two-second success standard and a no-elimination team score. These are the written Grindstone game rules; related movement videos do not establish the game rules.",
+      "description": "Walk around a one-way loop, follow traffic-light calls, and earn a shared point for a balanced two-second stop.",
+      "quick": {
+        "players": "Whole group; everyone stays in the game.",
+        "space": "One roomy travel loop; at least two arm lengths between athletes.",
+        "start": "All face the same direction. GREEN means walk; YELLOW means tiny, slow steps.",
+        "goal": "On RED, everyone balances for two seconds with clear space to earn one shared point.",
+        "reset": "STOP means stay still. Restart on GREEN; spread out and reset the score between rounds.",
+        "adaptation": ""
+      }
     },
     {
       "id": "G02",
@@ -31,7 +40,7 @@ window.GRINDSTONE_GAME_GUIDES_A = {
       "play": "Complete imaginary space missions by responding to four movement commands around your own landing pad.",
       "steps": [
         "Start with both feet beside your pad. On LAUNCH, rise gently onto your toes, then lower your heels.",
-        "On ORBIT, take small walking steps once around your own pad. Continue walking around it until the next command.",
+        "On ORBIT, keep taking small walking steps around your own pad until the next command.",
         "On METEOR, bend your knees into a comfortable crouch, keeping your eyes forward.",
         "On LAND, stand with both feet beside your pad and hold a quiet, balanced stop for two seconds.",
         "On STOP, stay by your pad and listen. Coach finishes each mission with LAND."
@@ -46,7 +55,16 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Launch means toes.",
         "Land with quiet feet."
       ],
-      "review_note": "Separated toe rise from jumping and made each command and landing target explicit. This is an imaginative Grindstone movement game, not a claim about a video demonstration."
+      "review_note": "Separated toe rise from jumping and made each command and landing target explicit. This is an imaginative Grindstone movement game, not a claim about a video demonstration. Clarified that ORBIT continues until the next command.",
+      "description": "Follow space-mission calls around your own pad: rise onto toes, orbit, crouch, then land in balance.",
+      "quick": {
+        "players": "Whole group working individually; no elimination.",
+        "space": "One personal pad each, with room to extend both arms without touching a neighbor.",
+        "start": "Coach calls LAUNCH (toe rise), ORBIT (walk around pad), METEOR (crouch) or LAND (stop).",
+        "goal": "Finish each mission with a balanced two-second LAND beside your pad for one shared star.",
+        "reset": "STOP ends the mission; relax beside your pad and wait for the next call.",
+        "adaptation": "Older athletes can follow a demonstrated three-command sequence."
+      }
     },
     {
       "id": "G03",
@@ -69,7 +87,16 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Stop before you change.",
         "Careful steps, not fast steps."
       ],
-      "review_note": "Specified the lane turn, three animal movements, SAFARI choice and cooperative success. Preserve the simple Pup movement intent."
+      "review_note": "Specified the lane turn, three animal movements, SAFARI choice and cooperative success. Preserve the simple Pup movement intent.",
+      "description": "Walk your own lane with penguin steps, giant steps or a gentle mouse crouch to collect imaginary passport stamps.",
+      "quick": {
+        "players": "One athlete per lane; everyone takes part.",
+        "space": "Separate lanes about three walking steps long, with home and far spots.",
+        "start": "Begin at home. On GO and an animal name, travel to the far spot, turn and return.",
+        "goal": "Try the named movement and stay in your lane; collect one imaginary stamp per journey.",
+        "reset": "Stop before changing animals. At the round's STOP, freeze; return home during the rest.",
+        "adaptation": "Older groups may follow animal pictures instead of spoken names."
+      }
     },
     {
       "id": "G04",
@@ -92,7 +119,16 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Freeze and breathe.",
         "Leave room for the next exhibit."
       ],
-      "review_note": "Added clear OPEN/FREEZE/STOP signals and a three-second balance goal without turning the activity into elimination."
+      "review_note": "Added clear OPEN/FREEZE/STOP signals and a three-second balance goal without turning the activity into elimination.",
+      "description": "Walk around your personal exhibit, then freeze as a balanced statue when the museum closes.",
+      "quick": {
+        "players": "Whole group, making independent statues; no elimination.",
+        "space": "One spot each, with room to extend arms without touching a neighbor.",
+        "start": "Choose a theme. On OPEN, walk slowly around your own spot.",
+        "goal": "On FREEZE, hold your themed statue for three seconds with both feet on the mat.",
+        "reset": "OPEN releases a statue. STOP ends the round; relax beside your spot and choose the next theme.",
+        "adaptation": "Older athletes can make one slow level change before holding their statue."
+      }
     },
     {
       "id": "G05",
@@ -103,52 +139,70 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Stop before bending. Pick up one card, stand in balance and walk it home.",
         "Set the card flat beside the home spot and repeat until all three cards are home.",
         "Arrange the cards into a story. If time remains, quietly tell the story to the coach; do not collect another athlete's cards.",
-        "On STOP, stay at home. Return all three cards to the far end together during the reset."
+        "On STOP, stop where you are. During the reset, gather any collected cards and carry them together back to your own far marker, then return home. Cards not yet collected stay at the far marker."
       ],
       "scoring": "Success is collecting three cards one at a time while staying in your lane. There is no race, stealing or penalty for needing more time.",
-      "reset": "During the 20-second reset, walk all three cards back to your own far marker, then return home. Coach checks that every lane is ready before the next GO.",
+      "reset": "During the 20-second reset, carry any collected cards together back to your own far marker, leave uncollected cards there and walk home. Coach checks that every lane is ready before the next GO.",
       "timing": "1 minute to set up and demonstrate, then 4 rounds of 40 seconds collecting/story-making plus 20 seconds resetting each = 5 minutes.",
       "variation": "Older athletes travel sideways in stance without crossing their feet. Turn to face the cards before stopping and picking one up.",
-      "boundary": "One athlete per lane. Cards stay flat on the mat; no diving, throwing or taking cards from another lane.",
+      "boundary": "One athlete per lane. During collection, carry one card at a time; place it flat when setting it down. No diving, throwing or taking cards from another lane.",
       "cues": [
         "One treasure at a time.",
         "Stop, then pick up.",
         "Bring it home."
       ],
-      "review_note": "Clarified where equipment begins, what happens after all cards arrive, and who resets the cards. The game remains an individual task with a shared celebration."
+      "review_note": "Clarified where equipment begins, what happens after all cards arrive, and who resets the cards. The game remains an individual task with a shared celebration. Carrying is permitted; the STOP and reset rules also cover unfinished collections.",
+      "description": "Carry three picture cards home one at a time in your own lane, then arrange the treasures into a story.",
+      "quick": {
+        "players": "One athlete per lane; no race or shared treasure pile.",
+        "space": "Separate lanes about three walking steps long; home spot and three cards at the far end.",
+        "start": "On GO, walk to the cards, stop, pick up one and carry it home.",
+        "goal": "Collect your three cards with controlled pickups, then arrange them into a story.",
+        "reset": "At STOP, stop where you are. Return collected cards to your far marker during reset, then walk home.",
+        "adaptation": "Older athletes may travel sideways in stance; face the card before stopping and picking it up."
+      }
     },
     {
       "id": "G06",
-      "setup": "Make crews of three. Give each crew a separate work area with enough room for all three to stand at least an arm length apart. Show how three standing positions can form a straight line, a triangle or a shallow curve; nobody connects hands or bodies.",
+      "setup": "Make crews of three. If two athletes remain, they form a pair and build LINE only. If one athlete remains, a coach or assistant joins that athlete to make a LINE-only pair. Give each crew a separate work area with enough room for everyone to stand at least an arm length apart. Show how three standing positions can form a straight line, a triangle or a shallow curve; two standing positions make a line. Nobody connects hands or bodies.",
       "play": "Work together to build a shape using each athlete as one point in the picture.",
       "steps": [
-        "Choose a crew caller for the round. Coach names LINE, TRIANGLE or CURVE and calls BUILD.",
+        "Choose a crew caller for the round. Coach names LINE, TRIANGLE or CURVE and calls BUILD. A two-person crew uses LINE on every call.",
         "The caller helps each teammate choose a place. Everyone walks to their place and leaves a full arm length between bodies.",
-        "When the crew is ready, the caller says CHECK. All three freeze for three seconds while the coach looks at the shape.",
+        "When the crew is ready, the caller says CHECK. Everyone freezes for three seconds while the coach looks at the shape.",
         "If someone is too close or has no clear place, walk to a better position and check again.",
         "After a successful check, relax in the same area. Coach calls the next shape; on STOP, end the build."
       ],
-      "scoring": "One crew point for each recognizable shape held for three seconds with all three athletes safely spaced. Crews work together; there is no fastest-crew prize.",
-      "reset": "During each rest, return to the middle of your work area and change the caller. Over three rounds, each athlete gets one turn as caller.",
+      "scoring": "One crew point for each recognizable shape held for three seconds with everyone safely spaced. Two-person crews score for a line. Crews work together; there is no fastest-crew prize.",
+      "reset": "During each rest, return to the middle of your work area and change the caller. In a trio, three rounds give each athlete one turn. In a pair, alternate callers each round; the partner who called only once starts the next time you play.",
       "timing": "1 minute to form crews and demonstrate, then 3 builds of 40 seconds with 20 seconds reset after each = 4 minutes.",
-      "variation": "Older crews can choose a simple letter such as L or V using standing positions. Another crew guesses from its own area.",
+      "variation": "Older three-person crews can choose a simple letter such as L or V using standing positions. Another crew guesses from its own area. Two-person crews keep the LINE task.",
       "boundary": "Standing positions only. No linked arms, lifting, pulling, stacking bodies or human pyramids.",
       "cues": [
         "Everyone has a place.",
         "Leave an arm length.",
         "Build it, then hold it."
       ],
-      "review_note": "Defined the caller role, three-second check, scoring and caller rotation. Shape choices remain possible with only three athletes."
+      "review_note": "Defined the caller role, three-second check, scoring and caller rotation. Shape choices remain possible with only three athletes. Added a LINE-only pair fallback for uneven groups without changing the three-round clock.",
+      "description": "Place your crew as the points of a line, triangle or curve, then hold the shape with room between everyone.",
+      "quick": {
+        "players": "Crews of three. A remaining pair builds LINE only; a coach joins a lone athlete as that pair.",
+        "space": "Separate crew areas, with at least an arm length between each person's standing position.",
+        "start": "Coach names a shape and calls BUILD; the crew caller helps everyone choose a place.",
+        "goal": "Call CHECK and hold a recognizable, safely spaced shape for three seconds to earn a crew point.",
+        "reset": "Relax after a check and await the next shape. Change caller during each round's rest.",
+        "adaptation": ""
+      }
     },
     {
       "id": "G07",
-      "setup": "Pair athletes and give each partner a separate marked square, facing the other across at least two arm lengths. Name the first controller and robot. Demonstrate slow side steps, a small step toward/away from the gap and a comfortable level change. Coach controls BEEP and STOP.",
+      "setup": "Pair athletes and give each partner a separate marked square, facing the other across at least two arm lengths. Name the first controller and robot. Demonstrate slow side steps, a small step toward/away from the gap and a comfortable level change. Coach controls BEEP and STOP. A coach or assistant partners an odd athlete and follows the same movement and spacing limits.",
       "play": "The controller moves slowly and the robot mirrors the movement while protecting the gap between them.",
       "steps": [
         "On GO, the controller chooses one taught movement at a time. The robot stays facing the controller and copies it.",
         "For side steps, both travel toward the same side of the mat. When the controller steps toward the robot, the robot takes a small step back; when the controller retreats, the robot follows a small step forward.",
         "For a level change, both bend their knees comfortably and return to balance. Keep your head up and hands to yourself.",
-        "On the coach's BEEP, both freeze for two seconds. Count one shared battery if both stay balanced inside their squares with the gap intact.",
+        "On the coach's BEEP, both freeze for two seconds. Coach counts one, two. Count one shared battery if both stay balanced inside their squares with the gap intact, then wait for the coach's GO to resume.",
         "On STOP, return to your own center spot. Swap controller and robot for the next round."
       ],
       "scoring": "One shared battery for each BEEP freeze completed in balance with both athletes inside their own squares and clear space between them. Copying under control matters more than speed.",
@@ -161,7 +215,16 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Move slowly enough to copy.",
         "Keep the gap."
       ],
-      "review_note": "Resolved the ambiguous forward-copy instruction so partners maintain distance. Replaced the unclear opposite-direction variation with a silent round using the same rules."
+      "review_note": "Resolved the ambiguous forward-copy instruction so partners maintain distance. Replaced the unclear opposite-direction variation with a silent round using the same rules. Specified the coach's GO after each BEEP freeze and an odd-athlete partner.",
+      "description": "Mirror a partner's slow footwork without contact, then freeze together on BEEP and swap the leader each round.",
+      "quick": {
+        "players": "Matched pairs, one controller and one robot; a coach or assistant partners an odd athlete.",
+        "space": "Separate facing squares, with at least two arm lengths between partners.",
+        "start": "On GO, the controller leads slow side steps, a forward/back step or a comfortable level change.",
+        "goal": "Copy while keeping the gap; a balanced two-second BEEP freeze earns one shared battery.",
+        "reset": "Coach counts two after BEEP, then calls GO. STOP ends the round; recenter and swap roles.",
+        "adaptation": "Older pairs can use a silent controller; coach still calls BEEP, GO and STOP."
+      }
     },
     {
       "id": "G08",
@@ -184,7 +247,16 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Stay around your spot.",
         "Castle: hold your balance."
       ],
-      "review_note": "Defined fixed action words and the exact movement for each, so an improvised story remains easy to coach."
+      "review_note": "Defined fixed action words and the exact movement for each, so an improvised story remains easy to coach.",
+      "description": "Act out a shared adventure using careful walking, a knee bend under imaginary branches and a balanced castle pose.",
+      "quick": {
+        "players": "Whole group working in personal spaces; no race or elimination.",
+        "space": "One spot each, with at least two arm lengths of room.",
+        "start": "SWAMP means careful walking, BRANCHES means a knee bend, CASTLE means a balanced stop.",
+        "goal": "Follow the three action words in your own space; hold CASTLE for three seconds.",
+        "reset": "At STOP, return beside your spot. Rest and vote on the next destination before the next chapter.",
+        "adaptation": "An older athlete can narrate the last chapter using the same three action words."
+      }
     },
     {
       "id": "G09",
@@ -194,20 +266,29 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Coach says WATCH and performs a three-action pattern, such as CLAP, STEP, FREEZE. Athletes watch without moving.",
         "Coach says COPY. Everyone repeats the pattern once in the same order, finishing with the two-second freeze.",
         "Repeat the pattern together until the crew can follow it without rushing. Coach awards one shared point for a complete, controlled echo.",
-        "Add at most one action after the group succeeds. If the pattern becomes confusing, return to the shorter pattern.",
+        "After the group succeeds, add at most one action before the final FREEZE. Keep FREEZE last so every echo ends in balance. If the pattern becomes confusing, return to the shorter pattern.",
         "On STOP, relax in place. For the final round, a ready athlete can lead beside the coach using the same actions."
       ],
       "scoring": "One shared point for a full echo in order with controlled steps and a balanced finish. Mistakes prompt a slower repeat; nobody leaves the game.",
       "reset": "During each rest, relax and preview the next pattern. Keep the same personal spaces and restart on WATCH.",
       "timing": "1 minute to teach the actions, then 3 sets of 40 seconds with 20 seconds rest/reset after each = 4 minutes.",
-      "variation": "Older athletes may add one taught stance or level change to the pattern. Demonstrate the new action before the round begins.",
+      "variation": "Older athletes may add one taught stance or level change before the final FREEZE. Demonstrate the new action before the round begins.",
       "boundary": "Clap only your own hands. No partner slaps, jumping into neighbors or traveling out of your personal space.",
       "cues": [
         "Watch first.",
         "Copy together.",
         "Slow enough to stay together."
       ],
-      "review_note": "Separated watching from copying and clarified the score, pattern progression and leader change. No music or extra equipment is required."
+      "review_note": "Separated watching from copying and clarified the score, pattern progression and leader change. No music or extra equipment is required. New pattern actions go before the final FREEZE.",
+      "description": "Watch a clap-step-freeze pattern, echo it together and finish balanced before adding another action.",
+      "quick": {
+        "players": "Whole group; coach demonstrates and everyone echoes together.",
+        "space": "Personal spaces with room to extend arms without touching a neighbor.",
+        "start": "WATCH the coach's pattern without moving; repeat it only after COPY.",
+        "goal": "Repeat the actions in order and finish with a two-second FREEZE to earn a shared point.",
+        "reset": "At STOP, relax in place. Preview the next pattern during rest; begin again on WATCH.",
+        "adaptation": "Older athletes may add one taught stance or level change before the final FREEZE."
+      }
     },
     {
       "id": "G10",
@@ -230,11 +311,20 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Stay by your spot.",
         "Catch and balance."
       ],
-      "review_note": "Made the imaginary-balloon format and signals explicit. Retained a cooperative count without making one athlete's wobble erase everyone's work."
+      "review_note": "Made the imaginary-balloon format and signals explicit. Retained a cooperative count without making one athlete's wobble erase everyone's work.",
+      "description": "Tap an imaginary balloon with alternating hands, then catch it and hold a balanced stance on the coach's call.",
+      "quick": {
+        "players": "Whole group working individually; shared catch count and no elimination.",
+        "space": "One personal spot each, with comfortable reaching room away from neighbors.",
+        "start": "On FLOAT, alternate gentle left- and right-hand taps to an imaginary balloon.",
+        "goal": "On CATCH, hold your balanced catch for two seconds; everyone balanced earns one team catch.",
+        "reset": "FLOAT resumes play. STOP ends the round; rest beside your spot and start a new count.",
+        "adaptation": "Older athletes may add a comfortable level change between taps, returning to balance before CATCH."
+      }
     },
     {
       "id": "G11",
-      "setup": "Match partners by size and readiness. Give each pair a separate marked square about three meters across, with a clear gap from other pairs. Start facing each other in stance, just outside easy hand-touch distance. Demonstrate a gentle open-hand touch to the back of a partner's hand.",
+      "setup": "Match partners by size and readiness. Give each pair a separate marked square about three meters across, with a clear gap from other pairs. Start facing each other in stance, just outside easy hand-touch distance. Demonstrate a gentle open-hand touch to the back of a partner's hand. A coach or assistant partners an odd athlete using the same gentle touch-only rules.",
       "play": "Both partners may tag, using stance motion to touch a hand while protecting their own. Pairs count a shared total of clean exchanges.",
       "steps": [
         "On GO, keep both hands in front of your body below shoulder height. Use short steps to enter or leave touching distance.",
@@ -253,23 +343,32 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Touch, do not hit.",
         "Touch, stop, ready."
       ],
-      "review_note": "Defined clean contact, simultaneous scores, hand position and the local reset signal. Age/readiness and source provenance are unchanged."
+      "review_note": "Defined clean contact, simultaneous scores, hand position and the local reset signal. Age/readiness and source provenance are unchanged.",
+      "description": "Touch the back of a partner's visible hand with an open hand, stop, recenter and repeat without grabbing or slapping.",
+      "quick": {
+        "players": "Matched pairs; both tag. A coach or assistant partners an odd athlete.",
+        "space": "A separate square about three meters across per pair, with clear gaps between pairs.",
+        "start": "Face each other in stance just beyond easy reach, hands visible in front below shoulder height.",
+        "goal": "A gentle touch to the back of either hand earns one shared point; simultaneous touches count once.",
+        "reset": "Call TOUCH and stop. Recenter and both say READY; boundary exits or unclear touches reset without a point.",
+        "adaptation": ""
+      }
     },
     {
       "id": "G12",
-      "setup": "Match partners by size and readiness in separate marked squares about three meters across. Name an attacker and defender. Start in stance just beyond easy reach. Show the target: the lower front of the thigh immediately above the kneecap, not the kneecap itself. Coach runs four ten-second attempts inside each round.",
+      "setup": "Match partners by size and readiness in separate marked squares about three meters across. A coach or assistant partners an odd athlete using the same touch-only rules. Name an attacker and defender. Start in stance just beyond easy reach. Show the target: the lower front of the thigh immediately above the kneecap, not the kneecap itself. Coach runs four ten-second intervals per round: eight seconds playing and two seconds to recenter.",
       "play": "The attacker tries to touch the above-knee target; the defender uses balanced footwork to keep it out of reach.",
       "steps": [
         "On GO, the attacker changes level by bending the knees and tries a gentle open-hand touch just above either kneecap.",
         "The defender stays facing the attacker and retreats or circles inside the square. Do not push the attacker away.",
         "On a clean touch, call TOUCH and stop. The attacker earns one point; both return to center and wait for the next GO.",
-        "Every ten seconds the coach calls FREEZE. If no touch occurred and both stayed in bounds, the defender earns one point for that attempt.",
-        "On the next GO, start a new attempt from center. If either athlete leaves the square or loses balance, reset that attempt with no point and wait for GO.",
-        "After four attempts, coach calls STOP. Swap attacker and defender during the rest."
+        "At eight seconds into each interval, coach calls FREEZE. If no touch or fault occurred and both stayed balanced and in bounds, the defender earns one point. Use the remaining two seconds to return to center.",
+        "At the next ten-second interval, coach calls GO. If either athlete leaves the square, loses balance or makes unsafe contact, that attempt ends with no point; recenter and wait for the next GO.",
+        "After four intervals, coach calls STOP. Swap attacker and defender during the 20-second rest."
       ],
-      "scoring": "Each ten-second attempt awards at most one point: attacker for a clean above-knee touch, otherwise defender for ten balanced seconds in bounds without a touch. An unsafe contact or boundary reset scores neither athlete.",
-      "reset": "Touch, boundary exit or lost balance ends that attempt. Recenter and wait for the coach's next ten-second GO. Swap roles after each 40-second round so each athlete attacks twice.",
-      "timing": "1 minute to teach the target and signals, then 4 rounds of 40 seconds (4 ten-second attempts) with 20 seconds rest/role swap after each = 5 minutes. Coach runs one shared clock for every pair.",
+      "scoring": "Each interval awards at most one point: attacker for a clean above-knee touch, otherwise defender for eight balanced seconds in bounds without a touch or fault. Unsafe contact, lost balance or a boundary reset scores neither athlete.",
+      "reset": "Touch or a fault ends the attempt early; recenter and wait for the next GO. Otherwise, FREEZE at eight seconds starts the two-second recentering period. Swap roles after each 40-second round so each athlete attacks twice.",
+      "timing": "1 minute to teach the target and signals, then 4 rounds of 40 seconds (4 intervals of 8 seconds play plus 2 seconds recentering) with 20 seconds rest/role swap after each = 5 minutes. Use the final rest for recap and reset. Coach runs one shared clock for every pair.",
       "variation": "Limit the target to the lower front of the lead thigh just above the kneecap. Keep the same scoring and swap roles between rounds.",
       "boundary": "Touch only. No knee grabbing, contact directly on the kneecap, diving, stiff-arm pushing, head contact or takedown finishes.",
       "cues": [
@@ -277,21 +376,30 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Touch above the knee.",
         "Touch or freeze ends the attempt."
       ],
-      "review_note": "Resolved conflicting above-knee/front-of-knee wording and replaced vague ten-second defense scoring with a coach-timed attempt structure. No tackling is introduced."
+      "review_note": "Resolved conflicting above-knee/front-of-knee wording and replaced vague ten-second defense scoring with a coach-timed attempt structure. No tackling is introduced. Each ten-second interval now reserves two seconds to recenter, so the eight-second defense target and all resets fit the five-minute format.",
+      "description": "Use footwork to touch just above a partner's knee, or defend for eight seconds, then recenter and swap roles each round.",
+      "quick": {
+        "players": "Matched attacker/defender pairs; a coach or assistant partners an odd athlete.",
+        "space": "Separate squares about three meters across, starting just beyond easy reach.",
+        "start": "Coach runs four intervals per round: GO for eight seconds of play, FREEZE for two seconds to recenter.",
+        "goal": "Attacker: one gentle touch just above the kneecap. Defender: eight balanced seconds untouched and in bounds; faults score neither.",
+        "reset": "An early touch or fault ends the attempt; wait centered for the next GO. Swap roles after each forty-second round.",
+        "adaptation": ""
+      }
     },
     {
       "id": "G13",
-      "setup": "Give each pair a separate area about four meters square. On one edge, mark two gates about one meter wide with a gap between them. Put a flat closing dot one large step inside each gate. The guardian moves between those dots; the attacker starts in the middle about two meters away. Match partners by readiness and demonstrate an open and a closed gate.",
+      "setup": "Give each pair a separate area about four meters square. On one edge, mark two gates about one meter wide with a gap between them. Put a flat closing dot one large step inside each gate. The guardian moves between those dots; the attacker starts in the middle about two meters away. Match partners by readiness and demonstrate an open and a closed gate. A coach or assistant partners an odd athlete at the same walking pace.",
       "play": "The attacker uses noncontact stance movement to reach an open gate while the guardian closes one gate at a time with foot position.",
       "steps": [
-        "On GO, the guardian moves between the two closing dots using short side steps. A gate is closed while the guardian has a foot on its closing dot; the other gate is open.",
+        "On GO, the guardian moves between the two closing dots using short side steps. A gate is closed while the guardian has a foot on its closing dot; the other gate is open. Both gates are open while the guardian touches neither dot.",
         "The attacker approaches in stance and may change direction to choose the open gate. Use walking-speed steps, not a sprint.",
-        "If the guardian closes the chosen gate before the attacker reaches it, the attacker stops outside touching distance and changes direction. Do not try to squeeze past.",
-        "The attacker scores one point by taking both feet through an open gate without touching the guardian or leaving through another edge.",
-        "After a score or a boundary mistake, both return to their starting places and say READY before restarting. Coach calls STOP to end the round."
+        "If the guardian closes the chosen gate before the attacker's first foot crosses it, the attacker stops outside touching distance and changes direction. This does not end the attempt. Do not try to squeeze past.",
+        "Judge the gate as the attacker's first foot crosses: it must be open. The guardian then holds position while the second foot crosses. Award one attacker point only when both feet are through with clear separation and no contact.",
+        "A score, contact or exit through another edge ends the attempt. Both return to their starting places and say READY before restarting. Coach's STOP ends the round; recenter and listen."
       ],
-      "scoring": "One attacker point for crossing a gate while it is open and maintaining separation. A closed-gate attempt, contact or exit elsewhere scores nothing. The guardian's goal is to keep the attacker changing direction through controlled footwork.",
-      "reset": "After each completed or stopped attempt, reset the guardian between the closing dots and the attacker in the middle. Swap roles during every rest; each partner attacks twice.",
+      "scoring": "One attacker point for crossing both feet through a gate that was open as the first foot crossed, while maintaining separation. Contact or exit elsewhere ends the attempt with no point. A closed gate simply makes the attacker change direction; the guardian's goal is controlled footwork that keeps the attacker searching.",
+      "reset": "A closed gate alone does not trigger a center reset: stop short and change direction. After a score, contact, boundary mistake or coach's STOP, reset the guardian between the closing dots and the attacker in the middle. Both say READY before a new attempt; after STOP, also wait for the coach's GO. Swap roles during each rest so each partner attacks twice.",
       "timing": "1 minute to mark the gates and explain closure, then 4 rounds of 40 seconds with 20 seconds rest/role swap after each = 5 minutes. Set out markers before the game when possible.",
       "variation": "Older attackers may add one taught level-change fake before choosing a gate. No shot or body contact follows the fake.",
       "boundary": "Noncontact and walking speed throughout. Guardian stays in the strip between closing dots and never blocks with arms. Attacker stays at least an arm length away and stops if a crossing would risk contact.",
@@ -300,7 +408,16 @@ window.GRINDSTONE_GAME_GUIDES_A = {
         "Close it with your feet.",
         "Stop instead of squeezing through."
       ],
-      "review_note": "Added an objective closed-gate marker, a two-foot crossing standard, role swaps and collision-avoidance rules. These are clarified Grindstone game rules, not a claim that a linked drill teaches this exact setup."
+      "review_note": "Added an objective closed-gate marker, a two-foot crossing standard, role swaps and collision-avoidance rules. These are clarified Grindstone game rules, not a claim that a linked drill teaches this exact setup. Clarified that a closed gate continues the attempt, both gates open between markers, and an open first-foot crossing commits the guardian to hold position while the attacker finishes.",
+      "description": "Use walking-speed footwork to cross an open gate while a partner closes gates by standing on their markers.",
+      "quick": {
+        "players": "Matched attacker/guardian pairs; a coach or assistant partners an odd athlete.",
+        "space": "A four-meter square with two one-meter gates on one edge; one closing dot a large step inside each gate.",
+        "start": "Guardian starts between the dots; attacker starts in the middle about two meters away. Begin on GO.",
+        "goal": "Cross with both feet while keeping separation; the gate must be open as your first foot crosses.",
+        "reset": "A closed gate means change direction. After a score or fault, recenter and both say READY. After STOP, also wait for coach's GO.",
+        "adaptation": "Older attackers may use one taught level-change fake; no shot or body contact follows."
+      }
     }
   ]
 };

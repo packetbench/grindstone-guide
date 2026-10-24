@@ -4,6 +4,15 @@ window.GRINDSTONE_GAME_GUIDES_B = {
   entries: [
     {
       id: 'G14',
+      description: 'Clear a loose wrist grip, regain your stance, and collect a shared key before trying the other wrist.',
+      quick: {
+        players: 'Matched pairs: one holder and one rescuer.',
+        space: 'One clear square per pair, with room for a step in every direction and a gap to other pairs.',
+        start: 'Both in stance at bent-arm reach; holder loosely grips one whole wrist, never fingers.',
+        goal: 'Use the taught wrist clear and finish balanced for one shared key; force or twisting does not score.',
+        reset: 'Release, return to stance, and try the other wrist. Keep roles during play; swap after each round.',
+        adaptation: 'Begin with an easy release. Add one light following step only after smooth clears; never tighten the grip.'
+      },
       setup: 'Give each matched pair a clear mat square, with enough room for one step in any direction and a gap to the next pair. Both start in stance at bent-arm reaching distance. Name a holder and a rescuer. Demonstrate a loose whole-wrist grip and the wrist clear already taught in practice; the holder must yield before the wrist bends.',
       play: 'Collect shared keys by clearing a light wrist grip and returning to a balanced stance.',
       steps: [
@@ -23,17 +32,26 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G15',
+      description: 'Travel between two mat islands on hands and knees while a partner follows lightly beside your hips.',
+      quick: {
+        players: 'Matched pairs: one traveler and one follower.',
+        space: 'One clear lane per pair; islands are one short hands-and-knees journey apart, with gaps between lanes.',
+        start: 'Traveler in base on an island; follower kneels beside the hips with separate light waist-and-upper-arm contact.',
+        goal: 'Reach the other island and pause balanced for two seconds to earn one shared delivery.',
+        reset: 'Release before turning separately. Traveler asks READY; follower answers GO once both are set. Swap roles after each round.',
+        adaptation: 'Ready pairs may pause halfway, release, choose their destination, then reset light contact before continuing.'
+      },
       setup: 'Place two flat mat spots for each matched pair, about one short hands-and-knees travel apart. Leave a clear lane and space between pairs. Name a traveler and a follower. Traveler starts in a stable hands-and-knees base on one island. Follower kneels beside the hips, with one loose waist hand and the other resting lightly on the near upper arm; hands remain separate.',
       play: 'Deliver the pair from island to island while keeping a stable base and light partner contact.',
       steps: [
         'On "go," the traveler advances hands and knees in small steps toward the other island. The follower moves beside the hips at the same speed.',
         'Keep the traveler\'s chest off the mat and elbows softly bent. The follower keeps their own weight on their own supports rather than hanging on the traveler.',
         'At the second island, both pause balanced for a count of two. Say "delivery" and add one to the pair\'s total.',
-        'Release contact, turn separately to face the starting island, and set the same light contact again. Make another delivery on the coach\'s "go."',
+        'Release contact, turn separately to face the starting island, and set the same light contact again. Traveler asks "ready?" and follower answers "go" once both are set, then make the next delivery. Each pair restarts independently; the coach controls the round horn.',
         'At the round horn, stop and release. Swap traveler and follower during the rest.'
       ],
       scoring: 'One shared delivery when both reach the target island under control and pause for two seconds. Speed adds no points. If base collapses, release and rebuild before trying again.',
-      reset: 'Release at each island before turning. Restart from the last island after a loss of balance or drift outside the pair\'s lane. Swap roles every round.',
+      reset: 'Release at each island before turning. After a loss of balance or drift outside the lane, return separately to the last island. Re-establish light contact, then use the traveler\'s "ready?" and follower\'s "go" for every restart. Swap roles every round.',
       timing: '5 minutes: 1 minute to mark islands and demonstrate, then 4 rounds of 40 seconds playing plus 20 seconds to release, swap, and rest. Use the final rest to count deliveries.',
       variation: 'Ready pairs may pause halfway. After the follower releases, the traveler chooses to continue to the target or turn separately and return to the starting island; then re-establish contact.',
       boundary: 'No breakdowns, squeezing, linked hands around the torso, riding on the back, neck contact, or pulling an arm straight. Either athlete or the coach can call "stop" for an immediate release.',
@@ -42,7 +60,16 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G16',
-      setup: 'Mark a separate circle for each matched pair, large enough for one athlete to move around the other without reaching another pair. Name the castle and the attacker. Castle starts on hands and knees in the center. Attacker starts on both knees beside one shoulder, hands off the castle. Demonstrate a slow grounded circle, a castle pivot using small hand-and-knee steps, and the two-hand hip touch that ends the attempt.',
+      description: 'Circle a grounded partner and keep light contact on both hips from behind for two seconds while the partner pivots.',
+      quick: {
+        players: 'Matched pairs: one castle and one attacker.',
+        space: 'One separate circle per pair, large enough to circle a partner without entering another pair\'s space.',
+        start: 'Castle in hands-and-knees base at center; attacker on both knees beside one shoulder, hands off.',
+        goal: 'Attacker earns one point for two continuous seconds fully behind both hips with light contact on both hips.',
+        reset: 'Release after a score, stall, boundary approach, or tangle. Castle resets centrally; attacker resets beside a shoulder. Swap each round.',
+        adaptation: 'Begin with a slow cooperative pivot. Add one small knee-step only when both athletes can stay balanced and grounded.'
+      },
+      setup: 'Mark a separate circle for each matched pair, large enough for one athlete to move around the other without reaching another pair. Name the castle and the attacker. Castle starts on hands and knees in the center. Attacker starts on both knees beside one shoulder, hands off the castle. Demonstrate a slow grounded circle, a castle pivot using small hand-and-knee steps, and two continuous seconds fully behind both hips with light contact on both hips to complete the attempt. A touch alone does not score.',
       play: 'The attacker tries to get behind the castle; the castle turns its base to keep the attacker beside or in front.',
       steps: [
         'On "go," the attacker moves on hands and knees around the outside of the castle toward the hips. The castle pivots with small hand-and-knee steps to keep facing the attacker.',
@@ -61,6 +88,15 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G17',
+      description: 'Rise from base with hand control, hold a balanced standing stop for two seconds, and release to earn a shared ticket.',
+      quick: {
+        players: 'Matched pairs: one bottom wrestler and one light-following top wrestler.',
+        space: 'One clear square per pair with room to stand, step, and reset separately.',
+        start: 'Bottom in base; top on the agreed side with a loose waist hand and separate light near-arm contact.',
+        goal: 'Bottom reaches both feet controlling the waist hand; both balance for two seconds to earn one shared ticket.',
+        reset: 'Release before lowering. Return separately to base and repeat; swap roles after each round. No turn or mat return.',
+        adaptation: 'Use only a coach-approved B17 rise. Add light following pressure only after every rise and standing stop is controlled.'
+      },
       setup: 'Give each matched pair a clear square with room to stand and step without meeting another pair. Name bottom and top. Verify the controlled rise from Inside-Leg Stand-Up (B17). Start bottom in base and top on the agreed side with a loose waist hand and light separate near-arm contact. This game stops at standing, before the escape turn.',
       play: 'Earn shared tickets by rising with hand control and stopping in a balanced standing position.',
       steps: [
@@ -80,6 +116,15 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G18',
+      description: 'Enter a cooperative double leg, stop at the checked entry position without finishing, then release and swap drivers.',
+      quick: {
+        players: 'Matched pairs: one driver and one cooperative receiver.',
+        space: 'One marked start and clear entry space per pair, with room to back out and reset separately.',
+        start: 'Receiver in a balanced, still stance; driver at coach-checked entry distance. Both confirm READY.',
+        goal: 'Stop in the taught B07 entry position with both athletes balanced and comfortable for one shared park; no finish.',
+        reset: 'Release, back out under control, recover stance, and swap roles after every attempt. Rest at the round horn.',
+        adaptation: 'Use solo B03 preparation until the partnered stop is reliable. Ready receivers may step once, then become still before entry.'
+      },
       setup: 'Mark a starting line and entry space for each matched pair. Allow room for a controlled entry and a separate reset. Name a driver and a receiver. Coach verifies the double-leg entry from B07, including the correct lead step, upright head position against the torso, and balanced stopping position; athletes who cannot stop there first rehearse B03 without a partner.',
       play: 'Collect clean parking stops at the entry position without finishing a takedown.',
       steps: [
@@ -99,6 +144,15 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G19',
+      description: 'Complete a cooperative breakdown, release completely, and let your partner rebuild base to add a shared tower level.',
+      quick: {
+        players: 'Matched pairs: one top wrestler and one bottom wrestler.',
+        space: 'One clear mat square per pair, with room to lower and rebuild without reaching another pair.',
+        start: 'Taught top-and-bottom positions, separate hands, and no pressure before GO; coach checks B22 and the receiving position.',
+        goal: 'A controlled breakdown followed by a complete release and stable, unopposed base rebuild earns one shared level.',
+        reset: 'Reset light contact only after bottom is balanced. Keep roles during the round; swap after the horn. Pause for any awkward landing.',
+        adaptation: ''
+      },
       setup: 'Give each matched pair a clear square. Name top and bottom. Use Tight Waist Chop (B22) only after coach checks the arm-fold mechanics and bottom\'s ability to lower through bent arms onto forearms and belly. Start in the taught top and bottom positions, with hands separate and no pressure before the signal.',
       play: 'Build a shared tower by completing a controlled breakdown and an unopposed return to base.',
       steps: [
@@ -118,6 +172,15 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G20',
+      description: 'Build the called stance, bottom base, or top-start picture and hold it still for the coach\'s two-second photo.',
+      quick: {
+        players: 'Matched pairs labeled A and B; A takes bottom for the first grounded picture.',
+        space: 'One clear square per pair, with room for the waiting partner to stand one step away.',
+        start: 'Partners separated; coach calls neutral, bottom base, or top start. For top start, bottom sets first.',
+        goal: 'After the coach checks the position, hold the correct picture for two seconds to earn a shared pretend sticker.',
+        reset: 'Release and separate before changing positions. Alternate top and bottom after each grounded picture; neutral leaves that order unchanged.',
+        adaptation: ''
+      },
       setup: 'Give each matched pair a clear square. Optional picture cards should show only three taught positions: both athletes in neutral stance (B01), a solo bottom base (B14), and the checked top start (B15). Assign athlete A and athlete B; A takes bottom for the first grounded picture. No camera or actual stickers are required.',
       play: 'Make correct, still wrestling positions for the coach\'s pretend photo.',
       steps: [
@@ -137,6 +200,15 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G21',
+      description: 'Choose a controlled stand-up or a complete sit-out-to-face escape while top follows with only the agreed light contact.',
+      quick: {
+        players: 'Matched older pairs with both routes approved: one bottom and one top wrestler.',
+        space: 'One clear square per pair with room for standing and grounded separation.',
+        start: 'Taught base-and-top position with light separate-hand contact; bottom chooses the standing or grounded door.',
+        goal: 'Bottom scores a balanced stand with hand control or grounded separation facing top; top scores only for legal control of an unfinished active attempt at the horn.',
+        reset: 'Release after each door or safety reset, return separately to the same start, and repeat. Swap roles after each round.',
+        adaptation: 'Name the route before starting in the first two rounds. Allow an unannounced choice only between these already-taught routes.'
+      },
       setup: 'Use matched older pairs whose coach has approved B17 controlled standing and B18 sit-out followed by B19 hip-heist-to-face. Give each pair a clear square. Assign top and bottom; start in the taught base/top position with light, separate hands. Demonstrate the two endpoints: balanced standing with hand control, or grounded separation facing the partner.',
       play: 'Bottom chooses between two already-taught escape routes while top follows with limited resistance.',
       steps: [
@@ -156,6 +228,15 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G22',
+      description: 'Take one controlled stand-up attempt, offer one useful cue, and rotate through bottom, top, and peer-coach roles.',
+      quick: {
+        players: 'Matched trios: bottom, top, and a peer coach who stays outside the square.',
+        space: 'One clear wrestling square per trio and a separate watching spot for the peer coach.',
+        start: 'Bottom and top set light separate-hand contact; peer coach chooses one cue. Adult coach gives GO.',
+        goal: 'Earn one shared point for a balanced hand-controlled stand or legal control through the horn, plus one for a relevant cue.',
+        reset: 'After an early finish, release and wait for the horn. Rotate bottom to coach, coach to top, and top to bottom during each reset.',
+        adaptation: 'Only after approval, the second three-round rotation may use B18 plus B19 sit-out-to-face; announce its endpoint before that rotation.'
+      },
       setup: 'Give each matched trio a clear square and name bottom, top, and peer coach. Peer coach stays just outside the square. Confirm the B17 hand-controlled rise and a balanced standing stop. Write the rotation where everyone can see it: bottom becomes coach, coach becomes top, top becomes bottom.',
       play: 'Practice a short escape attempt, give one useful coaching cue, and rotate so every athlete experiences all three roles twice.',
       steps: [
@@ -175,6 +256,15 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G23',
+      description: 'Choose a hidden base, wrist-clear, or sit-out-to-face mission and repeat its exact endpoint while top follows lightly.',
+      quick: {
+        players: 'Ready older pairs: bottom privately chooses a mission; top supplies only the agreed light contact.',
+        space: 'One clear square per pair with room for a base rebuild and grounded separation.',
+        start: 'Bottom belly-down, head free and arms comfortable; top kneels beside the hips with a loose waist arm and separate near-wrist hold.',
+        goal: 'Bottom scores the chosen mission: a two-second base, the freed hand placed on the mat, or complete sit-out-to-face separation. Top scores only for an unfinished active mission with legal control at the horn.',
+        reset: 'Announce success, release, and reset belly-down with the same mission. Swap roles and choose a new mission after each round.',
+        adaptation: 'Begin with cooperative base rebuilds only; add wrist clearing and complete sit-out-to-face only when those endpoints are controlled.'
+      },
       setup: 'Give each ready older pair a clear square and three cards: "base for two seconds," "free the held wrist," and "sit out, clear, and face." All three tasks must have been taught, including B16, B18, and B19. Bottom starts belly-down with head turned freely and arms comfortable. Top kneels beside the hips with a loose waist arm and a separate light hold on the near wrist; no body weight presses on the head or shoulders.',
       play: 'Bottom works toward one hidden, specific skill goal; top follows legally without knowing which goal was chosen.',
       steps: [
@@ -194,29 +284,48 @@ window.GRINDSTONE_GAME_GUIDES_B = {
     },
     {
       id: 'G24',
-      setup: 'Prepare a chart with one row per pair and four columns: double-leg entry stop (B07 entry only), grounded go-behind (P11 footwork with light hip contact), belly-to-base rebuild (B16), and controlled stand-up (B17 rise only). Give each matched pair a clear square. Review all four starts and stop points; a pair uses only skills the coach has already taught and approved.',
-      play: 'Fill the team chart by completing one controlled repetition in each role for all four skills.',
+      description: 'Check off approved skills on a team chart after both partners demonstrate each skill with its agreed controlled stop.',
+      quick: {
+        players: 'Matched pairs, with one chart row per pair; both athletes perform each approved skill.',
+        space: 'One clear square per pair with room for an entry stop, a grounded circle, and a controlled stand.',
+        start: 'Coach marks unapproved columns DEFERRED. Each pair selects one approved unchecked skill and sets its demonstrated start.',
+        goal: 'Check a skill only after one clean repetition by each partner. Complete all approved squares; deferred squares are not required.',
+        reset: 'Release before swapping roles. Report a check and choose the next skill during the rest; repeat familiar work if all approved squares are checked.',
+        adaptation: 'Use only already-approved skills and defer the others. If a pair has none approved, choose a familiar game instead.'
+      },
+      setup: 'Prepare a chart with one row per pair and four columns: double-leg entry stop (B07 entry only), grounded go-behind using the cooperative start below, belly-to-base rebuild (B16), and controlled stand-up (B17 rise only). P11 is solo standing footwork preparation only, not the partnered go-behind instructions. Give each matched pair a clear square. Review the starts and stop points for skills the coach has already taught and approved; mark all other columns "deferred" for that pair before play. If no skill is approved for a pair, choose a familiar game instead.',
+      play: 'Fill the team chart by completing one controlled repetition in each role for every approved skill; deferred skills stay for future teaching.',
       steps: [
-        'Before the first round, each pair chooses one unchecked skill. Double-leg entry starts in cooperative stance: for a right lead, stop with right knee down, chest up, head against the receiver\'s right ribs, hands behind both knees, and left trail foot planted outside the receiver\'s right foot. Do not rise, drive, or pull the legs; grounded go-behind starts with a partner in base and ends with light hip contact from behind.',
+        'Before the first round, each pair chooses one approved, unchecked skill. Double-leg entry starts in cooperative stance: for a right lead, stop with right knee down, chest up, head against the receiver\'s right ribs, hands behind both knees, and left trail foot planted outside the receiver\'s right foot. Do not rise, drive, or pull the legs.',
+        'For the grounded go-behind, receiver holds a stable hands-and-knees base. Attacker starts on hands and knees beside one shoulder, circles around the outside without climbing over the receiver, and gets fully behind both hips. Place one open hand lightly on each side of the hips for two seconds, then release. No clasping or downward pressure; receiver holds base unless the coach has approved the pivot variation.',
         'For base rebuild, bottom starts belly-down and rebuilds hands-and-knees base while top follows lightly beside the hips. For stand-up, start in base/top position and stop at balanced standing with the waist hand controlled.',
         'On "go," athlete A performs the chosen task once while B cooperates. Release and swap roles, then athlete B performs it once. All finishes must match the demonstrated stop.',
         'When both have completed one clean repetition, say "check" and wait or repeat cooperatively without racing. During the rest, tell the coach which chart square to mark.',
-        'Choose a different unchecked skill for each remaining round. At the end, count completed columns; unfinished skills become the next practice\'s review targets.'
+        'Choose a different approved, unchecked skill for each remaining round. If all approved squares are checked, repeat a familiar approved skill without extra checks. At the end, unfinished approved skills become review targets; deferred skills require future teaching before they enter the game.'
       ],
-      scoring: 'Check one square only after both athletes complete that skill safely, one repetition each. A pair finishes with four checked squares; team bingo means every pair has all four. Do not speed up or skip a safety correction to finish the chart.',
+      scoring: 'Check one square only after both athletes complete that approved skill safely, one repetition each. A pair finishes when every approved square is checked; team bingo means all pairs have completed their approved squares. Deferred squares are not required and do not count as failures. Do not speed up or skip a safety correction to finish the chart.',
       reset: 'Release after every repetition and before exchanging roles or positions. Each round covers one skill only. Change skills during the rest, never in the middle of contact.',
       timing: '5 minutes: 1 minute to show the chart and stop points, then 4 rounds of 40 seconds practicing one skill plus 20 seconds to report, rest, and select the next skill. The final rest is for bingo and feedback.',
       variation: 'The coach may approve one familiar limited response before a round, such as a slow grounded pivot during the go-behind. State the response and stop point clearly; do not improvise resistance or add a finish.',
       boundary: 'Entries stop before takedown finishes. Go-behinds avoid head and neck contact. Stand-ups stop before turns or mat returns. No lifts, locked torso grips, pinning turns, or untaught responses.',
       cues: ['One skill, both roles, then check.', 'Clean stops fill the chart.'],
-      review_note: 'Grindstone written review format. Its four skill stations use limited portions of existing guides and must be demonstrated as those limited tasks.'
+      review_note: 'Grindstone written review format. Demonstrate each limited task before play. The grounded go-behind uses the cooperative G16 setup; P11 supplies solo standing footwork preparation only. Deferred chart skills need teaching and approval before use.'
     },
     {
       id: 'G25',
-      setup: 'Give each matched older pair a clear square and two cards: "neutral hand tag" and "grounded sit-out to face." Verify B18 and B19 before offering the grounded card. Name a chooser for round one. Chooser picks the card; the partner picks attacker/defender for tag or bottom/top for the grounded game. These choices stay fixed for the round.',
+      description: 'Pick visible-hand tag or an already-taught sit-out-to-face challenge, then keep that game and its roles for the round.',
+      quick: {
+        players: 'Matched older pairs; take turns choosing a game, with an attacker and defender or a bottom and top for the round.',
+        space: 'One clear square per pair with room for stance movement and grounded separation.',
+        start: 'Choose a card before contact: neutral stance at arm\'s length with open hands visible in front between waist and shoulder height, or base/top with light separate waist-and-arm contact.',
+        goal: 'Attacker scores a light touch on the back of a defender hand; bottom scores a complete sit-out, hand clear, and separation facing top.',
+        reset: 'Release and reset the same game after each point or stop. Swap chooser at the horn; reverse roles the next time that card is used.',
+        adaptation: 'Offer the grounded card only after B18 and B19 are approved. For equal exposure, each chooser selects each available card once.'
+      },
+      setup: 'Give each matched older pair a clear square and two cards: "neutral hand tag" and "grounded sit-out to face." Verify B18 and B19 before offering the grounded card. Name a chooser for round one. Chooser picks the card; the first time a card is used, the partner picks attacker/defender for tag or bottom/top for the grounded game. On later uses of that card, reverse its previous roles. These choices stay fixed for the round.',
       play: 'Choose between two familiar problems, then solve the chosen problem using only its listed rules.',
       steps: [
-        'For neutral hand tag, both start facing in stance at arm\'s length. On "go," attacker tries to touch the back of either defender hand with open fingertips; defender moves the hands and feet to avoid the touch.',
+        'For neutral hand tag, both start facing in stance at arm\'s length. Both keep their hands open and visible in front, between waist and shoulder height; do not hide them behind the back or tuck them away. On "go," attacker tries to touch the back of either defender hand with open fingertips; defender moves the hands within that zone and moves the feet to avoid the touch.',
         'A light touch earns attacker one point. Both lower their hands, separate to the start distance, and restart on "ready, go." Defender does not counter-tag in this version.',
         'For the grounded game, bottom starts in base and top uses light separate waist-and-arm contact. On "go," bottom uses the taught B18 sit-out, clears the waist hand, and completes B19 to separate facing top; top follows lightly without adding a breakdown.',
         'Grounded separation facing top earns bottom one point. Both release, return separately to the same start, and repeat. A sit-out alone does not score.',
@@ -226,16 +335,25 @@ window.GRINDSTONE_GAME_GUIDES_B = {
       reset: 'Reset immediately after a point, boundary approach, tangled limb, or uncomfortable contact. Keep the chosen game and roles for the round. Change cards and roles only after both release during the rest.',
       timing: '5 minutes: 1 minute to demonstrate both games and choose the first card, then 4 rounds of 40 seconds playing plus 20 seconds to release, rest, exchange chooser, and set the next game. Use the final rest for feedback.',
       variation: 'Before choosing, explain the skill you want to practice: moving in stance for tag, or clearing hands and turning to face for the grounded task. For equal exposure, require each chooser to select each card once.',
-      boundary: 'No grabbing, slapping, head contact, takedowns, lifts, mat returns, head posts, shoulder rolls, or unlisted techniques. Top does not lock hands around a grounded torso. Stop immediately on either partner\'s request.',
+      boundary: 'Neutral hand tag: no grabbing or slapping; keep both hands visible in front within the target zone. Grounded sit-out: use only the taught light, separate waist-and-arm contact and whole-hand control near the wrist to clear the waist hand; no finger grips or wrist twisting. In either game, no head contact, takedowns, lifts, mat returns, head posts, shoulder rolls, or unlisted techniques. Top does not lock hands around a grounded torso. Stop immediately on either partner\'s request.',
       cues: ['Choose the task before contact.', 'Only the named target counts.'],
       review_note: 'Grindstone written choice game. These two tasks are alternatives; they are not a live transition from hand fighting into a takedown.'
     },
     {
       id: 'G26',
+      description: 'Tag visible hands while watching the boundary, then call EDGE, freeze, and walk back to the center before crossing.',
+      quick: {
+        players: 'Matched pairs; both may tag and both may call EDGE.',
+        space: 'One inner play square per pair, an empty outer buffer, and another clear gap before the next pair\'s buffer.',
+        start: 'Face each other in stance at arm\'s length near the center, with open hands visible in front between waist and shoulder height.',
+        goal: 'Earn a shared point for a clean hand tag or a timely EDGE call followed by a safe central reset; tags after EDGE do not count.',
+        reset: 'After a tag or EDGE, separate and return to center. On EDGE, freeze first, look, then walk separately. Both confirm READY, GO.',
+        adaptation: 'Let the coach call EDGE first. Athletes take over only once they stop reliably; keep the full empty buffer.'
+      },
       setup: 'Mark an inner play square for each matched pair and an empty safety buffer outside it. Leave another clear gap before the next pair\'s buffer. Both start facing in stance near the center at arm\'s length. Show the inner boundary and rehearse "edge": freeze, separate, and walk back to the center. The outer buffer is not extra playing space.',
       play: 'Practice light hand tags while noticing the boundary early enough to stop safely.',
       steps: [
-        'On "go," both athletes may lightly touch the back of the other\'s hand with open fingertips while moving in stance. No grabbing, slapping, pushing, or takedowns.',
+        'Keep both hands open and visible in front, between waist and shoulder height; do not hide them behind the back or tuck them away. On "go," both athletes may lightly touch the back of the other\'s hand with open fingertips while moving in stance. Move hands within that target zone. No grabbing, slapping, pushing, or takedowns.',
         'After a clean touch, say "tag," separate briefly, and restart facing near the center. Count one shared tag point.',
         'When either athlete sees a foot about to reach the inner line, call "edge" before the step crosses it. Both freeze; do not finish a tag after the call.',
         'The caller points to the center and says "back to center." Both release any accidental contact, turn to see their path, and walk separately to the center. Count one awareness point for a timely correct call.',

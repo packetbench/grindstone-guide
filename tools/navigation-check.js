@@ -168,6 +168,18 @@ for(const game of D.games){
  assert(html.includes('Print guide</strong> above for the current rules'));assert(html.includes('binder card is an earlier edition'));assert(html.includes('Archived game card'));
  assert(h.api.libraryResults('games',new URLSearchParams('q='+game.id)).some(item=>item.id===game.id),game.id+' missing from games search');checks++;
 }
+{
+ const games=[...D.games.map(entry=>({entry,id:entry.id,path:'#game/'+entry.id})),...h.context.window.GRINDSTONE_KYLE.entries.filter(entry=>entry.kind==='game').map(entry=>({entry,id:'kyle:'+entry.id,path:'#moves/kyle/'+entry.id})),...h.context.window.GRINDSTONE_VIDEO_ADDITIONS.entries.filter(entry=>entry.kind==='game').map(entry=>({entry,id:'facebook:'+entry.id,path:'#moves/videos/'+entry.id}))];
+ assert.equal(games.length,39);
+ const fiveMinute=h.api.libraryResults('games',new URLSearchParams('minutes=5'));
+ for(const {entry,id,path:route} of games){
+   h.navigate(route);const html=h.elements.main.innerHTML;
+   assert(html.includes('Game at a glance'));assert(html.includes('href="#practices?game='+encodeURIComponent(id)+'"'));
+   for(const text of Object.values(entry.quick).filter(Boolean))assert(html.includes(escapeText(text)),id+' quick guidance omitted');
+   assert(entry.description.length>20);assert(Number(entry.minutes)>0);
+   assert(fiveMinute.some(item=>item.id===entry.id),id+' omitted from five-minute filter');checks++;
+ }
+}
 for(const id of ["S13","S17"]){
  const series=seriesById.get(id);assert(series,"Expected shared series "+id);const memberIds=new Set(series.members.map(member=>member.move_id));
  const results=h.api.libraryResults("moves",new URLSearchParams("series="+id));assert(results.length,"Empty series filter "+id);assert(results.every(item=>memberIds.has(item.id)),"Series filter included unrelated guides: "+id);
