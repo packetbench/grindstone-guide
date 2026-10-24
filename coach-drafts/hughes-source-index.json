@@ -1,0 +1,113 @@
+{
+  "prepared": "2026-10-24",
+  "status": "Unapproved recognition photo candidates; authentic originals preserved",
+  "images": [
+    {
+      "path": "hughes-photos/family-wrestling.jpg",
+      "source": "https://www.facebook.com/photo/?fbid=10225569159295360&set=a.1272591474422",
+      "posted": "2026-02-08",
+      "caption": "Jessica M Hughes public Profile pictures album; family group in Mat Rats apparel at wrestling gym; no person tags visible. Strong family recognition draft option.",
+      "width": 2048,
+      "height": 2041,
+      "bytes": 503478,
+      "sha256": "adeb832b159ffa1911d16e4168d73d2aab69eae130d25ddedbeb8573d27d4604"
+    },
+    {
+      "path": "hughes-photos/jessica-portrait.jpg",
+      "source": "https://www.facebook.com/photo/?fbid=10222048797888525&set=a.1272591474422",
+      "posted": "2025-01-24",
+      "caption": "Jessica M Hughes public Profile pictures album; solo portrait with first-person haircut caption providing self-attribution. Recommended Jessica portrait.",
+      "width": 1069,
+      "height": 1056,
+      "bytes": 119612,
+      "sha256": "197406c9bd4c472d0dea1ff29060f15a5a134d247ffdffa8920fc3572577c0fb"
+    },
+    {
+      "path": "hughes-photos/jessica-cody-portrait.jpg",
+      "source": "https://www.facebook.com/photo/?fbid=10223460715985595&set=a.1272591474422",
+      "posted": "2025-07-09",
+      "caption": "Jessica M Hughes public Profile pictures album; explicit with Cody Hughes caption and Tag box for Cody Hughes. Tagged profile https://www.facebook.com/cody.hughes.3344. Recommended couple recognition image.",
+      "width": 1080,
+      "height": 1078,
+      "bytes": 115166,
+      "sha256": "b23ac47ae6e7b65e330c67e34c582ca6c78795e3c7b130a06f1d4c3b2a46451f"
+    },
+    {
+      "path": "hughes-photos/couple-dock.jpg",
+      "source": "https://www.facebook.com/photo/?fbid=10227010691652768&set=a.1272591474422",
+      "posted": "2026-07-21",
+      "caption": "Jessica M Hughes public Profile pictures album; two adults on dock, no person tags visible. Gallery candidate only.",
+      "width": 2048,
+      "height": 2038,
+      "bytes": 290063,
+      "sha256": "23b25a364ef3e7960a2d59f442710f6600ebd7852755aadf439e75fc3ef7cf60"
+    },
+    {
+      "path": "hughes-photos/jessica-kayaking.jpg",
+      "source": "https://www.facebook.com/photo/?fbid=10227038209100687&set=a.1272591474422",
+      "posted": "2026-07-24",
+      "caption": "Jessica M Hughes current public profile photo; kayaking scene, no named person tags visible. Retained casual gallery option; not recommended as portrait.",
+      "width": 1210,
+      "height": 1195,
+      "bytes": 129763,
+      "sha256": "96c185cd5ebe153701497d6ae440962e4969e6ff4ebfa67326f7ddb5fd81b247"
+    },
+    {
+      "path": "hughes-photos/cody-family-profile.jpg",
+      "source": "https://www.facebook.com/photo/?fbid=8206818662680447&set=a.153730954655965",
+      "posted": "2023-08-03",
+      "caption": "Cody Hughes current public profile photo reached through explicit Cody tag from Jessica. Family group outdoors; no individual tags. His public profile separately links Jessica M Hughes as spouse.",
+      "width": 950,
+      "height": 960,
+      "bytes": 125776,
+      "sha256": "eff56369462537e561ebb9a973235f9299eb65d18fe7169c76c32c6c234093bb"
+    },
+    {
+      "path": "hughes-photos/family-cover.jpg",
+      "source": "https://www.facebook.com/photo/?fbid=10216475865448697&set=a.2726129411962",
+      "posted": "2022-01-31",
+      "caption": "Jessica M Hughes public Cover photos album; posed family photograph, no person tags or photographer credit visible. Candidate family gallery option.",
+      "width": 666,
+      "height": 960,
+      "bytes": 90580,
+      "sha256": "a2255e0803b5e6cccaafe03e502d9518a369ba466bce3ac2e156287aa67dff14"
+    },
+    {
+      "path": "hughes-photos/family-hiking.jpg",
+      "source": "https://www.facebook.com/photo/?fbid=10216992424562352&set=a.2726129411962",
+      "posted": "2022-06-21",
+      "caption": "Jessica M Hughes public Cover photos album; four-person family group outdoors, no individual name tags. Candidate outdoor gallery option.",
+      "width": 1536,
+      "height": 2048,
+      "bytes": 442488,
+      "sha256": "8ff731d0d316a429e3e6844a42d52f20f6f761bfd25e1772611a6b783e8f6b0e"
+    }
+  ],
+  "identity_chain": [
+    {
+      "source": "https://www.facebook.com/profile/100046488894033/search/?q=Hughes",
+      "evidence": "Westminster Mat Rats Wrestling page search exposed public wrestling-event post by Kaitlyn Weisgerber Norwood explicitly with Jessica M Hughes and tagging Westminster Mat Rats Wrestling. Jessica tag points to jessica.m.larue.",
+      "event_photo": "https://www.facebook.com/photo/?fbid=26810018605252579&set=pcb.26810026285251811"
+    },
+    {
+      "source": "https://www.facebook.com/jessica.m.larue",
+      "evidence": "Profile named Jessica M Hughes; public Profile pictures and Cover photos albums."
+    },
+    {
+      "source": "https://www.facebook.com/photo/?fbid=10223460715985595&set=a.1272591474422",
+      "evidence": "July 9, 2025 public couple photo explicitly with Cody Hughes and accessible Tag box for Cody Hughes; tag points to cody.hughes.3344."
+    },
+    {
+      "source": "https://www.facebook.com/cody.hughes.3344",
+      "evidence": "Profile named Cody Hughes, reached through explicit tag, publicly links Jessica M Hughes as spouse. Own public profile photograph retained."
+    }
+  ],
+  "limitations": [
+    "Still unapproved drafts; user has not confirmed these are the Hughes callout subjects. Explicit Jessica club tag and Cody name tag are the basis, not appearance matching.",
+    "No individual identification is inferred from faces in untagged family photos; caption them as candidates from the named profile album until reviewed.",
+    "The county roster middle name Morgan remains unlinked and is not adopted here.",
+    "Publicly visible does not establish photographer licensing or permission. No photographer credit was visible on inspected photos.",
+    "Dates are post dates displayed by Facebook; original capture dates may differ.",
+    "Preserved originals are the bytes Facebook served at observed URLs, not a claim to camera-original resolution."
+  ]
+}

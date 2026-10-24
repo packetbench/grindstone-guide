@@ -15,7 +15,8 @@ window.COACH_DRAFTS = {
         "He continued his wrestling career at Cleveland State University.",
         "His coaching also extends to Grindstone’s youth camps. Kyle is the instructor listed for the club’s 2026 youth camp at Winters Mill High School, a program for ages 8–18 focused on wrestling technique and mindset.",
         "Today, Kyle leads Grindstone’s next chapter. Coach Kyle’s Corner of Excellence gathers instructional videos for coaches and wrestlers, connecting his role at the club with a practical resource for developing skills.",
-        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Kyle Rutledge lists Copper, Bronze, Teal in its National Coaches Education Program field, checked October 24, 2026. Teal is the program’s course focused on coaching girls and women."
+        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Kyle Rutledge lists Copper, Bronze, Teal in its National Coaches Education Program field, checked October 24, 2026. Teal is the program’s course focused on coaching girls and women.",
+        "The club’s October 2024 introduction describes Kyle as entering his fourth year with Mat Rats and dates his own wrestling years to 1987–1996. It also recognizes his Columbia Station graduation, Ohio state title and Cleveland State background."
       ],
       "highlights": [
         {
@@ -89,16 +90,22 @@ window.COACH_DRAFTS = {
           "title": "USA Wrestling · coaching certification levels",
           "url": "https://www.themat.com/coaches/ncep-certification",
           "supports": "Explains Copper, Bronze and Teal coaching education."
+        },
+        {
+          "title": "Westminster Mat Rats · Meet Coach Kyle!",
+          "url": "https://www.facebook.com/photo/?fbid=1126771975549088&set=a.563786781847613",
+          "supports": "Club-published coach photographs and biography, dated 2024-10-08."
         }
       ],
       "photo": {
-        "src": "assets/kyle-rutledge.webp",
-        "alt": "Columbia High School’s framed portrait of Kyle Rutledge, labeled 1993 State Champion Wrestling.",
-        "caption": "Kyle’s 1993 state-champion portrait in Columbia High School’s athletics archive.",
-        "source_url": "https://display.gogipper.com/827/37901/37904/38277/39230/",
-        "source_label": "Columbia High School athletics archive",
-        "view": "portrait",
-        "archive": true
+        "src": "club-intros/kyle-portrait.png",
+        "alt": "Kyle in the club’s 2024 introduction. Native crop of the lower-left photograph; the complete graphic and earlier school portrait are retained.",
+        "caption": "Kyle in the club’s 2024 introduction. Native crop of the lower-left photograph; the complete graphic and earlier school portrait are retained.",
+        "source_url": "https://www.facebook.com/photo/?fbid=1126771975549088&set=a.563786781847613",
+        "source_label": "Original public photograph",
+        "native": true,
+        "archive": true,
+        "kind": "Club introduction portrait"
       },
       "gallery": [
         {
@@ -124,6 +131,24 @@ window.COACH_DRAFTS = {
           "source_url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=77",
           "source_label": "1993 Emerald yearbook · PDF page 77",
           "selection": "gallery"
+        },
+        {
+          "src": "club-intros/kyle-intro.jpg",
+          "alt": "Kyle Rutledge in the Westminster Mat Rats public coach-introduction graphic, 2024-10-08. Full source image retained; coaching-year counts describe the 2024 season.",
+          "caption": "Kyle Rutledge in the Westminster Mat Rats public coach-introduction graphic, 2024-10-08. Full source image retained; coaching-year counts describe the 2024 season.",
+          "source_url": "https://www.facebook.com/photo/?fbid=1126771975549088&set=a.563786781847613",
+          "source_label": "Original public photograph",
+          "native": true,
+          "kind": "Club introduction"
+        },
+        {
+          "src": "assets/kyle-rutledge.webp",
+          "alt": "Columbia High School’s framed portrait of Kyle Rutledge, labeled 1993 State Champion Wrestling.",
+          "caption": "Kyle’s 1993 state-champion portrait in Columbia High School’s athletics archive.",
+          "source_url": "https://display.gogipper.com/827/37901/37904/38277/39230/",
+          "source_label": "Columbia High School athletics archive",
+          "view": "portrait",
+          "archive": true
         }
       ],
       "status": "existing",
@@ -135,7 +160,7 @@ window.COACH_DRAFTS = {
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
         "Retrieved the complete 1990–1993 Columbia yearbooks and retained all source PDFs. Additional rendered pages preserve their original captions. The Senior Court portrait is the strongest new individually labeled historical image; earlier team pages are useful gallery context.",
-        "Keep the existing state-champion image as the draft lead. A current coaching portrait would make a stronger present-day introduction.",
+        "The current lead is a native crop from the club’s 2024 coach introduction. Keep the earlier state-champion portrait and complete introduction graphic in the gallery with their sources.",
         "Second pass checked Cleveland State archive routes and later college match reporting. Existing Columbia yearbooks remain the richest labeled photo source. The unrelated Pittsburg State track coach and Chicago ultimate player were excluded.",
         "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
         "Latest pass checked Cleveland Memory’s CSU/Fenn collection and broader archive results; no additional attributable college photograph. Physical Cleveland State archives remain a lead. Public USAW training added."
@@ -186,9 +211,14 @@ window.COACH_DRAFTS = {
           "title": "Michigan High School Athletic Association · 2008 team results",
           "url": "https://my.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/08tmreg.html",
           "supports": "Eaton Rapids team Division 2 runner-up; no individual-bout participation inferred."
+        },
+        {
+          "title": "Thomas Schnepp · public profile reached through the team-photo tag",
+          "url": "https://www.facebook.com/thomas.schnepp",
+          "supports": "Named tag on the 2009 Regional Champs photograph links this profile. Selected photos were individually checked as public."
         }
       ],
-      "gallery_title": "Eaton Rapids wrestling years",
+      "gallery_title": "School team and public portrait options",
       "gallery_label": "Photos from Thomas Schnepp’s high-school wrestling years",
       "gallery": [
         {
@@ -197,6 +227,24 @@ window.COACH_DRAFTS = {
           "caption": "Eaton Rapids’ regional championship team, 2009. Posted by Lori Loomis Chapman on March 2, 2009, with the caption “Regional Champs!” Thomas is tagged in the original photo.",
           "source_url": "https://www.facebook.com/photo.php?fbid=1091665017774&set=t.1134555199&type=3",
           "source_label": "Original team photo • Lori Loomis Chapman"
+        },
+        {
+          "src": "tom-public/tom-dog-portrait.jpg",
+          "alt": "Public profile-picture post by Thomas Schnepp showing a person holding a puppy. Post date only; capture date unknown. Reached from public View as photo index. Clear alternative portrait.",
+          "caption": "Public profile-picture post by Thomas Schnepp showing a person holding a puppy. Post date only; capture date unknown. Reached from public View as photo index. Clear alternative portrait. Full source image preserved unchanged.",
+          "source_url": "https://www.facebook.com/photo/?fbid=10232398189154025&set=a.1548911839445",
+          "source_label": "Original public profile photograph",
+          "native": true,
+          "kind": "Public profile photograph"
+        },
+        {
+          "src": "tom-public/tom-selfie-2015.jpg",
+          "alt": "Thomas Schnepp public photo index and Shared with Public source viewer; solo formal-clothing selfie. Historical gallery candidate.",
+          "caption": "Thomas Schnepp public photo index and Shared with Public source viewer; solo formal-clothing selfie. Historical gallery candidate. Full source image preserved unchanged.",
+          "source_url": "https://www.facebook.com/photo.php?fbid=10207217831540822&set=pb.1134555199.-2207520000&type=3",
+          "source_label": "Original public profile photograph",
+          "native": true,
+          "kind": "Public profile photograph"
         }
       ],
       "status": "existing",
@@ -207,18 +255,20 @@ window.COACH_DRAFTS = {
       "research_notes": [
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
-        "Preserved the existing 2009 Eaton Rapids team photo. No additional publicly accessible, labeled Thomas photograph was found. Yearbook catalogs point to restricted or unavailable years; no private account access was attempted. A current individual portrait remains the main photo gap.",
         "Second pass found a local Thomas Schnepp of Finksburg named among University of Maryland Global Campus 2023–24 graduates, B.S. cybersecurity technology, in the September 8, 2024 Carroll County Times. Proposed same-person education detail.",
         "The 2009 Eaton Rapids state-quarterfinal lineup names Trevor Schnepp at 160 pounds. Trevor’s bout results are not assigned to Thomas.",
-        "The tagged 2009 regional team photograph now serves as the draft lead while a named individual portrait is sought.",
-        "Verified the explicit Thomas tag in the existing public team photo. Adjacent friends-only photos were not retrieved. Public yearbook scans were not available; named search leads queued."
+        "The tagged 2009 regional team photograph is retained in the gallery; the new public profile photograph now leads the draft.",
+        "Verified the explicit Thomas tag in the existing public team photo. Adjacent friends-only photos were not retrieved. Public yearbook scans were not available; named search leads queued.",
+        "Four public portrait/family originals are now preserved through the explicit 2009 team-photo tag. The November 2024 profile image is the lead; post dates do not establish capture dates. No biography details from non-public profile fields were used."
       ],
       "photo": {
-        "src": "assets/thomas-regional-team-2009.jpg",
-        "alt": "Eaton Rapids wrestling team in the photograph captioned Regional Champs!",
-        "caption": "Eaton Rapids’ regional championship team, 2009. Posted by Lori Loomis Chapman on March 2, 2009, with the caption “Regional Champs!” Thomas is tagged in the original photo.",
-        "source_url": "https://www.facebook.com/photo.php?fbid=1091665017774&set=t.1134555199&type=3",
-        "source_label": "Original team photo • Lori Loomis Chapman",
+        "src": "tom-public/tom-profile-2024.jpg",
+        "alt": "Thomas Schnepp current public profile picture, observed in public View as mode and confirmed Shared with Public in source viewer. Adult and child selfie; explicit account context, not face matching. Recommended current profile lead.",
+        "caption": "Thomas Schnepp current public profile picture, observed in public View as mode and confirmed Shared with Public in source viewer. Adult and child selfie; explicit account context, not face matching. Recommended current profile lead. Full source image preserved unchanged.",
+        "source_url": "https://www.facebook.com/photo/?fbid=10233373708581401&set=a.1548911839445",
+        "source_label": "Original public profile photograph",
+        "native": true,
+        "kind": "Public profile photograph",
         "archive": true
       },
       "profile_review_status": "Draft awaiting user review"
@@ -242,7 +292,8 @@ window.COACH_DRAFTS = {
         "Brian Wayne Leaf in the county recreation list remains an unresolved lead; rejecting the racer does not confirm or reject that separate record.",
         "Exact-name Pennsylvania, heavyweight, youth, high-school, results and spelling-variant searches have not yet established his school or club.",
         "PAJW, MAWA, Pennsylvania school/tournament and name-variant searches did not establish a school or photo. User-supplied youth heavyweight history retained. Confirmed wrong racer remains in Who we are not.",
-        "New professional-directory lead is unresolved and could still belong to the rejected racing namesake. Public PA school, sports, alumni and company-photo checks supplied no attributable portrait in this pass."
+        "New professional-directory lead is unresolved and could still belong to the rejected racing namesake. Public PA school, sports, alumni and company-photo checks supplied no attributable portrait in this pass.",
+        "Direct PA-Wrestling surname search returned no Brian/Bryan Leaf among 25 Leaf-substring records. Its high-school coverage does not rule out the user-supplied youth wrestling history. Recent public Mat Rats team captions also supplied no individual Brian tag. New school lead is queued, not assigned."
       ],
       "highlights": [
         {
@@ -272,6 +323,11 @@ window.COACH_DRAFTS = {
           "title": "Leaf Builders LLC · provisional local professional lead",
           "url": "https://www.buildzoom.com/contractor/leaf-builders-llc",
           "supports": "Directory names Brian Wayne Leaf in Westminster, matching the recreation-list name. Neither source ties him to Grindstone or Pennsylvania wrestling; employment is not added to the biography."
+        },
+        {
+          "title": "Brian Leaf · unresolved Pennsylvania school profile",
+          "url": "https://www.facebook.com/brian.leaf1",
+          "supports": "Public profile lists Owen J. Roberts Class of 2007 and Spring City. No wrestling, Maryland or Grindstone connection established; school and portrait are not adopted."
         }
       ],
       "profile_review_status": "Draft awaiting user review"
@@ -731,7 +787,8 @@ window.COACH_DRAFTS = {
         "Eric’s contribution reaches well beyond practice. By reaching out to local businesses and bringing them on board as sponsors, he has helped provide the financial support that keeps Grindstone going. His efforts connect the club with the community around it.",
         "On the mat, Eric moves between groups as needed and is a familiar presence with the 7–10 wrestlers. His commitment to the program includes both working directly with young athletes and building support for the team as a whole.",
         "Eric is a U.S. Marine Corps veteran with a professional background in recreation and parks. His work has included maintaining athletic fields and helping keep public recreation spaces safe and ready for use.",
-        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Eric Westervelt lists Copper, Bronze, Teal in its National Coaches Education Program field, checked October 24, 2026. Teal is the program’s course focused on coaching girls and women."
+        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Eric Westervelt lists Copper, Bronze, Teal in its National Coaches Education Program field, checked October 24, 2026. Teal is the program’s course focused on coaching girls and women.",
+        "The Mat Rats’ October 2024 coach introduction also identifies Eric as a McDaniel College alumnus and a multisport coach. It dates his Westminster wrestling years to 1996–1999. His college attendance dates are still being researched; no college wrestling record is claimed here."
       ],
       "highlights": [
         {
@@ -777,6 +834,11 @@ window.COACH_DRAFTS = {
           "title": "USA Wrestling · coaching certification levels",
           "url": "https://www.themat.com/coaches/ncep-certification",
           "supports": "Explains Copper, Bronze and Teal coaching education."
+        },
+        {
+          "title": "Westminster Mat Rats · Meet Coach Eric!",
+          "url": "https://www.facebook.com/photo/?fbid=1126004295625856&set=a.563786781847613",
+          "supports": "Club-published coach photographs and biography, dated 2024-10-07."
         }
       ],
       "photo": {
@@ -792,6 +854,15 @@ window.COACH_DRAFTS = {
           "source_url": "https://cctimes.carr.org/documents/CCT_02211999.pdf#page=9",
           "source_label": "Original newspaper • Carroll County Public Library archive",
           "native": true
+        },
+        {
+          "src": "club-intros/eric-intro.jpg",
+          "alt": "Eric Westervelt in the Westminster Mat Rats public coach-introduction graphic, 2024-10-07. Full source image retained; coaching-year counts describe the 2024 season.",
+          "caption": "Eric Westervelt in the Westminster Mat Rats public coach-introduction graphic, 2024-10-07. Full source image retained; coaching-year counts describe the 2024 season.",
+          "source_url": "https://www.facebook.com/photo/?fbid=1126004295625856&set=a.563786781847613",
+          "source_label": "Original public photograph",
+          "native": true,
+          "kind": "Club introduction"
         }
       ],
       "status": "existing",
@@ -808,13 +879,19 @@ window.COACH_DRAFTS = {
         "Keep the modern portrait as the lead and this faithful source extraction in the historical gallery. The earlier degraded crop is retained only as a reference alternate.",
         "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
         "Native source-PDF extraction preserves the historical wrestling photo without AI. Additional newspaper and school/alumni routes did not reveal another attributable public image; alumni album search requires login. USAW training added.",
-        "A new complete exact-name archive audit opened all 31 returned newspaper issues and retained matching native page scans plus full OCR and source hashes. Caption searches found the already selected February 1999 wrestling image; selected source spreads were also visually checked. This does not establish that other photographs do not exist."
+        "A new complete exact-name archive audit opened all 31 returned newspaper issues and retained matching native page scans plus full OCR and source hashes. Caption searches found the already selected February 1999 wrestling image; selected source spreads were also visually checked. This does not establish that other photographs do not exist.",
+        "College follow-up checked the 2000 and 2003 yearbooks with imperfect OCR and found no named Eric photograph. McDaniel’s unrestricted commencement-program collection provides a more targeted lead once an attendance year is known. The original 1999 wrestling photo remains selected."
       ],
       "leads": [
         {
           "title": "Stephen Cherry · photographer biography",
           "url": "https://www.stephencherry.com/about.html",
           "supports": "The photographer credited on Eric’s school-days image worked for the Carroll County Times. A print/negative inquiry is a possible next step; no contact has been made."
+        },
+        {
+          "title": "McDaniel archives · commencement programs, 1998–2021",
+          "url": "https://archivesspace.mcdaniel.edu/repositories/3/archival_objects/1641",
+          "supports": "Official unrestricted collection. Attendance/graduation year is not yet established; this catalog is not an Eric-specific record."
         }
       ],
       "gallery_title": "From Eric’s wrestling years",
@@ -830,7 +907,8 @@ window.COACH_DRAFTS = {
         "Ryan wears his heart on his sleeve and celebrates his wrestlers’ growth. He cares deeply about the athletes he coaches and takes their progress to heart. Families will most often find him with the 7–10 group, while he also helps coach wrestlers in other practice groups.",
         "Outside wrestling, Ryan’s background spans engineering, operations leadership and workforce training. He earned a bachelor’s degree in Industrial Engineering and a master’s degree in Workforce Development and Training from Eastern Illinois University. His professional work has included manufacturing engineering, employee training, workplace safety and leading production teams.",
         "Ryan’s interest in teaching also appears in his academic work. His Eastern Illinois master’s thesis, completed in 2011, studied how instructional styles affected students’ knowledge in a computer-aided engineering drawing course. It adds a documented education and training dimension to his engineering background.",
-        "Ryan also played football and baseball at Proviso West. The school’s 2002 yearbook identifies him in the varsity wrestling and football teams, while its homecoming report names him as a football captain during the fall 2001 season. An earlier yearbook places him on the 2000 baseball team."
+        "Ryan also played football and baseball at Proviso West. The school’s 2002 yearbook identifies him in the varsity wrestling and football teams, while its homecoming report names him as a football captain during the fall 2001 season. An earlier yearbook places him on the 2000 baseball team.",
+        "In its October 2024 coach introduction, Mat Rats described Ryan as a two-time Illinois state qualifier and one-time state placer. The same introduction recognized his work across multiple sports and his second season with the program at that time."
       ],
       "highlights": [
         {
@@ -913,6 +991,11 @@ window.COACH_DRAFTS = {
           "title": "Proviso West yearbook · 2000, printed page 35",
           "url": "https://bellwood.advantage-preservation.com/viewer/?k=devries&i=f&d=01012000-12312002&m=between&ord=k1&fn=yearbooks_usa_illinois_bellwood_20000101_english_39&df=1&dt=5",
           "supports": "Proviso West baseball team, 2000 yearbook, printed page 35. Ryan DeVries is included in the caption beneath the upper-right team photograph."
+        },
+        {
+          "title": "Westminster Mat Rats · Here’s Coach Ryan!",
+          "url": "https://www.facebook.com/photo/?fbid=1131078835118402&set=a.563786781847613",
+          "supports": "Club-published photographs, two state qualifications, one state placing and second season in 2024."
         }
       ],
       "photo": {
@@ -972,6 +1055,15 @@ window.COACH_DRAFTS = {
           "source_label": "Bellwood Public Library · Proviso West yearbook",
           "kind": "Native yearbook crop",
           "native": true
+        },
+        {
+          "src": "brian-club/ryan-intro.jpg",
+          "alt": "Coach Ryan’s public Mat Rats introduction, October 14, 2024. The club describes him as a two-time Illinois state qualifier, one-time state placer and multisport coach, entering his second Mat Rats season in 2024.",
+          "caption": "Coach Ryan’s public Mat Rats introduction, October 14, 2024. The club describes him as a two-time Illinois state qualifier, one-time state placer and multisport coach, entering his second Mat Rats season in 2024.",
+          "source_url": "https://www.facebook.com/photo/?fbid=1131078835118402&set=a.563786781847613",
+          "source_label": "Original public photograph",
+          "native": true,
+          "kind": "Club introduction"
         }
       ],
       "status": "existing",
@@ -1000,15 +1092,17 @@ window.COACH_DRAFTS = {
       "paragraphs": [
         "Jordan is listed among the Mat Rats and Valkyries coaches for the 2026–27 season. Her specific practice group and wrestling background are still being researched.",
         "Away from the mat, this working profile connects Jordan with Captain Jerry’s and Spider Web Promotions. Her public posts describe bringing live apparel printing to community events, including Downtown Westminster’s Oyster Stroll.",
-        "In an October 2026 post, Jordan described developing that event work since September 2025 and reaching a thirteenth live-printing event. This supplies a more detailed picture of her local involvement while the proposed coach match is reviewed."
+        "In an October 2026 post, Jordan described developing that event work since September 2025 and reaching a thirteenth live-printing event. This supplies a more detailed picture of her local involvement while the proposed coach match is reviewed.",
+        "The public trail now connects this proposed profile with wrestling and grappling as well. Andy’s March 2022 Gracie Charlottesville open-mat post explicitly tags Jordan. In November 2025, Jordan celebrated the start of Mat Rats season, tagged Andy and identified the Blue team in a reply. Those posts strengthen the local match while leaving the precise coaching role for review."
       ],
       "review_title": "New local candidate with public photographs",
-      "identity_note": "This draft proposes the Jordan Millman linked by Captain Jerry’s public business page as Coach Jordan. The business, event and photo trail is documented, while the connection to Grindstone remains a working assumption.",
+      "identity_note": "Proposed Coach Jordan match: the Jordan Millman linked by Captain Jerry’s. Public posts now connect the same profile to Mat Rats Blue-team participation and a grappling open mat with Andy. The precise coaching role remains for review.",
       "review_prompt": "Review this proposed identity, writing and photo choices; add Jordan’s wrestling background or coaching responsibilities.",
       "research_notes": [
         "New source trail: Captain Jerry’s public business page tags Jordan Millman and links facebook.com/joashley1991. Jordan’s profile-photo tag links Andy Millman.",
         "Jordan’s assignment in the right side of her own public profile photographs is a working source-context hypothesis. No facial comparison was used.",
-        "The original full frames, photo pages and native portrait crop are retained. No family relationship, private details or unsupported wrestling record is inferred."
+        "The original full frames, photo pages and native portrait crop are retained. No family relationship, private details or unsupported wrestling record is inferred.",
+        "New public posts connect the proposed profiles to Mat Rats and grappling. Group-photo subjects are not identified by appearance; captions and explicit tags supply the associations. Coaching roles remain draft assumptions pending review."
       ],
       "highlights": [
         {
@@ -1036,6 +1130,16 @@ window.COACH_DRAFTS = {
           "title": "Jordan Millman · October 2026 live-printing post",
           "url": "https://www.facebook.com/joashley1991/posts/pfbid02DGpG9XpD3UJQusNGM2WufWzSuVCMDLfpDNZeWCNevZNmL13yZZC71wkzWFPpR1Cnl",
           "supports": "Westminster Oyster Stroll, Captain Jerry’s, Spider Web Promotions, and live-event work since September 2025."
+        },
+        {
+          "title": "Andy Millman · open mat with Jordan",
+          "url": "https://www.facebook.com/millman1/posts/pfbid02g7c62ZZWx83esxrcHEZ8xjF1aLNa5nvVNot3u9wLC1F254mPmwNz82bJMvBgcLtzl",
+          "supports": "Public March 27, 2022 post explicitly links Jordan’s profile; individual positions are not assigned."
+        },
+        {
+          "title": "Jordan Millman · Mat Rats season, November 2025",
+          "url": "https://www.facebook.com/joashley1991/posts/pfbid0nM6L1rGo8QKNWRUJCn3wkYoHGpTWxrZvGeJKX7BHK2nukM8G2d8RWnk9PXyh6bRAl",
+          "supports": "Public post explicitly tags Andy; Jordan’s reply specifies the Blue team. No coaching title is stated."
         }
       ],
       "photo": {
@@ -1048,7 +1152,7 @@ window.COACH_DRAFTS = {
         "archive": true,
         "kind": "Proposed portrait"
       },
-      "gallery_title": "Public portrait and outdoor photo options",
+      "gallery_title": "Grappling, community and portrait options",
       "gallery": [
         {
           "src": "millman-photos/jordan-andy-profile.jpg",
@@ -1076,6 +1180,48 @@ window.COACH_DRAFTS = {
           ],
           "selection": "gallery",
           "kind": "Proposed photo match"
+        },
+        {
+          "src": "millman-sport/gracie-01.jpg",
+          "alt": "Group photo at Gracie Charlottesville from Andy Millman’s public open-mat post tagging Jordan Millman, March 27, 2022. Post-level Andy/Jordan names; individual positions not independently tagged. Keep as full-frame event candidates.",
+          "caption": "Group photo at Gracie Charlottesville from Andy Millman’s public open-mat post tagging Jordan Millman, March 27, 2022. Post-level Andy/Jordan names; individual positions not independently tagged. Keep as full-frame event candidates.",
+          "source_url": "https://www.facebook.com/photo/?fbid=10221841853695314&set=pcb.10221841856175376",
+          "source_label": "Original public photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman",
+            "jordan-millman"
+          ],
+          "kind": "Public grappling / team context",
+          "selection": "gallery"
+        },
+        {
+          "src": "millman-sport/gracie-02.jpg",
+          "alt": "Grappling practice photo from the same public Gracie Charlottesville open-mat set. Post-level Andy/Jordan names; individual positions not independently tagged. Keep as full-frame event candidates.",
+          "caption": "Grappling practice photo from the same public Gracie Charlottesville open-mat set. Post-level Andy/Jordan names; individual positions not independently tagged. Keep as full-frame event candidates.",
+          "source_url": "https://www.facebook.com/photo/?fbid=10221841854375331&set=pcb.10221841856175376",
+          "source_label": "Original public photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman",
+            "jordan-millman"
+          ],
+          "kind": "Public grappling / team context",
+          "selection": "gallery"
+        },
+        {
+          "src": "millman-sport/mat-rats-gear.jpg",
+          "alt": "Wrestling shoes and headgear in Jordan Millman’s public November 11, 2025 post celebrating the beginning of Mat Rats wrestling season; the post explicitly tags Andy Millman. No people depicted. Stronger wrestling-community context for both profiles; post does not expressly name Grindstone or coaching titles.",
+          "caption": "Wrestling shoes and headgear in Jordan Millman’s public November 11, 2025 post celebrating the beginning of Mat Rats wrestling season; the post explicitly tags Andy Millman. No people depicted. Stronger wrestling-community context for both profiles; post does not expressly name Grindstone or coaching titles.",
+          "source_url": "https://www.facebook.com/photo/?fbid=1639945137389389&set=a.118068996243685",
+          "source_label": "Original public photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman",
+            "jordan-millman"
+          ],
+          "kind": "Public grappling / team context",
+          "selection": "gallery"
         }
       ],
       "profile_review_status": "Draft awaiting user review"
@@ -1089,16 +1235,18 @@ window.COACH_DRAFTS = {
       "summary": "Andy Millman is part of Grindstone’s coaching roster. This working profile connects him with the owner of Baltimore’s Captain Jerry’s apparel business.",
       "paragraphs": [
         "Andy is part of the Mat Rats and Valkyries coaching roster supporting young wrestlers in the Westminster area.",
-        "Away from coaching, this draft places Andy at Captain Jerry’s, a Baltimore custom apparel and promotional-products business. The company’s own history says Andy joined the family business in 2008 and became owner in 2011, continuing the business his grandfather Gerald founded in 1976. Its work includes screen printing, embroidery and promotional products. The connection between this business owner and Coach Andy remains a working assumption."
+        "Away from coaching, this draft places Andy at Captain Jerry’s, a Baltimore custom apparel and promotional-products business. The company’s own history says Andy joined the family business in 2008 and became owner in 2011, continuing the business his grandfather Gerald founded in 1976. Its work includes screen printing, embroidery and promotional products. The connection between this business owner and Coach Andy remains a working assumption.",
+        "The proposed Andy profile also has a documented grappling background. Public Relson Gracie training photographs explicitly tag him in September 2015, and his March 2022 post describes attending an open mat at Gracie Charlottesville with Jordan. These sources support participation in grappling without establishing a belt rank or teaching credential."
       ],
       "review_title": "Proposed local identity with named photo sources",
-      "identity_note": "This draft proposes Andy/Andrew Millman of Captain Jerry’s as Coach Andy. The company history and linked public profiles establish the business/photo connection; a direct Grindstone confirmation is still needed.",
+      "identity_note": "Proposed Coach Andy match: Captain Jerry’s owner Andy Millman. Public photo tags connect the same profile to Relson Gracie training, an open mat with Jordan and Mat Rats season posts. The final roster-to-profile match remains for review.",
       "review_prompt": "Review this proposed identity, biography and portrait; add Andy’s wrestling background or coaching responsibilities.",
       "research_notes": [
         "Captain Jerry’s public page directly tags Jordan Millman. Her current profile photograph explicitly tags Andy at left and links his own profile, which also shares company posts.",
         "The two coach identities remain proposed. The public tags establish the photo and business trail; no family relationship is inferred.",
         "Five complete source photographs are preserved. Individual portraits are native crops of the largest recent photograph, with no enlargement, reconstruction or enhancement.",
-        "A separate Andrew Millman competed against Michael Mehl at Fight2Win109 in Baltimore in April 2019. No source yet connects that athlete to this business owner or coach; the result remains a lead. Its black thumbnail is retained only in the local research files."
+        "A separate Andrew Millman competed against Michael Mehl at Fight2Win109 in Baltimore in April 2019. No source yet connects that athlete to this business owner or coach; the result remains a lead. Its black thumbnail is retained only in the local research files.",
+        "New public posts connect the proposed profiles to Mat Rats and grappling. Group-photo subjects are not identified by appearance; captions and explicit tags supply the associations. Coaching roles remain draft assumptions pending review."
       ],
       "highlights": [
         {
@@ -1126,6 +1274,21 @@ window.COACH_DRAFTS = {
           "title": "Andy Millman · linked public profile",
           "url": "https://www.facebook.com/millman1",
           "supports": "Public profile-photo originals and Captain Jerry’s posts."
+        },
+        {
+          "title": "Andy Millman · Gracie Charlottesville open mat",
+          "url": "https://www.facebook.com/millman1/posts/pfbid02g7c62ZZWx83esxrcHEZ8xjF1aLNa5nvVNot3u9wLC1F254mPmwNz82bJMvBgcLtzl",
+          "supports": "March 27, 2022 public post explicitly tags Jordan; five original group/practice photographs retained."
+        },
+        {
+          "title": "Relson Gracie · named photo tag, September 2015",
+          "url": "https://www.facebook.com/photo/?fbid=889330671143565&set=a.450833834993253",
+          "supports": "Publisher’s explicit Andy Millman tag points to the same public profile."
+        },
+        {
+          "title": "Jordan Millman · Mat Rats season, November 2025",
+          "url": "https://www.facebook.com/joashley1991/posts/pfbid0nM6L1rGo8QKNWRUJCn3wkYoHGpTWxrZvGeJKX7BHK2nukM8G2d8RWnk9PXyh6bRAl",
+          "supports": "Public post explicitly tags Andy; Jordan’s reply specifies the Blue team. No coaching title is stated."
         }
       ],
       "leads": [
@@ -1150,7 +1313,7 @@ window.COACH_DRAFTS = {
         "archive": true,
         "kind": "Proposed portrait"
       },
-      "gallery_title": "Portrait options and life beyond the mat",
+      "gallery_title": "Grappling, community and portrait options",
       "gallery": [
         {
           "src": "millman-photos/jordan-andy-profile.jpg",
@@ -1204,6 +1367,61 @@ window.COACH_DRAFTS = {
           ],
           "selection": "gallery",
           "kind": "Proposed photo match"
+        },
+        {
+          "src": "millman-sport/gracie-01.jpg",
+          "alt": "Group photo at Gracie Charlottesville from Andy Millman’s public open-mat post tagging Jordan Millman, March 27, 2022. Post-level Andy/Jordan names; individual positions not independently tagged. Keep as full-frame event candidates.",
+          "caption": "Group photo at Gracie Charlottesville from Andy Millman’s public open-mat post tagging Jordan Millman, March 27, 2022. Post-level Andy/Jordan names; individual positions not independently tagged. Keep as full-frame event candidates.",
+          "source_url": "https://www.facebook.com/photo/?fbid=10221841853695314&set=pcb.10221841856175376",
+          "source_label": "Original public photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman",
+            "jordan-millman"
+          ],
+          "kind": "Public grappling / team context",
+          "selection": "gallery"
+        },
+        {
+          "src": "millman-sport/gracie-02.jpg",
+          "alt": "Grappling practice photo from the same public Gracie Charlottesville open-mat set. Post-level Andy/Jordan names; individual positions not independently tagged. Keep as full-frame event candidates.",
+          "caption": "Grappling practice photo from the same public Gracie Charlottesville open-mat set. Post-level Andy/Jordan names; individual positions not independently tagged. Keep as full-frame event candidates.",
+          "source_url": "https://www.facebook.com/photo/?fbid=10221841854375331&set=pcb.10221841856175376",
+          "source_label": "Original public photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman",
+            "jordan-millman"
+          ],
+          "kind": "Public grappling / team context",
+          "selection": "gallery"
+        },
+        {
+          "src": "millman-sport/relson-tagged.jpg",
+          "alt": "Relson Gracie’s public training group portrait, September 20, 2015. The publisher placed an Andy Millman tag linked to millman1 on the photograph. Positional tag is documentary evidence; Grindstone coaching identity still proposed. Do not confuse nearby front-row participants with the tag center.",
+          "caption": "Relson Gracie’s public training group portrait, September 20, 2015. The publisher placed an Andy Millman tag linked to millman1 on the photograph. Positional tag is documentary evidence; Grindstone coaching identity still proposed. Do not confuse nearby front-row participants with the tag center.",
+          "source_url": "https://www.facebook.com/photo/?fbid=889330671143565&set=a.450833834993253",
+          "source_label": "Original public photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman"
+          ],
+          "kind": "Public grappling / team context",
+          "selection": "gallery"
+        },
+        {
+          "src": "millman-sport/mat-rats-gear.jpg",
+          "alt": "Wrestling shoes and headgear in Jordan Millman’s public November 11, 2025 post celebrating the beginning of Mat Rats wrestling season; the post explicitly tags Andy Millman. No people depicted. Stronger wrestling-community context for both profiles; post does not expressly name Grindstone or coaching titles.",
+          "caption": "Wrestling shoes and headgear in Jordan Millman’s public November 11, 2025 post celebrating the beginning of Mat Rats wrestling season; the post explicitly tags Andy Millman. No people depicted. Stronger wrestling-community context for both profiles; post does not expressly name Grindstone or coaching titles.",
+          "source_url": "https://www.facebook.com/photo/?fbid=1639945137389389&set=a.118068996243685",
+          "source_label": "Original public photograph",
+          "native": true,
+          "coaches": [
+            "andy-millman",
+            "jordan-millman"
+          ],
+          "kind": "Public grappling / team context",
+          "selection": "gallery"
         }
       ],
       "profile_review_status": "Draft awaiting user review"
@@ -1446,10 +1664,11 @@ window.COACH_DRAFTS = {
         "Brad went on to compete for McDaniel College at 149 pounds during the 2005–2006 season. Official January 2006 match reports identify him in the Green Terror lineup. In November 2005, he placed fourth at 149 pounds at the Messiah Invitational.",
         "His earlier youth-coaching experience includes serving on Parkville Wrestling Club’s 2010–2011 assistant coaching staff. That background connects local prep and college competition with work in a Maryland youth wrestling program.",
         "Brad’s competition history extends beyond college. He won the 207-pound open bracket at the 2010 Dundalk Hawks Open. In April 2025, the Bald & Fat Tournament results list him representing Lucky Ducks and winning the 185-pound bracket in the event’s “DEAD” division. His route included an 11–1 major decision, a 17–1 technical fall and a forfeit in the final.",
-        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Bradley Gabrish lists Copper in its National Coaches Education Program field, checked October 24, 2026."
+        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Bradley Gabrish lists Copper in its National Coaches Education Program field, checked October 24, 2026.",
+        "The 2025 organizer recap also recognizes Lucky Ducks as team champions. Brad’s named quarterfinal was an 11–1 win over John Bau-Madsen; in the semifinal he defeated Jared Estep by technical fall, 17–1 in 2:16. Clayton Arnold forfeited the final. The championship-team photograph is retained with the full group, because no source gives a left-to-right name key."
       ],
-      "review_title": "Strong working match — Calvert Hall, McDaniel and Parkville",
-      "identity_note": "The uncommon name, Maryland youth coaching, McDaniel competition and a matching Westminster-area recreation record support this draft identity. The handout establishes the current club role; no public source explicitly links all the historical records to Grindstone.",
+      "review_title": "Wrestling history with a new proposed portrait",
+      "identity_note": "The proposed portrait comes from Bradley Gabrish’s public profile, which lists Calvert Hall Class of 2005 and matches the documented wrestler’s school year. The roster-to-profile match remains open for review. His position in the Lucky Ducks team photograph is not assigned.",
       "review_prompt": "Is this the right Brad? Confirm his current practice role and add or select a portrait.",
       "research_notes": [
         "The Parkville announcement was migrated/posted in 2019 but explicitly describes its 2010–2011 staff. The draft uses the season, not the page timestamp.",
@@ -1460,7 +1679,8 @@ window.COACH_DRAFTS = {
         "Verified the November 17, 2005 McDaniel Free Press report: fourth at 149 pounds at the Messiah Invitational. The inspected newspaper page has no athlete photographs.",
         "Public name/state training match is supporting evidence, not independent club identity verification. No membership ID, background-check status or eligibility claim is reproduced.",
         "Added 2010 open and 2025 Bald & Fat results, plus Copper training record. McDaniel yearbooks/newspapers checked. Organizer’s 52 unnamed gallery images are older than the 2025 event and were not assigned to Brad.",
-        "New pass checked McDaniel 2008–2010 yearbook OCR, athletics search, old photographer albums and Parkville photo links. Three unassigned Sinclair previews are preserved as context, not selected as Brad portraits. Parkville’s public image links are dead and its album index requires login."
+        "New pass checked McDaniel 2008–2010 yearbook OCR, athletics search, old photographer albums and Parkville photo links. Three unassigned Sinclair previews are preserved as context, not selected as Brad portraits. Parkville’s public image links are dead and its album index requires login.",
+        "The public athlete profile has no videos. Three new originals preserve a proposed individual portrait, the Lucky Ducks champions and the full event group. Earlier unassigned McDaniel photos remain in the collection."
       ],
       "highlights": [
         {
@@ -1536,6 +1756,21 @@ window.COACH_DRAFTS = {
           "title": "USA Wrestling · coaching certification levels",
           "url": "https://www.themat.com/coaches/ncep-certification",
           "supports": "Explains Copper, Bronze and Teal coaching education."
+        },
+        {
+          "title": "Bradley Gabrish · public profile",
+          "url": "https://www.facebook.com/bradley.gabrish",
+          "supports": "Self-reported Calvert Hall Class of 2005 links the proposed 2025 profile portrait to the school record."
+        },
+        {
+          "title": "Bald & Fat Classic · 2025 organizer recap",
+          "url": "https://www.facebook.com/BaldFatClassic/posts/pfbid02pfdzAKCySvDM45gnu1YpLo79FRXgzeDDJadEr3XazbDV4vFoscLf5b3FtMq3ymaHl",
+          "supports": "Lucky Ducks team champions; named team photo and event group. Does not establish Brad attended Liberty High."
+        },
+        {
+          "title": "FloWrestling · named 2025 bracket",
+          "url": "https://www.flowrestling.org/nextgen/events/2m4vFZwIDY6KlflI/brackets?bracket=32DvcLrEwXdjc2yNgG&wrestlerId=1gH4ql3d9FtBPh59&wrestlerName=Brad%20Gabrish",
+          "supports": "Quarterfinal #5 mat 2, semifinal #40 mat 2 and final #92 mat 3."
         }
       ],
       "leads": [
@@ -1564,8 +1799,40 @@ window.COACH_DRAFTS = {
           "source_label": "McDaniel 2006 yearbook · printed page 69",
           "selection": "context",
           "kind": "Team context"
+        },
+        {
+          "src": "brad-bouts/bb-team-2025.jpg",
+          "alt": "Bald and Fat Classic — Team Champs - Lucky Ducks. The promoter captions the seven-person trophy photo as Lucky Ducks team champions. The exact event participant roster has seven Lucky Ducks entrants including Brad Gabrish. No individually named left-to-right key or photo tag was observed. Do not assign Brad a position by visual comparison.",
+          "caption": "Bald and Fat Classic — Team Champs - Lucky Ducks. The promoter captions the seven-person trophy photo as Lucky Ducks team champions. The exact event participant roster has seven Lucky Ducks entrants including Brad Gabrish. No individually named left-to-right key or photo tag was observed. Do not assign Brad a position by visual comparison.",
+          "source_url": "https://www.facebook.com/photo?fbid=1078348644324743&set=pcb.1078349877657953",
+          "source_label": "Original public photograph",
+          "native": true,
+          "kind": "Championship team / event context",
+          "selection": "gallery"
+        },
+        {
+          "src": "brad-bouts/bb-event-2025.jpg",
+          "alt": "Bald and Fat Classic — The O.G. Bald and Fat Classic 2025. The organizer publishes this full-event group alongside the Lucky Ducks team championship photo. No individual caption identifies Brad.",
+          "caption": "Bald and Fat Classic — The O.G. Bald and Fat Classic 2025. The organizer publishes this full-event group alongside the Lucky Ducks team championship photo. No individual caption identifies Brad.",
+          "source_url": "https://www.facebook.com/photo?fbid=1078348430991431&set=pcb.1078349877657953",
+          "source_label": "Original public photograph",
+          "native": true,
+          "kind": "Championship team / event context",
+          "selection": "gallery"
         }
       ],
+      "photo": {
+        "src": "brad-bouts/bb-portrait-2025.jpg",
+        "alt": "Proposed Brad portrait from a public Bradley Gabrish profile listing Calvert Hall Class of 2005. Original 2035 × 2036 image retained; coach identity is awaiting review.",
+        "caption": "Proposed Brad portrait from a public Bradley Gabrish profile listing Calvert Hall Class of 2005. Original 2035 × 2036 image retained; coach identity is awaiting review.",
+        "source_url": "https://www.facebook.com/photo?fbid=28570170239295446&set=a.100220993383751",
+        "source_label": "Original public photograph",
+        "native": true,
+        "kind": "Proposed portrait",
+        "selection": "profile",
+        "archive": true
+      },
+      "gallery_title": "Adult competition and college archives",
       "profile_review_status": "Draft awaiting user review"
     },
     {

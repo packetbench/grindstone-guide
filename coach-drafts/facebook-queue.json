@@ -135,7 +135,7 @@
     {
       "id": "brian-leaf",
       "name": "Brian Leaf",
-      "context": "Confirmed background: Pennsylvania youth wrestling, heavyweight. The user ruled out the Mustang/PINKS racer; see Who we are not. The Brian Wayne Leaf recreation record remains an unconfirmed lead.",
+      "context": "Brian’s Pennsylvania youth-heavyweight background is club supplied. The PINKS racer is rejected. A new Owen J. Roberts / Spring City public profile is an unresolved school lead, with no wrestling or Maryland bridge; no portrait is assigned.",
       "queries": [
         {
           "id": "brian-leaf-01",
@@ -254,6 +254,27 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Grindstone%22%20photos",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Grindstone%22%20photos",
           "purpose": "Search club albums/posts for a name-captioned photo; retain source and date."
+        },
+        {
+          "id": "brian-leaf-21",
+          "text": "\"Brian Leaf\" \"Owen J. Roberts\"",
+          "purpose": "Test the newly discovered 2007 school candidate, not a claim of identity.",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Owen%20J.%20Roberts%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Owen%20J.%20Roberts%22"
+        },
+        {
+          "id": "brian-leaf-22",
+          "text": "\"Brian Leaf\" \"Spring City\" wrestling",
+          "purpose": "Look for a public youth-club or sports caption connecting the Pennsylvania candidate.",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Spring%20City%22%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Spring%20City%22%20wrestling"
+        },
+        {
+          "id": "brian-leaf-23",
+          "text": "\"Brian Leaf\" \"Westminster Mat Rats\"",
+          "purpose": "Look specifically for a named club tag or photograph; previously empty page searches may miss comments or album captions.",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Westminster%20Mat%20Rats%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Westminster%20Mat%20Rats%22"
         }
       ]
     },
@@ -449,6 +470,20 @@
           "text": "Stephen Cherry Westervelt",
           "photos_url": "https://www.facebook.com/search/photos/?q=Stephen%20Cherry%20Westervelt",
           "posts_url": "https://www.facebook.com/search/posts/?q=Stephen%20Cherry%20Westervelt"
+        },
+        {
+          "id": "eric-westervelt-11",
+          "text": "Eric Westervelt McDaniel graduation",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20McDaniel%20graduation",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20McDaniel%20graduation",
+          "purpose": "Matching profile lead eric.westervelt.77; user-run education-date check. Automated profile inspection was stopped because it could expose Friends-only content."
+        },
+        {
+          "id": "eric-westervelt-12",
+          "text": "Eric Westervelt Western Maryland College yearbook",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Western%20Maryland%20College%20yearbook",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Western%20Maryland%20College%20yearbook",
+          "purpose": "Use a known attendance year to target the official yearbook and commencement archive."
         }
       ]
     },
@@ -504,7 +539,7 @@
     {
       "id": "jordan-millman",
       "name": "Jordan Millman",
-      "context": "Captain Jerry’s directly links the newly found Jordan profile. Public event-work posts and photographs are preserved; a direct Grindstone connection and wrestling history remain to be established.",
+      "context": "The proposed Jordan profile is explicitly tagged at the 2022 grappling open mat and posts about Mat Rats Blue team in 2025. Portrait and sport originals retained; precise coaching role remains for review.",
       "queries": [
         {
           "id": "jordan-millman-01",
@@ -560,13 +595,20 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=Jordan%20Millman%20Grindstone%20wrestling",
           "posts_url": "https://www.facebook.com/search/posts/?q=Jordan%20Millman%20Grindstone%20wrestling",
           "purpose": "Find a direct public coaching/team connection for the newly discovered Jordan profile."
+        },
+        {
+          "id": "jordan-millman-10",
+          "text": "Grindstone public posts tagging Andy Millman or Jordan Millman as coaches",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Grindstone%20public%20posts%20tagging%20Andy%20Millman%20or%20Jordan%20Millman%20as%20coaches",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Grindstone%20public%20posts%20tagging%20Andy%20Millman%20or%20Jordan%20Millman%20as%20coaches",
+          "purpose": "Final direct profile-to-roster bridge; Mat Rats Blue-team post now supports the local wrestling connection but does not state a coaching title."
         }
       ]
     },
     {
       "id": "andy-millman",
       "name": "Andy Millman",
-      "context": "Captain Jerry’s owner and linked public profile are the proposed local match. Photos now exist; test the separate Andrew Millman Fight2Win lead before adding grappling history.",
+      "context": "Public Relson Gracie 2015 tags and a 2022 Charlottesville open-mat post connect the proposed Andy profile to grappling. Mat Rats post supplies local context; Fight2Win identity remains unconfirmed.",
       "queries": [
         {
           "id": "andy-millman-01",
@@ -659,6 +701,13 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=Michael%20Mehl%20Andrew%20Millman%20Fight2Win109",
           "posts_url": "https://www.facebook.com/search/posts/?q=Michael%20Mehl%20Andrew%20Millman%20Fight2Win109",
           "purpose": "Find a captioned match photograph; Flo thumbnail is black."
+        },
+        {
+          "id": "andy-millman-16",
+          "text": "Andy Millman profile — April 2019 Fight2Win109 or Michael Mehl",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20profile%20%E2%80%94%20April%202019%20Fight2Win109%20or%20Michael%20Mehl",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20profile%20%E2%80%94%20April%202019%20Fight2Win109%20or%20Michael%20Mehl",
+          "purpose": "Use Facebook's profile/date navigation to seek a self-authored competitor announcement or event photograph connecting millman1 to the named 2019 bout."
         }
       ]
     },
@@ -775,7 +824,7 @@
     {
       "id": "brad-gabrish",
       "name": "Brad Gabrish",
-      "context": "Search Brad, Bradley and the documented Grabish spelling variation. Calvert Hall, McDaniel and Parkville are separate archive routes.",
+      "context": "New proposed portrait from a Calvert Hall Class of 2005 public profile; Lucky Ducks 2025 team and event originals retained. Seek an individual team-photo name key and exact mat 2 bout footage.",
       "queries": [
         {
           "id": "brad-gabrish-01",
@@ -903,6 +952,69 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brad%20Gabrish%22%20%22Dundalk%22",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brad%20Gabrish%22%20%22Dundalk%22",
           "purpose": "2010 Hawks Open 207-pound winner podium."
+        },
+        {
+          "id": "brad-gabrish-21",
+          "text": "\"Brad Gabrish\" \"Bald\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brad%20Gabrish%22%20%22Bald%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brad%20Gabrish%22%20%22Bald%22",
+          "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
+        },
+        {
+          "id": "brad-gabrish-22",
+          "text": "\"Brad Gabrish\" \"Jared Estep\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brad%20Gabrish%22%20%22Jared%20Estep%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brad%20Gabrish%22%20%22Jared%20Estep%22",
+          "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
+        },
+        {
+          "id": "brad-gabrish-23",
+          "text": "\"Brad Gabrish\" \"John Bau-Madsen\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brad%20Gabrish%22%20%22John%20Bau-Madsen%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brad%20Gabrish%22%20%22John%20Bau-Madsen%22",
+          "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
+        },
+        {
+          "id": "brad-gabrish-24",
+          "text": "\"Lucky Ducks\" \"West York\" 2025",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Lucky%20Ducks%22%20%22West%20York%22%202025",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Lucky%20Ducks%22%20%22West%20York%22%202025",
+          "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
+        },
+        {
+          "id": "brad-gabrish-25",
+          "text": "\"Lucky Ducks\" \"Dominic Bonvegna\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Lucky%20Ducks%22%20%22Dominic%20Bonvegna%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Lucky%20Ducks%22%20%22Dominic%20Bonvegna%22",
+          "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
+        },
+        {
+          "id": "brad-gabrish-26",
+          "text": "\"Lucky Ducks\" \"Mike Cain\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Lucky%20Ducks%22%20%22Mike%20Cain%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Lucky%20Ducks%22%20%22Mike%20Cain%22",
+          "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
+        },
+        {
+          "id": "brad-gabrish-27",
+          "text": "\"Lucky Ducks\" \"Mark Meissner\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Lucky%20Ducks%22%20%22Mark%20Meissner%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Lucky%20Ducks%22%20%22Mark%20Meissner%22",
+          "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
+        },
+        {
+          "id": "brad-gabrish-28",
+          "text": "\"Lucky Ducks\" \"Joe Zaccagnini\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Lucky%20Ducks%22%20%22Joe%20Zaccagnini%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Lucky%20Ducks%22%20%22Joe%20Zaccagnini%22",
+          "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
+        },
+        {
+          "id": "brad-gabrish-29",
+          "text": "\"Lucky Ducks\" \"Tony Zeller\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Lucky%20Ducks%22%20%22Tony%20Zeller%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Lucky%20Ducks%22%20%22Tony%20Zeller%22",
+          "purpose": "Seek named April 2025 bout footage or a name key for the championship team photograph."
         }
       ]
     },
@@ -961,7 +1073,7 @@
       "id": "jessica-cody-hughes",
       "name": "Jessica M. and Cody Hughes",
       "role": "Program support",
-      "context": "Program support: team coordination, events and community outreach. This section is separate from the 13 coaches. Search event captions and named volunteer photos.",
+      "context": "Eight public originals retained: club tag links Jessica, her couple portrait explicitly tags Cody. Review the recognition candidates; do not merge the separate Morgan middle-name lead.",
       "queries": [
         {
           "id": "jessica-cody-hughes-01",
@@ -1095,6 +1207,13 @@
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Jessica%20Hughes%22%20%22Union%20Bridge%22%20wrestling",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Jessica%20Hughes%22%20%22Union%20Bridge%22%20wrestling",
           "purpose": "Geographic route from the council service area; require a club connection."
+        },
+        {
+          "id": "jessica-cody-hughes-22",
+          "text": "Jessica M Hughes Cody Hughes Mat Rats banquet",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jessica%20M%20Hughes%20Cody%20Hughes%20Mat%20Rats%20banquet",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jessica%20M%20Hughes%20Cody%20Hughes%20Mat%20Rats%20banquet",
+          "purpose": "Seek a named club recognition or team event photo using the now-linked public profiles."
         }
       ]
     }
