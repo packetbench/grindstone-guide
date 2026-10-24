@@ -1,109 +1,95 @@
 {
   "integrated_on": "2026-10-24",
-  "received_manifest_sha256": "b2c261020d6b65d250f8e0736076742eeafa2c361c7dc7aafdeda1b84f5f2113",
+  "source_checkpoint": "coach-publish-v4/coach-drafts",
+  "received_manifest_sha256": "ba2df50e217529f8f51fa51c74744ce5ea70d7c46a4d9b2cda2190cd7e3786f2",
   "previous_integration": {
-    "git_commit": "3fb5c2357f8130aa6498dbdd3127f79db68e1dda",
-    "sha256": "1173cb5c814f5812e6da502de70f956766a5588ee4c619d5693ff105ae29a382",
-    "received_manifest_sha256": "4bdb00aee3ff1a685865f0470065935b046d2c260a35f15c2da64b119cfa8e63"
+    "git_commit": "202c4269a8995a0a122b0dfbf4e4368c6a194a39",
+    "sha256": "a4bf39f6242612cbc07f480a483fd5a980516c0da7802f5939b4d467771cebd9",
+    "received_manifest_sha256": "b2c261020d6b65d250f8e0736076742eeafa2c361c7dc7aafdeda1b84f5f2113"
   },
   "notes": [
-    "The received public-manifest.json is preserved byte for byte. This integration manifest records the deployed payload.",
-    "Only coach research is included; practice and family workflow changes remain in the review branch.",
-    "Integration: public draft label; omit LinkedIn biography links; browser-local review explanation; Hughes queue anchor correction; version local scripts and styles.",
-    "Source images preserved byte for byte. Previous complete integration record remains in the identified Git commit."
+    "The received public-manifest.json is preserved byte for byte. This record maps source-relative paths to the deployed coach-drafts paths.",
+    "Only coach research is included. The Foundation Series and other planning work remain on the preview branch.",
+    "Integration preserves the public draft label, removes LinkedIn biography links, retains the browser-local review explanation, and versions local scripts/styles.",
+    "All source images and originals are preserved byte for byte. Previous deployed bytes and the prior integration record remain recoverable from the identified Git commit."
   ],
   "changed": [
     {
-      "path": "index.html",
-      "received_sha256": "7d382366fee1059bb1fe1aef860afc33cb5c1a6e2d51f46f9f8c273ec7ebbd8b",
-      "integrated_sha256": "86f570ba1f11a2963594a13783a59f9291913e5d8803670ad327522dc6e86a8b"
-    },
-    {
       "path": "app.js",
-      "received_sha256": "f966811ecd5ae08290c545a8b39fb37ac3f3b4e0ae402be1d5ce51f79dc1b41b",
-      "integrated_sha256": "79edf113354080e3d0983ecb1979b07c6b63874624e922ea5d69ff4349192bb2"
-    },
-    {
-      "path": "facebook-queue.html",
-      "received_sha256": "49ef893e4d83c4333f0ab596240b360945610150870819f0d3ab477a5d62b297",
-      "integrated_sha256": "3823e5604cb250468fe929d5d8b898653e9f095edef9cc71b9d91d4f907c6f77"
+      "received_sha256": "d18a34224788f07d6fcaedff1194e17d5cd3fa5dcbd937c833c9e8766bd56f5e",
+      "integrated_sha256": "8f5de155333c652169617f652a272e8b8cdcfcde0eac1a1cc5d7dd0ac8547a28"
     },
     {
       "path": "club-gallery.html",
       "received_sha256": "fd40db5b8d99d39ded924e318775e66e5ed2ce87b8911e96440cf92287e1bf2c",
-      "integrated_sha256": "e6bad59a56fd2aa856778dde74e127ae99229f46f605f14e0ce2ff107fbf0075"
+      "integrated_sha256": "978951a98743c10a52cd905eb172f2a370e346606fc57691853d2a738eb4927f"
+    },
+    {
+      "path": "facebook-queue.html",
+      "received_sha256": "9e61c13a6f75197042a0977eb73d2eaeb9448e64a481118b01ab87ac10f4a158",
+      "integrated_sha256": "284086ebf0c70d65ed91c5a1c593fcbc0b0cafa66a349457bffd73eea1c7b926"
     },
     {
       "path": "hughes-family.html",
-      "received_sha256": "f656112d17bdef41a0d242108887bf6451f62bafb0ec719c1fda5d46f42bb5f9",
-      "integrated_sha256": "fd54afa4e8807c95666e8f761be14226333592d671dc758532f4a2e52fda97a4"
+      "received_sha256": "b3ea6aa8190b172cd26494e20dbe3de619aa90c6a96727fd5ce204b530dc01e7",
+      "integrated_sha256": "5471de7f9686343fd23bec2fc7be1df2d8feef3b728bacb8e49a96c141944cee"
+    },
+    {
+      "path": "index.html",
+      "received_sha256": "7d382366fee1059bb1fe1aef860afc33cb5c1a6e2d51f46f9f8c273ec7ebbd8b",
+      "integrated_sha256": "55de3b3c27b05163bcaae69a527ab728e46d9d065e9d77f6301a8f6101d0ebbc"
     },
     {
       "path": "profiles.js",
-      "received_sha256": "73b05d2edd39a30a615c5cc957f6ba8f0bed559e44435e619a4c5a0c6837abef",
-      "integrated_sha256": "cce0259e06f2fc1979f279f2241e33bc89bce42533cd72310db314b7e4ff933f"
+      "received_sha256": "032f4c7224e2420cd01405e47147eb4e34ea5ffdc27db60f713e5d625f5b95df",
+      "integrated_sha256": "9e696f7e2cb64d37e97f9cb123c6c80eec0d08501cda455e271dddc59d5cd1f9"
     }
   ],
   "files": [
     {
-      "path": "index.html",
-      "bytes": 1296,
-      "sha256": "86f570ba1f11a2963594a13783a59f9291913e5d8803670ad327522dc6e86a8b"
-    },
-    {
-      "path": "style.css",
-      "bytes": 10355,
-      "sha256": "b7c912fd5a515f126ce67162fd31388a03a17d8e3612b04784dcb5083a03125d"
-    },
-    {
       "path": "app.js",
-      "bytes": 18302,
-      "sha256": "79edf113354080e3d0983ecb1979b07c6b63874624e922ea5d69ff4349192bb2"
+      "bytes": 18547,
+      "sha256": "8f5de155333c652169617f652a272e8b8cdcfcde0eac1a1cc5d7dd0ac8547a28"
     },
     {
-      "path": "facebook-queue.html",
-      "bytes": 172171,
-      "sha256": "3823e5604cb250468fe929d5d8b898653e9f095edef9cc71b9d91d4f907c6f77"
+      "path": "assets/brad-team-page-2006.png",
+      "bytes": 358141,
+      "sha256": "5083111847ec3e5e9f977a450351e3e7acac235f22f90c155de95c17fb7d3585"
     },
     {
-      "path": "facebook-queue.js",
-      "bytes": 6417,
-      "sha256": "805083b208a58a0c3d76b9a98071e5ada45139336fac6e22275265cda043bde9"
+      "path": "assets/brian-mustang-2005.png",
+      "bytes": 199698,
+      "sha256": "5e9552641e4d7d2cdcb11b8dbfd984e156e26163935dff92aacabf0985e4ef12"
     },
     {
-      "path": "facebook-queue.json",
-      "bytes": 49425,
-      "sha256": "2ab62dc717275b4b9e0a757dbc0790d0ba1ccf56d90523c0afe6d42e92c2bce7"
+      "path": "assets/daniel-mpd-award-2023.png",
+      "bytes": 485048,
+      "sha256": "0be8b7469cb7e71103653c3634292c91a62046792144d7ac68cb34926c488153"
     },
     {
-      "path": "queue.css",
-      "bytes": 4723,
-      "sha256": "4ff3cd8bcfbe0db35e6b4922c32b8d24662cd7d51756de5065a2596817cb0204"
+      "path": "assets/daniel-portrait-2023.png",
+      "bytes": 64242,
+      "sha256": "3af9305bb51604fad5b1ec2358d39572e93ee8f75bf40e9e83db8eaef4a4844f"
     },
     {
-      "path": "club-gallery.html",
-      "bytes": 24458,
-      "sha256": "e6bad59a56fd2aa856778dde74e127ae99229f46f605f14e0ce2ff107fbf0075"
+      "path": "assets/eric-news-spread-1999.png",
+      "bytes": 7385584,
+      "sha256": "45a020d408678f4aa9d0f5a02fdc8ee7c723bc89073b41a2d9e9c92eaba67e60"
     },
     {
-      "path": "club-gallery.js",
-      "bytes": 10066,
-      "sha256": "f7cd0bc8aa4d1744e5c2f656486dae18849302925a0dc156f020b3008e806b0a"
+      "path": "assets/eric-westervelt.jpg",
+      "bytes": 63639,
+      "sha256": "a32fafce935b57748cc93a229bf1b073b140d63de5eb063f05f7194a28b8940d"
     },
     {
-      "path": "club-gallery.css",
-      "bytes": 4022,
-      "sha256": "4b42f74451fc8361b980f5c88ea68ab516a4f708e168b1eb8c23aca196440bcb"
+      "path": "assets/eric-wrestling-1999.png",
+      "bytes": 23711,
+      "sha256": "8fa02a3bf2ea0d5ad6355d087ef51984ac580d71ca7a93cec1b7a356f0d79184"
     },
     {
-      "path": "club-index.json",
-      "bytes": 24854,
-      "sha256": "1a63cee7548d335c4e3fd48a21a0387456bf61f7922f0a7c8e9d7f7fbb6d126a"
-    },
-    {
-      "path": "hughes-family.html",
-      "bytes": 2834,
-      "sha256": "fd54afa4e8807c95666e8f761be14226333592d671dc758532f4a2e52fda97a4"
+      "path": "assets/eric-wrestling-source.png",
+      "bytes": 133553,
+      "sha256": "745f24c1eb1f6ecb5caf97565c9b07d69e3f51a5fc0d2b87b67716e0805c9721"
     },
     {
       "path": "assets/grindstone-logo.png",
@@ -111,74 +97,24 @@
       "sha256": "24526665033869579a0118ca2c4d6ab2ae53ec1c85fcfba79e51953fb94fd5d3"
     },
     {
-      "path": "assets/kyle-rutledge.webp",
-      "bytes": 1585802,
-      "sha256": "dfdd4d15465c95278369682bd85a4d304705a371d7999e97d34d52a215d8b6af"
-    },
-    {
-      "path": "assets/kyle-team.png",
-      "bytes": 1481585,
-      "sha256": "0c78f87e518ddb35dc06f0230776093bbdd80c0079bdd5127406c5611ec8198d"
-    },
-    {
-      "path": "assets/kyle-athletic.png",
-      "bytes": 1712095,
-      "sha256": "008801eced2629ebc1678175f3567721155e62ff18ca280379e1f968404e27b2"
-    },
-    {
-      "path": "assets/kyle-1993-page-77.png",
-      "bytes": 1354335,
-      "sha256": "2800b9b719b91db1482004106272ee190d8be3231d404fc0c9235c957c5c9189"
-    },
-    {
-      "path": "assets/thomas-regional-team-2009.jpg",
-      "bytes": 44967,
-      "sha256": "16a55ec74bd5d0cf0787f9e3c72b3cb4f9be252e5ddd5f07f6de3ea1a75729d9"
-    },
-    {
-      "path": "assets/kaia-condon.png",
-      "bytes": 35188,
-      "sha256": "866643042dbf246481f7ce31752bb14582b09325b9bb982ffa13177d39e673bb"
-    },
-    {
-      "path": "marymount-photos/mm-148.jpg",
-      "bytes": 119366,
-      "sha256": "a8356274ea7c7929a78517323ed347c51ea202f008675a79b349554e87f46407"
-    },
-    {
-      "path": "marymount-photos/mm-152.jpg",
-      "bytes": 152710,
-      "sha256": "b87b8f495514f5b667e0fd8afbb280474c47f39014857e4e2285e516f00682dd"
-    },
-    {
-      "path": "kaia-bouts/kb-01.png",
-      "bytes": 162020,
-      "sha256": "a8567493bfdc3cbaa505fcc6a84627da94a3523588d67da9fd801b97522a27ef"
-    },
-    {
-      "path": "kaia-bouts/kb-07.png",
-      "bytes": 159816,
-      "sha256": "273c5cfa10e6d43cbdf74b76dcea30801fef946903af869420372dc645590f53"
-    },
-    {
-      "path": "kaia-bouts/kb-09.png",
-      "bytes": 159222,
-      "sha256": "c4c3f31dcae2d0740f8c1d93881d942c0c07cbc332a35aefe0f72abb05ad0d24"
-    },
-    {
-      "path": "kaia-bouts/kb-11.png",
-      "bytes": 115451,
-      "sha256": "1c125e9c0fe632b731e1bbb285e21c9e7dab138f09d9fb1f718bda0b12e545f0"
-    },
-    {
-      "path": "assets/kaia-mcdaniel-alumni.png",
-      "bytes": 1439547,
-      "sha256": "a5728c1c1b14af3faf71251dfb654d22ebe34c1fa71fc8e40ff652292cf616e3"
+      "path": "assets/jerome-boxing-2012.jpg",
+      "bytes": 55627,
+      "sha256": "fbcaebfadd168a05decbfd631292889ca86fb940c23ee44ac3a6d6959cd632fe"
     },
     {
       "path": "assets/jerome-featherstone.jpg",
       "bytes": 686478,
       "sha256": "ef26e853d29bee8f96a2e4ea30f7d302e944ce5d53d2f57f791e47a5d9442931"
+    },
+    {
+      "path": "assets/jerome-mma-2019.jpeg",
+      "bytes": 101411,
+      "sha256": "6f894d1fc0a52a838f41c1f8bca0182bcfadfbef5383cb7619b15dd8dde856bd"
+    },
+    {
+      "path": "assets/jerome-ou-2005-nov.jpg",
+      "bytes": 21558,
+      "sha256": "1e95d5ab93e6116384938ae73052de56192981657bb30dde0c9334b716d4aa10"
     },
     {
       "path": "assets/jerome-ou-2005-oct.jpg",
@@ -191,139 +127,34 @@
       "sha256": "7b6501ec60fd5e7ce678f96d5e347c312ac369a2be8c2a5cdfe25e8aec93653d"
     },
     {
-      "path": "assets/jerome-ou-2005-nov.jpg",
-      "bytes": 21558,
-      "sha256": "1e95d5ab93e6116384938ae73052de56192981657bb30dde0c9334b716d4aa10"
+      "path": "assets/jerome-staff-thumb.jpg",
+      "bytes": 10101,
+      "sha256": "4fa3a612a9e296b38984f9fad2d5b037fde462808e54d5bc6f6089ddd8f4d02e"
     },
     {
-      "path": "assets/jerome-mma-2019.jpeg",
-      "bytes": 101411,
-      "sha256": "6f894d1fc0a52a838f41c1f8bca0182bcfadfbef5383cb7619b15dd8dde856bd"
+      "path": "assets/kaia-condon.png",
+      "bytes": 35188,
+      "sha256": "866643042dbf246481f7ce31752bb14582b09325b9bb982ffa13177d39e673bb"
     },
     {
-      "path": "assets/jerome-boxing-2012.jpg",
-      "bytes": 55627,
-      "sha256": "fbcaebfadd168a05decbfd631292889ca86fb940c23ee44ac3a6d6959cd632fe"
+      "path": "assets/kaia-mcdaniel-alumni.png",
+      "bytes": 1439547,
+      "sha256": "a5728c1c1b14af3faf71251dfb654d22ebe34c1fa71fc8e40ff652292cf616e3"
     },
     {
-      "path": "jerome-boxing/jb-poster-2012.jpg",
-      "bytes": 102476,
-      "sha256": "90ed6912e0703bb950d5fed882cecf4f4c286248c9afdbd7c637385203ad9881"
-    },
-    {
-      "path": "assets/eric-westervelt.jpg",
-      "bytes": 63639,
-      "sha256": "a32fafce935b57748cc93a229bf1b073b140d63de5eb063f05f7194a28b8940d"
-    },
-    {
-      "path": "assets/eric-wrestling-source.png",
-      "bytes": 133553,
-      "sha256": "745f24c1eb1f6ecb5caf97565c9b07d69e3f51a5fc0d2b87b67716e0805c9721"
-    },
-    {
-      "path": "assets/ryan-devries.jpg",
-      "bytes": 147333,
-      "sha256": "cba99dfb96d30aa349be43266b084181186e2f08966c3fb483f1fa4dd880c7d4"
-    },
-    {
-      "path": "assets/ryan-wrestling-2000.png",
-      "bytes": 116582,
-      "sha256": "03646e2adfca8acebb2b659f2b2be88b1b104b16cb050cee642ba8f879eb9f90"
-    },
-    {
-      "path": "ryan-school/ry-cad-2002.png",
-      "bytes": 373527,
-      "sha256": "25084da127a8405a43785ff8c922e6ab73a93e89f1b87de673f347151cf19d0b"
-    },
-    {
-      "path": "ryan-school/ry-football-2002.png",
-      "bytes": 2400860,
-      "sha256": "3dd3ec054ae0d1f931167e55da86aa01a85ea6586d3b70d56a5e91baa08cf1cb"
-    },
-    {
-      "path": "ryan-school/ry-wrestling-2002.png",
-      "bytes": 963961,
-      "sha256": "ef901f1db0033fc56793ce3fb52b1cf1a9de639a9672dd10235e1532ed5b5ba8"
-    },
-    {
-      "path": "ryan-school/ry-senior-label.png",
-      "bytes": 190339,
-      "sha256": "60527f85516870498ca1b0eccb4a2a82727ba675b9c2fe4d7dcd2974aa5057bc"
-    },
-    {
-      "path": "ryan-school/ry-baseball-2000.png",
-      "bytes": 1014483,
-      "sha256": "749bd55ddbbb0cb8b2b4f51f9389735c391416c85ce3f4471766c27f35f0947f"
-    },
-    {
-      "path": "assets/tyler-webb-2021.jpeg",
-      "bytes": 57385,
-      "sha256": "3c0ecdc917b6eeed18c87641beb11aecf64191e9e7ab74658268b4a305c389a2"
-    },
-    {
-      "path": "assets/tyler-baseball-2000.png",
-      "bytes": 361065,
-      "sha256": "911052152aa26dadd810270037bcb35f3a19bcb9dd3297980bc72ebe73bee6d2"
-    },
-    {
-      "path": "assets/mike-handleman.jpg",
-      "bytes": 89986,
-      "sha256": "a99ccf9bc673878850e7e45147e5bcc0e8dab7890ae6249e2bb02b806050743a"
-    },
-    {
-      "path": "mike-bouts/mike-portrait-2023.jpg",
-      "bytes": 649496,
-      "sha256": "8f80c76f067b29f12f48d332a3a7f49bbfbbdbd9ed1056c9f6660ccc62d99ffa"
-    },
-    {
-      "path": "mike-bouts/mike-action-01.jpg",
-      "bytes": 826571,
-      "sha256": "0456a8dccc1a393d2c8e1b72140e9c796d45310d682e70fbdb8dba5510b808bf"
-    },
-    {
-      "path": "mike-bouts/mike-action-02.jpg",
-      "bytes": 852257,
-      "sha256": "1204829b589663aa1022d0da0b858df06692858df4d5f873f03a5555faec1c33"
-    },
-    {
-      "path": "assets/brad-team-page-2006.png",
-      "bytes": 358141,
-      "sha256": "5083111847ec3e5e9f977a450351e3e7acac235f22f90c155de95c17fb7d3585"
-    },
-    {
-      "path": "assets/daniel-portrait-2023.png",
-      "bytes": 64242,
-      "sha256": "3af9305bb51604fad5b1ec2358d39572e93ee8f75bf40e9e83db8eaef4a4844f"
-    },
-    {
-      "path": "assets/daniel-mpd-award-2023.png",
-      "bytes": 485048,
-      "sha256": "0be8b7469cb7e71103653c3634292c91a62046792144d7ac68cb34926c488153"
-    },
-    {
-      "path": "assets/kyle-team-1990.png",
-      "bytes": 1362484,
-      "sha256": "75551bb7cdd1adbc47f55221634a04be051e479eb2fd76d43b5d1257188eea54"
-    },
-    {
-      "path": "assets/kyle-team-1991.png",
-      "bytes": 1264031,
-      "sha256": "ec7be9455ce8c208ee2d1310d2fccd257bdd9cd827e48c148b1aababd73b5610"
-    },
-    {
-      "path": "assets/kyle-team-1992.png",
-      "bytes": 1515380,
-      "sha256": "91973bc11eb186d9e824d72cab46631ec6f15862e60a851f76a6bf8ae2919ae2"
-    },
-    {
-      "path": "assets/kyle-1990-page-15.png",
-      "bytes": 1245876,
-      "sha256": "091a9530082e2e4a809d8f4a93a71d6d6673350d19d041762b8347b0c522c0fc"
+      "path": "assets/kaia-state-bout-2023.png",
+      "bytes": 128374,
+      "sha256": "58170b891b38df5961a24afee2a9b97c17993b5c2cc3ef6936974cb5563f4348"
     },
     {
       "path": "assets/kyle-1990-page-112.png",
       "bytes": 1434995,
       "sha256": "2cd657c83afdcd058854e7b20781572e1c1d600c0ffce31aff46e0198a2cf041"
+    },
+    {
+      "path": "assets/kyle-1990-page-15.png",
+      "bytes": 1245876,
+      "sha256": "091a9530082e2e4a809d8f4a93a71d6d6673350d19d041762b8347b0c522c0fc"
     },
     {
       "path": "assets/kyle-1991-page-55.png",
@@ -361,6 +192,16 @@
       "sha256": "b21246ae51e62c4e8e3317c05dafe23a22514058263c88ce3a390095dc4b1efd"
     },
     {
+      "path": "assets/kyle-1993-page-20.png",
+      "bytes": 1586743,
+      "sha256": "1a75b8f7a771ac2b247657a700e60e57150d0e151480c0f38f319dfb695328d1"
+    },
+    {
+      "path": "assets/kyle-1993-page-77.png",
+      "bytes": 1354335,
+      "sha256": "2800b9b719b91db1482004106272ee190d8be3231d404fc0c9235c957c5c9189"
+    },
+    {
       "path": "assets/kyle-1993-page-92.png",
       "bytes": 1753189,
       "sha256": "fa04aa678fd9e1ff2b84508aefbca06edd5406d9386ce680e7bb981b7382810c"
@@ -376,6 +217,11 @@
       "sha256": "8c2fab1350482806e39c9158da79f9aca54efdef6dbe2f3db4658bb82255ea63"
     },
     {
+      "path": "assets/kyle-athletic.png",
+      "bytes": 1712095,
+      "sha256": "008801eced2629ebc1678175f3567721155e62ff18ca280379e1f968404e27b2"
+    },
+    {
       "path": "assets/kyle-football-1993.png",
       "bytes": 1684348,
       "sha256": "2c276cd30c26a03f9e10a1a49e914576f6e2eb2dad60247457f839621ed4cde4"
@@ -386,159 +232,29 @@
       "sha256": "717b3f602d4bd596b4f231e0ec1b3cce1540d50597ab0834860ebdca0e4f8750"
     },
     {
-      "path": "assets/eric-wrestling-1999.png",
-      "bytes": 23711,
-      "sha256": "8fa02a3bf2ea0d5ad6355d087ef51984ac580d71ca7a93cec1b7a356f0d79184"
+      "path": "assets/kyle-rutledge.webp",
+      "bytes": 1585802,
+      "sha256": "dfdd4d15465c95278369682bd85a4d304705a371d7999e97d34d52a215d8b6af"
     },
     {
-      "path": "assets/eric-news-spread-1999.png",
-      "bytes": 7385584,
-      "sha256": "45a020d408678f4aa9d0f5a02fdc8ee7c723bc89073b41a2d9e9c92eaba67e60"
+      "path": "assets/kyle-team-1990.png",
+      "bytes": 1362484,
+      "sha256": "75551bb7cdd1adbc47f55221634a04be051e479eb2fd76d43b5d1257188eea54"
     },
     {
-      "path": "assets/jerome-staff-thumb.jpg",
-      "bytes": 10101,
-      "sha256": "4fa3a612a9e296b38984f9fad2d5b037fde462808e54d5bc6f6089ddd8f4d02e"
+      "path": "assets/kyle-team-1991.png",
+      "bytes": 1264031,
+      "sha256": "ec7be9455ce8c208ee2d1310d2fccd257bdd9cd827e48c148b1aababd73b5610"
     },
     {
-      "path": "kaia-bouts/kb-02.png",
-      "bytes": 156593,
-      "sha256": "7199bd6e7a870d385c414c1a01a6fc6f06122fc3186da7ec8227924f25d94bf7"
+      "path": "assets/kyle-team-1992.png",
+      "bytes": 1515380,
+      "sha256": "91973bc11eb186d9e824d72cab46631ec6f15862e60a851f76a6bf8ae2919ae2"
     },
     {
-      "path": "kaia-bouts/kb-03.png",
-      "bytes": 144206,
-      "sha256": "0f6b9ac16aab9624a5efbf988da7c13eb1298ee5d0a85ce0a902c04e4ad53775"
-    },
-    {
-      "path": "kaia-bouts/kb-04.png",
-      "bytes": 185300,
-      "sha256": "34ffd112b4aab59e0dc0406218902c9f20aea46ebe352ae3d6139c84c495999c"
-    },
-    {
-      "path": "kaia-bouts/kb-05.png",
-      "bytes": 158877,
-      "sha256": "6df5d024d46bf53901d2ad3ced25cf94567161efdbbc9b1330d518ab763b70f4"
-    },
-    {
-      "path": "kaia-bouts/kb-06.png",
-      "bytes": 137413,
-      "sha256": "32db4114ecc169058efd40fb60a262ea25bac9dbf72c5028924d305b3b25da6f"
-    },
-    {
-      "path": "kaia-bouts/kb-10.png",
-      "bytes": 130183,
-      "sha256": "6896c22224426b0bbf58d8629a916a505c3ea58026a33214594e020c079f31b5"
-    },
-    {
-      "path": "kaia-bouts/kb-12.png",
-      "bytes": 134563,
-      "sha256": "b3b12de9653fd0dcaf63350e4245d622563e79314f16631761864962b0d25562"
-    },
-    {
-      "path": "kaia-bouts/kb-13.png",
-      "bytes": 126961,
-      "sha256": "5059e885027641efa5c624d5b703c44a8dd15d1796026f3c63ce640d689a78c0"
-    },
-    {
-      "path": "assets/kaia-state-bout-2023.png",
-      "bytes": 128374,
-      "sha256": "58170b891b38df5961a24afee2a9b97c17993b5c2cc3ef6936974cb5563f4348"
-    },
-    {
-      "path": "marymount-photos/mm-144.jpg",
-      "bytes": 156550,
-      "sha256": "1243ffd4c3244b728efbb1b44ef3baeed7e2b2640e7024e12dc8bd288e432f54"
-    },
-    {
-      "path": "marymount-photos/mm-145.jpg",
-      "bytes": 111290,
-      "sha256": "bc881a14b3c347631d79be77c26ca20aee30f284780f1e36ac5ccdbf9c0dea36"
-    },
-    {
-      "path": "marymount-photos/mm-146.jpg",
-      "bytes": 137736,
-      "sha256": "6b65d57212d6f1e1836f1591d0b4fc8d7d9b432ca9bd6b8928ec98216bfcee73"
-    },
-    {
-      "path": "marymount-photos/mm-147.jpg",
-      "bytes": 130498,
-      "sha256": "91e1d4e450a9ab5706a4c9258cbb663a740c208770f0c92697ee32e9d60f0641"
-    },
-    {
-      "path": "marymount-photos/mm-149.jpg",
-      "bytes": 129484,
-      "sha256": "aae7f36e5909aab7b3257bd233fe844f140fa1cf8b19636fa0feef97e530b9ff"
-    },
-    {
-      "path": "marymount-photos/mm-150.jpg",
-      "bytes": 282802,
-      "sha256": "dbe42b53b79d33da2ba317b54e78ae553ac80a74b7a9745ae3e8a1f8d3ca2f9d"
-    },
-    {
-      "path": "marymount-photos/mm-151.jpg",
-      "bytes": 147154,
-      "sha256": "c6555c748293f7729daeba7e391286fee057e1661cd9ae9846235ee418b268d7"
-    },
-    {
-      "path": "marymount-photos/mm-153.jpg",
-      "bytes": 312596,
-      "sha256": "6fb9c0df68c6a33b1d16434b6f5d1b7ab7542e8652c7c0553d58bbf7a67578c7"
-    },
-    {
-      "path": "marymount-photos/mm-154.jpg",
-      "bytes": 163570,
-      "sha256": "a29d84e47a3c50235731c8725b3faf3bb1a7e44d5aaf1f11f29ddc806afb9a33"
-    },
-    {
-      "path": "ryan-school/ry-2002-p10.jpg",
-      "bytes": 484310,
-      "sha256": "afba5a000cfba83381f27436f1d983679a0ecb9aecfb3b86687bea95fdc325a6"
-    },
-    {
-      "path": "ryan-school/ry-2002-p14.jpg",
-      "bytes": 509024,
-      "sha256": "1c351c18f9f067f99527ec046c0e0390687b0785ffe17293835ded8040121c38"
-    },
-    {
-      "path": "ryan-school/ry-2002-p29.jpg",
-      "bytes": 438129,
-      "sha256": "4bb67bb6b8729de62ca20dd64648615ef6d8b081aa23d35b2b6480e8077ec586"
-    },
-    {
-      "path": "ryan-school/ry-2002-p51.jpg",
-      "bytes": 561870,
-      "sha256": "e8707a177582c98e34672cf4b10e6e99433fce65f13a5e9c7d843e604c2c7082"
-    },
-    {
-      "path": "ryan-school/ry-2002-p65.jpg",
-      "bytes": 479857,
-      "sha256": "f66f915ed5c1773f139931423bca13bf5dbe70dccbf739eabe37097864a1ea1b"
-    },
-    {
-      "path": "ryan-school/ry-2002-p120.jpg",
-      "bytes": 436291,
-      "sha256": "f7e4111f4dbaad72649f48dbc754be002534d4730e1de5bb0b4138cb373a7d6a"
-    },
-    {
-      "path": "ryan-school/ry-senior-2002.png",
-      "bytes": 151563,
-      "sha256": "71f4ef658a66a173577cfb0c23777fed31c9b17828dcc3a0ee5a8948815bd906"
-    },
-    {
-      "path": "ryan-school/ry-2002-p179.jpg",
-      "bytes": 513288,
-      "sha256": "07cb5de19c207de975f90c7bffc52220f87aef3e4e23942d620d91a54bb3313c"
-    },
-    {
-      "path": "ryan-school/ry-2000-p39.jpg",
-      "bytes": 494236,
-      "sha256": "6d01c1864c97334edc81b798a2afd925d0ecd295356dbd6fbe4bbb445abe4065"
-    },
-    {
-      "path": "assets/tyler-webb-2023.png",
-      "bytes": 1074173,
-      "sha256": "2ea3fd236a493feb624caf9de4c123c57954f3fe5ed0818caebcc61fbfaddb8d"
+      "path": "assets/kyle-team.png",
+      "bytes": 1481585,
+      "sha256": "0c78f87e518ddb35dc06f0230776093bbdd80c0079bdd5127406c5611ec8198d"
     },
     {
       "path": "assets/mike-cagezilla-2023.jpg",
@@ -546,24 +262,79 @@
       "sha256": "db6c4f9731425cd6881a5fdd3706e05d76485694cc8ffb928880be1225c0c5ad"
     },
     {
-      "path": "jerome-boxing/jb-candidate-2015.jpg",
-      "bytes": 46877,
-      "sha256": "d6baf2d230233c95860ce935ed7f3285396971198e4b22500a560bdf6300a92a"
+      "path": "assets/mike-handleman.jpg",
+      "bytes": 89986,
+      "sha256": "a99ccf9bc673878850e7e45147e5bcc0e8dab7890ae6249e2bb02b806050743a"
     },
     {
-      "path": "jerome-boxing/jb-staff.jpg",
-      "bytes": 10101,
-      "sha256": "4fa3a612a9e296b38984f9fad2d5b037fde462808e54d5bc6f6089ddd8f4d02e"
+      "path": "assets/ryan-devries.jpg",
+      "bytes": 147333,
+      "sha256": "cba99dfb96d30aa349be43266b084181186e2f08966c3fb483f1fa4dd880c7d4"
     },
     {
-      "path": "assets/kyle-1993-page-20.png",
-      "bytes": 1586743,
-      "sha256": "1a75b8f7a771ac2b247657a700e60e57150d0e151480c0f38f319dfb695328d1"
+      "path": "assets/ryan-wrestling-2000.png",
+      "bytes": 116582,
+      "sha256": "03646e2adfca8acebb2b659f2b2be88b1b104b16cb050cee642ba8f879eb9f90"
     },
     {
-      "path": "assets/brian-mustang-2005.png",
-      "bytes": 199698,
-      "sha256": "5e9552641e4d7d2cdcb11b8dbfd984e156e26163935dff92aacabf0985e4ef12"
+      "path": "assets/thomas-regional-team-2009.jpg",
+      "bytes": 44967,
+      "sha256": "16a55ec74bd5d0cf0787f9e3c72b3cb4f9be252e5ddd5f07f6de3ea1a75729d9"
+    },
+    {
+      "path": "assets/tyler-baseball-2000.png",
+      "bytes": 361065,
+      "sha256": "911052152aa26dadd810270037bcb35f3a19bcb9dd3297980bc72ebe73bee6d2"
+    },
+    {
+      "path": "assets/tyler-webb-2021.jpeg",
+      "bytes": 57385,
+      "sha256": "3c0ecdc917b6eeed18c87641beb11aecf64191e9e7ab74658268b4a305c389a2"
+    },
+    {
+      "path": "assets/tyler-webb-2023.png",
+      "bytes": 1074173,
+      "sha256": "2ea3fd236a493feb624caf9de4c123c57954f3fe5ed0818caebcc61fbfaddb8d"
+    },
+    {
+      "path": "brad-photos/bg-mcdaniel-01.jpg",
+      "bytes": 328891,
+      "sha256": "ea3b4c5e17f0358ef658b8b835767f35b177c2784cc14f90e202fd0e43fba78c"
+    },
+    {
+      "path": "brad-photos/bg-mcdaniel-02.jpg",
+      "bytes": 315639,
+      "sha256": "503e523026f1db787d056ed9f20bf23e6ef6054b21b0ee08ea04afef7919b0d5"
+    },
+    {
+      "path": "brad-photos/bg-mcdaniel-03.jpg",
+      "bytes": 267064,
+      "sha256": "76748dc63acebef5d84175a08a99302107c8dd27b7bb4ade96552c75e3a57465"
+    },
+    {
+      "path": "club-gallery.css",
+      "bytes": 4022,
+      "sha256": "4b42f74451fc8361b980f5c88ea68ab516a4f708e168b1eb8c23aca196440bcb"
+    },
+    {
+      "path": "club-gallery.html",
+      "bytes": 24458,
+      "sha256": "978951a98743c10a52cd905eb172f2a370e346606fc57691853d2a738eb4927f"
+    },
+    {
+      "path": "club-gallery.js",
+      "bytes": 10066,
+      "sha256": "f7cd0bc8aa4d1744e5c2f656486dae18849302925a0dc156f020b3008e806b0a"
+    },
+    {
+      "path": "club-index.json",
+      "bytes": 24854,
+      "sha256": "1a63cee7548d335c4e3fd48a21a0387456bf61f7922f0a7c8e9d7f7fbb6d126a"
+    },
+    {
+      "path": "club-photos/club-01.png",
+      "bytes": 278353,
+      "sha256": "cd068148533cf9c38a1dfcdd4f59b856fc781ba82be9018de17928faee691820"
     },
     {
       "path": "club-photos/club-02.png",
@@ -571,9 +342,14 @@
       "sha256": "3b6cfe9c307758d088cb4e167f5adf5b7c63359b29e2bb1db200ed4ff1206502"
     },
     {
-      "path": "club-photos/club-01.png",
-      "bytes": 278353,
-      "sha256": "cd068148533cf9c38a1dfcdd4f59b856fc781ba82be9018de17928faee691820"
+      "path": "club-photos/club-03.jpg",
+      "bytes": 1969847,
+      "sha256": "5533f9a9e9f923b144ab97e0110a170c6090a0730b9402fc5965db8533964358"
+    },
+    {
+      "path": "club-photos/club-04.png",
+      "bytes": 4787039,
+      "sha256": "85a1896cd3a528035aa6b5263433a60f23365fbf3281eb3c3b591fec806a0a83"
     },
     {
       "path": "club-photos/club-05.png",
@@ -611,6 +387,11 @@
       "sha256": "a982dbe7befcaab0383471c69ee04e38abe5421630826263399da6c553d7fb66"
     },
     {
+      "path": "club-photos/club-12.jpg",
+      "bytes": 6944086,
+      "sha256": "16cb4fbba3a1463e8af2a765ee455a8054c4d0228c326ee8607663b66fbbdc40"
+    },
+    {
       "path": "club-photos/club-13.png",
       "bytes": 347144,
       "sha256": "fb4a4a7469695e815edbcd868e88755f37fe71bef2bff29059ecca9b9b239b75"
@@ -619,11 +400,6 @@
       "path": "club-photos/club-14.jpg",
       "bytes": 763633,
       "sha256": "66b4e6e308f37bf63529ae1567d2e91cc08f4eee8ef0dad1318adc2fdbf8f690"
-    },
-    {
-      "path": "club-photos/club-12.jpg",
-      "bytes": 6944086,
-      "sha256": "16cb4fbba3a1463e8af2a765ee455a8054c4d0228c326ee8607663b66fbbdc40"
     },
     {
       "path": "club-photos/club-15.jpg",
@@ -651,14 +427,14 @@
       "sha256": "bdbf3f1ba7251433dd4681fa74fa7fd2a0c7d0d2b67c6970009d005c048e963c"
     },
     {
-      "path": "club-photos/club-21.jpg",
-      "bytes": 737798,
-      "sha256": "c3486519322cdf2752f4f751c8734792f7b7e4acfc08188995cc54a350710bb7"
-    },
-    {
       "path": "club-photos/club-20.jpg",
       "bytes": 2057244,
       "sha256": "6b060dc31b4a9c1926b823e632df35ff5fb59597d50c5735d1f509511d241236"
+    },
+    {
+      "path": "club-photos/club-21.jpg",
+      "bytes": 737798,
+      "sha256": "c3486519322cdf2752f4f751c8734792f7b7e4acfc08188995cc54a350710bb7"
     },
     {
       "path": "club-photos/club-22.jpg",
@@ -706,14 +482,14 @@
       "sha256": "c2e9b8ea02f0638e53e4defdc23f8eb34672528ef108e08c8a38855fa6a26b97"
     },
     {
-      "path": "club-photos/club-32.jpg",
-      "bytes": 2064471,
-      "sha256": "54084edf009cce93d71e6ff275a6b6d92a459c47e25f1b4849af6e9b6a417068"
-    },
-    {
       "path": "club-photos/club-31.jpg",
       "bytes": 4349082,
       "sha256": "ff2f5c0e599a94c1b790166ca697ef5d34a0865cf10caa086952b6d80eb8f974"
+    },
+    {
+      "path": "club-photos/club-32.jpg",
+      "bytes": 2064471,
+      "sha256": "54084edf009cce93d71e6ff275a6b6d92a459c47e25f1b4849af6e9b6a417068"
     },
     {
       "path": "club-photos/club-33.jpg",
@@ -761,29 +537,309 @@
       "sha256": "d6882e1b60bc215fb5fd65401dcfc74f03ca63ae09c6e5eb576b7ffddfe4b35a"
     },
     {
-      "path": "club-photos/club-03.jpg",
-      "bytes": 1969847,
-      "sha256": "5533f9a9e9f923b144ab97e0110a170c6090a0730b9402fc5965db8533964358"
+      "path": "facebook-queue.html",
+      "bytes": 176092,
+      "sha256": "284086ebf0c70d65ed91c5a1c593fcbc0b0cafa66a349457bffd73eea1c7b926"
     },
     {
-      "path": "club-photos/club-04.png",
-      "bytes": 4787039,
-      "sha256": "85a1896cd3a528035aa6b5263433a60f23365fbf3281eb3c3b591fec806a0a83"
+      "path": "facebook-queue.js",
+      "bytes": 6417,
+      "sha256": "805083b208a58a0c3d76b9a98071e5ada45139336fac6e22275265cda043bde9"
     },
     {
-      "path": "profiles.js",
-      "bytes": 109001,
-      "sha256": "cce0259e06f2fc1979f279f2241e33bc89bce42533cd72310db314b7e4ff933f"
+      "path": "facebook-queue.json",
+      "bytes": 58839,
+      "sha256": "b4f1d0df6c38fedcbd4a425b8ea9012bab82c2bd59e3548f41a600fc313b7caa"
     },
     {
       "path": "gallery-data.js",
-      "bytes": 89839,
-      "sha256": "ef667aff827e716b350f9649e24e615ab12ff2e40430fc05e14fa76f40835350"
+      "bytes": 100027,
+      "sha256": "03f4642c0a9665c9cf0caef9ff7038dfc21260dee3a6a58759d287e89f9fb8e4"
+    },
+    {
+      "path": "hughes-family.html",
+      "bytes": 3377,
+      "sha256": "5471de7f9686343fd23bec2fc7be1df2d8feef3b728bacb8e49a96c141944cee"
+    },
+    {
+      "path": "index.html",
+      "bytes": 1296,
+      "sha256": "55de3b3c27b05163bcaae69a527ab728e46d9d065e9d77f6301a8f6101d0ebbc"
+    },
+    {
+      "path": "jerome-boxing/jb-candidate-2015.jpg",
+      "bytes": 46877,
+      "sha256": "d6baf2d230233c95860ce935ed7f3285396971198e4b22500a560bdf6300a92a"
+    },
+    {
+      "path": "jerome-boxing/jb-poster-2012.jpg",
+      "bytes": 102476,
+      "sha256": "90ed6912e0703bb950d5fed882cecf4f4c286248c9afdbd7c637385203ad9881"
+    },
+    {
+      "path": "jerome-boxing/jb-staff.jpg",
+      "bytes": 10101,
+      "sha256": "4fa3a612a9e296b38984f9fad2d5b037fde462808e54d5bc6f6089ddd8f4d02e"
+    },
+    {
+      "path": "kaia-bouts/kb-01.png",
+      "bytes": 162020,
+      "sha256": "a8567493bfdc3cbaa505fcc6a84627da94a3523588d67da9fd801b97522a27ef"
+    },
+    {
+      "path": "kaia-bouts/kb-02.png",
+      "bytes": 156593,
+      "sha256": "7199bd6e7a870d385c414c1a01a6fc6f06122fc3186da7ec8227924f25d94bf7"
+    },
+    {
+      "path": "kaia-bouts/kb-03.png",
+      "bytes": 144206,
+      "sha256": "0f6b9ac16aab9624a5efbf988da7c13eb1298ee5d0a85ce0a902c04e4ad53775"
+    },
+    {
+      "path": "kaia-bouts/kb-04.png",
+      "bytes": 185300,
+      "sha256": "34ffd112b4aab59e0dc0406218902c9f20aea46ebe352ae3d6139c84c495999c"
+    },
+    {
+      "path": "kaia-bouts/kb-05.png",
+      "bytes": 158877,
+      "sha256": "6df5d024d46bf53901d2ad3ced25cf94567161efdbbc9b1330d518ab763b70f4"
+    },
+    {
+      "path": "kaia-bouts/kb-06.png",
+      "bytes": 137413,
+      "sha256": "32db4114ecc169058efd40fb60a262ea25bac9dbf72c5028924d305b3b25da6f"
+    },
+    {
+      "path": "kaia-bouts/kb-07.png",
+      "bytes": 159816,
+      "sha256": "273c5cfa10e6d43cbdf74b76dcea30801fef946903af869420372dc645590f53"
+    },
+    {
+      "path": "kaia-bouts/kb-09.png",
+      "bytes": 159222,
+      "sha256": "c4c3f31dcae2d0740f8c1d93881d942c0c07cbc332a35aefe0f72abb05ad0d24"
+    },
+    {
+      "path": "kaia-bouts/kb-10.png",
+      "bytes": 130183,
+      "sha256": "6896c22224426b0bbf58d8629a916a505c3ea58026a33214594e020c079f31b5"
+    },
+    {
+      "path": "kaia-bouts/kb-11.png",
+      "bytes": 115451,
+      "sha256": "1c125e9c0fe632b731e1bbb285e21c9e7dab138f09d9fb1f718bda0b12e545f0"
+    },
+    {
+      "path": "kaia-bouts/kb-12.png",
+      "bytes": 134563,
+      "sha256": "b3b12de9653fd0dcaf63350e4245d622563e79314f16631761864962b0d25562"
+    },
+    {
+      "path": "kaia-bouts/kb-13.png",
+      "bytes": 126961,
+      "sha256": "5059e885027641efa5c624d5b703c44a8dd15d1796026f3c63ce640d689a78c0"
+    },
+    {
+      "path": "marymount-photos/mm-144.jpg",
+      "bytes": 156550,
+      "sha256": "1243ffd4c3244b728efbb1b44ef3baeed7e2b2640e7024e12dc8bd288e432f54"
+    },
+    {
+      "path": "marymount-photos/mm-145.jpg",
+      "bytes": 111290,
+      "sha256": "bc881a14b3c347631d79be77c26ca20aee30f284780f1e36ac5ccdbf9c0dea36"
+    },
+    {
+      "path": "marymount-photos/mm-146.jpg",
+      "bytes": 137736,
+      "sha256": "6b65d57212d6f1e1836f1591d0b4fc8d7d9b432ca9bd6b8928ec98216bfcee73"
+    },
+    {
+      "path": "marymount-photos/mm-147.jpg",
+      "bytes": 130498,
+      "sha256": "91e1d4e450a9ab5706a4c9258cbb663a740c208770f0c92697ee32e9d60f0641"
+    },
+    {
+      "path": "marymount-photos/mm-148.jpg",
+      "bytes": 119366,
+      "sha256": "a8356274ea7c7929a78517323ed347c51ea202f008675a79b349554e87f46407"
+    },
+    {
+      "path": "marymount-photos/mm-149.jpg",
+      "bytes": 129484,
+      "sha256": "aae7f36e5909aab7b3257bd233fe844f140fa1cf8b19636fa0feef97e530b9ff"
+    },
+    {
+      "path": "marymount-photos/mm-150.jpg",
+      "bytes": 282802,
+      "sha256": "dbe42b53b79d33da2ba317b54e78ae553ac80a74b7a9745ae3e8a1f8d3ca2f9d"
+    },
+    {
+      "path": "marymount-photos/mm-151.jpg",
+      "bytes": 147154,
+      "sha256": "c6555c748293f7729daeba7e391286fee057e1661cd9ae9846235ee418b268d7"
+    },
+    {
+      "path": "marymount-photos/mm-152.jpg",
+      "bytes": 152710,
+      "sha256": "b87b8f495514f5b667e0fd8afbb280474c47f39014857e4e2285e516f00682dd"
+    },
+    {
+      "path": "marymount-photos/mm-153.jpg",
+      "bytes": 312596,
+      "sha256": "6fb9c0df68c6a33b1d16434b6f5d1b7ab7542e8652c7c0553d58bbf7a67578c7"
+    },
+    {
+      "path": "marymount-photos/mm-154.jpg",
+      "bytes": 163570,
+      "sha256": "a29d84e47a3c50235731c8725b3faf3bb1a7e44d5aaf1f11f29ddc806afb9a33"
+    },
+    {
+      "path": "mike-bouts/mike-action-01.jpg",
+      "bytes": 826571,
+      "sha256": "0456a8dccc1a393d2c8e1b72140e9c796d45310d682e70fbdb8dba5510b808bf"
+    },
+    {
+      "path": "mike-bouts/mike-action-02.jpg",
+      "bytes": 852257,
+      "sha256": "1204829b589663aa1022d0da0b858df06692858df4d5f873f03a5555faec1c33"
+    },
+    {
+      "path": "mike-bouts/mike-portrait-2023.jpg",
+      "bytes": 649496,
+      "sha256": "8f80c76f067b29f12f48d332a3a7f49bbfbbdbd9ed1056c9f6660ccc62d99ffa"
+    },
+    {
+      "path": "millman-photos/andy-fishing-2022.jpg",
+      "bytes": 114846,
+      "sha256": "8296faa22694a2adb3ad166a60025659a584ba0c5f110225fb99ca61a9514c21"
+    },
+    {
+      "path": "millman-photos/andy-portrait.png",
+      "bytes": 345751,
+      "sha256": "f7afa0eed74884edf45a2d2ea72fbb61dbc9759aaa05d10790a26403be8e170e"
+    },
+    {
+      "path": "millman-photos/andy-profile-2023.jpg",
+      "bytes": 93044,
+      "sha256": "5a6edf7a9606a0e7c5636c5223f4163e3ce41ad24086c14dff4168329f961a95"
+    },
+    {
+      "path": "millman-photos/andy-skate-2023.jpg",
+      "bytes": 110570,
+      "sha256": "4f41f03637d56fea2af2f58c1b3aba3b9d238dc7e3db414d219e585545d84574"
+    },
+    {
+      "path": "millman-photos/jordan-andy-profile.jpg",
+      "bytes": 467748,
+      "sha256": "72045637f7b58428c4da9f4e5584b8860b91ffdd4cfbe78b8acaa09908c46344"
+    },
+    {
+      "path": "millman-photos/jordan-outdoors-2024.jpg",
+      "bytes": 183474,
+      "sha256": "0c79eef87fc65351591bb73a72cc21b4151891aee1e45ff8f621143f29c4187c"
+    },
+    {
+      "path": "millman-photos/jordan-portrait.png",
+      "bytes": 368885,
+      "sha256": "24bad0e670528656cdd25c8add2951378b035b53875a101dd97f39eaff64f451"
     },
     {
       "path": "photo-index.json",
-      "bytes": 89816,
-      "sha256": "aa7b615df77ca409970f91fd46a75565d4f4ebcc01527bcdc00b90d450158508"
+      "bytes": 100004,
+      "sha256": "f192dd64f70e1faa8333cfa3540f6c4a4f4d0cd9c3e49e2c442e685badf407bf"
+    },
+    {
+      "path": "profiles.js",
+      "bytes": 119919,
+      "sha256": "9e696f7e2cb64d37e97f9cb123c6c80eec0d08501cda455e271dddc59d5cd1f9"
+    },
+    {
+      "path": "public-manifest.json",
+      "bytes": 26726,
+      "sha256": "ba2df50e217529f8f51fa51c74744ce5ea70d7c46a4d9b2cda2190cd7e3786f2"
+    },
+    {
+      "path": "queue.css",
+      "bytes": 4723,
+      "sha256": "4ff3cd8bcfbe0db35e6b4922c32b8d24662cd7d51756de5065a2596817cb0204"
+    },
+    {
+      "path": "ryan-school/ry-2000-p39.jpg",
+      "bytes": 494236,
+      "sha256": "6d01c1864c97334edc81b798a2afd925d0ecd295356dbd6fbe4bbb445abe4065"
+    },
+    {
+      "path": "ryan-school/ry-2002-p10.jpg",
+      "bytes": 484310,
+      "sha256": "afba5a000cfba83381f27436f1d983679a0ecb9aecfb3b86687bea95fdc325a6"
+    },
+    {
+      "path": "ryan-school/ry-2002-p120.jpg",
+      "bytes": 436291,
+      "sha256": "f7e4111f4dbaad72649f48dbc754be002534d4730e1de5bb0b4138cb373a7d6a"
+    },
+    {
+      "path": "ryan-school/ry-2002-p14.jpg",
+      "bytes": 509024,
+      "sha256": "1c351c18f9f067f99527ec046c0e0390687b0785ffe17293835ded8040121c38"
+    },
+    {
+      "path": "ryan-school/ry-2002-p179.jpg",
+      "bytes": 513288,
+      "sha256": "07cb5de19c207de975f90c7bffc52220f87aef3e4e23942d620d91a54bb3313c"
+    },
+    {
+      "path": "ryan-school/ry-2002-p29.jpg",
+      "bytes": 438129,
+      "sha256": "4bb67bb6b8729de62ca20dd64648615ef6d8b081aa23d35b2b6480e8077ec586"
+    },
+    {
+      "path": "ryan-school/ry-2002-p51.jpg",
+      "bytes": 561870,
+      "sha256": "e8707a177582c98e34672cf4b10e6e99433fce65f13a5e9c7d843e604c2c7082"
+    },
+    {
+      "path": "ryan-school/ry-2002-p65.jpg",
+      "bytes": 479857,
+      "sha256": "f66f915ed5c1773f139931423bca13bf5dbe70dccbf739eabe37097864a1ea1b"
+    },
+    {
+      "path": "ryan-school/ry-baseball-2000.png",
+      "bytes": 1014483,
+      "sha256": "749bd55ddbbb0cb8b2b4f51f9389735c391416c85ce3f4471766c27f35f0947f"
+    },
+    {
+      "path": "ryan-school/ry-cad-2002.png",
+      "bytes": 373527,
+      "sha256": "25084da127a8405a43785ff8c922e6ab73a93e89f1b87de673f347151cf19d0b"
+    },
+    {
+      "path": "ryan-school/ry-football-2002.png",
+      "bytes": 2400860,
+      "sha256": "3dd3ec054ae0d1f931167e55da86aa01a85ea6586d3b70d56a5e91baa08cf1cb"
+    },
+    {
+      "path": "ryan-school/ry-senior-2002.png",
+      "bytes": 151563,
+      "sha256": "71f4ef658a66a173577cfb0c23777fed31c9b17828dcc3a0ee5a8948815bd906"
+    },
+    {
+      "path": "ryan-school/ry-senior-label.png",
+      "bytes": 190339,
+      "sha256": "60527f85516870498ca1b0eccb4a2a82727ba675b9c2fe4d7dcd2974aa5057bc"
+    },
+    {
+      "path": "ryan-school/ry-wrestling-2002.png",
+      "bytes": 963961,
+      "sha256": "ef901f1db0033fc56793ce3fb52b1cf1a9de639a9672dd10235e1532ed5b5ba8"
+    },
+    {
+      "path": "style.css",
+      "bytes": 10355,
+      "sha256": "b7c912fd5a515f126ce67162fd31388a03a17d8e3612b04784dcb5083a03125d"
     }
   ]
 }

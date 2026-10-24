@@ -1,8 +1,8 @@
 {
   "prepared": "2026-10-24",
   "profiles": 13,
-  "portraits": 9,
-  "coach_images": 89,
+  "portraits": 11,
+  "coach_images": 99,
   "rejected_matches": 1,
   "club_images": 41,
   "omitted": "AI reconstruction, local scripts, full PDFs, private review storage and absolute source paths",
@@ -19,13 +19,13 @@
     },
     {
       "path": "app.js",
-      "bytes": 18062,
-      "sha256": "f966811ecd5ae08290c545a8b39fb37ac3f3b4e0ae402be1d5ce51f79dc1b41b"
+      "bytes": 18307,
+      "sha256": "d18a34224788f07d6fcaedff1194e17d5cd3fa5dcbd937c833c9e8766bd56f5e"
     },
     {
       "path": "facebook-queue.html",
-      "bytes": 172095,
-      "sha256": "49ef893e4d83c4333f0ab596240b360945610150870819f0d3ab477a5d62b297"
+      "bytes": 176016,
+      "sha256": "9e61c13a6f75197042a0977eb73d2eaeb9448e64a481118b01ab87ac10f4a158"
     },
     {
       "path": "facebook-queue.js",
@@ -34,8 +34,8 @@
     },
     {
       "path": "facebook-queue.json",
-      "bytes": 49425,
-      "sha256": "2ab62dc717275b4b9e0a757dbc0790d0ba1ccf56d90523c0afe6d42e92c2bce7"
+      "bytes": 58839,
+      "sha256": "b4f1d0df6c38fedcbd4a425b8ea9012bab82c2bd59e3548f41a600fc313b7caa"
     },
     {
       "path": "queue.css",
@@ -64,8 +64,8 @@
     },
     {
       "path": "hughes-family.html",
-      "bytes": 2809,
-      "sha256": "f656112d17bdef41a0d242108887bf6451f62bafb0ec719c1fda5d46f42bb5f9"
+      "bytes": 3358,
+      "sha256": "b3ea6aa8190b172cd26494e20dbe3de619aa90c6a96727fd5ce204b530dc01e7"
     },
     {
       "path": "assets/grindstone-logo.png",
@@ -216,6 +216,41 @@
       "path": "ryan-school/ry-baseball-2000.png",
       "bytes": 1014483,
       "sha256": "749bd55ddbbb0cb8b2b4f51f9389735c391416c85ce3f4471766c27f35f0947f"
+    },
+    {
+      "path": "millman-photos/jordan-portrait.png",
+      "bytes": 368885,
+      "sha256": "24bad0e670528656cdd25c8add2951378b035b53875a101dd97f39eaff64f451"
+    },
+    {
+      "path": "millman-photos/jordan-andy-profile.jpg",
+      "bytes": 467748,
+      "sha256": "72045637f7b58428c4da9f4e5584b8860b91ffdd4cfbe78b8acaa09908c46344"
+    },
+    {
+      "path": "millman-photos/jordan-outdoors-2024.jpg",
+      "bytes": 183474,
+      "sha256": "0c79eef87fc65351591bb73a72cc21b4151891aee1e45ff8f621143f29c4187c"
+    },
+    {
+      "path": "millman-photos/andy-portrait.png",
+      "bytes": 345751,
+      "sha256": "f7afa0eed74884edf45a2d2ea72fbb61dbc9759aaa05d10790a26403be8e170e"
+    },
+    {
+      "path": "millman-photos/andy-profile-2023.jpg",
+      "bytes": 93044,
+      "sha256": "5a6edf7a9606a0e7c5636c5223f4163e3ce41ad24086c14dff4168329f961a95"
+    },
+    {
+      "path": "millman-photos/andy-skate-2023.jpg",
+      "bytes": 110570,
+      "sha256": "4f41f03637d56fea2af2f58c1b3aba3b9d238dc7e3db414d219e585545d84574"
+    },
+    {
+      "path": "millman-photos/andy-fishing-2022.jpg",
+      "bytes": 114846,
+      "sha256": "8296faa22694a2adb3ad166a60025659a584ba0c5f110225fb99ca61a9514c21"
     },
     {
       "path": "assets/tyler-webb-2021.jpeg",
@@ -518,6 +553,21 @@
       "sha256": "4fa3a612a9e296b38984f9fad2d5b037fde462808e54d5bc6f6089ddd8f4d02e"
     },
     {
+      "path": "brad-photos/bg-mcdaniel-01.jpg",
+      "bytes": 328891,
+      "sha256": "ea3b4c5e17f0358ef658b8b835767f35b177c2784cc14f90e202fd0e43fba78c"
+    },
+    {
+      "path": "brad-photos/bg-mcdaniel-02.jpg",
+      "bytes": 315639,
+      "sha256": "503e523026f1db787d056ed9f20bf23e6ef6054b21b0ee08ea04afef7919b0d5"
+    },
+    {
+      "path": "brad-photos/bg-mcdaniel-03.jpg",
+      "bytes": 267064,
+      "sha256": "76748dc63acebef5d84175a08a99302107c8dd27b7bb4ade96552c75e3a57465"
+    },
+    {
       "path": "assets/kyle-1993-page-20.png",
       "bytes": 1586743,
       "sha256": "1a75b8f7a771ac2b247657a700e60e57150d0e151480c0f38f319dfb695328d1"
@@ -734,18 +784,18 @@
     },
     {
       "path": "profiles.js",
-      "bytes": 110986,
-      "sha256": "73b05d2edd39a30a615c5cc957f6ba8f0bed559e44435e619a4c5a0c6837abef"
+      "bytes": 122067,
+      "sha256": "032f4c7224e2420cd01405e47147eb4e34ea5ffdc27db60f713e5d625f5b95df"
     },
     {
       "path": "gallery-data.js",
-      "bytes": 89839,
-      "sha256": "ef667aff827e716b350f9649e24e615ab12ff2e40430fc05e14fa76f40835350"
+      "bytes": 100027,
+      "sha256": "03f4642c0a9665c9cf0caef9ff7038dfc21260dee3a6a58759d287e89f9fb8e4"
     },
     {
       "path": "photo-index.json",
-      "bytes": 89816,
-      "sha256": "aa7b615df77ca409970f91fd46a75565d4f4ebcc01527bcdc00b90d450158508"
+      "bytes": 100004,
+      "sha256": "f192dd64f70e1faa8333cfa3540f6c4a4f4d0cd9c3e49e2c442e685badf407bf"
     }
   ]
 }

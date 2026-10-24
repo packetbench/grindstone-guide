@@ -226,6 +226,34 @@
           "text": "Brian Leaf MAWA",
           "photos_url": "https://www.facebook.com/search/photos/?q=Brian%20Leaf%20MAWA",
           "posts_url": "https://www.facebook.com/search/posts/?q=Brian%20Leaf%20MAWA"
+        },
+        {
+          "id": "brian-leaf-17",
+          "text": "\"Brian Leaf\" \"Leaf Builders\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Leaf%20Builders%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Leaf%20Builders%22",
+          "purpose": "Look for a public professional profile or caption that links the new local business candidate to the coach."
+        },
+        {
+          "id": "brian-leaf-18",
+          "text": "\"Leaf Builders\" Westminster",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Leaf%20Builders%22%20Westminster",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Leaf%20Builders%22%20Westminster",
+          "purpose": "Look for a public company page with a named owner or team photograph."
+        },
+        {
+          "id": "brian-leaf-19",
+          "text": "\"Brian Leaf\" \"Winters Mill Wrestling\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Winters%20Mill%20Wrestling%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Winters%20Mill%20Wrestling%22",
+          "purpose": "Search public club posts and named event captions; do not identify him by facial resemblance."
+        },
+        {
+          "id": "brian-leaf-20",
+          "text": "\"Brian Leaf\" \"Grindstone\" photos",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Grindstone%22%20photos",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Grindstone%22%20photos",
+          "purpose": "Search club albums/posts for a name-captioned photo; retain source and date."
         }
       ]
     },
@@ -476,7 +504,7 @@
     {
       "id": "jordan-millman",
       "name": "Jordan Millman",
-      "context": "The roster is established; spelling variants are search experiments. No school or relationship to another coach is assumed.",
+      "context": "Captain Jerry’s directly links the newly found Jordan profile. Public event-work posts and photographs are preserved; a direct Grindstone connection and wrestling history remain to be established.",
       "queries": [
         {
           "id": "jordan-millman-01",
@@ -525,13 +553,20 @@
           "text": "Jordyn Millman Westminster",
           "photos_url": "https://www.facebook.com/search/photos/?q=Jordyn%20Millman%20Westminster",
           "posts_url": "https://www.facebook.com/search/posts/?q=Jordyn%20Millman%20Westminster"
+        },
+        {
+          "id": "jordan-millman-09",
+          "text": "Jordan Millman Grindstone wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Jordan%20Millman%20Grindstone%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Jordan%20Millman%20Grindstone%20wrestling",
+          "purpose": "Find a direct public coaching/team connection for the newly discovered Jordan profile."
         }
       ]
     },
     {
       "id": "andy-millman",
       "name": "Andy Millman",
-      "context": "Andrew J. Millman is a local recreation lead. The Captain Jerry’s business owner is a working identity candidate, not a confirmed coaching connection.",
+      "context": "Captain Jerry’s owner and linked public profile are the proposed local match. Photos now exist; test the separate Andrew Millman Fight2Win lead before adding grappling history.",
       "queries": [
         {
           "id": "andy-millman-01",
@@ -610,6 +645,20 @@
           "text": "Captain Jerry’s Andy 2011",
           "photos_url": "https://www.facebook.com/search/photos/?q=Captain%20Jerry%E2%80%99s%20Andy%202011",
           "posts_url": "https://www.facebook.com/search/posts/?q=Captain%20Jerry%E2%80%99s%20Andy%202011"
+        },
+        {
+          "id": "andy-millman-14",
+          "text": "Andy Millman Relson Gracie",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Andy%20Millman%20Relson%20Gracie",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Andy%20Millman%20Relson%20Gracie",
+          "purpose": "Connect the named 2019 Fight2Win athlete to the proposed local Andy profile, or reject that match."
+        },
+        {
+          "id": "andy-millman-15",
+          "text": "Michael Mehl Andrew Millman Fight2Win109",
+          "photos_url": "https://www.facebook.com/search/photos/?q=Michael%20Mehl%20Andrew%20Millman%20Fight2Win109",
+          "posts_url": "https://www.facebook.com/search/posts/?q=Michael%20Mehl%20Andrew%20Millman%20Fight2Win109",
+          "purpose": "Find a captioned match photograph; Flo thumbnail is black."
         }
       ]
     },
@@ -805,6 +854,55 @@
           "text": "Bald Fat April 5 2025 podium",
           "photos_url": "https://www.facebook.com/search/photos/?q=Bald%20Fat%20April%205%202025%20podium",
           "posts_url": "https://www.facebook.com/search/posts/?q=Bald%20Fat%20April%205%202025%20podium"
+        },
+        {
+          "id": "brad-gabrish-14",
+          "text": "\"Brad Gabrish\" wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brad%20Gabrish%22%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brad%20Gabrish%22%20wrestling",
+          "purpose": "Named contemporary photo or tagged coaching post."
+        },
+        {
+          "id": "brad-gabrish-15",
+          "text": "\"Lucky Ducks\" \"Bald and Fat\" \"2025\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Lucky%20Ducks%22%20%22Bald%20and%20Fat%22%20%222025%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Lucky%20Ducks%22%20%22Bald%20and%20Fat%22%20%222025%22",
+          "purpose": "April 5, 2025 York event; Brad won DEAD division 185 pounds."
+        },
+        {
+          "id": "brad-gabrish-16",
+          "text": "\"Brad Gabrish\" \"Calvert Hall\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brad%20Gabrish%22%20%22Calvert%20Hall%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brad%20Gabrish%22%20%22Calvert%20Hall%22",
+          "purpose": "2002-05 wrestling team, yearbook or National Prep podium."
+        },
+        {
+          "id": "brad-gabrish-17",
+          "text": "\"Calvert Hall wrestling\" \"2005\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Calvert%20Hall%20wrestling%22%20%222005%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Calvert%20Hall%20wrestling%22%20%222005%22",
+          "purpose": "Look for 145-pound Brad, state runner-up/National Prep eighth."
+        },
+        {
+          "id": "brad-gabrish-18",
+          "text": "\"Parkville Wrestling\" \"2010\" Brad",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Parkville%20Wrestling%22%20%222010%22%20Brad",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Parkville%20Wrestling%22%20%222010%22%20Brad",
+          "purpose": "Assistant-coach group photograph; old club albums 1999-2010 were publicly referenced."
+        },
+        {
+          "id": "brad-gabrish-19",
+          "text": "\"McDaniel wrestling\" \"2005\" Gabrish",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22McDaniel%20wrestling%22%20%222005%22%20Gabrish",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22McDaniel%20wrestling%22%20%222005%22%20Gabrish",
+          "purpose": "149-pound freshman-period roster/team/bout photo."
+        },
+        {
+          "id": "brad-gabrish-20",
+          "text": "\"Brad Gabrish\" \"Dundalk\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Brad%20Gabrish%22%20%22Dundalk%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Brad%20Gabrish%22%20%22Dundalk%22",
+          "purpose": "2010 Hawks Open 207-pound winner podium."
         }
       ]
     },
@@ -948,6 +1046,55 @@
           "text": "Hughes Grindstone volunteers",
           "photos_url": "https://www.facebook.com/search/photos/?q=Hughes%20Grindstone%20volunteers",
           "posts_url": "https://www.facebook.com/search/posts/?q=Hughes%20Grindstone%20volunteers"
+        },
+        {
+          "id": "jessica-cody-hughes-15",
+          "text": "\"Cody Hughes\" \"West Carroll\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Cody%20Hughes%22%20%22West%20Carroll%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Cody%20Hughes%22%20%22West%20Carroll%22",
+          "purpose": "Local public volunteer lead; confirm a Grindstone connection before assigning any photo."
+        },
+        {
+          "id": "jessica-cody-hughes-16",
+          "text": "\"Jessica Hughes\" \"West Carroll\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Jessica%20Hughes%22%20%22West%20Carroll%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Jessica%20Hughes%22%20%22West%20Carroll%22",
+          "purpose": "Search public tagged event photos and captions, not face similarity."
+        },
+        {
+          "id": "jessica-cody-hughes-17",
+          "text": "\"Jessica Morgan Hughes\" wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Jessica%20Morgan%20Hughes%22%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Jessica%20Morgan%20Hughes%22%20wrestling",
+          "purpose": "Middle name is a provisional county-roster lead, not a confirmed correction to the callout."
+        },
+        {
+          "id": "jessica-cody-hughes-18",
+          "text": "\"Hughes\" \"FSK Jr Eagles\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Hughes%22%20%22FSK%20Jr%20Eagles%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Hughes%22%20%22FSK%20Jr%20Eagles%22",
+          "purpose": "FSK Jr. Eagles is the wrestling program linked by the West Carroll council."
+        },
+        {
+          "id": "jessica-cody-hughes-19",
+          "text": "\"Hughes\" \"gowcrc\"",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Hughes%22%20%22gowcrc%22",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Hughes%22%20%22gowcrc%22",
+          "purpose": "Official West Carroll council social handle; seek names in captions."
+        },
+        {
+          "id": "jessica-cody-hughes-20",
+          "text": "\"Cody Hughes\" \"New Windsor\" wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Cody%20Hughes%22%20%22New%20Windsor%22%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Cody%20Hughes%22%20%22New%20Windsor%22%20wrestling",
+          "purpose": "Geographic route from the council service area; exclude unrelated college wrestler namesakes."
+        },
+        {
+          "id": "jessica-cody-hughes-21",
+          "text": "\"Jessica Hughes\" \"Union Bridge\" wrestling",
+          "photos_url": "https://www.facebook.com/search/photos/?q=%22Jessica%20Hughes%22%20%22Union%20Bridge%22%20wrestling",
+          "posts_url": "https://www.facebook.com/search/posts/?q=%22Jessica%20Hughes%22%20%22Union%20Bridge%22%20wrestling",
+          "purpose": "Geographic route from the council service area; require a club connection."
         }
       ]
     }
