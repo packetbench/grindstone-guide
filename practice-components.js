@@ -87,11 +87,30 @@
     if (raw.series) out.series = cleanSelectedSeries(raw.series);
     return out;
   }
-  function cleanActivity(raw) {
+  function cleanActivity(raw, catalog, completed = false) {
     object(raw, 'Added activity');
     const out = {name:field(raw.name,'Activity name',200),task:field(raw.task,'Activity task',16000),cues:field(raw.cues,'Activity cues',6000),guide:cleanGuide(raw.guide)};
     if (raw.series) out.series = cleanSelectedSeries(raw.series);
+    const known = !completed && !raw.guideType ? catalogMap(catalog).get(out.guide.sourceId) : null;
+    const guideType = raw.guideType || (known?.types.includes('game') ? 'game' : '');
+    if (guideType) {
+      if (!['move','drill','series','warmup','game','strength','endurance','custom','water'].includes(guideType)) throw Error('Unsupported added-activity guide type.');
+      out.guideType = guideType;
+      if (raw.guideMinutes != null || known?.minutes) out.guideMinutes = number(raw.guideMinutes ?? known.minutes,'Added guide minutes',0.5,120);
+    }
+    if (raw.timingReview != null) {
+      object(raw.timingReview,'Activity timing review');
+      out.timingReview = {minutes:number(raw.timingReview.minutes,'Reviewed slot minutes',0.5,120),task:field(raw.timingReview.task,'Reviewed activity task',16000)};
+    }
     return out;
+  }
+  function activityTimingMismatch(activity, block) {
+    return activity.guideType === 'game' && activity.guideMinutes > block.minutes && !(activity.timingReview?.minutes === block.minutes && activity.timingReview.task === activity.task);
+  }
+  function activityTimingHtml(activity, block, controls) {
+    if (activity.guideType !== 'game' || !activity.guideMinutes) return '';
+    const mismatch = activityTimingMismatch(activity,block);
+    return '<div class="component-activity-timing' + (mismatch ? ' component-warning' : '') + '"><p><strong>' + (mismatch ? 'Game timing needs review.' : 'Game guide: ' + activity.guideMinutes + ' minutes.') + '</strong> ' + (mismatch ? 'This added game describes ' + activity.guideMinutes + ' minutes, longer than the entire ' + block.minutes + '-minute slot. Edit its task, rounds and rest to fit the shared slot, or increase the slot time. ' : '') + 'All tasks still share the slot; guide durations are not added automatically.' + (!mismatch && activity.timingReview?.minutes === block.minutes && activity.timingReview.task === activity.task ? ' Coach marked these rounds and rest reviewed for this slot.' : '') + '</p>' + (mismatch && controls ? '<div class="component-actions"><button type="button" data-component-action="activity-confirm-timing">I adjusted this game for the slot</button><button type="button" data-component-action="activity-guide-duration">Increase slot to ' + activity.guideMinutes + ' minutes</button></div>' : '') + '</div>';
   }
   function activityKey(sourceId, series) { return sourceId + '|' + list(series?.selections).map(item => item.key).sort().join(','); }
   function sameActivity(sourceId,series,otherId,otherSeries) { return sourceId === otherId && (!series || !otherSeries || activityKey(sourceId,series) === activityKey(otherId,otherSeries)); }
@@ -101,10 +120,10 @@
     if ((block.sourceId && sameActivity(added.sourceId,series,block.sourceId,block.components?.series)) || activities.some(item => sameActivity(added.sourceId,series,item.guide.sourceId,item.series))) throw Error('This guide and these selected skills are already in this slot. Edit the existing task or choose another guide.');
     if (activities.length >= MAX_ACTIVITIES) throw Error('A slot can contain at most 12 added activities. Remove one before adding another.');
     const next = clone(block), guide = snapshot({id:added.sourceId,title:added.name,instructions:added.instructions,setup:added.setup,readiness:added.readiness,boundary:added.boundary,adaptation:added.adaptation,ageNote:added.ageNote,sourceNote:added.sourceNote,steps:added.steps,cues:lines(added.cues).split('\n').filter(Boolean)});
-    next.components = {...(next.components || {}),version:1,activities:[...activities,cleanActivity({name:stationGuideName(added.name,series),task:added.instructions,cues:added.cues,guide,...(series ? {series} : {})})]};
+    next.components = {...(next.components || {}),version:1,activities:[...activities,cleanActivity({name:stationGuideName(added.name,series),task:added.instructions,cues:added.cues,guide,guideType:added.type,...(added.guideMinutes ? {guideMinutes:added.guideMinutes} : {}),...(series ? {series} : {})})]};
     return next;
   }
-  function cleanBlock(raw) {
+  function cleanBlock(raw, catalog, record = {}) {
     if (raw.components == null) return {};
     const value = object(raw.components, 'Practice components');
     if (value.version !== 1) throw Error('Unsupported practice-components version.');
@@ -112,7 +131,7 @@
     if (value.series != null) clean.series = cleanSelectedSeries(value.series);
     if (value.activities != null) {
       if (!Array.isArray(value.activities) || value.activities.length > MAX_ACTIVITIES) throw Error('A slot can contain at most 12 added activities.');
-      clean.activities = value.activities.map(cleanActivity);
+      clean.activities = value.activities.map(activity => cleanActivity(activity,catalog,record.status === 'completed'));
     }
     if (value.rotation != null) {
       const r = object(value.rotation, 'Station rotation');
@@ -131,7 +150,23 @@
     return {components:clean};
   }
   function rotationMinutes(rotation) { return rotation.briefingMinutes + rotation.rounds * rotation.workMinutes + Math.max(0, rotation.rounds - 1) * rotation.changeMinutes + rotation.finishMinutes; }
-  function newRotation() { return {rounds:3,workMinutes:5,changeMinutes:1,briefingMinutes:2,finishMinutes:1,showAll:false,stations:[cleanStation({name:'Station 1'}),cleanStation({name:'Station 2'}),cleanStation({name:'Station 3'})]}; }
+  function newRotation(minutes = 20) {
+    number(minutes,'New rotation slot minutes',0.5,120);
+    let rounds,workMinutes,changeMinutes,briefingMinutes,finishMinutes;
+    if (minutes < 4) {
+      rounds = minutes < 2 ? 1 : minutes < 3 ? 2 : 3;
+      workMinutes = 0.5; changeMinutes = minutes >= 2.5 ? 0.5 : 0;
+      const remaining = minutes - rounds * workMinutes - (rounds - 1) * changeMinutes;
+      briefingMinutes = Math.min(0.5,remaining); finishMinutes = remaining - briefingMinutes;
+    } else {
+      rounds = minutes <= 20 ? 3 : Math.ceil((minutes - 1) / 6);
+      changeMinutes = minutes >= 18 ? 1 : 0.5; briefingMinutes = 0.5; finishMinutes = 0.5;
+      workMinutes = Math.min(5,Math.floor((minutes - 1 - (rounds - 1) * changeMinutes) / rounds * 2) / 2);
+      const remaining = minutes - rounds * workMinutes - (rounds - 1) * changeMinutes - 1;
+      briefingMinutes += Math.ceil(remaining) / 2; finishMinutes += remaining - Math.ceil(remaining) / 2;
+    }
+    return {rounds,workMinutes,changeMinutes,briefingMinutes,finishMinutes,showAll:false,stations:[cleanStation({name:'Station 1'}),cleanStation({name:'Station 2'}),cleanStation({name:'Station 3'})]};
+  }
   function selectionStatus(block) {
     const selected = block.components?.series;
     if (!selected) return '';
@@ -322,7 +357,7 @@
   function activitiesHtml(block,catalog,print = false) {
     const activities = block.components?.activities;
     if (!activities?.length) return '';
-    return '<section class="component-activities"><h3>Added activities in this slot</h3><p class="component-shared-time">All activities share this slot’s <strong>' + block.minutes + ' minutes</strong>, including the main task above. Divide that time between tasks, partner turns and resets; adding an activity does not extend the practice.</p>' + activities.map((activity,i) => '<article class="component-activity" data-activity-index="' + i + '"><h4>' + (i + 1) + '. ' + esc(activity.name || 'Activity name needed') + '</h4>' + (print ? guideHtml({...activity.guide,task:activity.task,cues:activity.cues.split('\n').filter(Boolean)},catalog,true) : '<div class="component-actions"><button type="button" data-component-action="activity-up" aria-label="Move added activity ' + (i + 1) + ' up"' + (i === 0 ? ' disabled' : '') + '>↑ Up</button><button type="button" data-component-action="activity-down" aria-label="Move added activity ' + (i + 1) + ' down"' + (i === activities.length - 1 ? ' disabled' : '') + '>↓ Down</button><button type="button" data-component-action="activity-remove" aria-label="Remove added activity ' + (i + 1) + '">Remove activity</button></div><label>Activity name<input data-activity-field="name" maxlength="200" value="' + esc(activity.name) + '"></label><label>Activity task, rounds and rest<textarea data-activity-field="task" rows="4" maxlength="16000">' + esc(activity.task) + '</textarea></label><label>Activity coaching cues<textarea data-activity-field="cues" rows="2" maxlength="6000">' + esc(activity.cues) + '</textarea></label>' + trustedLinks(activity.guide,catalog) + '<details><summary>Instruction, readiness and boundaries</summary>' + guideHtml(activity.guide,catalog,true) + stationSeriesHtml(activity,catalog) + '</details>') + (print ? stationSeriesHtml(activity,catalog) : '') + '<p class="component-warning" data-activity-readiness' + (activity.name.trim() && activity.task.trim() ? ' hidden' : '') + '>This added activity needs a name and a task.</p></article>').join('') + '</section>';
+    return '<section class="component-activities"><h3>Added activities in this slot</h3><p class="component-shared-time">All activities share this slot’s <strong>' + block.minutes + ' minutes</strong>, including the main task above. Divide that time between tasks, partner turns and resets; adding an activity does not extend the practice.</p>' + activities.map((activity,i) => '<article class="component-activity" data-activity-index="' + i + '"><h4>' + (i + 1) + '. ' + esc(activity.name || 'Activity name needed') + '</h4><div data-activity-timing>' + activityTimingHtml(activity,block,!print) + '</div>' + (print ? guideHtml({...activity.guide,task:activity.task,cues:activity.cues.split('\n').filter(Boolean)},catalog,true) : '<div class="component-actions"><button type="button" data-component-action="activity-up" aria-label="Move added activity ' + (i + 1) + ' up"' + (i === 0 ? ' disabled' : '') + '>↑ Up</button><button type="button" data-component-action="activity-down" aria-label="Move added activity ' + (i + 1) + ' down"' + (i === activities.length - 1 ? ' disabled' : '') + '>↓ Down</button><button type="button" data-component-action="activity-remove" aria-label="Remove added activity ' + (i + 1) + '">Remove activity</button></div><label>Activity name<input data-activity-field="name" maxlength="200" value="' + esc(activity.name) + '"></label><label>Activity task, rounds and rest<textarea data-activity-field="task" rows="4" maxlength="16000">' + esc(activity.task) + '</textarea></label><label>Activity coaching cues<textarea data-activity-field="cues" rows="2" maxlength="6000">' + esc(activity.cues) + '</textarea></label>' + trustedLinks(activity.guide,catalog) + '<details><summary>Instruction, readiness and boundaries</summary>' + guideHtml(activity.guide,catalog,true) + stationSeriesHtml(activity,catalog) + '</details>') + (print ? stationSeriesHtml(activity,catalog) : '') + '<p class="component-warning" data-activity-readiness' + (activity.name.trim() && activity.task.trim() ? ' hidden' : '') + '>This added activity needs a name and a task.</p></article>').join('') + '</section>';
   }
   function renderBlock(block,index,catalog,age = '') {
     const series = seriesData(block.sourceId), saved = block.components?.series, rotation = block.components?.rotation;
@@ -350,6 +385,10 @@
       const block = plan.blocks[Number(host.dataset.componentBlock)], panel = host.querySelector('[data-component-timing]');
       if (block && panel) panel.innerHTML = timingHtml(block,true);
       const shared = host.querySelector('.component-shared-time strong'); if (shared && block) shared.textContent = block.minutes + ' minutes';
+      host.querySelectorAll?.('[data-activity-index]').forEach(card => {
+        const activity = block?.components?.activities?.[Number(card.dataset?.activityIndex)], timing = card.querySelector?.('[data-activity-timing]');
+        if (activity && timing) { const markup = activityTimingHtml(activity,block,plan.status !== 'completed'); if (timing.innerHTML !== markup) timing.innerHTML = markup; }
+      });
       const context = bindingContexts.get(container), rotation = block?.components?.rotation;
       if (context && rotation) rotation.stations.forEach((station,index) => {
         const age = context.getAge?.() || '', state = stationPicker(station,rotation.showAll);
@@ -386,6 +425,7 @@
           activity[key] = field(el.value,'Activity ' + key,key === 'name' ? 200 : key === 'task' ? 16000 : 6000);
           if (key === 'name') card.querySelector('h4').textContent = (Number(card.dataset.activityIndex) + 1) + '. ' + (activity.name || 'Activity name needed');
           card.querySelector('[data-activity-readiness]').hidden = Boolean(activity.name.trim() && activity.task.trim());
+          const timing = card.querySelector('[data-activity-timing]'); if (timing) timing.innerHTML = activityTimingHtml(activity,found.block,true);
           changed('',false);
         } catch (err) { error(err); }
         return;
@@ -458,6 +498,16 @@
       const {block,host,index} = found, action = button.dataset.componentAction;
       if (!['clear-station-filters','clear-station-filter'].includes(action) && options.valid && !options.valid()) return;
       try {
+        if (['activity-confirm-timing','activity-guide-duration'].includes(action)) {
+          const card = button.closest('[data-activity-index]'), activity = block.components?.activities?.[Number(card?.dataset.activityIndex)];
+          if (!activity || !activityTimingMismatch(activity,block)) return;
+          options.beforeChange?.();
+          if (action === 'activity-confirm-timing') activity.timingReview = {minutes:block.minutes,task:activity.task};
+          else { block.minutes = activity.guideMinutes; block.timingConfirmed = false; }
+          changed(action === 'activity-confirm-timing' ? 'Added game timing marked reviewed for this slot. Your task and rounds stay.' : 'Slot increased to the game guide duration. Review the practice total and divide this shared time between its tasks.');
+          focusControl(index,'[data-activity-index="' + Number(card.dataset.activityIndex) + '"] [data-activity-field="task"]');
+          return;
+        }
         if (['activity-remove','activity-up','activity-down'].includes(action)) {
           const activities = block.components?.activities, card = button.closest('[data-activity-index]'), i = Number(card?.dataset.activityIndex);
           if (!activities?.[i]) return;
@@ -477,7 +527,7 @@
           const next = selectSeries(block,keys,options.getCatalog()); options.beforeChange?.(); options.getPlan().blocks[index] = next; changed(foundation ? 'Selected core skills applied. Separate setups, readiness and source guidance stay included.' : 'Selected options applied. Foundation, readiness and source guidance stay included.'); return;
         }
         if (action === 'add-rotation') {
-          options.beforeChange?.(); block.components = {...(block.components || {}),version:1,rotation:newRotation()}; block.delivery = 'stations'; changed('Rotation added. Fill the station tasks and choose the shared timing.'); focusControl(index,'[data-station-filter="search"][data-station-index="0"]'); return;
+          options.beforeChange?.(); block.components = {...(block.components || {}),version:1,rotation:newRotation(block.minutes)}; block.delivery = 'stations'; changed('Rotation added to fit this slot. Fill the station tasks; include turns and recovery within each work period.'); focusControl(index,'[data-station-filter="search"][data-station-index="0"]'); return;
         }
         const r = block.components?.rotation; if (!r) return;
 
@@ -518,5 +568,5 @@
       } catch (err) { error(err); }
     });
   }
-  window.GRINDSTONE_COMPONENTS = {cleanBlock,renderPicker,applyPicker,renderBlock,printBlock,bind,refresh,selectSeries,reloadBlock,appendActivity,selectionStatus,rotationMinutes,problems,readinessProblems,testing:{branchKey,snapshot,cleanGuide,cleanStation,cleanSelectedSeries,cleanActivity,stationWithGuide,stationPicker,stationMatches,stationPickerHtml,updateStationPicker,newRotation,guideHtml,trustedLinks}};
+  window.GRINDSTONE_COMPONENTS = {cleanBlock,renderPicker,applyPicker,renderBlock,printBlock,bind,refresh,selectSeries,reloadBlock,appendActivity,selectionStatus,rotationMinutes,problems,readinessProblems,testing:{branchKey,snapshot,cleanGuide,cleanStation,cleanSelectedSeries,cleanActivity,activityTimingMismatch,activityTimingHtml,stationWithGuide,stationPicker,stationMatches,stationPickerHtml,updateStationPicker,newRotation,guideHtml,trustedLinks}};
 })();

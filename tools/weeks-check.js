@@ -14,9 +14,9 @@ function node() {
   };
 }
 function setup() {
-  const values = new Map(), writes = [], downloads = [];
-  let failedWrites = false, allowConfirm = true;
-  const storage = { getItem: key => values.get(key) || null, setItem: (key, value) => { if (failedWrites) throw Error('Quota exceeded'); values.set(key, value); writes.push(key); } };
+  const values = new Map(), writes = [], downloads = [], draftWrites = [];
+  let failedWrites = false, failedRead = '', allowConfirm = true;
+  const storage = { getItem: key => { if (key === failedRead) throw Error('Storage unavailable'); return values.get(key) || null; }, setItem: (key, value) => { if (typeof failedWrites === 'function' ? failedWrites(key, value) : failedWrites) throw Error('Quota exceeded'); values.set(key, value); writes.push(key); if (key === 'grindstone-practice-draft-v1') draftWrites.push(JSON.parse(value)); } };
   const mockURL = class extends URL {};
   mockURL.createObjectURL = blob => { downloads.push(blob); return 'blob:test'; };
   mockURL.revokeObjectURL = () => {};
@@ -37,7 +37,8 @@ function setup() {
   function makeWeek(lane = 'mat-rats') { week.act('new'); weekField('lane', lane); weekField('weekOf', '2026-10-26'); weekField('focus', 'Sit-out foundation'); weekField('cue', 'Hands first; clear the hips'); weekField('outcome', 'Recognize two responses'); weekField('owner', 'Coach Test'); return current(); }
   function populate(name = 'Practice A') { const p = state().plan; p.name = name; p.blocks = [b.blockFrom(null, 'custom')]; p.blocks[0].name = 'Partner response practice'; p.blocks[0].instructions = 'Start in the base. Partner gives one practiced response.'; b.replaceDraft(p); }
   async function importWeek(value, size) { const text = typeof value === 'string' ? value : JSON.stringify(value); await host.listeners.change({ target: { matches: selector => selector === '[data-week-import]', files: [{ size: size ?? text.length, text: async () => text }] } }); }
-  return { values, writes, downloads, b, week, weekApi: ctx.window.GRINDSTONE_WEEKS, state, weeks, current, reload, field, handoff, weekField, select, makeWeek, populate, importWeek, render: params => builder.render(new URLSearchParams(params)), fail: value => { failedWrites = value; }, confirm: value => { allowConfirm = value; }, root: () => root, html: () => host.innerHTML };
+  async function importPractice(value) { const text = JSON.stringify(value); await root.listeners.change({ target: { dataset:{}, matches: selector => selector === '[data-import]', files: [{ size:text.length, text:async () => text }] } }); }
+  return { values, writes, downloads, draftWrites, b, week, weekApi: ctx.window.GRINDSTONE_WEEKS, state, weeks, current, reload, field, handoff, weekField, select, makeWeek, populate, importWeek, importPractice, render: params => builder.render(new URLSearchParams(params)), fail: value => { failedWrites = value; }, readFail: key => { failedRead = key; }, confirm: value => { allowConfirm = value; }, root: () => root, html: () => host.innerHTML };
 }
 let checks = 0, failures = 0;
 async function check(name, fn) { try { await fn(setup()); checks++; console.log('PASS ' + name); } catch (error) { failures++; console.error('FAIL ' + name + '\n' + error.stack); } }
@@ -82,6 +83,107 @@ async function main() {
     assert.deepStrictEqual(h.current().sessions[0], saved); assert.deepStrictEqual(h.current().sessions[1], second);
     h.week.act('open', second.id); h.populate('Tuesday options'); h.week.act('update'); assert.deepStrictEqual(h.current().sessions[0], saved);
     h.reload(); assert.equal(h.weeks().weeks[0].sessions[1].plan.name, 'Tuesday options');
+  });
+  await check('reload resumes an added session with autosaved edits newer than its week copy', h => {
+    h.makeWeek(); h.populate('Monday session'); h.week.act('add'); h.week.act('update');
+    const attachment = h.weeks().attachment, saved = h.current().sessions[0];
+    h.field('notes', 'Keep this unsaved week edit after reload'); const draft = h.state().plan;
+    h.reload(); assert.deepStrictEqual(h.state().plan, draft); assert.deepStrictEqual(h.weeks().attachment, attachment);
+    assert.equal(h.weeks().current, attachment.weekId); assert.deepStrictEqual(h.current().sessions[0], saved);
+    assert(h.html().includes('Save builder to this session')); h.week.act('update');
+    assert.deepStrictEqual(h.current().sessions[0].plan, draft);
+  });
+  await check('opening an existing session restores its attachment after reload', h => {
+    h.makeWeek(); h.week.act('suggest'); const original = h.current(), session = original.sessions[1];
+    h.week.act('open', session.id); h.populate('Tuesday coaching edits'); h.handoff('revisit', 'Repeat hand control');
+    const draft = h.state().plan, attachment = h.weeks().attachment; h.reload();
+    assert.deepStrictEqual(h.state().plan, draft); assert.deepStrictEqual(h.weeks().attachment, attachment);
+    assert.deepStrictEqual(h.current(), original); h.week.act('update');
+    assert.equal(h.current().sessions[1].plan.name, 'Tuesday coaching edits'); assert.deepStrictEqual(h.current().sessions[0], original.sessions[0]);
+  });
+  await check('blank, named load, copy and page-load restore remain detached after reload', h => {
+    h.makeWeek(); h.populate('Original session'); h.week.act('add'); h.b.action('save');
+    const attachment = h.weeks().attachment, namedId = h.state().plan.id; h.reload();
+    for (const action of ['new','load','duplicate','backup']) {
+      h.select(attachment.weekId); h.week.act('open', attachment.sessionId);
+      h.root().querySelector('[data-saved-plan]').value = namedId; h.b.action(action);
+      assert.equal(h.weeks().attachment, null, action); const draft = h.state().plan; h.reload();
+      assert.deepStrictEqual(h.state().plan, draft); assert.equal(h.weeks().attachment, null, action + ' reload');
+      h.select(attachment.weekId); assert(!h.html().includes('Save builder to this session'));
+    }
+  });
+  await check('practice import cannot inherit a supplied local draft attachment', async h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); const attachment = h.weeks().attachment, original = h.current();
+    const payload = JSON.parse(h.values.get(h.b.keys.draft)); assert(payload.weekSession);
+    await h.importPractice({format:'grindstone-practice',version:1,plan:payload});
+    assert.equal(h.weeks().attachment, null); assert(!Object.hasOwn(h.state().plan,'weekSession'));
+    h.reload(); assert.equal(h.weeks().attachment, null); h.select(attachment.weekId); h.week.act('update');
+    assert.deepStrictEqual(h.current(), original); assert(h.weeks().message.includes('Choose a session'));
+  });
+  await check('starting, copying and importing weeks persist detachment even with an unchanged draft', async h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); const original = h.current(), attachment = h.weeks().attachment, draft = h.state().plan;
+    for (const action of ['new','copy','import']) {
+      h.select(attachment.weekId); h.week.act('open', attachment.sessionId);
+      if (action === 'import') await h.importWeek({format:'grindstone-practice-week',version:1,week:original}); else h.week.act(action);
+      assert.equal(h.weeks().attachment, null); assert.deepStrictEqual(h.state().plan, draft); h.reload();
+      assert.equal(h.weeks().attachment, null, action); assert.deepStrictEqual(h.state().plan, draft);
+    }
+  });
+  await check('deleted sessions and weeks cannot be reattached by reloading their kept draft', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); const first = h.weeks().attachment, draft = h.state().plan;
+    h.week.act('remove-session', first.sessionId); h.reload(); assert.equal(h.weeks().attachment, null); assert.deepStrictEqual(h.state().plan, draft);
+    h.select(first.weekId); h.week.act('add'); h.week.act('remove-week'); h.reload();
+    assert.equal(h.weeks().attachment, null); assert.deepStrictEqual(h.state().plan, draft); assert.equal(h.weeks().weeks.length, 0);
+  });
+  await check('missing, malformed and unsupported stored session references safely detach', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); const raw = JSON.parse(h.values.get(h.b.keys.draft)), draft = h.state().plan;
+    const invalid = [undefined,null,[],{}, {version:2,...h.weeks().attachment}, {version:1,weekId:raw.weekSession.weekId,sessionId:'missing'}, {version:1,weekId:'missing',sessionId:raw.weekSession.sessionId}, {version:1,weekId:5,sessionId:raw.weekSession.sessionId}, {version:1,weekId:'x'.repeat(101),sessionId:raw.weekSession.sessionId}];
+    for (const ref of invalid) { h.values.set(h.b.keys.draft,JSON.stringify({...raw,weekSession:ref})); h.reload(); assert.equal(h.weeks().attachment,null); assert.deepStrictEqual(h.state().plan,draft); }
+    h.values.set(h.b.keys.draft,JSON.stringify(raw)); h.values.set(h.week.key,'[]'); h.reload();
+    assert.equal(h.weeks().attachment,null); assert.deepStrictEqual(h.state().plan,draft);
+  });
+  await check('unreadable week libraries preserve bytes and cannot restore the draft pointer', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); const draft = h.state().plan, draftBytes = h.values.get(h.b.keys.draft), weekBytes = h.values.get(h.week.key);
+    h.readFail(h.week.key); h.reload(); assert.equal(h.weeks().attachment,null); assert.equal(h.weeks().readable,false);
+    assert.deepStrictEqual(h.state().plan,draft); assert.equal(h.values.get(h.week.key),weekBytes); assert.equal(h.values.get(h.b.keys.draft),draftBytes);
+    h.readFail(''); h.values.set(h.week.key,'{broken-original'); h.reload();
+    assert.equal(h.weeks().attachment,null); assert.equal(h.values.get(h.week.key),'{broken-original'); assert.deepStrictEqual(h.state().plan,draft);
+  });
+  await check('unreadable draft storage cannot restore an unrelated active session', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); const bytes = h.values.get(h.b.keys.draft);
+    h.readFail(h.b.keys.draft); h.reload(); assert.equal(h.weeks().attachment,null); assert.equal(h.state().plan.blocks.length,0);
+    assert.equal(h.values.get(h.b.keys.draft),bytes); assert(h.state().storageError.includes('unavailable'));
+    h.makeWeek(); assert.equal(h.values.get(h.b.keys.draft),bytes);
+  });
+  await check('an interrupted session switch never saves the new draft with the old session pointer', h => {
+    h.makeWeek(); h.week.act('suggest'); const [first,second] = h.current().sessions; h.week.act('open',first.id);
+    const before = h.draftWrites.length;
+    h.fail((key,value) => key === h.b.keys.draft && JSON.parse(value).weekSession?.sessionId === second.id);
+    h.week.act('open',second.id); assert(h.state().storageError.includes('Could not save'));
+    assert(h.draftWrites.length > before);
+    for (const saved of h.draftWrites.slice(before)) { assert.equal(saved.name,second.plan.name); assert.equal(saved.weekSession,null); }
+    const persisted = JSON.parse(h.values.get(h.b.keys.draft)); assert.equal(persisted.name,second.plan.name); assert.equal(persisted.weekSession,null);
+    h.fail(false); h.reload(); assert.equal(h.weeks().attachment,null); assert.deepStrictEqual(h.state().plan,second.plan);
+  });
+  await check('failed draft writes retain the prior draft and matching session on reload', h => {
+    h.makeWeek(); h.week.act('suggest'); const [first,second] = h.current().sessions; h.week.act('open',first.id);
+    const bytes = h.values.get(h.b.keys.draft), attachment = h.weeks().attachment;
+    h.fail(true); h.week.act('open',second.id); assert.equal(h.values.get(h.b.keys.draft),bytes); h.fail(false); h.reload();
+    assert.deepStrictEqual(h.weeks().attachment,attachment); assert.deepStrictEqual(h.state().plan,first.plan);
+  });
+  await check('undoing a session switch persists the restored draft and attachment together', h => {
+    h.makeWeek(); h.week.act('suggest'); const [first,second] = h.current().sessions;
+    h.week.act('open',first.id); h.populate('Keep first edits'); const draft = h.state().plan, attachment = h.weeks().attachment;
+    h.week.act('open',second.id); h.b.action('undo'); h.reload();
+    assert.deepStrictEqual(h.state().plan,draft); assert.deepStrictEqual(h.weeks().attachment,attachment);
+    h.week.act('update'); assert.equal(h.current().sessions[0].plan.name,'Keep first edits'); assert.deepStrictEqual(h.current().sessions[1],second);
+  });
+  await check('completed session reload keeps the attachment without enabling historical edits', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); h.handoff('taught','Original lesson'); h.b.action('complete'); h.week.act('update');
+    const original = h.current(), record = h.state().plan, attachment = h.weeks().attachment;
+    assert(!Object.hasOwn(h.state().saved[0],'weekSession')); assert(!Object.hasOwn(original.sessions[0].plan,'weekSession'));
+    h.reload(); assert.deepStrictEqual(h.weeks().attachment,attachment); assert.deepStrictEqual(h.state().plan,record);
+    h.field('notes','Forbidden change'); h.week.act('update'); assert.deepStrictEqual(h.current(),original); assert.deepStrictEqual(h.state().saved[0],record);
   });
   await check('adding a named practice creates an independent planned session and builder copy', h => {
     h.populate('Named base'); h.field('focus', 'Practice-specific focus'); h.b.action('save'); const original = h.state().saved[0];

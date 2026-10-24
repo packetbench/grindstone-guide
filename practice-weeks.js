@@ -8,7 +8,7 @@
   const uid = () => 'w-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9);
   const programs = () => window.GRINDSTONE_FRAMEWORKS?.programs || [];
   const purposes = () => window.GRINDSTONE_FRAMEWORKS?.sessions || [];
-  let weeks = [], current = '', attachment = null, bridge, host, initialized = false, readable = true, message = '', storageMessage = '';
+  let weeks = [], current = '', attachment = null, pendingAttachment = null, replacing = false, bridge, host, initialized = false, readable = true, message = '', storageMessage = '';
   function str(value, name, max = 500) {
     if (value == null) return '';
     if (typeof value !== 'string' || value.length > max) throw Error(name + ' must be text of at most ' + max + ' characters.');
@@ -54,16 +54,38 @@
         if (new Set(weeks.map(w => w.id)).size !== weeks.length) throw Error('Duplicate weeks');
       }
     } catch (_) { weeks = []; readable = false; storageMessage = 'The week library could not be read. Existing data will not be overwritten. You can work here and export a week backup.'; }
+    attachment = readable ? resolveAttachment(pendingAttachment) : null;
+    if (attachment) current = attachment.weekId;
+    pendingAttachment = null;
   }
   const selected = () => weeks.find(w => w.id === current);
+  function resolveAttachment(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value) || !['weekId','sessionId'].every(key => typeof value[key] === 'string' && value[key].length > 0 && value[key].length <= 100)) return null;
+    const w = weeks.find(v => v.id === value.weekId), s = w?.sessions.find(v => v.id === value.sessionId);
+    return s ? {weekId:w.id,sessionId:s.id} : null;
+  }
+  // Keep the pointer in the same local autosave as its draft. cleanPlan excludes it
+  // from named plans, exports and imports, so independent copies cannot inherit it.
+  function readDraft(raw) { pendingAttachment = raw?.weekSession?.version === 1 ? raw.weekSession : null; }
+  function serializeDraft(p) {
+    const ref = replacing ? null : resolveAttachment(attachment);
+    return {...p,weekSession:ref ? {version:1,...ref} : null};
+  }
   function captureAttachment() { return attachment ? clone(attachment) : null; }
   function restoreAttachment(value) {
-    const w = value && typeof value === 'object' ? weeks.find(v => v.id === value.weekId) : null;
-    const s = w?.sessions.find(v => v.id === value.sessionId);
-    attachment = s ? {weekId:w.id,sessionId:s.id} : null;
-    if (s) current = w.id;
+    const hadAttachment = Boolean(attachment);
+    attachment = resolveAttachment(value);
+    if (attachment) current = attachment.weekId;
+    if (hadAttachment || attachment) bridge?.saveDraft?.();
     refresh();
-    return Boolean(s);
+    return Boolean(attachment);
+  }
+  function replaceAttached(p, ref) {
+    // replacePlan remembers the old attachment for Undo. Its intermediate autosave
+    // must not pair the newly opened draft with the previously active session.
+    replacing = true;
+    try { bridge.replacePlan(clone(p)); } finally { replacing = false; }
+    restoreAttachment(ref);
   }
   function persist() {
     if (!readable) { storageMessage = 'Week changes remain in this page only; export a week backup. Existing unreadable storage is preserved.'; return false; }
@@ -122,11 +144,11 @@
   function act(name, id) {
     const w = selected(), s = w?.sessions.find(v => v.id === id);
     try {
-      if (name === 'new') { addWeek(cleanWeek({version:1,name:'My planning week',lane:'mat-rats',sessions:[]},bridge.cleanPlan)); attachment = null; announce('Week created. Add a shared focus and sessions when ready.'); return; }
+      if (name === 'new') { addWeek(cleanWeek({version:1,name:'My planning week',lane:'mat-rats',sessions:[]},bridge.cleanPlan)); restoreAttachment(null); announce('Week created. Add a shared focus and sessions when ready.'); return; }
       if (!w) return;
       if (name === 'export') { download({format:'grindstone-practice-week',version:1,week:cleanWeek(w,bridge.cleanPlan)},'grindstone-week-' + (w.weekOf || 'plan') + '.json'); announce('Week exported with its session plans and completed handoffs.'); return; }
-      if (name === 'copy') { const copy = clone(w); copy.id = uid(); copy.name = (w.name + ' — next').slice(0,120); copy.weekOf = ''; copy.revision = ''; copy.sessions.forEach(v => { v.id = uid(); v.plan = draftCopy(v.plan); v.plan.weekContext = context(copy); }); addWeek(copy); attachment = null; announce('Independent week copied. Set the new dates and review each session.'); return; }
-      if (name === 'remove-week') { if (!window.confirm('Delete this week and its session copies from this browser? Export it first if you need its history. The current builder draft stays.')) return; weeks = weeks.filter(v => v.id !== w.id); current = ''; attachment = null; persist(); announce('Week removed. Builder draft kept.'); return; }
+      if (name === 'copy') { const copy = clone(w); copy.id = uid(); copy.name = (w.name + ' — next').slice(0,120); copy.weekOf = ''; copy.revision = ''; copy.sessions.forEach(v => { v.id = uid(); v.plan = draftCopy(v.plan); v.plan.weekContext = context(copy); }); addWeek(copy); restoreAttachment(null); announce('Independent week copied. Set the new dates and review each session.'); return; }
+      if (name === 'remove-week') { if (!window.confirm('Delete this week and its session copies from this browser? Export it first if you need its history. The current builder draft stays.')) return; weeks = weeks.filter(v => v.id !== w.id); current = ''; persist(); restoreAttachment(null); announce('Week removed. Builder draft kept.'); return; }
       if (name === 'suggest') { const rows = suggested(w,bridge.newPlan); if (!rows.length) throw Error('For a custom group, add the current practice as a session.'); if (w.sessions.length + rows.length > MAX_SESSIONS) throw Error('A week can contain at most 24 sessions.'); if (w.sessions.length && !window.confirm('Add another set of blank sessions? Existing sessions stay.')) return; w.sessions.push(...rows); persist(); announce('Blank sessions added. Open one and choose its time framework and activities.'); return; }
       if (name === 'add') {
         if (!bridge.valid()) return;
@@ -134,17 +156,16 @@
         const p = bridge.cleanPlan(bridge.getPlan());
         if (p.status !== 'completed') { p.parentId = p.id || p.parentId || ''; p.id = ''; p.weekContext = context(w); }
         const entry = {id:uid(),label:p.name,plan:p};
-        w.sessions.push(entry); bridge.replacePlan(clone(p));
-        attachment = {weekId:w.id,sessionId:entry.id}; persist();
+        w.sessions.push(entry); persist(); replaceAttached(p,{weekId:w.id,sessionId:entry.id});
         announce(p.status === 'completed' ? 'Completed record added with its original teaching details preserved.' : 'Independent session added and opened in the builder. Its source practice stays unchanged.');
         return;
       }
-      if (name === 'update') { if (!bridge.valid()) return; updateSession(w,attachment?.sessionId,bridge.getPlan()); announce('Session saved back to the week, including its handoff.'); return; }
+      if (name === 'update') { if (!bridge.valid()) return; if (attachment?.weekId !== w.id) throw Error('Choose a session first.'); updateSession(w,attachment.sessionId,bridge.getPlan()); announce('Session saved back to the week, including its handoff.'); return; }
       if (name === 'focus') { if (!bridge.valid()) return; const p = bridge.getPlan(); if (p.status === 'completed') return; p.focus = w.focus.slice(0,500); p.weekContext = context(w); bridge.replacePlan(p); announce('Shared focus and cue applied to this builder draft only.'); return; }
       if (!s) return;
-      if (name === 'open') { if (!bridge.valid()) return; if (!window.confirm('Open this week session in the builder? Save the current draft to its week or named library first if you need to keep it. Undo can restore the draft.')) return; bridge.replacePlan(clone(s.plan)); attachment = {weekId:w.id,sessionId:s.id}; announce('Opened ' + s.label + '. Save back to this session after editing.'); return; }
+      if (name === 'open') { if (!bridge.valid()) return; if (!window.confirm('Open this week session in the builder? Save the current draft to its week or named library first if you need to keep it. Undo can restore the draft.')) return; replaceAttached(s.plan,{weekId:w.id,sessionId:s.id}); announce('Opened ' + s.label + '. Save back to this session after editing.'); return; }
       if (name === 'copy-session') { if (w.sessions.length >= MAX_SESSIONS) throw Error('A week can contain at most 24 sessions.'); const p = draftCopy(s.plan); p.name = (p.name + ' — next').slice(0,120); p.weekContext = context(w); w.sessions.push({id:uid(),label:p.name,plan:p}); persist(); announce('Independent session copied; dates and handoff cleared.'); return; }
-      if (name === 'remove-session') { if (!window.confirm('Remove this session copy from the week? Export the week first if you need it. The builder draft stays.')) return; w.sessions = w.sessions.filter(v => v.id !== id); if (attachment?.sessionId === id) attachment = null; persist(); announce('Session removed from this week.'); }
+      if (name === 'remove-session') { if (!window.confirm('Remove this session copy from the week? Export the week first if you need it. The builder draft stays.')) return; w.sessions = w.sessions.filter(v => v.id !== id); persist(); if (attachment?.weekId === w.id && attachment.sessionId === id) restoreAttachment(null); announce('Session removed from this week.'); }
     } catch (e) { announce(e.message); }
   }
   function bind(element, api) {
@@ -159,7 +180,7 @@
       if (e.target.matches('[data-week-select]')) { current = e.target.value; refresh(); return; }
       if (!e.target.matches('[data-week-import]')) return;
       const file = e.target.files?.[0]; if (!file) return;
-      try { if (file.size > 12000000) throw Error('Choose a week file smaller than 12 MB.'); const w = cleanImport(await file.text(),bridge.cleanPlan); addWeek(w); attachment = null; announce('Week imported as a separate local copy.'); } catch (err) { announce('Import stopped: ' + err.message); }
+      try { if (file.size > 12000000) throw Error('Choose a week file smaller than 12 MB.'); const w = cleanImport(await file.text(),bridge.cleanPlan); addWeek(w); restoreAttachment(null); announce('Week imported as a separate local copy.'); } catch (err) { announce('Import stopped: ' + err.message); }
     });
     host.addEventListener('click', e => { const b = e.target.closest('[data-week-action]'); if (b && !b.disabled) act(b.dataset.weekAction,b.closest('[data-week-session]')?.dataset.weekSession); });
   }
@@ -171,5 +192,5 @@
     const w = p.weekContext || {}, h = p.handoff || {};
     return '<section class="builder-print-handoff"><p><strong>' + (p.status === 'completed' ? 'Completed practice' : 'Planned practice') + '</strong>' + (p.date ? ' · ' + esc(p.date) : '') + (p.owner ? ' · Coach: ' + esc(p.owner) : '') + (p.revision ? ' · Revision: ' + esc(p.revision) : '') + '</p>' + (w.label ? '<p><strong>Planning week:</strong> ' + esc(w.label) + '</p>' : '') + (w.cue ? '<p><strong>Shared cue:</strong> ' + esc(w.cue) + '</p>' : '') + (w.outcome ? '<p><strong>Desired outcome:</strong> ' + esc(w.outcome) + '</p>' : '') + (Object.values(h).some(Boolean) ? '<h2>Practice handoff</h2>' + Object.entries(labels).filter(([k]) => h[k]).map(([k,l]) => '<p class="builder-preline"><strong>' + l + ':</strong> ' + esc(h[k]) + '</p>').join('') : '') + '</section>';
   }
-  window.GRINDSTONE_WEEKS = {render,bind,refresh,cleanMeta,handoffHtml,printMeta,draftCopy,captureAttachment,restoreAttachment,detach:() => { attachment=null; refresh(); }, testing:{cleanWeek,cleanImport,suggested,date,cleanMeta,draftCopy,act,updateSession,key:KEY,getState:()=>clone({weeks,current,attachment,message,storageMessage,readable}),reset:()=>{weeks=[];current='';attachment=null;host=null;bridge=null;initialized=false;readable=true;message='';storageMessage='';}}};
+  window.GRINDSTONE_WEEKS = {render,bind,refresh,cleanMeta,handoffHtml,printMeta,draftCopy,readDraft,serializeDraft,captureAttachment,restoreAttachment,detach:() => restoreAttachment(null), testing:{cleanWeek,cleanImport,suggested,date,cleanMeta,draftCopy,act,updateSession,key:KEY,getState:()=>clone({weeks,current,attachment,message,storageMessage,readable}),reset:()=>{weeks=[];current='';attachment=null;pendingAttachment=null;replacing=false;host=null;bridge=null;initialized=false;readable=true;message='';storageMessage='';}}};
 })();

@@ -6,7 +6,7 @@ let checks = 0;
 const check = (name,fn) => { fn(); checks++; console.log('PASS ' + name); };
 const clone = value => JSON.parse(JSON.stringify(value));
 const ctx = {window:{confirm:()=>true,localStorage:{getItem:()=>null,setItem(){}}},URL,URLSearchParams,console,setTimeout};
-for (const file of ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js','catalog-tags.js','practice-components.js','practice-builder.js']) vm.runInNewContext(fs.readFileSync(path.join(base,file),'utf8'),ctx,{filename:file});
+for (const file of ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js','catalog-tags.js','practice-weeks.js','practice-components.js','practice-builder.js']) vm.runInNewContext(fs.readFileSync(path.join(base,file),'utf8'),ctx,{filename:file});
 const api = ctx.window.GRINDSTONE_COMPONENTS, t = api.testing;
 const catalog = ctx.window.GRINDSTONE_BUILDER.testing.normalizeCatalog(), pathway = ctx.window.GRINDSTONE_PATHWAY;
 const byId = new Map(catalog.map(item=>[item.id,item]));
@@ -385,6 +385,88 @@ check('component structural mutations honor builder numeric validation without l
   for(const action of ['add-station','remove-station','remove-rotation','use-total','apply-series'])h.click(action,0);
   assert.deepEqual(plan,before);assert.equal(h.snapshots.length,0);assert.equal(h.changes.length,0);assert.equal(validated,5);
   h.click('clear-station-filters',0);assert.equal(validated,5);
+});
+
+
+function addedGamePlan() {
+  const game=blockFor(byId.get('G31'));game.guideMinutes=byId.get('G31').minutes;
+  return {age:'7-10',status:'planned',blocks:[api.appendActivity({...blockFor(byId.get('B03')),minutes:2},game)]};
+}
+function addedGameHost(plan,overrides={}) {
+  const h=hostFor(plan,overrides),nodes=new Map();
+  const card={dataset:{activityIndex:'0'},querySelector(selector){if(!nodes.has(selector))nodes.set(selector,{innerHTML:'',hidden:false,textContent:''});return nodes.get(selector);}};
+  h.host.querySelectorAll=selector=>selector==='[data-activity-index]'?[card]:[];
+  return {...h,card,
+    activityInput(key,value){const el={...h.element({activityField:key},value),closest:selector=>selector==='[data-activity-index]'?card:h.host};h.listeners.input({target:el});},
+    activityAction(action){const button={...h.element({componentAction:action}),closest:selector=>selector==='[data-activity-index]'?card:h.host};h.listeners.click({target:{closest:()=>button}});}
+  };
+}
+check('new rotations fit every supported slot without changing an existing saved rotation',()=>{
+  for(let minutes=0.5;minutes<=120;minutes+=0.5){
+    const r=t.newRotation(minutes);assert.equal(api.rotationMinutes(r),minutes);
+    assert(r.workMinutes>=0.5&&r.workMinutes<=5);assert.doesNotThrow(()=>api.cleanBlock({components:{version:1,rotation:r}}));
+  }
+  const six=t.newRotation(6);assert.deepEqual([six.rounds,six.workMinutes,six.changeMinutes,six.briefingMinutes,six.finishMinutes],[3,1,0.5,1,1]);
+  for(const minutes of [6,8,15,20,30]){
+    const block={...blockFor(),minutes},plan={age:'11-14',blocks:[block]},h=hostFor(plan);
+    h.click('add-rotation');assert.equal(api.rotationMinutes(block.components.rotation),minutes);assert.equal(block.minutes,minutes);
+    assert.equal(block.rotation,'Coach B supervises the north mat.');
+  }
+  const old=rotationBlock();old.minutes=6;const before=clone(old.components.rotation);api.cleanBlock(old);assert.deepEqual(old.components.rotation,before);assert.equal(api.rotationMinutes(old.components.rotation),20);
+});
+check('added games carry duration provenance and warn when longer than the entire slot',()=>{
+  const plan=addedGamePlan(),block=plan.blocks[0],a=block.components.activities[0];
+  assert.equal(a.guideType,'game');assert.equal(a.guideMinutes,4);assert(t.activityTimingMismatch(a,block));
+  for(const html of [api.renderBlock(block,0,catalog),api.printBlock(block,catalog)]){
+    assert(html.includes('Game timing needs review'));assert(html.includes('longer than the entire 2-minute slot'));assert(html.includes('not added automatically'));
+  }
+  assert(api.renderBlock(block,0,catalog).includes('activity-guide-duration'));assert(!api.printBlock(block,catalog).includes('data-component-action="activity-guide-duration"'));
+  assert.equal(block.minutes,2);assert.equal(api.readinessProblems(block).length,0);
+});
+check('added game review is explicit, retained, and reconsidered after task or slot edits',()=>{
+  const plan=addedGamePlan(),h=addedGameHost(plan),b=plan.blocks[0],a=b.components.activities[0];
+  h.activityInput('task','Two 30-second rounds and one minute for feedback, swapping and reset.');
+  assert(t.activityTimingMismatch(a,b));h.activityAction('activity-confirm-timing');assert(!t.activityTimingMismatch(a,b));assert.equal(b.minutes,2);
+  h.activityInput('cues','Touch only');h.activityInput('name','Short Ankle Tag');assert(!t.activityTimingMismatch(a,b));
+  h.activityInput('task','Three 30-second rounds, then swap.');assert(t.activityTimingMismatch(a,b));assert(h.card.querySelector('[data-activity-timing]').innerHTML.includes('Game timing needs review'));
+  h.activityAction('activity-confirm-timing');b.minutes=3;api.refresh(h.container,plan);assert(t.activityTimingMismatch(a,b));assert(h.card.querySelector('[data-activity-timing]').innerHTML.includes('3-minute slot'));
+  const before=clone(b);h.activityAction('activity-guide-duration');assert.equal(b.minutes,4);assert.deepEqual(clone(b.components),before.components);assert.equal(b.instructions,before.instructions);assert(!t.activityTimingMismatch(a,b));
+  assert.deepEqual(h.snapshots.at(-1).blocks[0],before);
+});
+check('legacy planned game metadata is recovered without rewriting completed historical activities',()=>{
+  const plan=addedGamePlan(),raw=clone(plan.blocks[0]),a=raw.components.activities[0];delete a.guideType;delete a.guideMinutes;
+  const untouched=clone(raw),planned=api.cleanBlock(raw,catalog,{status:'planned'}),completed=api.cleanBlock(raw,catalog,{status:'completed'});
+  assert.equal(planned.components.activities[0].guideType,'game');assert.equal(planned.components.activities[0].guideMinutes,4);
+  assert.deepEqual(clone(completed.components),raw.components);assert.deepEqual(raw,untouched);
+  const explicit=addedGamePlan().blocks[0],known=byId.get('G31'),prior=known.minutes;known.minutes=9;
+  try{assert.equal(api.cleanBlock(explicit,catalog,{status:'completed'}).components.activities[0].guideMinutes,4);}finally{known.minutes=prior;}
+  const missing=clone(raw);missing.components.activities[0].guide.sourceId='removed-game';assert(!api.cleanBlock(missing,catalog).components.activities[0].guideType);
+});
+check('added game controls preserve completed records and respect invalid numeric controls',()=>{
+  const plan=addedGamePlan(),h=addedGameHost(plan,{valid:()=>false}),before=clone(plan);
+  h.activityAction('activity-confirm-timing');h.activityAction('activity-guide-duration');assert.deepEqual(plan,before);assert.equal(h.snapshots.length,0);
+  const completed=addedGamePlan();completed.status='completed';const frozen=clone(completed),hc=addedGameHost(completed);
+  hc.activityAction('activity-confirm-timing');hc.activityAction('activity-guide-duration');hc.activityInput('task','Changed');assert.deepEqual(completed,frozen);assert.equal(hc.snapshots.length,0);
+});
+check('added-game timing metadata survives named save, reload, export/import, printing and completed snapshots',()=>{
+  const builder=ctx.window.GRINDSTONE_BUILDER,bt=builder.testing,storage=new Map(),previousStorage=ctx.window.localStorage;
+  ctx.window.localStorage={getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value)};
+  function mount(){
+    builder.render(new URLSearchParams());const nodes=new Map();
+    const root={dataset:{},querySelector(selector){if(selector==='input:invalid, select:invalid, textarea:invalid'||selector==='[data-week-content]')return null;if(!nodes.has(selector))nodes.set(selector,{innerHTML:'',textContent:'',value:'',checked:false,disabled:false,hidden:false,focus(){}});return nodes.get(selector);},querySelectorAll(){return[];},addEventListener(){}};
+    builder.bind(root);
+  }
+  try{
+    bt.reset();mount();const p={...bt.newPlan(),...addedGamePlan(),name:'Short game review',handoff:{taught:'Played a short touch-only round.'}};bt.replaceDraft(p);bt.action('save',-1);
+    const saved=bt.getState().plan;bt.reset();mount();assert.deepEqual(bt.getState().plan.blocks,saved.blocks);
+    const imported=bt.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:saved}));assert.deepEqual(imported.blocks,saved.blocks);
+    for(const full of [false,true])assert(bt.printHtml(full).includes('Game timing needs review'));
+    bt.completePlan();const done=bt.getState().plan;assert.equal(done.status,'completed');assert.deepEqual(done.blocks,saved.blocks);
+    assert.deepEqual(bt.cleanPlan(clone(done)).blocks,done.blocks);
+    bt.reset();mount();assert.equal(bt.getState().plan.status,'completed');assert.deepEqual(bt.getState().plan.blocks,done.blocks);
+    const reviewed=clone(saved);reviewed.blocks[0].components.activities[0].timingReview={minutes:2,task:reviewed.blocks[0].components.activities[0].task};
+    const restored=bt.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:reviewed}));assert(!t.activityTimingMismatch(restored.blocks[0].components.activities[0],restored.blocks[0]));
+  }finally{ctx.window.localStorage=previousStorage;bt.reset();}
 });
 
 console.log(checks+' component checks passed.');

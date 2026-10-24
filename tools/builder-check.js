@@ -588,7 +588,7 @@ check('completed snapshots retain historical restrictions, unknown source IDs, t
 check('short usage flow and a per-slot picker shortcut preserve the chosen guide', () => {
   resetCase();addSource('move','P01');picker('selected','P02');
   const html=api.render(new URLSearchParams());
-  assert(html.includes('builder-quick-start'));assert(html.includes('data-action="jump-practice"'));assert(html.includes('data-action="save">Save</button>'));
+  assert(html.includes('builder-quick-start'));assert(html.includes('data-action="jump-practice"'));assert(html.includes('data-action="save" data-save-label="Save">Save</button>'));
   assert(root.querySelector('.builder-block-list').innerHTML.includes('Choose guide for this slot'));
   t.action('choose-slot',0);assert.equal(state().picker.destination,state().plan.blocks[0].id);assert.equal(state().picker.selected,'P02');
 });
@@ -946,4 +946,102 @@ check('activity edits and controls cannot change completed records or discard in
   const complete=JSON.stringify(state().plan);h.input(0,'task','Bad edit');h.click(0,'activity-remove');assert.equal(JSON.stringify(state().plan),complete);
 });
 
-console.log('\n' + checks + ' builder checks passed. No files written.');
+check('Cancel returns keyboard focus to Fill this slot without changing the plan or Undo',()=>{
+  resetCase();addSource('move','P01');addSource('move','P02');
+  picker('selected','P03');picker('destination',state().plan.blocks[0].id);
+  const before=JSON.stringify(state().plan);let focused=0;
+  root.querySelector('[data-action="add"]').focus=()=>{focused++;};
+  t.action('add',-1);assert(state().pendingReplacement);t.action('cancel-replace',-1);
+  assert.equal(focused,1);assert(!state().pendingReplacement);assert.equal(JSON.stringify(state().plan),before);
+  assert(root.querySelector('.builder-placement-feedback').innerHTML.includes('Selection cancelled'));
+  t.action('undo',-1);assert.deepEqual(state().plan.blocks.map(block=>block.sourceId),['P01']);
+});
+check('slot name and minute edits update destination labels without rebuilding the guide picker',()=>{
+  resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
+  picker('type','series');picker('selected','series:S24');stageMainSkills([1,2]);
+  picker('destination',state().plan.blocks[2].id);picker('search','Foundation');
+  const before=JSON.stringify(state().picker),preview=root.querySelector('.builder-resource-preview');
+  const markup=preview.innerHTML,results=root.querySelector('[data-picker="selected"]').innerHTML;
+  let rebuilt=0;Object.defineProperty(preview,'innerHTML',{configurable:true,get:()=>markup,set(){rebuilt++;}});
+  blockField(2,'name','Double leg & <single leg>');blockField(2,'minutes','20.5');
+  const destination=root.querySelector('[data-picker="destination"]').innerHTML;
+  assert(destination.includes('Slot 3. Double leg &amp; &lt;single leg&gt; · keep 20.5 min'));
+  assert(destination.includes('value="'+state().plan.blocks[2].id+'" selected'));
+  assert.equal(JSON.stringify(state().picker),before);assert.equal(rebuilt,0);
+  assert.equal(root.querySelector('[data-picker="selected"]').innerHTML,results);
+  root.listeners.input({target:{dataset:{blockField:'minutes'},value:'-3',validity:{valid:false},closest:()=>({dataset:{blockIndex:'2'}})}});
+  assert.equal(root.querySelector('[data-picker="destination"]').innerHTML,destination);
+  assert.equal(state().plan.blocks[2].minutes,20.5);assert.equal(rebuilt,0);
+});
+function completedFixture() {
+  const raw=t.newPlan();Object.assign(raw,{id:'original-completed',parentId:'original-planned',name:'Tuesday foundation record',status:'completed',date:'2026-10-20',completedAt:'2026-10-20T23:05:00.000Z',owner:'Coach',revision:'After practice',focus:'Stand-up and double leg',weekContext:{label:'Week 2',cue:'Hands first',outcome:'Safe finish'},handoff:{taught:'Stand-up and double leg.',changed:'Shortened live rounds.',worked:'Partner feedback.',reliable:'Balanced first step.',revisit:'Clear hands before turning.'}});
+  raw.blocks=[t.blockFrom(catalog.find(item=>item.id==='G01'),'game')];
+  Object.assign(raw.blocks[0],{sourceId:'historical-retired-guide',instructions:'Historical coach-written task.',ageNote:'Historical readiness.',sourceNote:'Original source scope.',guideMinutes:0});
+  return raw;
+}
+function importFile(record) {
+  const json=JSON.stringify({format:'grindstone-practice',version:1,plan:record});
+  const target={dataset:{},value:'selected.json',matches:selector=>selector==='[data-import]',files:[{size:json.length,text:async()=>json}]};
+  return root.listeners.change({target}).then(()=>{assert.equal(target.value,'');});
+}
+async function checkAsync(name,fn){await fn();checks++;console.log('PASS '+name);}
+(async()=>{
+  await checkAsync('completed JSON imports save as independent read-only library records without replacing history',async()=>{
+    resetCase();const original=t.cleanPlan(completedFixture());
+    values.set(t.keys.plans,JSON.stringify([original]));t.reset();mount();
+    const originalBytes=JSON.stringify(state().saved[0]);
+    await importFile(original);
+    const imported=state().plan;assert.equal(imported.id,'');assert.equal(imported.status,'completed');
+    assert.equal(state().saved.length,1);assert(!root.querySelector('[data-action="save"]').disabled);
+    assert.equal(root.querySelector('[data-action="save"]').textContent,'Save completed record');
+    assert(root.querySelector('.builder-record-status').textContent.includes('not yet in this browser’s saved library'));
+    assert(root.querySelector('.builder-status').textContent.includes('Save completed record'));
+    const unchanged=JSON.stringify(imported);field('name','Should not edit');
+    root.listeners.input({target:{dataset:{handoffField:'taught'},value:'Should not edit'}});
+    assert.equal(JSON.stringify(state().plan),unchanged);
+    t.action('save',-1);const savedId=state().plan.id;
+    assert(savedId);assert.notEqual(savedId,original.id);assert.equal(state().saved.length,2);
+    assert.equal(JSON.stringify(state().saved[0]),originalBytes);
+    assert.deepEqual(state().saved[1],{...imported,id:savedId});
+    assert.deepEqual(state().plan,{...imported,id:savedId});
+    assert(root.querySelector('[data-action="save"]').disabled);
+    t.action('save',-1);assert.equal(state().saved.length,2);
+    const persisted=JSON.stringify(state().saved[1]);
+    t.action('new',-1);t.reset();mount();root.querySelector('[data-saved-plan]').value=savedId;t.action('load',-1);
+    assert.equal(JSON.stringify(state().plan),persisted);
+    for(const details of [false,true]){const print=t.printHtml(details);assert(print.includes('Completed practice'));assert(print.includes('2026-10-20'));assert(print.includes(original.handoff.revisit));}
+    t.action('duplicate',-1);assert.equal(state().plan.status,'planned');assert.equal(state().plan.completedAt,'');
+    assert.equal(state().plan.date,'');assert(Object.values(state().plan.handoff).every(value=>value===''));
+    assert.equal(JSON.stringify(state().saved.find(record=>record.id===savedId)),persisted);
+  });
+  await checkAsync('completed import save failures retain the unsaved record and allow a safe retry',async()=>{
+    resetCase();await importFile(completedFixture());const imported=JSON.stringify(state().plan);
+    failStorage=true;t.action('save',-1);
+    assert.equal(state().saved.length,0);assert.equal(JSON.stringify(state().plan),imported);
+    assert(!root.querySelector('[data-action="save"]').disabled);assert(state().storageError.includes('Could not save'));
+    failStorage=false;t.action('save',-1);assert.equal(state().saved.length,1);assert.equal(state().plan.status,'completed');
+  });
+  await checkAsync('completed import cannot overwrite an unreadable saved library',async()=>{
+    resetCase();values.set(t.keys.plans,'{broken');t.reset();mount();await importFile(completedFixture());
+    const before=JSON.stringify(state().plan);t.action('save',-1);
+    assert.equal(values.get(t.keys.plans),'{broken');assert.equal(state().saved.length,0);
+    assert.equal(JSON.stringify(state().plan),before);assert(root.querySelector('.builder-status').textContent.includes('being preserved'));
+  });
+  await checkAsync('full library blocks completed-import save without changing IDs or historical records',async()=>{
+    resetCase();const original=t.cleanPlan(completedFixture()),full=Array.from({length:100},(_,i)=>({...original,id:'saved-'+i}));
+    values.set(t.keys.plans,JSON.stringify(full));t.reset();mount();await importFile(original);
+    const before=values.get(t.keys.plans);t.action('save',-1);
+    assert.equal(values.get(t.keys.plans),before);assert.equal(state().plan.id,'');assert.equal(state().saved.length,100);
+    assert(root.querySelector('.builder-status').textContent.includes('100 saved plans'));
+  });
+  await checkAsync('deleted completed records offer an explicit save path while planned imports stay editable drafts',async()=>{
+    resetCase();await importFile(completedFixture());t.action('save',-1);
+    root.querySelector('[data-saved-plan]').value=state().plan.id;t.action('delete',-1);
+    assert.equal(state().plan.id,'');assert.equal(state().plan.status,'completed');assert(!root.querySelector('[data-action="save"]').disabled);
+    const planned=t.newPlan();planned.name='Editable imported draft';planned.blocks=[t.blockFrom(catalog.find(item=>item.id==='P01'),'move')];
+    await importFile(planned);assert.equal(state().plan.status,'planned');assert.equal(state().saved.length,0);assert.equal(state().plan.id,'');
+    field('name','Edited after import');t.action('save',-1);assert.equal(state().saved[0].name,'Edited after import');
+    assert(!api.render(new URLSearchParams()).includes('Import creates a separate draft.'));
+  });
+  console.log('\n'+checks+' builder checks passed. No files written.');
+})().catch(error=>{console.error(error);process.exitCode=1;});
