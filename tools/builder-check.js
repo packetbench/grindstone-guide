@@ -8,7 +8,7 @@ const values = new Map(), writes = [];
 let failStorage = false, allowConfirm = true;
 const storage = { getItem: k => { if (failStorage) throw Error('disabled'); return values.get(k) || null; }, setItem: (k, val) => { if (failStorage) throw Error('full'); values.set(k, val); writes.push(k); } };
 const ctx = { window: { localStorage: storage, confirm: () => allowConfirm }, URL, URLSearchParams, console, Blob, setTimeout };
-for (const file of ['data.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'practice-builder.js']) {
+for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js', 'practice-builder.js']) {
   if (!fs.existsSync(path.join(base, file))) throw Error('Missing ' + file);
   vm.runInNewContext(fs.readFileSync(path.join(base, file), 'utf8'), ctx, { filename: file });
 }
@@ -28,6 +28,9 @@ function resetCase(params = '') { values.clear(); writes.length = 0; failStorage
 function visibleIds() { return Array.from(root.querySelector('[data-picker="selected"]').innerHTML.matchAll(/<option value="([^"]+)"/g), match => match[1]); }
 mount();
 const catalog = t.normalizeCatalog(), counts = ctx.window.GRINDSTONE, pathway = ctx.window.GRINDSTONE_PATHWAY;
+const expansionModules = [ctx.window.GRINDSTONE_SERIES_NEUTRAL, ctx.window.GRINDSTONE_SERIES_TOP, ctx.window.GRINDSTONE_SERIES_ESCAPES];
+const expandedSeries = expansionModules.flatMap(module => module.series || []);
+const addedMoves = [...ctx.window.GRINDSTONE_SERIES_MOVES.entries, ...ctx.window.GRINDSTONE_SERIES_BOTTOM.entries, ...expansionModules.flatMap(module => module.moves || [])];
 const series = pathway.series[0], sequence = pathway.sequences[0], activity = pathway.activities[0];
 function assertSeriesInstructions(instructions, item = series) {
   assert(instructions.includes(item.foundation), item.id + ' must retain its shared foundation');
@@ -56,7 +59,16 @@ check('new sequence and legacy series links select the same drill without adding
   for (const key of ['sequence', 'series']) { mount(key + '=' + sequence.id + '&age=4-6'); assert.equal(state().picker.selected, 'series:' + sequence.id); assert.equal(state().picker.type, 'drill'); assert.equal(state().plan.blocks.length, 0); assert.equal(state().plan.age, '7-10'); }
 });
 check('activity links preselect correct type without changing an existing group', () => { api.render(new URLSearchParams('activity=' + activity.id + '&age=4-6')); assert.equal(state().picker.selected, 'activity:' + activity.id); assert.equal(state().picker.type, activity.type); assert.equal(state().plan.age, '7-10'); assert.equal(state().plan.blocks.length, 0); });
-check('series and sequence guide links lead to their matching age and phase', () => { for (const item of catalog.filter(x => x.id.startsWith('series:'))) { const id = item.id.slice(7), key = item.types.includes('series') ? 'series_ids' : 'sequence_ids', groups = pathway.groups || []; const group = groups.find(g => g.phases.some(p => (p[key] || []).includes(id))); if (!group) { assert.equal(item.path, '#season'); continue; } const phase = group.phases.find(p => (p[key] || []).includes(id)); assert.equal(item.path, '#season?age=' + encodeURIComponent(group.age_group) + '&phase=' + encodeURIComponent(phase.id)); } });
+check('series link to their own guide while linked drills retain their phase route', () => {
+  for (const item of catalog.filter(x => x.id.startsWith('series:'))) {
+    const id = item.id.slice(7);
+    if (item.types.includes('series')) { assert.equal(item.path, '#season?view=series&series=' + encodeURIComponent(id)); continue; }
+    const group = pathway.groups.find(g => g.phases.some(p => (p.sequence_ids || []).includes(id)));
+    if (!group) { assert.equal(item.path, '#season'); continue; }
+    const phase = group.phases.find(p => (p.sequence_ids || []).includes(id));
+    assert.equal(item.path, '#season?age=' + encodeURIComponent(group.age_group) + '&phase=' + encodeURIComponent(phase.id));
+  }
+});
 check('pathway tab keeps the current group and an exact age-control name', () => { const html = api.render(new URLSearchParams()); assert(html.includes('data-pathway-link href="#season?age=7-10">Season pathway</a>')); assert(html.includes('id="builder-age" aria-label="Age group (optional)"')); assert(!html.includes('Season skill pathway')); });
 mount();
 check('changing the practice group updates the pathway tab link', () => { field('age', '11-14'); assert.equal(root.querySelector('[data-pathway-link]').href, '#season?age=11-14'); field('age', '7-10'); });
@@ -161,9 +173,12 @@ check('series filter includes member moves and the complete series without unrel
   picker('family', ''); assert(visibleIds().length > 1);
 });
 check('new written move guides use plain IDs and retain their source details', () => {
-  for (const entry of [...ctx.window.GRINDSTONE_SERIES_MOVES.entries, ...ctx.window.GRINDSTONE_SERIES_BOTTOM.entries]) {
+  for (const entry of addedMoves) {
     const normalized = catalog.find(item => item.id === entry.id);
     assert(normalized, 'Missing new move ' + entry.id); assert(normalized.steps.length); assert(normalized.readiness); assert(normalized.boundary); assert(normalized.video.startsWith('https://'));
+    assert.equal(counts.moves.filter(move => move.id === entry.id).length, 1, entry.id + ' must integrate once');
+    assert.equal(counts.research[entry.id].research.source_limits, entry.verification, entry.id + ' must preserve research provenance');
+    assert.equal(counts.videos[entry.id].video.verified_by, entry.verification, entry.id + ' must preserve video verification scope');
   }
 });
 check('move links select new guides without changing an existing draft', () => {
@@ -213,5 +228,42 @@ check('V08 head-and-neck warning survives preview, saved blocks, import and both
   const savedPlan = state().saved[0], draft = state().plan, imported = t.parseImport(JSON.stringify({ format: 'grindstone-practice', version: 1, plan: savedPlan }));
   for (const plan of [savedPlan, draft, imported]) { assert.equal(plan.blocks[0].sourceId, 'facebook:V08'); assert(plan.blocks[0].boundary.includes(warning)); assert.equal(plan.blocks[0].steps.length, 0); }
   for (const details of [false, true]) { const printed = t.printHtml(details); assert(printed.includes(t.esc(warning))); assert(printed.includes('Video reference:')); assert(printed.includes('coach must preview')); }
+});
+check('new series provide two distinct taught outcomes and no Pup placements', () => {
+  for (const id of ['S19', 'S20', 'S21', 'S23']) assert(expandedSeries.some(item => item.id === id), 'Missing researched series ' + id);
+  for (const item of expandedSeries) {
+    const outcomes = item.branches.filter(branch => !/reset|rebuild|stop|keep balance/i.test(branch.title));
+    assert(outcomes.length >= 2, item.id + ' needs two outcomes beyond resetting');
+    assert(new Set(outcomes.map(branch => branch.move_ids[0])).size >= 2, item.id + ' must teach different move options');
+    for (const branch of outcomes) assert(branch.move_ids.some(id => catalog.some(entry => (entry.id === id || entry.id === 'kyle:' + id) && entry.steps.length)), item.id + ' outcome must link a written teaching guide');
+    assert(!item.age_groups.includes('4-6')); assert(item.verification, item.id + ' needs explicit source scope');
+  }
+  const newIds = new Set(expandedSeries.map(item => item.id));
+  for (const phase of pathway.groups.find(group => group.age_group === '4-6').phases) assert(!phase.series_ids.some(id => newIds.has(id)), 'Pup phase must not receive advanced series');
+});
+for (const item of expandedSeries) check(item.id + ' full choices and limitations survive save, reload, import and print', () => {
+  resetCase('series=' + item.id);
+  assert.equal(state().picker.selected, 'series:' + item.id); assert.equal(state().plan.blocks.length, 0);
+  const normalized = catalog.find(entry => entry.id === 'series:' + item.id);
+  assertSeriesInstructions(normalized.instructions, item); assert(normalized.instructions.includes(item.verification));
+  t.action('add', -1); t.action('save', -1); t.reset(); mount();
+  const savedPlan = state().saved[0], imported = t.parseImport(JSON.stringify({ format: 'grindstone-practice', version: 1, plan: savedPlan }));
+  for (const plan of [savedPlan, state().plan, imported]) {
+    const block = plan.blocks[0]; assert.equal(block.sourceId, 'series:' + item.id); assertSeriesInstructions(block.instructions, item);
+    assert(block.instructions.includes(item.verification)); assert.equal(block.readiness, item.readiness); assert.equal(block.boundary, item.boundaries);
+    assert.deepEqual(Array.from(block.steps), Array.from(item.steps));
+  }
+  for (const details of [false, true]) {
+    const html = t.printHtml(details);
+    for (const text of [item.foundation, item.readiness, item.boundaries, item.verification, ...item.branches.flatMap(branch => [branch.when, branch.action, branch.readiness].filter(Boolean))]) assert(html.includes(t.esc(text)), item.id + ' print omitted a teaching limit or option');
+  }
+});
+check('Circle the Castle has no substitute video while matching Spin Drill remains on P11', () => {
+  const original = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(base, 'data.js'), 'utf8'), original);
+  assert.equal(counts.videos.G16.video, null); assert.deepEqual(JSON.parse(JSON.stringify(counts.videos.P11)), JSON.parse(JSON.stringify(original.window.GRINDSTONE.videos.P11)));
+  assert.equal(catalog.find(item => item.id === 'G16').video, '');
+  resetCase(); addSource('game', 'G16');
+  const priorVideo = original.window.GRINDSTONE.videos.G16.video.url;
+  for (const html of [root.querySelector('.builder-resource-preview').innerHTML, t.printHtml(false), t.printHtml(true)]) assert(!html.includes(priorVideo), 'G16 must not present the unrelated Spin Drill video');
 });
 console.log('\n' + checks + ' builder checks passed. No files written.');

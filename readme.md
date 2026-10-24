@@ -4,7 +4,7 @@ A self-contained, buildless website for GitHub Pages. Open `index.html` directly
 
 ## Contents
 
-- 72 original reviewed moves plus 3 new series lessons, with written instruction and research.
+- 72 original reviewed moves plus 7 new series lessons, with written instruction and research.
 - A blank practice builder with editable activities, series, timing, local saves, JSON backups and printable run sheets.
 - Six readiness-based season phases for each of ages 4-6, 7-10 and 11-14; skills/series, strength and endurance progress together.
 - 37 games: the original 30, two team favorites, and five coaching adaptations, with demonstration/source links and clear variation notes.
@@ -256,7 +256,7 @@ Publication authorization update: the user subsequently requested immediate publ
 
 move-tags.js defines the shared browsing labels and maps every original and Coach Kyle entry to one primary category. Facebook entries keep their existing category IDs from video-additions.js. Add a mapping when introducing a written or Kyle move; do not infer a teaching tier from its category. Distinct entries, source links and original coaching instructions remain separate.
 
-The main library filters all 113 move entries by #moves?category=<id>. Clickable category labels open that view from any collection. Coach Kyle’s collection uses #moves/kyle?tag=<id> for new filters; its earlier category links retain their original membership. Original category names remain searchable. Changes stay on the preview branch pending review.
+The main library filters all 117 move entries by #moves?category=<id>. Clickable category labels open that view from any collection. Coach Kyle’s collection uses #moves/kyle?tag=<id> for new filters; its earlier category links retain their original membership. Original category names remain searchable. Changes stay on the preview branch pending review.
 
 
 ## Practice builder and season pathway — October 23, 2026
@@ -279,3 +279,16 @@ The main library filters all 113 move entries by #moves?category=<id>. Clickable
 The original S01–S12 teaching sequences now live in `sequences` and appear as linked movement drills. Their saved source IDs remain `series:Sxx`; old `?series=Sxx` links still select the same drill. `?sequence=Sxx` is the current drill link. Saved blocks retain their authored text and timing while legacy sequence block types are relabeled as drills. Foundation series begin at S13, include reaction/option branches and instructor references, and retain their option instructions through saving, JSON transfer and printing.
 
 This update remains on the preview branch until the user reviews and approves publication.
+
+## More technique series — October 24, 2026
+
+The technique-series index is at `#season?view=series`, with neutral, top and bottom filters. Open an individual series at `#season?view=series&series=Sxx`; the page includes its foundation, reaction choices, move guides, practice progression, sources and optional season placements. The builder now opens the specific series page rather than sending coaches to the beginning of a long phase. Source-scope notes in series instructions survive saving, importing and printing.
+
+- `series-neutral.js`: S19 Russian two-on-one and S20 front-headlock choices, including N03 far-ankle pick and N04/N05 front-headlock go-behind/shuck guides.
+- `series-top.js`: S21 half-nelson choices and N21 half nelson to suck-back.
+- `series-escapes.js`: S23 standing escape/Peterson choices, reusing existing guides.
+- `series-expansion.js`: adds those series and optional phase placements after the base pathway. Existing sequence IDs and original move cards stay intact. The new advanced choices are not assigned to Pups.
+- New options draw on public creator-written lessons and linked demonstrations. Each source note states the scope; written-source or metadata checks do not imply completed footage review.
+- `game-video-fixes.js`: removes the nonmatching USA Wrestling Spin Drill from G16 Circle the Castle. No matching game video has been verified; the game retains its written rules and a coach-demonstration note. P11 and other legitimate spin-drill references remain intact.
+
+New series are a menu of possible teaching families, not additional required work in every phase. This work remains a local preview pending review; no publication is authorized by a request for more content.

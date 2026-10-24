@@ -3,7 +3,7 @@
 const fs=require("fs"),path=require("path"),vm=require("vm"),assert=require("assert/strict");
 const root=process.env.GRINDSTONE_TEST_ROOT||path.resolve(__dirname,"..");
 const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
-const dataFiles=["data.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","move-tags.js","series-moves.js","series-bottom.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","skill-pathway.js","practice-builder.js"];
+const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","skill-pathway.js","practice-builder.js"];
 const clone=value=>JSON.parse(JSON.stringify(value));
 const decode=text=>String(text).replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 function harness(initial="#moves",savedHistory){
@@ -66,7 +66,9 @@ assert.equal(h.api.safeRouteHash("#moves?q=a%26b"),"#moves?q=a%26b");checks++;
 const listingId=h.history.state.grindstone.id,historyLength=h.snapshot().stack.length;h.api.replaceRoute("#moves?q=updated&category=bottom");assert.equal(h.history.state.grindstone.id,listingId);assert.equal(h.snapshot().stack.length,historyLength);checks++;
 const D=h.context.window.GRINDSTONE,S=h.context.window.GRINDSTONE_PATHWAY;
 const frameworkData=h.context.window.GRINDSTONE_FRAMEWORKS;
-const addedMoves=[...h.context.window.GRINDSTONE_SERIES_MOVES.entries,...h.context.window.GRINDSTONE_SERIES_BOTTOM.entries];
+const expansionModules=[h.context.window.GRINDSTONE_SERIES_NEUTRAL,h.context.window.GRINDSTONE_SERIES_TOP,h.context.window.GRINDSTONE_SERIES_ESCAPES];
+const expandedSeries=expansionModules.flatMap(module=>module.series||[]);
+const addedMoves=[...h.context.window.GRINDSTONE_SERIES_MOVES.entries,...h.context.window.GRINDSTONE_SERIES_BOTTOM.entries,...expansionModules.flatMap(module=>module.moves||[])];
 const seriesById=new Map(S.series.map(item=>[item.id,item])),sequencesById=new Map(S.sequences.map(item=>[item.id,item]));
 const escapeText=text=>String(text).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const moveRoutes=new Map([...D.moves.map(item=>[item.id,"#move/"+item.id]),...h.context.window.GRINDSTONE_KYLE.entries.map(item=>[item.id,"#moves/kyle/"+item.id])]);
@@ -106,6 +108,31 @@ for(const [parameter,id,type] of [["series",S.series[0].id,"series"],["sequence"
  const state=h.context.window.GRINDSTONE_BUILDER.testing.getState();
  assert.equal(h.location.hash,route);assert.equal(state.picker.selected,"series:"+id);assert.equal(state.picker.type,type);assert.equal(state.plan.blocks.length,0);checks++;
 }
+const positionOf=series=>series.position||({S13:'bottom',S14:'neutral',S16:'top',S17:'neutral',S18:'neutral'}[series.id]);
+h.navigate('#season?view=series');assert(h.elements.main.innerHTML.includes('<h1>Technique series</h1>'));
+for(const series of S.series)assert(h.elements.main.innerHTML.includes('series='+series.id+'"'),series.id+' is missing from the series directory');checks++;
+for(const position of ['neutral','top','bottom']){
+ h.navigate('#season?view=series&position='+position);const html=h.elements.main.innerHTML;
+ for(const series of S.series){const link='href="#season?view=series&amp;series='+series.id+'"';assert.equal(html.includes(link),positionOf(series)===position,'Incorrect '+position+' directory membership: '+series.id);}checks++;
+}
+for(const series of S.series){
+ const route='#season?view=series&series='+series.id,fresh=harness(route),html=fresh.elements.main.innerHTML;
+ assert.equal(fresh.location.hash,route);assert(html.includes('<h1>'+escapeText(series.title)+'</h1>'));assert(html.includes('Print series'));
+ for(const text of [series.foundation,series.setup,series.readiness,series.boundaries,...series.steps,...series.branches.flatMap(branch=>[branch.title,branch.when,branch.action,branch.readiness].filter(Boolean))])assert(html.includes(escapeText(text)),series.id+' detail omitted instruction');
+ for(const source of series.sources)assert(html.includes('href="'+escapeText(source.url)+'"'),series.id+' source link missing');
+ for(const member of series.members)assert(html.includes('href="'+moveRoutes.get(member.move_id)+'"'),series.id+' member guide missing: '+member.move_id);
+ if(series.verification)assert(html.includes(escapeText(series.verification)),series.id+' source scope omitted');
+ assert(html.includes('href="#practices?series='+series.id+'"'));assert(html.includes('href="#moves?series='+series.id+'"'));checks++;
+}
+h.navigate('#season?view=series&series=S999');assert(h.elements.main.innerHTML.includes('Series not found'));assert(h.elements.main.innerHTML.includes('href="#season?view=series"'));assert(!h.elements.main.innerHTML.includes('Choose this series'));checks++;
+h.navigate('#season?view=series&position=invalid');for(const series of S.series)assert(h.elements.main.innerHTML.includes(escapeText(series.title)));checks++;
+for(const series of expandedSeries){
+ assert(!series.age_groups.includes('4-6'));
+ for(const phase of S.groups.find(group=>group.age_group==='4-6').phases)assert(!phase.series_ids.includes(series.id),'Advanced series placed into Pup phase: '+series.id);
+ const results=h.api.libraryResults('moves',new URLSearchParams('series='+series.id)),members=new Set(series.members.map(member=>member.move_id));
+ assert(results.length);assert(results.every(item=>members.has(item.id)));
+ for(const member of series.members)assert(results.some(item=>item.id===member.move_id),series.id+' filter omitted '+member.move_id);checks++;
+}
 h.navigate("#season");assert.equal(h.location.hash,"#season");assert(h.elements.main.innerHTML.includes("Choose your teaching group"));checks++;
 const seasonHtml=h.elements.main.innerHTML;
 for(const program of frameworkData.programs){
@@ -119,10 +146,19 @@ h.navigate("#practice/7-10/7");assert.equal(h.location.hash,"#practices?age=7-10
 h.navigate("#practices");assert(h.elements.main.innerHTML.includes("Start blank"));assert(!h.elements.main.innerHTML.includes('id="filter-form"'));checks++;
 for(const [entries,render] of [[D.moves,h.api.moveDetail],[D.games,h.api.gameDetail]])for(const entry of entries){const html=render(entry.id);for(const match of html.matchAll(/data-scroll="(guide-[^"]+)"/g))assert(html.includes('id="'+match[1]+'"'),"Missing guide jump target "+match[1]);}checks+=D.moves.length+D.games.length;
 for(const move of addedMoves){
+ assert.equal(D.moves.filter(item=>item.id===move.id).length,1,'New move must integrate once: '+move.id);
  const category=h.context.window.GRINDSTONE_TAGS.entries[move.id];assert(h.context.window.GRINDSTONE_TAGS.categories.some(item=>item.id===category),"New move has an invalid shared category: "+move.id+"/"+category);
  assert(h.api.libraryResults("moves",new URLSearchParams("category="+category)).some(item=>item.id===move.id),"New move missing from its category: "+move.id);
  const list="#moves?q="+move.id;h.navigate(list);assert(h.api.libraryResults("moves",new URLSearchParams("q="+move.id)).some(item=>item.id===move.id),"New move not searchable: "+move.id);
  h.navigate("#move/"+move.id);assert(h.elements.main.innerHTML.includes(escapeText(move.name)));assert(!h.elements.main.innerHTML.includes("undefined"));assert(!h.elements.main.innerHTML.includes("reference page undefined"));h.clickReturn();assert.equal(h.location.hash,list);checks++;
+}
+{
+ const original={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'data.js'),'utf8'),original);
+ const previous=original.window.GRINDSTONE.videos.G16.video.url;
+ assert.equal(D.videos.G16.video,null);assert.deepEqual(clone(D.videos.P11),clone(original.window.GRINDSTONE.videos.P11));
+ h.navigate('#game/G16');const detail=h.elements.main.innerHTML;
+ assert(detail.includes(escapeText(D.games.find(item=>item.id==='G16').name)));assert(!detail.includes(previous));assert(!detail.includes('Spin Drill'));assert(detail.includes('No public video'));
+ assert(h.api.moveDetail('P11').includes(escapeText(D.videos.P11.video.url)),'P11 must retain its matching movement video');checks++;
 }
 for(const id of ["S13","S17"]){
  const series=seriesById.get(id);assert(series,"Expected shared series "+id);const memberIds=new Set(series.members.map(member=>member.move_id));
@@ -146,6 +182,12 @@ for(const id of ["K12","K13","K14"]){
  assert(panel.includes('href="#moves?series=S17"'),id+" lacks its related series moves link");
  h.clickReturn();assert.equal(h.location.hash,list);checks++;
 }
+{
+ const entry=h.context.window.GRINDSTONE_KYLE.entries.find(item=>item.id==='K18'),guide=h.context.window.GRINDSTONE_KYLE_INSTRUCTION.entries.K18;
+ assert(guide.steps.length);assert(!/does not currently have a Peterson guide|no Peterson guide/i.test(entry.note));
+ h.navigate('#moves/kyle/K18');const html=h.elements.main.innerHTML;
+ assert(!html.includes('does not currently have a Peterson guide'));assert(html.includes(escapeText(guide.steps[0])));assert(html.includes(escapeText(guide.verification)));checks++;
+}
 assert(h.api.familyArticle("first-practice").includes("reviewed 2026-10-13"));assert(h.api.familyArticle("programs-levels").includes("reviewed 2026-10-13"));checks++;
 const overview=h.context.window.GRINDSTONE_SKILL_PATHWAY.render(new URLSearchParams('age=4-6&phase=bad'));
 assert(overview.includes(S.groups[0].phases[0].title));assert(overview.includes('aria-current="page"'));assert(!h.api.home().includes('ready-to-run practices'));assert(!h.api.home().includes('30 plans'));assert(!h.api.savedPage().includes('#practice/'));checks++;
@@ -154,5 +196,5 @@ const shortForm=h.api.filters("moves",new URLSearchParams());assert(shortForm.in
 assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook")).length,17);assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook&unassigned=0")).length,0);assert.equal(Object.keys(h.api.saveRecords).length,D.moves.length+D.games.length+D.practices.length+h.context.window.GRINDSTONE_KYLE.entries.length+h.context.window.GRINDSTONE_VIDEO_ADDITIONS.entries.length);checks++;
 const index=fs.readFileSync(path.join(root,"index.html"),"utf8"),scripts=Array.from(index.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g),match=>match[1].split("?")[0]);
 for(const file of dataFiles)assert(scripts.includes(file),"Production entry point missing "+file);
-for(const [earlier,later] of [["data.js","series-library.js"],["move-tags.js","series-library.js"],["series-moves.js","series-library.js"],["series-bottom.js","series-library.js"],["series-library.js","practice-builder.js"],["series-library.js","skill-pathway.js"],["practice-frameworks.js","skill-pathway.js"],["practice-frameworks.js","practice-builder.js"],["pathway-data.js","skill-pathway.js"],["skill-pathway.js","app.js"],["practice-builder.js","app.js"]])assert(scripts.indexOf(earlier)<scripts.indexOf(later),earlier+" must load before "+later);checks++;
+for(const [earlier,later] of [["data.js","game-video-fixes.js"],["game-video-fixes.js","practice-builder.js"],["data.js","series-library.js"],["move-tags.js","series-library.js"],["series-moves.js","series-library.js"],["series-bottom.js","series-library.js"],...["series-neutral.js","series-top.js","series-escapes.js"].flatMap(file=>[["series-bottom.js",file],[file,"series-library.js"],[file,"series-expansion.js"]]),["series-library.js","practice-builder.js"],["series-library.js","skill-pathway.js"],["practice-frameworks.js","skill-pathway.js"],["practice-frameworks.js","practice-builder.js"],["pathway-data.js","series-expansion.js"],["series-expansion.js","skill-pathway.js"],["series-expansion.js","practice-builder.js"],["skill-pathway.js","app.js"],["practice-builder.js","app.js"]])assert(scripts.indexOf(earlier)<scripts.indexOf(later),earlier+" must load before "+later);checks++;
 console.log("PASS: "+checks+" navigation, builder routing, pathway, filter, family, and guide checks. No files written.");

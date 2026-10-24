@@ -521,7 +521,7 @@ window.GRINDSTONE_KYLE = {
         "B21"
       ],
       "featured": false,
-      "note": "The Peterson combination is the submitted label. The related guides cover stand-ups; the library does not currently have a Peterson guide.",
+      "note": "The written guide below teaches a gradual stand-up-to-Peterson progression. The submitted clip is a reference; its exact grips and finish have not been footage-verified.",
       "video": {
         "id": "4f-Ds-oe3Qg",
         "url": "https://www.youtube.com/shorts/4f-Ds-oe3Qg",

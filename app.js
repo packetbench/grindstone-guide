@@ -103,7 +103,7 @@ function seriesFor(entry){return (window.GRINDSTONE_PATHWAY?.series||[]).filter(
 function seriesTags(entry){return seriesFor(entry).map(series=>'<a class="badge category-tag" href="#moves?series='+esc(series.id)+'">'+esc(series.title)+'</a>').join(' ');}
 function seriesGuidePanel(entry){
  const families=seriesFor(entry);if(!families.length)return "";
- return section("Where this fits",families.map(series=>'<h3>'+esc(series.title)+'</h3>'+p(series.foundation)+'<p>'+esc((series.members||[]).find(member=>member.move_id===entry.id)?.note||"")+'</p><div class="buttons"><a class="button outline small" href="#practices?series='+esc(series.id)+'">Plan this series</a><a class="button outline small" href="#moves?series='+esc(series.id)+'">See related moves</a></div>').join(''));
+ return section("Where this fits",families.map(series=>'<h3>'+esc(series.title)+'</h3>'+p(series.foundation)+'<p>'+esc((series.members||[]).find(member=>member.move_id===entry.id)?.note||"")+'</p><div class="buttons"><a class="button outline small" href="#practices?series='+esc(series.id)+'">Plan this series</a><a class="button outline small" href="#moves?series='+esc(series.id)+'">See related moves</a><a class="card-link" href="#season?view=series&amp;series='+esc(series.id)+'">Read the series →</a></div>').join(''));
 }
 function categoryTag(entry){
  const c=categoryFor(entry);if(!c)return "";

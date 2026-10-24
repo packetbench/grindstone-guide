@@ -5,7 +5,13 @@
   const list = values => "<ul>" + (values || []).map(value => "<li>" + esc(value) + "</li>").join("") + "</ul>";
   const para = value => value ? "<p>" + esc(value) + "</p>" : "";
   const route = (age, phase) => "#season?" + new URLSearchParams({age, ...(phase ? {phase} : {})});
-  const choose = (age, type, id) => "#practices?" + new URLSearchParams({age, [type]:id});
+  const choose = (age, type, id) => "#practices?" + new URLSearchParams({...(age ? {age} : {}), [type]:id});
+  const seriesRoute = (id, age) => '#season?' + new URLSearchParams({view:'series', ...(id ? {series:id} : {}), ...(age ? {age} : {})});
+  const positionLabel = {neutral:'Neutral', top:'Top', bottom:'Bottom & escapes'};
+  const seriesPosition = series => series.position || ({S13:'bottom',S14:'neutral',S16:'top',S17:'neutral',S18:'neutral'}[series.id]) || 'neutral';
+  function planningTabs(age, current) {
+    return '<nav class="practice-tabs" aria-label="Practice planning">' + [['builder','#practices' + (age ? '?age=' + age : ''),'Build a practice'],['season','#season' + (age ? '?age=' + age : ''),'Season pathway'],['series',seriesRoute('', age),'Technique series']].map(([key,href,label]) => '<a href="' + esc(href) + '"' + (key === current ? ' aria-current="page"' : '') + '>' + label + '</a>').join('') + '</nav>';
+  }
   function moveCatalog() {
     const catalog = new Map((window.GRINDSTONE?.moves || []).map(move => [move.id, {name: move.name, path: '#move/' + move.id}]));
     (window.GRINDSTONE_KYLE?.entries || []).forEach(move => catalog.set(move.id, {name: move.name, path: '#moves/kyle/' + move.id}));
@@ -26,10 +32,36 @@
   function trainingTrack(title, data) {
     return '<section class="pathway-track"><h3>' + title + '</h3>' + para(data.goal) + list(data.activities) + '<h4>Start here</h4>' + para(data.dose) + '<h4>Build from there</h4>' + para(data.progress) + '</section>';
   }
-  function seriesCard(series, age) {
+  function seriesCard(series, age, standalone = false) {
     const branches = (series.branches || []).map(branch => '<section class="pathway-branch"><h4>' + esc(branch.title) + '</h4><p><strong>When:</strong> ' + esc(branch.when) + '</p><p><strong>Option:</strong> ' + esc(branch.action) + '</p>' + (branch.readiness ? '<p><strong>Before adding this option:</strong> ' + esc(branch.readiness) + '</p>' : '') + moves(branch.move_ids) + '</section>').join("");
     const references = (series.sources || []).filter(source => /^https:\/\//.test(source.url));
-    return '<article class="pathway-series-card" id="series-' + esc(series.id) + '"><p class="eyebrow">' + esc(series.id) + ' · TECHNIQUE SERIES</p><h3>' + esc(series.title) + '</h3>' + para(series.summary) + '<div class="pathway-foundation"><h4>Common foundation</h4>' + para(series.foundation) + '</div><p><strong>Ready when:</strong> ' + esc(series.readiness) + '</p><div class="pathway-branches">' + branches + '</div><details><summary>Teaching guides, setup & practice cues</summary><div class="detail-body">' + seriesMembers(series) + para(series.setup) + '<ol>' + (series.steps || []).map(step => '<li>' + esc(step) + '</li>').join("") + '</ol><h4>Say this</h4>' + list(series.cues) + '<p><strong>Coach watch:</strong> ' + esc(series.boundaries) + '</p>' + (references.length ? '<h4>Instructor references</h4><ul>' + references.map(source => '<li><a href="' + esc(source.url) + '" target="_blank" rel="noopener noreferrer">' + esc(source.title) + ' ↗</a>' + (source.note ? para(source.note) : '') + '</li>').join("") + '</ul>' : '') + '</div></details><a class="button outline" href="' + esc(choose(age, "series", series.id)) + '">Choose this series in the builder →</a></article>';
+    const heading = standalone ? 'h1' : 'h3';
+    return '<article class="pathway-series-card" id="series-' + esc(series.id) + '"><p class="eyebrow">' + esc(series.id) + ' · ' + esc(positionLabel[seriesPosition(series)]) + ' · TECHNIQUE SERIES</p><' + heading + '>' + esc(series.title) + '</' + heading + '>' + para(series.summary) + '<div class="pathway-foundation"><h4>Common foundation</h4>' + para(series.foundation) + '</div><p><strong>Ready when:</strong> ' + esc(series.readiness) + '</p><div class="pathway-branches">' + branches + '</div><details' + (standalone ? ' open' : '') + '><summary>Teaching guides, setup & practice cues</summary><div class="detail-body">' + seriesMembers(series) + para(series.setup) + '<ol>' + (series.steps || []).map(step => '<li>' + esc(step) + '</li>').join("") + '</ol><h4>Say this</h4>' + list(series.cues) + '<p><strong>Coach watch:</strong> ' + esc(series.boundaries) + '</p>' + (series.verification ? '<p class="fine"><strong>Source scope:</strong> ' + esc(series.verification) + '</p>' : '') + (references.length ? '<h4>Instructor references</h4><ul>' + references.map(source => '<li><a href="' + esc(source.url) + '" target="_blank" rel="noopener noreferrer">' + esc(source.title) + ' ↗</a>' + (source.note ? para(source.note) : '') + '</li>').join("") + '</ul>' : '') + '</div></details><div class="buttons"><a class="button outline" href="' + esc(choose(age, "series", series.id)) + '">Choose this series in the builder →</a><a class="card-link" href="#moves?series=' + esc(series.id) + '">Browse its move guides →</a>' + (!standalone ? '<a class="card-link" href="' + esc(seriesRoute(series.id, age)) + '">Open series page →</a>' : '') + '</div></article>';
+  }
+  function seriesDirectory(data, params) {
+    const age = data.groups.some(group => group.age_group === params.get('age')) ? params.get('age') : '';
+    let html = '<div class="pathway-page series-directory">' + planningTabs(age, 'series');
+    const selectedId = params.get('series');
+    if (selectedId) {
+      const selected = data.series.find(series => series.id === selectedId);
+      html += '<a class="back" href="' + esc(seriesRoute('', age)) + '">← All technique series</a>';
+      if (!selected) return html + '<h1>Series not found</h1><p>Choose a series from the index.</p></div>';
+      html += '<p class="builder-notice">Coach reference · ' + esc(selected.tier) + ' · Intended teaching groups: ' + esc(selected.age_groups.join(', ')) + '. Check the prerequisites for each option before adding resistance.</p>';
+      html += '<div class="series-detail-actions"><button class="button outline" data-print>Print series</button></div>' + seriesCard(selected, age, true);
+      const placements = data.groups.flatMap(group => group.phases.filter(phase => (phase.series_ids || []).includes(selected.id)).map(phase => ({age:group.age_group, phase})));
+      if (placements.length) html += '<section class="panel"><h2>Where it fits in the season</h2><p>These are optional teaching choices. Select one series that fits the group, then revisit it across practices.</p><div class="pathway-links">' + placements.map(item => '<a href="' + esc(route(item.age, item.phase.id)) + '">Ages ' + esc(item.age) + ' · ' + esc(item.phase.title) + '</a>').join('') + '</div></section>';
+      return html + '</div>';
+    }
+    const requested = params.get('position'), position = Object.hasOwn(positionLabel, requested) ? requested : '';
+    const entries = data.series.filter(series => !position || seriesPosition(series) === position);
+    html += '<div class="page-title"><p class="eyebrow">OPTIONS FROM A SHARED FOUNDATION</p><h1>Technique series</h1><p>Find a position, teach one reliable option, then add a response to what the partner does. Each series connects its move guides, decision cues and practice tasks.</p></div><p class="builder-notice">' + data.series.length + ' series in the coach library. Choose one family to work on across practices; this is a menu, not a checklist for one session. Pups continue with individual movement foundations.</p>';
+    html += '<nav class="pathway-age-tabs series-position-tabs" aria-label="Series position">' + [['','All positions'],...Object.entries(positionLabel)].map(([id,label]) => '<a href="' + esc(seriesRoute('', age) + (id ? '&position=' + id : '')) + '"' + (id === position ? ' aria-current="page"' : '') + '>' + label + '</a>').join('') + '</nav>';
+    for (const [id,label] of Object.entries(positionLabel)) {
+      const group = entries.filter(series => seriesPosition(series) === id);
+      if (!group.length) continue;
+      html += '<section class="series-index-section"><h2>' + label + '</h2><div class="grid series-index-grid">' + group.map(series => '<article class="card"><p class="eyebrow">' + esc(series.id + ' · ' + series.tier) + '</p><h3><a href="' + esc(seriesRoute(series.id, age)) + '">' + esc(series.title) + '</a></h3>' + para(series.summary) + '<p><strong>Start from:</strong> ' + esc(series.foundation) + '</p><h4>Options and reset decisions</h4>' + list(series.branches.map(branch => branch.title)) + '<p class="fine">Teaching groups: ' + esc(series.age_groups.join(', ')) + ' · Readiness comes first.</p><div class="buttons"><a class="button outline" href="' + esc(seriesRoute(series.id, age)) + '">Explore series →</a><a class="card-link" href="' + esc(choose(age, 'series', series.id)) + '">Use in practice →</a></div></article>').join('') + '</div></section>';
+    }
+    return html + '</div>';
   }
   function sequenceCard(sequence, age) {
     return '<article class="pathway-series-card" id="sequence-' + esc(sequence.id) + '"><p class="eyebrow">' + esc(sequence.id) + ' · LINKED MOVEMENT DRILL</p><h3>' + esc(sequence.title) + '</h3>' + para(sequence.summary) + '<p><strong>Ready when:</strong> ' + esc(sequence.readiness) + '</p><details><summary>Setup, sequence & coaching cues</summary><div class="detail-body">' + para(sequence.setup) + '<ol>' + sequence.steps.map(step => '<li>' + esc(step) + '</li>').join("") + '</ol><h4>Say this</h4>' + list(sequence.cues) + '<p><strong>Coach watch:</strong> ' + esc(sequence.boundaries) + '</p>' + moves(sequence.move_ids) + '</div></details><a class="button outline" href="' + esc(choose(age, "sequence", sequence.id)) + '">Choose this drill in the builder →</a></article>';
@@ -93,9 +125,10 @@
   function render(params = new URLSearchParams()) {
     const data = window.GRINDSTONE_PATHWAY;
     if (!data?.groups?.length) return '<h1>Season pathway</h1><p>The pathway could not load. Refresh to try again.</p>';
+    if (params.get('view') === 'series' || params.has('series')) return seriesDirectory(data, params);
     const group = data.groups.find(item => item.age_group === params.get("age"));
     const age = group?.age_group;
-    let html = '<div class="pathway-page"><nav class="practice-tabs" aria-label="Practice planning"><a href="#practices' + (age ? '?age=' + age : '') + '">Build a practice</a><a href="#season' + (age ? '?age=' + age : '') + '" aria-current="page">Season pathway</a></nav><div class="page-title"><p class="eyebrow">BUILD THROUGH THE SEASON</p><h1>Season pathway.</h1>' + para(data.intro) + '</div><div class="pathway-controls"><p class="meta-title">Choose your teaching group</p><nav class="pathway-age-tabs" aria-label="Season age group">' + data.groups.map(item => '<a href="' + route(item.age_group) + '"' + (item === group ? ' aria-current="page"' : '') + '>Ages ' + esc(item.age_group) + '</a>').join("") + '</nav></div>';
+    let html = '<div class="pathway-page">' + planningTabs(age, 'season') + '<div class="page-title"><p class="eyebrow">BUILD THROUGH THE SEASON</p><h1>Season pathway.</h1>' + para(data.intro) + '</div><div class="pathway-controls"><p class="meta-title">Choose your teaching group</p><nav class="pathway-age-tabs" aria-label="Season age group">' + data.groups.map(item => '<a href="' + route(item.age_group) + '"' + (item === group ? ' aria-current="page"' : '') + '>Ages ' + esc(item.age_group) + '</a>').join("") + '</nav></div>';
     if (!group) {
       html += '<div class="grid">' + data.groups.map(item => '<article class="card"><p class="eyebrow">AGES ' + esc(item.age_group) + '</p><h2>' + esc(item.phases[0].title) + '</h2>' + para(item.summary) + '<p>' + esc(item.phases.length) + ' phases · skills & series · strength · endurance</p><a class="card-link" href="' + route(item.age_group) + '">Explore this pathway →</a></article>').join("") + '</div>' + practiceFrameworks();
     } else {
