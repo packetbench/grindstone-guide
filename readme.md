@@ -292,3 +292,13 @@ The technique-series index is at `#season?view=series`, with neutral, top and bo
 - `game-video-fixes.js`: removes the nonmatching USA Wrestling Spin Drill from G16 Circle the Castle. No matching game video has been verified; the game retains its written rules and a coach-demonstration note. P11 and other legitimate spin-drill references remain intact.
 
 New series are a menu of possible teaching families, not additional required work in every phase. This work remains a local preview pending review; no publication is authorized by a request for more content.
+## Game clarity, family navigation and working documents — October 24, 2026
+
+The user approved publishing the practice builder, new move/series work, game instructions, simplified family navigation and public meeting proposals.
+
+- `game-guides-a.js`, `game-guides-b.js` and `game-guides-c.js` supply explicit setup, steps, success/scoring, resets, timing and adaptations for G01–G37. `game-guide-library.js` applies them and clarifies K01/V03. These authored game formats are distinguished from related demonstrations. Existing source links remain intact; G16 still has no verified matching video.
+- Game details and newly selected builder blocks use the reviewed rules. The default printed run sheet always includes game setup and steps, even when full move instructions are unchecked. Existing saved coach plans retain their authored text. Original game PDFs remain available as archived editions; Print guide gives current web instructions.
+- Families now starts with six practical destinations and FAQ search. Article contents collapse on phones; related guides follow the article. The compact navigation menu and larger controls support narrow screens.
+- `in-progress-data.js` contains 11 draft proposals and 18 existing meeting-related resources. `in-progress.js` renders `#in-progress` and individual shareable draft routes with category filters, decisions, print and text downloads. Existing-resource links point to their live locations.
+- Coaches discuss changes in their existing text group. Copy draft link provides the current page link; a visible select-and-copy fallback works without clipboard access. This static page does not collect comments, store shared edits or publish private meeting records. Drafts are explicitly distinct from adopted policies.
+- Browser checks covered 320px and 390px phone widths plus desktop layout, family search/section links, menu closing and draft-link copying. The builder/navigation suites cover rendering, source preservation, game printing, route history and public-draft resources.

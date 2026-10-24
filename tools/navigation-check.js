@@ -3,11 +3,11 @@
 const fs=require("fs"),path=require("path"),vm=require("vm"),assert=require("assert/strict");
 const root=process.env.GRINDSTONE_TEST_ROOT||path.resolve(__dirname,"..");
 const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
-const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","skill-pathway.js","practice-builder.js"];
+const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","skill-pathway.js","practice-builder.js","in-progress-data.js","in-progress.js"];
 const clone=value=>JSON.parse(JSON.stringify(value));
 const decode=text=>String(text).replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 function harness(initial="#moves",savedHistory){
- const elements={},docEvents={},winEvents={},frames=[],location={hash:initial};
+ const elements={},docEvents={},winEvents={},frames=[],location={hash:initial,get href(){return 'https://packetbench.github.io/grindstone-guide/?v=test-preview'+this.hash;}};
  let focus="",renders=0,stack=savedHistory?clone(savedHistory.stack):[{hash:initial,state:null}],position=savedHistory?.position||0;
  if(savedHistory)location.hash=stack[position].hash;
  let fields=[];
@@ -20,7 +20,7 @@ function harness(initial="#moves",savedHistory){
  }
  function node(id){
   if(elements[id])return elements[id];
-  const item={id,dataset:{},events:{},textContent:"",classList:{add(){},remove(){}},focus(){focus=id;},setAttribute(name,value){this[name]=value;},addEventListener(name,handler){this.events[name]=handler;},dispatchEvent(event){this.events[event.type]?.(event);},querySelector(selector){if(selector==="h1"){const title=this.innerHTML.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);return title?{textContent:title[1].replace(/<[^>]*>/g,"")}:null;}if(selector.startsWith("#"))return fields.find(field=>field.id===selector.slice(1))||null;return null;},querySelectorAll(selector){if(selector==="input,select")return fields;if(selector==="a[href]")return anchors();return [];},scrollIntoView(){}};
+  const item={id,dataset:{},events:{},textContent:"",classList:{add(){},remove(){}},focus(){focus=id;},setAttribute(name,value){this[name]=String(value);},getAttribute(name){return Object.hasOwn(this,name)?this[name]:null;},addEventListener(name,handler){this.events[name]=handler;},dispatchEvent(event){this.events[event.type]?.(event);},querySelector(selector){if(selector==="h1"){const title=this.innerHTML.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);return title?{textContent:title[1].replace(/<[^>]*>/g,"")}:null;}if(selector.startsWith("#"))return fields.find(field=>field.id===selector.slice(1))||null;return null;},querySelectorAll(selector){if(selector==="input,select")return fields;if(selector==="a[href]")return anchors();return [];},scrollIntoView(){}};
   let html="";Object.defineProperty(item,"innerHTML",{get:()=>html,set:value=>{html=value;if(id==="main"){fields=fieldList(value);renders++;}}});elements[id]=item;return item;
  }
  function anchors(){return Array.from((node("main").innerHTML+node("results").innerHTML).matchAll(/<a\b([^>]*)>/g),match=>{const attrs=attributes(match[1]);return {getAttribute:name=>attrs[name],focus(){focus=attrs.href;}};});}
@@ -43,7 +43,7 @@ function harness(initial="#moves",savedHistory){
   docEvents.click(event);flush();assert(event.defaultPrevented);
  }
  context.api.render({restore:true});flush();
- return {api:context.api,context,window,history,location,fields:()=>fields,elements,dispatch,flush,clickReturn,focus:()=>focus,renders:()=>renders,snapshot:()=>({stack:clone(stack),position}),navigate(hash){context.api.navigateTo(hash,hash);flush();},scroll(y){window.scrollY=y;dispatch("scroll");flush();}};
+ return {api:context.api,context,window,history,location,fields:()=>fields,elements,dispatch,flush,clickReturn,documentEvent(name,event){docEvents[name]?.(event);flush();},focus:()=>focus,renders:()=>renders,snapshot:()=>({stack:clone(stack),position}),navigate(hash){context.api.navigateTo(hash,hash);flush();},scroll(y){window.scrollY=y;dispatch("scroll");flush();}};
 }
 let checks=0;
 const h=harness("#moves?q=single&tier=Beginner");
@@ -157,8 +157,16 @@ for(const move of addedMoves){
  const previous=original.window.GRINDSTONE.videos.G16.video.url;
  assert.equal(D.videos.G16.video,null);assert.deepEqual(clone(D.videos.P11),clone(original.window.GRINDSTONE.videos.P11));
  h.navigate('#game/G16');const detail=h.elements.main.innerHTML;
- assert(detail.includes(escapeText(D.games.find(item=>item.id==='G16').name)));assert(!detail.includes(previous));assert(!detail.includes('Spin Drill'));assert(detail.includes('No public video'));
+ assert(detail.includes(escapeText(D.games.find(item=>item.id==='G16').name)));assert(!detail.includes(previous));assert(detail.includes('No public video'));
  assert(h.api.moveDetail('P11').includes(escapeText(D.videos.P11.video.url)),'P11 must retain its matching movement video');checks++;
+}
+for(const game of D.games){
+ h.navigate('#game/'+game.id);const html=h.elements.main.innerHTML,plain=decode(html.replace(/<[^>]*>/g,''));
+ assert(html.includes(escapeText(game.name)));assert(!html.includes('undefined'));
+ for(const label of ['Scoring & success','Reset & change roles','Timing'])assert(decode(html).includes(label),game.id+' missing rules heading '+label);
+ for(const text of [game.equipment,game.setup,game.play,game.scoring,game.reset,game.timing,game.boundary,...game.steps,...game.cues])assert(plain.includes(text),game.id+' page omitted: '+text);
+ assert(html.includes('Print guide</strong> above for the current rules'));assert(html.includes('binder card is an earlier edition'));assert(html.includes('Archived game card'));
+ assert(h.api.libraryResults('games',new URLSearchParams('q='+game.id)).some(item=>item.id===game.id),game.id+' missing from games search');checks++;
 }
 for(const id of ["S13","S17"]){
  const series=seriesById.get(id);assert(series,"Expected shared series "+id);const memberIds=new Set(series.members.map(member=>member.move_id));
@@ -189,12 +197,83 @@ for(const id of ["K12","K13","K14"]){
  assert(!html.includes('does not currently have a Peterson guide'));assert(html.includes(escapeText(guide.steps[0])));assert(html.includes(escapeText(guide.verification)));checks++;
 }
 assert(h.api.familyArticle("first-practice").includes("reviewed 2026-10-13"));assert(h.api.familyArticle("programs-levels").includes("reviewed 2026-10-13"));checks++;
+{
+ const hub=harness('#families'),html=hub.elements.main.innerHTML;
+ const links=Array.from(html.matchAll(/<a class="family-task" href="([^"]+)"/g),match=>decode(match[1]));
+ assert.deepEqual(links,['#family/first-practice','#family/first-practice?section=1','#family/first-practice?section=3','#family/meet-day','#family/match-basics','#family/health']);
+ for(const link of links){
+  hub.navigate(link);assert.equal(hub.location.hash,link);assert(!hub.elements.main.innerHTML.includes('<h1>Page not found'));
+  const section=new URLSearchParams(link.split('?')[1]||'').get('section');
+  if(section){const target='family-first-practice-'+section;assert(hub.elements.main.innerHTML.includes('id="'+target+'"'));assert.equal(hub.focus(),target);}
+ }
+ hub.navigate('#families');hub.fields().find(field=>field.id==='family-question').value='  shoes & gear  ';
+ let prevented=false;hub.elements['family-hub-search'].dispatchEvent({type:'submit',preventDefault(){prevented=true;}});hub.flush();
+ assert(prevented);assert.equal(hub.location.hash,'#family/faq?q=shoes+%26+gear');assert.equal(hub.fields().find(field=>field.id==='faq-search').value,'shoes & gear');
+ hub.navigate('#families');hub.fields().find(field=>field.id==='family-question').value='   ';hub.elements['family-hub-search'].dispatchEvent({type:'submit',preventDefault(){}});hub.flush();assert.equal(hub.location.hash,'#family/faq');checks++;
+}
+for(const article of h.context.window.GRINDSTONE_FAMILY.pages){
+ const html=h.api.familyArticle(article.id),toc=html.match(/<details class="family-mobile-toc"([^>]*)>/);
+ assert(toc&&!/\bopen\b/.test(toc[1]),article.id+' contents should start collapsed');
+ const related=html.indexOf('<nav class="family-related"');assert(related>0);
+ for(let i=0;i<article.sections.length;i++){const target='family-'+article.id+'-'+i;assert(html.indexOf('id="'+target+'"')<related,article.id+' related links must follow the article');assert(html.includes('data-scroll="'+target+'"'));}checks++;
+}
+{
+ const menuPage=harness('#families'),toggle=menuPage.elements['menu-toggle'],navigation=menuPage.elements['site-navigation'];
+ const click=()=>menuPage.documentEvent('click',{target:{closest:selector=>selector==='[data-menu-toggle]'?toggle:null}});
+ assert.equal(toggle.getAttribute('aria-expanded'),'false');assert.equal(navigation.getAttribute('data-open'),'false');
+ click();assert.equal(toggle.getAttribute('aria-expanded'),'true');assert.equal(navigation.getAttribute('data-open'),'true');
+ click();assert.equal(toggle.getAttribute('aria-expanded'),'false');assert.equal(navigation.getAttribute('data-open'),'false');
+ click();menuPage.documentEvent('keydown',{key:'Escape'});assert.equal(toggle.getAttribute('aria-expanded'),'false');assert.equal(navigation.getAttribute('data-open'),'false');assert.equal(menuPage.focus(),'menu-toggle');
+ click();menuPage.navigate('#family/first-practice');assert.equal(toggle.getAttribute('aria-expanded'),'false');assert.equal(navigation.getAttribute('data-open'),'false');checks++;
+}
+{
+ const drafts=h.context.window.GRINDSTONE_IN_PROGRESS,draftApi=h.context.window.GRINDSTONE_DRAFTS,siteBase='https://packetbench.github.io/grindstone-guide/';
+ assert.equal(drafts.documents.length,11);assert.equal(new Set(drafts.documents.map(doc=>doc.id)).size,11);
+ const categories=[...new Set(drafts.documents.map(doc=>doc.category))],draftIds=new Set(drafts.documents.map(doc=>doc.id));
+ for(const category of ['',...categories,'unknown']){
+  const hash='#in-progress'+(category?'?'+new URLSearchParams({category}):'');h.navigate(hash);const html=h.elements.main.innerHTML;
+  assert(html.includes('<h1>In Progress</h1>'));assert(html.includes('not adopted club policy'));assert(html.includes('coaches’ text group'));assert(html.includes('does not save comments or shared edits'));
+  const shown=Array.from(html.matchAll(/<a class="draft-card" href="#in-progress\/([a-z0-9-]+)"/g),match=>match[1]);
+  const expected=drafts.documents.filter(doc=>!categories.includes(category)||doc.category===category).map(doc=>doc.id);assert.deepEqual(shown,Array.from(expected));
+  for(const target of ['working-drafts','existing-resources']){assert(html.includes('data-scroll="'+target+'"'));assert(html.includes('id="'+target+'"'));}checks++;
+ }
+ for(const doc of drafts.documents){
+  const hash='#in-progress/'+doc.id;assert.equal(h.api.safeRouteHash(hash),hash);h.navigate(hash);const html=h.elements.main.innerHTML,plain=decode(html.replace(/<[^>]*>/g,''));
+  assert(html.includes('<h1>'+escapeText(doc.title)+'</h1>'));assert(html.includes('not adopted policy'));assert(html.includes('coaches’ text group'));assert(html.includes('does not save replies or shared edits'));assert(html.includes('data-print'));
+  assert(doc.sections.length>=3&&doc.decisions.length&&doc.existing.length,doc.id+' needs a full draft with decisions and source links');
+  const content=[doc.title,doc.summary,doc.why,doc.next_step,...doc.sections.flatMap(section=>[section.title,...section.paragraphs,...section.bullets]),...doc.decisions];
+  for(const text of content)assert(plain.includes(text),doc.id+' page omitted draft content: '+text);
+  for(const link of doc.existing)assert(html.includes('href="'+escapeText(link.href)+'"'),doc.id+' omitted an existing-resource link');
+  const share=h.fields().find(field=>field.id==='draft-link');assert(share);assert.equal(share.value,siteBase+hash);assert(!share.value.includes('?'));assert(/id="draft-link" readonly/.test(html));
+  const download=html.match(/href="data:text\/plain;charset=utf-8,([^"]+)" download="([^"]+)"/);assert(download,doc.id+' needs a text download');assert.equal(download[2],doc.id+'-draft.txt');
+  const text=decodeURIComponent(decode(download[1]));assert.equal(text,draftApi.draftText(doc));
+  for(const item of content)assert(text.includes(item),doc.id+' text download omitted draft content');
+  assert(text.includes('DRAFT FOR COACH REVIEW'));assert(text.includes('does not save comments or shared edits'));assert(text.includes(siteBase+hash));assert(!text.includes('test-preview'));
+  for(const link of doc.existing)assert(text.includes(new URL(link.href,siteBase).href),doc.id+' text export omitted a usable source link');checks++;
+ }
+ assert(drafts.existing_documents.length>=18,'Existing meeting resources must remain available');assert.equal(new Set(drafts.existing_documents.map(item=>item.id)).size,drafts.existing_documents.length);
+ h.navigate('#in-progress');const hub=h.elements.main.innerHTML;
+ const resources=[...drafts.existing_documents.map(item=>({href:item.href,label:item.title,...item})),...drafts.documents.flatMap(doc=>doc.existing)];
+ for(const item of drafts.existing_documents){assert(hub.includes(escapeText(item.title)));assert(hub.includes(escapeText(item.summary)));assert(hub.includes('href="'+escapeText(item.href)+'"'));if(item.related_draft){assert(draftIds.has(item.related_draft));assert(hub.includes('href="#in-progress/'+item.related_draft+'"'));}}
+ for(const href of new Set(resources.map(item=>item.href))){
+  const url=new URL(href,siteBase);assert.equal(url.origin,new URL(siteBase).origin);assert(url.pathname.startsWith('/grindstone-guide/'));
+  if(url.hash){assert(h.api.safeRouteHash(url.hash),'Unrecognized existing resource route '+href);h.navigate(url.hash);assert(!h.elements.main.innerHTML.includes('That page isn’t in the playbook.'),'Broken existing resource route '+href);}
+  else{const relative=decodeURIComponent(url.pathname.slice('/grindstone-guide/'.length));assert(relative.startsWith('downloads/'));assert(fs.existsSync(path.join(root,relative)),'Missing existing download '+relative);}
+ }checks++;
+ h.navigate('#in-progress/missing-draft');assert(h.elements.main.innerHTML.includes('<h1>Draft not found</h1>'));assert(h.elements.main.innerHTML.includes('href="#in-progress"'));assert(!h.elements.main.innerHTML.includes('data-draft-copy'));checks++;
+ for(const invalid of ['#in-progress/../../downloads','#in-progress/<script>','#in-progress/communication/extra'])assert.equal(h.api.safeRouteHash(invalid),'');checks++;
+ const history=harness('#in-progress?category=Families');history.scroll(420);history.navigate('#in-progress/communication');history.scroll(180);history.history.back();history.flush();assert.equal(history.location.hash,'#in-progress?category=Families');assert.equal(history.window.scrollY,420);history.history.forward();history.flush();assert.equal(history.location.hash,'#in-progress/communication');assert.equal(history.window.scrollY,180);checks++;
+}
 const overview=h.context.window.GRINDSTONE_SKILL_PATHWAY.render(new URLSearchParams('age=4-6&phase=bad'));
 assert(overview.includes(S.groups[0].phases[0].title));assert(overview.includes('aria-current="page"'));assert(!h.api.home().includes('ready-to-run practices'));assert(!h.api.home().includes('30 plans'));assert(!h.api.savedPage().includes('#practice/'));checks++;
 const printable=h.api.currentCoachDownloads();assert.deepEqual(Array.from(printable,item=>item.pages),[14,66]);for(const item of printable)assert(fs.existsSync(path.join(root,item.path)));const downloadHtml=h.api.downloads();assert(downloadHtml.includes("pages 217–282"));assert(downloadHtml.includes("downloads/binder-index.pdf"));assert(h.api.home().includes("282 pages / 141"));checks++;
 const shortForm=h.api.filters("moves",new URLSearchParams());assert(shortForm.indexOf('for="search"')<shortForm.indexOf('class="filter-options"'));assert(shortForm.indexOf('for="move-category"')<shortForm.indexOf('class="filter-options"'));assert(!shortForm.includes('class="filter-options" open'));assert(h.api.filters("moves",new URLSearchParams("tier=Beginner")).includes('class="filter-options" open'));checks++;
 assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook")).length,17);assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook&unassigned=0")).length,0);assert.equal(Object.keys(h.api.saveRecords).length,D.moves.length+D.games.length+D.practices.length+h.context.window.GRINDSTONE_KYLE.entries.length+h.context.window.GRINDSTONE_VIDEO_ADDITIONS.entries.length);checks++;
 const index=fs.readFileSync(path.join(root,"index.html"),"utf8"),scripts=Array.from(index.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g),match=>match[1].split("?")[0]);
+assert(/<button\b[^>]*id="menu-toggle"[^>]*data-menu-toggle[^>]*aria-expanded="false"[^>]*aria-controls="site-navigation"/.test(index));assert(/<nav\b[^>]*id="site-navigation"[^>]*aria-label="Main navigation"/.test(index));checks++;
 for(const file of dataFiles)assert(scripts.includes(file),"Production entry point missing "+file);
+assert(scripts.indexOf('in-progress-data.js')<scripts.indexOf('in-progress.js'));assert(scripts.indexOf('in-progress.js')<scripts.indexOf('app.js'));assert(index.includes('href="#in-progress">In Progress</a>'));checks++;
+for(const file of ['game-guides-a.js','game-guides-b.js','game-guides-c.js','kyle-instruction-data.js','video-additions.js'])assert(scripts.indexOf(file)<scripts.indexOf('game-guide-library.js'),file+' must load before game-guide-library.js');
+for(const file of ['practice-builder.js','app.js'])assert(scripts.indexOf('game-guide-library.js')<scripts.indexOf(file),'Game guide integration must load before '+file);checks++;
 for(const [earlier,later] of [["data.js","game-video-fixes.js"],["game-video-fixes.js","practice-builder.js"],["data.js","series-library.js"],["move-tags.js","series-library.js"],["series-moves.js","series-library.js"],["series-bottom.js","series-library.js"],...["series-neutral.js","series-top.js","series-escapes.js"].flatMap(file=>[["series-bottom.js",file],[file,"series-library.js"],[file,"series-expansion.js"]]),["series-library.js","practice-builder.js"],["series-library.js","skill-pathway.js"],["practice-frameworks.js","skill-pathway.js"],["practice-frameworks.js","practice-builder.js"],["pathway-data.js","series-expansion.js"],["series-expansion.js","skill-pathway.js"],["series-expansion.js","practice-builder.js"],["skill-pathway.js","app.js"],["practice-builder.js","app.js"]])assert(scripts.indexOf(earlier)<scripts.indexOf(later),earlier+" must load before "+later);checks++;
 console.log("PASS: "+checks+" navigation, builder routing, pathway, filter, family, and guide checks. No files written.");

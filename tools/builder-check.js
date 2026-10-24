@@ -8,7 +8,7 @@ const values = new Map(), writes = [];
 let failStorage = false, allowConfirm = true;
 const storage = { getItem: k => { if (failStorage) throw Error('disabled'); return values.get(k) || null; }, setItem: (k, val) => { if (failStorage) throw Error('full'); values.set(k, val); writes.push(k); } };
 const ctx = { window: { localStorage: storage, confirm: () => allowConfirm }, URL, URLSearchParams, console, Blob, setTimeout };
-for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js', 'practice-builder.js']) {
+for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'game-guides-a.js', 'game-guides-b.js', 'game-guides-c.js', 'game-guide-library.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js', 'practice-builder.js']) {
   if (!fs.existsSync(path.join(base, file))) throw Error('Missing ' + file);
   vm.runInNewContext(fs.readFileSync(path.join(base, file), 'utf8'), ctx, { filename: file });
 }
@@ -50,7 +50,7 @@ check('linked drills retain old source IDs and remain separate from foundation s
   }
 });
 check('starts blank without any ready-made practices', () => { assert.equal(state().plan.blocks.length, 0); assert.equal(state().plan.age, ''); assert.equal(state().plan.target, 0); assert(!api.render(new URLSearchParams()).includes('Customize this plan')); });
-check('Kyle guide carries actual steps and boundaries', () => { const item = catalog.find(x => x.id === 'kyle:K01'); assert(item.steps.length >= 5); assert(item.boundary.includes('head')); assert(item.instructions.includes('20-second')); });
+check('Kyle guide carries actual steps and boundaries with corrected round timing', () => { const item = catalog.find(x => x.id === 'kyle:K01'); assert(item.steps.length >= 5); assert(item.boundary.includes('head')); assert(/30[- ]seconds?/.test(item.instructions)); assert(!/20[- ]seconds?/.test(item.instructions)); });
 check('Facebook written guides and references remain distinct', () => { assert(catalog.find(x => x.id === 'facebook:V01').steps.length); assert.equal(catalog.find(x => x.id === 'facebook:V06').steps.length, 0); assert(catalog.find(x => x.id === 'facebook:V06').status.includes('no complete written')); });
 check('source URLs reject active URL schemes', () => { assert.equal(t.safeUrl('javascript:alert(1)'), ''); assert.equal(t.safeUrl('data:text/html,test'), ''); assert.equal(t.safeUrl('https://www.youtube.com/watch?v=abc'), 'https://www.youtube.com/watch?v=abc'); });
 check('HTML escaping handles imported text and attributes', () => { assert.equal(t.esc('<img src=x onerror="bad">&\''), '&lt;img src=x onerror=&quot;bad&quot;&gt;&amp;&#39;'); });
@@ -265,5 +265,53 @@ check('Circle the Castle has no substitute video while matching Spin Drill remai
   resetCase(); addSource('game', 'G16');
   const priorVideo = original.window.GRINDSTONE.videos.G16.video.url;
   for (const html of [root.querySelector('.builder-resource-preview').innerHTML, t.printHtml(false), t.printHtml(true)]) assert(!html.includes(priorVideo), 'G16 must not present the unrelated Spin Drill video');
+});
+check('all 37 original games have runnable instructions without losing their library identity', () => {
+  const original = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(base, 'data.js'), 'utf8'), original);
+  assert.equal(counts.games.length, 37); assert.equal(new Set(counts.games.map(game => game.id)).size, 37);
+  for (const game of counts.games) {
+    const previous = original.window.GRINDSTONE.games.find(item => item.id === game.id); assert(previous, 'New or missing game ID ' + game.id);
+    for (const key of ['name', 'ages', 'format', 'minutes', 'equipment']) assert.equal(game[key], previous[key], game.id + ' changed original ' + key);
+    for (const key of ['setup', 'play', 'scoring', 'reset', 'timing', 'variation', 'boundary', 'review_note']) assert(typeof game[key] === 'string' && game[key].trim(), game.id + ' needs ' + key);
+    assert(Array.isArray(game.steps) && game.steps.length >= 3 && game.steps.length <= 6, game.id + ' needs 3–6 runnable steps');
+    assert(game.steps.every(step => typeof step === 'string' && step.trim()), game.id + ' contains an empty step');
+    assert(Array.isArray(game.cues) && game.cues.length && game.cues.every(cue => typeof cue === 'string' && cue.trim()), game.id + ' needs coaching cues');
+  }
+});
+for (const game of counts.games) check(game.id + ' rules, equipment and coaching cues survive building, save, import and both print modes', () => {
+  resetCase(); const normalized = catalog.find(item => item.id === game.id); assert(normalized);
+  assert(normalized.setup.includes(game.equipment), game.id + ' builder omitted equipment');
+  assert(normalized.setup.includes(game.setup), game.id + ' builder omitted starting setup');
+  for (const key of ['play', 'scoring', 'reset', 'timing']) assert(normalized.instructions.includes(game[key]), game.id + ' builder omitted ' + key);
+  assert.deepEqual(Array.from(normalized.steps.slice(0, game.steps.length)), Array.from(game.steps)); assert(normalized.steps.some(step => step.includes(game.variation)), game.id + ' builder omitted its variation'); assert.deepEqual(Array.from(normalized.cues), Array.from(game.cues));
+  addSource('game', game.id); t.action('save', -1); t.reset(); mount();
+  const savedPlan = state().saved[0], imported = t.parseImport(JSON.stringify({ format: 'grindstone-practice', version: 1, plan: savedPlan }));
+  for (const plan of [savedPlan, state().plan, imported]) {
+    const block = plan.blocks[0]; assert.equal(block.sourceId, game.id); assert.equal(block.minutes, Number(game.minutes));
+    assert.equal(block.setup, normalized.setup); assert.equal(block.instructions, normalized.instructions); assert.equal(block.cues, game.cues.join('\n')); assert.equal(block.boundary, game.boundary);
+    assert.deepEqual(Array.from(block.steps), Array.from(normalized.steps));
+  }
+  for (const details of [false, true]) {
+    const printed = t.printHtml(details);
+    for (const text of [game.equipment, game.setup, game.play, game.scoring, game.reset, game.timing, game.boundary, game.variation, ...game.steps, ...game.cues]) assert(printed.includes(t.esc(text)), game.id + ' print omitted a rule or teaching cue, full moves=' + details);
+  }
+});
+for (const id of ['kyle:K01', 'facebook:V03']) check(id + ' clarified rules survive save, import and both print modes', () => {
+  resetCase(); const normalized = catalog.find(item => item.id === id); assert(normalized && normalized.types.includes('game'));
+  if (id === 'kyle:K01') {
+    assert(/30[- ]seconds?/.test(normalized.instructions)); assert(/15[- ]seconds?/.test(normalized.instructions));
+    assert(normalized.steps.some(step => /even if/.test(step) && /knee touch/.test(step)), 'K01 must resolve simultaneous touch and block scoring');
+  } else {
+    const rules = normalized.steps.join('\n'); assert(rules.includes('standing')); assert(rules.includes('both feet outside')); assert(rules.includes('both feet inside')); assert(rules.includes('20-second')); assert(rules.includes('20 seconds play and 10 seconds reset/swap'));
+  }
+  addSource('game', id); t.action('save', -1); t.reset(); mount();
+  const savedPlan = state().saved[0], imported = t.parseImport(JSON.stringify({ format: 'grindstone-practice', version: 1, plan: savedPlan }));
+  for (const plan of [savedPlan, state().plan, imported]) {
+    const block = plan.blocks[0]; assert.equal(block.sourceId, id); assert.equal(block.minutes, 5); assert.equal(block.instructions, normalized.instructions); assert.equal(block.cues, normalized.cues.join('\n')); assert.equal(block.boundary, normalized.boundary); assert.deepEqual(Array.from(block.steps), Array.from(normalized.steps));
+  }
+  for (const details of [false, true]) {
+    const printed = t.printHtml(details);
+    for (const text of [normalized.setup, normalized.instructions, normalized.boundary, ...normalized.steps, ...normalized.cues].filter(Boolean)) assert(printed.includes(t.esc(text)), id + ' print omitted a rule, full moves=' + details);
+  }
 });
 console.log('\n' + checks + ' builder checks passed. No files written.');

@@ -31,8 +31,8 @@ function route(){const raw=location.hash.slice(1)||"home", parts=raw.split("?");
 function safeRouteHash(value){
  if(typeof value!=="string"||value.length>1200||!value.startsWith("#")||/[\u0000-\u001f]/.test(value))return "";
  const [path,query=""]=value.slice(1).split("?");
- const roots=["season","home","moves","games","practices","saved","coaching","families","family/faq","about","about/kyle","about/coaches","sponsors","downloads","volunteer","moves/kyle","moves/videos"];
- if(!roots.includes(path)&&!/^(?:move\/[PBAN]\d{2}|game\/G\d{2}|practice\/(?:4-6|7-10|11-14)\/[1-9]\d?|moves\/(?:kyle\/K\d{2}|videos\/V\d{2})|about\/coach\/[a-z0-9-]+|family\/[a-z0-9-]+|guide\/[a-z0-9-]+)$/.test(path))return "";
+ const roots=["season","home","moves","games","practices","saved","coaching","families","family/faq","about","about/kyle","about/coaches","sponsors","downloads","volunteer","moves/kyle","moves/videos","in-progress"];
+ if(!roots.includes(path)&&!/^(?:move\/[PBAN]\d{2}|game\/G\d{2}|practice\/(?:4-6|7-10|11-14)\/[1-9]\d?|moves\/(?:kyle\/K\d{2}|videos\/V\d{2})|about\/coach\/[a-z0-9-]+|family\/[a-z0-9-]+|guide\/[a-z0-9-]+|in-progress\/[a-z0-9-]+)$/.test(path))return "";
  const params=new URLSearchParams(query);
  return "#"+path+(params.size?"?"+params:"");
 }
@@ -328,10 +328,20 @@ function familyHomeFeature(){
  return '<section class="family-callout home-family"><div><p class="eyebrow">FOR PARENTS & CAREGIVERS</p><h2>New to Grindstone?</h2><p>Know what to bring, where to start, and how to find the program that fits your family.</p><div class="buttons"><a class="button" href="#family/first-practice">Get ready for your first practice →</a><a class="card-link" href="#family/programs-levels">Find your program & teaching level →</a></div></div><a class="card-link" href="#families">All family guides →</a></section>';
 }
 function families(){
- return pageTitle("GRINDSTONE FAMILIES","You belong here.",esc(F.intro||"A practical starting point for parents and caregivers: what to expect, how to prepare, and how to support your young wrestler."))+familyHomeFeature()+
- '<section class="family-welcome"><div><p class="eyebrow">START HERE</p><h2>Your family guide, ready to keep.</h2><p>Keep the printable guide handy, then use the questions and meet-day checklist below when you need a quick answer.</p><div class="buttons">'+familyGuideLink()+'<a class="button outline" href="#downloads?group=families">All family downloads</a></div></div><div class="family-start"><p class="meta-title">A simple first visit</p><ol><li>Read the frequently asked questions.</li><li>Confirm your group’s details with the club.</li><li>Use the meet-day guide before an event.</li></ol></div></section>'+
- '<div class="section-head"><h2>Start with your next question.</h2></div><div class="grid two"><article class="card family-card"><p class="eyebrow">QUICK ANSWERS</p><h3><a href="#family/faq">Questions families ask</a></h3><p>Search '+(F.faq||[]).length+' answers about getting started, practices, matches, and supporting your athlete.</p><a class="card-link" href="#family/faq">Browse the family FAQ →</a></article>'+familyCard("meet-day","MEET DAY","Prepare for the day, find your way around, and know what comes next.","Open the meet-day checklist")+'</div>'+
- '<div class="section-head"><h2>Understand the season.</h2></div><div class="grid">'+familyCard("match-basics","WATCHING A MATCH","Learn the basics so the action is easier to follow.")+familyCard("expectations","PRACTICE & TEAM LIFE","Know what to expect from the team and how families can help.")+familyCard("health","READY TO PARTICIPATE","Find practical health and safety guidance for families.")+'</div>'+volunteerFeature();
+ const tasks=[
+ ["#family/first-practice","First practice","What to expect and how to get started."],
+ ["#family/first-practice?section=1","Times & locations","School entrances, directions and TeamSnap updates."],
+ ["#family/first-practice?section=3","Gear & donated equipment","What to bring and how to ask about shoes or headgear."],
+ ["#family/meet-day","Going to a meet","Pack, arrive, check in and find your mat."],
+ ["#family/match-basics","Understand a match","Scoring, whistles and what to watch."],
+ ["#family/health","Health & participation","Hygiene, concerns and where to get help."]
+ ];
+ return '<div class="family-hub">'+pageTitle("GRINDSTONE FAMILIES","What do you need today?","Quick answers for practice, meet day and everything in between.")+
+ '<div class="family-update"><strong>Check TeamSnap before you leave.</strong><p>Your team’s messages have the current times, cancellations and event instructions.</p></div>'+
+ '<form id="family-hub-search" class="family-search" role="search"><label for="family-question">Find a family answer</label><div><input id="family-question" type="search" name="q" placeholder="Try shoes, arrival or scoring…"><button class="button" type="submit">Search FAQ</button></div></form>'+
+ '<nav class="family-task-grid" aria-label="Family quick links">'+tasks.map(([href,title,copy])=>'<a class="family-task" href="'+href+'"><strong>'+title+' <span aria-hidden="true">→</span></strong><span>'+copy+'</span></a>').join("")+'</nav>'+
+ '<section class="family-more"><h2>More help</h2><div class="family-link-list"><a href="#family/programs-levels">Choose a program & group</a><a href="#family/expectations">Support your wrestler</a><a href="#family/faq">All family questions</a><a href="#volunteer">Help the team</a></div></section>'+
+ '<section class="family-help"><h2>Need a person?</h2><p>Use TeamSnap to reach your team. New to the club or missing access? <a href="https://www.grindstonewrestling.org/contact" target="_blank" rel="noopener noreferrer">Contact Grindstone</a>.</p><div class="buttons">'+familyGuideLink("Printable family guide","button outline")+'<a class="card-link" href="#downloads?group=families">All family downloads →</a></div></section></div>';
 }
 function familyFaq(params){
  return '<a class="back" href="#families">← Families hub</a>'+pageTitle("FAMILY FAQ","Questions families ask.","Search for a topic, then open any question to read the answer.")+
@@ -353,7 +363,9 @@ function authoredArticle(article,eyebrow,backHref,backLabel,routePath){
  const slug=routePath.replace(/\//g,"-");
  const sections=article.sections||[];
  const sources=article.sources?.length?'<section class="family-sources" id="'+slug+'-sources"><h2>Sources & further reading</h2><ul class="link-list">'+article.sources.map(s=>'<li>'+ext(s.url,esc(s.title))+'</li>').join("")+'</ul></section>':"";
- return '<a class="back" href="'+backHref+'">← '+backLabel+'</a><div class="detail-heading"><div>'+pageTitle(eyebrow,esc(article.title),esc(article.description||""))+'</div><div class="detail-actions"><button class="button outline" data-print>Print this page</button></div></div><div class="guide-layout family-article"><aside class="toc"><p class="eyebrow">ON THIS PAGE</p>'+sections.map((s,i)=>'<a href="#'+routePath+'" data-scroll="'+slug+'-'+i+'">'+esc(s.title)+'</a>').join("")+(sources?'<a href="#'+routePath+'" data-scroll="'+slug+'-sources">Sources & further reading</a>':"")+'<div class="family-toc-links"><a href="#family/first-practice">First practice →</a><a href="#family/programs-levels">Programs & teaching levels →</a><a href="#family/faq">Family FAQ →</a><a href="#family/meet-day">Meet-day guide →</a><a href="#volunteer">Ways to volunteer →</a><a href="#downloads?group=families">Family print resources →</a></div></aside><article class="prose">'+sections.map((s,i)=>'<section id="'+slug+'-'+i+'" tabindex="-1"><h2>'+esc(s.title)+'</h2>'+s.html+'</section>').join("")+sources+((article.reviewed||F.reviewed)?'<p class="fine family-reviewed">Family material reviewed '+esc(article.reviewed||F.reviewed)+'. Confirm current club and event details before relying on dates or requirements.</p>':"")+'</article></div>';
+ const tocLinks=sections.map((s,i)=>'<a href="#'+routePath+'" data-scroll="'+slug+'-'+i+'">'+esc(s.title)+'</a>').join("")+(sources?'<a href="#'+routePath+'" data-scroll="'+slug+'-sources">Sources & further reading</a>':"");
+ const related=[["family/first-practice","First practice"],["family/programs-levels","Programs & groups"],["family/faq","Family FAQ"],["family/meet-day","Meet day"],["volunteer","Help the team"]].filter(([href])=>href!==routePath);
+ return '<a class="back" href="'+backHref+'">← '+backLabel+'</a><div class="detail-heading"><div>'+pageTitle(eyebrow,esc(article.title),esc(article.description||""))+'</div><div class="detail-actions"><button class="button outline" data-print>Print this page</button></div></div><div class="guide-layout family-article"><aside class="toc family-desktop-toc"><p class="eyebrow">ON THIS PAGE</p>'+tocLinks+'</aside><article class="prose"><details class="family-mobile-toc"><summary>On this page</summary><nav aria-label="On this family page">'+tocLinks+'</nav></details>'+sections.map((s,i)=>'<section id="'+slug+'-'+i+'" tabindex="-1"><h2>'+esc(s.title)+'</h2>'+s.html+'</section>').join("")+sources+((article.reviewed||F.reviewed)?'<p class="fine family-reviewed">Family material reviewed '+esc(article.reviewed||F.reviewed)+'. Check TeamSnap for current club and event details.</p>':"")+'<nav class="family-related" aria-label="More family guides"><h2>More family guides</h2>'+related.map(([href,label])=>'<a href="#'+href+'">'+label+' →</a>').join("")+'<a href="#downloads?group=families">Family downloads →</a></nav></article></div>';
 }
 function volunteer(){
  return F.volunteer?authoredArticle(F.volunteer,"HELP THE TEAM","#families","Families hub","volunteer")+section("Resources for coaches and presenters",'<p>Use the presentation and editable materials when welcoming families or preparing helpers.</p><div class="buttons"><a class="button outline" href="#downloads?group=presenters">Presenter resources</a><a class="button outline" href="#coaching">Coaching resources</a></div>'):notFound();
@@ -470,10 +482,10 @@ function gameDetail(id){
  const sources=g.sources?section("Sources & variations",'<ul class="link-list">'+g.sources.map(s=>'<li>'+ext(s.url,esc(s.title))+'<p class="fine">'+esc(s.note)+'</p></li>').join("")+'</ul>'):"";
  const cues=g.cues?.length?section("Say this",g.cues.map(s=>'<p class="cue">'+esc(s)+'</p>').join(""),"cue-panel mat-cues","guide-cues-"+id):"";
  return detailHeader("games",id,g.name,g.format,badge(g.ages)+badge((g.team_favorite?"Suggested ":"")+g.minutes+" minutes"))+matGuideNav("game",id,!!cues)+cues+'<div class="detail-layout"><div>'+
- section("Set up",'<div class="meta-title">Equipment</div>'+p(g.equipment)+p(g.setup),"","guide-ready-"+id)+
+ section("Set up",'<div class="meta-title">Equipment</div>'+p(g.equipment)+p(g.setup)+(g.timing?'<h3>Timing</h3>'+p(g.timing):""),"","guide-ready-"+id)+
  section("How to play",p(g.play)+(g.steps?'<ol class="steps">'+g.steps.map(s=>'<li>'+linked(s)+'</li>').join("")+'</ol>':""),"","guide-steps-"+id)+
- section(g.team_favorite?"Suggested adaptations":"Change it up",p(g.variation))+section("Coach watch",p(g.boundary),"","guide-boundaries-"+id)+note(provenance)+sources+practiceVariations(id)+'</div><aside class="detail-sidebar">'+videoPanel(id)+usaPanel(id)+
- section("Print & go",'<p class="small-copy">Game '+id+' · '+printCopy+'.</p><a href="'+printPath+'#page='+printPage+'" target="_blank" rel="noopener">Open the printed game ↗</a>')+'</aside></div>';
+ (g.scoring?section("Scoring & success",p(g.scoring)):"")+(g.reset?section("Reset & change roles",p(g.reset)):"")+section(g.team_favorite?"Suggested adaptations":"Change it up",p(g.variation))+section("Coach watch",p(g.boundary),"","guide-boundaries-"+id)+note(provenance)+sources+practiceVariations(id)+'</div><aside class="detail-sidebar">'+videoPanel(id)+usaPanel(id)+
+ section("Print & go",(g.rules_reviewed?'<p>Use <strong>Print guide</strong> above for the current rules. The binder card is an earlier edition.</p>':"")+'<p class="small-copy">Game '+id+' · '+printCopy+'.</p><a href="'+printPath+'#page='+printPage+'" target="_blank" rel="noopener">'+(g.rules_reviewed?"Archived game card":"Open the printed game")+' ↗</a>')+'</aside></div>';
 }
 function practiceDetail(age,num){
  const x=D.practices.find(x=>x.age_group===age&&x.number===Number(num));if(!x)return notFound();
@@ -530,6 +542,7 @@ function render(options={}){
  else if(parts[0]==="game")html=gameDetail(parts[1]);
  else if(path==="coaching")html=coaching();
  else if(path==="sponsors")html=sponsors();
+ else if(parts[0]==="in-progress"&&parts.length<=2)html=window.GRINDSTONE_DRAFTS.render(parts[1],params);
  else if(path==="moves/videos")html=practiceVideoList(params);
  else if(parts.length===3&&parts[0]==="moves"&&parts[1]==="videos")html=practiceVideoDetail(parts[2]);
  else if(path==="moves/kyle")html=kyleList(params);
@@ -547,9 +560,12 @@ function render(options={}){
  else if(path==="saved")html=savedPage();
  else html=notFound();
  main.innerHTML=html;
+ document.getElementById("site-navigation")?.setAttribute("data-open","false");document.getElementById("menu-toggle")?.setAttribute("aria-expanded","false");
+ if(path==="families")document.getElementById("family-hub-search")?.addEventListener("submit",e=>{e.preventDefault();const q=document.getElementById("family-question").value.trim();navigateTo("#family/faq"+(q?"?"+new URLSearchParams({q}):""));});
  document.querySelectorAll(".site-header nav a").forEach(a=>{const active=a.getAttribute("href")==="#"+({move:"moves",game:"games",practice:"practices",season:"practices",guide:"coaching",family:"families",volunteer:"coaching"}[parts[0]]||parts[0]);a.classList.toggle("active",active);active?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current");});
  updateSavedCount();
  if(path==="practices")window.GRINDSTONE_BUILDER.bind(document.getElementById("practice-builder"));
+ if(parts[0]==="in-progress")window.GRINDSTONE_DRAFTS.bind(main);
  if(["moves","games"].includes(path)){updateResults(path,params);const form=document.getElementById("filter-form");form.addEventListener("submit",e=>e.preventDefault());const update=(event)=>{if(event?.target?.name==="age"&&form.querySelector("#practice-phase"))form.querySelector("#practice-phase").value="";const next=new URLSearchParams();new FormData(form).forEach((v,k)=>{if(v)next.set(k,v);});if(form.querySelector("#include-unassigned")?.checked===false)next.set("unassigned","0");replaceRoute("#"+path+(next.size?"?"+next:""));updateResults(path,next);};form.addEventListener("input",update);form.addEventListener("reset",()=>setTimeout(()=>{form.querySelectorAll("input,select").forEach(el=>{if(el.type==="checkbox")el.checked=true;else el.value="";});update();},0));}
  if(path==="moves/videos"){updatePracticeVideos(params);const form=document.getElementById("variation-form");form.addEventListener("submit",e=>e.preventDefault());const update=()=>{const next=new URLSearchParams();new FormData(form).forEach((v,k)=>{if(v)next.set(k,v);});replaceRoute("#moves/videos"+(next.size?"?"+next:""));updatePracticeVideos(next);};form.addEventListener("input",update);form.addEventListener("reset",()=>setTimeout(()=>{form.querySelectorAll("input,select").forEach(el=>el.value="");update();document.getElementById("variation-search").focus();},0));}
  if(path==="family/faq"){updateFaq(params);const form=document.getElementById("faq-form");form.addEventListener("submit",e=>e.preventDefault());const update=()=>{const q=document.getElementById("faq-search").value;const next=new URLSearchParams();if(q)next.set("q",q);replaceRoute("#family/faq"+(next.size?"?"+next:""));updateFaq(next);};form.addEventListener("input",update);form.addEventListener("reset",()=>setTimeout(()=>{document.getElementById("faq-search").value="";update();document.getElementById("faq-search").focus();},0));}
@@ -558,10 +574,12 @@ function render(options={}){
  renderedNavigation=navigation.id+"|"+navigation.hash;
  restoreView(options);
  if((parts[0]==="move"||parts[0]==="game")&&params.has("variation"))requestAnimationFrame(()=>{const target=document.getElementById("variation-"+params.get("variation"));target?.scrollIntoView({behavior:"instant"});target?.focus({preventScroll:true});});
+ if(parts[0]==="family"&&/^\d+$/.test(params.get("section")||""))requestAnimationFrame(()=>{const target=document.getElementById("family-"+parts[1]+"-"+params.get("section"));target?.scrollIntoView({behavior:"instant"});target?.focus({preventScroll:true});});
  if(path==="downloads"&&["coaches","families","presenters"].includes(params.get("group")))requestAnimationFrame(()=>{const target=document.getElementById("downloads-"+params.get("group"));target?.scrollIntoView({behavior:"instant"});target?.focus({preventScroll:true});});
 }
 document.addEventListener("error",e=>{const image=e.target;if(image instanceof HTMLImageElement&&image.hasAttribute("data-coach-image")){image.hidden=true;image.closest(".coach-photo-frame")?.classList.add("is-fallback");}if(image instanceof HTMLImageElement&&image.hasAttribute("data-kyle-image")){image.hidden=true;image.closest(".kyle-thumbnail")?.classList.add("is-fallback");}if(image instanceof HTMLImageElement&&image.hasAttribute("data-sponsor-image")){image.hidden=true;image.closest(".sponsor-logo")?.classList.add("is-fallback");}},true);
 document.addEventListener("click",e=>{
+ const menu=e.target.closest("[data-menu-toggle]");if(menu){const open=menu.getAttribute("aria-expanded")!=="true";menu.setAttribute("aria-expanded",String(open));document.getElementById("site-navigation")?.setAttribute("data-open",String(open));return;}
  const phaseButton=e.target.closest("[data-season-phase]");if(phaseButton){const phaseInput=document.getElementById("practice-phase");if(phaseInput){phaseInput.value=phaseButton.dataset.seasonPhase;document.getElementById("filter-form").dispatchEvent(new Event("input",{bubbles:true}));const active=Array.from(document.querySelectorAll("[data-season-phase]")).find(button=>button.dataset.seasonPhase===phaseButton.dataset.seasonPhase);active?.focus({preventScroll:true});}return;}
  if(e.target.closest("[data-variation-clear]"))document.getElementById("variation-form")?.reset();
  if(e.target.closest("[data-kyle-clear]"))document.getElementById("kyle-form")?.reset();
@@ -578,11 +596,12 @@ document.addEventListener("click",e=>{
  }
  if(e.target.closest("[data-print]"))window.print();
  if(e.target.closest("[data-clear]"))document.getElementById("filter-form")?.reset();
- const scroll=e.target.closest("[data-scroll]");if(scroll){e.preventDefault();if(scroll.dataset.downloadGroup)replaceRoute("#downloads?group="+scroll.dataset.downloadGroup);const target=document.getElementById(scroll.dataset.scroll);target?.scrollIntoView({behavior:"smooth"});target?.focus({preventScroll:true});return;}
+ const scroll=e.target.closest("[data-scroll]");if(scroll){e.preventDefault();const toc=scroll.closest(".family-mobile-toc");if(toc)toc.open=false;if(scroll.dataset.downloadGroup)replaceRoute("#downloads?group="+scroll.dataset.downloadGroup);const target=document.getElementById(scroll.dataset.scroll);target?.scrollIntoView({behavior:"smooth"});target?.focus({preventScroll:true});return;}
  const anchor=e.target.closest("a[href]");if(!anchor||e.defaultPrevented||e.button>0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||anchor.target==="_blank"||anchor.hasAttribute("download"))return;
  const hash=safeRouteHash(anchor.getAttribute("href"));if(!hash)return;
  const parent=navigation.parents[0];if(anchor.dataset.return&&parent?.id===anchor.dataset.return&&parent.hash===hash){e.preventDefault();rememberView();history.back();return;}
  e.preventDefault();navigateTo(hash,anchor.getAttribute("href"));
 });
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.getElementById("menu-toggle")?.getAttribute("aria-expanded")==="true"){document.getElementById("menu-toggle").setAttribute("aria-expanded","false");document.getElementById("site-navigation")?.setAttribute("data-open","false");document.getElementById("menu-toggle").focus();}});
 window.addEventListener("popstate",historyNavigation);window.addEventListener("hashchange",historyNavigation);render({restore:true});
 })();
