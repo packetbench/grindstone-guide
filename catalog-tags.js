@@ -108,6 +108,17 @@
   assign(extraUses,'C13','reps');
   assign(extraUses,'C14','situational');
   assign(extraUses,'C17','review');
+  assign(positionOverrides,'S26 S27 S31 N34 N36','top');
+  assign(positionOverrides,'S28 S30 N41 N42','neutral');
+  assign(purposeOverrides,'S26 N34','turn pin');
+  assign(purposeOverrides,'S27','turn pin');
+  assign(purposeOverrides,'N36','turn');
+  assign(purposeOverrides,'S28','entry takedown');
+  assign(purposeOverrides,'N41','entry');
+  assign(purposeOverrides,'N42','takedown');
+  assign(purposeOverrides,'S30','defend');
+  assign(purposeOverrides,'S31','breakdown ride');
+  assign(extraUses,'N34 N36 N41 N42','reaction');
   const aliases = {N24:['single leg','single-leg entry','head inside'],B08:['single leg finish','run the pipe'],B17:['stand up','stand-up'],B26:['half','half-nelson'],B28:['half finish'],N25:['hip dump','mat return','standing return'],G31:['ankle tag','toe tag','touch only']};
   function ageGuidance(source, guide, kind, tier) {
     const explicit = unique([...strings(source.age_groups),...strings(guide.age_groups)].map(norm)).filter(value => ages.includes(value));

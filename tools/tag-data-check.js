@@ -4,7 +4,7 @@ const fs = require('node:fs'), path = require('node:path'), vm = require('node:v
 const base = path.resolve(__dirname,'..');
 const context = {window:{},URL,URLSearchParams};
 vm.createContext(context);
-const files = ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js'];
+const files = ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-top-additions.js','series-neutral-additions.js','series-ready-additions.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js'];
 for (const file of files) vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
 const before = JSON.stringify(context.window);
 vm.runInContext(fs.readFileSync(path.join(base,'catalog-tags.js'),'utf8'),context,{filename:'catalog-tags.js'});
@@ -30,7 +30,7 @@ check('source ages win and the written teaching-tier suggestions remain explicit
   assert.deepEqual(plain(api.resolve('N25').age_groups),['7-10','11-14']); assert.equal(api.resolve('N25').ageBasis,'explicit');
   assert.deepEqual(plain(api.resolve('P01').age_groups),['4-6','7-10','11-14']); assert.equal(api.resolve('P01').ageBasis,'teaching-tier');
   assert.deepEqual(plain(api.resolve('B26').age_groups),['7-10','11-14']); assert.deepEqual(plain(api.resolve('A25').age_groups),['11-14']);
-  assert.equal(api.resolve('kyle:K01').ageStatus,'unassigned'); assert(api.resolve('kyle:K01').ageNote.includes('4–6'));
+  assert.equal(api.resolve('kyle:K01').ageBasis,'explicit'); assert.deepEqual(plain(api.resolve('kyle:K01').age_groups),['4-6','7-10','11-14']); assert(api.resolve('kyle:K01').ageNote.includes('4–6'));
   assert.equal(api.resolve('facebook:V04').ageStatus,'unassigned'); assert(api.resolve('facebook:V04').ageNote.includes('4-6'));
 });
 check('game source age fields and original audience labels are retained',() => {

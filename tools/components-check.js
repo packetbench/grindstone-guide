@@ -6,7 +6,7 @@ let checks = 0;
 const check = (name,fn) => { fn(); checks++; console.log('PASS ' + name); };
 const clone = value => JSON.parse(JSON.stringify(value));
 const ctx = {window:{confirm:()=>true,localStorage:{getItem:()=>null,setItem(){}}},URL,URLSearchParams,console,setTimeout};
-for (const file of ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js','catalog-tags.js','practice-weeks.js','practice-components.js','practice-builder.js']) vm.runInNewContext(fs.readFileSync(path.join(base,file),'utf8'),ctx,{filename:file});
+for (const file of ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-top-additions.js','series-neutral-additions.js','series-ready-additions.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js','catalog-tags.js','practice-weeks.js','practice-components.js','practice-builder.js']) vm.runInNewContext(fs.readFileSync(path.join(base,file),'utf8'),ctx,{filename:file});
 const api = ctx.window.GRINDSTONE_COMPONENTS, t = api.testing;
 const catalog = ctx.window.GRINDSTONE_BUILDER.testing.normalizeCatalog(), pathway = ctx.window.GRINDSTONE_PATHWAY;
 const byId = new Map(catalog.map(item=>[item.id,item]));

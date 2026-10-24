@@ -117,6 +117,19 @@ function seriesGuidePanel(entry){
  const families=seriesFor(entry);if(!families.length)return "";
  return section("Where this fits",families.map(series=>'<h3>'+esc(series.title)+'</h3>'+p(series.foundation)+'<p>'+esc((series.members||[]).find(member=>member.move_id===entry.id)?.note||"")+'</p><div class="buttons"><a class="button outline small" href="#practices?series='+esc(series.id)+'">Plan this series</a><a class="button outline small" href="#moves?series='+esc(series.id)+'">See related moves</a><a class="card-link" href="#season?view=series&amp;series='+esc(series.id)+'">Read the series →</a></div>').join(''));
 }
+function reactionGuide(value){
+ const id=window.GRINDSTONE_REACTIONS?.canonicalId(value);if(!id)return null;
+ const record=id.startsWith("kyle:")?(K.entries||[]).find(item=>item.id===id.slice(5)):id.startsWith("facebook:")?(V.entries||[]).find(item=>item.id===id.slice(9)):D.moves.find(item=>item.id===id);
+ return record?{id:record.id,title:record.name||record.title,route:window.GRINDSTONE_REACTIONS.route(id)}:null;
+}
+function reactionGuidePanels(entry){
+ const relationships=window.GRINDSTONE_REACTIONS?.resolve(entry.id);if(!relationships)return "";
+ const groups=[["responses","Common responses","What your partner may do against this move."],["nextOptions","Your next options","Your continuation when the position changes."],["answers","Answers these attacks","Use this response from the stated attack and starting position."],["buildsFrom","Builds from","Start with this earlier action before teaching the continuation."]];
+ return groups.map(([key,title,intro])=>{
+  const items=(relationships[key]||[]).map(item=>({item,guide:reactionGuide(item.id)})).filter(row=>row.guide);
+  return items.length?section(title,'<p class="small-copy">'+esc(intro)+'</p><ul class="link-list">'+items.map(({item,guide})=>'<li><a href="'+esc(guide.route)+'">'+esc(guide.id)+' · '+esc(guide.title)+'</a><p>'+esc(item.condition)+'</p></li>').join("")+'</ul>',"move-reactions"):"";
+ }).join("");
+}
 function categoryTag(entry){
  const c=categoryFor(entry);if(!c)return "";
  const href=c.id==="games"?"#games":"#moves?category="+encodeURIComponent(c.id);
@@ -148,7 +161,7 @@ function variationCard(v,showGuides=false,detail=false){
 }
 function practiceVideoDetail(id){
  const v=(V.entries||[]).find(x=>x.id===id);if(!v)return notFound();
- return backLink("#moves/videos","All Facebook clips")+pageTitle('FACEBOOK COLLECTION',esc(v.title),esc(variationCategory(v.category)))+(v.kind==='game'?gameQuickStart(v,'facebook:'+v.id):'')+'<div class="practice-video-results">'+variationCard(v,true,true)+'</div>';
+ return backLink("#moves/videos","All Facebook clips")+pageTitle('FACEBOOK COLLECTION',esc(v.title),esc(variationCategory(v.category)))+(v.kind==='game'?gameQuickStart(v,'facebook:'+v.id):'')+'<div class="practice-video-results">'+variationCard(v,true,true)+'</div>'+reactionGuidePanels(v);
 }
 function practiceVideoLibraryCard(v){
  return '<article class="card">'+saveButton("facebook:"+v.id)+'<div class="badges">'+badge('Facebook clip')+categoryTag(v)+filterBadges(v)+'</div><h3><a href="#moves/videos/'+esc(v.id)+'">'+esc(v.title)+'</a></h3><p>'+esc(v.description||v.observed)+'</p>'+planningTags(v)+'<p class="fine">'+esc(v.publisher)+'</p><div class="buttons"><a class="button outline small" href="#moves/videos/'+esc(v.id)+'">Open drill →</a>'+ext(v.url,'Watch on Facebook','card-link')+'</div></article>';
@@ -317,7 +330,7 @@ function kyleDetail(id){
  const focus=(entry.focus||[]).length?section("Teaching focus",'<ul class="kyle-focus">'+entry.focus.map(cue=>'<li>'+linked(cue)+'</li>').join("")+'</ul>'):"";
  return backLink("#moves/kyle","Coach Kyle’s collection")+'<div class="detail-heading"><div><div class="badges">'+badge(kyleGuideLabel(entry),"video-guide")+categoryTag(entry)+seriesTags(entry)+badge(v.format==="shorts"?"YouTube Short":"YouTube video",v.format==="shorts"?"shorts":"")+(entry.featured?badge("★ Coach’s pick","pup"):"")+'<span class="id">'+esc(entry.id)+'</span></div><h1>'+esc(entry.name)+'</h1><p>'+esc(entry.description)+'</p></div><div class="detail-actions">'+(hasGuide?'<button class="button outline" data-print>Print guide</button>':"")+ext(v.url,v.format==="shorts"?"Watch Short":"Watch on YouTube","button")+saveButton("kyle:"+entry.id)+'</div></div>'+
  (kyleKind(entry)==='game'?gameQuickStart(entry,'kyle:'+entry.id):'')+(entry.note?note(esc(entry.note)):"")+instruction.verification+instruction.nav+
- '<div class="detail-layout kyle-detail'+(hasGuide?' kyle-instruction-layout':"")+'"><div>'+(hasGuide?instruction.body:kyleImage(entry,true)+focus+kyleSource(entry))+seriesGuidePanel(entry)+'</div><aside>'+(hasGuide?kyleImage(entry,true)+kyleSource(entry):"")+relatedPanel+morePanel+'</aside></div>'+
+ '<div class="detail-layout kyle-detail'+(hasGuide?' kyle-instruction-layout':"")+'"><div>'+(hasGuide?instruction.body:kyleImage(entry,true)+focus+kyleSource(entry))+reactionGuidePanels(entry)+seriesGuidePanel(entry)+'</div><aside>'+(hasGuide?kyleImage(entry,true)+kyleSource(entry):"")+relatedPanel+morePanel+'</aside></div>'+
  '<nav class="kyle-pager" aria-label="Video collection navigation">'+(previous?'<a href="#moves/kyle/'+previous.id+'"><small>← PREVIOUS GUIDE</small><strong>'+esc(previous.name)+'</strong></a>':'<span></span>')+'<a class="kyle-pager-all" href="#moves/kyle">All '+entries.length+' guides</a>'+(next?'<a href="#moves/kyle/'+next.id+'"><small>NEXT GUIDE →</small><strong>'+esc(next.name)+'</strong></a>':'<span></span>')+'</nav>';
 }
 
@@ -519,7 +532,7 @@ function moveDetail(id){
  section("Before you teach",p(m.prerequisite)+(prerequisites.length?'<div class="chip-links">'+prerequisites.map(i=>'<a href="#move/'+i+'">'+i+' · '+esc(byId[i]?.name||"Open move")+'</a>').join("")+'</div>':""),"","guide-ready-"+id)+
  section("Teach it step by step",'<ol class="steps">'+m.steps.map(s=>'<li>'+linked(s)+'</li>').join("")+'</ol>',"","guide-steps-"+id)+
  section("Spot it. Fix it.",'<div class="correction"><div><div class="meta-title">Common mistake</div>'+p(m.error)+'</div><div><div class="meta-title">Try this correction</div>'+p(m.fix)+'</div></div>')+
- section("Put it into practice",p(m.drill))+section("Coaching boundaries",p(m.boundary),"","guide-boundaries-"+id)+seriesGuidePanel(m)+practiceVariations(id)+researchPanel(m)+'</div><aside class="detail-sidebar">'+videoPanel(id)+usaPanel(id)+
+ section("Put it into practice",p(m.drill))+section("Coaching boundaries",p(m.boundary),"","guide-boundaries-"+id)+reactionGuidePanels(m)+seriesGuidePanel(m)+practiceVariations(id)+researchPanel(m)+'</div><aside class="detail-sidebar">'+videoPanel(id)+usaPanel(id)+
  section("Keep it handy",(D.move_pages[id]?'<p class="small-copy">Move '+id+' · reference page '+D.move_pages[id]+'.</p><a href="downloads/moves-reference.pdf#page='+D.move_pages[id]+'" target="_blank" rel="noopener">Open the printed move card ↗</a>':'<p class="small-copy">New series lesson. Use Print guide above for a handout; this addition is not in the original binder.</p>')+'<div class="buttons"><a class="button outline small" href="#practices?move='+id+'">Choose this move in the builder</a></div>')+'</aside></div>';
 }
 function gameDetail(id){
