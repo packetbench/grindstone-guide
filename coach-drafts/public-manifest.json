@@ -1,8 +1,8 @@
 {
   "prepared": "2026-10-24",
   "profiles": 13,
-  "portraits": 11,
-  "coach_images": 99,
+  "portraits": 12,
+  "coach_images": 118,
   "rejected_matches": 1,
   "club_images": 41,
   "omitted": "AI reconstruction, local scripts, full PDFs, private review storage and absolute source paths",
@@ -19,13 +19,13 @@
     },
     {
       "path": "app.js",
-      "bytes": 18307,
-      "sha256": "d18a34224788f07d6fcaedff1194e17d5cd3fa5dcbd937c833c9e8766bd56f5e"
+      "bytes": 18501,
+      "sha256": "aa536e147d8a07d8d2335a73bd7f5116730ad488680713772802892c526bd10d"
     },
     {
       "path": "facebook-queue.html",
-      "bytes": 176016,
-      "sha256": "9e61c13a6f75197042a0977eb73d2eaeb9448e64a481118b01ab87ac10f4a158"
+      "bytes": 196398,
+      "sha256": "257ddac9134c71b9760ea4503481a2575dff68db3de4165eadd280a295dab148"
     },
     {
       "path": "facebook-queue.js",
@@ -34,8 +34,8 @@
     },
     {
       "path": "facebook-queue.json",
-      "bytes": 58839,
-      "sha256": "b4f1d0df6c38fedcbd4a425b8ea9012bab82c2bd59e3548f41a600fc313b7caa"
+      "bytes": 67283,
+      "sha256": "fb5854a700d6ff22b8d017a01fe17ce5eb249d741c9f95bac2e6f78460a199cd"
     },
     {
       "path": "queue.css",
@@ -64,8 +64,8 @@
     },
     {
       "path": "hughes-family.html",
-      "bytes": 3358,
-      "sha256": "b3ea6aa8190b172cd26494e20dbe3de619aa90c6a96727fd5ce204b530dc01e7"
+      "bytes": 9815,
+      "sha256": "c03fdfa8649cac676642079c52d4f8b20c0108acc46568b5ef98c00ac7a3a7d2"
     },
     {
       "path": "assets/grindstone-logo.png",
@@ -73,9 +73,9 @@
       "sha256": "24526665033869579a0118ca2c4d6ab2ae53ec1c85fcfba79e51953fb94fd5d3"
     },
     {
-      "path": "assets/kyle-rutledge.webp",
-      "bytes": 1585802,
-      "sha256": "dfdd4d15465c95278369682bd85a4d304705a371d7999e97d34d52a215d8b6af"
+      "path": "club-intros/kyle-portrait.png",
+      "bytes": 226148,
+      "sha256": "28b7b5f0e8bf38779376ac5b7ad0d627e76807f4f8c997b8c77a828910f702e8"
     },
     {
       "path": "assets/kyle-team.png",
@@ -93,9 +93,34 @@
       "sha256": "2800b9b719b91db1482004106272ee190d8be3231d404fc0c9235c957c5c9189"
     },
     {
+      "path": "club-intros/kyle-intro.jpg",
+      "bytes": 556131,
+      "sha256": "5b56c5b938faddea0788672110f0d152d9078ea13aa4248e59ea4755c99b8ff2"
+    },
+    {
+      "path": "assets/kyle-rutledge.webp",
+      "bytes": 1585802,
+      "sha256": "dfdd4d15465c95278369682bd85a4d304705a371d7999e97d34d52a215d8b6af"
+    },
+    {
+      "path": "tom-public/tom-profile-2024.jpg",
+      "bytes": 88868,
+      "sha256": "c87fb91ab16fb73c2db3c84ebc631c0889a6bfcb73b5fe35189a197d3959a9ae"
+    },
+    {
       "path": "assets/thomas-regional-team-2009.jpg",
       "bytes": 44967,
       "sha256": "16a55ec74bd5d0cf0787f9e3c72b3cb4f9be252e5ddd5f07f6de3ea1a75729d9"
+    },
+    {
+      "path": "tom-public/tom-dog-portrait.jpg",
+      "bytes": 46355,
+      "sha256": "5a8db0e623b4916623d482c08c82cf32a0ef20699007a9feb4e7838fc9dc55b9"
+    },
+    {
+      "path": "tom-public/tom-selfie-2015.jpg",
+      "bytes": 28825,
+      "sha256": "157935cd206ea25698206e5602a645c69bcc01dbe2a67713d3f226f5b48b197e"
     },
     {
       "path": "assets/kaia-condon.png",
@@ -183,6 +208,11 @@
       "sha256": "745f24c1eb1f6ecb5caf97565c9b07d69e3f51a5fc0d2b87b67716e0805c9721"
     },
     {
+      "path": "club-intros/eric-intro.jpg",
+      "bytes": 286080,
+      "sha256": "2a1077a2104988840b4c4bddf78940425d1c24cf53bc0749ad4a614e76f5e11d"
+    },
+    {
       "path": "assets/ryan-devries.jpg",
       "bytes": 147333,
       "sha256": "cba99dfb96d30aa349be43266b084181186e2f08966c3fb483f1fa4dd880c7d4"
@@ -218,6 +248,11 @@
       "sha256": "749bd55ddbbb0cb8b2b4f51f9389735c391416c85ce3f4471766c27f35f0947f"
     },
     {
+      "path": "brian-club/ryan-intro.jpg",
+      "bytes": 397711,
+      "sha256": "586507fac7b651d8fe15426acea1ed3c60020c15e405ebf914aa248221f636ba"
+    },
+    {
       "path": "millman-photos/jordan-portrait.png",
       "bytes": 368885,
       "sha256": "24bad0e670528656cdd25c8add2951378b035b53875a101dd97f39eaff64f451"
@@ -231,6 +266,21 @@
       "path": "millman-photos/jordan-outdoors-2024.jpg",
       "bytes": 183474,
       "sha256": "0c79eef87fc65351591bb73a72cc21b4151891aee1e45ff8f621143f29c4187c"
+    },
+    {
+      "path": "millman-sport/gracie-01.jpg",
+      "bytes": 275404,
+      "sha256": "90a7c5286b2bf815195beced58a2c39b220b7674a824a4b3eacd018a99e48212"
+    },
+    {
+      "path": "millman-sport/gracie-02.jpg",
+      "bytes": 232350,
+      "sha256": "0d0d87a8024104aee3e932123ed4cc8a14352663c11cbddce937bbf96db9ef00"
+    },
+    {
+      "path": "millman-sport/mat-rats-gear.jpg",
+      "bytes": 326385,
+      "sha256": "2cd80c47ccb2ddd36f4b04d3f20a46c16af7ff240742a10a6ec2afc9fe5bf33c"
     },
     {
       "path": "millman-photos/andy-portrait.png",
@@ -251,6 +301,11 @@
       "path": "millman-photos/andy-fishing-2022.jpg",
       "bytes": 114846,
       "sha256": "8296faa22694a2adb3ad166a60025659a584ba0c5f110225fb99ca61a9514c21"
+    },
+    {
+      "path": "millman-sport/relson-tagged.jpg",
+      "bytes": 69966,
+      "sha256": "08af8e722661927f886d0006b13aa3d9f8c72af82a4ffb3afb6e1d97d493fe38"
     },
     {
       "path": "assets/tyler-webb-2021.jpeg",
@@ -283,9 +338,24 @@
       "sha256": "1204829b589663aa1022d0da0b858df06692858df4d5f873f03a5555faec1c33"
     },
     {
+      "path": "brad-bouts/bb-portrait-2025.jpg",
+      "bytes": 482446,
+      "sha256": "76b1a71cb0b1b20f3c1b4ff17321e4a23c9b97f01104b6fefb8b8068db3e85c2"
+    },
+    {
       "path": "assets/brad-team-page-2006.png",
       "bytes": 358141,
       "sha256": "5083111847ec3e5e9f977a450351e3e7acac235f22f90c155de95c17fb7d3585"
+    },
+    {
+      "path": "brad-bouts/bb-team-2025.jpg",
+      "bytes": 112858,
+      "sha256": "630fe91b9453234592cd1941c6fec00e65ca83e86b0f31d7b2bc9e34e5dee641"
+    },
+    {
+      "path": "brad-bouts/bb-event-2025.jpg",
+      "bytes": 495995,
+      "sha256": "d20f353874dae4605f0a9715d56939930d20acfec45b9b10680c2dd69cd1b51f"
     },
     {
       "path": "assets/daniel-portrait-2023.png",
@@ -568,6 +638,31 @@
       "sha256": "76748dc63acebef5d84175a08a99302107c8dd27b7bb4ade96552c75e3a57465"
     },
     {
+      "path": "millman-sport/gracie-03.jpg",
+      "bytes": 264535,
+      "sha256": "78b05ba95b258d3c554004c7352022fb54994cbb0f6f753b8b1e3d825080ae2c"
+    },
+    {
+      "path": "millman-sport/gracie-04.jpg",
+      "bytes": 251536,
+      "sha256": "42ed9bafcc5cdebe324cd8c29bd707d2462a0605e8eb0847848e119fd22a0e18"
+    },
+    {
+      "path": "millman-sport/gracie-05.jpg",
+      "bytes": 247351,
+      "sha256": "94e2489d7ae72ce4e9043a77508a2f077ff094f31fef9834255faa64469fc9d0"
+    },
+    {
+      "path": "millman-sport/relson-2015.jpg",
+      "bytes": 225414,
+      "sha256": "e9c054fb1c440e7351786f280e60d55bdbbdb5532a91af50cc2b3350700b4c11"
+    },
+    {
+      "path": "tom-public/tom-family-2017.jpg",
+      "bytes": 20896,
+      "sha256": "a34c3911aff7ca55fea7b169d3975ba2cd399cb056a08f31c6f824d6a146e7d6"
+    },
+    {
       "path": "assets/kyle-1993-page-20.png",
       "bytes": 1586743,
       "sha256": "1a75b8f7a771ac2b247657a700e60e57150d0e151480c0f38f319dfb695328d1"
@@ -783,19 +878,65 @@
       "sha256": "85a1896cd3a528035aa6b5263433a60f23365fbf3281eb3c3b591fec806a0a83"
     },
     {
+      "path": "hughes-source-index.json",
+      "bytes": 6309,
+      "sha256": "489a8d7b3fbd482f2f2ca0b494d4f5788e387bd763d03dc388e77574a576329b"
+    },
+    {
+      "path": "hughes-photos/family-wrestling.jpg",
+      "bytes": 503478,
+      "sha256": "adeb832b159ffa1911d16e4168d73d2aab69eae130d25ddedbeb8573d27d4604"
+    },
+    {
+      "path": "hughes-photos/jessica-portrait.jpg",
+      "bytes": 119612,
+      "sha256": "197406c9bd4c472d0dea1ff29060f15a5a134d247ffdffa8920fc3572577c0fb"
+    },
+    {
+      "path": "hughes-photos/jessica-cody-portrait.jpg",
+      "bytes": 115166,
+      "sha256": "b23ac47ae6e7b65e330c67e34c582ca6c78795e3c7b130a06f1d4c3b2a46451f"
+    },
+    {
+      "path": "hughes-photos/couple-dock.jpg",
+      "bytes": 290063,
+      "sha256": "23b25a364ef3e7960a2d59f442710f6600ebd7852755aadf439e75fc3ef7cf60"
+    },
+    {
+      "path": "hughes-photos/jessica-kayaking.jpg",
+      "bytes": 129763,
+      "sha256": "96c185cd5ebe153701497d6ae440962e4969e6ff4ebfa67326f7ddb5fd81b247"
+    },
+    {
+      "path": "hughes-photos/cody-family-profile.jpg",
+      "bytes": 125776,
+      "sha256": "eff56369462537e561ebb9a973235f9299eb65d18fe7169c76c32c6c234093bb"
+    },
+    {
+      "path": "hughes-photos/family-cover.jpg",
+      "bytes": 90580,
+      "sha256": "a2255e0803b5e6cccaafe03e502d9518a369ba466bce3ac2e156287aa67dff14"
+    },
+    {
+      "path": "hughes-photos/family-hiking.jpg",
+      "bytes": 442488,
+      "sha256": "8ff731d0d316a429e3e6844a42d52f20f6f761bfd25e1772611a6b783e8f6b0e"
+    },
+    {
       "path": "profiles.js",
-      "bytes": 122067,
-      "sha256": "032f4c7224e2420cd01405e47147eb4e34ea5ffdc27db60f713e5d625f5b95df"
+      "bytes": 143755,
+      "sha256": "ae47d571e66158bb95f5e1e6e1d7f7f96bde3bc7501ae2d1b7291f01a6bc02fe"
     },
     {
       "path": "gallery-data.js",
-      "bytes": 100027,
-      "sha256": "03f4642c0a9665c9cf0caef9ff7038dfc21260dee3a6a58759d287e89f9fb8e4"
+      "bytes": 121011,
+      "sha256": "4122fef758e9f803bf86eb71b57f2d1d2ac7e4331174012f3c10182384d333ed"
     },
     {
       "path": "photo-index.json",
-      "bytes": 100004,
-      "sha256": "f192dd64f70e1faa8333cfa3540f6c4a4f4d0cd9c3e49e2c442e685badf407bf"
+      "bytes": 120988,
+      "sha256": "2c7f12eff5e9fc09f25d9a2d14828eda1d4cdaee761b9523611bf1e1c076b5cc"
     }
-  ]
+  ],
+  "community_images": 8
 }
