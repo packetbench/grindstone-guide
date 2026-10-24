@@ -312,6 +312,7 @@
   .pathway-branch{break-inside:avoid;border-color:#aaa;margin:8pt 0}
   /* Print the selected phase and series; omit the optional activity browser. */
   .pathway-series:has(>details){display:none!important}
+  .pathway-series-card>details{display:block!important}
   .pathway-series-card>details::details-content{display:block;content-visibility:visible}
   .pathway-series-card>details>.detail-body{display:block!important;content-visibility:visible!important}
   .pathway-series-card>details>summary{display:none!important}

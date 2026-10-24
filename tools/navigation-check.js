@@ -196,7 +196,7 @@ for(const id of ["K12","K13","K14"]){
  h.navigate('#moves/kyle/K18');const html=h.elements.main.innerHTML;
  assert(!html.includes('does not currently have a Peterson guide'));assert(html.includes(escapeText(guide.steps[0])));assert(html.includes(escapeText(guide.verification)));checks++;
 }
-assert(h.api.familyArticle("first-practice").includes("reviewed 2026-10-13"));assert(h.api.familyArticle("programs-levels").includes("reviewed 2026-10-13"));checks++;
+for(const id of ["first-practice","programs-levels"]){const article=h.context.window.GRINDSTONE_FAMILY.pages.find(page=>page.id===id);assert(article.reviewed);assert(h.api.familyArticle(id).includes("reviewed "+article.reviewed));}checks++;
 {
  const hub=harness('#families'),html=hub.elements.main.innerHTML;
  const links=Array.from(html.matchAll(/<a class="family-task" href="([^"]+)"/g),match=>decode(match[1]));
@@ -228,7 +228,7 @@ for(const article of h.context.window.GRINDSTONE_FAMILY.pages){
 }
 {
  const drafts=h.context.window.GRINDSTONE_IN_PROGRESS,draftApi=h.context.window.GRINDSTONE_DRAFTS,siteBase='https://packetbench.github.io/grindstone-guide/';
- assert.equal(drafts.documents.length,11);assert.equal(new Set(drafts.documents.map(doc=>doc.id)).size,11);
+ assert(drafts.documents.length>=11,"Existing working proposals must remain available");assert.equal(new Set(drafts.documents.map(doc=>doc.id)).size,drafts.documents.length);for(const id of ["communication","season-quickstart","meet-opt-out","nutrition-handout","skin-return","gear-loans","volunteer-roles","weekly-coach-plan","station-equipment","event-logistics","document-archive"])assert(drafts.documents.some(doc=>doc.id===id),"Missing working proposal "+id);
  const categories=[...new Set(drafts.documents.map(doc=>doc.category))],draftIds=new Set(drafts.documents.map(doc=>doc.id));
  for(const category of ['',...categories,'unknown']){
   const hash='#in-progress'+(category?'?'+new URLSearchParams({category}):'');h.navigate(hash);const html=h.elements.main.innerHTML;
@@ -258,7 +258,7 @@ for(const article of h.context.window.GRINDSTONE_FAMILY.pages){
  for(const href of new Set(resources.map(item=>item.href))){
   const url=new URL(href,siteBase);assert.equal(url.origin,new URL(siteBase).origin);assert(url.pathname.startsWith('/grindstone-guide/'));
   if(url.hash){assert(h.api.safeRouteHash(url.hash),'Unrecognized existing resource route '+href);h.navigate(url.hash);assert(!h.elements.main.innerHTML.includes('That page isn’t in the playbook.'),'Broken existing resource route '+href);}
-  else{const relative=decodeURIComponent(url.pathname.slice('/grindstone-guide/'.length));assert(relative.startsWith('downloads/'));assert(fs.existsSync(path.join(root,relative)),'Missing existing download '+relative);}
+  else{const relative=decodeURIComponent(url.pathname.slice('/grindstone-guide/'.length));assert(relative.startsWith('downloads/')||(relative.startsWith('coach-drafts/')&&relative.endsWith('.html')),'Unexpected existing-resource path '+relative);assert(fs.existsSync(path.join(root,relative)),'Missing existing resource '+relative);}
  }checks++;
  h.navigate('#in-progress/missing-draft');assert(h.elements.main.innerHTML.includes('<h1>Draft not found</h1>'));assert(h.elements.main.innerHTML.includes('href="#in-progress"'));assert(!h.elements.main.innerHTML.includes('data-draft-copy'));checks++;
  for(const invalid of ['#in-progress/../../downloads','#in-progress/<script>','#in-progress/communication/extra'])assert.equal(h.api.safeRouteHash(invalid),'');checks++;
@@ -268,7 +268,7 @@ const overview=h.context.window.GRINDSTONE_SKILL_PATHWAY.render(new URLSearchPar
 assert(overview.includes(S.groups[0].phases[0].title));assert(overview.includes('aria-current="page"'));assert(!h.api.home().includes('ready-to-run practices'));assert(!h.api.home().includes('30 plans'));assert(!h.api.savedPage().includes('#practice/'));checks++;
 const printable=h.api.currentCoachDownloads();assert.deepEqual(Array.from(printable,item=>item.pages),[14,66]);for(const item of printable)assert(fs.existsSync(path.join(root,item.path)));const downloadHtml=h.api.downloads();assert(downloadHtml.includes("pages 217–282"));assert(downloadHtml.includes("downloads/binder-index.pdf"));assert(h.api.home().includes("282 pages / 141"));checks++;
 const shortForm=h.api.filters("moves",new URLSearchParams());assert(shortForm.indexOf('for="search"')<shortForm.indexOf('class="filter-options"'));assert(shortForm.indexOf('for="move-category"')<shortForm.indexOf('class="filter-options"'));assert(!shortForm.includes('class="filter-options" open'));assert(h.api.filters("moves",new URLSearchParams("tier=Beginner")).includes('class="filter-options" open'));checks++;
-assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook")).length,17);assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook&unassigned=0")).length,0);assert.equal(Object.keys(h.api.saveRecords).length,D.moves.length+D.games.length+D.practices.length+h.context.window.GRINDSTONE_KYLE.entries.length+h.context.window.GRINDSTONE_VIDEO_ADDITIONS.entries.length);checks++;
+assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook")).length,0);assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook&unassigned=1")).length,17);assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook&unassigned=0")).length,0);assert.equal(Object.keys(h.api.saveRecords).length,D.moves.length+D.games.length+D.practices.length+h.context.window.GRINDSTONE_KYLE.entries.length+h.context.window.GRINDSTONE_VIDEO_ADDITIONS.entries.length);checks++;
 const index=fs.readFileSync(path.join(root,"index.html"),"utf8"),scripts=Array.from(index.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g),match=>match[1].split("?")[0]);
 assert(/<button\b[^>]*id="menu-toggle"[^>]*data-menu-toggle[^>]*aria-expanded="false"[^>]*aria-controls="site-navigation"/.test(index));assert(/<nav\b[^>]*id="site-navigation"[^>]*aria-label="Main navigation"/.test(index));checks++;
 for(const file of dataFiles)assert(scripts.includes(file),"Production entry point missing "+file);
@@ -276,4 +276,51 @@ assert(scripts.indexOf('in-progress-data.js')<scripts.indexOf('in-progress.js'))
 for(const file of ['game-guides-a.js','game-guides-b.js','game-guides-c.js','kyle-instruction-data.js','video-additions.js'])assert(scripts.indexOf(file)<scripts.indexOf('game-guide-library.js'),file+' must load before game-guide-library.js');
 for(const file of ['practice-builder.js','app.js'])assert(scripts.indexOf('game-guide-library.js')<scripts.indexOf(file),'Game guide integration must load before '+file);checks++;
 for(const [earlier,later] of [["data.js","game-video-fixes.js"],["game-video-fixes.js","practice-builder.js"],["data.js","series-library.js"],["move-tags.js","series-library.js"],["series-moves.js","series-library.js"],["series-bottom.js","series-library.js"],...["series-neutral.js","series-top.js","series-escapes.js"].flatMap(file=>[["series-bottom.js",file],[file,"series-library.js"],[file,"series-expansion.js"]]),["series-library.js","practice-builder.js"],["series-library.js","skill-pathway.js"],["practice-frameworks.js","skill-pathway.js"],["practice-frameworks.js","practice-builder.js"],["pathway-data.js","series-expansion.js"],["series-expansion.js","skill-pathway.js"],["series-expansion.js","practice-builder.js"],["skill-pathway.js","app.js"],["practice-builder.js","app.js"]])assert(scripts.indexOf(earlier)<scripts.indexOf(later),earlier+" must load before "+later);checks++;
+
+for(const [start,end] of [["#kyle/bio","#about/kyle"],["#kyle/bio?from=old","#about/kyle?from=old"],["#kyle/K01","#moves/kyle/K01"],["#moves/kyle/bio","#about/kyle"]]){
+ const page=harness(start);assert.equal(page.location.hash,end);assert(!page.elements.main.innerHTML.includes("That page isn’t in the playbook."));checks++;
+}
+for(const start of ["#kyle/foo","#kyle/K01/extra","#kyle/../../other"]){
+ const page=harness(start);assert(page.elements.main.innerHTML.includes("That page isn’t in the playbook."),"Invalid legacy route must fail gracefully: "+start);checks++;
+}
+for(const tier of ["Pup","Beginner","Advanced"]){
+ const strict=h.api.libraryResults("moves",new URLSearchParams({tier}));assert(strict.length);assert(strict.every(item=>item.tier===tier),"Default tier results include unassigned or other-tier entries: "+tier);
+ const expanded=h.api.libraryResults("moves",new URLSearchParams({tier,unassigned:"1"}));assert(expanded.length>strict.length);assert(expanded.every(item=>item.tier===tier||!item.tier));assert(expanded.some(item=>!item.tier&&item.unassigned_filters.includes("Tier")));checks++;
+}
+{
+ const page=harness("#moves?tier=Pup");const checkbox=page.fields().find(field=>field.id==="include-unassigned");assert.equal(checkbox.checked,false);
+ checkbox.checked=true;page.elements["filter-form"].dispatchEvent({type:"input",target:checkbox});page.flush();assert.equal(new URLSearchParams(page.location.hash.split("?")[1]).get("unassigned"),"1");
+ checkbox.checked=false;page.elements["filter-form"].dispatchEvent({type:"input",target:checkbox});page.flush();assert.equal(new URLSearchParams(page.location.hash.split("?")[1]).has("unassigned"),false);
+ checkbox.checked=true;page.elements["filter-form"].dispatchEvent({type:"reset"});page.flush();assert.equal(checkbox.checked,false);assert.equal(page.location.hash,"#moves");checks++;
+}
+{
+ const page=harness("#season?view=series&series=S19"),closed={open:false},alreadyOpen={open:true};
+ const original=page.elements.main.querySelectorAll;page.elements.main.querySelectorAll=selector=>selector===".pathway-series-card > details"?[closed,alreadyOpen]:original.call(page.elements.main,selector);
+ page.dispatch("beforeprint");assert(closed.open&&alreadyOpen.open);page.dispatch("beforeprint");page.dispatch("afterprint");assert.equal(closed.open,false);assert.equal(alreadyOpen.open,true);checks++;
+ const css=fs.readFileSync(path.join(root,"practice-builder.css"),"utf8");assert(css.includes(".pathway-series-card>details{display:block!important}"));checks++;
+}
+{
+ const allMoves=h.api.libraryResults("moves",new URLSearchParams()).length,allGames=h.api.libraryResults("games",new URLSearchParams()).length;
+ const home=h.api.home();assert(home.includes("<strong>"+allMoves+"</strong><span>written & video move guides"));assert(home.includes("<strong>"+allGames+"</strong><span>games & video guides"));checks++;
+ const downloads=h.api.downloads();assert(downloads.includes("Assemble the preserved binder edition"));assert(!downloads.includes("current teaching binder"));for(const html of [home,downloads]){assert(html.includes("earlier game wording")||html.includes("earlier fixed plans and game wording"));assert(html.includes("latest move and series additions"));assert(html.includes("Print guide"));assert(html.includes("Print series"));}checks++;
+}
+
+
+{
+ const stamp=require(path.join(root,"tools/stamp-assets.js")),crypto=require("crypto");
+ const inspected=stamp.inspect(root),styles=Array.from(index.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g));
+ assert.equal(stamp.hash(Buffer.from("same\r\ntext\r\n")),stamp.hash(Buffer.from("same\ntext\n")),"Git line-ending conversion must not change a release version");assert.equal(inspected.original,index);assert.equal(inspected.assets.length,scripts.length+styles.length);assert.equal(inspected.html,index,"Asset URLs need restamping after source changes");
+ for(const asset of inspected.assets){const expected=crypto.createHash("sha256").update(fs.readFileSync(asset.file,"utf8").replace(/\r\n/g,"\n"),"utf8").digest("hex").slice(0,16);assert.equal(asset.expected,expected);assert.equal(asset.actual,expected,"Stale asset URL: "+asset.relative);assert(asset.current);}checks++;
+ const stale=index.replace(/(src="app\.js)(?:\?[^"]*)?"/,'$1?v=outdated"'),restamped=stamp.versionHtml(stale,root);
+ assert.notEqual(stale,index);assert(restamped.assets.some(asset=>asset.relative==="app.js"&&!asset.current));assert.equal(restamped.html,index);assert.equal(stamp.versionHtml(restamped.html,root).html,index);checks++;
+ const virtual=stamp.versionHtml(index,root,file=>path.basename(file)==="app.js"?Buffer.concat([fs.readFileSync(file),Buffer.from("\n// changed for in-memory regression")]):fs.readFileSync(file));
+ assert(virtual.assets.some(asset=>asset.relative==="app.js"&&!asset.current));assert.notEqual(virtual.html,index);assert.equal(fs.readFileSync(path.join(root,"app.js"),"utf8"),app,"Virtual asset check must not modify source");checks++;
+ const untouched='<script src="https://example.test/external.js?v=old"></script><link rel="stylesheet" href="//example.test/external.css"><link rel="icon" href="assets/grindstone-logo.png">';
+ assert.equal(stamp.versionHtml(untouched,root).html,untouched);assert.equal(stamp.versionHtml(untouched,root).assets.length,0);
+ const extraQuery=stamp.versionHtml('<script src="app.js?lang=en&amp;v=old#lesson"></script>',root).html;assert(extraQuery.includes("lang=en&amp;v="));assert(extraQuery.includes('#lesson"'));checks++;
+ for(const invalid of ['<script src="../outside.js"></script>','<link rel="stylesheet" href="/outside.css">'])assert.throws(()=>stamp.versionHtml(invalid,root),/project-relative|leaves the site/);checks++;
+ const before=fs.readFileSync(path.join(root,"index.html"));const result=require("child_process").spawnSync(process.execPath,[path.join(root,"tools/stamp-assets.js"),"--check"],{encoding:"utf8"});
+ assert.equal(result.status,0,result.stderr);assert(result.stdout.includes("No files written"));assert(before.equals(fs.readFileSync(path.join(root,"index.html"))));checks++;
+}
+
 console.log("PASS: "+checks+" navigation, builder routing, pathway, filter, family, and guide checks. No files written.");

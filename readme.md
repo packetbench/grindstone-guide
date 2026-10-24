@@ -302,3 +302,15 @@ The user approved publishing the practice builder, new move/series work, game in
 - `in-progress-data.js` contains 11 draft proposals and 18 existing meeting-related resources. `in-progress.js` renders `#in-progress` and individual shareable draft routes with category filters, decisions, print and text downloads. Existing-resource links point to their live locations.
 - Coaches discuss changes in their existing text group. Copy draft link provides the current page link; a visible select-and-copy fallback works without clipboard access. This static page does not collect comments, store shared edits or publish private meeting records. Drafts are explicitly distinct from adopted policies.
 - Browser checks covered 320px and 390px phone widths plus desktop layout, family search/section links, menu closing and draft-link copying. The builder/navigation suites cover rendering, source preservation, game printing, route history and public-draft resources.
+
+## Site audit fixes — October 24, 2026
+
+Prepared on `codex/site-audit-fixes` for preview and review; not approved for publication by the edit request alone.
+
+- The meet opt-out proposal is for Mat Rats competitors. Valkyries keep their separate flexible, optional competition arrangements. No opt-out deadline, penalty or automatic event registration has been invented.
+- First-practice directions now include the supplied 2026–27 weekly schedule, with TeamSnap as the place to check changes. Existing section links remain valid.
+- Library tier/age/time filters exclude unassigned entries unless the coach explicitly opts in. The builder defaults to suggested teaching groups and uses Pups foundations when the program is Pups and age is blank. Readiness requirements still apply.
+- Age restrictions and source scope survive saved-plan import and both print modes. Legacy plans retain coach-written tasks, steps, cues and timing while gaining missing guidance. Series instructions expand for printing and restore their previous screen state afterward.
+- A game whose copied guide duration differs from its timeline slot displays a warning until the coach explicitly adjusts the slot or confirms adapted rounds and rest. No rounds are silently stretched.
+- Legacy Kyle links no longer recurse; home counts include all collections; the preserved binder is clearly distinguished from current web guides. Coach links no longer claim the directory is the complete staff.
+- Run `node tools/stamp-assets.js` after changing shipped JavaScript/CSS. It updates root HTML asset URLs with content hashes; `node tools/stamp-assets.js --check` verifies them. Run builder/navigation checks before committing.

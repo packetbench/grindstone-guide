@@ -23,7 +23,7 @@ function state() { return t.getState(); }
 function picker(key, value) { root.listeners.change({ target: { dataset: { picker: key }, type: 'select-one', value } }); }
 function field(key, value) { root.listeners.input({ target: { dataset: { planField: key }, value, validity: { valid: true } } }); }
 function blockField(index, key, value) { root.listeners.input({ target: { dataset: { blockField: key }, value, validity: { valid: true }, closest() { return { dataset: { blockIndex: String(index) }, querySelector() { return { textContent: '' }; } }; } } }); }
-function addSource(type, id) { picker('type', type); picker('selected', id); t.action('add', -1); }
+function addSource(type, id) { picker('type', type); if (!visibleIds().includes(id)) root.listeners.change({ target: { dataset: { picker: 'matchAge' }, type: 'checkbox', checked: false } }); picker('selected', id); t.action('add', -1); }
 function resetCase(params = '') { values.clear(); writes.length = 0; failStorage = false; allowConfirm = true; t.reset(); mount(params); }
 function visibleIds() { return Array.from(root.querySelector('[data-picker="selected"]').innerHTML.matchAll(/<option value="([^"]+)"/g), match => match[1]); }
 mount();
@@ -181,9 +181,10 @@ check('new written move guides use plain IDs and retain their source details', (
     assert.equal(counts.videos[entry.id].video.verified_by, entry.verification, entry.id + ' must preserve video verification scope');
   }
 });
-check('move links select new guides without changing an existing draft', () => {
+check('move links select new guides with broader references enabled without changing an existing draft', () => {
   resetCase(); field('age', '7-10'); addSource('move', 'P01');
   const before = JSON.stringify(state().plan), move = ctx.window.GRINDSTONE_SERIES_MOVES.entries[0]; assert(move);
+  root.listeners.change({ target: { dataset: { picker: 'matchAge' }, type: 'checkbox', checked: false } });
   mount('move=' + move.id + '&age=11-14');
   assert.equal(state().picker.selected, move.id); assert.equal(state().picker.type, 'move'); assert.equal(JSON.stringify(state().plan), before);
   mount('move=' + move.id); assert.equal(JSON.stringify(state().plan), before);
@@ -314,4 +315,64 @@ for (const id of ['kyle:K01', 'facebook:V03']) check(id + ' clarified rules surv
     for (const text of [normalized.setup, normalized.instructions, normalized.boundary, ...normalized.steps, ...normalized.cues].filter(Boolean)) assert(printed.includes(t.esc(text)), id + ' print omitted a rule, full moves=' + details);
   }
 });
+
+check('group matching defaults to conservative choices and preserves explicit game ages', () => {
+  resetCase('age=4-6');
+  assert.equal(state().picker.matchAge, true);
+  for (const id of ['A14', 'kyle:K18', 'facebook:V08']) assert(!visibleIds().includes(id), id + ' must not be a default Pup choice');
+  assert(visibleIds().includes('P01'));
+  picker('type', 'game'); assert(visibleIds().includes('G31')); assert(!visibleIds().includes('G11')); assert(!visibleIds().includes('G21'));
+  for (const g of counts.games.filter(g => Array.isArray(g.age_groups))) assert.deepEqual(Array.from(catalog.find(item => item.id === g.id).age_groups), Array.from(g.age_groups));
+  root.listeners.change({ target: { dataset: { picker: 'matchAge' }, type: 'checkbox', checked: false } });
+  assert(visibleIds().includes('G21'));
+  picker('type', 'move'); assert(visibleIds().includes('kyle:K18')); assert(visibleIds().includes('facebook:V08'));
+  resetCase('program=pups'); assert.equal(state().plan.age, ''); assert(visibleIds().includes('P01')); assert(!visibleIds().includes('A14'));
+  resetCase(); assert(visibleIds().includes('A14')); field('program', 'pups'); assert(!visibleIds().includes('A14')); assert.equal(state().plan.age, '');
+});
+check('outside-group deep links do not silently disable the group filter', () => {
+  resetCase('age=4-6&move=kyle:K18');
+  assert.equal(state().picker.matchAge, true); assert(!visibleIds().includes('kyle:K18')); assert.equal(state().plan.blocks.length, 0);
+  assert(api.render(new URLSearchParams('move=kyle:K18')).includes('outside the current teaching-group suggestions'));
+});
+check('age restrictions and source scope survive preview, save, reload, import and both print modes', () => {
+  resetCase('age=4-6'); addSource('move', 'kyle:K18');
+  const original = catalog.find(item => item.id === 'kyle:K18');
+  for (const text of [original.ageNote, original.adaptation, original.sourceNote]) assert(root.querySelector('.builder-resource-preview').innerHTML.includes(t.esc(text)));
+  blockField(0, 'instructions', 'My carefully adapted task.');
+  t.action('save', -1); t.reset(); mount();
+  const imported = t.parseImport(JSON.stringify({ format: 'grindstone-practice', version: 1, plan: state().plan }));
+  for (const p of [state().plan, state().saved[0], imported]) {
+    assert.equal(p.blocks[0].instructions, 'My carefully adapted task.');
+    for (const key of ['ageNote','adaptation','sourceNote']) assert.equal(p.blocks[0][key], original[key]);
+  }
+  for (const full of [false,true]) for (const text of [original.ageNote, original.adaptation, original.sourceNote]) assert(t.printHtml(full).includes(t.esc(text)));
+});
+check('legacy imported plans gain current restrictions without replacing coach-written content', () => {
+  resetCase(); addSource('move', 'kyle:K18');
+  const old = state().plan; delete old.blocks[0].sourceNote; delete old.blocks[0].ageNote; old.blocks[0].adaptation = '';
+  old.blocks[0].instructions = 'A coach-authored progression.'; old.blocks[0].cues = 'Personal cue.'; old.blocks[0].steps = ['Keep this step.'];
+  const clean = t.cleanPlan(old), source = catalog.find(item => item.id === 'kyle:K18');
+  assert.equal(clean.blocks[0].instructions, old.blocks[0].instructions); assert.equal(clean.blocks[0].cues, old.blocks[0].cues); assert.deepEqual(Array.from(clean.blocks[0].steps), old.blocks[0].steps);
+  assert.equal(clean.blocks[0].adaptation, source.adaptation); assert.equal(clean.blocks[0].sourceNote, source.sourceNote); assert.equal(clean.blocks[0].ageNote, source.ageNote);
+  const again = t.cleanPlan(clean); assert.equal(again.blocks[0].adaptation, clean.blocks[0].adaptation); assert.equal(again.blocks[0].sourceNote, clean.blocks[0].sourceNote);
+});
+check('game duration conflicts stay visible until the coach chooses timing explicitly', () => {
+  resetCase('program=pups'); t.action('framework', -1);
+  const index = state().plan.blocks.findIndex(b => b.section === 'game'), slot = state().plan.blocks[index];
+  picker('destination', slot.id); addSource('game', 'G31');
+  assert.equal(state().plan.blocks[index].minutes, 10); assert.equal(state().plan.blocks[index].guideMinutes, 4);
+  assert(root.querySelector('.builder-block-list').innerHTML.includes('Timing needs review')); assert(root.querySelector('.builder-summary').innerHTML.includes('timing needs review'));
+  for (const full of [false,true]) assert(t.printHtml(full).includes('Timing needs review'));
+  const original = state().plan.blocks[index].instructions;
+  t.action('guide-duration', index); assert.equal(state().plan.blocks[index].minutes, 4); assert.equal(state().plan.blocks[index].instructions, original); assert(!t.printHtml(false).includes('Timing needs review'));
+  t.action('undo', -1); assert.equal(state().plan.blocks[index].minutes, 10); assert(t.printHtml(false).includes('Timing needs review'));
+  blockField(index, 'instructions', 'One-minute demonstration; eighteen 20-second turns with 10-second rest: ten minutes total.');
+  t.action('confirm-timing', index); assert(!t.printHtml(false).includes('Timing needs review'));
+  t.action('save', -1); t.reset(); mount(); assert(state().plan.blocks[index].timingConfirmed); assert(!t.printHtml(false).includes('Timing needs review'));
+  blockField(index, 'minutes', '12'); assert(!state().plan.blocks[index].timingConfirmed); assert(t.printHtml(false).includes('Timing needs review'));
+});
+check('builder search finds a guide by an exact coaching cue', () => {
+  resetCase(); picker('search', 'Legs back, hips low.'); assert(visibleIds().includes('P07'));
+});
+
 console.log('\n' + checks + ' builder checks passed. No files written.');
