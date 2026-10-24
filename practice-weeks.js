@@ -56,6 +56,15 @@
     } catch (_) { weeks = []; readable = false; storageMessage = 'The week library could not be read. Existing data will not be overwritten. You can work here and export a week backup.'; }
   }
   const selected = () => weeks.find(w => w.id === current);
+  function captureAttachment() { return attachment ? clone(attachment) : null; }
+  function restoreAttachment(value) {
+    const w = value && typeof value === 'object' ? weeks.find(v => v.id === value.weekId) : null;
+    const s = w?.sessions.find(v => v.id === value.sessionId);
+    attachment = s ? {weekId:w.id,sessionId:s.id} : null;
+    if (s) current = w.id;
+    refresh();
+    return Boolean(s);
+  }
   function persist() {
     if (!readable) { storageMessage = 'Week changes remain in this page only; export a week backup. Existing unreadable storage is preserved.'; return false; }
     try { window.localStorage.setItem(KEY, JSON.stringify(weeks)); storageMessage = ''; return true; }
@@ -90,7 +99,7 @@
     let html = '<p>Optional: group independent practices around a shared foundation. Open a session in the builder, edit it, then save it back here. A single practice works without a week.</p><p class="fine">Blue and Black can share a focus with different sessions. Pups revisit skills across Tuesdays. Valkyries keep their own plan. Session dates are planning aids; TeamSnap remains the schedule.</p><p role="status" class="builder-week-message">' + esc([message,storageMessage].filter(Boolean).join(' ')) + '</p>';
     html += '<div class="builder-week-controls"><label>Saved planning week<select data-week-select><option value="">Choose a week</option>' + weeks.map(v => '<option value="' + esc(v.id) + '"' + (v.id === current ? ' selected' : '') + '>' + esc([v.name,v.season,v.weekOf].filter(Boolean).join(' · ')) + '</option>').join('') + '</select></label><button type="button" data-week-action="new">Start a week</button></div>';
     if (w) {
-      html += '<div class="builder-week-grid">' + input('Week name','name',w.name,120) + input('Season','season',w.season,80) + input('Monday of this week (optional)','weekOf',w.weekOf,10,'date') + input('Coach / owner','owner',w.owner,120) + input('Revision label','revision',w.revision,80) + '<label>Program grouping<select data-week-field="lane">' + [['mat-rats','Blue & Black'],['pups','Pups'],['valkyries','Valkyries'],['custom','Custom']].map(([id,l]) => '<option value="' + id + '"' + (w.lane === id ? ' selected' : '') + '>' + l + '</option>').join('') + '</select></label>' + input('Shared foundation / focus','focus',w.focus,1000) + input('Shared coaching cue','cue',w.cue) + input('What should improve?','outcome',w.outcome,1000) + '</div><p class="fine">Shared text is copied when you add or explicitly refresh a session. Editing the week never overwrites another session’s work.</p><div class="builder-actions"><button type="button" data-week-action="suggest">Add suggested blank sessions</button><button type="button" data-week-action="add">Add current practice as a session</button><button type="button" data-week-action="copy">Copy week for next time</button><button type="button" data-week-action="export">Export week (.json)</button><button type="button" data-week-action="remove-week">Delete this week</button></div>';
+      html += '<div class="builder-week-grid">' + input('Week name','name',w.name,120) + input('Season','season',w.season,80) + input('Monday of this week (optional)','weekOf',w.weekOf,10,'date') + input('Coach / owner','owner',w.owner,120) + input('Revision label','revision',w.revision,80) + '<label>Program grouping<select data-week-field="lane">' + [['mat-rats','Blue & Black'],['pups','Pups'],['valkyries','Valkyries'],['custom','Custom']].map(([id,l]) => '<option value="' + id + '"' + (w.lane === id ? ' selected' : '') + '>' + l + '</option>').join('') + '</select></label>' + input('Shared foundation / focus','focus',w.focus,1000) + input('Shared coaching cue','cue',w.cue) + input('What should improve?','outcome',w.outcome,1000) + '</div><p class="fine">Suggested blank sessions start with the weekly focus. Adding your current practice keeps its own focus and attaches the week context to the planned copy. Use “Apply current shared focus to builder” when you want to replace that practice’s focus, then save it back. Editing the week never overwrites saved sessions or completed records.</p><div class="builder-actions"><button type="button" data-week-action="suggest">Add suggested blank sessions</button><button type="button" data-week-action="add">Add current practice as a session</button><button type="button" data-week-action="copy">Copy week for next time</button><button type="button" data-week-action="export">Export week (.json)</button><button type="button" data-week-action="remove-week">Delete this week</button></div>';
       const active = attachment?.weekId === w.id ? w.sessions.find(s => s.id === attachment.sessionId) : null;
       if (active) html += '<div class="builder-week-active"><strong>Builder session: ' + esc(active.label) + '</strong><p>Edits stay in the builder draft until you save them to this session.</p><div class="builder-actions"><button type="button" data-week-action="update"' + (active.plan.status === 'completed' ? ' disabled' : '') + '>Save builder to this session</button><button type="button" data-week-action="focus"' + (p.status === 'completed' ? ' disabled' : '') + '>Apply current shared focus to builder</button></div>' + (active.plan.status === 'completed' ? '<p>Completed records stay as taught. Add a new session to make a revision.</p>' : '') + '</div>';
       html += '<div class="builder-week-sessions">' + w.sessions.map(s => {
@@ -106,7 +115,9 @@
   function updateSession(w, id, p) {
     const s = w.sessions.find(v => v.id === id); if (!s) throw Error('Choose a session first.');
     if (s.plan.status === 'completed') throw Error('Completed sessions are preserved. Add a new session for revisions.');
-    s.plan = bridge.cleanPlan(p); s.label = s.plan.name; s.plan.weekContext = context(w); persist();
+    s.plan = bridge.cleanPlan(p); s.label = s.plan.name;
+    if (s.plan.status !== 'completed') s.plan.weekContext = context(w);
+    persist();
   }
   function act(name, id) {
     const w = selected(), s = w?.sessions.find(v => v.id === id);
@@ -117,11 +128,21 @@
       if (name === 'copy') { const copy = clone(w); copy.id = uid(); copy.name = (w.name + ' — next').slice(0,120); copy.weekOf = ''; copy.revision = ''; copy.sessions.forEach(v => { v.id = uid(); v.plan = draftCopy(v.plan); v.plan.weekContext = context(copy); }); addWeek(copy); attachment = null; announce('Independent week copied. Set the new dates and review each session.'); return; }
       if (name === 'remove-week') { if (!window.confirm('Delete this week and its session copies from this browser? Export it first if you need its history. The current builder draft stays.')) return; weeks = weeks.filter(v => v.id !== w.id); current = ''; attachment = null; persist(); announce('Week removed. Builder draft kept.'); return; }
       if (name === 'suggest') { const rows = suggested(w,bridge.newPlan); if (!rows.length) throw Error('For a custom group, add the current practice as a session.'); if (w.sessions.length + rows.length > MAX_SESSIONS) throw Error('A week can contain at most 24 sessions.'); if (w.sessions.length && !window.confirm('Add another set of blank sessions? Existing sessions stay.')) return; w.sessions.push(...rows); persist(); announce('Blank sessions added. Open one and choose its time framework and activities.'); return; }
-      if (name === 'add') { if (!bridge.valid()) return; if (w.sessions.length >= MAX_SESSIONS) throw Error('A week can contain at most 24 sessions.'); const p = bridge.cleanPlan(bridge.getPlan()); p.weekContext = context(w); const entry = {id:uid(),label:p.name,plan:p}; w.sessions.push(entry); attachment = {weekId:w.id,sessionId:entry.id}; persist(); announce('Current practice added as an independent session.'); return; }
+      if (name === 'add') {
+        if (!bridge.valid()) return;
+        if (w.sessions.length >= MAX_SESSIONS) throw Error('A week can contain at most 24 sessions.');
+        const p = bridge.cleanPlan(bridge.getPlan());
+        if (p.status !== 'completed') { p.parentId = p.id || p.parentId || ''; p.id = ''; p.weekContext = context(w); }
+        const entry = {id:uid(),label:p.name,plan:p};
+        w.sessions.push(entry); bridge.replacePlan(clone(p));
+        attachment = {weekId:w.id,sessionId:entry.id}; persist();
+        announce(p.status === 'completed' ? 'Completed record added with its original teaching details preserved.' : 'Independent session added and opened in the builder. Its source practice stays unchanged.');
+        return;
+      }
       if (name === 'update') { if (!bridge.valid()) return; updateSession(w,attachment?.sessionId,bridge.getPlan()); announce('Session saved back to the week, including its handoff.'); return; }
-      if (name === 'focus') { const p = bridge.getPlan(); if (p.status === 'completed') return; p.focus = w.focus.slice(0,500); p.weekContext = context(w); bridge.replacePlan(p); announce('Shared focus and cue applied to this builder draft only.'); return; }
+      if (name === 'focus') { if (!bridge.valid()) return; const p = bridge.getPlan(); if (p.status === 'completed') return; p.focus = w.focus.slice(0,500); p.weekContext = context(w); bridge.replacePlan(p); announce('Shared focus and cue applied to this builder draft only.'); return; }
       if (!s) return;
-      if (name === 'open') { if (!bridge.valid()) return; if (!window.confirm('Open this week session in the builder? Save the current draft to its week or named library first if you need to keep it. Undo can restore the draft.')) return; attachment = {weekId:w.id,sessionId:s.id}; bridge.replacePlan(clone(s.plan)); announce('Opened ' + s.label + '. Save back to this session after editing.'); return; }
+      if (name === 'open') { if (!bridge.valid()) return; if (!window.confirm('Open this week session in the builder? Save the current draft to its week or named library first if you need to keep it. Undo can restore the draft.')) return; bridge.replacePlan(clone(s.plan)); attachment = {weekId:w.id,sessionId:s.id}; announce('Opened ' + s.label + '. Save back to this session after editing.'); return; }
       if (name === 'copy-session') { if (w.sessions.length >= MAX_SESSIONS) throw Error('A week can contain at most 24 sessions.'); const p = draftCopy(s.plan); p.name = (p.name + ' — next').slice(0,120); p.weekContext = context(w); w.sessions.push({id:uid(),label:p.name,plan:p}); persist(); announce('Independent session copied; dates and handoff cleared.'); return; }
       if (name === 'remove-session') { if (!window.confirm('Remove this session copy from the week? Export the week first if you need it. The builder draft stays.')) return; w.sessions = w.sessions.filter(v => v.id !== id); if (attachment?.sessionId === id) attachment = null; persist(); announce('Session removed from this week.'); }
     } catch (e) { announce(e.message); }
@@ -150,5 +171,5 @@
     const w = p.weekContext || {}, h = p.handoff || {};
     return '<section class="builder-print-handoff"><p><strong>' + (p.status === 'completed' ? 'Completed practice' : 'Planned practice') + '</strong>' + (p.date ? ' · ' + esc(p.date) : '') + (p.owner ? ' · Coach: ' + esc(p.owner) : '') + (p.revision ? ' · Revision: ' + esc(p.revision) : '') + '</p>' + (w.label ? '<p><strong>Planning week:</strong> ' + esc(w.label) + '</p>' : '') + (w.cue ? '<p><strong>Shared cue:</strong> ' + esc(w.cue) + '</p>' : '') + (w.outcome ? '<p><strong>Desired outcome:</strong> ' + esc(w.outcome) + '</p>' : '') + (Object.values(h).some(Boolean) ? '<h2>Practice handoff</h2>' + Object.entries(labels).filter(([k]) => h[k]).map(([k,l]) => '<p class="builder-preline"><strong>' + l + ':</strong> ' + esc(h[k]) + '</p>').join('') : '') + '</section>';
   }
-  window.GRINDSTONE_WEEKS = {render,bind,refresh,cleanMeta,handoffHtml,printMeta,draftCopy,detach:() => { attachment=null; refresh(); }, testing:{cleanWeek,cleanImport,suggested,date,cleanMeta,draftCopy,act,updateSession,key:KEY,getState:()=>clone({weeks,current,attachment,message,storageMessage,readable}),reset:()=>{weeks=[];current='';attachment=null;host=null;bridge=null;initialized=false;readable=true;message='';storageMessage='';}}};
+  window.GRINDSTONE_WEEKS = {render,bind,refresh,cleanMeta,handoffHtml,printMeta,draftCopy,captureAttachment,restoreAttachment,detach:() => { attachment=null; refresh(); }, testing:{cleanWeek,cleanImport,suggested,date,cleanMeta,draftCopy,act,updateSession,key:KEY,getState:()=>clone({weeks,current,attachment,message,storageMessage,readable}),reset:()=>{weeks=[];current='';attachment=null;host=null;bridge=null;initialized=false;readable=true;message='';storageMessage='';}}};
 })();

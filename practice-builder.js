@@ -15,9 +15,10 @@
   let pendingContext = null;
   const MAX_BLOCKS = 100;
   let catalog = [], byId = new Map(), plan, saved = [], root, ready = false;
-  let storageError = '', notice = '', undoState = null, initialBackup = null, savedReadable = true, printListenerInstalled = false;
-  const emptyPicker = () => ({ type: '', search: '', matchAge: true, selected: '', family: '', destination: '', position: '', purpose: '', use: '', category: '' });
+  let storageError = '', notice = '', undoState = null, undoAttachment = null, initialBackup = null, savedReadable = true, printListenerInstalled = false;
+  const emptyPicker = () => ({ type: '', search: '', matchAge: true, selected: '', family: '', destination: '', position: '', purpose: '', use: '', category: '', seriesChoices: {} });
   let picker = emptyPicker();
+  let pendingReplacement = null, placementNotice = '', placementError = false;
   const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   const text = value => typeof value === 'string' ? value : '';
   const list = value => Array.isArray(value) ? value.filter(x => typeof x === 'string') : (typeof value === 'string' && value ? [value] : []);
@@ -130,20 +131,24 @@
     const startTime = boundedString(raw.startTime, 'Start time', 5, false);
     if (startTime && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startTime)) throw new Error('Start time must use HH:MM.');
     const choice = (key, items) => known(items, boundedString(raw[key], key, 60, false))?.id || '';
+    const blockIds = new Set();
     return { ...(weeks()?.cleanMeta(raw) || {}), version: VERSION, id: boundedString(raw.id, 'Plan ID', 100, false), name: boundedString(raw.name, 'Practice name', 120, true) || 'My practice', age: a, target, startTime, program: choice('program', frameworks().programs), framework: choice('framework', frameworks().frameworks), session: choice('session', frameworks().sessions), stage: choice('stage', frameworks().stages), focus: boundedString(raw.focus, 'Focus', 500, false), notes: boundedString(raw.notes, 'Notes', 12000, false), blocks: raw.blocks.map((b, i) => {
       if (!b || typeof b !== 'object' || !Object.hasOwn(TYPES, b.type)) throw new Error('Block ' + (i + 1) + ' has an unsupported type.');
       if (typeof b.minutes !== 'number' || !Number.isFinite(b.minutes) || b.minutes < 0.5 || b.minutes > 120 || !Number.isInteger(b.minutes * 2)) throw new Error('Block ' + (i + 1) + ' needs 0.5–120 minutes in half-minute increments.');
       const sourceId = boundedString(b.sourceId, 'Guide ID', 100, false), source = byId.get(sourceId);
-      const clean = { id: 'b-' + i, type: b.type, minutes: b.minutes, sourceId: source ? sourceId : '', name: boundedString(b.name, 'Block title', 200, true), instructions: boundedString(b.instructions, 'Block task', 16000, false), cues: boundedString(b.cues, 'Coaching cues', 6000, false), setup: boundedString(b.setup, 'Setup', 6000, false), readiness: boundedString(b.readiness, 'Readiness', 6000, false), boundary: boundedString(b.boundary, 'Boundaries', 10000, false), adaptation: boundedString(b.adaptation, 'Age adaptations', 12000, false), steps: [] };
-      clean.adaptation = retainedNote(b.adaptation, source?.adaptation, 'Age adaptations');
-      clean.ageNote = retainedNote(b.ageNote, source?.ageNote, 'Teaching-group guidance');
-      clean.sourceNote = retainedNote(b.sourceNote, source?.sourceNote, 'Source scope');
-      clean.guideMinutes = typeof b.guideMinutes === 'number' && Number.isFinite(b.guideMinutes) && b.guideMinutes > 0 && b.guideMinutes <= 120 ? b.guideMinutes : source?.types.includes('game') ? source.minutes : 0;
+      let blockId = typeof b.id === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(b.id) ? b.id : 'b-' + i;
+      if (blockIds.has(blockId)) { let suffix = 1; while (blockIds.has('b-' + i + '-' + suffix)) suffix++; blockId = 'b-' + i + '-' + suffix; }
+      blockIds.add(blockId);
+      const clean = { id: blockId, type: b.type, minutes: b.minutes, sourceId: source || raw.status === 'completed' ? sourceId : '', name: boundedString(b.name, 'Block title', 200, true), instructions: boundedString(b.instructions, 'Block task', 16000, false), cues: boundedString(b.cues, 'Coaching cues', 6000, false), setup: boundedString(b.setup, 'Setup', 6000, false), readiness: boundedString(b.readiness, 'Readiness', 6000, false), boundary: boundedString(b.boundary, 'Boundaries', 10000, false), adaptation: boundedString(b.adaptation, 'Age adaptations', 12000, false), steps: [] };
+      clean.adaptation = raw.status === 'completed' ? boundedString(b.adaptation, 'Age adaptations', 12000, false) : retainedNote(b.adaptation, source?.adaptation, 'Age adaptations');
+      clean.ageNote = raw.status === 'completed' ? boundedString(b.ageNote, 'Teaching-group guidance', 12000, false) : retainedNote(b.ageNote, source?.ageNote, 'Teaching-group guidance');
+      clean.sourceNote = raw.status === 'completed' ? boundedString(b.sourceNote, 'Source scope', 12000, false) : retainedNote(b.sourceNote, source?.sourceNote, 'Source scope');
+      clean.guideMinutes = typeof b.guideMinutes === 'number' && Number.isFinite(b.guideMinutes) && b.guideMinutes > 0 && b.guideMinutes <= 120 ? b.guideMinutes : raw.status !== 'completed' && source?.types.includes('game') ? source.minutes : 0;
       clean.timingConfirmed = b.timingConfirmed === true;
       clean.section = Object.hasOwn(SECTIONS, b.section) ? b.section : '';
       clean.delivery = Object.hasOwn(DELIVERY, b.delivery) ? b.delivery : 'whole';
       clean.rotation = boundedString(b.rotation, 'Station / partner plan', 6000, false);
-      if (source?.kind === 'sequence' && clean.type === 'series') clean.type = 'drill';
+      if (raw.status !== 'completed' && source?.kind === 'sequence' && clean.type === 'series') clean.type = 'drill';
       if (b.steps != null && (!Array.isArray(b.steps) || b.steps.length > 60)) throw new Error('A block can contain at most 60 instruction steps.');
       clean.steps = (b.steps || []).map(s => boundedString(s, 'Instruction step', 4000, true));
       if (components()) Object.assign(clean, components().cleanBlock(b, catalog));
@@ -182,7 +187,7 @@
   function statusText() { return [notice, storageError || 'Draft autosaves in this browser. Saved plans do not sync across devices.'].filter(Boolean).join(' '); }
   function updateStatus() { if (root) { const el = root.querySelector('.builder-status'); if (el) el.textContent = statusText(); } }
   function notify(message) { notice = message; updateStatus(); }
-  function remember() { undoState = clone(plan); }
+  function remember() { undoState = clone(plan); undoAttachment = weeks()?.captureAttachment?.() || null; }
   function options(values, selected, label) { return values.map(value => '<option value="' + esc(value) + '"' + (value === selected ? ' selected' : '') + '>' + esc(label ? label(value) : value) + '</option>').join(''); }
 function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definitions?.[key] || []; }
   function tagLabel(key, id) { return tagDefinitions(key).find(item => item.id === id)?.label || id; }
@@ -201,6 +206,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
   }
   function visibleCatalog() { return catalog.filter(catalogMatches); }
   function clearPickerFilters(key) {
+    clearPlacement();
     const keys = ['type','search','family','position','purpose','use','category'];
     if (!key) { for (const field of keys) picker[field] = ''; picker.matchAge = true; }
     else if (keys.includes(key)) picker[key] = '';
@@ -237,7 +243,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
       '<label>Block type<select data-picker="type"><option value="">All guide types</option>' + options(Object.keys(TYPES), picker.type, x => TYPES[x]) + '</select></label></div><p>Block type is optional. Choose Water / reset or Coach-written block to add your own task.</p></details>' +
       '<div class="builder-filter-summary"><div class="builder-filter-chips" aria-label="Active guide filters"></div><button type="button" data-action="clear-filters">Clear filters</button></div>' +
       '<div class="builder-guide-results"><p id="builder-match-count" class="builder-match-count" role="status" aria-live="polite"></p><label>Library guide<select data-picker="selected" size="8" aria-describedby="builder-match-count"></select></label></div>' +
-      '<div class="builder-resource-preview"></div><button type="button" data-action="add">Add block to practice</button>';
+      '<div class="builder-resource-preview"></div><button type="button" data-action="add">Add block to practice</button><div class="builder-placement-feedback" aria-live="polite"></div>';
   }
   function guideTagsHtml(item) {
     const groups = [['Category',item.categoryLabel ? [item.categoryLabel] : []],['Position',item.positions.map(id => tagLabel('positions',id))],['Purpose',item.purposes.map(id => tagLabel('purposes',id))],['Practice use',item.uses.map(id => tagLabel('uses',id))]];
@@ -249,7 +255,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
     if (!item) return '<p>No matching guide. Change the search or choose a coach-written block.</p>';
     const foundation = item.kind === 'foundation';
     const optionsHtml = item.foundation ? '<div class="pathway-foundation"><h4>' + (foundation ? 'Match essentials' : 'Common foundation') + '</h4><p>' + esc(item.foundation) + '</p></div>' + (foundation ? '<h4>Core skills</h4>' : '') + '<div class="pathway-branches">' + (item.branches || []).map(b => '<section class="pathway-branch"><h4>' + esc(b.title) + '</h4><p><strong>' + (foundation ? 'Skill purpose:' : 'When:') + '</strong> ' + esc(b.when) + '</p><p><strong>' + (foundation ? 'Teach:' : 'Option:') + '</strong> ' + esc(b.action) + '</p>' + (b.readiness ? '<p><strong>' + (foundation ? 'Before this skill:' : 'Before adding this option:') + '</strong> ' + esc(b.readiness) + '</p>' : '') + '</section>').join('') + '</div>' : '';
-    return '<h3>' + esc(item.title) + '</h3><p class="builder-source-status">' + esc(item.status) + (item.tier ? ' · ' + esc(item.tier) : '') + '</p><p>' + esc(item.summary) + '</p>' + guideTagsHtml(item) + (item.memberships.length ? '<ul class="builder-memberships">' + item.memberships.map(m => '<li><strong>' + esc(m.title + ' · ' + m.role) + '</strong>' + (m.note ? '<br>' + esc(m.note) : '') + '</li>').join('') + '</ul>' : '') + optionsHtml + guideNotesHtml(item) + (item.types.includes('game') ? '<p class="builder-preline">' + esc(item.instructions) + '</p>' : '') + (item.readiness ? '<p><strong>Ready when:</strong> ' + esc(item.readiness) + '</p>' : '') + (item.age_groups.length ? '<p><strong>Suggested teaching groups:</strong> ' + esc(item.age_groups.join(', ')) + '</p>' : '') + (item.boundary ? '<p><strong>Boundaries:</strong> ' + esc(item.boundary) + '</p>' : '') + (item.steps.length ? '<details><summary>Read instruction before adding</summary>' + (item.setup ? '<p>' + esc(item.setup) + '</p>' : '') + '<ol>' + item.steps.map(s => '<li>' + esc(s) + '</li>').join('') + '</ol>' + '</details>' : '') + linksHtml(item) + (components()?.renderPicker(item, catalog) || '');
+    return '<h3>' + esc(item.title) + '</h3><p class="builder-source-status">' + esc(item.status) + (item.tier ? ' · ' + esc(item.tier) : '') + '</p><p>' + esc(item.summary) + '</p>' + guideTagsHtml(item) + (item.memberships.length ? '<ul class="builder-memberships">' + item.memberships.map(m => '<li><strong>' + esc(m.title + ' · ' + m.role) + '</strong>' + (m.note ? '<br>' + esc(m.note) : '') + '</li>').join('') + '</ul>' : '') + (optionsHtml ? '<details class="builder-series-reference"><summary>Read full series instruction</summary>' + optionsHtml + '</details>' : '') + guideNotesHtml(item) + (item.types.includes('game') ? '<p class="builder-preline">' + esc(item.instructions) + '</p>' : '') + (item.readiness ? '<p><strong>Ready when:</strong> ' + esc(item.readiness) + '</p>' : '') + (item.age_groups.length ? '<p><strong>Suggested teaching groups:</strong> ' + esc(item.age_groups.join(', ')) + '</p>' : '') + (item.boundary ? '<p><strong>Boundaries:</strong> ' + esc(item.boundary) + '</p>' : '') + (item.steps.length ? '<details><summary>Read instruction before adding</summary>' + (item.setup ? '<p>' + esc(item.setup) + '</p>' : '') + '<ol>' + item.steps.map(s => '<li>' + esc(s) + '</li>').join('') + '</ol>' + '</details>' : '') + linksHtml(item) + (components()?.renderPicker(item, catalog, picker.seriesChoices[item.id]) || '');
   }
   function linksHtml(item) { return (item.path ? '<a href="' + esc(item.path) + '" target="_blank" rel="noopener">Open full guide ↗</a>' : '') + (item.video ? '<a href="' + esc(item.video) + '" target="_blank" rel="noopener">Watch source video ↗</a>' : ''); }
 function updatePicker() {
@@ -269,13 +275,38 @@ function updatePicker() {
       if (field) { if (key === 'matchAge') field.checked = picker.matchAge; else if (field.value !== picker[key]) field.value = picker[key]; }
     }
     root.querySelector('.builder-resource-preview').innerHTML = resourcePreview(byId.get(picker.selected));
-    if (!plan.blocks.some(b => b.id === picker.destination)) picker.destination = '';
-    root.querySelector('[data-picker="destination"]').innerHTML = '<option value="">Add at end of practice</option>' + options(plan.blocks.map(b => b.id), picker.destination, id => { const i = plan.blocks.findIndex(b => b.id === id); return 'Replace ' + (i + 1) + '. ' + plan.blocks[i].name + ' · keep ' + formatMinutes(plan.blocks[i].minutes) + ' min'; });
+    const missingDestination = picker.destination && !plan.blocks.some(b => b.id === picker.destination);
+    if (missingDestination) { pendingReplacement = null; placementNotice = 'The selected slot no longer exists. Choose another slot or explicitly choose “Add at end of practice”.'; placementError = true; }
+    root.querySelector('[data-picker="destination"]').innerHTML = '<option value="">Add at end of practice</option>' + (missingDestination ? '<option value="' + esc(picker.destination) + '" selected>Selected slot was removed — choose another</option>' : '') + options(plan.blocks.map(b => b.id), picker.destination, id => { const i = plan.blocks.findIndex(b => b.id === id); return 'Replace ' + (i + 1) + '. ' + plan.blocks[i].name + ' · keep ' + formatMinutes(plan.blocks[i].minutes) + ' min'; });
     const suggestions = suggestedUses();
     root.querySelector('.builder-slot-suggestion').innerHTML = suggestions.length ? '<p>Suggested for this slot: ' + suggestions.map(id => '<button type="button" data-suggest-use="' + esc(id) + '"' + (picker.use === id ? ' disabled' : '') + '>Filter by ' + esc(tagLabel('uses',id)) + '</button>').join(' ') + '</p><small>Optional; your search and other filters stay in place.</small>' : '';
     const add = root.querySelector('[data-action="add"]');
     add.textContent = picker.destination ? 'Use in selected slot' : 'Add block to practice';
     add.disabled = (!picker.destination && plan.blocks.length >= MAX_BLOCKS) || (!isManual && !picker.selected);
+    updatePlacement();
+  }
+
+  function placementLabel(block) {
+    const selections = block.components?.series?.selections || [];
+    return block.name + (selections.length ? ' · ' + selections.map(item => item.title).join(', ') : '');
+  }
+  function updatePlacement() {
+    if (!root) return;
+    const panel = root.querySelector('.builder-placement-feedback');
+    if (!panel) return;
+    panel.innerHTML = (pendingReplacement ? '<div class="builder-replace-review" role="group" aria-label="Confirm slot replacement"><p><strong>Replace “' + esc(pendingReplacement.previousName) + '” with “' + esc(placementLabel(pendingReplacement.next)) + '”?</strong></p><p>The slot keeps its ' + formatMinutes(pendingReplacement.next.minutes) + ' minutes, practice section and station arrangements. The task and linked teaching details will be replaced. Undo can restore them.</p><div><button type="button" data-action="confirm-replace">Replace this slot</button><button type="button" data-action="cancel-replace">Cancel</button></div></div>' : '') + (placementNotice ? '<p class="builder-placement-' + (placementError ? 'error' : 'success') + '" role="' + (placementError ? 'alert' : 'status') + '">' + esc(placementNotice) + '</p>' : '');
+  }
+  function placementMessage(message, error = false) {
+    placementNotice = message; placementError = error; updatePlacement(); notify(message);
+  }
+  function clearPlacement() { pendingReplacement = null; placementNotice = ''; placementError = false; updatePlacement(); }
+  function preparedBlock(item, previous) {
+    const manual = ['custom','water'].includes(picker.type);
+    let next = blockFrom(manual ? null : item,picker.type || item?.types[0]);
+    if (components() && !manual) next = components().applyPicker(next,item,root,catalog);
+    if (previous?.components?.rotation) next.components = {...(next.components || {}),version:1,rotation:clone(previous.components.rotation)};
+    if (previous) Object.assign(next,{id:previous.id,minutes:previous.minutes,section:previous.section,delivery:previous.delivery,rotation:previous.rotation});
+    return next;
   }
   function blockFrom(item, type) {
     const placement = { section: '', delivery: 'whole', rotation: '' };
@@ -284,7 +315,7 @@ function updatePicker() {
   }
   function blockHtml(b, i, time) {
     const source = byId.get(b.sourceId), hasDetails = b.steps.length || b.setup || b.readiness || b.boundary || b.adaptation;
-    return '<article class="builder-block" data-block-index="' + i + '"><div class="builder-block-heading"><h3><span class="builder-block-number">' + (i + 1) + '.</span> <span data-block-title>' + esc(b.name || TYPES[b.type]) + '</span></h3><span class="builder-block-time">' + esc(timeRange(time)) + '</span></div><div class="builder-block-actions"><button type="button" data-action="up" aria-label="Move block ' + (i + 1) + ' up"' + (i === 0 ? ' disabled' : '') + '>↑ Up</button><button type="button" data-action="down" aria-label="Move block ' + (i + 1) + ' down"' + (i === plan.blocks.length - 1 ? ' disabled' : '') + '>↓ Down</button><button type="button" data-action="remove" aria-label="Remove block ' + (i + 1) + '">Remove</button></div><div class="builder-block-fields"><label>Block name<input data-block-field="name" maxlength="200" value="' + esc(b.name) + '"></label><label>Minutes<input data-block-field="minutes" type="number" min="0.5" max="120" step="0.5" required value="' + b.minutes + '"></label><label>Type<select data-block-field="type">' + options(Object.keys(TYPES), b.type, x => TYPES[x]) + '</select></label><label>Practice section<select data-block-field="section"><option value="">Custom section</option>' + options(Object.keys(SECTIONS), b.section, x => SECTIONS[x]) + '</select></label><label>Delivery<select data-block-field="delivery">' + options(Object.keys(DELIVERY), b.delivery, x => DELIVERY[x]) + '</select></label><label>Task, rounds and rest<textarea data-block-field="instructions" rows="4" maxlength="16000">' + esc(b.instructions) + '</textarea></label><label>Coaching cues<textarea data-block-field="cues" rows="2" maxlength="6000">' + esc(b.cues) + '</textarea></label><label>Partner / station plan (optional)<textarea data-block-field="rotation" rows="2" maxlength="6000" placeholder="Coach, group, task at each station; work, rest and changeover time within this block.">' + esc(b.rotation) + '</textarea></label></div>' + (source ? '<p class="builder-source-status">' + esc(source.status) + ' · ' + esc(source.id) + '</p>' + linksHtml(source) + '<div class="builder-block-actions"><button type="button" data-action="reload-guide">Reload guide details</button><button type="button" data-action="detach-guide">Keep as coach-written task</button></div>' : '') + guideNotesHtml(b) + '<div class="builder-timing-note">' + timingNote(b, true) + '</div>' + (hasDetails ? '<details class="builder-block-detail"><summary>Instruction, readiness and boundaries</summary>' + (b.setup ? '<p><strong>Setup:</strong> ' + esc(b.setup) + '</p>' : '') + (b.readiness ? '<p><strong>Ready when:</strong> ' + esc(b.readiness) + '</p>' : '') + (b.steps.length ? '<ol>' + b.steps.map(s => '<li>' + esc(s) + '</li>').join('') + '</ol>' : '') + (b.boundary ? '<p class="builder-preline"><strong>Boundaries:</strong> ' + esc(b.boundary) + '</p>' : '') + '<p class="builder-detail-note">Your task and cues above can be edited. Reloading restores the guide wording; your timing stays.</p></details>' : '') + (components()?.renderBlock(b, i, catalog, groupAge()) || '') + '</article>';
+    return '<article class="builder-block" data-block-index="' + i + '"><div class="builder-block-heading"><h3><span class="builder-block-number">' + (i + 1) + '.</span> <span data-block-title>' + esc(b.name || TYPES[b.type]) + '</span></h3><span class="builder-block-time">' + esc(timeRange(time)) + '</span></div><div class="builder-block-actions"><button type="button" data-action="up" aria-label="Move block ' + (i + 1) + ' up"' + (i === 0 ? ' disabled' : '') + '>↑ Up</button><button type="button" data-action="down" aria-label="Move block ' + (i + 1) + ' down"' + (i === plan.blocks.length - 1 ? ' disabled' : '') + '>↓ Down</button><button type="button" data-action="remove" aria-label="Remove block ' + (i + 1) + '">Remove</button><button type="button" data-action="choose-slot">Choose guide for this slot</button></div><div class="builder-block-fields"><label>Block name<input data-block-field="name" maxlength="200" value="' + esc(b.name) + '"></label><label>Minutes<input data-block-field="minutes" type="number" min="0.5" max="120" step="0.5" required value="' + b.minutes + '"></label><label>Type<select data-block-field="type">' + options(Object.keys(TYPES), b.type, x => TYPES[x]) + '</select></label><label>Practice section<select data-block-field="section"><option value="">Custom section</option>' + options(Object.keys(SECTIONS), b.section, x => SECTIONS[x]) + '</select></label><label>Delivery<select data-block-field="delivery">' + options(Object.keys(DELIVERY), b.delivery, x => DELIVERY[x]) + '</select></label><label>Task, rounds and rest<textarea data-block-field="instructions" rows="4" maxlength="16000">' + esc(b.instructions) + '</textarea></label><label>Coaching cues<textarea data-block-field="cues" rows="2" maxlength="6000">' + esc(b.cues) + '</textarea></label><label>Partner / station plan (optional)<textarea data-block-field="rotation" rows="2" maxlength="6000" placeholder="Coach, group, task at each station; work, rest and changeover time within this block.">' + esc(b.rotation) + '</textarea></label></div>' + (source ? '<p class="builder-source-status">' + esc(source.status) + ' · ' + esc(source.id) + '</p>' + linksHtml(source) + '<div class="builder-block-actions"><button type="button" data-action="reload-guide">Reload guide details</button><button type="button" data-action="detach-guide">Keep as coach-written task</button></div>' : '') + guideNotesHtml(b) + '<div class="builder-timing-note">' + timingNote(b, true) + '</div>' + (hasDetails ? '<details class="builder-block-detail"><summary>Instruction, readiness and boundaries</summary>' + (b.setup ? '<p><strong>Setup:</strong> ' + esc(b.setup) + '</p>' : '') + (b.readiness ? '<p><strong>Ready when:</strong> ' + esc(b.readiness) + '</p>' : '') + (b.steps.length ? '<ol>' + b.steps.map(s => '<li>' + esc(s) + '</li>').join('') + '</ol>' : '') + (b.boundary ? '<p class="builder-preline"><strong>Boundaries:</strong> ' + esc(b.boundary) + '</p>' : '') + '<p class="builder-detail-note">Your task and cues above can be edited. Reloading restores the guide wording; your timing stays.</p></details>' : '') + (components()?.renderBlock(b, i, catalog, groupAge()) || '') + '</article>';
   }
   function savedOptions() { return '<option value="">Choose a saved practice</option>' + saved.map(p => '<option value="' + esc(p.id) + '">' + esc(p.name + (p.age ? ' · ' + p.age : '') + ' · ' + formatMinutes(p.blocks.reduce((n, b) => n + b.minutes, 0)) + ' min' + (p.status === 'completed' ? ' · completed' : ' · planned') + (p.date ? ' · ' + p.date : '')) + '</option>').join(''); }
   function planningHtml() {
@@ -328,7 +359,7 @@ function updatePicker() {
     const group = window.GRINDSTONE_PATHWAY?.groups.find(g => g.age_group === requestedAge), phase = group?.phases.find(p => p.id === params?.get('phase'));
     const sessionId = params?.get('session'), cycleKey = { 'core-a': 'core_a', 'core-b': 'core_b', extension: 'extension' }[sessionId];
     pendingContext = phase?.practice_cycle?.[cycleKey] ? { title: phase.title + ' · ' + phase.practice_cycle[cycleKey].title, focus: phase.practice_cycle[cycleKey].focus, age: requestedAge, session: sessionId } : null;
-    return '<section id="practice-builder" class="practice-builder"><div class="builder-no-print"><p class="eyebrow">COACH PLANNING</p><h1>Build a practice</h1><p>Plan the time, choose a foundation, and build the practice your group needs. Keep familiar staples, teach a useful option, then let wrestlers read and respond.</p><nav class="builder-tabs" aria-label="Practice planning"><a href="#practices" aria-current="page">Build a practice</a><a data-pathway-link href="' + esc(pathwayPath()) + '">Season pathway</a><a href="#season?view=series">Technique series</a></nav></div><p class="builder-status builder-no-print" role="status" aria-live="polite">' + esc(statusText()) + '</p><div class="builder-record-status builder-no-print" role="status"></div>' + (weeks()?.render(params?.get('view') === 'week') || '') + planningHtml() + '<fieldset data-plan-edit class="builder-toolbar builder-no-print"><label>Practice name<input data-plan-field="name" maxlength="120" value="' + esc(plan.name) + '"></label><label for="builder-age">Age group (optional)<select id="builder-age" aria-label="Age group (optional)" data-plan-field="age"><option value="">Choose for this group</option>' + options(AGES, plan.age, a => 'Ages ' + a.replace('-', '–')) + '</select></label><label>Target minutes (optional)<input data-plan-field="target" type="number" min="0" max="240" step="0.5" placeholder="No target" value="' + (plan.target || '') + '"></label><label>Start time (optional)<input data-plan-field="startTime" type="time" value="' + esc(plan.startTime) + '"></label><label>Today’s focus (optional)<input data-plan-field="focus" maxlength="500" value="' + esc(plan.focus) + '" placeholder="e.g. sit-out: hip-heist or rise with forward pressure"></label><label>Practice date<input type="date" data-plan-field="date" value="' + esc(plan.date) + '"></label><label>Coach / owner<input data-plan-field="owner" maxlength="120" value="' + esc(plan.owner) + '"></label><label>Revision label<input data-plan-field="revision" maxlength="80" value="' + esc(plan.revision) + '"></label></fieldset><div class="builder-layout builder-no-print"><aside class="builder-library" aria-labelledby="builder-library-title"><fieldset data-plan-edit>' + pickerHtml() + '</fieldset></aside><section class="builder-draft" aria-labelledby="builder-draft-title"><h2 id="builder-draft-title">Your practice</h2><div class="builder-summary" aria-live="polite">' + summaryHtml() + '</div><fieldset data-plan-edit><div class="builder-block-list"></div><label class="builder-notes">Coach notes<textarea data-plan-field="notes" rows="3" maxlength="12000" placeholder="Partner groups, equipment, adaptations or what to revisit next time.">' + esc(plan.notes) + '</textarea></label></fieldset><div class="builder-actions"><button type="button" data-action="save">Save named practice</button><button type="button" data-action="duplicate">Save a copy</button><button type="button" data-action="new">Start blank</button><button type="button" data-action="undo"' + (undoState ? '' : ' disabled') + '>Undo last structural change</button><button type="button" data-action="print">Print run sheet</button></div><label class="builder-check"><input type="checkbox" data-print-details> Include full move instruction in printout</label><p class="fine builder-no-print">Game rules, age restrictions and source scope are always included in the run sheet. Review any timing warning before using it.</p></section></div>' + (weeks()?.handoffHtml(plan) || '') + '<section class="builder-saved builder-no-print"><h2>Saved practices & backups</h2><p>Stored on this browser only. Export a JSON file to keep a backup or share with another coach. Import creates a separate draft.</p><label>Saved practice<select data-saved-plan>' + savedOptions() + '</select></label><div class="builder-actions"><button type="button" data-action="load">Load selected</button><button type="button" data-action="delete">Delete selected</button><button type="button" data-action="export">Export current practice (.json)</button><button type="button" data-action="backup"' + (initialBackup ? '' : ' disabled') + '>Restore draft from page load</button></div><label>Import practice JSON<input type="file" data-import accept=".json,application/json"></label></section><section class="builder-print-sheet" aria-label="Printable practice"></section></section>';
+    return '<section id="practice-builder" class="practice-builder"><div class="builder-no-print"><p class="eyebrow">COACH PLANNING</p><h1>Build a practice</h1><p>Plan the time, choose a foundation, and build the practice your group needs. Keep familiar staples, teach a useful option, then let wrestlers read and respond.</p><ol class="builder-quick-start"><li><strong>Set the time:</strong> choose a program or practice length, then use the time framework.</li><li><strong>Fill a slot:</strong> choose its guide or series, check the skills, then use it and confirm the replacement.</li><li><strong>Make it yours:</strong> adjust minutes, tasks and stations.</li><li><strong>Keep it:</strong> save or export your draft, or print the run sheet.</li></ol><nav class="builder-shortcuts" aria-label="Builder shortcuts"><button type="button" data-action="jump-setup">Setup</button><button type="button" data-action="jump-library">Choose work</button><button type="button" data-action="jump-practice">Your practice</button><button type="button" data-action="save">Save</button><button type="button" data-action="print">Print</button></nav><nav class="builder-tabs" aria-label="Practice planning"><a href="#practices" aria-current="page">Build a practice</a><a data-pathway-link href="' + esc(pathwayPath()) + '">Season pathway</a><a href="#season?view=series">Technique series</a></nav></div><p class="builder-status builder-no-print" role="status" aria-live="polite">' + esc(statusText()) + '</p><div class="builder-record-status builder-no-print" role="status"></div>' + (weeks()?.render(params?.get('view') === 'week') || '') + planningHtml() + '<fieldset data-plan-edit class="builder-toolbar builder-no-print"><label>Practice name<input data-plan-field="name" maxlength="120" value="' + esc(plan.name) + '"></label><label for="builder-age">Age group (optional)<select id="builder-age" aria-label="Age group (optional)" data-plan-field="age"><option value="">Choose for this group</option>' + options(AGES, plan.age, a => 'Ages ' + a.replace('-', '–')) + '</select></label><label>Target minutes (optional)<input data-plan-field="target" type="number" min="0" max="240" step="0.5" placeholder="No target" value="' + (plan.target || '') + '"></label><label>Start time (optional)<input data-plan-field="startTime" type="time" value="' + esc(plan.startTime) + '"></label><label>Today’s focus (optional)<input data-plan-field="focus" maxlength="500" value="' + esc(plan.focus) + '" placeholder="e.g. sit-out: hip-heist or rise with forward pressure"></label><label>Practice date<input type="date" data-plan-field="date" value="' + esc(plan.date) + '"></label><label>Coach / owner<input data-plan-field="owner" maxlength="120" value="' + esc(plan.owner) + '"></label><label>Revision label<input data-plan-field="revision" maxlength="80" value="' + esc(plan.revision) + '"></label></fieldset><div class="builder-layout builder-no-print"><aside class="builder-library" aria-labelledby="builder-library-title"><fieldset data-plan-edit>' + pickerHtml() + '</fieldset></aside><section class="builder-draft" aria-labelledby="builder-draft-title"><h2 id="builder-draft-title" tabindex="-1">Your practice</h2><div class="builder-summary" aria-live="polite">' + summaryHtml() + '</div><fieldset data-plan-edit><div class="builder-block-list"></div><label class="builder-notes">Coach notes<textarea data-plan-field="notes" rows="3" maxlength="12000" placeholder="Partner groups, equipment, adaptations or what to revisit next time.">' + esc(plan.notes) + '</textarea></label></fieldset><div class="builder-actions"><button type="button" data-action="save">Save named practice</button><button type="button" data-action="duplicate">Save a copy</button><button type="button" data-action="new">Start blank</button><button type="button" data-action="undo"' + (undoState ? '' : ' disabled') + '>Undo last structural change</button><button type="button" data-action="print">Print run sheet</button></div><label class="builder-check"><input type="checkbox" data-print-details> Include full move instruction in printout</label><p class="fine builder-no-print">Game rules, age restrictions and source scope are always included in the run sheet. Review any timing warning before using it.</p></section></div>' + (weeks()?.handoffHtml(plan) || '') + '<section class="builder-saved builder-no-print"><h2>Saved practices & backups</h2><p>Stored on this browser only. Export a JSON file to keep a backup or share with another coach. Import creates a separate draft.</p><label>Saved practice<select data-saved-plan>' + savedOptions() + '</select></label><div class="builder-actions"><button type="button" data-action="load">Load selected</button><button type="button" data-action="delete">Delete selected</button><button type="button" data-action="export">Export current practice (.json)</button><button type="button" data-action="backup"' + (initialBackup ? '' : ' disabled') + '>Restore draft from page load</button></div><label>Import practice JSON<input type="file" data-import accept=".json,application/json"></label></section><section class="builder-print-sheet" aria-label="Printable practice"></section></section>';
   }
   function renderBlocks(focusIndex) {
     if (!root) return;
@@ -337,7 +368,7 @@ function updatePicker() {
     updateSummary();
     root.querySelector('[data-action="undo"]').disabled = !undoState;
     updatePicker(); updateRecord();
-    if (focusIndex != null) root.querySelector('[data-block-index="' + focusIndex + '"] input')?.focus();
+    if (focusIndex != null) (root.querySelector('[data-block-index="' + focusIndex + '"] input') || root.querySelector('[data-action="add"]'))?.focus();
   }
   function updateSummary() { if (!root) return; components()?.refresh(root, plan); root.querySelector('.builder-summary').innerHTML = summaryHtml(); const times = timing(plan.blocks); root.querySelectorAll('.builder-timing-note').forEach((el, i) => { el.innerHTML = timingNote(plan.blocks[i], true); }); root.querySelectorAll('.builder-block-time').forEach((el, i) => { if (times[i]) el.textContent = timeRange(times[i]); }); }
   function updatePlanFields() { root.querySelectorAll('[data-plan-field]').forEach(el => { const key = el.dataset.planField; el.value = key === 'target' ? (plan.target || '') : plan[key]; }); root.querySelector('[data-pathway-link]').href = pathwayPath(); updatePlanning(); updateRecord(); weeks()?.refresh(); }
@@ -349,10 +380,12 @@ function updatePicker() {
     const banner = root.querySelector('.builder-record-status');
     if (banner) banner.textContent = completed ? 'Completed practice record · ' + (plan.completedAt || '').slice(0, 10) + '. This record is read-only. Use Save a copy to plan the next practice or make a correction; the original stays saved.' : '';
     root.querySelector('[data-action="save"]').disabled = completed;
+    root.querySelectorAll('[data-action="save"]').forEach(button => { button.disabled = completed; });
   }
   function replaceDraft(next) { remember(); plan = cleanPlan(next); updatePlanFields(); changed('Practice opened in the builder.'); }
   function completePlan() {
-    if (!validFields() || !savedReadable) { notify('Save is unavailable. Export the practice to preserve your work.'); return; }
+    if (!validFields(true)) return;
+    if (!savedReadable) { notify('Save is unavailable. Export the practice to preserve your work.'); return; }
     if (!plan.blocks.length || !plan.handoff?.taught?.trim()) { notify('Add a practice block and a short “Actually taught” handoff before completing.'); return; }
     if (saved.length >= 100) { notify('This browser already has 100 saved practices. Export and remove one before completing another.'); return; }
     const completed = cleanPlan(plan);
@@ -363,8 +396,22 @@ function updatePicker() {
     notify('Completed practice saved as a separate, read-only record. If it belongs to a planning week, save it back to that session too.');
   }
   function updateSavedOptions() { root.querySelector('[data-saved-plan]').innerHTML = savedOptions(); }
-  function validFields() { const invalid = root.querySelector(':invalid'); if (invalid) { invalid.reportValidity(); notify('Check the highlighted field before saving or printing.'); return false; } return true; }
-  function changed(message, focusIndex) { autoSave(); renderBlocks(focusIndex); notify(message); }
+  function incompleteStationTasks() {
+    return plan.blocks.flatMap((block,index) => (components()?.readinessProblems?.(block) || []).map(message => 'Block ' + (index + 1) + ': ' + message));
+  }
+  function draftWarning() { const issues = incompleteStationTasks(); return issues.length ? ' Draft has ' + issues.length + ' unfinished station ' + (issues.length === 1 ? 'task' : 'tasks') + '; fill names and tasks before practice. They stay marked in print.' : ''; }
+  function validFields(forCompletion = false) {
+    const invalid = root.querySelector('input:invalid, select:invalid, textarea:invalid');
+    if (invalid) {
+      for (let details = invalid.closest?.('details'); details; details = details.parentElement?.closest?.('details')) details.open = true;
+      invalid.focus?.(); invalid.reportValidity?.();
+      notify('Check the highlighted input before continuing. Its invalid value has not been applied.'); return false;
+    }
+    const missing = incompleteStationTasks();
+    if (forCompletion && missing.length) { notify('Finish the station tasks before marking this practice complete. ' + missing[0]); return false; }
+    return true;
+  }
+  function changed(message, focusIndex) { clearPlacement(); autoSave(); renderBlocks(focusIndex); notify(message); }
   function saveNamed(copy) {
     if (!validFields()) return;
     if (!savedReadable) { notify('Existing saved-plan data could not be read, so it is being preserved. Export this practice as JSON to keep your work.'); return; }
@@ -374,7 +421,13 @@ function updatePicker() {
     if (existing < 0 && saved.length >= 100) { notify('This browser already has 100 saved plans. Export or remove one before saving another.'); return; }
     const next = clone(saved); if (existing < 0) next.push(current); else next[existing] = current;
     if (!storageWrite(PLANS_KEY, next)) { updateStatus(); return; }
-    saved = next; if (copy) weeks()?.detach(); plan = clone(current); autoSave(); updatePlanFields(); updateSavedOptions(); notify('Saved “' + plan.name + '” in this browser.');
+    saved = next; if (copy) weeks()?.detach();
+    const completedCopy = copy && plan.status === 'completed';
+    if (completedCopy) { plan = clone(current); clearPlacement(); }
+    else { plan.id = current.id; plan.name = current.name; }
+    autoSave(); updatePlanFields(); updateSavedOptions();
+    if (completedCopy) renderBlocks();
+    notify('Saved “' + plan.name + '” in this browser.' + draftWarning());
   }
   function printHtml(details) {
     const times = timing(plan.blocks);
@@ -390,11 +443,16 @@ function updatePicker() {
     const blob = new Blob([JSON.stringify({ format: 'grindstone-practice', version: VERSION, plan: cleanPlan(plan) }, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob), a = document.createElement('a');
     a.href = url; a.download = 'grindstone-practice-' + (plan.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 34) || 'plan') + '.json'; a.click(); window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-    notify('Practice JSON exported. Keep it as a backup or import it on another device.');
+    notify('Practice JSON exported. Keep it as a backup or import it on another device.' + draftWarning());
   }
   function action(name, index) {
-    if (plan.status === 'completed' && !['duplicate','new','load','delete','backup','export','print','undo'].includes(name)) { notify('This is a completed record. Save a copy to edit a new practice.'); return; }
+    if (plan.status === 'completed' && !['duplicate','new','load','delete','backup','export','print','undo','jump-setup','jump-library','jump-practice'].includes(name)) { notify('This is a completed record. Save a copy to edit a new practice.'); return; }
+    if (name.startsWith('jump-')) {
+      const target = {'jump-setup':'[data-plan-field="program"]','jump-library':'[data-picker="search"]','jump-practice':'#builder-draft-title'}[name];
+      const node = target && root.querySelector(target); node?.scrollIntoView?.({block:'start'}); node?.focus?.(); return;
+    }
     if (name === 'clear-filters') { clearPickerFilters(); return; }
+    if (['framework','context','up','down','remove','undo','reload-guide','detach-guide','guide-duration','confirm-timing','new','load','backup'].includes(name) && !validFields()) return;
     const b = plan.blocks[index];
     if (name === 'framework') {
       const frame = known(frameworks().frameworks, plan.framework); if (!frame) return;
@@ -402,21 +460,41 @@ function updatePicker() {
       remember(); plan.blocks = frameworkBlocks(frame); plan.target = frame.minutes; picker.destination = ''; updatePlanFields(); changed('Time framework added. Choose guides for the slots, then adjust tasks and minutes for your group.');
     }
     if (name === 'context' && pendingContext) { remember(); plan.age = pendingContext.age; plan.session = pendingContext.session; plan.focus = pendingContext.focus.slice(0, 500); updatePlanFields(); changed('Season focus applied. Your practice blocks stay in place.'); }
+
+    if (name === 'choose-slot' && b) { clearPlacement(); picker.destination = b.id; updatePicker(); const search = root.querySelector('[data-picker="search"]'); search?.scrollIntoView?.({block:'start'}); search?.focus?.(); return; }
     if (name === 'add') {
+      if (!validFields()) { placementMessage('Check the highlighted input first. Its invalid value has not been applied; your slot is unchanged.',true); return; }
       const destination = plan.blocks.findIndex(block => block.id === picker.destination), previous = plan.blocks[destination];
-      if (!previous && plan.blocks.length >= MAX_BLOCKS) return;
-      const item = byId.get(picker.selected); if (!['custom', 'water'].includes(picker.type) && !item) return;
-      if (previous && !window.confirm('Replace the task and coaching details in “' + previous.name + '”? Its minutes, practice section and station plan stay. Undo can restore it.')) return;
-      remember(); let next = blockFrom(['custom', 'water'].includes(picker.type) ? null : item, picker.type || item?.types[0]);
-      try { if (components() && !['custom','water'].includes(picker.type)) next = components().applyPicker(next, item, root, catalog); } catch (err) { notify(err.message); return; }
-      if (previous?.components?.rotation) next.components = {...(next.components || {}), version:1, rotation:clone(previous.components.rotation)};
-      if (previous) { Object.assign(next, { id: previous.id, minutes: previous.minutes, section: previous.section, delivery: previous.delivery, rotation: previous.rotation }); plan.blocks[destination] = next; }
-      else plan.blocks.push(next);
-      changed(previous ? 'Guide placed in the slot; its time and delivery stay.' : 'Block added. Edit its task and minutes for your group.', previous ? destination : plan.blocks.length - 1);
+      if (picker.destination && !previous) { pendingReplacement = null; placementMessage('The selected slot no longer exists. Choose another slot or explicitly choose “Add at end of practice”.',true); return; }
+      if (!previous && plan.blocks.length >= MAX_BLOCKS) { placementMessage('This practice already has 100 blocks. Remove a block before adding another.',true); return; }
+      const item = byId.get(picker.selected);
+      if (!['custom','water'].includes(picker.type) && (!item || !catalogMatches(item))) { placementMessage('Choose a matching guide before adding it to this practice.',true); return; }
+      let next;
+      try { next = preparedBlock(item,previous); } catch (err) { pendingReplacement = null; placementMessage(err.message,true); return; }
+      if (previous) {
+        pendingReplacement = {destination:previous.id,previous:JSON.stringify(previous),previousName:previous.name,next,sourceId:picker.selected,type:picker.type};
+        placementNotice = ''; placementError = false; updatePlacement(); const review = root.querySelector('[data-action="confirm-replace"]'); review?.scrollIntoView?.({block:'nearest'}); review?.focus?.(); return;
+      }
+      remember(); pendingReplacement = null; plan.blocks.push(next);
+      changed('Block added. Edit its task and minutes for your group.',plan.blocks.length - 1);
+      placementMessage('Added “' + placementLabel(next) + '” at the end of the practice.');
+    }
+    if (name === 'cancel-replace') { pendingReplacement = null; placementMessage('Replacement cancelled. Your slot is unchanged.'); return; }
+    if (name === 'confirm-replace') {
+      if (!validFields()) { placementMessage('Check the highlighted input before replacing this slot. Its invalid value has not been applied.',true); return; }
+      const pending = pendingReplacement; if (!pending) { placementMessage('Choose the guide and slot, then review the replacement again.',true); return; }
+      const destination = plan.blocks.findIndex(block => block.id === pending.destination), previous = plan.blocks[destination];
+      if (!previous || JSON.stringify(previous) !== pending.previous || picker.destination !== pending.destination || picker.selected !== pending.sourceId || picker.type !== pending.type) {
+        pendingReplacement = null; placementMessage('The slot or guide changed after this replacement was prepared. Review the current guide and choose the slot again.',true); return;
+      }
+      remember(); plan.blocks[destination] = pending.next; pendingReplacement = null;
+      changed('Guide placed in the slot; its time and delivery stay.',destination);
+      placementMessage('Replaced slot ' + (destination + 1) + ' with “' + placementLabel(plan.blocks[destination]) + '”. Its time and station arrangements stayed.');
+      return;
     }
     if ((name === 'up' || name === 'down') && b) { const to = index + (name === 'up' ? -1 : 1); if (to < 0 || to >= plan.blocks.length) return; remember(); [plan.blocks[index], plan.blocks[to]] = [plan.blocks[to], plan.blocks[index]]; changed('Block moved.', to); }
-    if (name === 'remove' && b) { remember(); plan.blocks.splice(index, 1); changed('Block removed. Undo can restore it.'); }
-    if (name === 'undo' && undoState) { weeks()?.detach(); const current = clone(plan); plan = undoState; undoState = current; updatePlanFields(); changed('Restored the previous practice structure.'); }
+    if (name === 'remove' && b) { remember(); plan.blocks.splice(index, 1); changed('Block removed. Undo can restore it.', Math.min(index, plan.blocks.length - 1)); }
+    if (name === 'undo' && undoState) { const current = clone(plan), currentAttachment = weeks()?.captureAttachment?.() || null; plan = undoState; undoState = current; const previousAttachment = undoAttachment; undoAttachment = currentAttachment; weeks()?.restoreAttachment?.(previousAttachment); updatePlanFields(); changed('Restored the previous practice structure.'); }
     if (name === 'reload-guide' && b && byId.has(b.sourceId)) { if (!window.confirm('Replace this block’s edited task and cues with its guide wording? Timing stays the same.')) return; remember(); let restored = blockFrom(byId.get(b.sourceId), b.type); if (components()) restored = components().reloadBlock(b, restored, catalog); Object.assign(restored, { id: b.id, minutes: b.minutes, section: b.section, delivery: b.delivery, rotation: b.rotation }); plan.blocks[index] = restored; changed('Guide details restored.', index); }
     if (name === 'detach-guide' && b) { remember(); b.sourceId = ''; b.type = 'custom'; changed('Kept the task and instructions as a coach-written block.', index); }
     if (name === 'guide-duration' && b && b.guideMinutes) { remember(); b.minutes = b.guideMinutes; b.timingConfirmed = false; changed('Used the guide duration. Review the practice total.', index); }
@@ -429,12 +507,12 @@ function updatePicker() {
     if (name === 'delete') { const id = root.querySelector('[data-saved-plan]').value, chosen = saved.find(p => p.id === id); if (!chosen) { notify('Choose a saved practice first.'); return; } if (!window.confirm('Delete the saved practice “' + chosen.name + '” from this browser? The current draft is kept. Export the saved plan first if you need a backup.')) return; const next = saved.filter(p => p.id !== id); if (storageWrite(PLANS_KEY, next)) { saved = next; if (plan.id === id) { plan.id = ''; autoSave(); } updateSavedOptions(); notify('Saved practice deleted. The current draft is unchanged.'); } else updateStatus(); }
     if (name === 'backup' && initialBackup) { if (!window.confirm('Restore the draft that was present when this page first loaded? Undo can restore your current work.')) return; remember(); weeks()?.detach(); plan = clone(initialBackup); updatePlanFields(); changed('Restored the draft from page load.'); }
     if (name === 'export') exportPlan();
-    if (name === 'print') { if (!validFields()) return; if (!plan.blocks.length) { notify('Add at least one block before printing.'); return; } root.querySelector('.builder-print-sheet').innerHTML = printHtml(root.querySelector('[data-print-details]').checked); window.print(); }
+    if (name === 'print') { if (!validFields()) return; if (draftWarning()) notify('Printing a draft with unfinished station tasks.' + draftWarning()); if (!plan.blocks.length) { notify('Add at least one block before printing.'); return; } root.querySelector('.builder-print-sheet').innerHTML = printHtml(root.querySelector('[data-print-details]').checked); window.print(); }
   }
   function bind(element) {
     root = element; if (!root) return; renderBlocks(); updatePlanning();
     weeks()?.bind(root, {getPlan:() => clone(plan), cleanPlan, newPlan, replacePlan:replaceDraft, notify, valid:validFields});
-    components()?.bind(root, {getPlan:() => plan, getCatalog:() => catalog, getAge:groupAge, beforeChange:remember, onChange:({render,message}) => {autoSave(); if(render)renderBlocks(); else updateSummary(); if(message)notify(message);}});
+    components()?.bind(root, {getPlan:() => plan, getCatalog:() => catalog, getAge:groupAge, valid:validFields, beforeChange:remember, onChange:({render,message}) => {autoSave(); if(render)renderBlocks(); else updateSummary(); if(message)notify(message);}});
     updateRecord();
     if (!printListenerInstalled && window.addEventListener) {
       window.addEventListener('beforeprint', () => { if (root && root.isConnected) root.querySelector('.builder-print-sheet').innerHTML = printHtml(root.querySelector('[data-print-details]').checked); });
@@ -445,14 +523,14 @@ function updatePicker() {
       const el = e.target;
       if (plan.status === 'completed' && (el.dataset.planField || el.dataset.blockField || el.dataset.handoffField || el.dataset.picker)) return;
       if (el.dataset.handoffField) { plan.handoff = plan.handoff || {}; plan.handoff[el.dataset.handoffField] = el.value; autoSave(); return; }
-      if (el.dataset.picker === 'search') { picker.search = el.value; updatePicker(); return; }
+      if (el.dataset.picker === 'search') { clearPlacement(); picker.search = el.value; updatePicker(); return; }
       const field = el.dataset.planField;
       if (field) {
         if ((field === 'target' || field === 'startTime' || field === 'date') && !el.validity.valid) return;
-        if (field === 'program') { setProgram(el.value); updatePlanFields(); updatePicker(); notice = 'Schedule and target updated. Existing block lengths stay as written; use the framework button to replace them.'; }
+        if (field === 'program') { clearPlacement(); setProgram(el.value); updatePlanFields(); updatePicker(); notice = 'Schedule and target updated. Existing block lengths stay as written; use the framework button to replace them.'; }
         else { plan[field] = field === 'target' ? number(el.value) : el.value; notice = ''; }
         autoSave(); updateSummary(); updatePlanning();
-        if (field === 'age') { updatePicker(); root.querySelector('[data-pathway-link]').href = pathwayPath(); }
+        if (field === 'age') { clearPlacement(); updatePicker(); root.querySelector('[data-pathway-link]').href = pathwayPath(); }
         return;
       }
       const key = el.dataset.blockField;
@@ -460,17 +538,23 @@ function updatePicker() {
     });
     root.addEventListener('change', async e => {
       const el = e.target;
-      if (el.dataset.picker) { if (plan.status === 'completed') return; picker[el.dataset.picker] = el.type === 'checkbox' ? el.checked : el.value; updatePicker(); return; }
+      if (el.dataset.componentBranch === 'picker') {
+        if (plan.status === 'completed') return;
+        picker.seriesChoices[picker.selected] = Array.from(root.querySelectorAll('[data-component-branch="picker"]')).filter(field => field.checked).map(field => field.value);
+        clearPlacement(); return;
+      }
+      if (el.dataset.picker) { if (plan.status === 'completed') return; clearPlacement(); picker[el.dataset.picker] = el.type === 'checkbox' ? el.checked : el.value; updatePicker(); return; }
       if (!el.matches('[data-import]')) return;
       const file = el.files && el.files[0]; if (!file) return;
+      if (!validFields()) { el.value = ''; return; }
       try { if (file.size > 2000000) throw new Error('Choose a JSON file smaller than 2 MB.'); const imported = parseImport(await file.text()); if (plan.blocks.length && !window.confirm('Open the imported practice as this draft? Undo can restore the current draft.')) return; remember(); weeks()?.detach(); plan = imported; updatePlanFields(); changed('Imported “' + plan.name + '”. Save it in this browser if you want to keep it.'); }
       catch (err) { notify('Import stopped: ' + err.message); }
       finally { el.value = ''; }
     });
     root.addEventListener('click', e => {
       const filter = e.target.closest('[data-clear-filter], [data-suggest-use]');
-      if (filter) { if (filter.disabled || plan.status === 'completed') return; if (filter.dataset.clearFilter) clearPickerFilters(filter.dataset.clearFilter); else if (suggestedUses().includes(filter.dataset.suggestUse)) { picker.use = filter.dataset.suggestUse; updatePicker(); } return; }
+      if (filter) { if (filter.disabled || plan.status === 'completed') return; if (filter.dataset.clearFilter) clearPickerFilters(filter.dataset.clearFilter); else if (suggestedUses().includes(filter.dataset.suggestUse)) { clearPlacement(); picker.use = filter.dataset.suggestUse; updatePicker(); } return; }
       const button = e.target.closest('[data-action]'); if (!button || button.disabled) return; const block = button.closest('[data-block-index]'); action(button.dataset.action, block ? Number(block.dataset.blockIndex) : -1); });
   }
-  window.GRINDSTONE_BUILDER = { render, bind, testing: { normalizeCatalog, catalogMatches, clearPickerFilters, suggestedUses, cleanPlan, parseImport, timing, esc, safeUrl, blockFrom, action, printHtml, newPlan, replaceDraft, completePlan, keys: { draft: DRAFT_KEY, plans: PLANS_KEY }, getState: () => clone({ plan, saved, storageError, picker }), reset: () => { ready = false; root = null; initialBackup = null; saved = []; savedReadable = true; storageError = ''; notice = ''; undoState = null; picker = emptyPicker(); pendingContext = null; } } };
+  window.GRINDSTONE_BUILDER = { render, bind, testing: { normalizeCatalog, catalogMatches, clearPickerFilters, suggestedUses, cleanPlan, parseImport, timing, esc, safeUrl, blockFrom, action, printHtml, newPlan, replaceDraft, completePlan, keys: { draft: DRAFT_KEY, plans: PLANS_KEY }, getState: () => clone({ plan, saved, storageError, picker, pendingReplacement, placementNotice, placementError }), reset: () => { ready = false; root = null; initialBackup = null; saved = []; savedReadable = true; storageError = ''; notice = ''; undoState = null; undoAttachment = null; picker = emptyPicker(); pendingReplacement = null; placementNotice = ''; placementError = false; pendingContext = null; } } };
 })();

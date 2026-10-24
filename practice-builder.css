@@ -342,3 +342,19 @@
 .builder-guide-tags dd{margin:3px 0 0;font-size:12px;line-height:1.5;color:var(--muted);overflow-wrap:anywhere}
 @media(min-width:601px) and (max-width:900px){.builder-tag-filters{grid-template-columns:repeat(3,minmax(0,1fr))}.builder-secondary-filters{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){.builder-tag-filters{grid-template-columns:1fr 1fr;gap:13px 10px}.builder-tag-filters>label:last-child{grid-column:1/-1}.builder-resource-controls input[type=search],.builder-tag-filters select,.builder-secondary-filters select{font-size:16px}.builder-slot-suggestion{overflow-wrap:anywhere}}
+
+/* Keep setup, placement feedback and the next useful action visible on phones. */
+.builder-quick-start{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 24px;padding:16px 18px 16px 38px;margin:18px 0;background:var(--pale);border-radius:7px}
+.builder-quick-start li{font-size:13px;line-height:1.6;padding-left:3px}
+.builder-shortcuts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.practice-builder .builder-shortcuts button{min-height:44px;padding:9px 13px}
+.builder-placement-feedback:not(:empty){margin-top:14px;overflow-wrap:anywhere}
+.builder-replace-review,.builder-placement-error,.builder-placement-success{padding:14px;border:1px solid #adc0c7;border-radius:7px;background:#eef5f5;font-size:13px;line-height:1.6}
+.builder-replace-review p{margin:0 0 12px}.builder-replace-review>div{display:flex;flex-wrap:wrap;gap:8px}
+.builder-placement-error{border-color:#bb514b;background:#fff3f1}
+.builder-placement-success{border-color:#70937a;background:#f0f7f1}
+.practice-builder [data-action=confirm-replace]{background:var(--blue);color:white;border-color:var(--blue)}
+.builder-series-reference{margin:14px 0;border-top:1px solid var(--line)}
+.builder-series-reference>summary{min-height:44px;align-content:center;font-size:13px;font-weight:700}
+.practice-builder :is([data-plan-field=program],[data-picker=search],#builder-draft-title){scroll-margin-top:100px}
+@media(max-width:600px){.builder-quick-start{grid-template-columns:1fr;padding-left:34px}.builder-shortcuts{gap:6px}.practice-builder .builder-shortcuts button{flex:1 1 auto;font-size:12px}.builder-replace-review>div>button{flex:1 1 100%}.builder-block-actions [data-action=choose-slot]{flex:1 1 100%}}

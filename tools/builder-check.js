@@ -15,7 +15,7 @@ for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-inst
 const api = ctx.window.GRINDSTONE_BUILDER, t = api.testing;
 function fakeRoot() {
   const nodes = new Map(), listeners = {};
-  return { dataset: {}, listeners, querySelector(selector) { if (selector === ':invalid' || selector === '[data-week-content]') return null; if (!nodes.has(selector)) nodes.set(selector, { innerHTML: '', textContent: '', value: '', checked: false, disabled: false, hidden: false, focus() {} }); return nodes.get(selector); }, querySelectorAll() { return []; }, addEventListener(name, fn) { listeners[name] = fn; } };
+  return { dataset: {}, listeners, querySelector(selector) { if (selector === 'input:invalid, select:invalid, textarea:invalid' || selector === '[data-week-content]') return null; if (!nodes.has(selector)) nodes.set(selector, { innerHTML: '', textContent: '', value: '', checked: false, disabled: false, hidden: false, focus() {} }); return nodes.get(selector); }, querySelectorAll() { return []; }, addEventListener(name, fn) { listeners[name] = fn; } };
 }
 let root;
 function mount(params = '') { api.render(new URLSearchParams(params)); root = fakeRoot(); api.bind(root); return root; }
@@ -23,7 +23,7 @@ function state() { return t.getState(); }
 function picker(key, value) { root.listeners.change({ target: { dataset: { picker: key }, type: 'select-one', value } }); }
 function field(key, value) { root.listeners.input({ target: { dataset: { planField: key }, value, validity: { valid: true } } }); }
 function blockField(index, key, value) { root.listeners.input({ target: { dataset: { blockField: key }, value, validity: { valid: true }, closest() { return { dataset: { blockIndex: String(index) }, querySelector() { return { textContent: '' }; } }; } } }); }
-function addSource(type, id) { picker('type', type); if (!visibleIds().includes(id)) root.listeners.change({ target: { dataset: { picker: 'matchAge' }, type: 'checkbox', checked: false } }); picker('selected', id); t.action('add', -1); }
+function addSource(type, id) { picker('type', type); if (!visibleIds().includes(id)) root.listeners.change({ target: { dataset: { picker: 'matchAge' }, type: 'checkbox', checked: false } }); picker('selected', id); t.action('add', -1); if (state().pendingReplacement) t.action('confirm-replace', -1); }
 function resetCase(params = '') { values.clear(); writes.length = 0; failStorage = false; allowConfirm = true; t.reset(); mount(params); }
 function visibleIds() { return Array.from(root.querySelector('[data-picker="selected"]').innerHTML.matchAll(/<option value="([^"]+)"/g), match => match[1]); }
 mount();
@@ -155,8 +155,9 @@ check('replacing a selected slot preserves timing and station arrangements', () 
   blockField(0, 'section', 'staples'); blockField(0, 'delivery', 'stations'); blockField(0, 'rotation', 'Three groups; rotate clockwise after each turn.');
   const before = state().plan.blocks, slot = before[0];
   picker('type', 'move'); picker('selected', 'P01'); picker('destination', slot.id);
-  allowConfirm = false; t.action('add', -1); assert.equal(JSON.stringify(state().plan.blocks), JSON.stringify(before));
-  allowConfirm = true; t.action('add', -1);
+  t.action('add', -1); assert.equal(JSON.stringify(state().plan.blocks), JSON.stringify(before)); assert(state().pendingReplacement);
+  t.action('cancel-replace', -1); assert.equal(JSON.stringify(state().plan.blocks), JSON.stringify(before));
+  t.action('add', -1); t.action('confirm-replace', -1);
   const replaced = state().plan.blocks;
   assert.equal(replaced.length, before.length); assert.equal(replaced[0].sourceId, 'P01');
   for (const key of ['minutes', 'section', 'delivery', 'rotation']) assert.equal(replaced[0][key], slot[key]);
@@ -465,6 +466,150 @@ check('completed practice records reject tag, group-mode and slot-suggestion cha
   const button={dataset:{suggestUse:'warmup'},disabled:false}; root.listeners.click({target:{closest(selector){return selector.includes('data-suggest-use')?button:null;}}});
   t.action('clear-filters',-1);
   assert.equal(JSON.stringify(state().picker),before); assert.equal(JSON.stringify(state().plan),planBefore);
+});
+
+
+check('named save and copy preserve the selected slot ID and replace it instead of appending', () => {
+  for(const saveAction of ['save','duplicate']) {
+    resetCase('age=7-10'); field('framework','hour'); t.action('framework',-1);
+    const before=state().plan.blocks,slot=before[2];
+    picker('selected','B17'); picker('destination',slot.id); t.action(saveAction,-1);
+    assert.equal(state().plan.blocks[2].id,slot.id); assert.equal(state().picker.destination,slot.id);
+    t.action('add',-1); assert(state().pendingReplacement); assert.equal(state().plan.blocks[2].sourceId,'');
+    t.action('confirm-replace',-1);
+    assert.equal(state().plan.blocks.length,before.length); assert.equal(state().plan.blocks[2].sourceId,'B17');
+    assert.equal(state().plan.blocks[2].minutes,slot.minutes);
+    assert(root.querySelector('.builder-placement-feedback').innerHTML.includes('Replaced slot 3'));
+  }
+});
+check('saved block IDs stay stable and imported duplicate or unsafe IDs become unique', () => {
+  resetCase();addSource('move','P01');addSource('move','P02');
+  const raw=state().plan,ids=raw.blocks.map(block=>block.id);
+  assert.deepEqual(Array.from(t.cleanPlan(raw).blocks,block=>block.id),ids);
+  raw.blocks[1].id=raw.blocks[0].id;
+  let cleaned=t.cleanPlan(raw);assert.equal(new Set(cleaned.blocks.map(block=>block.id)).size,2);
+  raw.blocks[0].id='bad"><id';cleaned=t.cleanPlan(raw);
+  assert(/^[a-zA-Z0-9_-]+$/.test(cleaned.blocks[0].id));
+});
+check('saving and copying a draft retain station object identity and its staged guide filters', () => {
+  const components=ctx.window.GRINDSTONE_COMPONENTS, original=components.bind;let bridge;
+  components.bind=function(element,options){bridge=options;return original(element,options);};
+  try {
+    resetCase('age=7-10');addSource('move','P01');
+    const raw=state().plan;raw.blocks[0].components={version:1,rotation:components.testing.newRotation()};t.replaceDraft(raw);
+    const station=bridge.getPlan().blocks[0].components.rotation.stations[0];
+    const transient=components.testing.stationPicker(station);transient.search='foundation';transient.selected='series:S24';
+    for(const saveAction of ['save','duplicate']) {
+      t.action(saveAction,-1);assert.strictEqual(bridge.getPlan().blocks[0].components.rotation.stations[0],station);
+      assert.strictEqual(components.testing.stationPicker(station),transient);assert.equal(transient.selected,'series:S24');
+    }
+  } finally {components.bind=original;}
+});
+function stageMainSkills(indices) {
+  const foundation=pathway.series.find(item=>item.id==='S24'),key=ctx.window.GRINDSTONE_COMPONENTS.testing.branchKey;
+  const fields=foundation.branches.map((branch,index)=>({value:key(branch),checked:indices.includes(index)}));
+  const other=root.querySelectorAll;
+  root.querySelectorAll=selector=>selector==='[data-component-branch="picker"]'?fields:other.call(root,selector);
+  root.listeners.change({target:{dataset:{componentBranch:'picker'}}});
+  return {foundation,fields,key};
+}
+check('main selected core skills survive destination and filter rerenders before insertion', () => {
+  resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
+  picker('type','series');picker('selected','series:S24');
+  const {foundation,key}=stageMainSkills([2]);picker('destination',state().plan.blocks[1].id);picker('search','Foundation');
+  const preview=root.querySelector('.builder-resource-preview').innerHTML;
+  assert(preview.includes('value="'+key(foundation.branches[2])+'" checked'));
+  assert(!preview.includes('value="'+key(foundation.branches[0])+'" checked'));
+  assert(preview.includes('<details class="builder-series-reference">'));
+  t.action('add',-1);t.action('confirm-replace',-1);
+  const block=state().plan.blocks[1];
+  assert.deepEqual(block.components.series.selections.map(item=>item.title),['Single leg']);
+  assert(block.instructions.includes(foundation.branches[2].action));assert(!block.instructions.includes(foundation.branches[0].action));
+});
+check('empty main series choices fail before replacing the previous Undo snapshot', () => {
+  resetCase('age=7-10');addSource('move','P01');addSource('move','P02');
+  picker('type','series');picker('selected','series:S24');stageMainSkills([]);
+  t.action('add',-1);assert.equal(state().plan.blocks.length,2);
+  assert(root.querySelector('.builder-placement-feedback').innerHTML.includes('Choose at least one'));
+  t.action('undo',-1);assert.deepEqual(state().plan.blocks.map(block=>block.sourceId),['P01']);
+});
+check('stale selected slots report an error without silently appending', () => {
+  resetCase();addSource('move','P01');picker('destination',state().plan.blocks[0].id);
+  t.action('remove',0);const before=JSON.stringify(state().plan);
+  t.action('add',-1);assert.equal(JSON.stringify(state().plan),before);assert.equal(state().plan.blocks.length,0);
+  assert(state().placementError);assert(root.querySelector('.builder-placement-feedback').innerHTML.includes('no longer exists'));
+});
+check('inline replacement is canceled safely and rejects edits made after its review', () => {
+  resetCase();addSource('move','P01');const id=state().plan.blocks[0].id;
+  picker('selected','P02');picker('destination',id);t.action('add',-1);
+  assert(state().pendingReplacement);t.action('cancel-replace',-1);assert.equal(state().plan.blocks[0].sourceId,'P01');
+  t.action('add',-1);blockField(0,'instructions','New coach task after review');t.action('confirm-replace',-1);
+  assert.equal(state().plan.blocks[0].instructions,'New coach task after review');assert.equal(state().plan.blocks[0].sourceId,'P01');
+  assert(state().placementError);assert(!state().pendingReplacement);
+});
+check('invalid numeric edits block placement without hiding the field or changing saved numbers', () => {
+  resetCase();addSource('move','P01');picker('selected','P02');picker('destination',state().plan.blocks[0].id);
+  let focused=0,reported=0;
+  const invalid={focus(){focused++;},reportValidity(){reported++;}}, query=root.querySelector.bind(root);
+  root.querySelector=selector=>selector==='input:invalid, select:invalid, textarea:invalid'?invalid:query(selector);
+  const before=JSON.stringify(state().plan);t.action('add',-1);
+  assert.equal(JSON.stringify(state().plan),before);assert(!state().pendingReplacement);assert(focused&&reported);
+  root.querySelector=query;t.action('add',-1);assert(state().pendingReplacement);
+  root.querySelector=selector=>selector==='input:invalid, select:invalid, textarea:invalid'?invalid:query(selector);
+  t.action('confirm-replace',-1);assert.equal(JSON.stringify(state().plan),before);assert(state().pendingReplacement);
+  assert(root.querySelector('.builder-placement-feedback').innerHTML.includes('invalid value has not been applied'));
+});
+check('unfinished station drafts save and export with warnings, print warnings, but cannot complete', () => {
+  resetCase();addSource('move','P01');const components=ctx.window.GRINDSTONE_COMPONENTS;
+  const raw=state().plan;raw.blocks[0].components={version:1,rotation:components.testing.newRotation()};raw.handoff={taught:'Started setup'};
+  t.replaceDraft(raw);t.action('save',-1);assert.equal(state().saved.length,1);
+  assert(root.querySelector('.builder-status').textContent.includes('unfinished station'));
+  let exports=0;const previousDocument=ctx.document,previousTimer=ctx.window.setTimeout;
+  ctx.document={createElement:()=>({click(){exports++;}})};ctx.window.setTimeout=fn=>fn();
+  try {t.action('export',-1);assert.equal(exports,1);} finally {ctx.document=previousDocument;ctx.window.setTimeout=previousTimer;}
+  for(const details of [false,true])assert(t.printHtml(details).includes('needs a name and a task'));
+  t.completePlan();assert.notEqual(state().plan.status,'completed');assert.equal(state().saved.length,1);
+  assert(root.querySelector('.builder-status').textContent.includes('Finish the station tasks'));
+  assert(!root.querySelector('.builder-status').textContent.includes('Save is unavailable'));
+});
+check('completed snapshots retain historical restrictions, unknown source IDs, types and timing metadata', () => {
+  resetCase();addSource('game','G01');
+  const raw=state().plan;raw.status='completed';raw.completedAt='2026-10-20T12:00:00.000Z';
+  Object.assign(raw.blocks[0],{adaptation:'Historical adaptation.',ageNote:'Historical age note.',sourceNote:'Historical source note.',guideMinutes:0});
+  const clean=t.cleanPlan(raw);
+  for(const key of ['adaptation','ageNote','sourceNote','guideMinutes'])assert.equal(clean.blocks[0][key],raw.blocks[0][key]);
+  raw.blocks.push({...raw.blocks[0],id:'old-series',sourceId:'series:'+sequence.id,type:'series'});
+  raw.blocks.push({...raw.blocks[0],id:'removed-source',sourceId:'retired-guide'});
+  const complete=t.cleanPlan(raw);
+  assert.equal(complete.blocks[1].type,'series');assert.equal(complete.blocks[2].sourceId,'retired-guide');
+  values.set(t.keys.draft,JSON.stringify(raw));t.reset();mount();
+  assert.equal(state().plan.blocks[0].ageNote,'Historical age note.');assert.equal(state().plan.blocks[0].guideMinutes,0);
+});
+check('short usage flow and a per-slot picker shortcut preserve the chosen guide', () => {
+  resetCase();addSource('move','P01');picker('selected','P02');
+  const html=api.render(new URLSearchParams());
+  assert(html.includes('builder-quick-start'));assert(html.includes('data-action="jump-practice"'));assert(html.includes('data-action="save">Save</button>'));
+  assert(root.querySelector('.builder-block-list').innerHTML.includes('Choose guide for this slot'));
+  t.action('choose-slot',0);assert.equal(state().picker.destination,state().plan.blocks[0].id);assert.equal(state().picker.selected,'P02');
+});
+
+
+check('structural actions keep invalid visible numbers in place until they are corrected',()=>{
+  resetCase();addSource('move','P01');addSource('move','P02');field('framework','hour');
+  const before=JSON.stringify(state().plan),query=root.querySelector.bind(root);let focused=0;
+  root.querySelector=selector=>selector==='input:invalid, select:invalid, textarea:invalid'?{focus(){focused++;},reportValidity(){}}:query(selector);
+  for(const action of ['framework','up','down','remove','undo','reload-guide','detach-guide','new','backup']) {
+    t.action(action,0);assert.equal(JSON.stringify(state().plan),before,action+' must not discard an invalid visible edit');
+  }
+  assert(focused>=9);
+});
+check('all shortcut and lower Save controls become disabled for a completed record',()=>{
+  resetCase();addSource('move','P01');
+  root.listeners.input({target:{dataset:{handoffField:'taught'},value:'Practiced balanced stance.'}});
+  const buttons=[{disabled:false},{disabled:false}],queryAll=root.querySelectorAll;
+  root.querySelectorAll=selector=>selector==='[data-action="save"]'?buttons:queryAll.call(root,selector);
+  t.completePlan();assert.equal(state().plan.status,'completed');assert(buttons.every(button=>button.disabled));
+  assert(root.querySelector('[data-action="save"]').disabled);
 });
 
 console.log('\n' + checks + ' builder checks passed. No files written.');

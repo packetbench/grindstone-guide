@@ -8,7 +8,7 @@ const sources = files.map(file => [file, fs.readFileSync(path.join(base, file), 
 function node() {
   const nodes = new Map(), listeners = {};
   return { dataset: {}, listeners, innerHTML: '', textContent: '', value: '', checked: false, disabled: false, hidden: false, focus() {},
-    querySelector(selector) { if (selector === ':invalid') return null; if (!nodes.has(selector)) nodes.set(selector, node()); return nodes.get(selector); },
+    querySelector(selector) { if (selector === ':invalid' || selector === 'input:invalid, select:invalid, textarea:invalid') return this.invalidControl || null; if (!nodes.has(selector)) nodes.set(selector, node()); return nodes.get(selector); },
     querySelectorAll(selector) { return selector === '[data-plan-edit]' ? [this.querySelector('fieldset-plan'), this.querySelector('fieldset-handoff')] : []; },
     addEventListener(name, fn) { listeners[name] = fn; }
   };
@@ -37,7 +37,7 @@ function setup() {
   function makeWeek(lane = 'mat-rats') { week.act('new'); weekField('lane', lane); weekField('weekOf', '2026-10-26'); weekField('focus', 'Sit-out foundation'); weekField('cue', 'Hands first; clear the hips'); weekField('outcome', 'Recognize two responses'); weekField('owner', 'Coach Test'); return current(); }
   function populate(name = 'Practice A') { const p = state().plan; p.name = name; p.blocks = [b.blockFrom(null, 'custom')]; p.blocks[0].name = 'Partner response practice'; p.blocks[0].instructions = 'Start in the base. Partner gives one practiced response.'; b.replaceDraft(p); }
   async function importWeek(value, size) { const text = typeof value === 'string' ? value : JSON.stringify(value); await host.listeners.change({ target: { matches: selector => selector === '[data-week-import]', files: [{ size: size ?? text.length, text: async () => text }] } }); }
-  return { values, writes, downloads, b, week, state, weeks, current, reload, field, handoff, weekField, select, makeWeek, populate, importWeek, render: params => builder.render(new URLSearchParams(params)), fail: value => { failedWrites = value; }, confirm: value => { allowConfirm = value; }, root: () => root, html: () => host.innerHTML };
+  return { values, writes, downloads, b, week, weekApi: ctx.window.GRINDSTONE_WEEKS, state, weeks, current, reload, field, handoff, weekField, select, makeWeek, populate, importWeek, render: params => builder.render(new URLSearchParams(params)), fail: value => { failedWrites = value; }, confirm: value => { allowConfirm = value; }, root: () => root, html: () => host.innerHTML };
 }
 let checks = 0, failures = 0;
 async function check(name, fn) { try { await fn(setup()); checks++; console.log('PASS ' + name); } catch (error) { failures++; console.error('FAIL ' + name + '\n' + error.stack); } }
@@ -83,6 +83,51 @@ async function main() {
     h.week.act('open', second.id); h.populate('Tuesday options'); h.week.act('update'); assert.deepStrictEqual(h.current().sessions[0], saved);
     h.reload(); assert.equal(h.weeks().weeks[0].sessions[1].plan.name, 'Tuesday options');
   });
+  await check('adding a named practice creates an independent planned session and builder copy', h => {
+    h.populate('Named base'); h.field('focus', 'Practice-specific focus'); h.b.action('save'); const original = h.state().saved[0];
+    h.makeWeek(); h.week.act('add'); const copied = h.state().plan;
+    assert.equal(copied.id, ''); assert.equal(copied.parentId, original.id); assert.equal(copied.focus, original.focus);
+    assert.equal(copied.weekContext.focus, 'Sit-out foundation'); assert.deepStrictEqual(h.current().sessions[0].plan, copied);
+    assert.deepStrictEqual(h.state().saved[0], original); assert(h.html().includes('keeps its own focus'));
+    h.field('name', 'Week-specific version'); h.b.action('save'); h.week.act('update');
+    assert.equal(h.state().saved.length, 2); assert.deepStrictEqual(h.state().saved[0], original);
+    assert.notEqual(h.current().sessions[0].plan.id, original.id); assert.equal(h.current().sessions[0].plan.name, 'Week-specific version');
+  });
+  await check('adding a blank-focus practice preserves the focus until explicitly applied', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); assert.equal(h.state().plan.focus, ''); assert.equal(h.current().sessions[0].plan.focus, '');
+    assert.equal(h.state().plan.weekContext.focus, 'Sit-out foundation'); h.week.act('focus'); assert.equal(h.state().plan.focus, 'Sit-out foundation');
+    assert.equal(h.current().sessions[0].plan.focus, ''); h.week.act('update'); assert.equal(h.current().sessions[0].plan.focus, 'Sit-out foundation');
+  });
+  await check('applying shared focus preserves an invalid visible edit until the coach corrects it', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); h.weekField('focus', 'New foundation');
+    const before = h.state().plan, attachment = h.weeks().attachment, bytes = h.values.get(h.b.keys.draft);
+    let focused = 0, reported = 0;
+    const invalid = {value:'-5',focus(){ focused++; },reportValidity(){ reported++; }}; h.root().invalidControl = invalid;
+    h.week.act('focus'); assert.deepStrictEqual(h.state().plan, before); assert.deepStrictEqual(h.weeks().attachment, attachment);
+    assert.equal(h.values.get(h.b.keys.draft), bytes); assert.equal(invalid.value, '-5'); assert.equal(focused, 1); assert.equal(reported, 1);
+    h.root().invalidControl = null; h.week.act('focus'); assert.equal(h.state().plan.focus, 'New foundation'); assert.deepStrictEqual(h.weeks().attachment, attachment);
+  });
+  await check('attachment captures are independent and restore only existing week sessions', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); const expected = h.weeks().attachment;
+    const snapshot = h.weekApi.captureAttachment(); snapshot.sessionId = 'tampered'; assert.deepStrictEqual(h.weeks().attachment, expected);
+    h.makeWeek('pups'); assert.equal(h.weeks().attachment, null);
+    assert.equal(h.weekApi.restoreAttachment(expected), true); assert.equal(h.weeks().current, expected.weekId); assert.deepStrictEqual(h.weeks().attachment, expected);
+    assert.equal(h.weekApi.restoreAttachment({weekId:expected.weekId,sessionId:'missing'}), false); assert.equal(h.weeks().attachment, null);
+    h.weekApi.restoreAttachment(expected); h.week.act('remove-session', expected.sessionId);
+    assert.equal(h.weekApi.restoreAttachment(expected), false); assert.equal(h.weeks().attachment, null);
+  });
+  await check('undoing a block edit keeps the active week session and allows saving back', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); const attachment = h.weeks().attachment;
+    h.b.action('remove', 0); h.b.action('undo'); assert.deepStrictEqual(h.weeks().attachment, attachment); assert.equal(h.state().plan.blocks.length, 1);
+    h.field('notes', 'After undo'); h.week.act('update'); assert.equal(h.current().sessions[0].plan.notes, 'After undo');
+  });
+  await check('undoing a session switch restores the prior draft and its matching attachment', h => {
+    h.makeWeek(); h.week.act('suggest'); const [first, second] = h.current().sessions;
+    h.week.act('open', first.id); h.populate('First session edits'); const before = h.state().plan, attachment = h.weeks().attachment;
+    h.week.act('open', second.id); assert.equal(h.weeks().attachment.sessionId, second.id);
+    h.b.action('undo'); assert.deepStrictEqual(h.state().plan, before); assert.deepStrictEqual(h.weeks().attachment, attachment);
+    h.week.act('update'); assert.equal(h.current().sessions[0].plan.name, 'First session edits'); assert.deepStrictEqual(h.current().sessions[1], second);
+  });
   await check('completion requires actual teaching and preserves planned practice plus immutable snapshot', h => {
     h.b.action('complete'); assert.equal(h.state().saved.length, 0);
     h.populate(); h.b.action('complete'); assert.equal(h.state().saved.length, 0);
@@ -106,6 +151,16 @@ async function main() {
     h.b.action('duplicate'); h.field('name', 'Correction draft'); h.week.act('update'); assert.deepStrictEqual(h.current().sessions[0], original);
     h.week.act('open', sessionId); h.week.act('focus'); assert.equal(h.state().plan.status, 'completed');
     h.week.act('copy-session', sessionId); const next = h.current().sessions[1]; assert.equal(next.plan.status, 'planned'); assert.equal(next.plan.handoff.taught, ''); assert.notEqual(next.id, sessionId); assert.deepStrictEqual(h.current().sessions[0], original);
+  });
+  await check('adding a completed record preserves its original identity and teaching context', h => {
+    h.populate(); h.handoff('taught', 'Original teaching'); h.b.action('complete'); const original = h.state().plan;
+    h.makeWeek(); h.week.act('add'); assert.deepStrictEqual(h.current().sessions[0].plan, original); assert.deepStrictEqual(h.state().plan, original);
+    assert.deepStrictEqual(h.state().saved[0], original); assert(h.html().includes('original teaching details preserved'));
+  });
+  await check('saving completed teaching to a week does not refresh its historical context', h => {
+    h.makeWeek(); h.populate(); h.week.act('add'); h.handoff('taught', 'Original foundation'); h.b.action('complete'); const original = h.state().plan;
+    h.weekField('focus', 'Next week focus'); h.weekField('cue', 'Changed after teaching'); h.week.act('update');
+    assert.deepStrictEqual(h.current().sessions[0].plan, original); assert.deepStrictEqual(h.state().saved[0], original);
   });
   await check('copy week preserves source history and makes fresh independent planned sessions', h => {
     h.makeWeek(); h.populate(); h.handoff('taught', 'Group taught'); h.b.action('complete'); h.week.act('add'); h.weekField('revision', 'week-v2'); const original = h.current();

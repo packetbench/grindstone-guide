@@ -15,7 +15,7 @@ function blockFor(item=source) { return {id:'block-1',sourceId:item.id,name:item
 const key = t.branchKey, first = key(series.branches[0]), second = key(series.branches[1]);
 const selected = api.selectSeries(blockFor(),[first,second],catalog);
 const rotationBlock = () => ({...blockFor(),minutes:20,components:{version:1,rotation:t.newRotation()}});
-function hostFor(plan) {
+function hostFor(plan,overrides={}) {
   const timing = {innerHTML:''}, listeners = {}, changes = [], snapshots = [], inputs = [];
   const panels = new Map();
   const panelFor = index => {
@@ -24,7 +24,7 @@ function hostFor(plan) {
   };
   const host = {dataset:{componentBlock:'0'},querySelector(selector) { const match = selector.match(/^\[data-station-picker="(\d+)"\]$/); return match ? panelFor(Number(match[1])) : timing; },querySelectorAll:()=>inputs};
   const container = {dataset:{},addEventListener:(name,fn)=>{listeners[name]=fn;},querySelectorAll:()=>[host]};
-  api.bind(container,{getPlan:()=>plan,getAge:()=>plan.age,getCatalog:()=>catalog,beforeChange:()=>snapshots.push(clone(plan)),onChange:change=>changes.push(change)});
+  api.bind(container,{getPlan:()=>plan,getAge:()=>plan.age,getCatalog:()=>catalog,beforeChange:()=>snapshots.push(clone(plan)),onChange:change=>changes.push(change),...overrides});
   function element(dataset={},value='') { return {dataset,value,checked:false,validity:{valid:true},setCustomValidity(message){this.error=message;this.validity.valid=!message;},closest:()=>host,hasAttribute(name){return name==='data-component-broad'&&'componentBroad' in this.dataset;}}; }
   return {container,host,timing,listeners,changes,snapshots,inputs,element,panelFor,
     input(dataset,value){const el=element(dataset,value);listeners.input({target:el});return el;},
@@ -276,7 +276,7 @@ check('station selected series survive full builder clean, export/import and bot
   const clean=builder.testing.cleanPlan(clone(plan)),imported=builder.testing.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:clean}));
   assert.deepEqual(clone(imported.blocks[0].components.rotation.stations[0]),clone(station));
   assert(!JSON.stringify(imported).includes('renderedAge'));assert(!JSON.stringify(imported).includes('groupTouched'));
-  const nodes=new Map(),root={dataset:{},querySelector(selector){if(selector===':invalid'||selector==='[data-week-content]')return null;if(!nodes.has(selector))nodes.set(selector,{innerHTML:'',textContent:'',value:'',checked:false,disabled:false,hidden:false,focus(){}});return nodes.get(selector);},querySelectorAll(){return[];},addEventListener(){}};
+  const nodes=new Map(),root={dataset:{},querySelector(selector){if(selector==='input:invalid, select:invalid, textarea:invalid'||selector==='[data-week-content]')return null;if(!nodes.has(selector))nodes.set(selector,{innerHTML:'',textContent:'',value:'',checked:false,disabled:false,hidden:false,focus(){}});return nodes.get(selector);},querySelectorAll(){return[];},addEventListener(){}};
   builder.bind(root);builder.testing.replaceDraft(clean);
   for(const full of [false,true]) {
     const printed=builder.testing.printHtml(full);
@@ -352,6 +352,39 @@ check('a removed saved station choice can be replaced explicitly without discard
   assert.deepEqual(station,before);
   h.change({componentBranch:'station-0'},second,true);h.click('use-station-guide',0);
   assert.deepEqual(clone(station.series.selections.map(item=>item.key)),[second]);assert(station.task.includes(series.branches[1].action));
+});
+
+
+check('unfinished station names and tasks remain draftable while readiness and print warn',()=>{
+  const b=rotationBlock(),html=api.renderBlock(b,0,catalog,'7-10');
+  const task=html.match(/<textarea[^>]*data-station-field="task"[^>]*>/)[0];
+  const name=html.match(/<input[^>]*data-station-field="name"[^>]*>/)[0];
+  for(const tag of [task,name]){assert(tag.includes('aria-required="true"'));assert(!/\srequired(?:[ >])/.test(tag));}
+  assert.equal(api.readinessProblems(b).length,3);assert(api.printBlock(b,catalog).includes('Station 1 needs a name and a task'));
+  b.components.rotation.stations.forEach(station=>{station.task='One cooperative repetition, then switch.';});
+  assert.equal(api.readinessProblems(b).length,0);assert.doesNotThrow(()=>api.cleanBlock(b));
+});
+check('station structural actions restore focus to a useful surviving control',()=>{
+  const plan={age:'11-14',blocks:[rotationBlock()]},h=hostFor(plan),focused=[];
+  h.container.querySelector=selector=>({focus(){focused.push(selector);}});
+  h.click('add-station');assert(focused.at(-1).includes('[data-station-index="3"]'));
+  h.click('remove-station',3);assert(focused.at(-1).includes('[data-station-field="name"][data-station-index="2"]'));
+  h.click('remove-rotation');assert(focused.at(-1).includes('[data-component-action="add-rotation"]'));
+});
+check('main picker restores an explicitly staged subset or empty selection without defaulting',()=>{
+  const item=byId.get('series:S24'),s=pathway.series.find(item=>item.id==='S24'),chosen=key(s.branches[2]);
+  let html=api.renderPicker(item,catalog,[chosen]);
+  assert.equal((html.match(/ checked>/g)||[]).length,1);assert(html.includes('value="'+chosen+'" checked'));
+  html=api.renderPicker(item,catalog,[]);assert.equal((html.match(/ checked>/g)||[]).length,0);
+});
+
+
+check('component structural mutations honor builder numeric validation without losing draft edits',()=>{
+  const plan={age:'11-14',blocks:[rotationBlock()]},before=clone(plan);let validated=0;
+  const h=hostFor(plan,{valid:()=>{validated++;return false;}});
+  for(const action of ['add-station','remove-station','remove-rotation','use-total','apply-series'])h.click(action,0);
+  assert.deepEqual(plan,before);assert.equal(h.snapshots.length,0);assert.equal(h.changes.length,0);assert.equal(validated,5);
+  h.click('clear-station-filters',0);assert.equal(validated,5);
 });
 
 console.log(checks+' component checks passed.');
