@@ -257,7 +257,8 @@ for(const article of h.context.window.GRINDSTONE_FAMILY.pages){
  for(const item of drafts.existing_documents){assert(hub.includes(escapeText(item.title)));assert(hub.includes(escapeText(item.summary)));assert(hub.includes('href="'+escapeText(item.href)+'"'));if(item.related_draft){assert(draftIds.has(item.related_draft));assert(hub.includes('href="#in-progress/'+item.related_draft+'"'));}}
  for(const href of new Set(resources.map(item=>item.href))){
   const url=new URL(href,siteBase);assert.equal(url.origin,new URL(siteBase).origin);assert(url.pathname.startsWith('/grindstone-guide/'));
-  if(url.hash){assert(h.api.safeRouteHash(url.hash),'Unrecognized existing resource route '+href);h.navigate(url.hash);assert(!h.elements.main.innerHTML.includes('That page isn’t in the playbook.'),'Broken existing resource route '+href);}
+  if(url.pathname.includes('/coach-drafts/')){const relative=decodeURIComponent(url.pathname.slice('/grindstone-guide/'.length));assert(relative.startsWith('coach-drafts/')&&relative.endsWith('.html'));assert(fs.existsSync(path.join(root,relative)),'Missing coach working page '+relative);}
+  else if(url.hash){assert(h.api.safeRouteHash(url.hash),'Unrecognized existing resource route '+href);h.navigate(url.hash);assert(!h.elements.main.innerHTML.includes('That page isn’t in the playbook.'),'Broken existing resource route '+href);}
   else{const relative=decodeURIComponent(url.pathname.slice('/grindstone-guide/'.length));assert(relative.startsWith('downloads/')||(relative.startsWith('coach-drafts/')&&relative.endsWith('.html')),'Unexpected existing-resource path '+relative);assert(fs.existsSync(path.join(root,relative)),'Missing existing resource '+relative);}
  }checks++;
  h.navigate('#in-progress/missing-draft');assert(h.elements.main.innerHTML.includes('<h1>Draft not found</h1>'));assert(h.elements.main.innerHTML.includes('href="#in-progress"'));assert(!h.elements.main.innerHTML.includes('data-draft-copy'));checks++;

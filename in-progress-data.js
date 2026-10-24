@@ -150,6 +150,87 @@ window.GRINDSTONE_IN_PROGRESS = {
   ],
   documents: [
     {
+      "id": "coach-profiles",
+      "title": "Coach biographies and photos",
+      "category": "Club people",
+      "status": "Working research for coach review",
+      "summary": "Review 13 coach drafts, historical photographs and proposed identities. Jessica and Cody Hughes have a shared recognition page. Current official biographies remain available.",
+      "why": "The club roster includes more people than the published biography directory. These working pages gather research and photographs so coaches can correct identities, roles and wording together.",
+      "existing": [
+        {
+          "label": "Open the coach drafts and photo collection",
+          "href": "coach-drafts/index.html"
+        },
+        {
+          "label": "Identify public club photographs",
+          "href": "coach-drafts/club-gallery.html"
+        },
+        {
+          "label": "Facebook research queue",
+          "href": "coach-drafts/facebook-queue.html"
+        },
+        {
+          "label": "Jessica and Cody Hughes — shared recognition",
+          "href": "coach-drafts/hughes-family.html"
+        },
+        {
+          "label": "Who we are not — confirmed mistaken matches",
+          "href": "coach-drafts/index.html#not-us"
+        },
+        {
+          "label": "Brian Leaf — confirmed mistaken match",
+          "href": "coach-drafts/index.html#not-us/brian-leaf-pinks"
+        },
+        {
+          "label": "Current published coach biographies",
+          "href": "#about/coaches"
+        }
+      ],
+      "sections": [
+        {
+          "title": "Review a coach or a photograph",
+          "paragraphs": [
+            "Open the coach drafts using the links below. Confirmed identities, existing profiles and proposed matches carry different labels; a working match is not a confirmed biography."
+          ],
+          "bullets": [
+            "Check the name, team role, career details and photo captions.",
+            "Tell the coaches which photo and person you mean when suggesting a correction.",
+            "Jessica and Cody are presented as a team.",
+            "The PINKS/Mustang racer Brian Leaf is confirmed to be a different person. His material appears only in the clearly labeled mistaken-match section."
+          ]
+        },
+        {
+          "title": "Share feedback in the text group",
+          "paragraphs": [
+            "The working pages are public. Review selections and typed notes save only in your current browser; they do not reach the club or other coaches automatically."
+          ],
+          "bullets": [
+            "Copy the page link into the existing coaches’ text group with your correction.",
+            "Use Export review notes if you want to share a JSON file or keep a backup.",
+            "Keep individual athlete information, private family details and restricted photos out of public drafts.",
+            "No review button publishes or changes an official biography."
+          ]
+        },
+        {
+          "title": "Choose what belongs in the official biographies",
+          "paragraphs": [
+            "Existing public biographies stay in place while these drafts are reviewed. Original photographs retain their source captions and credits; source pages are included where they help explain identification."
+          ],
+          "bullets": [
+            "Approve the person and the caption separately; a photo from a team yearbook may show an unidentified teammate.",
+            "Treat clearly marked proposed matches as research leads until confirmed.",
+            "Use the rejected-match page only for identities already confirmed to be different people."
+          ]
+        }
+      ],
+      "decisions": [
+        "Which proposed identities and photographs can the coaches confirm?",
+        "What roles, career details or wording should change before entering the official biographies?",
+        "Which public photos should be selected, and are the captions and credits accurate?"
+      ],
+      "next_step": "Discuss the draft links in the coaches’ text group. Confirm identities and photo selections before replacing official profile content."
+    },
+    {
       id: 'communication', title: 'TeamSnap and caregiver communication', category: 'Families', status: 'Draft for coach review',
       summary: 'A setup checklist and message workflow so each caregiver who handles practice or meet travel receives the same information.',
       why: 'The family pages identify TeamSnap as the update channel, but there is no single caregiver-access checklist or agreed route for urgent changes.',
