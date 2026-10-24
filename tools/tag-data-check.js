@@ -68,4 +68,40 @@ check('S07 includes the controlled go-behind finish as well as defense',() => {
   assert.deepEqual(plain(api.resolve('series:S07').purposes),['defend','takedown']);
   assert.deepEqual(plain(api.resolve('series:S03').purposes),['defend']);
 });
+check('Intermediate is a supported written tier and explicit ages still win',() => {
+  const sample = {window:{GRINDSTONE:{moves:[
+    {id:'N90',name:'Intermediate fixture',tier:'Intermediate'},
+    {id:'N91',name:'Explicit older fixture',tier:'Intermediate',age_groups:['11-14']}
+  ],games:[]},GRINDSTONE_KYLE:{entries:[{id:'K90',name:'Unassigned video fixture',tier:'Intermediate'}]}}};
+  vm.createContext(sample); vm.runInContext(fs.readFileSync(path.join(base,'catalog-tags.js'),'utf8'),sample);
+  const tags=sample.window.GRINDSTONE_CATALOG_TAGS;
+  assert.deepEqual(plain(tags.resolve('N90').age_groups),['7-10','11-14']); assert.equal(tags.resolve('N90').ageBasis,'teaching-tier');
+  assert.deepEqual(plain(tags.resolve('N91').age_groups),['11-14']); assert.equal(tags.resolve('N91').ageBasis,'explicit');
+  assert.equal(tags.resolve('K90').ageStatus,'unassigned','A video tier must not invent an age assignment');
+});
+check('series tier follows the entrance while later options retain their own readiness',() => {
+  assert.equal(api.resolve('series:S21').tier,'Beginner'); assert.equal(api.resolve('series:S28').tier,'Beginner');
+  for(const id of ['S16','S18','S19','S20','S23','S27','S30','S10','S11','S12'])assert.equal(api.resolve('series:'+id).tier,'Intermediate',id);
+  const half=w.GRINDSTONE_PATHWAY.series.find(s=>s.id==='S21');
+  assert.equal(half.branches.find(b=>b.move_ids.includes('B26')).tier,'Beginner');
+  assert.equal(half.branches.find(b=>b.move_ids.includes('N21')).tier,'Intermediate');
+  assert(half.branches.find(b=>b.move_ids.includes('N21')).readiness.startsWith('Intermediate option:'));
+  assert.deepEqual(plain(api.resolve('series:S21').age_groups),['11-14'],'Tier correction must not change explicit group guidance');
+});
+check('adapted activity facets retain their declared endpoint and reject unknown tags',() => {
+  const sample={window:{GRINDSTONE_PATHWAY:{activities:[
+    {id:'C90',type:'drill',positions:['neutral','unknown'],purposes:['entry','unknown'],uses:['teach','review','reps','unknown'],age_groups:['4-6']},
+    {id:'C91',type:'drill',positions:[],purposes:[],uses:[]},
+    {id:'C92',type:'strength'}
+  ]}}};
+  vm.createContext(sample);vm.runInContext(fs.readFileSync(path.join(base,'catalog-tags.js'),'utf8'),sample);
+  const tags=sample.window.GRINDSTONE_CATALOG_TAGS;
+  assert.deepEqual(plain(tags.resolve('activity:C90').positions),['neutral']);
+  assert.deepEqual(plain(tags.resolve('activity:C90').purposes),['entry']);
+  assert.deepEqual(plain(tags.resolve('activity:C90').uses),['teach','review','reps']);
+  assert.deepEqual(plain(tags.resolve('activity:C90').age_groups),['4-6']);
+  assert.equal(tags.resolve('activity:C90').ageBasis,'explicit');
+  for(const field of ['positions','purposes','uses'])assert.deepEqual(plain(tags.resolve('activity:C91')[field]),[]);
+  assert.deepEqual(plain(tags.resolve('activity:C92').purposes),['strength']);
+});
 console.log(count + ' shared tag checks passed.');

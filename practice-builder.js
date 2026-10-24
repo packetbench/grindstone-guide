@@ -49,7 +49,7 @@
     return '#season';
   }
   function pathwayPath() { return '#season' + (plan.age ? '?age=' + encodeURIComponent(plan.age) : ''); }
-  const tierAges = tier => tier === 'Pup' ? AGES : tier === 'Beginner' ? ['7-10', '11-14'] : tier === 'Advanced' ? ['11-14'] : [];
+  const tierAges = tier => tier === 'Pup' ? AGES : ['Beginner', 'Intermediate'].includes(tier) ? ['7-10', '11-14'] : tier === 'Advanced' ? ['11-14'] : [];
   const groupAge = () => plan.age || (plan.program === 'pups' ? '4-6' : '');
   function gameAges(game) {
     if (Array.isArray(game.age_groups)) return game.age_groups;
@@ -100,7 +100,7 @@
     });
     // Keep legacy source IDs so saved practices and earlier links retain their guides.
     (pathway.sequences || []).forEach(s => add({ id: 'series:' + s.id, kind: 'sequence', title: s.title, types: ['drill'], category: 'Linked movement drill', tier: s.tier, summary: s.summary, instructions: s.summary, setup: s.setup, steps: s.steps, cues: s.cues, readiness: s.readiness, boundary: lines(s.boundaries), age_groups: s.age_groups, path: seriesPath(s.id, pathway), move_ids: list(s.move_ids), minutes: s.minutes, status: 'Linked movement drill' }));
-    (pathway.activities || []).forEach(a => add({ id: 'activity:' + a.id, title: a.title, types: [a.type], category: TYPES[a.type] || 'Activity', summary: a.summary || lines(a.instructions), instructions: lines(a.instructions), steps: list(a.steps).length ? a.steps : list(a.instructions), cues: a.cues, boundary: a.boundary, sourceNote: [a.sourceNote, ...(a.sources || []).map(x => x.title + ': ' + x.url)].filter(Boolean).join('\n'), age_groups: a.age_groups, minutes: a.minutes, status: 'Written coaching activity' }));
+    (pathway.activities || []).forEach(a => add({ id: 'activity:' + a.id, title: a.title, types: [a.type], category: TYPES[a.type] || 'Activity', summary: a.summary || lines(a.instructions), instructions: lines(a.instructions), steps: list(a.steps).length ? a.steps : list(a.instructions), cues: a.cues, readiness: a.readiness, move_ids: list(a.move_ids), boundary: a.boundary, sourceNote: [a.sourceNote, ...(a.sources || []).map(x => x.title + ': ' + x.url)].filter(Boolean).join('\n'), age_groups: a.age_groups, path: '#season?' + new URLSearchParams({age: list(a.age_groups).map(age).find(value => AGES.includes(value)) || '', activity: a.id}), minutes: a.minutes, status: 'Written coaching activity' }));
     out.forEach(item => {
       const moveId = item.id.replace(/^kyle:/, '');
       item.memberships = (pathway.series || []).flatMap(series => (series.members || []).filter(member => member.move_id === moveId).map(member => ({ id: series.id, title: series.title, role: member.role, note: member.note })));

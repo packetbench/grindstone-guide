@@ -65,7 +65,7 @@ window.GRINDSTONE_SERIES_TOP = {
       id: 'N21',
       name: 'Half Nelson to Suck-Back',
       category: 'top',
-      tier: 'Advanced',
+      tier: 'Intermediate',
       purpose: 'Keep an answer when a partner sits out of a half nelson. This lesson ends at controlled back exposure, without adding the source lesson\'s separate head-wrap pinning finish.',
       prerequisite: 'B26 and B28; a coach-taught changeover, underarm control and slow backward receiving. The coach must demonstrate the lowering and supported return before partner repetitions. Use experienced, matched pairs who release on command; this is not a Pups activity or an automatic step for every older wrestler.',
       steps: [

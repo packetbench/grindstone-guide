@@ -30,7 +30,7 @@ window.GRINDSTONE_FRAMEWORKS = {
   frameworks: [
     {
       id: 'hour', title: '60-minute play and foundation practice', minutes: 60,
-      summary: 'A familiar opening, one manageable learning focus, short playful tasks and a positive finish. For Pups, the series is the coach’s map: select a foundation and one appropriate option, then revisit it across practices. Give children time to watch, rest and rejoin.',
+      summary: 'A familiar opening, one chosen wrestling technique, short cooperative attempts and a positive game finish. For Pups, choose a ready stage from the double leg, sprawl/go-behind, stand-up, breakdown or half-nelson cards C18–C22; revisit it across practices. Teach both partner roles and allow a controlled finish when ready. Games complement the technique; solo preparation stays available.',
       blocks: [
         {
           section: 'prepare', type: 'warmup', name: 'Welcome and movement', minutes: 8,
@@ -43,8 +43,8 @@ window.GRINDSTONE_FRAMEWORKS = {
           cues: 'Show me the start. Finish balanced. Take turns.'
         },
         {
-          section: 'teach', type: 'series', name: 'One foundation, one option', minutes: 10,
-          instructions: 'Select the shared position and one option appropriate to the group. Demonstrate briefly, let children try, then offer one useful correction. Repeat these short see-it/do-it cycles. Use individual movement or willing cooperative partners according to readiness; the block is not a ten-minute lecture.',
+          section: 'teach', type: 'series', name: 'Teach one wrestling skill', minutes: 10,
+          instructions: 'Choose one actual technique and its ready stage, such as C18 double-leg entry to low finish or C20 stand-up, clear and face. Teach the receiver or following partner first. Demonstrate briefly, give short attempts and one useful correction, then swap roles. Ready pairs complete the controlled finish; others rehearse the solo or coach-assisted stage. Include rest and resets rather than ten minutes of continuous drilling.',
           cues: 'Find our starting position. Try one action. Stop and reset.'
         },
         {
@@ -54,7 +54,7 @@ window.GRINDSTONE_FRAMEWORKS = {
         },
         {
           section: 'choices', type: 'drill', name: 'Play with today’s skill', minutes: 10,
-          instructions: 'Choose a simple game or restricted task using today’s foundation. Give each child one clear job and a clear finish. Use brief turns, role swaps and coaching resets. Rehearse the first option again if a choice is confusing; a second branch is optional.',
+          instructions: 'Revisit today’s chosen wrestling technique in short cooperative turns with an announced start and finish. Repeat the taught sprawl and go-behind or breakdown to belly; pause, release and swap. Once familiar, use a simple related game. Keep the same ready stage for each child; no surprise resistance or new finish.',
           cues: 'What is your job? Try, stop, swap.'
         },
         {
@@ -64,7 +64,7 @@ window.GRINDSTONE_FRAMEWORKS = {
         },
         {
           section: 'game', type: 'game', name: 'Finish with a favorite game', minutes: 10,
-          instructions: 'Choose a game that fits the available space, supervision and children’s readiness. Explain the start, score or shared goal, stop signal and role changes. Keep everyone involved through small groups or rotating turns, with rests between rounds.',
+          instructions: 'Choose a game that complements the wrestling skill already practiced and fits the space, supervision and children’s readiness. Explain the start, score or shared goal, stop signal and role changes. Keep everyone involved through small groups or rotating turns, with rests between rounds.',
           cues: 'Know the boundary. Care for your partner. Stop together.'
         },
         {

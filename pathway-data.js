@@ -1,5 +1,5 @@
 window.GRINDSTONE_PATHWAY = {
-  reviewed: '2026-10-23',
+  reviewed: '2026-10-24',
   intro: 'Build the season around sound positions, reliable techniques and series: several options from the same foundation, such as a sit-out, captured single leg or wrist ride. Linked drills rehearse a chosen sequence; series teach wrestlers which option fits the partner’s response. Strength and endurance grow alongside those skills.',
   coaching_principles: [
     'Use these as flexible stages, not deadlines or a weekly schedule. Age groups suggest a starting point; experience, attention, movement control and partner readiness decide the next step.',
@@ -20,6 +20,7 @@ window.GRINDSTONE_PATHWAY = {
     { id: 'kolat-curriculum', title: 'Cary Kolat — Teach individual skills before connecting options', url: 'https://www.kolat.com/blog/kolatcom-4-6-year-teaching-curriculum-for-new-to-novice-wrestlers-by-cary-kolat' },
     { id: 'usaw-folkstyle-2', title: 'USA Wrestling — Folkstyle Level 2 technique families', url: 'https://www.usawmembership.com/usa_wrestling_core_curriculum/2' },
     { id: 'usaw-adm', title: 'USA Wrestling — Athlete Development Model', url: 'https://content.themat.com/CoachesCorner/LTADPoster.pdf' },
+    { id: 'usaw-technique-age', title: 'USA Wrestling — Techniques by Age: fundamentals and readiness', url: 'https://www.themat.com/news/2019/october/10/techniques-by-age' },
     { id: 'usaw-age', title: 'USA Wrestling — Age Appropriate', url: 'https://www.themat.com/news/2018/october/12/age-appropriate' },
     { id: 'usopc-adm', title: 'USOPC — American Development Model stages', url: 'https://www.usopc.org/coaching-education/adm/american-development-model-stages' },
     { id: 'aap-strength', title: 'American Academy of Pediatrics — Guidance on resistance training for children', url: 'https://www.healthychildren.org/English/news/Pages/Guidance-on-Resistance-Training-for-Children.aspx' },
@@ -30,7 +31,7 @@ window.GRINDSTONE_PATHWAY = {
     {
       age_group: '4-6',
       schedule_note: "Use Core A on one Tuesday and Core B on the next Tuesday, repeating as needed. The extension is another later Tuesday, not an extra practice requirement. Use the confirmed TeamSnap schedule for dates and times; each readiness stage may take several meetings.",
-      summary: 'Make movement, confidence and play the season’s foundation. Use demonstrations, one short cue and frequent successful turns. The sequences here are solo movements or noncontact partner games; they do not require live takedowns, forced holds or match conditioning.',
+      summary: "Build confidence and recognizable wrestling together. Keep stance, movement and games, then teach a takedown, defense, escape, breakdown and turn through the staged Pup lessons. Four-year-olds and newcomers can remain with solo or coach-assisted preparation; ready five- and six-year-olds progress to cooperative finishes after both partner roles are taught. Select stages by control and comfort, not a deadline; games complement technique.",
       phases: [
         {
           id: 'pups-1', title: 'Feel at home on the mat',
@@ -55,48 +56,264 @@ window.GRINDSTONE_PATHWAY = {
           regress: 'Teach the floor movement separately from the standing movement, using a floor marker for each child.'
         },
         {
-          id: 'pups-3', title: 'Move down and get back up',
-          overview: "Build confidence in getting down and rising without a rider. Repeat the selected solo movement over successive Tuesdays; controlled recovery matters more than completing a longer sequence.",
-          practice_cycle: {"label":"Across successive Tuesdays","core_a":{"title":"Tuesday A — learn and play","focus":"Choose belly-to-base or base-to-stand. Teach the start and finish with pauses, a short movement game and plenty of resets."},"core_b":{"title":"Next Tuesday — remember and use","focus":"Next Tuesday, ask children to recall the movement first. Link belly, base and stand only when all three positions are comfortable; otherwise keep practicing one transition."},"extension":{"title":"Later Tuesday — reinforce","focus":"At a later practice, change the marker or cue and revisit the same recovery. Introduce solo sprawl separately only after hand support and landing are controlled."}},
-          skills: ['Rebuild base from belly.', 'Bring a foot forward and rise with balance.', 'Show a soft, controlled solo sprawl and recover.'],
-          move_ids: ['P05', 'P06', 'P07', 'P08'], sequence_ids: ['S02'], series_ids: [],
-          strength: { goal: 'Use legs and trunk to change levels.', activities: ['Base-to-stand movement.', 'Short bear crawl followed by a complete stand-up reset.'], dose: 'Two rounds of 3 rises and one 5–8-second crawl; allow 30–45 seconds between rounds.', progress: 'Use less prompting while preserving balance. Do not turn getting up into a race.' },
-          endurance: { goal: 'Repeat small efforts without losing control.', activities: ['Travel to a spot, make one base-to-stand sequence, then walk back.'], dose: 'Four turns of roughly 20 seconds, with 30–40 seconds between turns.', progress: 'Add a fifth turn only when children are still moving comfortably and want another.' },
-          ready: ['Rises without crashing into a neighbor.', 'Shows the same sequence twice with one cue.', 'Can reset calmly after a mistake.'],
-          regress: 'Separate belly-to-base and base-to-stand. Use the solo sprawl only when landing and recovery remain controlled.'
+          "id": "pups-3",
+          "title": "Learn a takedown and get free",
+          "overview": "Introduce one actual wrestling task at a time: a double-leg entry progressing to a low finish, or a stand-up progressing to hand clearance and facing. Keep solo and coach-assisted stages available while ready pairs complete the cooperative technique.",
+          "practice_cycle": {
+            "label": "Across successive Tuesdays",
+            "core_a": {
+              "title": "Tuesday A — learn and play",
+              "focus": "Choose C18 double leg or C20 stand-up. Teach the receiving or following role first, then give short turns at each child’s ready stage. Demonstrate one cue and the exact finish or stop."
+            },
+            "core_b": {
+              "title": "Next Tuesday — remember and use",
+              "focus": "Recall the same start and receiver role next Tuesday. Ready pairs complete the low takedown or stand-up escape; others repeat the entry or rise. Coach release and reset before increasing speed."
+            },
+            "extension": {
+              "title": "Later Tuesday — reinforce",
+              "focus": "Use a later Tuesday for extra attempts at the same skill and a brief review of the other position. Games can rehearse stance or balance after the technique block."
+            }
+          },
+          "skills": [
+            "Enter a double leg with chest up and balanced trail foot; finish low when receiving is ready.",
+            "Rise with whole-hand control, clear hips and turn to face.",
+            "Receive, release and swap without a surprise attack."
+          ],
+          "move_ids": [
+            "P05",
+            "P06",
+            "P07",
+            "P08"
+          ],
+          "sequence_ids": [
+            "S02"
+          ],
+          "series_ids": [],
+          "strength": {
+            "goal": "Use legs and trunk to change levels.",
+            "activities": [
+              "Base-to-stand movement.",
+              "Short bear crawl followed by a complete stand-up reset."
+            ],
+            "dose": "Two rounds of 3 rises and one 5–8-second crawl; allow 30–45 seconds between rounds.",
+            "progress": "Use less prompting while preserving balance. Do not turn getting up into a race."
+          },
+          "endurance": {
+            "goal": "Repeat small efforts without losing control.",
+            "activities": [
+              "Travel to a spot, make one base-to-stand sequence, then walk back."
+            ],
+            "dose": "Four turns of roughly 20 seconds, with 30–40 seconds between turns.",
+            "progress": "Add a fifth turn only when children are still moving comfortably and want another."
+          },
+          "ready": [
+            "Shows the selected entry or rise with balance.",
+            "Both demonstrate the receiving/following job and immediate stop.",
+            "At the chosen stage, completes the low landing or hand-controlled escape without force."
+          ],
+          "regress": "Return to solo entry or rise, or a coach positioning partner. Re-teach receiving separately; resume the cooperative finish once both roles are controlled.",
+          "activity_ids": [
+            "C18",
+            "C20"
+          ]
         },
         {
-          id: 'pups-4', title: 'Follow, mirror and change direction',
-          overview: "Use a partner for copying, turn-taking and shared space. Carry the same noncontact movement theme across Tuesdays before introducing another direction or response.",
-          practice_cycle: {"label":"Across successive Tuesdays","core_a":{"title":"Tuesday A — learn and play","focus":"Have children mirror the coach in stance with one direction and a freeze. Then try short partner turns with a clear gap and an obvious leader."},"core_b":{"title":"Next Tuesday — remember and use","focus":"On the next Tuesday, retrieve the stop and spacing cues. Switch leaders and offer one simple change of direction that both partners can follow."},"extension":{"title":"Later Tuesday — reinforce","focus":"On a later Tuesday, circle a marker or use a familiar mirror game. Keep the task cooperative and vary the story rather than making the turns longer."}},
-          skills: ['Mirror a partner’s stance steps without touching.', 'Circle a floor marker with short steps.', 'Change direction on a simple visual cue.'],
-          move_ids: ['P01', 'P02', 'P07', 'P11'], sequence_ids: ['S01', 'S03'], series_ids: [],
-          strength: { goal: 'Control weight shifts.', activities: ['Step sideways to a floor spot and freeze.', 'Small squat, stand and balance on one foot with a toe available for support.'], dose: 'Two rounds of 3–4 steps each way and 3 balances per side; rest 30 seconds.', progress: 'Make the pause steadier before making the step quicker.' },
-          endurance: { goal: 'Stay active in short partner turns.', activities: ['Noncontact mirror-and-freeze.'], dose: 'Four 20–25-second turns; change leaders and rest for 30–40 seconds after each.', progress: 'Keep the follower successful. Add a direction only when both partners stay in their space.' },
-          ready: ['Keeps a comfortable gap while mirroring.', 'Changes direction without crossing or tripping.', 'Takes turns as leader and follower.'],
-          regress: 'Have the whole group mirror the coach before using pairs.'
+          "id": "pups-4",
+          "title": "Stop a shot and go behind",
+          "overview": "Give stance and circling a wrestling purpose. Use C19 to progress from solo sprawl to a slow announced entry, cleared legs and controlled go-behind. Keep the familiar takedown or escape in review.",
+          "practice_cycle": {
+            "label": "Across successive Tuesdays",
+            "core_a": {
+              "title": "Tuesday A — learn and play",
+              "focus": "Teach C19’s receiving base and announced entry. Rehearse the solo sprawl, then clear legs before circling with a coach checking contact. Stop behind hips and release."
+            },
+            "core_b": {
+              "title": "Next Tuesday — remember and use",
+              "focus": "Recall clear-before-circle next Tuesday. Ready pairs complete the sprawl and go-behind cooperatively; children still learning the base use the solo or coach-assisted stage. Swap both jobs."
+            },
+            "extension": {
+              "title": "Later Tuesday — reinforce",
+              "focus": "Revisit C18 or C20 briefly. Use a mirror or circling game to complement defensive footwork, with rest between attempts."
+            }
+          },
+          "skills": [
+            "Sprawl with legs back and head up instead of dropping to the knees.",
+            "Clear legs before circling around the arm to the hips.",
+            "Hold a comfortable receiving base and release when asked."
+          ],
+          "move_ids": [
+            "P01",
+            "P02",
+            "P07",
+            "P11"
+          ],
+          "sequence_ids": [
+            "S01",
+            "S03"
+          ],
+          "series_ids": [],
+          "strength": {
+            "goal": "Control weight shifts.",
+            "activities": [
+              "Step sideways to a floor spot and freeze.",
+              "Small squat, stand and balance on one foot with a toe available for support."
+            ],
+            "dose": "Two rounds of 3–4 steps each way and 3 balances per side; rest 30 seconds.",
+            "progress": "Make the pause steadier before making the step quicker."
+          },
+          "endurance": {
+            "goal": "Stay active in short partner turns.",
+            "activities": [
+              "Noncontact mirror-and-freeze."
+            ],
+            "dose": "Four 20–25-second turns; change leaders and rest for 30–40 seconds after each.",
+            "progress": "Keep the follower successful. Add a direction only when both partners stay in their space."
+          },
+          "ready": [
+            "Controls solo sprawl and recovery.",
+            "Receiver holds the taught base under light coached contact.",
+            "Clears before circling and settles behind without jumping or neck pressure."
+          ],
+          "regress": "Separate solo sprawl, partner base and go-behind footwork. Use a coach positioning partner or marker until both partner roles are reliable.",
+          "activity_ids": [
+            "C19",
+            "C18",
+            "C20"
+          ]
         },
         {
-          id: 'pups-5', title: 'Put two or three movements together',
-          overview: "Link two or three familiar solo movements after each one is dependable. This is movement sequencing rather than a partner wrestling series; repeat the same sequence before adding a cue-based choice.",
-          practice_cycle: {"label":"Across successive Tuesdays","core_a":{"title":"Tuesday A — learn and play","focus":"Choose one short movement sequence, such as belly to base to stand. Pause at the positions, repeat it and use those movements in a game."},"core_b":{"title":"Next Tuesday — remember and use","focus":"Next Tuesday, let children recall the sequence. Offer a picture or coach cue to choose between two already-learned solo sequences; return to one if attention or balance fades."},"extension":{"title":"Later Tuesday — reinforce","focus":"Use a later practice for a small movement circuit with the same skills. Keep recovery generous and let children demonstrate a favorite successful action."}},
-          skills: ['Remember two actions in order.', 'Finish every sequence balanced.', 'Choose the correct solo sequence from a picture or coach cue.'],
-          move_ids: ['P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P11'], sequence_ids: ['S01', 'S02', 'S03'], series_ids: [],
-          strength: { goal: 'Repeat familiar body-weight movements well.', activities: ['Squat-and-reach, short crawl and base-to-stand stations.'], dose: 'One or two rounds: 4 squats, 5–8 seconds crawling and 3 rises. Allow 30–45 seconds between stations.', progress: 'Add a second round only if the last movement is as controlled as the first.' },
-          endurance: { goal: 'Move through a short activity circuit.', activities: ['Three short stations with a water or walking break.'], dose: '20–25 seconds of activity, then 35–45 seconds to recover and move stations; one or two rounds.', progress: 'Change the task to sustain interest; do not shrink recovery to make it harder.' },
-          ready: ['Links two movements without rushing.', 'Recovers stance before the next turn.', 'Can show a favorite sequence to a coach.'],
-          regress: 'Return to one action at a time or let the child follow a coach through the sequence.'
+          "id": "pups-5",
+          "title": "Break down, then learn a controlled turn",
+          "overview": "Add top work in separate lessons. C21 teaches a cooperative tight-waist chop to belly; C22 later introduces a half-nelson turn and brief settle after comfortable receiving. Review familiar neutral and bottom skills.",
+          "practice_cycle": {
+            "label": "Across successive Tuesdays",
+            "core_a": {
+              "title": "Tuesday A — learn and play",
+              "focus": "Choose C21 first: teach bending and lowering before top’s elbow fold and forward movement. On a later cycle, teach C22’s receiving turn and checked half position separately."
+            },
+            "core_b": {
+              "title": "Next Tuesday — remember and use",
+              "focus": "Retrieve the selected breakdown or turn next Tuesday. Ready pairs complete belly-down control or a slow half turn and two-second settle, then release. Introducing the breakdown does not automatically mean readiness for the half."
+            },
+            "extension": {
+              "title": "Later Tuesday — reinforce",
+              "focus": "After both lessons are dependable, coach one breakdown-to-half connection with a full pause and recheck at the belly. Others keep their successful stage. Use a familiar game afterward."
+            }
+          },
+          "skills": [
+            "Fold the elbow without striking and follow the receiver to belly.",
+            "When ready, use a checked half, footwork to a T and cooperative torso turn.",
+            "Settle briefly across the chest and release immediately."
+          ],
+          "move_ids": [
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P11"
+          ],
+          "sequence_ids": [
+            "S01",
+            "S02",
+            "S03"
+          ],
+          "series_ids": [],
+          "strength": {
+            "goal": "Repeat familiar body-weight movements well.",
+            "activities": [
+              "Squat-and-reach, short crawl and base-to-stand stations."
+            ],
+            "dose": "One or two rounds: 4 squats, 5–8 seconds crawling and 3 rises. Allow 30–45 seconds between stations.",
+            "progress": "Add a second round only if the last movement is as controlled as the first."
+          },
+          "endurance": {
+            "goal": "Move through a short activity circuit.",
+            "activities": [
+              "Three short stations with a water or walking break."
+            ],
+            "dose": "20–25 seconds of activity, then 35–45 seconds to recover and move stations; one or two rounds.",
+            "progress": "Change the task to sustain interest; do not shrink recovery to make it harder."
+          },
+          "ready": [
+            "Both receive the breakdown without stiff-arm posting.",
+            "Before the half, both receive a slow shoulder-and-torso turn and release immediately.",
+            "Top moves the feet rather than forcing the head or a blocked arm."
+          ],
+          "regress": "Keep breakdown and half as separate lessons. Return to receiver-only lowering/turning or coach-checked positioning; never make a blocked turn harder.",
+          "activity_ids": [
+            "C21",
+            "C22"
+          ]
         },
         {
-          id: 'pups-6', title: 'Keep favorites and celebrate progress',
-          overview: "Consolidate familiar skills whenever the group is ready. Children can revisit this stage throughout the season; progress is confidence, control, turn-taking and wanting another practice.",
-          practice_cycle: {"label":"Across successive Tuesdays","core_a":{"title":"Tuesday A — learn and play","focus":"Let each child choose a familiar stance, base or rising movement to show. Revisit one useful cue and use favorite body-control activities."},"core_b":{"title":"Next Tuesday — remember and use","focus":"At the next Tuesday practice, repeat the choices with a different leader or game. Notice what needs less prompting and celebrate a specific improvement."},"extension":{"title":"Later Tuesday — reinforce","focus":"Use another Tuesday to reconnect any skill that became uncertain or welcome returning children. Keep the same successful tasks available rather than requiring a new technique."}},
-          skills: ['Lead a familiar movement for the group.', 'Choose and explain a simple cue.', 'Combine movement, balance and turn-taking in a game.'],
-          move_ids: ['P01', 'P02', 'P05', 'P06', 'P08', 'P11'], sequence_ids: ['S01', 'S02', 'S03'], series_ids: [],
-          strength: { goal: 'Keep movement varied and successful.', activities: ['Children select two familiar body-control activities.'], dose: 'Two easy rounds of 3–5 repetitions or 5–10 seconds per activity, with 30–45 seconds between turns.', progress: 'Show better balance or independence rather than seeking a maximum score.' },
-          endurance: { goal: 'Enjoy repeated play with recovery.', activities: ['Favorite noncontact movement game with rotating roles.'], dose: 'Four to six 20–30-second turns with 30–45 seconds of recovery; stop while the game remains successful.', progress: 'Maintain the dose when enthusiasm and control are good. More minutes are not a required graduation step.' },
-          ready: ['Can show a stance, base and rise with little prompting.', 'Stops and shares space consistently.', 'Can name something learned and something enjoyed.'],
-          regress: 'Return to the child’s favorite simpler version and finish with a successful turn.'
+          "id": "pups-6",
+          "title": "Use a small wrestling toolkit",
+          "overview": "Revisit the five foundation lessons across practices: takedown, sprawl/go-behind, escape, breakdown and controlled turn. Choose one or two familiar tasks per day and each child’s ready stage; progress is useful wrestling, control and wanting to return.",
+          "practice_cycle": {
+            "label": "Across successive Tuesdays",
+            "core_a": {
+              "title": "Tuesday A — learn and play",
+              "focus": "Choose one familiar C18–C22 task to rehearse, then review a second position briefly. Children name the start, partner’s job and stop before short cooperative attempts."
+            },
+            "core_b": {
+              "title": "Next Tuesday — remember and use",
+              "focus": "Repeat those tasks next Tuesday with less prompting. Ready pairs may link a taught takedown to top position or breakdown to half with a pause; only announced actions, no surprise counters or returns."
+            },
+            "extension": {
+              "title": "Later Tuesday — reinforce",
+              "focus": "Use another Tuesday for catch-up, a coach-led station or a favorite useful technique. End with a familiar game and celebrate concrete wrestling or partner-care improvement."
+            }
+          },
+          "skills": [
+            "Show a familiar takedown or defense at the child’s ready stage.",
+            "Demonstrate an escape or controlled top task and release.",
+            "Recognize when to reset, swap and ask for help."
+          ],
+          "move_ids": [
+            "P01",
+            "P02",
+            "P05",
+            "P06",
+            "P08",
+            "P11"
+          ],
+          "sequence_ids": [
+            "S01",
+            "S02",
+            "S03"
+          ],
+          "series_ids": [],
+          "strength": {
+            "goal": "Keep movement varied and successful.",
+            "activities": [
+              "Children select two familiar body-control activities."
+            ],
+            "dose": "Two easy rounds of 3–5 repetitions or 5–10 seconds per activity, with 30–45 seconds between turns.",
+            "progress": "Show better balance or independence rather than seeking a maximum score."
+          },
+          "endurance": {
+            "goal": "Enjoy repeated play with recovery.",
+            "activities": [
+              "Favorite noncontact movement game with rotating roles."
+            ],
+            "dose": "Four to six 20–30-second turns with 30–45 seconds of recovery; stop while the game remains successful.",
+            "progress": "Maintain the dose when enthusiasm and control are good. More minutes are not a required graduation step."
+          },
+          "ready": [
+            "Shows start and finish of two familiar tasks with little prompting.",
+            "Both partner roles stay controlled across repeated brief attempts.",
+            "Stops, releases and names something learned and enjoyed."
+          ],
+          "regress": "Return to one familiar task or an earlier stage within its Pup card. Give a coach-assisted attempt and successful finish rather than forcing every child through every technique.",
+          "activity_ids": [
+            "C18",
+            "C19",
+            "C20",
+            "C21",
+            "C22"
+          ]
         }
       ]
     },
@@ -830,11 +1047,240 @@ window.GRINDSTONE_PATHWAY = {
     },
     {
       id: 'C17', title: 'Familiar-skill review', type: 'drill', age_groups: ['4-6', '7-10', '11-14'], minutes: 6,
-      instructions: 'Choose one familiar move that this group has already learned. Keep its existing guide available and name the start position, one useful cue and the point where each attempt ends. Pups use a solo foundation such as P01 stance, P03 level change or P04 level change and step; they do not add a partner takedown or turn. For older groups, select one established staple such as an entry, stand-up or controlled half-nelson lesson only when both the movement and receiving have already been taught. Spend one minute demonstrating the selected version. Use four one-minute turns: up to 30 seconds for a few careful attempts, then 30 seconds to recover, give one correction and change roles. Pups make one or two attempts in 10–15 seconds and rest for the remaining time. Partner versions give each wrestler two active turns. Reset to the same foundation after every attempt. Use the last minute to ask athletes for the cue and record whether to repeat or simplify it next practice. Success is two controlled attempts with the agreed stop, not winning or adding a new option.',
+      instructions: 'Choose one familiar move that this group has already learned. Keep its existing guide available and name the start position, one useful cue and the point where each attempt ends. Pups review a familiar solo foundation or an already-taught stage from C18–C22. Cooperative takedowns, escapes, breakdowns and turns are options after the selected card’s receiving, control and release checks; use the earlier stage for children not ready. For older groups, select one established staple such as an entry, stand-up or controlled half-nelson lesson only when both the movement and receiving have already been taught. Spend one minute demonstrating the selected version. Use four one-minute turns: up to 30 seconds for a few careful attempts, then 30 seconds to recover, give one correction and change roles. Pups make one or two attempts in 10–15 seconds and rest for the remaining time. Partner versions give each wrestler two active turns. Reset to the same foundation after every attempt. Use the last minute to ask athletes for the cue and record whether to repeat or simplify it next practice. Success is two controlled attempts with the agreed stop, not winning or adding a new option.',
       cues: ['Show the familiar start.', 'Use our one cue.', 'Stop, reset, repeat.'],
-      boundary: 'This card organizes review; it does not replace the selected move instructions. Keep that guide’s prerequisites, permitted contact and receiving limits. Use no contact for Pups. Stop and simplify when an athlete cannot recall the start or maintain the agreed stop; no surprise resistance, unannounced finish or forced turn.',
+      boundary: 'This card organizes review; it does not replace the selected move instructions. Keep that guide’s prerequisites, permitted contact and receiving limits. For Pups, retain the chosen C18–C22 stage and its partner/receiving limits; solo preparation remains available. Stop and simplify when an athlete cannot recall the start or maintain the agreed stop; no surprise resistance, unannounced finish or forced turn.',
       sourceNote: 'Grindstone written review format based on the meeting’s request for recurring staples. Kolat describes revisiting stance, motion and foundational techniques throughout training and teaching individual skills before combining them. This source does not prescribe our six-minute dose or approve every move for every age; the curriculum title describes years of learning, not ages 4–6.',
       sources: [{ title: 'Cary Kolat — teaching curriculum: repeated foundations before combinations', url: 'https://www.kolat.com/blog/kolatcom-4-6-year-teaching-curriculum-for-new-to-novice-wrestlers-by-cary-kolat' }]
+    },
+    {
+      "id": "C18",
+      "title": "Pup double leg: entry to controlled finish",
+      "positions": [
+        "neutral"
+      ],
+      "purposes": [
+        "entry",
+        "takedown"
+      ],
+      "move_ids": [
+        "B07"
+      ],
+      "steps": [
+        "Solo first: lower through knees and hips, step the right foot between imaginary feet and touch the right knee softly down. Keep the chest up and bring the left trail foot forward to recover balance.",
+        "Teach the receiver to lower onto the left hip and side without a straight-arm post. With a cooperative matched partner, keep the head snug at their right ribs; left hand cups their right knee and right hand cups their left knee. Pause, release and reset until the capture is balanced.",
+        "For a ready pair, step the left trail foot forward outside their right foot and bring the right knee off the mat. Take short steps diagonally right across their stance while gathering their knees left; do not lift.",
+        "Receiver lowers to the rehearsed left hip and side. Follow above the hips and settle gradually without dropping weight. Freeze, release and move clear on the coach’s call.",
+        "Swap roles after each attempt. Success is the chosen balanced entry or controlled landing and top position, with prompt stopping; no surprise resistance or second attack."
+      ],
+      "cues": [
+        "Chest up; trail foot up.",
+        "Drive right; knees left.",
+        "Low finish, settle, release."
+      ],
+      "readiness": "Before contact: controlled level change and entry step. Before the finish: both can receive a low side landing without straight-arm posting; attacker can pause the capture, move diagonally and stop without lifting. Four-year-olds and brand-new wrestlers may stay with solo positioning or a coach-assisted start. Ready, experienced five- and six-year-olds can progress to the cooperative finish after demonstrating both roles, immediate release and the stop signal. Age alone does not advance the stage.",
+      "boundary": "No standing lift, dump, head-down drive, trapped-knee twist or straight-arm posting. Return to positioning if landing or control is uncertain. A coach positioning partner never drops adult weight onto a child.",
+      "type": "drill",
+      "age_groups": [
+        "4-6"
+      ],
+      "minutes": 4,
+      "uses": [
+        "teach",
+        "review",
+        "reps"
+      ],
+      "instructions": "Choose the entry-and-pause stage or, after low side receiving is reliable, complete a low double-leg takedown and settle above the hips. Use a clear mat space for each pair, away from traffic. Begin solo or with a coach as a positioning partner, then use willing children matched for size and control. Teach the receiving role before adding the finish. Four-minute clock: one minute to demonstrate and check the stage; four 30-second turns (one careful attempt in up to 15 seconds, then feedback, rest and swap); one minute to review. Each child gets two active turns. A coach can join the odd child. Repeat the block on another day if the receiving lesson needs more time.",
+      "sourceNote": "Grindstone staged adaptation of B07. The linked full guides supply the technique; use only the stage taught here. USA Wrestling discusses basic technique progression for ages 5–8. This four-minute format and individual Pup readiness choices are our coaching adaptation, not an age-four prescription.",
+      "sources": [
+        {
+          "title": "USA Wrestling — Techniques by Age: fundamentals and skill-based progression",
+          "url": "https://www.themat.com/news/2019/october/10/techniques-by-age"
+        }
+      ]
+    },
+    {
+      "id": "C19",
+      "title": "Pup sprawl, clear and go behind",
+      "positions": [
+        "neutral"
+      ],
+      "purposes": [
+        "defend"
+      ],
+      "move_ids": [
+        "B11"
+      ],
+      "steps": [
+        "Rehearse a solo sprawl: extend legs back and lower hips under control, head up and knees off the mat. Recover without diving or landing heavily.",
+        "Coach models the slow low entry and receiving base. With a ready pair, sprawl gently with the chest above the upper back and pressure through shoulders, never neck. Shooter releases the legs and forms a steady hands-and-knees base.",
+        "Stay square and move back until both legs are free. To circle right, slide the right hand between your chest and their head; block their left triceps with the back of your hand.",
+        "Take short steps right around their left shoulder, maintaining gentle chest contact. Reach the left hand to cup their left thigh above the knee; continue behind the hips.",
+        "Release the arm block, settle with separate waist-and-arm control, then bring knees underneath. Freeze, release and swap. Reset if a leg remains caught or the receiver cannot hold the base."
+      ],
+      "cues": [
+        "Legs back; head up.",
+        "Clear first, then circle.",
+        "Behind the hips; freeze and release."
+      ],
+      "readiness": "Controlled solo sprawl, comfortable receiving base and coach-demonstrated separate waist-and-arm control. Both children understand the entry is announced, the shooter releases and no one tries to win the rehearsal. Four-year-olds and brand-new wrestlers may stay with solo positioning or a coach-assisted start. Ready, experienced five- and six-year-olds can progress to the cooperative finish after demonstrating both roles, immediate release and the stop signal. Age alone does not advance the stage.",
+      "boundary": "No jumping onto a partner, head driven into the mat, forced arm twisting or circling on a trapped leg. Do not replace the sprawl with dropping onto both knees; knees come under after rear control. Keep pressure light enough for the receiving base.",
+      "type": "drill",
+      "age_groups": [
+        "4-6"
+      ],
+      "minutes": 4,
+      "uses": [
+        "teach",
+        "review",
+        "reps"
+      ],
+      "instructions": "Progress from a solo sprawl to defending a slow announced entry, clearing the legs and reaching rear control. The shooter releases and holds a comfortable base while the defender circles. Use a clear mat space for each pair, away from traffic. Begin solo or with a coach as a positioning partner, then use willing children matched for size and control. Teach the receiving role before adding the finish. Four-minute clock: one minute to demonstrate and check the stage; four 30-second turns (one careful attempt in up to 15 seconds, then feedback, rest and swap); one minute to review. Each child gets two active turns. A coach can join the odd child. Repeat the block on another day if the receiving lesson needs more time.",
+      "sourceNote": "Grindstone staged adaptation of B11. The linked full guides supply the technique; use only the stage taught here. USA Wrestling discusses basic technique progression for ages 5–8. This four-minute format and individual Pup readiness choices are our coaching adaptation, not an age-four prescription.",
+      "sources": [
+        {
+          "title": "USA Wrestling — Techniques by Age: fundamentals and skill-based progression",
+          "url": "https://www.themat.com/news/2019/october/10/techniques-by-age"
+        }
+      ]
+    },
+    {
+      "id": "C20",
+      "title": "Pup stand-up, clear and face",
+      "positions": [
+        "bottom"
+      ],
+      "purposes": [
+        "escape"
+      ],
+      "move_ids": [
+        "B17",
+        "B21"
+      ],
+      "steps": [
+        "Solo first: from stable base, plant the left foot beside the right knee, lift the chest and rise onto both feet with knees bent. Practice turning feet with hips and finishing in a low stance.",
+        "Coach the rider’s following role before pairing. Start with the rider on bottom’s left, hands separate. Bottom grasps the rider’s right waist hand near the wrist with the right hand; hold the whole hand, not fingers.",
+        "Bring the left foot up, lift the chest and bring the left elbow back close to the body without striking. Rise with balance and hand control; rider follows on their feet without squeezing or pulling back.",
+        "Hold the captured hand away from the waist and move hips forward until the arm clears the right hip. Retain the hand and turn right to face, moving both feet. Do not spin against an arm still around the waist.",
+        "Finish in low stance. Once rear contact is gone, release, move clear and swap. If the rise and clearance cannot yet be combined, rehearse standing clearance with a coach or repeat the solo rise."
+      ],
+      "cues": [
+        "Foot and chest up.",
+        "Hand off; hips clear.",
+        "Move the feet and face."
+      ],
+      "readiness": "Stable base, balanced solo rise and turn, whole-hand control, and a rider who follows and releases. Teach standing hand/hip clearance separately if the full escape is not yet controlled. Four-year-olds and brand-new wrestlers may stay with solo positioning or a coach-assisted start. Ready, experienced five- and six-year-olds can progress to the cooperative finish after demonstrating both roles, immediate release and the stop signal. Age alone does not advance the stage.",
+      "boundary": "No finger peeling, wrist twisting, elbow strikes, squeezing, lifting or mat returns. Stop for lost balance or an arm that will not clear; reset rather than wrenching or dragging.",
+      "type": "drill",
+      "age_groups": [
+        "4-6"
+      ],
+      "minutes": 4,
+      "uses": [
+        "teach",
+        "review",
+        "reps"
+      ],
+      "instructions": "Build from a solo balanced rise to a cooperative stand-up escape: control the whole hand, clear the hips and finish facing. The rider follows and releases; no mat return. Use a clear mat space for each pair, away from traffic. Begin solo or with a coach as a positioning partner, then use willing children matched for size and control. Teach the receiving role before adding the finish. Four-minute clock: one minute to demonstrate and check the stage; four 30-second turns (one careful attempt in up to 15 seconds, then feedback, rest and swap); one minute to review. Each child gets two active turns. A coach can join the odd child. Repeat the block on another day if the receiving lesson needs more time.",
+      "sourceNote": "Grindstone staged adaptation of B17 / B21. The linked full guides supply the technique; use only the stage taught here. USA Wrestling discusses basic technique progression for ages 5–8. This four-minute format and individual Pup readiness choices are our coaching adaptation, not an age-four prescription.",
+      "sources": [
+        {
+          "title": "USA Wrestling — Techniques by Age: fundamentals and skill-based progression",
+          "url": "https://www.themat.com/news/2019/october/10/techniques-by-age"
+        }
+      ]
+    },
+    {
+      "id": "C21",
+      "title": "Pup tight-waist chop to belly",
+      "positions": [
+        "top"
+      ],
+      "purposes": [
+        "breakdown"
+      ],
+      "move_ids": [
+        "B22"
+      ],
+      "steps": [
+        "Receiving first, without a rider: from base, bend an elbow and lower under control onto forearms, then belly. Teach this before top applies pressure; do not collapse onto a stiff arm.",
+        "Coach checks top’s start on the partner’s left: left hand at left elbow, right hand at navel. Wait for the signal; hands separate and chest behind shoulders.",
+        "Draw the right waist arm snug around the belly. Place the left forearm outside the left arm at the elbow and fold that elbow inward toward the belly with a short movement, without striking.",
+        "Drive gently forward from the toes while bringing the rear right knee against the buttocks to move the hips over the bending arm. Bottom cooperatively lowers to forearms, then belly. Top follows with feet and chest without dropping weight.",
+        "Pause at controlled belly-down position, ease contact and release. Swap roles. If the elbow does not bend comfortably, reset; do not push harder to force the finish."
+      ],
+      "cues": [
+        "Bend and lower first.",
+        "Fold the elbow; move forward.",
+        "Belly, freeze, release."
+      ],
+      "readiness": "A stable base and controlled lowering onto forearms and belly. Before the full breakdown, both demonstrate the receiving action, a small elbow fold, gentle following pressure and immediate release. Four-year-olds and brand-new wrestlers may stay with solo positioning or a coach-assisted start. Ready, experienced five- and six-year-olds can progress to the cooperative finish after demonstrating both roles, immediate release and the stop signal. Age alone does not advance the stage.",
+      "boundary": "No blows, forced straight-arm collapse, wrist twisting or neck pressure. Stop for elbow/shoulder discomfort or a trapped arm. This card ends at the belly; B22’s later wrist ride is a separate teaching choice.",
+      "type": "drill",
+      "age_groups": [
+        "4-6"
+      ],
+      "minutes": 4,
+      "uses": [
+        "teach",
+        "review",
+        "reps"
+      ],
+      "instructions": "Teach the receiver to bend the elbow and lower, then progress to a cooperative tight-waist chop ending on the belly. Release there; do not add an unlearned ride or turn. Use a clear mat space for each pair, away from traffic. Begin solo or with a coach as a positioning partner, then use willing children matched for size and control. Teach the receiving role before adding the finish. Four-minute clock: one minute to demonstrate and check the stage; four 30-second turns (one careful attempt in up to 15 seconds, then feedback, rest and swap); one minute to review. Each child gets two active turns. A coach can join the odd child. Repeat the block on another day if the receiving lesson needs more time.",
+      "sourceNote": "Grindstone staged adaptation of B22. The linked full guides supply the technique; use only the stage taught here. USA Wrestling discusses basic technique progression for ages 5–8. This four-minute format and individual Pup readiness choices are our coaching adaptation, not an age-four prescription.",
+      "sources": [
+        {
+          "title": "USA Wrestling — Techniques by Age: fundamentals and skill-based progression",
+          "url": "https://www.themat.com/news/2019/october/10/techniques-by-age"
+        }
+      ]
+    },
+    {
+      "id": "C22",
+      "title": "Pup half nelson: turn and settle",
+      "positions": [
+        "top"
+      ],
+      "purposes": [
+        "turn",
+        "pin"
+      ],
+      "move_ids": [
+        "B26",
+        "B28"
+      ],
+      "steps": [
+        "Receiving first: comfortably rotate belly to side and back with shoulder and torso moving together. Coach checks position and release before children pair. New children may rehearse footwork beside a coach without applying a half.",
+        "Start beside their left shoulder facing the same direction. Slide the left arm under their left armpit, palm behind the head; reach the right hand under their chest to block the far right elbow from posting. Keep the shoulder free to rotate; do not force the head.",
+        "Lift the left elbow beneath the upper arm and walk feet out left and toward the head until bodies make a T. Use gradual chest pressure from the toes to turn the torso onto the right side. Stop if the body cannot rotate with the shoulder.",
+        "Continue the cooperative turn with the half deeper behind the head, keeping the upper arm inside it. Settle chest across upper chest, hips low and feet wide. As in B28, control the far wrist close to the trunk with the free hand; hands remain separate.",
+        "Hold the comfortable position for about two seconds. On stop, ease chest pressure, release wrist, slide out the half arm and move clear. Swap. Reset a blocked entry or uncertain turn; add no resistance or neck bridge."
+      ],
+      "cues": [
+        "Arm stays in; feet to a T.",
+        "Turn the body together.",
+        "Settle gently; release on stop."
+      ],
+      "readiness": "Only after a controlled breakdown/base lesson, immediate stop/tap release and a slow receiving turn demonstrated by both. Coach must watch the entire attempt. This is not a first-contact lesson. Four-year-olds and brand-new wrestlers may stay with solo positioning or a coach-assisted start. Ready, experienced five- and six-year-olds can progress to the cooperative finish after demonstrating both roles, immediate release and the stop signal. Age alone does not advance the stage.",
+      "boundary": "No second half, clasped hands around the head, neck bridge, forced head movement or elbow forced behind the head. Release for a tap, stop, throat pressure, breathing difficulty, neck/shoulder discomfort or trapped body. If the upper arm slips out or neck twists, release and reset.",
+      "type": "drill",
+      "age_groups": [
+        "4-6"
+      ],
+      "minutes": 4,
+      "uses": [
+        "teach",
+        "review",
+        "reps"
+      ],
+      "instructions": "After receiving is taught, progress from a checked half-nelson position to a slow cooperative turn and brief chest-to-chest settle. This is an actual turn and pinning position followed by release, not a hold-down contest. Use a clear mat space for each pair, away from traffic. Begin solo or with a coach as a positioning partner, then use willing children matched for size and control. Teach the receiving role before adding the finish. Four-minute clock: one minute to demonstrate and check the stage; four 30-second turns (one careful attempt in up to 15 seconds, then feedback, rest and swap); one minute to review. Each child gets two active turns. A coach can join the odd child. Repeat the block on another day if the receiving lesson needs more time.",
+      "sourceNote": "Grindstone staged adaptation of B26 / B28. The linked full guides supply the technique; use only the stage taught here. USA Wrestling discusses basic technique progression for ages 5–8. This four-minute format and individual Pup readiness choices are our coaching adaptation, not an age-four prescription.",
+      "sources": [
+        {
+          "title": "USA Wrestling — Techniques by Age: fundamentals and skill-based progression",
+          "url": "https://www.themat.com/news/2019/october/10/techniques-by-age"
+        }
+      ]
     }
   ]
 };

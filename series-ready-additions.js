@@ -5,7 +5,7 @@ window.GRINDSTONE_SERIES_READY_ADDITIONS = {
   series: [
     {
       id: 'S30', title: 'Standing single-leg defense series', position: 'neutral', category: 'counters',
-      age_groups: ['11-14'], tier: 'Advanced', minutes: 8,
+      age_groups: ['11-14'], tier: 'Intermediate', minutes: 8,
       summary: 'Two defensive options from the same low, head-inside single-leg hold: establish the standing whizzer position or clear the leg through an available elbow opening.',
       foundation: 'Both wrestlers stand. The attacker holds just above the defender’s right knee, head inside at the right ribs, captured foot low between the attacker’s thighs. Begin each attempt from this shared position.',
       setup: 'Review A09 and A11 separately first. Use matched, experienced pairs and a light grip. The attacker presents the agreed start and follows balance steps; this is a separate defense lesson, not resistance added to N24’s introductory pickup drill.',
@@ -28,7 +28,7 @@ window.GRINDSTONE_SERIES_READY_ADDITIONS = {
       move_ids: ['A09','A11'],
       readiness: 'Experienced 11–14 athletes who already know both guides. The series is not assigned to Pups; age does not replace the coach’s balance and receiving check.',
       boundaries: 'No high-leg start, knee twist, shoulder wrench, chin lift, strike or throw. Attacker releases before either wrestler loses balance. Do not force a transition between the two grips.',
-      verification: 'Existing A09 and A11 instructions are reused. The publisher’s written Cejudo explanation and the school unit’s elbow-lift lesson support their distinct mechanics. This choice exercise is Grindstone planning, not a claim that a single video demonstrates both exact variants; no new footage review.',
+      verification: 'Existing A09 and A11 instructions are reused. The publisher’s written Cejudo explanation and the school unit’s elbow-lift lesson support their distinct mechanics. This choice exercise is Grindstone planning, not a claim that a single video demonstrates both exact variants; 2026-10-24 visual checkpoints of the Cejudo clip confirm a different linked-hand/head-control continuation; it is not an exact A11 demonstration. A11 now uses a coach demonstration and its written elbow-lift source.',
       sources: [
         {title:'Henry Cejudo — standing single-leg defense, publisher explanation',url:'https://fanaticwrestling.com/blogs/news/single-leg-defense-with-henry-cejudo',note:'Written standing-whizzer explanation; its later chin lift and S-grip continuation are not included.'},
         {title:'Horaski and Garcia — Wrestling Unit, Lesson 10',url:'https://www.pelinks4u.org/naspeforum/discus/messages/1239/wrestling-3207.pdf',note:'Written two-hand elbow-lift defense; historical teaching material, not current rules guidance.'}
@@ -60,7 +60,7 @@ window.GRINDSTONE_SERIES_READY_ADDITIONS = {
       move_ids: ['B22','B23'],
       readiness: 'Ready 7–10 and 11–14 partners after independent instruction of both breakdowns. Pups retain their movement and base work rather than this partner-pressure series.',
       boundaries: 'No straight-arm collapse, neck pressure, toe twisting or sideways knee force. Keep the waist and wrist controls separate as taught. Stop for pain, loss of receiving position or a coach signal.',
-      verification: 'Reuses the existing B22/B23 guides and their source limits. B25 is a separately set related lesson because its wrist hand differs from B22’s finish. The choice cues, timed block and restricted rebuild are original Grindstone coaching design. No new video-match claim; the ankle-rides reference remains a family overview.',
+      verification: 'Reuses the existing B22/B23 guides and their source limits. B25 is a separately set related lesson because its wrist hand differs from B22’s finish. The choice cues, timed block and restricted rebuild are original Grindstone coaching design. On 2026-10-24, paused playback checkpoints of the Kolat chop and USA Wrestling ankle-rides videos were reviewed. B22 remains a combined-source adaptation; B23 now points to the later near-ankle segment around 0:55–1:15. Narration was not transcribed.',
       sources: [
         {title:'Tim Flynn — Tight Waist Chop, publisher explanation',url:'https://www.championshipproductions.com/news/2014/10/01/breakdown-your-opponent-with-the-tight-waist-chop/',note:'Written explanation of forward pressure and arm chop; existing B22 gives the complete selected variant.'},
         {title:'College Park Wrestling Technique Handbook',url:'https://cdn1.sportngin.com/attachments/document/0e6c-2411143/Advanced_techbible.docx.pdf',note:'Written tight-waist and ankle-breakdown references; this series retains B23’s near-ankle version.'},

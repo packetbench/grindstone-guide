@@ -22,7 +22,7 @@
   const strings = value => Array.isArray(value) ? value.filter(item => typeof item === 'string') : typeof value === 'string' && value ? [value] : [];
   const unique = values => [...new Set(values.filter(Boolean))];
   const norm = value => String(value || '').replace(/[\u2010-\u2015]/g,'-').trim();
-  const tierAges = { Pup: ages, Beginner: ages.slice(1), Advanced: ages.slice(2) };
+  const tierAges = { Pup: ages, Beginner: ages.slice(1), Intermediate: ages.slice(1), Advanced: ages.slice(2) };
   // These exact audience labels already govern the original game collection's suggestions.
   const gameAges = { 'Pup / all ages': ages, 'Ready beginners 7-14': ages.slice(1), 'Ready older athletes; skills verified': ages.slice(2) };
   const coreByMove = {B17:'stand-up',B21:'stand-up',B07:'double-leg',N24:'single-leg',B08:'single-leg',B22:'breakdown',B26:'half-nelson',B28:'half-nelson',N25:'mat-return'};
@@ -108,9 +108,8 @@
   assign(extraUses,'C13','reps');
   assign(extraUses,'C14','situational');
   assign(extraUses,'C17','review');
-  assign(positionOverrides,'S26 S27 S31 N34 N36','top');
+  assign(positionOverrides,'S27 S31 N36','top');
   assign(positionOverrides,'S28 S30 N41 N42','neutral');
-  assign(purposeOverrides,'S26 N34','turn pin');
   assign(purposeOverrides,'S27','turn pin');
   assign(purposeOverrides,'N36','turn');
   assign(purposeOverrides,'S28','entry takedown');
@@ -118,7 +117,7 @@
   assign(purposeOverrides,'N42','takedown');
   assign(purposeOverrides,'S30','defend');
   assign(purposeOverrides,'S31','breakdown ride');
-  assign(extraUses,'N34 N36 N41 N42','reaction');
+  assign(extraUses,'N36 N41 N42','reaction');
   const aliases = {N24:['single leg','single-leg entry','head inside'],B08:['single leg finish','run the pipe'],B17:['stand up','stand-up'],B26:['half','half-nelson'],B28:['half finish'],N25:['hip dump','mat return','standing return'],G31:['ankle tag','toe tag','touch only']};
   function ageGuidance(source, guide, kind, tier) {
     const explicit = unique([...strings(source.age_groups),...strings(guide.age_groups)].map(norm)).filter(value => ages.includes(value));
@@ -156,15 +155,19 @@
   function add(source, kind, canonical, guide = {}) {
     const id = source.id, category = categoryFor(source,kind), tier = guide.tier || source.tier || '';
     const categoryLabel = shared.categories.find(item => item.id === category)?.label || (source.kind === 'foundation' ? 'Core skills' : source.category || '');
-    const positions = positionOverrides[id] || categoryPositions[category] || [];
-    let purposes = purposeOverrides[id] || categoryPurposes[category] || [];
-    if (kind === 'activity' && !purposeOverrides[id]) purposes = ['strength','endurance'].includes(source.type) ? [source.type] : ['movement'];
+    // Adapted activities may declare their actual starting position and teaching endpoint.
+    // Empty explicit arrays stay empty; a preparation task must not inherit a finish claim.
+    const activityPositions = kind === 'activity' && Array.isArray(source.positions) ? strings(source.positions) : null;
+    const activityPurposes = kind === 'activity' && Array.isArray(source.purposes) ? strings(source.purposes) : null;
+    const positions = positionOverrides[id] || activityPositions || categoryPositions[category] || [];
+    let purposes = purposeOverrides[id] || activityPurposes || categoryPurposes[category] || [];
+    if (kind === 'activity' && !purposeOverrides[id] && !activityPurposes) purposes = ['strength','endurance'].includes(source.type) ? [source.type] : ['movement'];
     let uses = [];
     if (kind === 'game' || source.kind === 'game') uses = ['game'];
     else if (kind === 'written' || kind === 'kyle' || (kind === 'facebook' && strings(source.steps).length)) uses = ['review','teach','reps'];
     else if (kind === 'series') uses = source.kind === 'foundation' ? ['review','teach','reps'] : ['review','teach','reps','reaction','situational'];
     else if (kind === 'sequence') uses = ['review','reps'];
-    else if (kind === 'activity') uses = {warmup:['warmup'],drill:['reps'],strength:['strength'],endurance:['endurance']}[source.type] || [];
+    else if (kind === 'activity') uses = Array.isArray(source.uses) ? strings(source.uses) : {warmup:['warmup'],drill:['reps'],strength:['strength'],endurance:['endurance']}[source.type] || [];
     uses = unique([...uses,...(extraUses[id] || [])]);
     const memberships = membershipsFor(id);
     const isCore = memberships.some(item => item.id === 'S24' && /^Essential(?:\s|\u00b7|$)/i.test(item.role));

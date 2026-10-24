@@ -10,11 +10,6 @@
       reverse: "Start with the taught hand-on-elbow collar-tie pass. The partner's turn closes the path behind while leaving a close knee target. Rehearse the knee-block checkpoint before combining the two actions."
     },
     {
-      from: "A23", to: "N34", kind: "continuation",
-      condition: "Before the bar turn begins, the far-wrist grip may be denied while the opposite armpit stays open. N34 teaches the opposite-half option from that short bar. Learn the mirrored half, side change and early bar release separately before combining them.",
-      reverse: "Use A23's established short bar, with the free hand still available. This is an alternate attack before the first turn, not a reversal of direction after the partner's shoulder has taken weight."
-    },
-    {
       from: "B07", to: "B11", kind: "response",
       condition: "Your partner may sprawl against the low double-leg entry. Teach the response separately: the defender clears both legs before circling behind. This does not make B11 a defense for every kind of shot.",
       reverse: "Use against the low double-leg entry. Stay square until both legs clear the hands, then take the taught go-behind. Do not add a surprise sprawl to the introductory takedown drill."
