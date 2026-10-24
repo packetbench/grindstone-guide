@@ -4,7 +4,7 @@ const fs = require('node:fs'), path = require('node:path'), vm = require('node:v
 const base = path.resolve(__dirname,'..');
 const context = {window:{},URL,URLSearchParams};
 vm.createContext(context);
-const files = ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-top-additions.js','series-neutral-additions.js','series-ready-additions.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js'];
+const files = ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-top-additions.js','series-neutral-additions.js','series-ready-additions.js',"series-neutral-next.js","series-top-next.js","series-defense-next.js",'series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js',"series-teaching-groups.js"];
 for (const file of files) vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
 const before = JSON.stringify(context.window);
 vm.runInContext(fs.readFileSync(path.join(base,'catalog-tags.js'),'utf8'),context,{filename:'catalog-tags.js'});
@@ -86,7 +86,7 @@ check('series tier follows the entrance while later options retain their own rea
   assert.equal(half.branches.find(b=>b.move_ids.includes('B26')).tier,'Beginner');
   assert.equal(half.branches.find(b=>b.move_ids.includes('N21')).tier,'Intermediate');
   assert(half.branches.find(b=>b.move_ids.includes('N21')).readiness.startsWith('Intermediate option:'));
-  assert.deepEqual(plain(api.resolve('series:S21').age_groups),['11-14'],'Tier correction must not change explicit group guidance');
+  assert.deepEqual(plain(api.resolve('series:S21').age_groups),['7-10','11-14'],'Half entrance should include ready younger partners');
 });
 check('adapted activity facets retain their declared endpoint and reject unknown tags',() => {
   const sample={window:{GRINDSTONE_PATHWAY:{activities:[

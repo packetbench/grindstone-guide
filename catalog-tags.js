@@ -155,19 +155,20 @@
   function add(source, kind, canonical, guide = {}) {
     const id = source.id, category = categoryFor(source,kind), tier = guide.tier || source.tier || '';
     const categoryLabel = shared.categories.find(item => item.id === category)?.label || (source.kind === 'foundation' ? 'Core skills' : source.category || '');
-    // Adapted activities may declare their actual starting position and teaching endpoint.
+    // Guides and activities may declare their actual starting position and teaching endpoint.
     // Empty explicit arrays stay empty; a preparation task must not inherit a finish claim.
-    const activityPositions = kind === 'activity' && Array.isArray(source.positions) ? strings(source.positions) : null;
-    const activityPurposes = kind === 'activity' && Array.isArray(source.purposes) ? strings(source.purposes) : null;
-    const positions = positionOverrides[id] || activityPositions || categoryPositions[category] || [];
-    let purposes = purposeOverrides[id] || activityPurposes || categoryPurposes[category] || [];
-    if (kind === 'activity' && !purposeOverrides[id] && !activityPurposes) purposes = ['strength','endurance'].includes(source.type) ? [source.type] : ['movement'];
+    const explicitPositions = Array.isArray(source.positions) ? strings(source.positions) : null;
+    const explicitPurposes = Array.isArray(source.purposes) ? strings(source.purposes) : null;
+    const positions = positionOverrides[id] || explicitPositions || categoryPositions[category] || [];
+    let purposes = purposeOverrides[id] || explicitPurposes || categoryPurposes[category] || [];
+    if (kind === 'activity' && !purposeOverrides[id] && !explicitPurposes) purposes = ['strength','endurance'].includes(source.type) ? [source.type] : ['movement'];
     let uses = [];
     if (kind === 'game' || source.kind === 'game') uses = ['game'];
     else if (kind === 'written' || kind === 'kyle' || (kind === 'facebook' && strings(source.steps).length)) uses = ['review','teach','reps'];
     else if (kind === 'series') uses = source.kind === 'foundation' ? ['review','teach','reps'] : ['review','teach','reps','reaction','situational'];
     else if (kind === 'sequence') uses = ['review','reps'];
     else if (kind === 'activity') uses = Array.isArray(source.uses) ? strings(source.uses) : {warmup:['warmup'],drill:['reps'],strength:['strength'],endurance:['endurance']}[source.type] || [];
+    if (Array.isArray(source.uses)) uses = strings(source.uses);
     uses = unique([...uses,...(extraUses[id] || [])]);
     const memberships = membershipsFor(id);
     const isCore = memberships.some(item => item.id === 'S24' && /^Essential(?:\s|\u00b7|$)/i.test(item.role));

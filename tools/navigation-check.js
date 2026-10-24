@@ -3,7 +3,7 @@
 const fs=require("fs"),path=require("path"),vm=require("vm"),assert=require("assert/strict");
 const root=process.env.GRINDSTONE_TEST_ROOT||path.resolve(__dirname,"..");
 const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
-const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-foundation.js","series-top-additions.js","series-neutral-additions.js","series-ready-additions.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","catalog-tags.js","skill-pathway.js","practice-weeks.js","practice-components.js","practice-builder.js","in-progress-data.js","in-progress.js","move-reactions.js"];
+const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-foundation.js","series-top-additions.js","series-neutral-additions.js","series-ready-additions.js","series-neutral-next.js","series-top-next.js","series-defense-next.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","series-teaching-groups.js","catalog-tags.js","skill-pathway.js","practice-weeks.js","practice-components.js","practice-builder.js","in-progress-data.js","series-research-status.js","in-progress.js","move-reactions.js"];
 const clone=value=>JSON.parse(JSON.stringify(value));
 const decode=text=>String(text).replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 function harness(initial="#moves",savedHistory){
@@ -251,7 +251,7 @@ for(const article of h.context.window.GRINDSTONE_FAMILY.pages){
  }
  for(const doc of drafts.documents){
   const hash='#in-progress/'+doc.id;assert.equal(h.api.safeRouteHash(hash),hash);h.navigate(hash);const html=h.elements.main.innerHTML,plain=decode(html.replace(/<[^>]*>/g,''));
-  assert(html.includes('<h1>'+escapeText(doc.title)+'</h1>'));assert(html.includes('not adopted policy'));assert(html.includes('coaches’ text group'));assert(html.includes('does not save replies or shared edits'));assert(html.includes('data-print'));
+  assert(html.includes('<h1>'+escapeText(doc.title)+'</h1>'));assert(html.includes(doc.kind==='research'?'unfinished instructions stay out':'not adopted policy'));assert(html.includes('coaches’ text group'));assert(html.includes('does not save replies or shared edits'));assert(html.includes('data-print'));
   assert(doc.sections.length>=3&&doc.decisions.length&&doc.existing.length,doc.id+' needs a full draft with decisions and source links');
   const content=[doc.title,doc.summary,doc.why,doc.next_step,...doc.sections.flatMap(section=>[section.title,...section.paragraphs,...section.bullets]),...doc.decisions];
   for(const text of content)assert(plain.includes(text),doc.id+' page omitted draft content: '+text);
@@ -270,6 +270,7 @@ for(const article of h.context.window.GRINDSTONE_FAMILY.pages){
  for(const href of new Set(resources.map(item=>item.href))){
   const url=new URL(href,siteBase);assert.equal(url.origin,new URL(siteBase).origin);assert(url.pathname.startsWith('/grindstone-guide/'));
   if(url.pathname.includes('/coach-drafts/')){const relative=decodeURIComponent(url.pathname.slice('/grindstone-guide/'.length));assert(relative.startsWith('coach-drafts/')&&relative.endsWith('.html'));assert(fs.existsSync(path.join(root,relative)),'Missing coach working page '+relative);}
+  else if(url.pathname.includes('/downloads/')){const relative=decodeURIComponent(url.pathname.slice('/grindstone-guide/'.length));const file=path.join(root,relative);assert(fs.existsSync(file),'Missing download '+relative);if(url.hash){assert(relative.endsWith('.html'),'Fragment requires an HTML download');assert(fs.readFileSync(file,'utf8').includes('id="'+decodeURIComponent(url.hash.slice(1))+'"'),'Missing worksheet anchor '+href);}}
   else if(url.hash){assert(h.api.safeRouteHash(url.hash),'Unrecognized existing resource route '+href);h.navigate(url.hash);assert(!h.elements.main.innerHTML.includes('That page isn’t in the playbook.'),'Broken existing resource route '+href);}
   else{const relative=decodeURIComponent(url.pathname.slice('/grindstone-guide/'.length));assert(relative.startsWith('downloads/')||(relative.startsWith('coach-drafts/')&&relative.endsWith('.html')),'Unexpected existing-resource path '+relative);assert(fs.existsSync(path.join(root,relative)),'Missing existing resource '+relative);}
  }checks++;

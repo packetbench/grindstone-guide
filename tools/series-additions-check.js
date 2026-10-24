@@ -58,7 +58,7 @@ check('series entrance tiers reach the builder without changing explicit age sug
  const expectedTiers={S24:'Beginner',S13:'Beginner',S14:'Beginner',S17:'Beginner',S21:'Beginner',S28:'Beginner',S31:'Beginner',S16:'Intermediate',S18:'Intermediate',S19:'Intermediate',S20:'Intermediate',S23:'Intermediate',S27:'Intermediate',S30:'Intermediate'};
  for(const [id,tier]of Object.entries(expectedTiers))assert.equal(map.get('series:'+id).tier,tier,id);
  for(const id of ['S10','S11','S12'])assert.equal(map.get('series:'+id).tier,'Intermediate');
- assert.deepEqual(plain(map.get('series:S21').age_groups),['11-14']);assert.deepEqual(plain(map.get('series:S28').age_groups),['11-14']);
+ assert.deepEqual(plain(map.get('series:S21').age_groups),['7-10','11-14']);assert.deepEqual(plain(map.get('series:S28').age_groups),['7-10','11-14']);
  assert(map.get('series:S21').instructions.includes('Intermediate option:'));
  assert(map.get('series:S28').instructions.includes('Intermediate option:'));
  const metadata=w.GRINDSTONE_CATALOG_TAGS;

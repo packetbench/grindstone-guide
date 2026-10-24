@@ -5,6 +5,21 @@
   "use strict";
   const links = [
     {
+      from: "A19", to: "N55", kind: "response",
+      condition: "At the opening spiral position, before you capture the wrist, bottom can use N55's changeover against sustained forward pressure. Re-establish the named spiral start and teach the response separately; this is not a late escape from A19's finished wrist ride.",
+      reverse: "Answer the initial armpit-and-far-thigh spiral while the inside hand is free. A captured wrist, inserted leg or half nelson changes the lesson and calls for a reset."
+    },
+    {
+      from: "A19", to: "N56", kind: "response",
+      condition: "Before the wrist capture, bottom may reach a balanced hand-and-feet tripod under light following pressure. N56 teaches the knee-dip rise from that exact start. Do not introduce the rise after the wrist is trapped or the rider begins a turn.",
+      reverse: "This answers the opening spiral ride after you can balance on hands and feet. The knee-dip guide ends standing; check the waist-hand position separately before adding B21's escape finish."
+    },
+    {
+      from: "A22", to: "A28", kind: "response",
+      condition: "Before the hip load and tilt begin, bottom may clear the cross-wrist with A28. Start with the same right-hand-to-left-wrist and left-triceps control. Once the tilt is loaded, stop; this is early clearance, not rolling out of a trapped shoulder.",
+      reverse: "Use while both knees are grounded and the cross-wrist tilt has not loaded. Clear and seal the elbow before choosing a separately taught escape."
+    },
+    {
       from: "N41", to: "N42", kind: "continuation",
       condition: "If the partner squares up before you reach the rear-control stop, N42 supplies a knee-block option. Teach its receiving and freeze point separately first. This full finish is for prepared 11–14 partners; younger athletes keep N41's standing capture-and-release lesson.",
       reverse: "Start with the taught hand-on-elbow collar-tie pass. The partner's turn closes the path behind while leaving a close knee target. Rehearse the knee-block checkpoint before combining the two actions."

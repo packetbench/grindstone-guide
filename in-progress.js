@@ -9,9 +9,9 @@ const publicUrl=id=>base()+route(id);
 const list=items=>'<ul>'+items.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>';
 function draftText(doc){
  return [doc.title,"GRINDSTONE WRESTLING | DRAFT FOR COACH REVIEW","Updated "+data.reviewed,publicUrl(doc.id),"",doc.summary,"","Why this is proposed",doc.why,"",
- ...doc.sections.flatMap(s=>[s.title,...s.paragraphs,...s.bullets.map(x=>"- "+x),""]),
+ ...doc.sections.flatMap(s=>[s.title,...s.paragraphs,...s.bullets.map(x=>"- "+x),...(s.links||[]).map(link=>link.label+" — "+new URL(link.href,base()).href),""]),
  "Decisions for the coaches",...doc.decisions.map((x,i)=>(i+1)+". "+x),"","Next step",doc.next_step,"",
- "Already available",...doc.existing.map(x=>x.label+" — "+(x.href.startsWith("#")?base()+x.href:base().replace(/[^/]*$/,"")+x.href)),"",
+ "Already available",...doc.existing.map(x=>x.label+" — "+new URL(x.href,base()).href),"",
  "Discuss in the coaches' text group. Include the document, section, proposed wording and reason. This website does not save comments or shared edits."
  ].join("\n");
 }
@@ -32,11 +32,12 @@ function detail(id){
  const doc=data.documents.find(d=>d.id===id);
  if(!doc)return '<div class="page-title"><h1>Draft not found</h1><p>Choose a working document from In Progress.</p></div><a class="button" href="#in-progress">All drafts</a>';
  return '<article class="draft-document"><a class="back" href="#in-progress">← All working documents</a><header class="page-title"><p class="eyebrow">'+esc(doc.category)+' · '+esc(doc.status)+'</p><h1>'+esc(doc.title)+'</h1><p>'+esc(doc.summary)+'</p><p class="fine">Updated '+esc(data.reviewed)+'</p></header>'+
- '<div class="draft-notice"><strong>Working proposal — not adopted policy</strong><p>Use the coaches’ text group to suggest changes. Refer to a section title and the wording you would change.</p></div>'+
+ (doc.kind==='research' ? '<div class="draft-notice"><strong>Research backlog — unfinished instructions stay out of the move library</strong><p>Reply to any numbered question you can help with. Other work continues while these remain open.</p></div>' : '<div class="draft-notice"><strong>Working proposal — not adopted policy</strong><p>Use the coaches’ text group to suggest changes. Refer to a section title and the wording you would change.</p></div>')+
  '<div class="draft-actions no-print"><button type="button" class="button" data-draft-copy>Copy draft link</button><button type="button" class="button outline" data-print>Print draft</button><a class="button outline" href="data:text/plain;charset=utf-8,'+esc(encodeURIComponent(draftText(doc)))+'" download="'+doc.id+'-draft.txt">Download text</a></div>'+
  '<div class="draft-share no-print"><label for="draft-link">Link to share in the text group</label><input id="draft-link" readonly value="'+esc(publicUrl(doc.id))+'"><p id="draft-share-status" role="status" aria-live="polite"></p></div>'+
+ (doc.kind==='research' ? '<nav class="draft-filters no-print" aria-label="Technique questions">'+doc.sections.filter(s=>s.id).map(s=>'<a href="'+route(doc.id)+'" data-scroll="'+esc(s.id)+'">'+esc(s.title)+'</a>').join('')+'</nav>' : '')+
  '<div class="prose"><section><h2>Why this is proposed</h2><p>'+esc(doc.why)+'</p></section>'+
- doc.sections.map(s=>'<section><h2>'+esc(s.title)+'</h2>'+s.paragraphs.map(p=>'<p>'+esc(p)+'</p>').join("")+list(s.bullets)+'</section>').join("")+
+ doc.sections.map(s=>'<section'+(s.id?' id="'+esc(s.id)+'" tabindex="-1"':'')+'><h2>'+esc(s.title)+'</h2>'+s.paragraphs.map(p=>'<p>'+esc(p)+'</p>').join("")+list(s.bullets)+(s.links?.length ? '<ul>'+s.links.filter(link=>/^https:\/\//.test(link.href)).map(link=>'<li><a href="'+esc(link.href)+'" target="_blank" rel="noopener noreferrer">'+esc(link.label)+' ↗</a></li>').join("")+'</ul>' : "")+'</section>').join("")+
  '<section class="draft-decisions"><h2>Decisions for the coaches</h2><ol>'+doc.decisions.map(d=>'<li>'+esc(d)+'</li>').join("")+'</ol></section>'+
  '<section><h2>Next step</h2><p>'+esc(doc.next_step)+'</p></section><section><h2>Already available</h2><ul>'+doc.existing.map(x=>'<li><a href="'+esc(x.href)+'">'+esc(x.label)+'</a></li>').join("")+'</ul></section>'+
  '<section class="draft-feedback"><h2>Send feedback in the text group</h2><p>A useful reply includes:</p><div class="draft-feedback-template"><p><strong>Draft:</strong> '+esc(doc.title)+' ('+esc(data.reviewed)+')</p><p><strong>Section:</strong> [section title]</p><p><strong>Suggested change:</strong> [your wording]</p><p><strong>Reason or open question:</strong> [what this resolves]</p></div><p class="fine">The site does not save replies or shared edits. Keep individual athlete and family information out of public drafts.</p></section></div></article>';
