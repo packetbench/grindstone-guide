@@ -327,3 +327,11 @@ Prepared in the audit preview for review; not published.
 - #family/season-quickstart and #family/teamsnap provide the concise seasonal companion and caregiver setup. Deposits, hours, eligibility and opt-out operational decisions stay proposals. Existing handouts remain available.
 - C16 adds unloaded flat-ladder stepping; C17 reviews a familiar selected skill. C13 clarifies solo entry work. These are authored adaptations with source limits; ambiguous meeting-game names and loaded/inverted drills are not silently added.
 - Validation: node tools/builder-check.js; node tools/weeks-check.js; node tools/components-check.js; node tools/family-quickstart-check.js; node tools/navigation-check.js; node tools/stamp-assets.js --check. Run the stamp tool after shipped JS/CSS changes.
+
+## Foundation Series — October 24, 2026
+
+- S24 is a cross-position set of six match essentials: stand-up escape, double leg, single leg, Tight Waist Chop breakdown, half nelson and Hip Dump mat return. It appears first in the series directory and in early/review phases for ages 7–10 and 11–14. It is a club curriculum choice, not a competition eligibility rule.
+- The builder selects independent core skills and preserves their guide snapshots in saved and printed plans. Each selected skill retains its own starting position and receiving requirements. Existing reaction series keep their common-foundation behavior.
+- N24 adds a head-inside single-leg entry and a low-held progression into B08. Its written right-leg example mirrors the USA Wrestling clip. N25 adds the actual standing Hip Dump return, including its lift, receiving prerequisites and grounded release. Both guides distinguish inspected footage, written sources and coaching adaptations.
+- Pups keep their individual preparations; this complete partnered collection and lifted mat return are not automatically assigned to them. Mat returns remain separate from introductory stand-up escape drills.
+- Prepared on the review branch; not published without review.

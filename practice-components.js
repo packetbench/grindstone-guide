@@ -8,6 +8,7 @@
   const lines = value => Array.isArray(value) ? value.join('\n') : value || '';
   const catalogMap = catalog => new Map(list(catalog).map(item => [item.id, item]));
   const seriesData = id => (window.GRINDSTONE_PATHWAY?.series || []).find(item => 'series:' + item.id === id);
+  const isFoundation = series => series?.kind === 'foundation';
   function field(value, name, limit = 12000) {
     if (value == null) return '';
     if (typeof value !== 'string' || value.length > limit) throw Error(name + ' must be text of at most ' + limit + ' characters.');
@@ -55,7 +56,11 @@
     if (value.series != null) {
       const s = object(value.series, 'Selected series');
       clean.series = {id:field(s.id, 'Series ID', 100), selections:list(s.selections).map(item => ({key:field(item.key, 'Branch key', 100), title:field(item.title, 'Branch title', 300)})), guides:[]};
-      if (!Array.isArray(s.selections) || s.selections.length < 1 || s.selections.length > 20 || new Set(clean.series.selections.map(item => item.key)).size !== s.selections.length) throw Error('Choose 1–20 distinct series options.');
+      if (s.kind != null) {
+        if (s.kind !== 'foundation') throw Error('Unsupported selected-series kind.');
+        clean.series.kind = s.kind;
+      }
+      if (!Array.isArray(s.selections) || s.selections.length < 1 || s.selections.length > 20 || new Set(clean.series.selections.map(item => item.key)).size !== s.selections.length) throw Error(isFoundation(s) ? 'Choose 1–20 distinct core skills.' : 'Choose 1–20 distinct series options.');
       if (!Array.isArray(s.guides) || s.guides.length > MAX_GUIDES) throw Error('Too many selected-series guides.');
       clean.series.guides = s.guides.map(cleanGuide);
     }
@@ -82,26 +87,32 @@
     if (!selected) return '';
     const current = seriesData(selected.id);
     const keys = new Set(list(current?.branches).map(branchKey));
-    return !current || selected.selections.some(item => !keys.has(item.key)) ? 'A saved series option is no longer in the current collection. Your saved instruction is preserved. Review before replacing it with current options.' : '';
+    return !current || selected.selections.some(item => !keys.has(item.key)) ? (isFoundation(selected) || isFoundation(current) ? 'A saved core skill is no longer in the current collection. Your saved instruction is preserved. Review before replacing it with current skills.' : 'A saved series option is no longer in the current collection. Your saved instruction is preserved. Review before replacing it with current options.') : '';
   }
   function selectSeries(block, keys, catalog) {
     const series = seriesData(block.sourceId);
     if (!series) throw Error('This series is not available for new selections.');
-    if (!Array.isArray(keys) || new Set(keys).size !== keys.length) throw Error('Choose distinct series options.');
+    const foundation = isFoundation(series);
+    if (!Array.isArray(keys) || new Set(keys).size !== keys.length) throw Error(foundation ? 'Choose distinct core skills.' : 'Choose distinct series options.');
     const selected = series.branches.filter(branch => keys.includes(branchKey(branch)));
-    if (!selected.length || selected.length !== new Set(keys).size) throw Error('Choose at least one available series option.');
+    if (!selected.length || selected.length !== new Set(keys).size) throw Error(foundation ? 'Choose at least one available core skill.' : 'Choose at least one available series option.');
     const map = catalogMap(catalog);
-    const foundationIds = list(series.members).filter(member => /^foundation$/i.test(member.role)).map(member => member.move_id);
+    const foundationIds = foundation ? [] : list(series.members).filter(member => /^foundation$/i.test(member.role)).map(member => member.move_id);
     const ids = [...new Set([...foundationIds, ...selected.flatMap(branch => list(branch.move_ids))])].map(id => sourceIdFor(id, map)).filter(Boolean);
     const guides = ids.map(id => snapshot(map.get(id)));
     const base = map.get(block.sourceId);
     const next = clone(block);
-    next.components = {...(next.components || {}),version:1,series:{id:block.sourceId,selections:selected.map(branch => ({key:branchKey(branch),title:branch.title})),guides}};
-    next.instructions = [series.summary, 'Common foundation: ' + series.foundation, 'Today’s chosen options only. Start every attempt from the common foundation; the partner supplies only a taught response.', ...selected.map(branch => branch.title + '\nWhen: ' + branch.when + '\nOption: ' + branch.action + (branch.readiness ? '\nBefore adding this option: ' + branch.readiness : '')), 'Reset: release and return to the shared starting position after each attempt. If the position or receiving control is lost, stop and rebuild; do not force a different option.', series.verification ? 'Source scope: ' + series.verification : ''].filter(Boolean).join('\n\n');
-    next.setup = series.setup || next.setup;
+    next.components = {...(next.components || {}),version:1,series:{id:block.sourceId,...(foundation ? {kind:'foundation'} : {}),selections:selected.map(branch => ({key:branchKey(branch),title:branch.title})),guides}};
+    next.instructions = [series.summary, (foundation ? 'Match essentials: ' : 'Common foundation: ') + series.foundation, foundation ? 'Core skills selected for today. Teach each skill separately in its own starting position. These skills do not automatically chain together; use only the coach-announced task and cooperative receiving role.' : 'Today’s chosen options only. Start every attempt from the common foundation; the partner supplies only a taught response.', ...selected.map(branch => branch.title + (foundation ? '\nSkill purpose: ' : '\nWhen: ') + branch.when + (foundation ? '\nTeach: ' : '\nOption: ') + branch.action + (branch.readiness ? (foundation ? '\nBefore this skill: ' : '\nBefore adding this option: ') + branch.readiness : '')), foundation ? 'Reset: release and rebuild the current skill’s starting position after each attempt. Stop if position or receiving control is lost. Before a different skill, stop and establish its separate setup and receiving role; do not force a transition.' : 'Reset: release and return to the shared starting position after each attempt. If the position or receiving control is lost, stop and rebuild; do not force a different option.', series.verification ? 'Source scope: ' + series.verification : ''].filter(Boolean).join('\n\n');
+    next.setup = foundation ? [series.setup, 'Set up each selected skill separately, with its own starting position, prerequisites and receiving role. Change skills only after the coach has explained the next setup.'].filter(Boolean).join('\n') : series.setup || next.setup;
     next.readiness = series.readiness || next.readiness;
     next.boundary = lines(series.boundaries) || next.boundary;
-    next.steps = [
+    next.steps = foundation ? [
+      'Choose the core skill to work on and establish its own starting position. Check its prerequisites and the partner’s receiving role before starting.',
+      'Teach or recall that skill separately with cooperative receiving, then use only the resistance its guide and the pair’s readiness permit.',
+      'Release and rebuild the same skill’s setup after each attempt. Give feedback and stop for lost position, discomfort or unreliable receiving control.',
+      'Before another selected skill, pause and establish its separate setup and partner roles. Do not automatically chain the selected skills or add a mat return to an escape drill.'
+    ] : [
       'Establish the common foundation and check each selected option’s prerequisites and the partner’s receiving role.',
       'Teach or recall each selected option separately with the receiver giving its announced, cooperative response.',
       'Let partners choose only between the selected, already-learned responses when they are ready. Use one option per attempt.',
@@ -113,12 +124,12 @@
     return next;
   }
   function renderChoices(series, selections, context) {
-    const keys = selections || [branchKey(series.branches[0])];
-    return '<fieldset class="component-options"><legend>Options to teach today</legend><p>The shared foundation, readiness and reset guidance stay with every selection. Choose options already appropriate for the pair.</p>' + series.branches.map(branch => '<label class="component-choice"><input type="checkbox" data-component-branch="' + esc(context) + '" value="' + branchKey(branch) + '"' + (keys.includes(branchKey(branch)) ? ' checked' : '') + '><span><strong>' + esc(branch.title) + '</strong><small>When: ' + esc(branch.when) + '</small>' + (branch.readiness ? '<small>Before this option: ' + esc(branch.readiness) + '</small>' : '') + '</span></label>').join('') + '</fieldset>';
+    const keys = selections || [branchKey(series.branches[0])], foundation = isFoundation(series);
+    return '<fieldset class="component-options"><legend>' + (foundation ? 'Core skills to teach today' : 'Options to teach today') + '</legend><p>' + (foundation ? 'Choose one or more skills appropriate for the pair. Each keeps its own setup, prerequisites and receiving controls. Teach them separately; selection does not create a move sequence.' : 'The shared foundation, readiness and reset guidance stay with every selection. Choose options already appropriate for the pair.') + '</p>' + series.branches.map(branch => '<label class="component-choice"><input type="checkbox" data-component-branch="' + esc(context) + '" value="' + branchKey(branch) + '"' + (keys.includes(branchKey(branch)) ? ' checked' : '') + '><span><strong>' + esc(branch.title) + '</strong><small>' + (foundation ? 'Skill purpose: ' : 'When: ') + esc(branch.when) + '</small>' + (branch.readiness ? '<small>' + (foundation ? 'Before this skill: ' : 'Before this option: ') + esc(branch.readiness) + '</small>' : '') + '</span></label>').join('') + '</fieldset>';
   }
   function renderPicker(item) {
     const series = seriesData(item?.id);
-    return series ? '<section class="component-picker" data-component-series="' + esc(item.id) + '">' + renderChoices(series, null, 'picker') + '<p class="fine">Only checked options are added. Linked instruction and source notes travel with them.</p></section>' : '';
+    return series ? '<section class="component-picker" data-component-series="' + esc(item.id) + '">' + renderChoices(series, null, 'picker') + '<p class="fine">Only checked ' + (isFoundation(series) ? 'skills' : 'options') + ' are added. Linked instruction and source notes travel with them.</p></section>' : '';
   }
   function applyPicker(block, item, container, catalog) {
     if (!seriesData(item?.id)) return block;
@@ -172,10 +183,11 @@
   }
   function renderBlock(block,index,catalog,age = '') {
     const series = seriesData(block.sourceId), saved = block.components?.series, rotation = block.components?.rotation;
+    const foundation = isFoundation(series) || isFoundation(saved);
     let html = '<section class="practice-components" data-component-block="' + index + '">';
-    if (series) html += '<details class="component-series"><summary>Choose the options taught in this series block</summary>' + (selectionStatus(block) ? '<p class="component-warning">' + esc(selectionStatus(block)) + '</p>' : '') + renderChoices(series,saved ? saved.selections.map(item => item.key) : series.branches.map(branchKey),'block') + '<button type="button" data-component-action="apply-series">Apply selected options to this block</button><p class="fine">Applying replaces the series task and teaching steps. Your timing and station notes stay.</p></details>';
+    if (series) html += '<details class="component-series"><summary>' + (foundation ? 'Choose the core skills taught in this block' : 'Choose the options taught in this series block') + '</summary>' + (selectionStatus(block) ? '<p class="component-warning">' + esc(selectionStatus(block)) + '</p>' : '') + renderChoices(series,saved ? saved.selections.map(item => item.key) : series.branches.map(branchKey),'block') + '<button type="button" data-component-action="apply-series">Apply selected ' + (foundation ? 'skills' : 'options') + ' to this block</button><p class="fine">Applying replaces the series task and teaching steps. Your timing and station notes stay.</p></details>';
     else if (saved) html += '<p class="component-warning">' + esc(selectionStatus(block)) + '</p>';
-    if (saved?.guides.length) html += '<details><summary>Selected options: linked teaching cards</summary>' + saved.guides.map(guide => guideHtml(guide,catalog,true)).join('') + '</details>';
+    if (saved?.guides.length) html += '<details><summary>' + (foundation ? 'Selected core skills: linked teaching cards' : 'Selected options: linked teaching cards') + '</summary>' + saved.guides.map(guide => guideHtml(guide,catalog,true)).join('') + '</details>';
     if (!rotation) return html + '<button type="button" data-component-action="add-rotation">Add structured station rotation</button><p class="fine">Keep the existing partner/station notes. A rotation uses one shared clock for simultaneous stations.</p></section>';
     html += '<h3>Simultaneous station rotation</h3><div class="component-field-grid">' + [['rounds','Number of rounds',1,30,1],['workMinutes','Work minutes per round',0.5,120,0.5],['changeMinutes','Minutes between rounds',0,30,0.5],['briefingMinutes','Briefing / demonstration minutes',0,60,0.5],['finishMinutes','Finish / reset minutes',0,60,0.5]].map(([key,label,min,max,step]) => '<label>' + label + '<input type="number" required min="' + min + '" max="' + max + '" step="' + step + '" data-rotation-field="' + key + '" value="' + rotation[key] + '"></label>').join('') + '</div><div data-component-timing>' + timingHtml(block,true) + '</div><p>Divide athletes into groups, give each a different starting station, then move to the next station on the shared signal. Include recovery and partner swaps inside each work period.</p><label class="component-choice"><input type="checkbox" data-component-broad' + (rotation.showAll ? ' checked' : '') + '><span>Include broader or unassigned coach references in station guide choices</span></label><div class="component-stations">' + rotation.stations.map((station,i) => stationFields(station,i,catalog,age,rotation.showAll)).join('') + '</div><div class="component-actions"><button type="button" data-component-action="add-station"' + (rotation.stations.length >= MAX_STATIONS ? ' disabled' : '') + '>Add a station</button><button type="button" data-component-action="remove-rotation">Remove structured rotation</button></div></section>';
     return html;
@@ -184,7 +196,7 @@
     const component = block.components;
     if (!component) return '';
     let html = '<section class="component-print">';
-    if (component.series) html += '<h3>Selected series options</h3><ul>' + component.series.selections.map(item => '<li>' + esc(item.title) + '</li>').join('') + '</ul>' + (selectionStatus(block) ? '<p>' + esc(selectionStatus(block)) + '</p>' : '') + component.series.guides.map(guide => guideHtml(guide,catalog,true)).join('');
+    if (component.series) html += '<h3>' + (isFoundation(component.series) || isFoundation(seriesData(component.series.id)) ? 'Selected core skills' : 'Selected series options') + '</h3><ul>' + component.series.selections.map(item => '<li>' + esc(item.title) + '</li>').join('') + '</ul>' + (selectionStatus(block) ? '<p>' + esc(selectionStatus(block)) + '</p>' : '') + component.series.guides.map(guide => guideHtml(guide,catalog,true)).join('');
     if (component.rotation) {
       html += '<h3>Station rotation · one shared clock</h3>' + timingHtml(block,false) + component.rotation.stations.map((station,i) => '<article class="component-station-print"><h4>Station ' + (i + 1) + ': ' + esc(station.name || 'Name needed') + '</h4><p class="component-preline"><strong>Task:</strong> ' + esc(station.task || 'Task needed before use') + '</p>' + [['Coach',station.coach],['Equipment',station.equipment],['Space',station.space],['Group',station.group],['Turns & recovery',station.rounds],['Simpler version',station.simpler],['Success',station.success],['Stop / reset',station.stop]].filter(([,value]) => value).map(([label,value]) => '<p class="component-preline"><strong>' + label + ':</strong> ' + esc(value) + '</p>').join('') + guideHtml(station.guide,catalog,true) + '</article>').join('');
     }
@@ -253,9 +265,10 @@
       const {block,host,index} = found, action = button.dataset.componentAction;
       try {
         if (action === 'apply-series') {
-          if (!window.confirm('Replace this block’s series task and teaching steps with the selected options? Timing and station notes stay.')) return;
+          const foundation = isFoundation(seriesData(block.sourceId));
+          if (!window.confirm('Replace this block’s series task and teaching steps with the selected ' + (foundation ? 'core skills' : 'options') + '? Timing and station notes stay.')) return;
           const keys = Array.from(host.querySelectorAll('[data-component-branch="block"]')).filter(el => el.checked).map(el => el.value);
-          const next = selectSeries(block,keys,options.getCatalog()); options.beforeChange?.(); options.getPlan().blocks[index] = next; changed('Selected options applied. Foundation, readiness and source guidance stay included.'); return;
+          const next = selectSeries(block,keys,options.getCatalog()); options.beforeChange?.(); options.getPlan().blocks[index] = next; changed(foundation ? 'Selected core skills applied. Separate setups, readiness and source guidance stay included.' : 'Selected options applied. Foundation, readiness and source guidance stay included.'); return;
         }
         if (action === 'add-rotation') {
           options.beforeChange?.(); block.components = {...(block.components || {}),version:1,rotation:newRotation()}; block.delivery = 'stations'; changed('Rotation added. Fill the station tasks and choose the shared timing.'); return;

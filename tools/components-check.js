@@ -6,7 +6,7 @@ let checks = 0;
 const check = (name,fn) => { fn(); checks++; console.log('PASS ' + name); };
 const clone = value => JSON.parse(JSON.stringify(value));
 const ctx = {window:{confirm:()=>true,localStorage:{getItem:()=>null,setItem(){}}},URL,URLSearchParams,console,setTimeout};
-for (const file of ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js','practice-components.js','practice-builder.js']) vm.runInNewContext(fs.readFileSync(path.join(base,file),'utf8'),ctx,{filename:file});
+for (const file of ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js','practice-components.js','practice-builder.js']) vm.runInNewContext(fs.readFileSync(path.join(base,file),'utf8'),ctx,{filename:file});
 const api = ctx.window.GRINDSTONE_COMPONENTS, t = api.testing;
 const catalog = ctx.window.GRINDSTONE_BUILDER.testing.normalizeCatalog(), pathway = ctx.window.GRINDSTONE_PATHWAY;
 const byId = new Map(catalog.map(item=>[item.id,item]));
@@ -162,4 +162,35 @@ check('refresh updates a changed outer slot and rotation removal preserves origi
   api.refresh(h.container,plan);assert(h.timing.innerHTML.includes('practice slot is 30'));
   h.click('remove-rotation');assert.equal(plan.blocks[0].rotation,note);assert(!plan.blocks[0].components.rotation);
 });
+
+check('Foundation Series has six independent essentials and retains only selected skill guides',()=>{
+  const s=pathway.series.find(x=>x.id==='S24'),item=byId.get('series:S24');
+  assert.equal(s.title,'Foundation Series');assert.equal(item.kind,'foundation');assert.equal(s.branches.length,6);
+  assert.equal(pathway.series[0].id,'S24');
+  assert.deepEqual(Array.from(s.branches,b=>b.title),['Stand-up escape','Double leg','Single leg','Breakdown — Tight Waist Chop','Half nelson and pin finish','Mat return']);
+  const stand=s.branches[0],single=s.branches[2];
+  const block=api.selectSeries(blockFor(item),[key(stand),key(single)],catalog);
+  assert(block.instructions.includes(stand.action));assert(block.instructions.includes(single.action));
+  for(const omitted of s.branches.filter(b=>b!==stand&&b!==single))assert(!block.instructions.includes(omitted.action));
+  assert(block.instructions.includes('Match essentials:'));assert(!block.instructions.includes('Start every attempt from the common foundation'));
+  const ids=Array.from(block.components.series.guides,g=>g.sourceId);
+  assert(ids.includes('B17')&&ids.includes('B21')&&ids.includes('N24')&&ids.includes('B08'));
+  assert(!ids.includes('N25')&&!ids.includes('B26')&&!ids.includes('B22'));
+  assert.equal(block.components.series.kind,'foundation');assert.equal(api.cleanBlock(block).components.series.kind,'foundation');
+  const saved=JSON.parse(JSON.stringify(block));assert.equal(api.cleanBlock(saved).components.series.kind,'foundation');
+  const printed=api.printBlock(saved,catalog);assert(/core skills/i.test(printed));assert(!printed.includes('Selected series options'));
+  assert(printed.includes(t.snapshot(byId.get('N24')).boundary));
+});
+check('Foundation Series keeps age and return prerequisites visible without adding it to Pups',()=>{
+  const s=pathway.series.find(x=>x.id==='S24');assert(!s.age_groups.includes('4-6'));
+  for(const phase of pathway.groups.find(g=>g.age_group==='4-6').phases)assert(!phase.series_ids.includes(s.id));
+  const mat=s.branches.find(b=>b.title==='Mat return'),guide=byId.get('N25');
+  const block=api.selectSeries(blockFor(byId.get('series:S24')),[key(mat)],catalog);
+  assert(block.components.series.guides.some(g=>g.sourceId==='N25'));
+  assert(block.instructions.includes(mat.readiness));
+  for(const phrase of [guide.boundary,guide.readiness])assert(api.printBlock(block,catalog).includes(escForTest(phrase)));
+  function escForTest(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  assert(block.boundary.includes('No surprise returns'));
+});
+
 console.log(checks+' component checks passed.');

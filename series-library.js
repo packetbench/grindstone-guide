@@ -3,7 +3,7 @@
   'use strict';
   const data = window.GRINDSTONE;
   if (!data) return;
-  const additions = [...(window.GRINDSTONE_SERIES_MOVES?.entries || []), ...(window.GRINDSTONE_SERIES_BOTTOM?.entries || []), ...(window.GRINDSTONE_SERIES_NEUTRAL?.moves || []), ...(window.GRINDSTONE_SERIES_TOP?.moves || []), ...(window.GRINDSTONE_SERIES_ESCAPES?.moves || [])];
+  const additions = [...(window.GRINDSTONE_SERIES_MOVES?.entries || []), ...(window.GRINDSTONE_SERIES_BOTTOM?.entries || []), ...(window.GRINDSTONE_SERIES_NEUTRAL?.moves || []), ...(window.GRINDSTONE_SERIES_TOP?.moves || []), ...(window.GRINDSTONE_SERIES_ESCAPES?.moves || []), ...(window.GRINDSTONE_SERIES_FOUNDATION?.moves || [])];
   additions.forEach(move => {
     if (data.moves.some(existing => existing.id === move.id)) throw new Error('Duplicate move ID: ' + move.id);
     data.moves.push(move);

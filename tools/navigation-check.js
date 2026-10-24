@@ -3,7 +3,7 @@
 const fs=require("fs"),path=require("path"),vm=require("vm"),assert=require("assert/strict");
 const root=process.env.GRINDSTONE_TEST_ROOT||path.resolve(__dirname,"..");
 const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
-const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","skill-pathway.js","practice-weeks.js","practice-components.js","practice-builder.js","in-progress-data.js","in-progress.js"];
+const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-foundation.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","skill-pathway.js","practice-weeks.js","practice-components.js","practice-builder.js","in-progress-data.js","in-progress.js"];
 const clone=value=>JSON.parse(JSON.stringify(value));
 const decode=text=>String(text).replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 function harness(initial="#moves",savedHistory){
@@ -66,7 +66,7 @@ assert.equal(h.api.safeRouteHash("#moves?q=a%26b"),"#moves?q=a%26b");checks++;
 const listingId=h.history.state.grindstone.id,historyLength=h.snapshot().stack.length;h.api.replaceRoute("#moves?q=updated&category=bottom");assert.equal(h.history.state.grindstone.id,listingId);assert.equal(h.snapshot().stack.length,historyLength);checks++;
 const D=h.context.window.GRINDSTONE,S=h.context.window.GRINDSTONE_PATHWAY;
 const frameworkData=h.context.window.GRINDSTONE_FRAMEWORKS;
-const expansionModules=[h.context.window.GRINDSTONE_SERIES_NEUTRAL,h.context.window.GRINDSTONE_SERIES_TOP,h.context.window.GRINDSTONE_SERIES_ESCAPES];
+const expansionModules=[h.context.window.GRINDSTONE_SERIES_NEUTRAL,h.context.window.GRINDSTONE_SERIES_TOP,h.context.window.GRINDSTONE_SERIES_ESCAPES,h.context.window.GRINDSTONE_SERIES_FOUNDATION];
 const expandedSeries=expansionModules.flatMap(module=>module.series||[]);
 const addedMoves=[...h.context.window.GRINDSTONE_SERIES_MOVES.entries,...h.context.window.GRINDSTONE_SERIES_BOTTOM.entries,...expansionModules.flatMap(module=>module.moves||[])];
 const seriesById=new Map(S.series.map(item=>[item.id,item])),sequencesById=new Map(S.sequences.map(item=>[item.id,item]));
@@ -111,7 +111,7 @@ for(const [parameter,id,type] of [["series",S.series[0].id,"series"],["sequence"
 const positionOf=series=>series.position||({S13:'bottom',S14:'neutral',S16:'top',S17:'neutral',S18:'neutral'}[series.id]);
 h.navigate('#season?view=series');assert(h.elements.main.innerHTML.includes('<h1>Technique series</h1>'));
 for(const series of S.series)assert(h.elements.main.innerHTML.includes('series='+series.id+'"'),series.id+' is missing from the series directory');checks++;
-for(const position of ['neutral','top','bottom']){
+for(const position of ['foundation','neutral','top','bottom']){
  h.navigate('#season?view=series&position='+position);const html=h.elements.main.innerHTML;
  for(const series of S.series){const link='href="#season?view=series&amp;series='+series.id+'"';assert.equal(html.includes(link),positionOf(series)===position,'Incorrect '+position+' directory membership: '+series.id);}checks++;
 }

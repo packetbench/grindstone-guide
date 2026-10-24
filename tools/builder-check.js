@@ -8,7 +8,7 @@ const values = new Map(), writes = [];
 let failStorage = false, allowConfirm = true;
 const storage = { getItem: k => { if (failStorage) throw Error('disabled'); return values.get(k) || null; }, setItem: (k, val) => { if (failStorage) throw Error('full'); values.set(k, val); writes.push(k); } };
 const ctx = { window: { localStorage: storage, confirm: () => allowConfirm }, URL, URLSearchParams, console, Blob, setTimeout };
-for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'game-guides-a.js', 'game-guides-b.js', 'game-guides-c.js', 'game-guide-library.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js', 'practice-weeks.js', 'practice-components.js', 'practice-builder.js']) {
+for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'game-guides-a.js', 'game-guides-b.js', 'game-guides-c.js', 'game-guide-library.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-foundation.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js', 'practice-weeks.js', 'practice-components.js', 'practice-builder.js']) {
   if (!fs.existsSync(path.join(base, file))) throw Error('Missing ' + file);
   vm.runInNewContext(fs.readFileSync(path.join(base, file), 'utf8'), ctx, { filename: file });
 }
@@ -28,7 +28,7 @@ function resetCase(params = '') { values.clear(); writes.length = 0; failStorage
 function visibleIds() { return Array.from(root.querySelector('[data-picker="selected"]').innerHTML.matchAll(/<option value="([^"]+)"/g), match => match[1]); }
 mount();
 const catalog = t.normalizeCatalog(), counts = ctx.window.GRINDSTONE, pathway = ctx.window.GRINDSTONE_PATHWAY;
-const expansionModules = [ctx.window.GRINDSTONE_SERIES_NEUTRAL, ctx.window.GRINDSTONE_SERIES_TOP, ctx.window.GRINDSTONE_SERIES_ESCAPES];
+const expansionModules = [ctx.window.GRINDSTONE_SERIES_NEUTRAL, ctx.window.GRINDSTONE_SERIES_TOP, ctx.window.GRINDSTONE_SERIES_ESCAPES, ctx.window.GRINDSTONE_SERIES_FOUNDATION];
 const expandedSeries = expansionModules.flatMap(module => module.series || []);
 const addedMoves = [...ctx.window.GRINDSTONE_SERIES_MOVES.entries, ...ctx.window.GRINDSTONE_SERIES_BOTTOM.entries, ...expansionModules.flatMap(module => module.moves || [])];
 const series = pathway.series[0], sequence = pathway.sequences[0], activity = pathway.activities[0];

@@ -3,12 +3,13 @@
   'use strict';
   const pathway = window.GRINDSTONE_PATHWAY;
   if (!pathway) return;
-  const modules = [window.GRINDSTONE_SERIES_NEUTRAL, window.GRINDSTONE_SERIES_TOP, window.GRINDSTONE_SERIES_ESCAPES].filter(Boolean);
+  const modules = [window.GRINDSTONE_SERIES_NEUTRAL, window.GRINDSTONE_SERIES_TOP, window.GRINDSTONE_SERIES_ESCAPES, window.GRINDSTONE_SERIES_FOUNDATION].filter(Boolean);
   const used = new Set([...pathway.series, ...pathway.sequences].map(item => item.id));
   for (const module of modules) {
     for (const series of module.series || []) {
       if (used.has(series.id)) throw new Error('Duplicate series ID: ' + series.id);
-      pathway.series.push(series);
+      if (series.kind === 'foundation') pathway.series.unshift(series);
+      else pathway.series.push(series);
       used.add(series.id);
     }
     for (const [phaseId, ids] of Object.entries(module.placements || {})) {
