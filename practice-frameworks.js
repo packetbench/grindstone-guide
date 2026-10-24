@@ -1,5 +1,12 @@
 window.GRINDSTONE_FRAMEWORKS = {
-  reviewed: '2026-10-23',
+  reviewed: '2026-10-24',
+  warmupIdeas: [
+    'Easy jogging or walking around the mat',
+    'Gentle stretches and mobility: arm circles, reaches and leg swings',
+    'Light exercises: squats, wall push-ups or jumping jacks',
+    'Familiar movement: skips, side shuffles or short animal walks',
+    'Easy stance and motion or a familiar stop-and-go game'
+  ],
   programNote: 'Times and entrances come from the club’s printed 2026–27 handout. Check TeamSnap for changes. Program names do not assign an athlete to an age or ability tier.',
   timingNote: 'These editable coaching frameworks are proposed allocations within the scheduled window. Every block includes demonstration, partner turns, feedback, recovery and transitions. Water remains available throughout. A longer window allows more useful practice and individual help; it does not require more new moves or continuous hard work.',
   programs: [

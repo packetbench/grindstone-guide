@@ -613,14 +613,14 @@ check('all shortcut and lower Save controls become disabled for a completed reco
 });
 
 
-check('time frameworks identify unfilled tasks without flagging reset, recap or blank practices',()=>{
+check('time frameworks identify unfilled tasks without flagging warmups, reset, recap or blank practices',()=>{
   resetCase();assert.equal(t.unfilledSlots().length,0);
   assert.equal(root.querySelector('.builder-unfilled-overview').innerHTML,'');
-  for(const [framework,count] of [['hour',6],['ninety',6],['two-hour',8]]) {
+  for(const [framework,count] of [['hour',5],['ninety',5],['two-hour',7]]) {
     resetCase();field('framework',framework);t.action('framework',-1);
     assert.equal(t.unfilledSlots().length,count);
     for(const block of state().plan.blocks) {
-      const exempt=['reset','recap'].includes(block.section)||block.type==='water';
+      const exempt=['prepare','reset','recap'].includes(block.section)||['warmup','water'].includes(block.type);
       assert.equal(Object.hasOwn(block,'frameworkPrompt'),!exempt);
       if(!exempt)assert.equal(block.frameworkPrompt,block.instructions);
     }
@@ -632,7 +632,7 @@ check('unfilled overview prioritizes teaching and jumps to the actual task after
   resetCase();field('framework','hour');t.action('framework',-1);
   let blocks=state().plan.blocks,teach=blocks.find(block=>block.section==='teach');
   let html=root.querySelector('.builder-unfilled-overview').innerHTML;
-  assert(html.indexOf('data-slot-id="'+teach.id+'"')<html.indexOf('data-slot-id="'+blocks[0].id+'"'));
+  assert(html.indexOf('data-slot-id="'+teach.id+'"')<html.indexOf('data-slot-id="'+blocks.find(block=>block.section==='staples').id+'"'));
   assert(root.querySelector('.builder-block-list').innerHTML.includes('Choose a skill for this slot'));
   t.action('down',blocks.findIndex(block=>block.id===teach.id));
   const now=state().plan.blocks.findIndex(block=>block.id===teach.id),query=root.querySelector.bind(root);let focused='';
@@ -649,13 +649,13 @@ check('names, timing, cues, section edits and preview selections do not fill a f
   assert(t.needsFrameworkTask(state().plan.blocks[index]));
   blockField(index,'instructions','  '+original.replace(/ /g,' \n ')+'  ');
   assert(t.needsFrameworkTask(state().plan.blocks[index]));
-  assert.equal(t.unfilledSlots().length,6);
+  assert.equal(t.unfilledSlots().length,5);
 });
 check('a nonblank coach task resolves its prompt and clearing or reverting restores the reminder',()=>{
   resetCase();field('framework','hour');t.action('framework',-1);
   const index=2,original=state().plan.blocks[index].frameworkPrompt;
   blockField(index,'instructions','Partners start seated. Clear the hand and turn to face, then swap.');
-  assert(!t.needsFrameworkTask(state().plan.blocks[index]));assert.equal(t.unfilledSlots().length,5);
+  assert(!t.needsFrameworkTask(state().plan.blocks[index]));assert.equal(t.unfilledSlots().length,4);
   assert.equal(state().plan.blocks[index].frameworkPrompt,original);
   blockField(index,'instructions','  ');assert(t.needsFrameworkTask(state().plan.blocks[index]));
   blockField(index,'instructions',original);assert(t.needsFrameworkTask(state().plan.blocks[index]));
@@ -665,11 +665,11 @@ check('a nonblank coach task resolves its prompt and clearing or reverting resto
 check('guide filling resolves the chosen slot while its prompt survives save, reload, import and guide refresh',()=>{
   resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
   const index=2,slot=state().plan.blocks[index];picker('destination',slot.id);addSource('move','B17');
-  assert.equal(t.unfilledSlots().length,5);assert.equal(state().plan.blocks[index].frameworkPrompt,slot.frameworkPrompt);
+  assert.equal(t.unfilledSlots().length,4);assert.equal(state().plan.blocks[index].frameworkPrompt,slot.frameworkPrompt);
   t.action('save',-1);t.reset();mount();
-  assert.equal(t.unfilledSlots().length,5);assert.equal(state().plan.blocks[index].frameworkPrompt,slot.frameworkPrompt);
+  assert.equal(t.unfilledSlots().length,4);assert.equal(state().plan.blocks[index].frameworkPrompt,slot.frameworkPrompt);
   const imported=t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:state().plan}));
-  assert.equal(t.unfilledSlots(imported).length,5);assert.equal(imported.blocks[index].frameworkPrompt,slot.frameworkPrompt);
+  assert.equal(t.unfilledSlots(imported).length,4);assert.equal(imported.blocks[index].frameworkPrompt,slot.frameworkPrompt);
   t.action('reload-guide',index);assert.equal(state().plan.blocks[index].frameworkPrompt,slot.frameworkPrompt);
   blockField(index,'instructions','');assert(t.needsFrameworkTask(state().plan.blocks[index]),'A stale guide ID cannot hide a cleared task');
 });
@@ -679,8 +679,8 @@ check('legacy prompts are inferred by full normalized task across frameworks aft
   raw.blocks.forEach((block,index)=>{delete block.frameworkPrompt;block.name='Renamed '+index;block.minutes=3;block.cues='Custom cues.';block.instructions='\n '+block.instructions.replace(/ /g,'  ')+' \n';});
   const teach=raw.blocks.find(block=>block.section==='teach');teach.sourceId='B17';
   const clean=t.cleanPlan(raw);
-  assert.equal(t.unfilledSlots(clean).length,6);
-  assert.equal(clean.blocks.filter(block=>Object.hasOwn(block,'frameworkPrompt')).length,6);
+  assert.equal(t.unfilledSlots(clean).length,5);
+  assert.equal(clean.blocks.filter(block=>Object.hasOwn(block,'frameworkPrompt')).length,5);
   assert(clean.blocks.find(block=>block.sourceId==='B17').frameworkPrompt);
   const custom={...raw.blocks[0],instructions:'An unrelated coach-written task.'};assert.equal(t.inferredFrameworkPrompt(custom),'');
 });
@@ -699,15 +699,15 @@ check('print includes unfilled notices in its header and beside each unresolved 
   assert.equal(state().saved.length,1);
   for(const details of [false,true]) {
     const html=t.printHtml(details);
-    assert(html.indexOf('6 framework slots still need a task')<html.indexOf('</header>'));
-    assert.equal((html.match(/class="builder-unfilled-warning"/g)||[]).length,7);
+    assert(html.indexOf('5 framework slots still need a task')<html.indexOf('</header>'));
+    assert.equal((html.match(/class="builder-unfilled-warning"/g)||[]).length,6);
     assert(html.includes('Choose a skill'));assert(!html.includes('data-action="review-slot"'));
   }
 });
 check('new prompt metadata survives Undo and rejects oversized or non-string imported provenance',()=>{
   resetCase('age=7-10');field('framework','hour');t.action('framework',-1);
   const before=state().plan.blocks;picker('destination',before[2].id);addSource('move','B17');
-  t.action('undo',-1);assert.equal(t.unfilledSlots().length,6);assert.deepEqual(state().plan.blocks,before);
+  t.action('undo',-1);assert.equal(t.unfilledSlots().length,5);assert.deepEqual(state().plan.blocks,before);
   const raw=state().plan;raw.blocks[0].frameworkPrompt='x'.repeat(16001);
   assert.throws(()=>t.cleanPlan(raw),/16000/);raw.blocks[0].frameworkPrompt={};assert.throws(()=>t.cleanPlan(raw),/text/);
 });
@@ -721,14 +721,34 @@ check('legacy completed records are unchanged while planned copies regain missin
   values.set(t.keys.draft,JSON.stringify(raw));t.reset();mount();
   assert(!t.printHtml(false).includes('builder-unfilled-warning'));
   const planned=t.cleanPlan(ctx.window.GRINDSTONE_WEEKS.draftCopy(completed));
-  assert.equal(t.unfilledSlots(planned).length,6);
+  assert.equal(t.unfilledSlots(planned).length,5);
 });
 check('new explicit framework prompts still print as unfilled after completion without a new blocker',()=>{
   resetCase();field('framework','hour');t.action('framework',-1);
   root.listeners.input({target:{dataset:{handoffField:'taught'},value:'Recorded the actual work after this planned framework.'}});
   t.completePlan();assert.equal(state().plan.status,'completed');assert.equal(state().saved.length,1);
-  assert.equal(t.unfilledSlots().length,6);assert(t.printHtml(false).includes('6 framework slots still need a task'));
+  assert.equal(t.unfilledSlots().length,5);assert(t.printHtml(false).includes('5 framework slots still need a task'));
   assert(!root.querySelector('.builder-unfilled-overview').innerHTML.includes('data-action="review-slot"'));
+});
+
+
+check('legacy warmups with explicit prompt metadata stay exempt through save, reload and import without rewriting text',()=>{
+  const oldPrompt='Greet the group, show the activity area and rehearse the stop signal. Choose a familiar movement game that prepares children for today’s task. Alternate brief turns with resets and check that everyone has space.';
+  for(const [section,type] of [['prepare','custom'],['staples','warmup']]) {
+    resetCase();field('framework','hour');t.action('framework',-1);
+    const raw=state().plan,warmup=raw.blocks[0];
+    Object.assign(warmup,{section,type,name:'Our usual opener',minutes:7,cues:'Keep our old cue.',instructions:oldPrompt,frameworkPrompt:oldPrompt});
+    t.replaceDraft(raw);assert(!t.needsFrameworkTask(state().plan.blocks[0]));assert.equal(t.unfilledSlots().length,5);
+    assert(t.needsFrameworkTask(state().plan.blocks.find(block=>block.section==='teach')));
+    t.action('save',-1);t.reset();mount();
+    const saved=state().plan,imported=t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:saved}));
+    for(const record of [saved,imported]) {
+      const kept=record.blocks[0];
+      assert.equal(kept.instructions,oldPrompt);assert.equal(kept.frameworkPrompt,oldPrompt);
+      assert.equal(kept.cues,'Keep our old cue.');assert.equal(kept.name,'Our usual opener');assert.equal(kept.minutes,7);
+      assert(!t.needsFrameworkTask(kept,record));assert.equal(t.unfilledSlots(record).length,5);
+    }
+  }
 });
 
 console.log('\n' + checks + ' builder checks passed. No files written.');
