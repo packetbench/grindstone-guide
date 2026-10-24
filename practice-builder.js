@@ -16,7 +16,8 @@
   const MAX_BLOCKS = 100;
   let catalog = [], byId = new Map(), plan, saved = [], root, ready = false;
   let storageError = '', notice = '', undoState = null, initialBackup = null, savedReadable = true, printListenerInstalled = false;
-  let picker = { type: 'move', search: '', matchAge: true, selected: '', family: '', destination: '' };
+  const emptyPicker = () => ({ type: '', search: '', matchAge: true, selected: '', family: '', destination: '', position: '', purpose: '', use: '', category: '' });
+  let picker = emptyPicker();
   const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   const text = value => typeof value === 'string' ? value : '';
   const list = value => Array.isArray(value) ? value.filter(x => typeof x === 'string') : (typeof value === 'string' && value ? [value] : []);
@@ -98,6 +99,17 @@
     out.forEach(item => {
       const moveId = item.id.replace(/^kyle:/, '');
       item.memberships = (pathway.series || []).flatMap(series => (series.members || []).filter(member => member.move_id === moveId).map(member => ({ id: series.id, title: series.title, role: member.role, note: member.note })));
+      const tags = window.GRINDSTONE_CATALOG_TAGS?.resolve(item.id);
+      item.categoryLabel = tags?.categoryLabel || item.category;
+      item.positions = list(tags?.positions); item.purposes = list(tags?.purposes); item.uses = list(tags?.uses);
+      item.aliases = list(tags?.aliases); item.coreSkills = list(tags?.coreSkills); item.searchText = text(tags?.searchText);
+      if (tags) {
+        item.category = tags.category;
+        item.age_groups = list(tags.age_groups).map(age).filter(value => AGES.includes(value));
+        item.ageStatus = tags.ageStatus; item.ageBasis = tags.ageBasis;
+        item.ageNote = [tags.ageNote, item.ageNote].filter((value,index,all) => value && all.indexOf(value) === index).join('\n');
+        if (Array.isArray(tags.memberships)) item.memberships = clone(tags.memberships);
+      }
     });
     return out.sort((a,b) => Number(b.kind === 'foundation') - Number(a.kind === 'foundation'));
   }
@@ -172,17 +184,64 @@
   function notify(message) { notice = message; updateStatus(); }
   function remember() { undoState = clone(plan); }
   function options(values, selected, label) { return values.map(value => '<option value="' + esc(value) + '"' + (value === selected ? ' selected' : '') + '>' + esc(label ? label(value) : value) + '</option>').join(''); }
+function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definitions?.[key] || []; }
+  function tagLabel(key, id) { return tagDefinitions(key).find(item => item.id === id)?.label || id; }
+  function categoryChoices() { return [...new Map(catalog.filter(item => item.category).map(item => [item.category, {id:item.category,label:item.categoryLabel || item.category}])).values()].sort((a,b) => a.label.localeCompare(b.label)); }
   function catalogMatches(item) {
-    if (!item.types.includes(picker.type)) return false;
+    if (picker.type && !item.types.includes(picker.type)) return false;
+    if (picker.category && item.category !== picker.category) return false;
+    if (picker.position && !item.positions.includes(picker.position)) return false;
+    if (picker.purpose && !item.purposes.includes(picker.purpose)) return false;
+    if (picker.use && !item.uses.includes(picker.use)) return false;
     if (picker.family && item.id !== 'series:' + picker.family && !item.memberships.some(m => m.id === picker.family)) return false;
     if (picker.matchAge && groupAge() && !item.age_groups.includes(groupAge())) return false;
-    const q = picker.search.trim().toLowerCase();
-    return !q || [item.id, item.title, item.summary, item.category, item.tier, item.status, ...item.cues, ...item.memberships.map(m => m.title + ' ' + m.role)].join(' ').toLowerCase().includes(q);
+    const words = picker.search.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    const haystack = [item.id, item.title, item.summary, item.category, item.categoryLabel, item.tier, item.status, item.searchText, ...item.aliases, ...item.cues, ...item.memberships.map(m => m.title + ' ' + m.role)].join(' ').toLowerCase();
+    return words.every(word => haystack.includes(word));
   }
   function visibleCatalog() { return catalog.filter(catalogMatches); }
+  function clearPickerFilters(key) {
+    const keys = ['type','search','family','position','purpose','use','category'];
+    if (!key) { for (const field of keys) picker[field] = ''; picker.matchAge = true; }
+    else if (keys.includes(key)) picker[key] = '';
+    else if (key === 'matchAge') picker.matchAge = true;
+    updatePicker();
+  }
+  function suggestedUses() {
+    const slot = plan.blocks.find(block => block.id === picker.destination);
+    if (!slot) return [];
+    const bySection = {prepare:['warmup'],staples:['review'],teach:['teach'],choices:['reaction','situational'],physical:['strength','endurance'],game:['game'],recap:['review']};
+    return (bySection[slot.section] || (['warmup','strength','endurance','game'].includes(slot.type) ? [slot.type] : [])).filter(id => tagDefinitions('uses').some(item => item.id === id));
+  }
+  function filterChipsHtml() {
+    const labels = {type: value => TYPES[value],search:value => '“' + value + '”',category:value => categoryChoices().find(item => item.id === value)?.label || value,position:value => tagLabel('positions',value),purpose:value => tagLabel('purposes',value),use:value => tagLabel('uses',value),family:value => window.GRINDSTONE_PATHWAY?.series?.find(item => item.id === value)?.title || value};
+    const prefixes = {type:'Type',search:'Search',category:'Category',position:'Position',purpose:'Purpose',use:'Use',family:'Series'};
+    const chips = Object.keys(labels).filter(key => picker[key]).map(key => {
+      const label = prefixes[key] + ': ' + labels[key](picker[key]);
+      return '<button type="button" data-clear-filter="' + key + '" aria-label="' + esc('Remove ' + label + ' filter') + '">' + esc(label) + ' <span aria-hidden="true">×</span></button>';
+    });
+    if (!picker.matchAge) chips.push('<button type="button" data-clear-filter="matchAge" aria-label="Return to suggested teaching group">All groups + unassigned <span aria-hidden="true">×</span></button>');
+    return chips.join('');
+  }
   function pickerHtml() {
     const families = [...(window.GRINDSTONE_PATHWAY?.series || [])].sort((a,b) => Number(b.kind === 'foundation') - Number(a.kind === 'foundation'));
-    return '<h2 id="builder-library-title">Choose today’s work</h2><p>Choose a guide for a timeline slot, or add another block. A technique series groups options from the same position. Foundation Series collects match essentials to teach separately.</p><label>Block type<select data-picker="type">' + options(Object.keys(TYPES), picker.type, x => TYPES[x]) + '</select></label><div class="builder-resource-controls"><label>Series filter<select data-picker="family"><option value="">All guides</option>' + options(families.map(s => s.id), picker.family, id => families.find(s => s.id === id).title) + '</select></label><label>Find a guide<input type="search" data-picker="search" value="' + esc(picker.search) + '" placeholder="Name, cue or technique"></label><label class="builder-check"><input type="checkbox" data-picker="matchAge"' + (picker.matchAge ? ' checked' : '') + '> Match suggested teaching group</label><small>When an age is selected, show assigned guides for that group. Pups defaults to age-appropriate movement foundations. Uncheck to browse broader or unassigned coach references. Age suggestions do not replace prerequisites.</small><label>Library guide<select data-picker="selected" size="8" aria-describedby="builder-match-count"></select></label><p id="builder-match-count" class="builder-match-count"></p></div><div class="builder-resource-preview"></div><label>Put this work in<select data-picker="destination"></select></label><button type="button" data-action="add">Add block to practice</button>';
+    const taggedSelect = (key, definition, label) => '<label>' + label + '<select data-picker="' + key + '"><option value="">Any ' + label.toLowerCase() + '</option>' + options(tagDefinitions(definition).map(item => item.id), picker[key], id => tagLabel(definition,id)) + '</select></label>';
+    return '<h2 id="builder-library-title">Choose today’s work</h2><p>Find a guide by what you want to practice. Technique series share a starting position; Foundation Series collects match essentials to teach separately.</p>' +
+      '<label>Put this work in<select data-picker="destination"></select></label><div class="builder-slot-suggestion"></div>' +
+      '<div class="builder-resource-controls"><label>Find a guide<input type="search" data-picker="search" value="' + esc(picker.search) + '" placeholder="Name, cue, alias or series"></label>' +
+      '<div class="builder-tag-filters">' + taggedSelect('position','positions','Position') + taggedSelect('purpose','purposes','Purpose') + taggedSelect('use','uses','Practice use') + '</div>' +
+      '<label class="builder-check"><input type="checkbox" data-picker="matchAge"' + (picker.matchAge ? ' checked' : '') + '> Suggested for selected group</label><p class="builder-group-guidance"></p></div>' +
+      '<details class="builder-more-filters"' + (picker.type || picker.category || picker.family ? ' open' : '') + '><summary>More filters / custom blocks</summary><div class="builder-secondary-filters">' +
+      '<label>Category<select data-picker="category"><option value="">All categories</option>' + options(categoryChoices().map(item => item.id),picker.category,id => categoryChoices().find(item => item.id === id).label) + '</select></label>' +
+      '<label>Series<select data-picker="family"><option value="">All series and guides</option>' + options(families.map(s => s.id), picker.family, id => families.find(s => s.id === id).title) + '</select></label>' +
+      '<label>Block type<select data-picker="type"><option value="">All guide types</option>' + options(Object.keys(TYPES), picker.type, x => TYPES[x]) + '</select></label></div><p>Block type is optional. Choose Water / reset or Coach-written block to add your own task.</p></details>' +
+      '<div class="builder-filter-summary"><div class="builder-filter-chips" aria-label="Active guide filters"></div><button type="button" data-action="clear-filters">Clear filters</button></div>' +
+      '<div class="builder-guide-results"><p id="builder-match-count" class="builder-match-count" role="status" aria-live="polite"></p><label>Library guide<select data-picker="selected" size="8" aria-describedby="builder-match-count"></select></label></div>' +
+      '<div class="builder-resource-preview"></div><button type="button" data-action="add">Add block to practice</button>';
+  }
+  function guideTagsHtml(item) {
+    const groups = [['Category',item.categoryLabel ? [item.categoryLabel] : []],['Position',item.positions.map(id => tagLabel('positions',id))],['Purpose',item.purposes.map(id => tagLabel('purposes',id))],['Practice use',item.uses.map(id => tagLabel('uses',id))]];
+    return '<dl class="builder-guide-tags">' + groups.filter(([,values]) => values.length).map(([label,values]) => '<div><dt>' + label + '</dt><dd>' + values.map(esc).join(' · ') + '</dd></div>').join('') + '</dl>';
   }
   function resourcePreview(item) {
     if (picker.type === 'water') return '<h3>Water / reset</h3><p>Add a short drink, partner change and check-in. Adjust its length for your group.</p>';
@@ -190,21 +249,30 @@
     if (!item) return '<p>No matching guide. Change the search or choose a coach-written block.</p>';
     const foundation = item.kind === 'foundation';
     const optionsHtml = item.foundation ? '<div class="pathway-foundation"><h4>' + (foundation ? 'Match essentials' : 'Common foundation') + '</h4><p>' + esc(item.foundation) + '</p></div>' + (foundation ? '<h4>Core skills</h4>' : '') + '<div class="pathway-branches">' + (item.branches || []).map(b => '<section class="pathway-branch"><h4>' + esc(b.title) + '</h4><p><strong>' + (foundation ? 'Skill purpose:' : 'When:') + '</strong> ' + esc(b.when) + '</p><p><strong>' + (foundation ? 'Teach:' : 'Option:') + '</strong> ' + esc(b.action) + '</p>' + (b.readiness ? '<p><strong>' + (foundation ? 'Before this skill:' : 'Before adding this option:') + '</strong> ' + esc(b.readiness) + '</p>' : '') + '</section>').join('') + '</div>' : '';
-    return '<h3>' + esc(item.title) + '</h3><p class="builder-source-status">' + esc(item.status) + (item.tier ? ' · ' + esc(item.tier) : '') + '</p><p>' + esc(item.summary) + '</p>' + (item.memberships.length ? '<ul class="builder-memberships">' + item.memberships.map(m => '<li><strong>' + esc(m.title + ' · ' + m.role) + '</strong>' + (m.note ? '<br>' + esc(m.note) : '') + '</li>').join('') + '</ul>' : '') + optionsHtml + guideNotesHtml(item) + (item.types.includes('game') ? '<p class="builder-preline">' + esc(item.instructions) + '</p>' : '') + (item.readiness ? '<p><strong>Ready when:</strong> ' + esc(item.readiness) + '</p>' : '') + (item.age_groups.length ? '<p><strong>Written for:</strong> ' + esc(item.age_groups.join(', ')) + '</p>' : '') + (item.boundary ? '<p><strong>Boundaries:</strong> ' + esc(item.boundary) + '</p>' : '') + (item.steps.length ? '<details><summary>Read instruction before adding</summary>' + (item.setup ? '<p>' + esc(item.setup) + '</p>' : '') + '<ol>' + item.steps.map(s => '<li>' + esc(s) + '</li>').join('') + '</ol>' + '</details>' : '') + linksHtml(item) + (components()?.renderPicker(item, catalog) || '');
+    return '<h3>' + esc(item.title) + '</h3><p class="builder-source-status">' + esc(item.status) + (item.tier ? ' · ' + esc(item.tier) : '') + '</p><p>' + esc(item.summary) + '</p>' + guideTagsHtml(item) + (item.memberships.length ? '<ul class="builder-memberships">' + item.memberships.map(m => '<li><strong>' + esc(m.title + ' · ' + m.role) + '</strong>' + (m.note ? '<br>' + esc(m.note) : '') + '</li>').join('') + '</ul>' : '') + optionsHtml + guideNotesHtml(item) + (item.types.includes('game') ? '<p class="builder-preline">' + esc(item.instructions) + '</p>' : '') + (item.readiness ? '<p><strong>Ready when:</strong> ' + esc(item.readiness) + '</p>' : '') + (item.age_groups.length ? '<p><strong>Suggested teaching groups:</strong> ' + esc(item.age_groups.join(', ')) + '</p>' : '') + (item.boundary ? '<p><strong>Boundaries:</strong> ' + esc(item.boundary) + '</p>' : '') + (item.steps.length ? '<details><summary>Read instruction before adding</summary>' + (item.setup ? '<p>' + esc(item.setup) + '</p>' : '') + '<ol>' + item.steps.map(s => '<li>' + esc(s) + '</li>').join('') + '</ol>' + '</details>' : '') + linksHtml(item) + (components()?.renderPicker(item, catalog) || '');
   }
   function linksHtml(item) { return (item.path ? '<a href="' + esc(item.path) + '" target="_blank" rel="noopener">Open full guide ↗</a>' : '') + (item.video ? '<a href="' + esc(item.video) + '" target="_blank" rel="noopener">Watch source video ↗</a>' : ''); }
-  function updatePicker() {
+function updatePicker() {
     if (!root) return;
-    const controls = root.querySelector('.builder-resource-controls'), isManual = ['custom', 'water'].includes(picker.type);
-    controls.hidden = isManual;
+    const isManual = ['custom', 'water'].includes(picker.type);
+    root.querySelector('.builder-resource-controls').hidden = isManual;
+    root.querySelector('.builder-guide-results').hidden = isManual;
     const matches = visibleCatalog();
     if (!matches.some(x => x.id === picker.selected)) picker.selected = matches[0]?.id || '';
     const select = root.querySelector('[data-picker="selected"]');
-    select.innerHTML = matches.map(item => '<option value="' + esc(item.id) + '"' + (item.id === picker.selected ? ' selected' : '') + '>' + esc(item.title + ' · ' + item.id + (item.steps.length ? '' : ' · video reference')) + '</option>').join('');
-    root.querySelector('#builder-match-count').textContent = matches.length + ' matching guides';
+    select.innerHTML = matches.map(item => '<option value="' + esc(item.id) + '"' + (item.id === picker.selected ? ' selected' : '') + '>' + esc(item.title + ' · ' + item.id + (!item.age_groups.length ? ' · group unassigned' : '') + (item.steps.length ? '' : ' · video reference')) + '</option>').join('');
+    root.querySelector('#builder-match-count').textContent = matches.length + (matches.length === 1 ? ' matching guide' : ' matching guides') + (picker.matchAge && groupAge() ? ' suggested for ages ' + groupAge() : ' across the catalog') + (matches.length ? '.' : '. Clear a filter to broaden the results.');
+    root.querySelector('.builder-filter-chips').innerHTML = filterChipsHtml();
+    root.querySelector('.builder-group-guidance').textContent = !picker.matchAge ? 'Browsing all groups and unassigned coach references. These results are not a recommendation for this group; check each guide’s readiness, adaptations and boundaries.' : groupAge() ? 'Suggestions for ages ' + groupAge() + ' use documented ages or teaching tiers. Unassigned references are excluded. Uncheck to browse all groups and unassigned references. Readiness and prerequisites still apply.' : 'Choose an age group above for teaching suggestions. With no group selected, this catalog includes unassigned references; check readiness and prerequisites before teaching.';
+    for (const key of ['type','search','family','position','purpose','use','category','matchAge']) {
+      const field = root.querySelector('[data-picker="' + key + '"]');
+      if (field) { if (key === 'matchAge') field.checked = picker.matchAge; else if (field.value !== picker[key]) field.value = picker[key]; }
+    }
     root.querySelector('.builder-resource-preview').innerHTML = resourcePreview(byId.get(picker.selected));
     if (!plan.blocks.some(b => b.id === picker.destination)) picker.destination = '';
     root.querySelector('[data-picker="destination"]').innerHTML = '<option value="">Add at end of practice</option>' + options(plan.blocks.map(b => b.id), picker.destination, id => { const i = plan.blocks.findIndex(b => b.id === id); return 'Replace ' + (i + 1) + '. ' + plan.blocks[i].name + ' · keep ' + formatMinutes(plan.blocks[i].minutes) + ' min'; });
+    const suggestions = suggestedUses();
+    root.querySelector('.builder-slot-suggestion').innerHTML = suggestions.length ? '<p>Suggested for this slot: ' + suggestions.map(id => '<button type="button" data-suggest-use="' + esc(id) + '"' + (picker.use === id ? ' disabled' : '') + '>Filter by ' + esc(tagLabel('uses',id)) + '</button>').join(' ') + '</p><small>Optional; your search and other filters stay in place.</small>' : '';
     const add = root.querySelector('[data-action="add"]');
     add.textContent = picker.destination ? 'Use in selected slot' : 'Add block to practice';
     add.disabled = (!picker.destination && plan.blocks.length >= MAX_BLOCKS) || (!isManual && !picker.selected);
@@ -246,11 +314,11 @@
     init();
     const requested = params && (params.get('series') || params.get('sequence'));
     const selectedGuide = byId.get('series:' + requested);
-    if (selectedGuide) { picker.type = selectedGuide.types[0]; picker.search = ''; picker.family = ''; picker.selected = selectedGuide.id; notice = (picker.type === 'series' ? 'Series' : 'Drill') + ' selected below. Review it, then choose its place in the practice.'; }
+    if (selectedGuide) { picker.type = selectedGuide.types[0]; picker.search = ''; picker.family = ''; picker.position = ''; picker.purpose = ''; picker.use = ''; picker.category = ''; picker.selected = selectedGuide.id; notice = (picker.type === 'series' ? 'Series' : 'Drill') + ' selected below. Review it, then choose its place in the practice.'; }
     const requestedActivity = params && params.get('activity'), activity = byId.get('activity:' + requestedActivity);
-    if (activity) { picker.type = activity.types[0]; picker.search = ''; picker.family = ''; picker.selected = activity.id; notice = 'Activity selected below. Review it, then choose its place in the practice.'; }
+    if (activity) { picker.type = activity.types[0]; picker.search = ''; picker.family = ''; picker.position = ''; picker.purpose = ''; picker.use = ''; picker.category = ''; picker.selected = activity.id; notice = 'Activity selected below. Review it, then choose its place in the practice.'; }
     const requestedMove = byId.get(params?.get('move'));
-    if (requestedMove?.types.includes('move')) { picker.type = 'move'; picker.search = ''; picker.family = ''; picker.selected = requestedMove.id; notice = 'Move selected below. Choose a slot or add it at the end of your practice.'; }
+    if (requestedMove?.types.includes('move')) { picker.type = 'move'; picker.search = ''; picker.family = ''; picker.position = ''; picker.purpose = ''; picker.use = ''; picker.category = ''; picker.selected = requestedMove.id; notice = 'Move selected below. Choose a slot or add it at the end of your practice.'; }
     const requestedAge = age(params && params.get('age'));
     if (plan.status !== 'completed' && !plan.age && AGES.includes(requestedAge)) plan.age = requestedAge;
     const requestedProgram = params?.get('program');
@@ -326,6 +394,7 @@
   }
   function action(name, index) {
     if (plan.status === 'completed' && !['duplicate','new','load','delete','backup','export','print','undo'].includes(name)) { notify('This is a completed record. Save a copy to edit a new practice.'); return; }
+    if (name === 'clear-filters') { clearPickerFilters(); return; }
     const b = plan.blocks[index];
     if (name === 'framework') {
       const frame = known(frameworks().frameworks, plan.framework); if (!frame) return;
@@ -338,7 +407,7 @@
       if (!previous && plan.blocks.length >= MAX_BLOCKS) return;
       const item = byId.get(picker.selected); if (!['custom', 'water'].includes(picker.type) && !item) return;
       if (previous && !window.confirm('Replace the task and coaching details in “' + previous.name + '”? Its minutes, practice section and station plan stay. Undo can restore it.')) return;
-      remember(); let next = blockFrom(['custom', 'water'].includes(picker.type) ? null : item, picker.type);
+      remember(); let next = blockFrom(['custom', 'water'].includes(picker.type) ? null : item, picker.type || item?.types[0]);
       try { if (components() && !['custom','water'].includes(picker.type)) next = components().applyPicker(next, item, root, catalog); } catch (err) { notify(err.message); return; }
       if (previous?.components?.rotation) next.components = {...(next.components || {}), version:1, rotation:clone(previous.components.rotation)};
       if (previous) { Object.assign(next, { id: previous.id, minutes: previous.minutes, section: previous.section, delivery: previous.delivery, rotation: previous.rotation }); plan.blocks[destination] = next; }
@@ -391,14 +460,17 @@
     });
     root.addEventListener('change', async e => {
       const el = e.target;
-      if (el.dataset.picker) { picker[el.dataset.picker] = el.type === 'checkbox' ? el.checked : el.value; if (el.dataset.picker === 'type' && !['move', 'drill', 'series'].includes(picker.type)) { picker.family = ''; root.querySelector('[data-picker="family"]').value = ''; } updatePicker(); return; }
+      if (el.dataset.picker) { if (plan.status === 'completed') return; picker[el.dataset.picker] = el.type === 'checkbox' ? el.checked : el.value; updatePicker(); return; }
       if (!el.matches('[data-import]')) return;
       const file = el.files && el.files[0]; if (!file) return;
       try { if (file.size > 2000000) throw new Error('Choose a JSON file smaller than 2 MB.'); const imported = parseImport(await file.text()); if (plan.blocks.length && !window.confirm('Open the imported practice as this draft? Undo can restore the current draft.')) return; remember(); weeks()?.detach(); plan = imported; updatePlanFields(); changed('Imported “' + plan.name + '”. Save it in this browser if you want to keep it.'); }
       catch (err) { notify('Import stopped: ' + err.message); }
       finally { el.value = ''; }
     });
-    root.addEventListener('click', e => { const button = e.target.closest('[data-action]'); if (!button || button.disabled) return; const block = button.closest('[data-block-index]'); action(button.dataset.action, block ? Number(block.dataset.blockIndex) : -1); });
+    root.addEventListener('click', e => {
+      const filter = e.target.closest('[data-clear-filter], [data-suggest-use]');
+      if (filter) { if (filter.disabled || plan.status === 'completed') return; if (filter.dataset.clearFilter) clearPickerFilters(filter.dataset.clearFilter); else if (suggestedUses().includes(filter.dataset.suggestUse)) { picker.use = filter.dataset.suggestUse; updatePicker(); } return; }
+      const button = e.target.closest('[data-action]'); if (!button || button.disabled) return; const block = button.closest('[data-block-index]'); action(button.dataset.action, block ? Number(block.dataset.blockIndex) : -1); });
   }
-  window.GRINDSTONE_BUILDER = { render, bind, testing: { normalizeCatalog, cleanPlan, parseImport, timing, esc, safeUrl, blockFrom, action, printHtml, newPlan, replaceDraft, completePlan, keys: { draft: DRAFT_KEY, plans: PLANS_KEY }, getState: () => clone({ plan, saved, storageError, picker }), reset: () => { ready = false; root = null; initialBackup = null; saved = []; savedReadable = true; storageError = ''; notice = ''; undoState = null; picker = { type: 'move', search: '', matchAge: true, selected: '', family: '', destination: '' }; pendingContext = null; } } };
+  window.GRINDSTONE_BUILDER = { render, bind, testing: { normalizeCatalog, catalogMatches, clearPickerFilters, suggestedUses, cleanPlan, parseImport, timing, esc, safeUrl, blockFrom, action, printHtml, newPlan, replaceDraft, completePlan, keys: { draft: DRAFT_KEY, plans: PLANS_KEY }, getState: () => clone({ plan, saved, storageError, picker }), reset: () => { ready = false; root = null; initialBackup = null; saved = []; savedReadable = true; storageError = ''; notice = ''; undoState = null; picker = emptyPicker(); pendingContext = null; } } };
 })();

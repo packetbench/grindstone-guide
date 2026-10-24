@@ -95,8 +95,20 @@ window.addEventListener("pagehide",()=>rememberView());
 
 
 // One browsing taxonomy across written, Kyle and Facebook entries.
+function planningMetadata(entry){return window.GRINDSTONE_CATALOG_TAGS?.resolve(entry.id);}
+function planningTags(entry){
+ const tags=planningMetadata(entry);if(!tags)return "";
+ const definitions=window.GRINDSTONE_CATALOG_TAGS.definitions;
+ const kind=entry.kind==="game"||/^G/.test(entry.id)?"games":"moves";
+ const chips=[["position","positions"],["purpose","purposes"]].flatMap(([key,list])=>(tags[list]||[]).slice(0,2).map(id=>{
+  const label=definitions[list].find(tag=>tag.id===id)?.label||id;
+  return '<a class="planning-tag" href="#'+kind+'?'+key+'='+encodeURIComponent(id)+'">'+esc(label)+'</a>';
+ }));
+ if(tags.coreSkills?.length)chips.push('<a class="planning-tag core-tag" href="#moves?core=1">Foundation essential</a>');
+ return chips.length?'<div class="planning-tags" aria-label="Practice planning tags">'+chips.join("")+'</div>':"";
+}
 function categoryFor(entry){
- const id=T.entries[entry.id]||entry.category;
+ const id=planningMetadata(entry)?.category||T.entries[entry.id]||entry.category;
  return T.categories.find(c=>c.id===id);
 }
 function seriesFor(entry){return (window.GRINDSTONE_PATHWAY?.series||[]).filter(series=>(series.members||[]).some(member=>member.move_id===entry.id));}
@@ -139,7 +151,7 @@ function practiceVideoDetail(id){
  return backLink("#moves/videos","All Facebook clips")+pageTitle('FACEBOOK COLLECTION',esc(v.title),esc(variationCategory(v.category)))+'<div class="practice-video-results">'+variationCard(v,true,true)+'</div>';
 }
 function practiceVideoLibraryCard(v){
- return '<article class="card">'+saveButton("facebook:"+v.id)+'<div class="badges">'+badge('Facebook clip')+categoryTag(v)+filterBadges(v)+'</div><h3><a href="#moves/videos/'+esc(v.id)+'">'+esc(v.title)+'</a></h3><p>'+esc(v.description||v.observed)+'</p><p class="fine">'+esc(v.publisher)+'</p><div class="buttons"><a class="button outline small" href="#moves/videos/'+esc(v.id)+'">Open drill →</a>'+ext(v.url,'Watch on Facebook','card-link')+'</div></article>';
+ return '<article class="card">'+saveButton("facebook:"+v.id)+'<div class="badges">'+badge('Facebook clip')+categoryTag(v)+filterBadges(v)+'</div><h3><a href="#moves/videos/'+esc(v.id)+'">'+esc(v.title)+'</a></h3><p>'+esc(v.description||v.observed)+'</p>'+planningTags(v)+'<p class="fine">'+esc(v.publisher)+'</p><div class="buttons"><a class="button outline small" href="#moves/videos/'+esc(v.id)+'">Open drill →</a>'+ext(v.url,'Watch on Facebook','card-link')+'</div></article>';
 }
 function practiceVariations(id){
  const items=variationsFor(id);if(!items.length)return "";
@@ -164,10 +176,10 @@ function usaPanel(id){
 }
 function moveCard(m){
  const v=videoFor(m.id)?.video;
- return '<article class="card">'+saveButton(m.id)+'<div class="badges">'+badge(m.tier,tierClass(m.tier))+badge("Written guide")+filterBadges(m)+'<span class="id">'+m.id+'</span></div><h3><a href="#move/'+m.id+'">'+esc(m.name)+'</a></h3><p>'+esc(m.purpose)+'</p>'+variationLabels(m.id)+'<div class="badges">'+seriesTags(m)+'</div><div class="card-bottom">'+categoryTag(m)+'<a class="card-link" href="#move/'+m.id+'">Teach it →</a></div>'+(v&&v.format.includes("short")?'<div style="margin-top:12px">'+badge("Short available","shorts")+'</div>':"")+'</article>';
+ return '<article class="card">'+saveButton(m.id)+'<div class="badges">'+badge(m.tier,tierClass(m.tier))+badge("Written guide")+filterBadges(m)+'<span class="id">'+m.id+'</span></div><h3><a href="#move/'+m.id+'">'+esc(m.name)+'</a></h3><p>'+esc(m.purpose)+'</p>'+planningTags(m)+variationLabels(m.id)+'<div class="badges">'+seriesTags(m)+'</div><div class="card-bottom">'+categoryTag(m)+'<a class="card-link" href="#move/'+m.id+'">Teach it →</a></div>'+(v&&v.format.includes("short")?'<div style="margin-top:12px">'+badge("Short available","shorts")+'</div>':"")+'</article>';
 }
 function gameCard(g){
- return '<article class="card">'+saveButton(g.id)+'<div class="badges">'+badge(g.ages.includes("Pup")?"Pup / all ages":g.ages,g.ages.includes("Pup")?"pup":"")+badge("Written guide")+filterBadges(g)+'<span class="id">'+g.id+'</span></div><h3><a href="#game/'+g.id+'">'+esc(g.name)+'</a></h3><p>'+esc(g.format)+'</p>'+variationLabels(g.id)+'<div class="card-bottom"><span>'+esc(g.minutes)+' minutes</span><a class="card-link" href="#game/'+g.id+'">Run the game →</a></div></article>';
+ return '<article class="card">'+saveButton(g.id)+'<div class="badges">'+badge(g.ages.includes("Pup")?"Pup / all ages":g.ages,g.ages.includes("Pup")?"pup":"")+badge("Written guide")+filterBadges(g)+'<span class="id">'+g.id+'</span></div><h3><a href="#game/'+g.id+'">'+esc(g.name)+'</a></h3><p>'+esc(g.format)+'</p>'+planningTags(g)+variationLabels(g.id)+'<div class="card-bottom"><span>'+esc(g.minutes)+' minutes</span><a class="card-link" href="#game/'+g.id+'">Run the game →</a></div></article>';
 }
 function practiceCard(x){
  return '<article class="card">'+saveButton(practiceSaveId(x))+'<div class="badges">'+badge("Ages "+x.age_group)+'<span class="id">PRACTICE '+String(x.number).padStart(2,"0")+'</span></div><h3><a href="#practice/'+x.age_group+'/'+x.number+'">'+esc(x.title)+'</a></h3><p>'+esc(x.focus)+'</p><div class="card-bottom"><span>'+x.duration+' minutes</span><a class="card-link" href="#practice/'+x.age_group+'/'+x.number+'">Open plan →</a></div></article>';
@@ -228,7 +240,7 @@ function kyleImage(entry,detail=false){
 }
 function kyleCard(entry){
  const v=entry.video||{};
- return '<article class="card kyle-card">'+saveButton("kyle:"+entry.id)+kyleImage(entry)+'<div class="kyle-card-body"><div class="badges">'+filterBadges(entry)+badge(kyleGuideLabel(entry),"video-guide")+categoryTag(entry)+seriesTags(entry)+badge(v.format==="shorts"?"YouTube Short":"YouTube video",v.format==="shorts"?"shorts":"")+(entry.featured?badge("★ Coach’s pick","pup"):"")+'</div><h3><a href="#moves/kyle/'+entry.id+'">'+esc(entry.name)+'</a></h3><p class="kyle-publisher">'+esc(v.channel||"YouTube")+'</p><p>'+esc(entry.description)+'</p>'+(v.status==="unverified"?'<p class="fine">Source check pending.</p>':"")+'<div class="kyle-card-links">'+ext(v.url,v.format==="shorts"?"Watch Short":"Watch video","button small")+'<a class="card-link" href="#moves/kyle/'+entry.id+'">'+(instructionFor(entry.id)?"Teach it →":"Guide & related moves →")+'</a></div></div></article>';
+ return '<article class="card kyle-card">'+saveButton("kyle:"+entry.id)+kyleImage(entry)+'<div class="kyle-card-body"><div class="badges">'+filterBadges(entry)+badge(kyleGuideLabel(entry),"video-guide")+categoryTag(entry)+seriesTags(entry)+badge(v.format==="shorts"?"YouTube Short":"YouTube video",v.format==="shorts"?"shorts":"")+(entry.featured?badge("★ Coach’s pick","pup"):"")+'</div><h3><a href="#moves/kyle/'+entry.id+'">'+esc(entry.name)+'</a></h3><p class="kyle-publisher">'+esc(v.channel||"YouTube")+'</p><p>'+esc(entry.description)+'</p>'+planningTags(entry)+(v.status==="unverified"?'<p class="fine">Source check pending.</p>':"")+'<div class="kyle-card-links">'+ext(v.url,v.format==="shorts"?"Watch Short":"Watch video","button small")+'<a class="card-link" href="#moves/kyle/'+entry.id+'">'+(instructionFor(entry.id)?"Teach it →":"Guide & related moves →")+'</a></div></div></article>';
 }
 function kyleList(params){
  const entries=K.entries||[],tag=params.get("tag")||"",picks=entries.filter(x=>x.featured),shorts=entries.filter(x=>x.video?.format==="shorts").length;
@@ -397,40 +409,67 @@ function updateSeasonPath(params){
  openDetails.forEach(name=>{const details=target.querySelector("details."+name);if(details)details.open=true;});
 }
 function filters(kind,params){
- const q=params.get("q")||"",age=params.get("age")||"",tier=params.get("tier")||"",mixed=kind!=="practices";
- const search='<div class="field search"><label for="search">Search '+kind+'</label><input id="search" type="search" name="q" value="'+esc(q)+'" placeholder="'+(kind==="moves"?"Name, move ID, position, or coaching cue…":kind==="games"?"Name, game ID, equipment, or video…":"Theme, practice number, or move ID…")+'"></div>';
- const ageField='<div class="field"><label for="age">Age group</label><select id="age" name="age"><option value="">All groups</option>'+["4-6","7-10","11-14"].map(a=>'<option value="'+a+'" '+(age===a?"selected":"")+'>Ages '+a+'</option>').join("")+'</select></div>';
- const category='<div class="field category-field"><label for="move-category">Category</label><select id="move-category" name="category"><option value="">All categories</option>'+categoryOptions(params.get("category"),[...D.moves,...kyleEntries("move"),...practiceVideoEntries("move")])+'</select></div>';
- const familyFilter=kind==="moves"?'<div class="field"><label for="move-series">Technique series</label><select id="move-series" name="series"><option value="">All series and moves</option>'+(window.GRINDSTONE_PATHWAY?.series||[]).map(series=>'<option value="'+series.id+'" '+(params.get("series")===series.id?"selected":"")+'>'+esc(series.title)+'</option>').join("")+'</select></div>':"";
- const moreActive=["type","tier","video",...(kind==="games"?["minutes"]:[])].some(key=>params.get(key))||params.get("unassigned")==="1";
- const collection='<div class="field guide-type-field"><label for="guide-type">Collection</label><select id="guide-type" name="type"><option value="">All collections</option><option value="written" '+(params.get("type")==="written"?"selected":"")+'>Original written guides</option><option value="video" '+(params.get("type")==="video"?"selected":"")+'>Coach Kyle’s collection</option><option value="facebook" '+(params.get("type")==="facebook"?"selected":"")+'>Facebook clips</option></select></div>';
- const moveOptions='<div class="field"><label for="tier">Teaching tier</label><select id="tier" name="tier"><option value="">All tiers</option>'+["Pup","Beginner","Advanced"].map(t=>'<option '+(tier===t?"selected ":"")+'value="'+t+'">'+t+'</option>').join("")+'</select></div><div class="field"><label for="video">Video format</label><select id="video" name="video"><option value="">All demonstrations</option><option value="shorts" '+(params.get("video")==="shorts"?"selected":"")+'>YouTube Shorts</option></select></div>';
- const time='<div class="field"><label for="minutes">Game time</label><select id="minutes" name="minutes"><option value="">Any length</option>'+[4,5,6].map(n=>'<option value="'+n+'" '+(params.get("minutes")===String(n)?"selected":"")+'>Up to '+n+' minutes</option>').join("")+'</select></div>';
- return '<form class="filters library-filters" id="filter-form" role="search"><div class="filter-primary">'+search+(kind==="moves"?category+familyFilter:ageField)+'<button class="button outline" type="reset">Reset</button></div>'+(kind==="practices"?'<input type="hidden" name="phase" id="practice-phase" value="'+esc(seasonPhase(params)?.id||"")+'">':'')+(mixed?'<details class="filter-options"'+(moreActive?' open':'')+'><summary>More filters'+(moreActive?' · active':'')+'</summary><div class="filter-secondary">'+collection+(kind==="moves"?moveOptions:time)+'<label class="unassigned-filter" for="include-unassigned"><input id="include-unassigned" type="checkbox" '+(params.get("unassigned")==="1"?'checked':'')+' aria-describedby="library-filter-help"> Include entries without an assigned '+(kind==="moves"?'tier':'age or time')+'</label></div><p id="library-filter-help" class="fine">'+(kind==="moves"?'A teaching-tier filter shows assigned matches by default. Opt in above to also show entries without a reviewed tier; they are labeled and are not recommendations for that group.':'Age and time filters show assigned matches by default. Opt in above to also show entries without those details; check each entry’s setup and adaptations before choosing it.')+'</p></details>':'')+'</form>';
+ const mixed=kind!=="practices",defs=window.GRINDSTONE_CATALOG_TAGS?.definitions||{};
+ const select=(key,id,label,empty,choices)=>'<div class="field filter-'+key+'"><label for="'+id+'">'+label+'</label><select id="'+id+'" name="'+key+'"><option value="">'+empty+'</option>'+choices.map(([value,text])=>'<option value="'+esc(value)+'" '+(params.get(key)===value?'selected':'')+'>'+esc(text)+'</option>').join("")+'</select></div>';
+ const search='<div class="field search"><label for="search">Search '+kind+'</label><input id="search" type="search" name="q" value="'+esc(params.get("q")||"")+'" placeholder="Name, ID, coaching cue, or familiar term…"></div>';
+ const age=select("age","age","Suggested group","All groups",["4-6","7-10","11-14"].map(a=>[a,"Ages "+a]));
+ const planning=mixed?[["position","positions","Starting position","Any position"],["purpose","purposes","Purpose","Any purpose"],["use","uses","Practice use","Any practice use"]].map(([key,list,label,empty])=>select(key,"filter-"+key,label,empty,(defs[list]||[]).map(tag=>[tag.id,tag.label]))).join(""):"";
+ const category=select("category","move-category","Category","All categories",T.categories.filter(c=>c.id!=="games").map(c=>[c.id,c.label]));
+ const series=select("series","move-series","Technique series","All series and moves",(window.GRINDSTONE_PATHWAY?.series||[]).map(item=>[item.id,item.title]));
+ const collection=select("type","guide-type","Collection","All collections",[["written","Original written guides"],["video","Coach Kyle’s collection"],["facebook","Facebook clips"]]);
+ const tier=select("tier","tier","Teaching tier","All tiers",["Pup","Beginner","Advanced"].map(t=>[t,t]));
+ const video=select("video","video","Video format","All demonstrations",[["shorts","YouTube Shorts"]]);
+ const time=select("minutes","minutes","Game time","Any length",[4,5,6].map(n=>[String(n),"Up to "+n+" minutes"]));
+ const core=kind==="moves"?'<label class="unassigned-filter"><input type="checkbox" name="core" value="1" '+(params.get("core")==="1"?'checked':'')+'> Foundation essentials only</label>':"";
+ const moreActive=["category","series","type","tier","video","core",...(kind==="games"?["minutes"]:[])].some(key=>params.get(key))||params.get("unassigned")==="1";
+ return '<form class="filters library-filters" id="filter-form" role="search"><div class="filter-primary">'+search+age+planning+'<button class="button outline" type="reset">Clear filters</button></div>'+(kind==="practices"?'<input type="hidden" name="phase" id="practice-phase" value="'+esc(seasonPhase(params)?.id||"")+'">':'')+(mixed?'<details class="filter-options"'+(moreActive?' open':'')+'><summary>More filters'+(moreActive?' · active':'')+'</summary><div class="filter-secondary">'+(kind==="moves"?category+series:"")+collection+(kind==="moves"?tier+video:time)+core+'<label class="unassigned-filter" for="include-unassigned"><input id="include-unassigned" type="checkbox" '+(params.get("unassigned")==="1"?'checked':'')+' aria-describedby="library-filter-help"> Include references with unassigned group or filter details</label></div><p id="library-filter-help" class="fine">Group suggestions use published ages or the library’s existing teaching tiers. They do not replace checking prerequisites and readiness. Unassigned references are opt-in when filtering by group, tier or time.</p></details>':'')+'</form>';
+}
+function libraryFilterChips(kind,params){
+ const defs=window.GRINDSTONE_CATALOG_TAGS?.definitions||{};
+ const names={q:"Search",age:"Group",tier:"Tier",category:"Category",series:"Series",type:"Collection",video:"Video",minutes:"Minutes",position:"Position",purpose:"Purpose",use:"Use",core:"Foundation",unassigned:"Unassigned"};
+ const chips=[];
+ for(const [key,value] of params){
+  if(!names[key]||!value)continue;
+  let label=value;
+  const list=({position:"positions",purpose:"purposes",use:"uses"})[key];
+  if(list)label=(defs[list]||[]).find(item=>item.id===value)?.label||value;
+  if(key==="category")label=T.categories.find(item=>item.id===value)?.label||value;
+  if(key==="series")label=(window.GRINDSTONE_PATHWAY?.series||[]).find(item=>item.id===value)?.title||value;
+  if(key==="core")label="Essentials";
+  if(key==="unassigned")label="Included";
+  if(key==="type")label=({written:"Original guides",video:"Coach Kyle",facebook:"Facebook"})[value]||value;
+  const next=new URLSearchParams(params);next.delete(key);
+  chips.push('<a class="library-filter-chip" href="#'+kind+(next.size?'?'+esc(next.toString()):'')+'" aria-label="Remove '+esc(names[key])+': '+esc(label)+'">'+esc(names[key])+': '+esc(label)+' <span aria-hidden="true">×</span></a>');
+ }
+ return chips.join("");
 }
 function listing(kind,params){
  const title=kind==="moves"?"The move library.":kind==="games"?"Finish on a good note.":"Your next practice, ready.";
  const copy=kind==="moves"?"Find a move by skill, position, or coaching cue. Shared categories connect written guides, Coach Kyle’s collection, and Facebook clips.":kind==="games"?"Find a game for your group, then check its setup, rules, and adaptations.":"Thirty plans per age group. Follow a learning phase, repeat a useful session, or search for the next skill.";
  const collection=kind==="practices"?"":'<nav class="collection-links" aria-label="Video collections"><span>Collections</span><a href="#moves/kyle'+(kind==="games"?'?kind=game':'')+'">Coach Kyle’s Corner →</a><a href="#moves/videos'+(kind==="games"?'?kind=game':'')+'">Facebook clips →</a></nav>';
- return pageTitle("COACH LIBRARY",title,copy)+(kind==="practices"?'<div id="season-path"></div>':"")+filters(kind,params)+collection+'<p id="result-count" class="result-count" role="status" aria-live="polite"></p><div id="results" class="grid"></div>';
+ return pageTitle("COACH LIBRARY",title,copy)+(kind==="practices"?'<div id="season-path"></div>':"")+filters(kind,params)+collection+'<div id="library-active-tags" class="library-active-tags" aria-label="Active filters"></div><p id="result-count" class="result-count" role="status" aria-live="polite"></p><div id="results" class="grid"></div>';
 }
 function filterMetadata(entry,kind){
- const isWritten=entry.guide_type==="written";
- let ages=Array.isArray(entry.age_groups)?entry.age_groups:null;
+ const isWritten=entry.guide_type==="written",shared=planningMetadata(entry);
+ let ages=shared?(shared.ageStatus==="assigned"?shared.age_groups:null):Array.isArray(entry.age_groups)?entry.age_groups:null;
  // Preserve the original written-game age mapping; do not infer a video's age from its source.
  if(kind==="games"&&ages===null&&isWritten&&byId[entry.id])ages=[...(entry.id<="G10"?["4-6"]:[]),...(entry.id<="G20"?["7-10"]:[]),"11-14"];
  const minutes=entry.minutes!==undefined&&entry.minutes!==null&&String(entry.minutes).trim()!==""?Number(entry.minutes):NaN;
- return {tier:entry.tier||null,ages,minutes:Number.isFinite(minutes)?minutes:null};
+ return {tier:shared?.tier||entry.tier||null,ages,minutes:Number.isFinite(minutes)?minutes:null};
 }
 function libraryResults(kind,params){
  const mixed=kind!=="practices",written=kind==="moves"?D.moves:kind==="games"?D.games:D.practices;
  let list=mixed?[...written.map(x=>({...x,guide_type:"written"})),...kyleEntries(kind==="games"?"game":"move").map(x=>({...x,guide_type:"video"})),...practiceVideoEntries(kind==="games"?"game":"move").map(x=>({...x,guide_type:"video",source_collection:"facebook"}))]:written;
  const q=(params.get("q")||"").toLowerCase().trim(),age=params.get("age"),tier=params.get("tier"),type=params.get("type"),includeUnassigned=params.get("unassigned")==="1";
  return list.filter(x=>{
-  const isVideo=x.guide_type==="video",metadata=filterMetadata(x,kind),missing=[];
+  const isVideo=x.guide_type==="video",metadata=filterMetadata(x,kind),tags=planningMetadata(x),missing=[];
+  if(mixed){
+   for(const [key,list] of [["position","positions"],["purpose","purposes"],["use","uses"]])if(params.get(key)&&!tags?.[list]?.includes(params.get(key)))return false;
+   if(params.get("core")==="1"&&!tags?.coreSkills?.length)return false;
+  }
   if(kind==="moves"&&params.get("series")&&!seriesFor(x).some(series=>series.id===params.get("series")))return false;
   if(kind==="moves"&&params.get("category")&&categoryFor(x)?.id!==params.get("category"))return false;
-  if(q&&!JSON.stringify({...x,shared_category:categoryFor(x)?.label,old_name:D.research[x.id]?.original_name,category_label:x.source_collection==="facebook"?variationCategory(x.category):isVideo?kyleCategory(x.category)?.label:"",instruction:isVideo?instructionFor(x.id):undefined,practice_variations:isVideo?undefined:variationSearch(x.id)}).toLowerCase().includes(q))return false;
+  if(q&&!JSON.stringify({...x,planning_terms:tags?.searchText,shared_category:categoryFor(x)?.label,old_name:D.research[x.id]?.original_name,category_label:x.source_collection==="facebook"?variationCategory(x.category):isVideo?kyleCategory(x.category)?.label:"",instruction:isVideo?instructionFor(x.id):undefined,practice_variations:isVideo?undefined:variationSearch(x.id)}).toLowerCase().includes(q))return false;
   if(mixed&&type){
    if(type==="facebook"){if(x.source_collection!=="facebook")return false;}
    else if(type==="video"){if(!isVideo||x.source_collection==="facebook")return false;}
@@ -439,7 +478,7 @@ function libraryResults(kind,params){
   if(kind==="moves"&&tier){if(metadata.tier===null)missing.push("Tier");else if(metadata.tier!==tier)return false;}
   if(age&&kind==="practices"&&x.age_group!==age)return false;
   const phase=kind==="practices"?seasonPhase(params):null;if(phase&&!phase.practice_numbers.includes(x.number))return false;
-  if(age&&kind==="games"){if(metadata.ages===null)missing.push("Age");else if(!metadata.ages.includes(age))return false;}
+  if(age&&mixed){if(metadata.ages===null)missing.push("Age");else if(!metadata.ages.includes(age))return false;}
   if(params.get("video")==="shorts"&&!(isVideo?x.video:videoFor(x.id)?.video)?.format?.includes("short"))return false;
   if(kind==="games"&&params.get("minutes")){if(metadata.minutes===null)missing.push("Time");else if(metadata.minutes>Number(params.get("minutes")))return false;}
   if(missing.length&&!includeUnassigned)return false;
@@ -450,6 +489,7 @@ function libraryResults(kind,params){
 function updateResults(kind,params){
  const mixed=kind!=="practices",q=(params.get("q")||"").trim(),list=libraryResults(kind,params);
  if(kind==="practices")updateSeasonPath(params);
+ const active=document.getElementById("library-active-tags");if(active)active.innerHTML=libraryFilterChips(kind,params);
  document.getElementById("results").innerHTML=list.length?list.map(x=>x.source_collection==="facebook"?practiceVideoLibraryCard(x):x.guide_type==="video"?kyleCard(x):kind==="moves"?moveCard(x):kind==="games"?gameCard(x):practiceCard(x)).join(""):'<div class="empty"><h2>No matches yet.</h2><p>Try another filter'+(mixed&&params.get("unassigned")!=="1"?' or include entries without assigned filter details':'')+'.</p><button type="button" class="button outline" data-clear>Clear filters</button></div>';
  const facebookCount=list.filter(x=>x.source_collection==="facebook").length,videoCount=list.filter(x=>x.guide_type==="video").length,unassignedCount=list.filter(x=>x.unassigned_filters?.length).length,counts=mixed?list.length+(list.length===1?" entry · ":" entries · ")+(list.length-videoCount)+" original written · "+(videoCount-facebookCount)+" from Coach Kyle · "+facebookCount+(facebookCount===1?" Facebook clip":" Facebook clips"):list.length+" practices";
  document.getElementById("result-count").textContent=counts+(kind==="moves"&&params.get("category")?" · "+(T.categories.find(c=>c.id===params.get("category"))?.label||params.get("category")):"")+(q?" matching “"+params.get("q")+"”":"")+(unassignedCount?" · "+unassignedCount+" with unassigned filter details":"")+" · "+(kind==="moves"?"Choose by readiness, then check the specific variation.":kind==="games"?"Check setup and adaptations before choosing a game.":"All timings include transitions and rest.");

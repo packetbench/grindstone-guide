@@ -8,7 +8,7 @@ const values = new Map(), writes = [];
 let failStorage = false, allowConfirm = true;
 const storage = { getItem: k => { if (failStorage) throw Error('disabled'); return values.get(k) || null; }, setItem: (k, val) => { if (failStorage) throw Error('full'); values.set(k, val); writes.push(k); } };
 const ctx = { window: { localStorage: storage, confirm: () => allowConfirm }, URL, URLSearchParams, console, Blob, setTimeout };
-for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'game-guides-a.js', 'game-guides-b.js', 'game-guides-c.js', 'game-guide-library.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-foundation.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js', 'practice-weeks.js', 'practice-components.js', 'practice-builder.js']) {
+for (const file of ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'game-guides-a.js', 'game-guides-b.js', 'game-guides-c.js', 'game-guide-library.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-foundation.js', 'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js', 'catalog-tags.js', 'practice-weeks.js', 'practice-components.js', 'practice-builder.js']) {
   if (!fs.existsSync(path.join(base, file))) throw Error('Missing ' + file);
   vm.runInNewContext(fs.readFileSync(path.join(base, file), 'utf8'), ctx, { filename: file });
 }
@@ -376,4 +376,95 @@ check('builder search finds a guide by an exact coaching cue', () => {
 });
 
 check('detaching a selected series retains its full teaching snapshots in manual copies', () => { resetCase(); const c = ctx.window.GRINDSTONE_COMPONENTS; const source = t.normalizeCatalog().find(x => x.id === 'series:' + series.id); const block = c.selectSeries(t.blockFrom(source, 'series'), [c.testing.branchKey(series.branches[0])], t.normalizeCatalog()); const p = state().plan; p.blocks = [block]; t.replaceDraft(p); t.action('detach-guide', 0); const kept = state().plan.blocks[0]; assert.equal(kept.sourceId, ''); assert.equal(kept.type, 'custom'); assert.deepEqual(kept.components.series.guides, block.components.series.guides); const imported = t.parseImport(JSON.stringify({format:'grindstone-practice',version:1,plan:state().plan})); assert(imported.blocks[0].components.series.guides.length); for (const guide of block.components.series.guides) assert(t.printHtml(false).includes(t.esc(guide.title))); });
+
+check('builder catalog uses the shared category, position, purpose, use and age metadata', () => {
+  const tags = ctx.window.GRINDSTONE_CATALOG_TAGS;
+  assert(tags);
+  for (const item of catalog) {
+    const shared = tags.resolve(item.id); assert(shared, 'Missing shared metadata: ' + item.id);
+    for (const key of ['positions','purposes','uses','age_groups','aliases','coreSkills','memberships']) assert.deepEqual(JSON.parse(JSON.stringify(item[key])), JSON.parse(JSON.stringify(shared[key])), item.id + ' differs for ' + key);
+    assert.equal(item.category, shared.category);
+    assert.equal(item.categoryLabel, shared.categoryLabel);
+    assert(item.ageNote.includes(shared.ageNote), item.id + ' must retain the source of its age suggestion');
+  }
+});
+check('default all-guide picker combines orthogonal filters and keeps source IDs', () => {
+  resetCase('age=7-10'); assert.equal(state().picker.type, '');
+  picker('position','bottom'); picker('purpose','escape'); picker('use','teach');
+  const expected = catalog.filter(item => item.age_groups.includes('7-10') && item.positions.includes('bottom') && item.purposes.includes('escape') && item.uses.includes('teach')).map(item => item.id);
+  assert.deepEqual(visibleIds(),expected); assert(visibleIds().includes('B17')); assert(!visibleIds().includes('B07'));
+  picker('selected','B17'); t.action('add',-1);
+  assert.equal(state().plan.blocks[0].sourceId,'B17'); assert.equal(state().plan.blocks[0].type,'move');
+  assert.equal(t.cleanPlan(state().plan).blocks[0].sourceId,'B17');
+  assert(root.querySelector('.builder-filter-chips').innerHTML.includes('Position: Bottom'));
+  assert(root.querySelector('#builder-match-count').textContent.includes('suggested for ages 7-10'));
+});
+check('shared warm-up use finds both stance guides without requiring the legacy warm-up block type', () => {
+  resetCase('age=7-10'); picker('use','warmup');
+  assert(visibleIds().includes('P01')); assert(visibleIds().includes('B01')); assert(!visibleIds().includes('B26'));
+  picker('category','movement'); assert(visibleIds().includes('B01'));
+  picker('type','move'); assert(visibleIds().includes('B01'));
+  t.clearPickerFilters('type'); assert.equal(state().picker.type,'');
+});
+check('aliases, cue words and shared category labels are searchable', () => {
+  resetCase('age=7-10'); picker('search','run the pipe'); assert(visibleIds().includes('B08'));
+  picker('search','knees bent eyes ahead'); assert(visibleIds().includes('P01'));
+  picker('search',''); picker('category','counters'); assert(visibleIds().includes('P07'));
+  assert.equal(catalog.find(item=>item.id==='P07').categoryLabel,ctx.window.GRINDSTONE_CATALOG_TAGS.resolve('P07').categoryLabel);
+});
+check('unassigned references require explicit group-filter override and are labeled', () => {
+  resetCase('age=4-6'); picker('search','Peterson');
+  assert(!visibleIds().includes('kyle:K18'));
+  root.listeners.change({target:{dataset:{picker:'matchAge'},type:'checkbox',checked:false}});
+  assert(visibleIds().includes('kyle:K18'));
+  assert(root.querySelector('.builder-group-guidance').textContent.includes('not a recommendation'));
+  assert(root.querySelector('[data-picker="selected"]').innerHTML.includes('group unassigned'));
+  t.clearPickerFilters('matchAge'); assert.equal(state().picker.matchAge,true); assert(!visibleIds().includes('kyle:K18'));
+});
+check('slot-use suggestions preserve explicit search and selection until the coach applies them', () => {
+  resetCase('age=7-10'); field('framework','two-hour'); t.action('framework',-1);
+  picker('search','Wrestling Stance'); picker('selected','B01'); picker('position','neutral');
+  const slot=state().plan.blocks.find(item=>item.section==='prepare');
+  picker('destination',slot.id);
+  assert.equal(state().picker.search,'Wrestling Stance'); assert.equal(state().picker.selected,'B01'); assert.equal(state().picker.use,'');
+  assert.deepEqual(Array.from(t.suggestedUses()),['warmup']);
+  const button={dataset:{suggestUse:'warmup'},disabled:false};
+  root.listeners.click({target:{closest(selector){return selector.includes('data-suggest-use')?button:null;}}});
+  assert.equal(state().picker.use,'warmup'); assert.equal(state().picker.search,'Wrestling Stance'); assert.equal(state().picker.position,'neutral'); assert.equal(state().picker.selected,'B01');
+  assert(root.querySelector('.builder-slot-suggestion').innerHTML.includes('Optional'));
+});
+check('clear filters restores group suggestions while preserving destination and practice', () => {
+  resetCase('age=4-6'); field('framework','hour'); t.action('framework',-1);
+  const before=JSON.stringify(state().plan), destination=state().plan.blocks[0].id;
+  picker('destination',destination); picker('search','not a real guide'); picker('type','move'); picker('purpose','pin');
+  root.listeners.change({target:{dataset:{picker:'matchAge'},type:'checkbox',checked:false}});
+  assert.equal(visibleIds().length,0); t.action('clear-filters',-1);
+  assert.equal(state().picker.matchAge,true); assert.equal(state().picker.destination,destination);
+  for(const key of ['type','search','family','category','position','purpose','use'])assert.equal(state().picker[key],'');
+  assert(visibleIds().includes('P01')); assert(!visibleIds().includes('A14')); assert.equal(JSON.stringify(state().plan),before);
+});
+check('manual block types remain reachable and filters never become invalid saved block types', () => {
+  resetCase(); picker('type','water'); t.action('add',-1); assert.equal(state().plan.blocks[0].type,'water'); assert.equal(state().plan.blocks[0].sourceId,'');
+  picker('type','custom'); t.action('add',-1); assert.equal(state().plan.blocks[1].type,'custom');
+  t.clearPickerFilters(); picker('selected','G31'); t.action('add',-1); assert.equal(state().plan.blocks[2].type,'game');
+  assert.equal(t.cleanPlan(state().plan).blocks.length,3);
+});
+check('new shared filters cannot hide an explicit deep link with stale filter values', () => {
+  resetCase('age=7-10'); picker('position','top'); picker('purpose','pin'); picker('use','game'); picker('category','games');
+  mount('series=S24');
+  for(const key of ['position','purpose','use','category'])assert.equal(state().picker[key],'');
+  assert.equal(state().picker.selected,'series:S24'); assert.equal(state().picker.type,'series');
+  assert(root.querySelector('.builder-resource-preview').innerHTML.includes('Match essentials'));
+  assert(root.querySelector('.builder-resource-preview').innerHTML.includes('data-component-branch'));
+});
+check('completed practice records reject tag, group-mode and slot-suggestion changes', () => {
+  resetCase('age=7-10'); field('framework','hour'); t.action('framework',-1);
+  picker('destination',state().plan.blocks[0].id); t.completePlan();
+  const before=JSON.stringify(state().picker), planBefore=JSON.stringify(state().plan);
+  picker('position','top'); root.listeners.change({target:{dataset:{picker:'matchAge'},type:'checkbox',checked:false}});
+  const button={dataset:{suggestUse:'warmup'},disabled:false}; root.listeners.click({target:{closest(selector){return selector.includes('data-suggest-use')?button:null;}}});
+  t.action('clear-filters',-1);
+  assert.equal(JSON.stringify(state().picker),before); assert.equal(JSON.stringify(state().plan),planBefore);
+});
+
 console.log('\n' + checks + ' builder checks passed. No files written.');

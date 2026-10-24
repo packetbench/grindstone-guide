@@ -3,7 +3,7 @@
 const fs=require("fs"),path=require("path"),vm=require("vm"),assert=require("assert/strict");
 const root=process.env.GRINDSTONE_TEST_ROOT||path.resolve(__dirname,"..");
 const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
-const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-foundation.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","skill-pathway.js","practice-weeks.js","practice-components.js","practice-builder.js","in-progress-data.js","in-progress.js"];
+const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-foundation.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","catalog-tags.js","skill-pathway.js","practice-weeks.js","practice-components.js","practice-builder.js","in-progress-data.js","in-progress.js"];
 const clone=value=>JSON.parse(JSON.stringify(value));
 const decode=text=>String(text).replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 function harness(initial="#moves",savedHistory){
@@ -268,8 +268,27 @@ for(const article of h.context.window.GRINDSTONE_FAMILY.pages){
 const overview=h.context.window.GRINDSTONE_SKILL_PATHWAY.render(new URLSearchParams('age=4-6&phase=bad'));
 assert(overview.includes(S.groups[0].phases[0].title));assert(overview.includes('aria-current="page"'));assert(!h.api.home().includes('ready-to-run practices'));assert(!h.api.home().includes('30 plans'));assert(!h.api.savedPage().includes('#practice/'));checks++;
 const printable=h.api.currentCoachDownloads();assert.deepEqual(Array.from(printable,item=>item.pages),[14,66]);for(const item of printable)assert(fs.existsSync(path.join(root,item.path)));const downloadHtml=h.api.downloads();assert(downloadHtml.includes("pages 217–282"));assert(downloadHtml.includes("downloads/binder-index.pdf"));assert(h.api.home().includes("282 pages / 141"));checks++;
-const shortForm=h.api.filters("moves",new URLSearchParams());assert(shortForm.indexOf('for="search"')<shortForm.indexOf('class="filter-options"'));assert(shortForm.indexOf('for="move-category"')<shortForm.indexOf('class="filter-options"'));assert(!shortForm.includes('class="filter-options" open'));assert(h.api.filters("moves",new URLSearchParams("tier=Beginner")).includes('class="filter-options" open'));checks++;
+const shortForm=h.api.filters("moves",new URLSearchParams());assert(shortForm.indexOf('for="search"')<shortForm.indexOf('class="filter-options"'));assert(shortForm.indexOf('for="filter-position"')<shortForm.indexOf('class="filter-options"'));assert(!shortForm.includes('class="filter-options" open'));assert(h.api.filters("moves",new URLSearchParams("tier=Beginner")).includes('class="filter-options" open'));checks++;
 assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook")).length,0);assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook&unassigned=1")).length,17);assert.equal(h.api.libraryResults("moves",new URLSearchParams("tier=Beginner&type=facebook&unassigned=0")).length,0);assert.equal(Object.keys(h.api.saveRecords).length,D.moves.length+D.games.length+D.practices.length+h.context.window.GRINDSTONE_KYLE.entries.length+h.context.window.GRINDSTONE_VIDEO_ADDITIONS.entries.length);checks++;
+{
+ const tags=h.context.window.GRINDSTONE_CATALOG_TAGS;
+ for(const kind of ['moves','games'])for(const [key,list] of [['position','positions'],['purpose','purposes'],['use','uses']])for(const tag of tags.definitions[list]){
+  const actual=h.api.libraryResults(kind,new URLSearchParams({[key]:tag.id}));
+  const expected=h.api.libraryResults(kind,new URLSearchParams()).filter(item=>tags.resolve(item.id)[list].includes(tag.id));
+  assert.deepEqual(Array.from(actual,item=>item.id),Array.from(expected,item=>item.id));
+ }
+ const pups=h.api.libraryResults('moves',new URLSearchParams('age=4-6'));
+ assert(pups.some(item=>item.id==='P01'));assert(pups.every(item=>tags.resolve(item.id).age_groups.includes('4-6')));
+ assert(!pups.some(item=>tags.resolve(item.id).ageStatus==='unassigned'));
+ const expanded=h.api.libraryResults('moves',new URLSearchParams('age=4-6&unassigned=1'));
+ assert(expanded.length>pups.length);assert(expanded.some(item=>item.unassigned_filters.includes('Age')));
+ const essentials=h.api.libraryResults('moves',new URLSearchParams('core=1'));
+ assert(essentials.some(item=>item.id==='N25'));assert(!essentials.some(item=>item.id==='B01'));
+ assert(h.api.libraryResults('moves',new URLSearchParams('q=run+the+pipe')).some(item=>item.id==='B08'));
+ const turn=h.api.libraryResults('moves',new URLSearchParams('position=top&purpose=turn&use=teach'));
+ assert(turn.length);assert(turn.every(item=>{const t=tags.resolve(item.id);return t.positions.includes('top')&&t.purposes.includes('turn')&&t.uses.includes('teach');}));
+ checks+=7;
+}
 const index=fs.readFileSync(path.join(root,"index.html"),"utf8"),scripts=Array.from(index.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g),match=>match[1].split("?")[0]);
 assert(/<button\b[^>]*id="menu-toggle"[^>]*data-menu-toggle[^>]*aria-expanded="false"[^>]*aria-controls="site-navigation"/.test(index));assert(/<nav\b[^>]*id="site-navigation"[^>]*aria-label="Main navigation"/.test(index));checks++;
 for(const file of dataFiles)assert(scripts.includes(file),"Production entry point missing "+file);
@@ -285,8 +304,8 @@ for(const start of ["#kyle/foo","#kyle/K01/extra","#kyle/../../other"]){
  const page=harness(start);assert(page.elements.main.innerHTML.includes("That page isn’t in the playbook."),"Invalid legacy route must fail gracefully: "+start);checks++;
 }
 for(const tier of ["Pup","Beginner","Advanced"]){
- const strict=h.api.libraryResults("moves",new URLSearchParams({tier}));assert(strict.length);assert(strict.every(item=>item.tier===tier),"Default tier results include unassigned or other-tier entries: "+tier);
- const expanded=h.api.libraryResults("moves",new URLSearchParams({tier,unassigned:"1"}));assert(expanded.length>strict.length);assert(expanded.every(item=>item.tier===tier||!item.tier));assert(expanded.some(item=>!item.tier&&item.unassigned_filters.includes("Tier")));checks++;
+ const strict=h.api.libraryResults("moves",new URLSearchParams({tier}));assert(strict.length);assert(strict.every(item=>h.context.window.GRINDSTONE_CATALOG_TAGS.resolve(item.id)?.tier===tier),"Default tier results include unassigned or other-tier entries: "+tier);
+ const expanded=h.api.libraryResults("moves",new URLSearchParams({tier,unassigned:"1"}));assert(expanded.length>strict.length);assert(expanded.every(item=>{const assigned=h.context.window.GRINDSTONE_CATALOG_TAGS.resolve(item.id)?.tier;return assigned===tier||!assigned;}));assert(expanded.some(item=>!h.context.window.GRINDSTONE_CATALOG_TAGS.resolve(item.id)?.tier&&item.unassigned_filters.includes("Tier")));checks++;
 }
 {
  const page=harness("#moves?tier=Pup");const checkbox=page.fields().find(field=>field.id==="include-unassigned");assert.equal(checkbox.checked,false);

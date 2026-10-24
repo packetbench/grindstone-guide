@@ -1,0 +1,29 @@
+/* Shared planning tags: compact cards and touch-friendly library filters. */
+.library-filters .filter-primary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:end}
+.library-filters .filter-primary>.search{grid-column:1/-1}
+.library-filters .field{min-width:0}
+.library-filters select,.library-filters input[type=search]{width:100%;min-height:44px;min-width:0}
+.library-filters .filter-primary>.button{grid-column:1/-1;justify-self:start;min-height:44px}
+.library-filters .filter-secondary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}
+.library-filters .unassigned-filter{grid-column:1/-1;min-height:44px;display:flex;align-items:center;gap:9px}
+.library-filters .unassigned-filter input{flex:none;width:18px;height:18px}
+.planning-tags,.library-active-tags{display:flex;flex-wrap:wrap;gap:7px}
+.planning-tags{margin:12px 0}
+.planning-tag{display:inline-flex;align-items:center;min-height:32px;padding:5px 10px;border:1px solid #d7ded8;border-radius:6px;background:#f1f5f1;color:#24372a;font-size:12px;line-height:1.4;text-decoration:none}
+.planning-tag:hover,.planning-tag:focus-visible{background:#e1eae1;border-color:#819982}
+.planning-tag.core-tag{background:#fff2cc;border-color:#d3b55b;color:#4e3d0d}
+.library-active-tags:empty{display:none}
+.library-active-tags{margin:0 0 14px}
+.library-filter-chip{display:inline-flex;gap:12px;align-items:center;min-height:44px;padding:8px 12px;border:1px solid #c7cfca;border-radius:8px;background:white;color:#263b2d;font-size:13px;text-decoration:none;overflow-wrap:anywhere}
+.library-filter-chip:hover,.library-filter-chip:focus-visible{border-color:#526e5a;background:#eef4ef}
+.library-filter-chip span{font-size:19px;line-height:1}
+@media(max-width:720px){
+ .library-filters .filter-primary{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .library-filters .filter-primary>.filter-age,.library-filters .filter-primary>.filter-position{grid-column:auto}
+ .library-filters .filter-primary>.button{width:100%;justify-self:stretch}
+ .library-filters .filter-secondary{grid-template-columns:1fr}
+ .library-filters label{line-height:1.35}
+ .library-filters select{font-size:14px;text-overflow:ellipsis}
+ .planning-tag{min-height:44px}
+}
+@media print{.library-active-tags{display:none}.planning-tag{border-color:#aaa;background:white;color:black}}
