@@ -302,3 +302,12 @@ The user approved publishing the practice builder, new move/series work, game in
 - `in-progress-data.js` contains 11 draft proposals and 18 existing meeting-related resources. `in-progress.js` renders `#in-progress` and individual shareable draft routes with category filters, decisions, print and text downloads. Existing-resource links point to their live locations.
 - Coaches discuss changes in their existing text group. Copy draft link provides the current page link; a visible select-and-copy fallback works without clipboard access. This static page does not collect comments, store shared edits or publish private meeting records. Drafts are explicitly distinct from adopted policies.
 - Browser checks covered 320px and 390px phone widths plus desktop layout, family search/section links, menu closing and draft-link copying. The builder/navigation suites cover rendering, source preservation, game printing, route history and public-draft resources.
+
+
+## Foundation Series release
+
+The Foundation Series (S24) is a cross-position collection of six match essentials, with single-leg entry (N24) and Hip Dump mat return (N25) guides. Its reviewed content comes from the Foundation preview; each skill retains its own prerequisites, receiving role and source-review limits. The matched teaching groups are 7–10 and 11–14; Pups do not receive these new partnered lessons by default.
+
+Coaches can select individual Foundation skills in the existing practice builder. Selected teaching cards travel with saved/exported plans and appear in both print modes. Reload preserves the selection, and detaching the guide retains its saved instruction. Ordinary series retain their existing full-series builder behavior. This release does not add the preview’s weekly planning, handoff, structured-station or family-quickstart features. An imported plan containing preview-only structured stations is rejected with instructions to retain the original file and use the preview.
+
+Read-only checks: node tools/foundation-check.js, node tools/builder-check.js, and node tools/navigation-check.js.
