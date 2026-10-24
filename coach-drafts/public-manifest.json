@@ -1,8 +1,8 @@
 {
   "prepared": "2026-10-24",
   "profiles": 13,
-  "portraits": 8,
-  "coach_images": 41,
+  "portraits": 9,
+  "coach_images": 89,
   "rejected_matches": 1,
   "club_images": 41,
   "omitted": "AI reconstruction, local scripts, full PDFs, private review storage and absolute source paths",
@@ -14,18 +14,18 @@
     },
     {
       "path": "style.css",
-      "bytes": 10193,
-      "sha256": "2e6a96385eab3e860c3ad71e2ba992f149cd92757242e2e8328600809fdf018c"
+      "bytes": 10355,
+      "sha256": "b7c912fd5a515f126ce67162fd31388a03a17d8e3612b04784dcb5083a03125d"
     },
     {
       "path": "app.js",
-      "bytes": 17496,
-      "sha256": "0b0c346b2dfb3fbc03bed1dc573642b897dc875ae9e63f88a94682cf8709ee92"
+      "bytes": 18062,
+      "sha256": "f966811ecd5ae08290c545a8b39fb37ac3f3b4e0ae402be1d5ce51f79dc1b41b"
     },
     {
       "path": "facebook-queue.html",
-      "bytes": 142472,
-      "sha256": "1973a5a270d1489554e36e39280209ea45d1e0a4ccbc5789feb1ec4febc6fb9f"
+      "bytes": 172095,
+      "sha256": "49ef893e4d83c4333f0ab596240b360945610150870819f0d3ab477a5d62b297"
     },
     {
       "path": "facebook-queue.js",
@@ -34,8 +34,8 @@
     },
     {
       "path": "facebook-queue.json",
-      "bytes": 38200,
-      "sha256": "8e86b40b407b27ddd2a73e0724c93486de56e6bf4f0791c35b17fec768c08db1"
+      "bytes": 49425,
+      "sha256": "2ab62dc717275b4b9e0a757dbc0790d0ba1ccf56d90523c0afe6d42e92c2bce7"
     },
     {
       "path": "queue.css",
@@ -44,13 +44,13 @@
     },
     {
       "path": "club-gallery.html",
-      "bytes": 21359,
-      "sha256": "5d68b3af770bbc0360713687a4d5dd905cb7e77c94ee08187c3ef0f18c205017"
+      "bytes": 24395,
+      "sha256": "fd40db5b8d99d39ded924e318775e66e5ed2ce87b8911e96440cf92287e1bf2c"
     },
     {
       "path": "club-gallery.js",
-      "bytes": 9834,
-      "sha256": "0b83212e23925bb2435b720dbbb716bd623c62338bf82e8aae52c64b3712b6a2"
+      "bytes": 10066,
+      "sha256": "f7cd0bc8aa4d1744e5c2f656486dae18849302925a0dc156f020b3008e806b0a"
     },
     {
       "path": "club-gallery.css",
@@ -59,8 +59,8 @@
     },
     {
       "path": "club-index.json",
-      "bytes": 20567,
-      "sha256": "e6189c74bc5f0712e745e9e2b7faafb2885bed861b12c6d2c672696e6a6fa961"
+      "bytes": 24854,
+      "sha256": "1a63cee7548d335c4e3fd48a21a0387456bf61f7922f0a7c8e9d7f7fbb6d126a"
     },
     {
       "path": "hughes-family.html",
@@ -103,6 +103,36 @@
       "sha256": "866643042dbf246481f7ce31752bb14582b09325b9bb982ffa13177d39e673bb"
     },
     {
+      "path": "marymount-photos/mm-148.jpg",
+      "bytes": 119366,
+      "sha256": "a8356274ea7c7929a78517323ed347c51ea202f008675a79b349554e87f46407"
+    },
+    {
+      "path": "marymount-photos/mm-152.jpg",
+      "bytes": 152710,
+      "sha256": "b87b8f495514f5b667e0fd8afbb280474c47f39014857e4e2285e516f00682dd"
+    },
+    {
+      "path": "kaia-bouts/kb-01.png",
+      "bytes": 162020,
+      "sha256": "a8567493bfdc3cbaa505fcc6a84627da94a3523588d67da9fd801b97522a27ef"
+    },
+    {
+      "path": "kaia-bouts/kb-07.png",
+      "bytes": 159816,
+      "sha256": "273c5cfa10e6d43cbdf74b76dcea30801fef946903af869420372dc645590f53"
+    },
+    {
+      "path": "kaia-bouts/kb-09.png",
+      "bytes": 159222,
+      "sha256": "c4c3f31dcae2d0740f8c1d93881d942c0c07cbc332a35aefe0f72abb05ad0d24"
+    },
+    {
+      "path": "kaia-bouts/kb-11.png",
+      "bytes": 115451,
+      "sha256": "1c125e9c0fe632b731e1bbb285e21c9e7dab138f09d9fb1f718bda0b12e545f0"
+    },
+    {
       "path": "assets/kaia-mcdaniel-alumni.png",
       "bytes": 1439547,
       "sha256": "a5728c1c1b14af3faf71251dfb654d22ebe34c1fa71fc8e40ff652292cf616e3"
@@ -138,6 +168,11 @@
       "sha256": "fbcaebfadd168a05decbfd631292889ca86fb940c23ee44ac3a6d6959cd632fe"
     },
     {
+      "path": "jerome-boxing/jb-poster-2012.jpg",
+      "bytes": 102476,
+      "sha256": "90ed6912e0703bb950d5fed882cecf4f4c286248c9afdbd7c637385203ad9881"
+    },
+    {
       "path": "assets/eric-westervelt.jpg",
       "bytes": 63639,
       "sha256": "a32fafce935b57748cc93a229bf1b073b140d63de5eb063f05f7194a28b8940d"
@@ -158,6 +193,36 @@
       "sha256": "03646e2adfca8acebb2b659f2b2be88b1b104b16cb050cee642ba8f879eb9f90"
     },
     {
+      "path": "ryan-school/ry-cad-2002.png",
+      "bytes": 373527,
+      "sha256": "25084da127a8405a43785ff8c922e6ab73a93e89f1b87de673f347151cf19d0b"
+    },
+    {
+      "path": "ryan-school/ry-football-2002.png",
+      "bytes": 2400860,
+      "sha256": "3dd3ec054ae0d1f931167e55da86aa01a85ea6586d3b70d56a5e91baa08cf1cb"
+    },
+    {
+      "path": "ryan-school/ry-wrestling-2002.png",
+      "bytes": 963961,
+      "sha256": "ef901f1db0033fc56793ce3fb52b1cf1a9de639a9672dd10235e1532ed5b5ba8"
+    },
+    {
+      "path": "ryan-school/ry-senior-label.png",
+      "bytes": 190339,
+      "sha256": "60527f85516870498ca1b0eccb4a2a82727ba675b9c2fe4d7dcd2974aa5057bc"
+    },
+    {
+      "path": "ryan-school/ry-baseball-2000.png",
+      "bytes": 1014483,
+      "sha256": "749bd55ddbbb0cb8b2b4f51f9389735c391416c85ce3f4471766c27f35f0947f"
+    },
+    {
+      "path": "assets/tyler-webb-2021.jpeg",
+      "bytes": 57385,
+      "sha256": "3c0ecdc917b6eeed18c87641beb11aecf64191e9e7ab74658268b4a305c389a2"
+    },
+    {
       "path": "assets/tyler-baseball-2000.png",
       "bytes": 361065,
       "sha256": "911052152aa26dadd810270037bcb35f3a19bcb9dd3297980bc72ebe73bee6d2"
@@ -168,14 +233,34 @@
       "sha256": "a99ccf9bc673878850e7e45147e5bcc0e8dab7890ae6249e2bb02b806050743a"
     },
     {
-      "path": "assets/mike-cagezilla-2023.jpg",
-      "bytes": 440675,
-      "sha256": "db6c4f9731425cd6881a5fdd3706e05d76485694cc8ffb928880be1225c0c5ad"
+      "path": "mike-bouts/mike-portrait-2023.jpg",
+      "bytes": 649496,
+      "sha256": "8f80c76f067b29f12f48d332a3a7f49bbfbbdbd9ed1056c9f6660ccc62d99ffa"
+    },
+    {
+      "path": "mike-bouts/mike-action-01.jpg",
+      "bytes": 826571,
+      "sha256": "0456a8dccc1a393d2c8e1b72140e9c796d45310d682e70fbdb8dba5510b808bf"
+    },
+    {
+      "path": "mike-bouts/mike-action-02.jpg",
+      "bytes": 852257,
+      "sha256": "1204829b589663aa1022d0da0b858df06692858df4d5f873f03a5555faec1c33"
     },
     {
       "path": "assets/brad-team-page-2006.png",
       "bytes": 358141,
       "sha256": "5083111847ec3e5e9f977a450351e3e7acac235f22f90c155de95c17fb7d3585"
+    },
+    {
+      "path": "assets/daniel-portrait-2023.png",
+      "bytes": 64242,
+      "sha256": "3af9305bb51604fad5b1ec2358d39572e93ee8f75bf40e9e83db8eaef4a4844f"
+    },
+    {
+      "path": "assets/daniel-mpd-award-2023.png",
+      "bytes": 485048,
+      "sha256": "0be8b7469cb7e71103653c3634292c91a62046792144d7ac68cb34926c488153"
     },
     {
       "path": "assets/kyle-team-1990.png",
@@ -274,6 +359,161 @@
     },
     {
       "path": "assets/jerome-staff-thumb.jpg",
+      "bytes": 10101,
+      "sha256": "4fa3a612a9e296b38984f9fad2d5b037fde462808e54d5bc6f6089ddd8f4d02e"
+    },
+    {
+      "path": "kaia-bouts/kb-02.png",
+      "bytes": 156593,
+      "sha256": "7199bd6e7a870d385c414c1a01a6fc6f06122fc3186da7ec8227924f25d94bf7"
+    },
+    {
+      "path": "kaia-bouts/kb-03.png",
+      "bytes": 144206,
+      "sha256": "0f6b9ac16aab9624a5efbf988da7c13eb1298ee5d0a85ce0a902c04e4ad53775"
+    },
+    {
+      "path": "kaia-bouts/kb-04.png",
+      "bytes": 185300,
+      "sha256": "34ffd112b4aab59e0dc0406218902c9f20aea46ebe352ae3d6139c84c495999c"
+    },
+    {
+      "path": "kaia-bouts/kb-05.png",
+      "bytes": 158877,
+      "sha256": "6df5d024d46bf53901d2ad3ced25cf94567161efdbbc9b1330d518ab763b70f4"
+    },
+    {
+      "path": "kaia-bouts/kb-06.png",
+      "bytes": 137413,
+      "sha256": "32db4114ecc169058efd40fb60a262ea25bac9dbf72c5028924d305b3b25da6f"
+    },
+    {
+      "path": "kaia-bouts/kb-10.png",
+      "bytes": 130183,
+      "sha256": "6896c22224426b0bbf58d8629a916a505c3ea58026a33214594e020c079f31b5"
+    },
+    {
+      "path": "kaia-bouts/kb-12.png",
+      "bytes": 134563,
+      "sha256": "b3b12de9653fd0dcaf63350e4245d622563e79314f16631761864962b0d25562"
+    },
+    {
+      "path": "kaia-bouts/kb-13.png",
+      "bytes": 126961,
+      "sha256": "5059e885027641efa5c624d5b703c44a8dd15d1796026f3c63ce640d689a78c0"
+    },
+    {
+      "path": "assets/kaia-state-bout-2023.png",
+      "bytes": 128374,
+      "sha256": "58170b891b38df5961a24afee2a9b97c17993b5c2cc3ef6936974cb5563f4348"
+    },
+    {
+      "path": "marymount-photos/mm-144.jpg",
+      "bytes": 156550,
+      "sha256": "1243ffd4c3244b728efbb1b44ef3baeed7e2b2640e7024e12dc8bd288e432f54"
+    },
+    {
+      "path": "marymount-photos/mm-145.jpg",
+      "bytes": 111290,
+      "sha256": "bc881a14b3c347631d79be77c26ca20aee30f284780f1e36ac5ccdbf9c0dea36"
+    },
+    {
+      "path": "marymount-photos/mm-146.jpg",
+      "bytes": 137736,
+      "sha256": "6b65d57212d6f1e1836f1591d0b4fc8d7d9b432ca9bd6b8928ec98216bfcee73"
+    },
+    {
+      "path": "marymount-photos/mm-147.jpg",
+      "bytes": 130498,
+      "sha256": "91e1d4e450a9ab5706a4c9258cbb663a740c208770f0c92697ee32e9d60f0641"
+    },
+    {
+      "path": "marymount-photos/mm-149.jpg",
+      "bytes": 129484,
+      "sha256": "aae7f36e5909aab7b3257bd233fe844f140fa1cf8b19636fa0feef97e530b9ff"
+    },
+    {
+      "path": "marymount-photos/mm-150.jpg",
+      "bytes": 282802,
+      "sha256": "dbe42b53b79d33da2ba317b54e78ae553ac80a74b7a9745ae3e8a1f8d3ca2f9d"
+    },
+    {
+      "path": "marymount-photos/mm-151.jpg",
+      "bytes": 147154,
+      "sha256": "c6555c748293f7729daeba7e391286fee057e1661cd9ae9846235ee418b268d7"
+    },
+    {
+      "path": "marymount-photos/mm-153.jpg",
+      "bytes": 312596,
+      "sha256": "6fb9c0df68c6a33b1d16434b6f5d1b7ab7542e8652c7c0553d58bbf7a67578c7"
+    },
+    {
+      "path": "marymount-photos/mm-154.jpg",
+      "bytes": 163570,
+      "sha256": "a29d84e47a3c50235731c8725b3faf3bb1a7e44d5aaf1f11f29ddc806afb9a33"
+    },
+    {
+      "path": "ryan-school/ry-2002-p10.jpg",
+      "bytes": 484310,
+      "sha256": "afba5a000cfba83381f27436f1d983679a0ecb9aecfb3b86687bea95fdc325a6"
+    },
+    {
+      "path": "ryan-school/ry-2002-p14.jpg",
+      "bytes": 509024,
+      "sha256": "1c351c18f9f067f99527ec046c0e0390687b0785ffe17293835ded8040121c38"
+    },
+    {
+      "path": "ryan-school/ry-2002-p29.jpg",
+      "bytes": 438129,
+      "sha256": "4bb67bb6b8729de62ca20dd64648615ef6d8b081aa23d35b2b6480e8077ec586"
+    },
+    {
+      "path": "ryan-school/ry-2002-p51.jpg",
+      "bytes": 561870,
+      "sha256": "e8707a177582c98e34672cf4b10e6e99433fce65f13a5e9c7d843e604c2c7082"
+    },
+    {
+      "path": "ryan-school/ry-2002-p65.jpg",
+      "bytes": 479857,
+      "sha256": "f66f915ed5c1773f139931423bca13bf5dbe70dccbf739eabe37097864a1ea1b"
+    },
+    {
+      "path": "ryan-school/ry-2002-p120.jpg",
+      "bytes": 436291,
+      "sha256": "f7e4111f4dbaad72649f48dbc754be002534d4730e1de5bb0b4138cb373a7d6a"
+    },
+    {
+      "path": "ryan-school/ry-senior-2002.png",
+      "bytes": 151563,
+      "sha256": "71f4ef658a66a173577cfb0c23777fed31c9b17828dcc3a0ee5a8948815bd906"
+    },
+    {
+      "path": "ryan-school/ry-2002-p179.jpg",
+      "bytes": 513288,
+      "sha256": "07cb5de19c207de975f90c7bffc52220f87aef3e4e23942d620d91a54bb3313c"
+    },
+    {
+      "path": "ryan-school/ry-2000-p39.jpg",
+      "bytes": 494236,
+      "sha256": "6d01c1864c97334edc81b798a2afd925d0ecd295356dbd6fbe4bbb445abe4065"
+    },
+    {
+      "path": "assets/tyler-webb-2023.png",
+      "bytes": 1074173,
+      "sha256": "2ea3fd236a493feb624caf9de4c123c57954f3fe5ed0818caebcc61fbfaddb8d"
+    },
+    {
+      "path": "assets/mike-cagezilla-2023.jpg",
+      "bytes": 440675,
+      "sha256": "db6c4f9731425cd6881a5fdd3706e05d76485694cc8ffb928880be1225c0c5ad"
+    },
+    {
+      "path": "jerome-boxing/jb-candidate-2015.jpg",
+      "bytes": 46877,
+      "sha256": "d6baf2d230233c95860ce935ed7f3285396971198e4b22500a560bdf6300a92a"
+    },
+    {
+      "path": "jerome-boxing/jb-staff.jpg",
       "bytes": 10101,
       "sha256": "4fa3a612a9e296b38984f9fad2d5b037fde462808e54d5bc6f6089ddd8f4d02e"
     },
@@ -494,18 +734,18 @@
     },
     {
       "path": "profiles.js",
-      "bytes": 77564,
-      "sha256": "8038a08a40694c0298788575880b1a120153b6b04636b32abdf27852ae6c2a70"
+      "bytes": 110986,
+      "sha256": "73b05d2edd39a30a615c5cc957f6ba8f0bed559e44435e619a4c5a0c6837abef"
     },
     {
       "path": "gallery-data.js",
-      "bytes": 38687,
-      "sha256": "3a63aa2592419bca2d3cd1273673675c4aff25fd0b6572e4482a2a0ed9cce9a7"
+      "bytes": 89839,
+      "sha256": "ef667aff827e716b350f9649e24e615ab12ff2e40430fc05e14fa76f40835350"
     },
     {
       "path": "photo-index.json",
-      "bytes": 38664,
-      "sha256": "3a8ba8007839b134f78d4a2c6ef0790eae26673002572dc72b63a1fea30afe85"
+      "bytes": 89816,
+      "sha256": "aa7b615df77ca409970f91fd46a75565d4f4ebcc01527bcdc00b90d450158508"
     }
   ]
 }

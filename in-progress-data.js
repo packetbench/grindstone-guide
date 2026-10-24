@@ -154,7 +154,7 @@ window.GRINDSTONE_IN_PROGRESS = {
       "title": "Coach biographies and photos",
       "category": "Club people",
       "status": "Working research for coach review",
-      "summary": "Review 13 coach drafts, historical photographs and proposed identities. Jessica and Cody Hughes have a shared recognition page. Current official biographies remain available.",
+      "summary": "Review 13 coach drafts and 89 historical images and source pages, alongside 41 original club photographs. The October 24 research pass adds wrestling, college and combat-sport records and clearly marked photo candidates. Jessica and Cody Hughes share a recognition page. Current official biographies remain available.",
       "why": "The club roster includes more people than the published biography directory. These working pages gather research and photographs so coaches can correct identities, roles and wording together.",
       "existing": [
         {
