@@ -244,8 +244,8 @@ window.GRINDSTONE_FAMILY = {
           "html": "<p>Shower after exercise. Wash and completely dry used clothing and towels according to their care labels. Keep a personal towel and water bottle, and avoid sharing towels, clothing or other personal items.</p><p>Tell the coach about illness, injury or new skin concerns before contact. Encourage your child to speak up about pain or feeling unwell.</p>"
         },
         {
-          "title": "Notice a suspicious spot? Start a conversation.",
-          "html": "<ol><li><strong>Tell the coach before the next practice or meet.</strong> Ask about the team’s process for a possible skin infection.</li><li><strong>Have a healthcare professional check it.</strong> Say that your child wrestles. Ask what the condition is, whether it is contagious and what care is appropriate.</li><li><strong>Confirm the return process.</strong> Follow the healthcare professional’s guidance and ask the coach which medical note or skin-release form, if any, the event requires.</li></ol><p>The coach explains participation requirements; a healthcare professional evaluates the condition. Covering a spot does not by itself establish eligibility to wrestle.</p>"
+          "title": "Skin concerns: what families do",
+          "html": "<ol><li><strong>Pause contact and tell a coach.</strong> Keep a wrestler with a new or suspicious skin lesion out of contact practice and competition while arranging medical assessment and meeting return requirements.</li><li><strong>The caregiver arranges a clinician visit.</strong> Explain that the child wrestles and bring the accepted skin-release form. The clinician diagnoses the condition, directs treatment and documents when contact may resume.</li><li><strong>Show the completed release before returning.</strong> A coach checks that the required documentation is complete, signed, current and permits return on that date. A coach does not diagnose the lesion, prescribe treatment or change the clinician’s instructions. New, spreading or draining lesions need medical reassessment.</li><li><strong>The caregiver/athlete keeps the document.</strong> Bring it to practices and events for inspection. Grindstone does not collect, photograph, upload or retain medical documents. Follow the event’s own presentation requirements.</li></ol><p>A clinician’s release and the event’s participation requirements both matter; a designated event clinician may overrule an earlier release. Covering a contagious lesion does not make it eligible for wrestling.</p><p><a href=\"#family/health?section=6\">Find the current NFHS form and minimum-return reference below</a>.</p>"
         },
         {
           "title": "Use the photo sheet as a conversation starter",
@@ -262,6 +262,10 @@ window.GRINDSTONE_FAMILY = {
         {
           "title": "Balanced meals fuel wrestling",
           "html": "<p>Balanced meals fuel growth and wrestling. Include carbohydrate foods such as rice, potatoes, oats, bread or fruit alongside protein foods, vegetables and fats. <strong>Carbohydrates help fuel repeated hard efforts and sustained activity; protein supports muscle growth and repair.</strong></p><p>A “high-protein” label does not mean a food provides everything an active child needs. Keep enough carbohydrate foods in the day rather than replacing them with extra protein.</p><p class=\"fine\">Read more: <a href=\"https://kidshealth.org/en/parents/feed-child-athlete.html\" target=\"_blank\" rel=\"noopener noreferrer\">Nemours: Feeding Your Child Athlete</a> · <a href=\"https://www.healthychildren.org/English/ages-stages/teen/nutrition/Pages/Carbohydrates-for-Energy.aspx\" target=\"_blank\" rel=\"noopener noreferrer\">American Academy of Pediatrics: Carbohydrates for Energy</a>.</p><p><a href=\"#family/meet-day?section=1\">Packing food and water for meet day →</a></p>"
+        },
+        {
+          "title": "Skin-return forms and timing",
+          "html": "<p>Bring the <a href=\"https://a-us.storyblok.com/f/1022696/x/6a13d9f6c0/2026-27-nfhs-wrestling-skin-lesion-form-final-5-5-26.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">2026–27 NFHS skin-lesion release form (PDF)</a> to the treating clinician; check which form the event accepts. The <a href=\"https://www.nfhs.org/resources/sports/nfhs-wrestling-skin-lesion-form\" target=\"_blank\" rel=\"noopener noreferrer\">NFHS resource page</a> carries updates. The form records the diagnosis, location and number of lesions, treatment start date/time, earliest return date, expiration and provider signature.</p><p><strong>The intervals below are NFHS minimum-return guidance, approved May 2026.</strong> They help families plan an absence with the clinician. Time alone does not establish clearance; all clinical and applicable event conditions must also be met.</p><table class=\"program-table\"><thead><tr><th scope=\"col\">Condition</th><th scope=\"col\">NFHS minimums and other requirements</th></tr></thead><tbody><tr><th scope=\"row\">Ringworm on the skin</th><td data-label=\"NFHS guidance\">At least 72 hours of appropriate topical or oral treatment.</td></tr><tr><th scope=\"row\">Ringworm on the scalp</th><td data-label=\"NFHS guidance\">At least 14 days of oral treatment.</td></tr><tr><th scope=\"row\">Bacterial lesions, such as impetigo or boils</th><td data-label=\"NFHS guidance\">At least 72 hours of oral antibiotics, no new lesions for 48 hours, and dry, scabbed lesions without drainage. New or draining lesions after treatment need clinician reassessment, including consideration of MRSA.</td></tr><tr><th scope=\"row\">Herpetic lesions</th><td data-label=\"NFHS guidance\">First episode of herpes gladiatorum: at least 10 days of treatment, extended to 14 days with systemic symptoms such as fever or swollen lymph nodes. Recurrent outbreak: at least 120 hours (5 days) of oral antiviral treatment. Lesions must be dry and scabbed, with no drainage and no new lesions during the preceding 72 hours.</td></tr></tbody></table><p>Diagnosis and treatment belong with the clinician. Read the full form for other conditions and all criteria. A new lesion or change after the exam may require another assessment.</p><p><strong>MMWL:</strong> A public league-issued skin form or separate return timetable has not been verified. <a href=\"https://www.predatorswrestling.com/about-us/hygiene\" target=\"_blank\" rel=\"noopener noreferrer\">Predators Wrestling, an MMWL member club, directs families to a clinician and the NFHS form</a>; that is a club example, not confirmation of a league-wide rule. Follow the current event’s requirements.</p>"
         }
       ],
       "sources": [
@@ -288,6 +292,18 @@ window.GRINDSTONE_FAMILY = {
         {
           "title": "American Academy of Pediatrics: Carbohydrates for Energy",
           "url": "https://www.healthychildren.org/English/ages-stages/teen/nutrition/Pages/Carbohydrates-for-Energy.aspx"
+        },
+        {
+          "title": "NFHS: 2026–27 medical release for skin lesions (approved May 2026)",
+          "url": "https://a-us.storyblok.com/f/1022696/x/6a13d9f6c0/2026-27-nfhs-wrestling-skin-lesion-form-final-5-5-26.pdf"
+        },
+        {
+          "title": "NFHS: skin-lesion form updates",
+          "url": "https://www.nfhs.org/resources/sports/nfhs-wrestling-skin-lesion-form"
+        },
+        {
+          "title": "Predators Wrestling: hygiene and clinician-release guidance (MMWL member club)",
+          "url": "https://www.predatorswrestling.com/about-us/hygiene"
         }
       ],
       "reviewed": "2026-10-25"
@@ -452,7 +468,7 @@ window.GRINDSTONE_FAMILY = {
     },
     {
       "question": "What about illness, injury or a suspicious skin spot?",
-      "answer": "Report concerns to the coach before contact and seek appropriate medical advice. For a suspected concussion, remove your child from sports immediately, allow no same-day return, and have a healthcare professional guide return. <a href=\"#family/health\">Find health guidance and contact steps</a>."
+      "answer": "For a suspicious skin lesion, pause contact, notify a coach and arrange a clinician assessment. The family obtains and keeps the completed release; a coach checks it before return. Grindstone does not retain medical documents. For a suspected concussion, remove your child from sports immediately, allow no same-day return, and have a healthcare professional guide return. <a href=\"#family/health\">Read the health guidance and skin-return steps</a>."
     },
     {
       "question": "Should my child cut weight?",
