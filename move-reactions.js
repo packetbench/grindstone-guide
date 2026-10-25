@@ -80,6 +80,16 @@
       reverse: "The rider answers a developing switch by using A17's mobile waist-arm and reachable-thigh start. Do not force the counter after the arm is trapped or the position has changed."
     },
     {
+      from: "B20", to: "N57", kind: "response",
+      condition: "The wrestler being switched on can use the separately taught step-over counter to move the hips over and remove the switch leverage. This changes the actor: the original rider counters the switch. Use the controlled N57 start and reset if the arm or shoulder cannot move comfortably.",
+      reverse: "Answer the switch currently being applied to you. Moving the hips over is the counter; catching the opponent's far arm is not a prerequisite. Keep the motion controlled and stop if the shoulder is trapped."
+    },
+    {
+      from: "A17", to: "N57", kind: "response",
+      condition: "When the rider re-switches, the original switcher is now the wrestler being switched on and may use the same step-over counter. Identify the current roles before moving; this is an available answer, not a required third move.",
+      reverse: "Use the same step-over principle when a re-switch reverses the roles. The person receiving the switch pressure moves their hips over to remove leverage and regain top."
+    },
+    {
       from: "B25", to: "A24", kind: "continuation",
       condition: "If bottom rolls the held near wrist free and opens that elbow, let the wrist go and take the taught half-nelson transition. If the elbow stays closed, keep riding; do not force the opening.",
       reverse: "This is the top wrestler's next option from the near-wrist ride after bottom clears the wrist and opens the elbow. It is not a defensive wrist-clearance lesson."

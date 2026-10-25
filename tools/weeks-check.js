@@ -3,7 +3,7 @@
 const fs = require('fs'), path = require('path'), vm = require('vm'), assert = require('assert');
 const base = path.resolve(__dirname, '..');
 const plain = value => JSON.parse(JSON.stringify(value));
-const files = ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'game-guides-a.js', 'game-guides-b.js', 'game-guides-c.js', 'game-guide-library.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-foundation.js', 'series-top-additions.js','series-neutral-additions.js','series-ready-additions.js',"series-neutral-next.js","series-top-next.js","series-defense-next.js",'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js',"series-teaching-groups.js", 'practice-weeks.js', 'practice-builder.js'];
+const files = ['data.js', 'game-video-fixes.js', 'kyle-data.js', 'kyle-instruction-data.js', 'video-additions.js', 'game-guides-a.js', 'game-guides-b.js', 'game-guides-c.js', 'game-guide-library.js', 'move-tags.js', 'series-moves.js', 'series-bottom.js', 'series-neutral.js', 'series-top.js', 'series-escapes.js', 'series-foundation.js', 'series-top-additions.js','series-neutral-additions.js','series-ready-additions.js',"series-neutral-next.js","series-top-next.js","series-defense-next.js","series-switch-next.js",'series-library.js', 'practice-frameworks.js', 'pathway-data.js', 'series-expansion.js',"series-teaching-groups.js", 'practice-weeks.js', 'practice-builder.js'];
 const sources = files.map(file => [file, fs.readFileSync(path.join(base, file), 'utf8')]);
 function node() {
   const nodes = new Map(), listeners = {};

@@ -8,7 +8,7 @@
   if (!pathway) return;
   const groups = ['7-10', '11-14'];
   const common = 'Ready 7–10 and 11–14 wrestlers after the listed prerequisite skills and partner receiving are dependable. Teach the individual action before adding a reaction choice. Group placement is a planning suggestion, not automatic clearance.';
-  for (const id of ['A01','A02','A03','A04','A05','A15','A16','A19','A24','N01','N02','N03','N04','N05','N11']) {
+  for (const id of ['A01','A02','A03','A04','A05','A15','A16','A17','A19','A24','N01','N02','N03','N04','N05','N11']) {
     const move = moves.find(item => item.id === id);
     if (!move) continue;
     move.tier = 'Intermediate';

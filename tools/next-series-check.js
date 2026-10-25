@@ -14,6 +14,8 @@ check('all new modules load before integration and teaching groups before shared
  assert(scripts.indexOf('series-expansion.js')<scripts.indexOf('series-teaching-groups.js'));
  assert(scripts.indexOf('series-teaching-groups.js')<scripts.indexOf('catalog-tags.js'));
  assert(scripts.indexOf('in-progress-data.js')<scripts.indexOf('series-research-status.js'));
+ assert(scripts.indexOf('series-defense-next.js')<scripts.indexOf('series-switch-next.js'));
+ assert(scripts.indexOf('series-switch-next.js')<scripts.indexOf('series-library.js'));
  assert(modules.every(Boolean));
 });
 for(const module of modules){
@@ -39,7 +41,7 @@ for(const module of modules){
  });
 }
 check('common connected skills are visible to the same ready group as their series',()=>{
- for(const id of ['A01','A02','A03','A04','A05','A15','A16','A19','A24','N01','N02','N03','N04','N05','N11']){
+ for(const id of ['A01','A02','A03','A04','A05','A15','A16','A17','A19','A24','N01','N02','N03','N04','N05','N11']){
   const tags=w.GRINDSTONE_CATALOG_TAGS.resolve(id);assert.equal(tags.tier,'Intermediate');assert.deepEqual(plain(tags.age_groups),['7-10','11-14']);assert(tags.ageNote.includes('prerequisite'));
  }
  const half=w.GRINDSTONE_PATHWAY.series.find(s=>s.id==='S21'),pass=w.GRINDSTONE_PATHWAY.series.find(s=>s.id==='S28');
@@ -57,13 +59,19 @@ check('Pups directory links to actual wrestling lessons and preserves their narr
 });
 check('backlog retains each held question without making it a usable move or series',()=>{
  const items=w.GRINDSTONE_RESEARCH_QUEUE.items;assert(items.length>=5);assert.equal(new Set(items.map(q=>q.id)).size,items.length);
- for(const item of items){assert(item.known&&item.missing&&item.coach_question&&item.attempted_alternatives);assert(item.sources.length);}
+ for(const item of items){if(item.status==='clarified')assert(item.resolution&&item.next_step&&item.resolution_source&&item.evidence_note);else assert(item.known&&item.missing&&(item.coach_question||item.research_update)&&item.attempted_alternatives);assert(item.sources.length);}
  assert(!byId.has('N34')&&!byId.has('series:S26'));
  const doc=w.GRINDSTONE_IN_PROGRESS.documents.find(d=>d.id==='technique-coach-input');assert.equal(doc.kind,'research');
  assert(doc.next_step.includes('No reply is needed'));
  const render=w.GRINDSTONE_DRAFTS.render(doc.id),text=w.GRINDSTONE_DRAFTS.draftText(doc);
  assert(render.includes('unfinished instructions stay out'));
- for(const item of items){assert(render.includes(item.id));assert(text.includes(item.coach_question));for(const source of item.sources){const url=typeof source==='string'?source:source.url;assert(text.includes(url));assert(!text.includes('http://127.0.0.1:50784/'+url));}}
+ for(const item of items){assert(render.includes(item.id));assert(text.includes(item.status==='clarified'?item.resolution:(item.research_update||item.coach_question)));for(const source of item.sources){const url=typeof source==='string'?source:source.url;assert(text.includes(url));assert(!text.includes('http://127.0.0.1:50784/'+url));}}
+ const q02=doc.sections.find(section=>section.id==='research-q02');assert(q02.title.includes('Clarified'));
+ assert(q02.paragraphs.some(p=>p.includes('pressure off the tight waist')));assert(!q02.paragraphs.some(p=>p.startsWith('Still missing:')||p.startsWith('Coach question:')));
+ for(const id of ['B16','B17','B18','B19']){assert(q02.links.some(link=>link.href==='#move/'+id));assert(render.includes('href="#move/'+id+'"'));}
+ const q03=doc.sections.find(section=>section.id==='research-q03');assert(q03.title.includes('Clarified'));assert(q03.paragraphs.some(p=>p.includes('roles change')));
+ for(const id of ['B20','A17','N57'])assert(render.includes('href="#move/'+id+'"'));
+ assert(render.includes('href="#season?view=series&amp;series=S42"'));
 });
 check('blank operations sheets remain linked to their original proposals',()=>{
  const file=path.join(base,'downloads','operations-worksheets.html'),text=fs.readFileSync(file,'utf8');
@@ -92,6 +100,7 @@ check('cross-wrist choices preserve the canonical tilt prerequisite and escape c
  const bottom=w.GRINDSTONE_PATHWAY.series.find(item=>item.id==='S40');assert(bottom.branches[0].action.includes('pause before B17’s final turn'));
 });
 check('new defensive connections describe the early control and preserve actor changes',()=>{
+ for(const id of ['B20','A17'])assert(w.GRINDSTONE_REACTIONS.resolve(id).responses.some(r=>r.id==='N57'));
  for(const target of ['N55','N56'])assert(w.GRINDSTONE_REACTIONS.resolve('A19').responses.some(r=>r.id===target));
  assert(w.GRINDSTONE_REACTIONS.resolve('A22').responses.some(r=>r.id==='A28'));
  assert(w.GRINDSTONE_REACTIONS.resolve('A28').answers.some(r=>r.id==='A22'));
