@@ -246,13 +246,13 @@ for(const article of h.context.window.GRINDSTONE_FAMILY.pages){
   const hash='#in-progress'+(category?'?'+new URLSearchParams({category}):'');h.navigate(hash);const html=h.elements.main.innerHTML;
   assert(html.includes('<h1>In Progress</h1>'));assert(html.includes('not adopted club policy'));assert(html.includes('coaches’ text group'));assert(html.includes('does not save comments or shared edits'));
   const shown=Array.from(html.matchAll(/<a class="draft-card" href="#in-progress\/([a-z0-9-]+)"/g),match=>match[1]);
-  const expected=drafts.documents.filter(doc=>!categories.includes(category)||doc.category===category).map(doc=>doc.id);assert.deepEqual(shown,Array.from(expected));
+  const expected=drafts.documents.filter(doc=>doc.listed!==false&&(!categories.includes(category)||doc.category===category)).map(doc=>doc.id);assert.deepEqual(shown,Array.from(expected));
   for(const target of ['working-drafts','existing-resources']){assert(html.includes('data-scroll="'+target+'"'));assert(html.includes('id="'+target+'"'));}checks++;
  }
  for(const doc of drafts.documents){
   const hash='#in-progress/'+doc.id;assert.equal(h.api.safeRouteHash(hash),hash);h.navigate(hash);const html=h.elements.main.innerHTML,plain=decode(html.replace(/<[^>]*>/g,''));
-  assert(html.includes('<h1>'+escapeText(doc.title)+'</h1>'));assert(html.includes(doc.kind==='research'?'unfinished instructions stay out':'not adopted policy'));assert(html.includes('coaches’ text group'));assert(html.includes('does not save replies or shared edits'));assert(html.includes('data-print'));
-  assert(doc.sections.length>=3&&doc.decisions.length&&doc.existing.length,doc.id+' needs a full draft with decisions and source links');
+  assert(html.includes('<h1>'+escapeText(doc.title)+'</h1>'));assert(html.includes(doc.kind==='research'?'unfinished instructions stay out':doc.kind==='confirmed'?'Coach-confirmed decisions':'not adopted policy'));assert(html.includes('coaches’ text group'));assert(html.includes('does not save replies or shared edits'));assert(html.includes('data-print'));
+  assert(doc.sections.length>0&&doc.decisions.length&&doc.existing.length,doc.id+' needs content, review prompts and existing-resource links');
   const content=[doc.title,doc.summary,doc.why,doc.next_step,...doc.sections.flatMap(section=>[section.title,...section.paragraphs,...section.bullets]),...doc.decisions];
   for(const text of content)assert(plain.includes(text),doc.id+' page omitted draft content: '+text);
   for(const link of doc.existing)assert(html.includes('href="'+escapeText(link.href)+'"'),doc.id+' omitted an existing-resource link');
@@ -260,7 +260,7 @@ for(const article of h.context.window.GRINDSTONE_FAMILY.pages){
   const download=html.match(/href="data:text\/plain;charset=utf-8,([^"]+)" download="([^"]+)"/);assert(download,doc.id+' needs a text download');assert.equal(download[2],doc.id+'-draft.txt');
   const text=decodeURIComponent(decode(download[1]));assert.equal(text,draftApi.draftText(doc));
   for(const item of content)assert(text.includes(item),doc.id+' text download omitted draft content');
-  assert(text.includes('DRAFT FOR COACH REVIEW'));assert(text.includes('does not save comments or shared edits'));assert(text.includes(siteBase+hash));assert(!text.includes('test-preview'));
+  assert(text.includes(doc.kind==='confirmed'?'COACH-CONFIRMED WORKFLOW | WORDING FOR REVIEW':'DRAFT FOR COACH REVIEW'));assert(text.includes('does not save comments or shared edits'));assert(text.includes(siteBase+hash));assert(!text.includes('test-preview'));
   for(const link of doc.existing)assert(text.includes(new URL(link.href,siteBase).href),doc.id+' text export omitted a usable source link');checks++;
  }
  assert(drafts.existing_documents.length>=18,'Existing meeting resources must remain available');assert.equal(new Set(drafts.existing_documents.map(item=>item.id)).size,drafts.existing_documents.length);

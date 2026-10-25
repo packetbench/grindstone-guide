@@ -14,8 +14,8 @@ check(table(quickHtml)===table(first.sections[1].html),"Parent schedule and quic
 check(quickHtml.includes("main entrance or concert entrance"),"Keep both user-confirmed Westminster entrances");
 check(quickHtml.includes("rear wrestling-room entrance by the baseball fields"),"Winters Mill entrance is specific");
 check(/the Mat Rats opt-out expectation does not apply/i.test(quickHtml),"Valkyries remain outside the Mat Rats default");
-check(quickHtml.includes("coaches are finalizing the deadline"),"Do not invent an adopted opt-out deadline");
-check(!/\$100|6 of 8|6-of-8|four hours|4 hours|preceding Tuesday/i.test(quickHtml),"No unresolved deposits, eligibility threshold, service hours or attendance deadline");
+check(quickHtml.includes("end of day Tuesday before the event")&&quickHtml.includes("report practice absences as soon as known"),"Confirmed meet deadline stays distinct from practice absence reporting");
+check(!/\$100|6 of 8|6-of-8|four hours|4 hours/i.test(quickHtml),"No unresolved deposits, eligibility threshold or service hours");
 check(quickHtml.includes("Keep wrestling shoes off outdoor surfaces")&&quickHtml.includes("Keep street shoes off the mats")&&quickHtml.includes("Keep nails trimmed"),"Handout hygiene and footwear reminders retained");
 check(first.sections.length===8&&first.sections[3].title==="Pack a simple practice bag","Legacy first-practice section links preserved");
 check(quick.print_companion==="two-sided"&&quickHtml.includes("packetbench.github.io/grindstone-guide/#families"),"Print companion includes a usable full-guide link");

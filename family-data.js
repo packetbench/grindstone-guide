@@ -6,7 +6,7 @@ window.GRINDSTONE_FAMILY = {
       "id": "first-practice",
       "title": "Your first Grindstone practice",
       "description": "Choose your program, confirm the details, pack the bag, and arrive ready to learn.",
-      "reviewed": "2026-10-24",
+      "reviewed": "2026-10-25",
       "sections": [
         {
           "title": "Start with your program",
@@ -30,7 +30,7 @@ window.GRINDSTONE_FAMILY = {
         },
         {
           "title": "When you arrive",
-          "html": "<p>Arrive early enough to change shoes and be ready at the scheduled start.</p><ol><li>Find the coach or team helper and confirm your child’s group.</li><li>Point out the water and gear area; find out where caregivers should wait and how pickup works.</li><li>Tell the coach about an injury, participation restriction or support need that affects practice.</li><li>Help your child listen for the stop signal, then let the coach introduce a partner and the first activity.</li></ol><p>If you will be late or absent, notify the team contact. When arriving late, check in with the coach before joining the activity.</p>"
+          "html": "<p>Arrive early enough to change shoes and be ready at the scheduled start.</p><ol><li>Find the coach or team helper and confirm your child’s group.</li><li>Point out the water and gear area; find out where caregivers should wait and how pickup works.</li><li>Tell the coach about an injury, participation restriction or support need that affects practice.</li><li>Help your child listen for the stop signal, then let the coach introduce a partner and the first activity.</li></ol><p>If you will be late or absent, notify the team contact. <strong>Mat Rats:</strong> Practices are expected; report an absence as soon as you know and update TeamSnap availability. The end-of-day Tuesday opt-out deadline applies to meets, not practice absences. When arriving late, check in with the coach before joining the activity.</p>"
         },
         {
           "title": "What the first session can feel like",
@@ -68,11 +68,11 @@ window.GRINDSTONE_FAMILY = {
       "id": "programs-levels",
       "title": "Programs, ages and teaching levels",
       "description": "Find the right team information and understand how coaches use this library.",
-      "reviewed": "2026-10-24",
+      "reviewed": "2026-10-25",
       "sections": [
         {
           "title": "The club program is where you belong",
-          "html": "<table class=\"program-table\"><thead><tr><th scope=\"col\">Program</th><th scope=\"col\">Published ages</th><th scope=\"col\">Where to start</th></tr></thead><tbody><tr><th scope=\"row\">Pups</th><td data-label=\"Published ages\">First-year wrestlers, 4–6</td><td data-label=\"About this program\">The introductory clinic within Mat Rats. The club describes a focus on movement, skills and fun, without competitions. <a href=\"https://www.grindstonewrestling.org/mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\">Pups information</a>.</td></tr><tr><th scope=\"row\">Mat Rats recreational team</th><td data-label=\"Published ages\">6–14</td><td data-label=\"About this program\">Coed wrestling for beginners through experienced athletes. Practice placement considers age and experience. <a href=\"https://www.grindstonewrestling.org/mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\">Mat Rats information</a>.</td></tr><tr><th scope=\"row\">Valkyries</th><td data-label=\"Published ages\">Girls, 5–14</td><td data-label=\"About this program\">A dedicated girls program welcoming new and experienced wrestlers. Competition is optional. <a href=\"https://www.grindstonewrestling.org/copy-of-mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\">Valkyries information</a>.</td></tr></tbody></table><p>Program descriptions come from the official club pages; the competition distinction below reflects the club’s current planning direction. The club confirms placement, current availability, schedules and registration details; a birthday alone does not determine a move’s readiness.</p><h3>Competition expectations by program</h3><p><strong>Mat Rats competition attendance:</strong> Plan to attend your team’s applicable meets unless you opt out. Coaches are finalizing the opt-out deadlines and late-change procedure; follow each event’s TeamSnap instructions and contact the team if you cannot attend.</p><p><strong>Valkyries competition attendance:</strong> The Valkyries use a separate, more flexible system for now. Competition is optional, and the Mat Rats default-attendance/opt-out expectation does not apply. Confirm event choices and arrangements with the Valkyries coaches.</p><p><strong>Pups:</strong> The introductory clinic does not include competitions.</p>"
+          "html": "<table class=\"program-table\"><thead><tr><th scope=\"col\">Program</th><th scope=\"col\">Published ages</th><th scope=\"col\">Where to start</th></tr></thead><tbody><tr><th scope=\"row\">Pups</th><td data-label=\"Published ages\">First-year wrestlers, 4–6</td><td data-label=\"About this program\">The introductory clinic within Mat Rats. The club describes a focus on movement, skills and fun, without competitions. <a href=\"https://www.grindstonewrestling.org/mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\">Pups information</a>.</td></tr><tr><th scope=\"row\">Mat Rats recreational team</th><td data-label=\"Published ages\">6–14</td><td data-label=\"About this program\">Coed wrestling for beginners through experienced athletes. Practice placement considers age and experience. <a href=\"https://www.grindstonewrestling.org/mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\">Mat Rats information</a>.</td></tr><tr><th scope=\"row\">Valkyries</th><td data-label=\"Published ages\">Girls, 5–14</td><td data-label=\"About this program\">A dedicated girls program welcoming new and experienced wrestlers. Competition is optional. <a href=\"https://www.grindstonewrestling.org/copy-of-mat-rats\" target=\"_blank\" rel=\"noopener noreferrer\">Valkyries information</a>.</td></tr></tbody></table><p>Program descriptions come from the official club pages; the attendance expectations below reflect the coach-confirmed workflow. The club confirms placement, current availability, schedules and registration details; a birthday alone does not determine a move’s readiness.</p><h3>Attendance expectations by program</h3><p><strong>Mat Rats attendance:</strong> Expect to attend practices and every Mid-Maryland Wrestling League (MMWL) event for which your athlete is eligible. For meets, opt out by <strong>end of day Tuesday before the event</strong>. Report practice absences as soon as known. Tell the coaches and <strong>update TeamSnap availability</strong>. <a href=\"#family/meet-day?section=5\">Attendance and late-change details</a>.</p><p><strong>Valkyries competition attendance:</strong> The Valkyries use a separate, more flexible system for now. Competition is optional, and the Mat Rats default-attendance/opt-out expectation does not apply. Confirm event choices and arrangements with the Valkyries coaches.</p><p><strong>Pups:</strong> The introductory clinic does not include competitions.</p>"
         },
         {
           "title": "The age group helps a coach choose the next challenge",
@@ -105,11 +105,11 @@ window.GRINDSTONE_FAMILY = {
       "sections": [
         {
           "title": "Before you leave",
-          "html": "<p><strong>Mat Rats competition attendance:</strong> Plan to attend your team’s applicable meets unless you opt out. Coaches are finalizing the opt-out deadlines and late-change procedure; follow each event’s TeamSnap instructions and contact the team if you cannot attend.</p><p><strong>Valkyries competition attendance:</strong> The Valkyries use a separate, more flexible system for now. Competition is optional, and the Mat Rats default-attendance/opt-out expectation does not apply. Confirm event choices and arrangements with the Valkyries coaches.</p><p>Read your coach’s message for this event. Confirm the address, arrival time, team meeting place, check-in and weigh-in instructions, and any registration or membership requirements. Arrival time and the start of wrestling may be different.</p><ul><li>Confirm which group and event your child is attending.</li><li>Tell your team contact promptly if you will be late or absent.</li><li>Check which uniform and equipment to bring and what the club supplies.</li><li>Ask about admission, parking or other event costs before traveling.</li></ul><p>Your coach’s current instructions provide the day’s details. Ask which membership, if any, is needed before purchasing one.</p>"
+          "html": "<p><strong>Mat Rats attendance:</strong> Expect to attend practices and every Mid-Maryland Wrestling League (MMWL) event for which your athlete is eligible. For meets, opt out by <strong>end of day Tuesday before the event</strong>. Report practice absences as soon as known. Tell the coaches and <strong>update TeamSnap availability</strong>. <a href=\"#family/meet-day?section=5\">Attendance and late-change details</a>.</p><p><strong>Valkyries competition attendance:</strong> The Valkyries use a separate, more flexible system for now. Competition is optional, and the Mat Rats default-attendance/opt-out expectation does not apply. Confirm event choices and arrangements with the Valkyries coaches.</p><p>Read your coach’s message for this event. Confirm the address, arrival time, team meeting place, check-in and weigh-in instructions, and any registration or membership requirements. Arrival time and the start of wrestling may be different.</p><ul><li>Confirm which group and event your child is attending.</li><li>Tell your team contact promptly if you will be late or absent.</li><li>Check which uniform and equipment to bring and what the club supplies.</li><li>Ask about admission, parking or other event costs before traveling.</li></ul><p>Your coach’s current instructions provide the day’s details. Ask which membership, if any, is needed before purchasing one.</p>"
         },
         {
           "title": "Pack the wrestling bag",
-          "html": "<ul><li>Coach-approved uniform, wrestling shoes and headgear.</li><li>A personal water bottle and familiar snacks or meals.</li><li>Spare clothes and a separate bag for used gear.</li><li>Any required registration or membership information.</li></ul><p>Confirm mouthguard requirements, especially with braces, plus the event’s hair, jewelry and uniform rules. Keep meals and hydration normal. Discuss health or weight concerns with your child’s healthcare professional; tell the coach about growth or weight changes that affect event placement.</p>"
+          "html": "<ul><li>Coach-approved uniform, wrestling shoes and headgear.</li><li>A personal water bottle and familiar snacks or meals.</li><li>Spare clothes and a separate bag for used gear.</li><li>Any required registration or membership information.</li></ul><p>Confirm mouthguard requirements, especially with braces, plus the event’s hair, jewelry and uniform rules. Keep meals and hydration normal. Discuss health or weight concerns with your child’s healthcare professional; tell the coach about growth or weight changes that affect event placement.</p><h3>Food for a long meet day</h3><p>Eat a familiar, balanced meal before the meet and pack food for long waits. Include carbohydrate snacks such as fruit, crackers or bread, along with water. Choose smaller, familiar snacks close to a bout. Afterward, have a balanced meal or snack with carbohydrates and protein.</p><p class=\"fine\">More: <a href=\"https://kidshealth.org/en/parents/feed-child-athlete.html\" target=\"_blank\" rel=\"noopener noreferrer\">Nemours: Feeding Your Child Athlete</a> · <a href=\"#family/health?section=5\">Why balanced meals and carbohydrates matter</a>.</p>"
         },
         {
           "title": "Follow the day’s sequence",
@@ -122,6 +122,10 @@ window.GRINDSTONE_FAMILY = {
         {
           "title": "When something is unclear",
           "html": "<p>If your coach is missing, tell a team helper and staging or table staff promptly and ask for help before the bout. Raise pairing concerns with the coach before wrestling. Event formats and pairing methods vary; no guide can promise an exact opponent match or a fixed number of bouts.</p><p>Expect waiting between matches. Keep your child close to the agreed team area and check with the coach before making other plans. For scoring questions, start with your coach. Bring an urgent safety concern to event staff immediately.</p><p><a href=\"#family/faq\">Browse the family FAQ</a> · <a href=\"#family/expectations\">Read the family expectations</a></p>"
+        },
+        {
+          "title": "Mat Rats attendance and opt-outs",
+          "html": "<p>Mat Rats wrestlers are expected at practices and every MMWL event for which they are eligible. The Valkyries keep their separate, flexible competition system; Pups do not have competitions.</p><ul><li><strong>Meet absences:</strong> Opt out by end of day Tuesday before the event. Tell the coaches and update the athlete’s availability for that event in TeamSnap.</li><li><strong>Practice absences:</strong> Communicate as soon as known and update TeamSnap availability.</li><li><strong>How to tell us:</strong> Use the TeamSnap group chat, a TeamSnap direct message, email or an in-person conversation. Share the reason through the channel that suits you; use a direct message or email for personal details. Whatever the channel, the TeamSnap availability update is required.</li><li><strong>Unexpected changes:</strong> Emergencies happen. Let the coaches know as soon as possible and update availability even after the deadline.</li></ul><p><strong>Caregivers and athletes communicate conflicts and attendance changes; coaches manage the roster and last-minute adjustments.</strong> Coaches use TeamSnap availability to submit event rosters. Inaccurate availability and unexpected absences can reduce the potential competition pool for other wrestlers and cause event delays or complications.</p>"
         }
       ],
       "sources": [
@@ -132,9 +136,13 @@ window.GRINDSTONE_FAMILY = {
         {
           "title": "USA Wrestling: Step By Step",
           "url": "https://www.themat.com/news/2019/january/16/step-by-step"
+        },
+        {
+          "title": "Nemours KidsHealth: Feeding Your Child Athlete (reviewed April 2026)",
+          "url": "https://kidshealth.org/en/parents/feed-child-athlete.html"
         }
       ],
-      "reviewed": "2026-10-24"
+      "reviewed": "2026-10-25"
     },
     {
       "id": "match-basics",
@@ -229,7 +237,7 @@ window.GRINDSTONE_FAMILY = {
     {
       "id": "health",
       "title": "Health habits and getting help",
-      "description": "Keep gear clean, report concerns early, and know who can guide the next step.",
+      "description": "Keep gear clean, fuel growing athletes, report concerns early, and know who can guide the next step.",
       "sections": [
         {
           "title": "A simple after-wrestling routine",
@@ -250,6 +258,10 @@ window.GRINDSTONE_FAMILY = {
         {
           "title": "Support growth and normal hydration",
           "html": "<p>Keep meals and hydration normal. Do not restrict food or water or deliberately sweat off weight to force a lower wrestling class. Discuss weight and health concerns with your child’s pediatrician or another qualified healthcare professional.</p><p>Keep the coach informed about growth and weight changes so event placement can be addressed. The coach handles sporting arrangements; your child’s healthcare professional guides health decisions.</p>"
+        },
+        {
+          "title": "Balanced meals fuel wrestling",
+          "html": "<p>Balanced meals fuel growth and wrestling. Include carbohydrate foods such as rice, potatoes, oats, bread or fruit alongside protein foods, vegetables and fats. <strong>Carbohydrates help fuel repeated hard efforts and sustained activity; protein supports muscle growth and repair.</strong></p><p>A “high-protein” label does not mean a food provides everything an active child needs. Keep enough carbohydrate foods in the day rather than replacing them with extra protein.</p><p class=\"fine\">Read more: <a href=\"https://kidshealth.org/en/parents/feed-child-athlete.html\" target=\"_blank\" rel=\"noopener noreferrer\">Nemours: Feeding Your Child Athlete</a> · <a href=\"https://www.healthychildren.org/English/ages-stages/teen/nutrition/Pages/Carbohydrates-for-Energy.aspx\" target=\"_blank\" rel=\"noopener noreferrer\">American Academy of Pediatrics: Carbohydrates for Energy</a>.</p><p><a href=\"#family/meet-day?section=1\">Packing food and water for meet day →</a></p>"
         }
       ],
       "sources": [
@@ -268,19 +280,28 @@ window.GRINDSTONE_FAMILY = {
         {
           "title": "USA Wrestling medical and event rules",
           "url": "https://www.usawmembership.com/usa_wrestling_rule_book"
+        },
+        {
+          "title": "Nemours KidsHealth: Feeding Your Child Athlete (reviewed April 2026)",
+          "url": "https://kidshealth.org/en/parents/feed-child-athlete.html"
+        },
+        {
+          "title": "American Academy of Pediatrics: Carbohydrates for Energy",
+          "url": "https://www.healthychildren.org/English/ages-stages/teen/nutrition/Pages/Carbohydrates-for-Energy.aspx"
         }
-      ]
+      ],
+      "reviewed": "2026-10-25"
     },
     {
       "id": "season-quickstart",
       "title": "2026–27 season quickstart",
       "description": "The practice schedule, family checklist and next steps in one place. Check TeamSnap for current changes.",
-      "reviewed": "2026-10-24",
+      "reviewed": "2026-10-25",
       "print_companion": "two-sided",
       "sections": [
         {
           "title": "Your weekly practice",
-          "html": "<div class=\"quickstart-brand\"><img src=\"assets/grindstone-logo.png\" width=\"58\" height=\"58\" alt=\"Grindstone Wrestling\"><p><strong>2026–27 season · Prepared October 24, 2026</strong><br>From the club’s season handout. All times are local; TeamSnap carries changes and cancellations.</p></div><table class=\"program-table\"><thead><tr><th scope=\"col\">Program</th><th scope=\"col\">Days</th><th scope=\"col\">Time</th><th scope=\"col\">School</th></tr></thead><tbody><tr><th scope=\"row\">Mat Rats — Black</th><td data-label=\"Days\">Monday, Wednesday, Friday</td><td data-label=\"Time\">6:00–8:00 p.m.</td><td data-label=\"School\">Westminster High School</td></tr><tr><th scope=\"row\">Mat Rats — Blue</th><td data-label=\"Days\">Tuesday, Thursday</td><td data-label=\"Time\">6:00–8:00 p.m.</td><td data-label=\"School\">Westminster High School</td></tr><tr><th scope=\"row\">Pups</th><td data-label=\"Days\">Tuesday</td><td data-label=\"Time\">6:00–7:00 p.m.</td><td data-label=\"School\">Winters Mill High School</td></tr><tr><th scope=\"row\">Valkyries</th><td data-label=\"Days\">Monday, Wednesday, Friday</td><td data-label=\"Time\">6:30–8:00 p.m.</td><td data-label=\"School\">Winters Mill High School</td></tr></tbody></table><div class=\"quickstart-venues\"><p><strong>Westminster High School</strong> · 1225 Washington Road, Westminster, MD 21157.<br>Mat Rats Black and Blue: use the <strong>main entrance or concert entrance</strong>.</p><p><strong>Winters Mill High School</strong> · 560 Gorsuch Road, Westminster, MD 21157.<br>Pups and Valkyries: use the <strong>rear wrestling-room entrance by the baseball fields</strong>.</p></div><p class=\"no-print\"><a href=\"#family/first-practice?section=1\">School photos, maps and directions →</a></p>"
+          "html": "<div class=\"quickstart-brand\"><img src=\"assets/grindstone-logo.png\" width=\"58\" height=\"58\" alt=\"Grindstone Wrestling\"><p><strong>2026–27 season · Prepared October 25, 2026</strong><br>From the club’s season handout. All times are local; TeamSnap carries changes and cancellations.</p></div><table class=\"program-table\"><thead><tr><th scope=\"col\">Program</th><th scope=\"col\">Days</th><th scope=\"col\">Time</th><th scope=\"col\">School</th></tr></thead><tbody><tr><th scope=\"row\">Mat Rats — Black</th><td data-label=\"Days\">Monday, Wednesday, Friday</td><td data-label=\"Time\">6:00–8:00 p.m.</td><td data-label=\"School\">Westminster High School</td></tr><tr><th scope=\"row\">Mat Rats — Blue</th><td data-label=\"Days\">Tuesday, Thursday</td><td data-label=\"Time\">6:00–8:00 p.m.</td><td data-label=\"School\">Westminster High School</td></tr><tr><th scope=\"row\">Pups</th><td data-label=\"Days\">Tuesday</td><td data-label=\"Time\">6:00–7:00 p.m.</td><td data-label=\"School\">Winters Mill High School</td></tr><tr><th scope=\"row\">Valkyries</th><td data-label=\"Days\">Monday, Wednesday, Friday</td><td data-label=\"Time\">6:30–8:00 p.m.</td><td data-label=\"School\">Winters Mill High School</td></tr></tbody></table><div class=\"quickstart-venues\"><p><strong>Westminster High School</strong> · 1225 Washington Road, Westminster, MD 21157.<br>Mat Rats Black and Blue: use the <strong>main entrance or concert entrance</strong>.</p><p><strong>Winters Mill High School</strong> · 560 Gorsuch Road, Westminster, MD 21157.<br>Pups and Valkyries: use the <strong>rear wrestling-room entrance by the baseball fields</strong>.</p></div><p class=\"no-print\"><a href=\"#family/first-practice?section=1\">School photos, maps and directions →</a></p>"
         },
         {
           "title": "Before and after practice",
@@ -292,11 +313,11 @@ window.GRINDSTONE_FAMILY = {
         },
         {
           "title": "Competition depends on your program",
-          "html": "<p><strong>Mat Rats:</strong> The planned default is to attend applicable meets unless your family opts out. Follow each event’s TeamSnap instructions; coaches are finalizing the deadline and late-change process. Tell the team promptly when your wrestler cannot attend.</p><p><strong>Valkyries:</strong> A separate, more flexible system applies for now. Competition is optional; the Mat Rats opt-out expectation does not apply. Confirm event choices with Valkyries coaches.</p><p><strong>Pups:</strong> The introductory clinic does not include competitions.</p><p>For a meet, confirm arrival/check-in, uniform and equipment, and where to find your coach. Check with the coach before leaving. Encourage your child, let coaches coach and let officials handle the match.</p>"
+          "html": "<p><strong>Mat Rats:</strong> Attend practices and every MMWL event for which your athlete is eligible. For meets, opt out by <strong>end of day Tuesday before the event</strong>; report practice absences as soon as known. Caregivers and athletes must tell coaches and <strong>update TeamSnap availability</strong>. Chat, direct message, email or an in-person conversation is welcome, but does not replace that update. For emergencies or late changes, communicate and update availability promptly. Coaches manage rosters and last-minute adjustments.</p><p><strong>Valkyries:</strong> A separate, more flexible system applies for now. Competition is optional; the Mat Rats opt-out expectation does not apply. Confirm event choices with Valkyries coaches.</p><p><strong>Pups:</strong> The introductory clinic does not include competitions.</p><p>For a meet, confirm arrival/check-in, uniform and equipment, and where to find your coach. Check with the coach before leaving. Encourage your child, let coaches coach and let officials handle the match.</p>"
         },
         {
           "title": "Keep the full family guide handy",
-          "html": "<p><a href=\"#families\">Family guides</a> cover <a href=\"#family/meet-day\">meet day</a>, <a href=\"#family/match-basics\">scoring</a>, <a href=\"#family/expectations\">spectator expectations</a> and <a href=\"#family/health\">health concerns</a>. Ask the club about current registration, forms and ways to help.</p><div class=\"quickstart-link\"><strong>Full guide and current links</strong><br><a href=\"https://packetbench.github.io/grindstone-guide/#families\">packetbench.github.io/grindstone-guide/#families</a></div><p class=\"fine\">This companion summarizes confirmed season information and the stated competition direction. Event deadlines, deposits, service-hour commitments and tournament eligibility are not established by this sheet. Use the club’s current instructions for those details.</p>"
+          "html": "<p><a href=\"#families\">Family guides</a> cover <a href=\"#family/meet-day\">meet day</a>, <a href=\"#family/match-basics\">scoring</a>, <a href=\"#family/expectations\">spectator expectations</a> and <a href=\"#family/health\">health concerns</a>. Ask the club about current registration, forms and ways to help.</p><div class=\"quickstart-link\"><strong>Full guide and current links</strong><br><a href=\"https://packetbench.github.io/grindstone-guide/#families\">packetbench.github.io/grindstone-guide/#families</a></div><p class=\"fine\">This companion includes the coach-confirmed Mat Rats attendance workflow. MMWL means Mid-Maryland Wrestling League. Deposits, service-hour commitments and tournament eligibility are not established by this sheet. Follow current club and event instructions.</p>"
         }
       ],
       "sources": []
@@ -305,7 +326,7 @@ window.GRINDSTONE_FAMILY = {
       "id": "teamsnap",
       "title": "TeamSnap setup for caregivers",
       "description": "Make sure every authorized caregiver who handles practice or meet travel can see the team’s current information.",
-      "reviewed": "2026-10-24",
+      "reviewed": "2026-10-25",
       "sections": [
         {
           "title": "Start with the club invitation",
@@ -325,7 +346,7 @@ window.GRINDSTONE_FAMILY = {
         },
         {
           "title": "Use your program’s event instructions",
-          "html": "<p>Account access and event entry are different. Follow the event’s registration, arrival and equipment instructions.</p><p><strong>Mat Rats:</strong> Expected attendance is the planned default for applicable meets unless the family opts out; follow the posted event instructions while coaches finalize the workflow.</p><p><strong>Valkyries:</strong> Competition remains optional under a separate, flexible system. The Mat Rats default does not apply.</p><p><a href=\"#family/season-quickstart\">Return to the season quickstart</a> · <a href=\"#family/meet-day\">Prepare for meet day</a></p>"
+          "html": "<p>Account access and event entry are different. Follow the event’s registration, arrival and equipment instructions.</p><p><strong>Mat Rats attendance:</strong> Expect to attend practices and every Mid-Maryland Wrestling League (MMWL) event for which your athlete is eligible. For meets, opt out by <strong>end of day Tuesday before the event</strong>. Report practice absences as soon as known. Tell the coaches and <strong>update TeamSnap availability</strong>. <a href=\"#family/meet-day?section=5\">Attendance and late-change details</a>.</p><p><strong>Valkyries:</strong> Competition remains optional under a separate, flexible system. The Mat Rats default does not apply.</p><p><a href=\"#family/season-quickstart\">Return to the season quickstart</a> · <a href=\"#family/meet-day\">Prepare for meet day</a></p>"
         }
       ],
       "sources": [
@@ -375,7 +396,7 @@ window.GRINDSTONE_FAMILY = {
     },
     {
       "question": "Do all programs use the same competition attendance system?",
-      "answer": "No. Mat Rats competitors are expected at applicable meets unless the family opts out; follow each event’s TeamSnap instructions while the detailed opt-out workflow is being finalized. Valkyries use a separate, more flexible system and competition is optional. Pups do not have competitions. <a href=\"#family/programs-levels\">See program expectations</a>."
+      "answer": "No. Mat Rats athletes are expected at practices and every MMWL event for which they are eligible. Meet opt-outs are due by end of day Tuesday before the event; report practice absences as soon as known. Tell coaches and update TeamSnap availability. Valkyries retain their separate, flexible system with optional competition. Pups do not have competitions. <a href=\"#family/meet-day?section=5\">Read the attendance workflow</a>."
     },
     {
       "question": "What if we are late or absent?",
@@ -491,7 +512,15 @@ window.GRINDSTONE_FAMILY = {
     ]
   },
   "downloads": [
-    {"id":"season-quickstart-2026","title":"2026–27 family quickstart","description":"Current schedule, entrances, gear and TeamSnap guidance. Two Letter pages for double-sided printing. Prepared October 24, 2026.","type":"PDF","pages":2,"path":"downloads/season-quickstart-2026.pdf","group":"families"},
+    {
+      "id": "season-quickstart-2026",
+      "title": "2026–27 family quickstart",
+      "description": "Current schedule, entrances, gear and TeamSnap guidance. Two Letter pages for double-sided printing. Prepared October 24, 2026.",
+      "type": "PDF",
+      "pages": 2,
+      "path": "downloads/season-quickstart-2026.pdf",
+      "group": "families"
+    },
     {
       "id": "family-guide",
       "title": "Parent guide",

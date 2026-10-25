@@ -335,3 +335,10 @@ Prepared in the audit preview for review; not published.
 - N24 adds a head-inside single-leg entry and a low-held progression into B08. Its written right-leg example mirrors the USA Wrestling clip. N25 adds the actual standing Hip Dump return, including its lift, receiving prerequisites and grounded release. Both guides distinguish inspected footage, written sources and coaching adaptations.
 - Pups keep their individual preparations; this complete partnered collection and lifted mat return are not automatically assigned to them. Mat returns remain separate from introductory stand-up escape drills.
 - Prepared on the review branch; not published without review.
+
+## Family food and attendance guidance — October 25, 2026
+
+- Preview update: brief balanced-meal and carbohydrate-fuel guidance lives in the health and meet-day guides. The separate food-handout proposal is removed from the active list; its existing route remains usable.
+- Coach-confirmed Mat Rats scope: practices and every eligible MMWL event. Meet opt-outs are due by end of day Tuesday before the event; practice absences are reported as soon as known. These decisions supersede the unresolved attendance wording recorded in the October 24 notes above.
+- Caregivers and athletes communicate changes through TeamSnap group chat, direct message, email or in person and must also update TeamSnap availability. Coaches manage rosters and last-minute adjustments. Emergencies are communicated promptly. Valkyries keep their separate flexible system; Pups have no competitions.
+- Family pages, FAQ, TeamSnap instructions, the quickstart and its two-sided PDF share this wording. In Progress distinguishes confirmed decisions from unresolved proposals. These edits remain on the review branch pending publication approval.
