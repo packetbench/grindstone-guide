@@ -9,7 +9,21 @@
   const uid = () => 'session-' + (window.crypto?.randomUUID ? window.crypto.randomUUID() : Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10));
   const today = () => { const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).map(p => [p.type,p.value])); return parts.year + '-' + parts.month + '-' + parts.day; };
   const defaultSeason = () => { const date = today(), y = Number(date.slice(0,4)) - (Number(date.slice(5,7)) < 7 ? 1 : 0); return y + '-' + (y + 1); };
+  const visitedSeasons = new Set();
   let root, state, ticket = 0;
+  function seasonOptions() {
+    visitedSeasons.add(state.season);
+    const currentYear = Number(defaultSeason().slice(0,4)), years = new Set();
+    for (let year = currentYear - 5; year <= currentYear + 3; year++) years.add(year + '-' + (year + 1));
+    const named = [];
+    for (const season of visitedSeasons) {
+      const match = /^(\d{4})-(\d{4})$/.exec(season);
+      if (match && Number(match[2]) === Number(match[1]) + 1) years.add(season);
+      else named.push(season);
+    }
+    const option = season => '<option value="' + esc(season) + '"' + (season === state.season ? ' selected' : '') + '>' + esc(season) + '</option>';
+    return [...years].sort().reverse().map(option).join('') + (named.length ? '<optgroup label="Existing named seasons">' + named.sort().map(option).join('') + '</optgroup>' : '');
+  }
   function param(params, key) { return typeof params?.get === 'function' ? params.get(key) : params?.[key]; }
   function curriculumId() { let hash = 2166136261; for (const c of state.season) hash = Math.imul(hash ^ c.charCodeAt(0),16777619); return 'curriculum:' + state.season.toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,45) + '-' + (hash >>> 0).toString(36) + ':' + state.group; }
   function skill(raw) { return {id:raw.id, title:raw.title || raw.name || raw.id, path:raw.path || raw.route || '', category:raw.category || ''}; }
@@ -43,7 +57,7 @@
   function header() {
     return '<div class="tracker-heading"><p class="eyebrow">Coach planning</p><h1>Practice & season tracker</h1><p class="page-title">Schedule a saved plan. After practice, confirm what you taught. Your group’s first-covered and last-reviewed dates update from those completed practices.</p></div>' +
       '<nav class="tracker-groups" aria-label="Practice groups">' + M().groups.map(g => '<button type="button" data-tracker-action="group" data-id="' + esc(g.id) + '" aria-pressed="' + (g.id === state.group) + '">' + esc(g.name) + '</button>').join('') + '</nav>' +
-      '<div class="tracker-toolbar"><form data-tracker-season><label>Season<input name="season" value="' + esc(state.season) + '" maxlength="80" required aria-describedby="tracker-season-help"></label><button type="submit">Open season</button><span id="tracker-season-help" class="tracker-fine">For example, 2026-2027 or Summer 2027</span></form><div class="tracker-actions">' + button('refresh','Refresh records') + '<a class="button secondary" href="#practices">Practice builder</a></div></div>' +
+      '<div class="tracker-toolbar"><form data-tracker-season><label>Season<select name="season" aria-describedby="tracker-season-help">' + seasonOptions() + '</select></label><span id="tracker-season-help" class="tracker-fine">Choose a season to view its schedule and teaching history.</span></form><div class="tracker-actions">' + button('refresh','Refresh records') + '<a class="button secondary" href="#practices">Practice builder</a></div></div>' +
       '<p class="tracker-mode ' + (state.loaded && state.data.mode === 'shared' ? 'is-shared' : '') + '">' + (!state.loaded ? (state.loading ? 'Checking tracker storage…' : 'Records have not loaded. Refresh to try again; no teaching history has been changed.') : state.data.mode === 'shared' ? '<strong>Shared tracker.</strong> Saved changes are visible to other coaches and families. Enter your name when making a change.' : '<strong>Local preview only.</strong> These records stay in this browser. Other coaches cannot see them until shared storage is connected.') + '</p>' +
       (state.group === 'valkyries' ? '<p class="tracker-fine tracker-independent">Valkyries have their own schedule and season goals. Nothing here copies dates, attendance rules or expectations from Mat Rats.</p>' : '') +
       '<p class="tracker-fine">Track group teaching here. Keep individual athlete, health and caregiver details out of public notes. “Covered” records a teaching opportunity, not an individual wrestler’s mastery.</p>' +
@@ -77,6 +91,7 @@
     const saved = curriculum(), rows = M().coverage(expected(),records()), count = rows.filter(s => s.count > 0).length, extras = extraCoverage();
     return '<section class="tracker-panel"><div class="tracker-section-heading"><div><h2>' + esc(group().name) + ' season skills</h2><p>' + (saved ? 'These are the group’s agreed teaching goals for ' + esc(state.season) + '. Edit them as the season develops.' : 'Choose this group’s teaching goals. Start with suggested pathway skills, then keep, remove or add what fits your wrestlers.') + '</p></div>' + button('curriculum',saved ? 'Edit season expectations' : 'Set season expectations','',' class="tracker-primary"') + '</div>' +
       (saved ? '<p class="tracker-progress"><strong>' + count + ' of ' + rows.length + '</strong> expected skills covered in confirmed practices.</p>' : '<p class="tracker-notice">No season expectations have been saved for this group. Suggested lists are a starting point for coaches, not a required curriculum.</p>') +
+      '<p class="tracker-fine"><a href="#in-progress/season-expectations">Review the proposed group baselines</a>. Coaches set and can revise this group’s list; a baseline does not replace saved selections.</p>' +
       '<label class="tracker-search">Search skill or category<input type="search" data-tracker-coverage-search value="' + esc(state.filter) + '" placeholder="Stand-up, half nelson, bottom…"></label><div data-coverage-list>' + coverageTable(rows) + (extras.length ? '<h3>Other skills taught</h3><p class="tracker-fine">Confirmed in practice, but not currently part of the expected list. Add any of these through Edit season expectations.</p>' + coverageTable(extras) : '') + '</div>' +
       (saved ? '<div class="tracker-actions">' + button('curriculum-history','Season-goal history',saved.id) + '</div>' : '') + '</section>';
   }
@@ -298,6 +313,12 @@
     });
     root.addEventListener('change',event => {
       const target = event.target, e = state.editor;
+      if (target.name === 'season' && target.closest('[data-tracker-season]')) {
+        if (target.value === state.season) return;
+        if (!discard()) { target.value = state.season; return; }
+        state.season = target.value; state.editor = null; state.history = null; state.message = ''; state.loading = true; state.loaded = false; updateAddress(); paint(); load();
+        return;
+      }
       if (target.matches('[data-tracker-skill]') && e) { if (target.checked) e.selected.add(target.dataset.trackerSkill); else e.selected.delete(target.dataset.trackerSkill); e.dirty = true; }
       if (target.matches('[data-tracker-plan]') && target.value !== '' && e?.kind === 'session') {
         let plan;
@@ -320,10 +341,7 @@
       if (form.matches('[data-tracker-session-form]')) { event.preventDefault(); save(form,'session'); }
       else if (form.matches('[data-tracker-curriculum-form]')) { event.preventDefault(); save(form,'curriculum'); }
       else if (form.matches('[data-tracker-season]')) {
-        event.preventDefault(); if (!discard()) return;
-        const season = String(new FormData(form).get('season')).trim();
-        if (!season || season.length > 80 || /[\u0000-\u001f\u007f]/.test(season)) { notify('Enter a season name of at most 80 characters.',true); return; }
-        state.season = season; state.editor = null; state.history = null; state.message = ''; state.loading = true; state.loaded = false; updateAddress(); paint(); load();
+        event.preventDefault();
       }
     });
     paint(); load();
