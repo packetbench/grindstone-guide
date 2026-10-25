@@ -3,7 +3,7 @@
 const fs=require("fs"),path=require("path"),vm=require("vm"),assert=require("assert/strict");
 const root=process.env.GRINDSTONE_TEST_ROOT||path.resolve(__dirname,"..");
 const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
-const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-foundation.js","series-top-additions.js","series-neutral-additions.js","series-ready-additions.js","series-neutral-next.js","series-top-next.js","series-defense-next.js","series-switch-next.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","series-teaching-groups.js","catalog-tags.js","skill-pathway.js","practice-weeks.js","practice-components.js","practice-builder.js","in-progress-data.js","series-research-status.js","in-progress.js","move-reactions.js"];
+const dataFiles=["data.js","game-video-fixes.js","family-data.js","sponsors-data.js","kyle-data.js","kyle-instruction-data.js","coaches-data.js","video-additions.js","game-guides-a.js","game-guides-b.js","game-guides-c.js","game-guide-library.js","move-tags.js","series-moves.js","series-bottom.js","series-neutral.js","series-top.js","series-escapes.js","series-foundation.js","series-top-additions.js","series-neutral-additions.js","series-ready-additions.js","series-neutral-next.js","series-top-next.js","series-defense-next.js","series-switch-next.js","series-library.js","season-data.js","practice-frameworks.js","pathway-data.js","series-expansion.js","series-teaching-groups.js","catalog-tags.js","skill-pathway.js","practice-weeks.js","practice-components.js","practice-builder.js","tracker-config.js","tracker-model.js","tracker-store.js","tracker-ui.js","in-progress-data.js","series-research-status.js","in-progress.js","move-reactions.js"];
 const clone=value=>JSON.parse(JSON.stringify(value));
 const decode=text=>String(text).replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 function harness(initial="#moves",savedHistory){
@@ -30,6 +30,7 @@ function harness(initial="#moves",savedHistory){
  context.globalThis=context;vm.createContext(context);
  for(const file of dataFiles)vm.runInContext(fs.readFileSync(path.join(root,file),"utf8"),context,{filename:file});
  context.window.GRINDSTONE_BUILDER.bind=()=>{}; // Builder behavior has a separate full suite.
+ context.window.GRINDSTONE_TRACKER.bind=()=>{}; // Async storage and editor behavior have dedicated suites; no live API calls here.
  const ending='window.addEventListener("popstate",historyNavigation);window.addEventListener("hashchange",historyNavigation);render({restore:true});';
  assert(app.includes(ending),"Test harness must match the application startup.");
  const exported='globalThis.api={safeRouteHash,backLink,navigateTo,rememberView,replaceRoute,render,libraryResults,filters,seasonPath,moveDetail,gameDetail,familyArticle,savedPage,saveRecords,currentCoachDownloads,downloads,home,historyNavigation,navigationSnapshot:()=>navigation};';
@@ -64,6 +65,24 @@ const refreshed=harness("#home",h.snapshot());assert.equal(refreshed.window.scro
 for(const unsafe of ["https://example.com","#//example.com","#javascript:alert(1)","javascript:alert(1)","#move/../../other","#moves\n#home","#family/<script>"])assert.equal(h.api.safeRouteHash(unsafe),"");
 assert.equal(h.api.safeRouteHash("#moves?q=a%26b"),"#moves?q=a%26b");checks++;
 const listingId=h.history.state.grindstone.id,historyLength=h.snapshot().stack.length;h.api.replaceRoute("#moves?q=updated&category=bottom");assert.equal(h.history.state.grindstone.id,listingId);assert.equal(h.snapshot().stack.length,historyLength);checks++;
+{
+ const tracker=harness('#tracker?group=blue&season=2026-2027');
+ assert(tracker.elements.main.innerHTML.includes('id="practice-tracker"'));assert(tracker.elements.main.innerHTML.includes('Loading group schedules'));assert(!tracker.elements.main.innerHTML.includes('That page isn’t in the playbook.'));
+ assert.equal(tracker.window.GRINDSTONE_NAVIGATION.replaceRoute,tracker.api.replaceRoute,'Tracker must use the application navigation owner');checks++;
+ for(const group of ['pups','blue','black','valkyries']){
+  const route='#tracker?'+new URLSearchParams({group,season:'2026-2027',view:'coverage'});assert.equal(tracker.api.safeRouteHash(route),route);tracker.navigate(route);
+  assert(tracker.elements.main.innerHTML.includes('id="practice-tracker"'));assert.equal(tracker.location.hash,route);checks++;
+ }
+ tracker.scroll(465);const trackerId=tracker.history.state.grindstone.id,stackLength=tracker.snapshot().stack.length;
+ const changed='#tracker?group=valkyries&season=Summer+2027&view=coverage';
+ tracker.window.GRINDSTONE_NAVIGATION.replaceRoute(changed);
+ assert.equal(tracker.location.hash,changed);assert.equal(tracker.history.state.grindstone.hash,changed);assert.equal(tracker.history.state.grindstone.id,trackerId);assert.equal(tracker.snapshot().stack.length,stackLength);assert.equal(tracker.api.navigationSnapshot().scroll,465);checks++;
+ tracker.navigate('#move/B01');tracker.scroll(190);tracker.clickReturn();assert.equal(tracker.location.hash,changed);assert.equal(tracker.window.scrollY,465);assert.equal(tracker.history.state.grindstone.id,trackerId);checks++;
+ tracker.history.forward();tracker.flush();assert.equal(tracker.location.hash,'#move/B01');assert.equal(tracker.window.scrollY,190);checks++;
+ const before=tracker.location.hash;tracker.window.GRINDSTONE_NAVIGATION.replaceRoute('https://example.com/tracker');assert.equal(tracker.location.hash,before);
+ for(const invalid of ['#tracker/unknown','#tracker/../../other','#tracker/<script>'])assert.equal(tracker.api.safeRouteHash(invalid),'');checks++;
+ const builder=harness('#practices?age=7-10');builder.scroll(510);builder.navigate('#tracker?group=blue&from=builder');builder.scroll(215);builder.history.back();builder.flush();assert.equal(builder.location.hash,'#practices?age=7-10');assert.equal(builder.window.scrollY,510);builder.history.forward();builder.flush();assert.equal(builder.location.hash,'#tracker?group=blue&from=builder');assert.equal(builder.window.scrollY,215);checks++;
+}
 const D=h.context.window.GRINDSTONE,S=h.context.window.GRINDSTONE_PATHWAY;
 const frameworkData=h.context.window.GRINDSTONE_FRAMEWORKS;
 const expansionModules=[h.context.window.GRINDSTONE_SERIES_NEUTRAL,h.context.window.GRINDSTONE_SERIES_TOP,h.context.window.GRINDSTONE_SERIES_ESCAPES,h.context.window.GRINDSTONE_SERIES_FOUNDATION];
@@ -306,6 +325,7 @@ const index=fs.readFileSync(path.join(root,"index.html"),"utf8"),scripts=Array.f
 assert(/<button\b[^>]*id="menu-toggle"[^>]*data-menu-toggle[^>]*aria-expanded="false"[^>]*aria-controls="site-navigation"/.test(index));assert(/<nav\b[^>]*id="site-navigation"[^>]*aria-label="Main navigation"/.test(index));checks++;
 for(const file of dataFiles)assert(scripts.includes(file),"Production entry point missing "+file);
 assert(scripts.indexOf('in-progress-data.js')<scripts.indexOf('in-progress.js'));assert(scripts.indexOf('in-progress.js')<scripts.indexOf('app.js'));assert(index.includes('href="#in-progress">In Progress</a>'));checks++;
+for(const [earlier,later] of [['tracker-config.js','tracker-store.js'],['tracker-model.js','tracker-store.js'],['tracker-model.js','tracker-ui.js'],['tracker-store.js','tracker-ui.js'],['practice-builder.js','tracker-ui.js'],['tracker-ui.js','app.js']])assert(scripts.indexOf(earlier)<scripts.indexOf(later),earlier+' must load before '+later);checks++;
 for(const file of ['game-guides-a.js','game-guides-b.js','game-guides-c.js','kyle-instruction-data.js','video-additions.js'])assert(scripts.indexOf(file)<scripts.indexOf('game-guide-library.js'),file+' must load before game-guide-library.js');
 for(const file of ['practice-builder.js','app.js'])assert(scripts.indexOf('game-guide-library.js')<scripts.indexOf(file),'Game guide integration must load before '+file);checks++;
 for(const [earlier,later] of [["data.js","game-video-fixes.js"],["game-video-fixes.js","practice-builder.js"],["data.js","series-library.js"],["move-tags.js","series-library.js"],["series-moves.js","series-library.js"],["series-bottom.js","series-library.js"],...["series-neutral.js","series-top.js","series-escapes.js"].flatMap(file=>[["series-bottom.js",file],[file,"series-library.js"],[file,"series-expansion.js"]]),["series-library.js","practice-builder.js"],["series-library.js","skill-pathway.js"],["practice-frameworks.js","skill-pathway.js"],["practice-frameworks.js","practice-builder.js"],["pathway-data.js","series-expansion.js"],["series-expansion.js","skill-pathway.js"],["series-expansion.js","practice-builder.js"],["skill-pathway.js","app.js"],["practice-builder.js","app.js"]])assert(scripts.indexOf(earlier)<scripts.indexOf(later),earlier+" must load before "+later);checks++;
@@ -356,4 +376,4 @@ for(const tier of ["Pup","Beginner","Advanced"]){
  assert.equal(result.status,0,result.stderr);assert(result.stdout.includes("No files written"));assert(before.equals(fs.readFileSync(path.join(root,"index.html"))));checks++;
 }
 
-console.log("PASS: "+checks+" navigation, builder routing, pathway, filter, family, and guide checks. No files written.");
+console.log("PASS: "+checks+" navigation, tracker, builder routing, pathway, filter, family, and guide checks. No files written.");

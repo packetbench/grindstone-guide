@@ -10,7 +10,42 @@ A self-contained, buildless website for GitHub Pages. Open `index.html` directly
 - 37 games: the original 30, two team favorites, and five coaching adaptations, with demonstration/source links and clear variation notes.
 - Full program blueprint, coach toolkit, and print downloads.
 - Genuine Shorts when suitable; standard videos when the more useful source is a full lesson.
-- No accounts, analytics, API keys, or build dependencies. Saved items use browser-local storage only.
+- No analytics or build dependencies. Builder drafts and saved items use browser-local storage. The optional shared practice tracker uses a Cloudflare Worker and D1; its name-only editing does not verify a coach's identity.
+
+## Practice tracker preview — October 25, 2026
+
+Open `#tracker` from the practice builder's **Schedule & coverage** link. Each of
+Pups, Blue, Black and Valkyries has independent schedules and season expectations.
+Sessions retain a copy of their practice plan, date, location, author and lead
+coach. Only skills checked when a practice is confirmed completed affect first
+covered, last reviewed and practice counts. Corrections and restored versions
+retain earlier revisions. These are group teaching records, not individual
+athlete mastery or attendance records. TeamSnap remains the event/attendance
+communication system.
+
+**Current connection status:** the isolated Cloudflare Worker and D1 database
+`grindstone-tracker-preview` have been created, with the database schema, `DB`
+binding and allowed origins configured. Cloudflare's code editor remained blank
+after reloads, so the Worker still has its starter code. The reviewed bundle is
+ready in `tracker-api/bundle.mjs`; it has not been deployed. `tracker-config.js`
+deliberately keeps its endpoint empty, and the UI clearly labels this as local
+preview storage. Cross-browser sharing has not yet been verified. Do not describe
+it as connected until the bundle is deployed and shared saves are checked.
+
+Continue setup using [the storage guide](tracker-api/readme.md), then set the
+endpoint to `https://grindstone-tracker-preview.tjschne2.workers.dev`. Public reading
+and name-only editing match the selected design. A shared coach code remains an
+unaccepted option, not a prerequisite. Google Drive archiving is deferred until
+the club chooses a destination folder. GitHub Pages publication still requires
+review of this feature.
+
+Browser checks at 1366×900 and 390×844 used the separate `Preview test` season:
+saved-plan scheduling, confirmation with a skipped skill and an added skill,
+first/last teaching dates, a backdated correction, restoring the previous version,
+and independent Valkyries expectations. Test records are browser-local. Automated
+checks cover model validation, SQLite/API conflicts and retries, builder behavior
+and navigation. See `tools/tracker-model-check.js`, `tools/tracker-api-check.js`,
+`tools/builder-check.js` and `tools/navigation-check.js`.
 
 ## Publish this folder as its own repository
 

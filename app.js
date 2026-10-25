@@ -1,4 +1,4 @@
-/* Grindstone static coach library. No accounts, trackers, or build dependencies. */
+/* Grindstone coaching library with an optional shared practice tracker. */
 (() => {
 "use strict";
 const T=window.GRINDSTONE_TAGS, D=window.GRINDSTONE, V=window.GRINDSTONE_VIDEO_ADDITIONS||{entries:[],categories:[]}, I=window.GRINDSTONE_KYLE_INSTRUCTION||{entries:{}}, C=window.GRINDSTONE_COACHES||{profiles:[],supporters:[]}, S=window.GRINDSTONE_SPONSORS||{sponsors:[]}, K=window.GRINDSTONE_KYLE||{categories:[],entries:[]}, F=window.GRINDSTONE_FAMILY||{pages:[],faq:[],downloads:[]}, main=document.getElementById("main");
@@ -31,7 +31,7 @@ function route(){const raw=location.hash.slice(1)||"home", parts=raw.split("?");
 function safeRouteHash(value){
  if(typeof value!=="string"||value.length>1200||!value.startsWith("#")||/[\u0000-\u001f]/.test(value))return "";
  const [path,query=""]=value.slice(1).split("?");
- const roots=["season","home","moves","games","practices","saved","coaching","families","family/faq","about","about/kyle","about/coaches","sponsors","downloads","volunteer","moves/kyle","moves/videos","in-progress"];
+ const roots=["season","home","moves","games","practices","tracker","saved","coaching","families","family/faq","about","about/kyle","about/coaches","sponsors","downloads","volunteer","moves/kyle","moves/videos","in-progress"];
  if(!roots.includes(path)&&!/^(?:move\/[PBAN]\d{2}|game\/G\d{2}|practice\/(?:4-6|7-10|11-14)\/[1-9]\d?|moves\/(?:kyle\/K\d{2}|videos\/V\d{2})|about\/coach\/[a-z0-9-]+|family\/[a-z0-9-]+|guide\/[a-z0-9-]+|in-progress\/[a-z0-9-]+)$/.test(path))return "";
  const params=new URLSearchParams(query);
  return "#"+path+(params.size?"?"+params:"");
@@ -67,6 +67,7 @@ function navigateTo(hash,focusHref){
  navigation={id:navigationId(),hash:safe,scroll:0,title:"",focusHref:"",parents:parent?[parent,...navigation.parents].slice(0,12):[]};
  history.pushState({grindstone:navigation},"",safe);render({focus:true});return true;
 }
+window.GRINDSTONE_NAVIGATION={replaceRoute};
 function returnLabel(entry){
  const path=entry.hash.slice(1).split("?")[0];
  return path==="moves"?"Back to move results":path==="games"?"Back to game results":path==="practices"?"Back to your practice":path==="moves/kyle"?"Back to Coach Kyle’s results":path==="moves/videos"?"Back to Facebook results":path==="saved"?"Back to saved items":path.startsWith("practice/")?"Back to practice":"Back to "+(entry.title||"previous page");
@@ -598,6 +599,7 @@ function render(options={}){
  let html;
  if(path==="home")html=home();
  else if(path==="practices")html=window.GRINDSTONE_BUILDER.render(params);
+ else if(path==="tracker")html=window.GRINDSTONE_TRACKER.render(params);
  else if(path==="season")html=window.GRINDSTONE_SKILL_PATHWAY.render(params);
  else if(["moves","games"].includes(path))html=listing(path,params);
  else if(parts[0]==="move")html=moveDetail(parts[1]);
@@ -624,9 +626,10 @@ function render(options={}){
  main.innerHTML=html;
  document.getElementById("site-navigation")?.setAttribute("data-open","false");document.getElementById("menu-toggle")?.setAttribute("aria-expanded","false");
  if(path==="families")document.getElementById("family-hub-search")?.addEventListener("submit",e=>{e.preventDefault();const q=document.getElementById("family-question").value.trim();navigateTo("#family/faq"+(q?"?"+new URLSearchParams({q}):""));});
- document.querySelectorAll(".site-header nav a").forEach(a=>{const active=a.getAttribute("href")==="#"+({move:"moves",game:"games",practice:"practices",season:"practices",guide:"coaching",family:"families",volunteer:"coaching"}[parts[0]]||parts[0]);a.classList.toggle("active",active);active?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current");});
+ document.querySelectorAll(".site-header nav a").forEach(a=>{const active=a.getAttribute("href")==="#"+({move:"moves",game:"games",practice:"practices",season:"practices",tracker:"practices",guide:"coaching",family:"families",volunteer:"coaching"}[parts[0]]||parts[0]);a.classList.toggle("active",active);active?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current");});
  updateSavedCount();
  if(path==="practices")window.GRINDSTONE_BUILDER.bind(document.getElementById("practice-builder"));
+ if(path==="tracker")window.GRINDSTONE_TRACKER.bind(document.getElementById("practice-tracker"));
  if(parts[0]==="in-progress")window.GRINDSTONE_DRAFTS.bind(main);
  if(["moves","games"].includes(path)){updateResults(path,params);const form=document.getElementById("filter-form");form.addEventListener("submit",e=>e.preventDefault());const update=(event)=>{if(event?.target?.name==="age"&&form.querySelector("#practice-phase"))form.querySelector("#practice-phase").value="";const next=new URLSearchParams();new FormData(form).forEach((v,k)=>{if(v)next.set(k,v);});if(form.querySelector("#include-unassigned")?.checked)next.set("unassigned","1");replaceRoute("#"+path+(next.size?"?"+next:""));updateResults(path,next);};form.addEventListener("input",update);form.addEventListener("reset",()=>setTimeout(()=>{form.querySelectorAll("input,select").forEach(el=>{if(el.type==="checkbox")el.checked=false;else el.value="";});update();},0));}
  if(path==="moves/videos"){updatePracticeVideos(params);const form=document.getElementById("variation-form");form.addEventListener("submit",e=>e.preventDefault());const update=()=>{const next=new URLSearchParams();new FormData(form).forEach((v,k)=>{if(v)next.set(k,v);});replaceRoute("#moves/videos"+(next.size?"?"+next:""));updatePracticeVideos(next);};form.addEventListener("input",update);form.addEventListener("reset",()=>setTimeout(()=>{form.querySelectorAll("input,select").forEach(el=>el.value="");update();document.getElementById("variation-search").focus();},0));}
