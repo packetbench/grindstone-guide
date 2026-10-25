@@ -1203,5 +1203,17 @@ async function checkAsync(name,fn){await fn();checks++;console.log('PASS '+name)
     field('name','Edited after import');t.action('save',-1);assert.equal(state().saved[0].name,'Edited after import');
     assert(!api.render(new URLSearchParams()).includes('Import creates a separate draft.'));
   });
+  check('schedule links preserve every selected program, including changes after initial render', () => {
+    resetCase();
+    for (const program of ctx.window.GRINDSTONE_FRAMEWORKS.programs) {
+      field('program',program.id);
+      assert.equal(root.querySelector('[data-tracker-plan-link]').href,'#tracker?from=builder&group='+program.id);
+      const html=api.render(new URLSearchParams());
+      assert(html.includes('data-tracker-plan-link href="#tracker?from=builder&amp;group='+program.id+'"'));
+    }
+    field('program','');
+    assert.equal(root.querySelector('[data-tracker-plan-link]').href,'#tracker?from=builder');
+    assert(!api.render(new URLSearchParams()).includes('#tracker?from=builder&amp;group='));
+  });
   console.log('\n'+checks+' builder checks passed. No files written.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

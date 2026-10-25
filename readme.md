@@ -12,7 +12,7 @@ A self-contained, buildless website for GitHub Pages. Open `index.html` directly
 - Genuine Shorts when suitable; standard videos when the more useful source is a full lesson.
 - No analytics or build dependencies. Builder drafts and saved items use browser-local storage. The optional shared practice tracker uses a Cloudflare Worker and D1; its name-only editing does not verify a coach's identity.
 
-## Practice tracker preview — October 25, 2026
+## Shared practice tracker — October 25, 2026
 
 Open `#tracker` from the practice builder's **Schedule & coverage** link. Each of
 Pups, Blue, Black and Valkyries has independent schedules and season expectations.
@@ -24,28 +24,35 @@ athlete mastery or attendance records. TeamSnap remains the event/attendance
 communication system.
 
 **Current connection status:** the isolated Cloudflare Worker and D1 database
-`grindstone-tracker-preview` have been created, with the database schema, `DB`
-binding and allowed origins configured. Cloudflare's code editor remained blank
-after reloads, so the Worker still has its starter code. The reviewed bundle is
-ready in `tracker-api/bundle.mjs`; it has not been deployed. `tracker-config.js`
-deliberately keeps its endpoint empty, and the UI clearly labels this as local
-preview storage. Cross-browser sharing has not yet been verified. Do not describe
-it as connected until the bundle is deployed and shared saves are checked.
+`grindstone-tracker-preview` are deployed and connected. Worker version
+`169df08a-0096-4eba-b6d1-f8d781db660e` serves the endpoint configured in
+`tracker-config.js`: `https://grindstone-tracker-preview.tjschne2.workers.dev`.
+The API returned HTTP 200 with `mode: shared` and `requiresCode: false`; CORS was
+verified for localhost, 127.0.0.1 and the GitHub Pages origin. Failed shared saves
+remain errors and do not silently become browser-local records.
 
-Continue setup using [the storage guide](tracker-api/readme.md), then set the
-endpoint to `https://grindstone-tracker-preview.tjschne2.workers.dev`. Public reading
-and name-only editing match the selected design. A shared coach code remains an
-unaccepted option, not a prerequisite. Google Drive archiving is deferred until
-the club chooses a destination folder. GitHub Pages publication still requires
-review of this feature.
+Public reading and name-only editing match the selected design. Deployment and
+storage details are in [the storage guide](tracker-api/readme.md). Google Drive
+archiving is deferred until Thomas and Coach Kyle choose a destination folder.
+The editable group baselines remain workshop proposals and do not replace saved
+season expectations. The shared backend is working, and the reviewed website
+release uses the endpoint above.
 
-Browser checks at 1366×900 and 390×844 used the separate `Preview test` season:
-saved-plan scheduling, confirmation with a skipped skill and an added skill,
-first/last teaching dates, a backdated correction, restoring the previous version,
-and independent Valkyries expectations. Test records are browser-local. Automated
-checks cover model validation, SQLite/API conflicts and retries, builder behavior
-and navigation. See `tools/tracker-model-check.js`, `tools/tracker-api-check.js`,
-`tools/builder-check.js` and `tools/navigation-check.js`.
+Cross-browser checks scheduled a saved-plan snapshot in the in-app browser and
+opened the same shared record in Chrome. Completion omitted C20 and added P01;
+custom expectations for P01, C18 and C20 showed two of three covered, with the
+skipped stand-up still uncovered. A date correction and restoration of revision 2
+kept all four revisions and counted the practice once. Mobile checks at 390×844
+found no horizontal overflow. Browser Back/Forward preserved unsaved fields,
+skipped skills and added skills. Group schedules and expectations remain separate,
+including independently managed Valkyries records.
+
+The final automated validation pass completed 679 checks, including 23 tracker
+model checks, 59 storage/API checks and 16 tracker UI event checks, plus the
+builder, navigation and related site suites. See `tools/tracker-model-check.js`,
+`tools/tracker-api-check.js`, `tools/tracker-ui-check.js`, `tools/builder-check.js`
+and `tools/navigation-check.js`. Browser verification used test records rather
+than claiming an actual team practice occurred.
 
 ## Publish this folder as its own repository
 

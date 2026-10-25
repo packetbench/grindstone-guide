@@ -1,0 +1,20 @@
+{
+  "name": "grindstone-tracker-preview",
+  "main": "bundle.mjs",
+  "find_additional_modules": false,
+  "account_id": "8735deabf9a615b56b1e709b2747a7c1",
+  "compatibility_date": "2026-10-25",
+  "workers_dev": true,
+  "keep_vars": true,
+  "vars": {
+    "ALLOWED_ORIGINS": "https://packetbench.github.io,http://localhost:50784,http://127.0.0.1:50784"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "grindstone-tracker-preview",
+      "database_id": "cce2cbf9-32c7-4970-a921-5624b52c005d"
+    }
+  ],
+  "observability": { "enabled": true }
+}

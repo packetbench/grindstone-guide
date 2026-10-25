@@ -25,15 +25,34 @@ or caregiver information here.
    preview. Use a test season so test entries stay separate from real records.
    Publishing the guide still follows its ordinary review/approval process.
 
-The root agent created the isolated preview database `grindstone-tracker-preview`
-on October 25, 2026. Keep setup credentials and API tokens outside this repository.
-Use the existing free account options; this implementation does not require a
-paid plan or Google Drive integration.
+The database and Worker named `grindstone-tracker-preview` now serve the shared
+tracker at `https://grindstone-tracker-preview.tjschne2.workers.dev`. The resource
+name is retained from setup; the site configuration uses it for shared records.
+The Worker was deployed on October 25, 2026 through the official Wrangler CLI,
+version `169df08a-0096-4eba-b6d1-f8d781db660e`. The existing `DB` binding and exact
+allowed origins were preserved. `GET /api/tracker` returned HTTP 200 and shared
+mode; the public-site CORS preflight returned HTTP 204.
+
+Browser verification used the separate `Release QA 2026-10-25` season, without
+changing real season records. A scheduled plan snapshot, confirmed skills and
+editable expectations appeared in both the in-app browser and Chrome. A dated
+correction and restoration retained all four session revisions without inflating
+coverage counts. The same flow was checked at a 390 by 844 phone viewport.
+Local preview records were not automatically migrated. Full-database disaster
+recovery has not been exercised; the procedure below remains a recovery guide.
+
+Use `wrangler.jsonc` for later CLI deployments. It includes only public resource
+IDs and allowed origins; keep login credentials and API tokens outside this
+repository. Deploy the self-contained bundle with `--no-bundle --keep-vars` and
+an explicitly preflighted `--outdir`. The existing free account options suffice;
+this implementation does not require a paid plan or Google Drive integration.
 
 ## Optional edit protection
 
 The selected configuration leaves `COACH_CODE` unset. If coaches later choose a
-shared editing code, add it as a **Worker secret**, never as a public site variable.
+shared editing code, add a code-entry interface first, then add the code as a
+**Worker secret**, never as a public site variable. The current tracker UI does
+not provide a code-entry field; enabling the secret now would block its saves.
 The listing returns `requiresCode: true` without revealing the secret. The browser
 sends an entered code only in the save request and keeps it in memory, not browser
 storage. Public reading remains available. A shared code is not individual
@@ -86,11 +105,78 @@ transport tests for revisions, races, idempotency, validation, retained history,
 optional editing codes and failure behavior. Rebuild and redeploy the bundle after
 changing either `tracker-model.js` or `tracker-api/worker.mjs`.
 
-The website's completed-plan export and a future Drive archive are distinct from
-the authoritative database. Keep periodic D1 exports as database backups; do not
-replace historical rows with edited export files. Verify account limits and
-storage usage as the program grows. Do not remove test-season history from an
-active database without an explicit administrative decision.
+## Backup and recovery procedure
+
+These are documented administrator procedures, not a claim that a cloud export
+or restore has been tested. The app's **History → Review this version → Save**
+restores an individual record by appending another revision. Use that for an
+ordinary correction; earlier versions remain available.
+
+For a database backup, an authorized administrator should:
+
+1. Arrange a quiet interval with coaches. Export can briefly block D1 requests.
+   Choose a dated output in a preflighted backup folder outside the published
+   website and Git repository; do not overwrite an earlier backup.
+2. Export the full schema and data with Wrangler:
+   `wrangler d1 export grindstone-tracker-preview --remote --output="ABSOLUTE_BACKUP_PATH.sql"`.
+   Replace the placeholder with the approved full path. Keep **all** rows of
+   `tracker_versions`, including operation IDs, hashes and historical revisions.
+   An API listing of latest records is not a complete backup.
+3. Record the database ID, UTC export time, deployed code revision, file SHA-256,
+   and the following counts alongside the export. Retain prior backups. Agree an
+   owner and cadence before the tracker becomes the season's shared record.
+
+```sql
+SELECT kind, season, group_id, COUNT(*) AS revisions,
+       COUNT(DISTINCT id) AS records
+FROM tracker_versions
+GROUP BY kind, season, group_id
+ORDER BY kind, season, group_id;
+```
+
+Cloudflare documents SQL export/import through Wrangler; a raw `.sqlite3` file is
+not directly importable. [D1 import/export guide](https://developers.cloudflare.com/d1/best-practices/import-export-data/)
+
+Test recovery in a **separate empty database**, never by importing over the active
+one. Import using `wrangler d1 execute RECOVERY_DATABASE --remote --file="ABSOLUTE_BACKUP_PATH.sql"`.
+Compare every stored field in `kind, id, revision` order, plus the counts above;
+then check representative completed records, curricula and histories through an
+isolated Worker binding. Confirm the largest saved practice also restores. D1's
+SQL statement limit is 100 KB while this app accepts JSON records up to 256 KiB;
+a large snapshot may therefore need a restore routine using bound parameters
+instead of one oversized SQL literal. Do not truncate records or declare an
+untested export recoverable. [D1 limits](https://developers.cloudflare.com/d1/platform/limits/)
+
+For a whole-database incident, preserve the current export and record its recovery
+bookmark before any rollback. Cloudflare Time Travel is automatic, with **7 days
+on Free and 30 days on Paid** under the current limits. It overwrites the database
+in place and cancels in-flight work. Obtain approval for the exact recovery point,
+pause edits, and reconcile legitimate work after that point before resuming.
+It is a short recovery window, not a season archive. [Time Travel](https://developers.cloudflare.com/d1/reference/time-travel/), [plan limits](https://developers.cloudflare.com/d1/platform/limits/)
+
+The tracker has no bulk export/import UI yet. Opening a saved plan in the builder
+and exporting its JSON preserves that **plan**, not the session, curriculum or
+revision history. Google Drive archiving remains separate and deferred. Connecting
+the shared endpoint does not migrate local preview records: identify any real
+records to carry forward, preserve the local original, and review a deliberate
+transfer. Do not automatically upload test seasons or overwrite shared history.
+
+## Alternative when the dashboard editor is unavailable
+
+The supported alternative is Wrangler deployment of the existing module, using
+normal Cloudflare authentication. Prepare and review a configuration referencing
+`bundle.mjs`, the existing Worker name, compatibility date, **existing** D1 database
+ID bound as `DB`, and the exact `ALLOWED_ORIGINS`. Include `keep_vars: true` when
+preserving dashboard variables. Do not omit the database ID or assume a CLI deploy
+will retain dashboard bindings without configuration. Run a dry-run first; deploy
+only the reviewed target. No new website project or replacement database is needed.
+[Wrangler deployment](https://developers.cloudflare.com/workers/wrangler/commands/workers/), [configuration and D1 bindings](https://developers.cloudflare.com/workers/wrangler/configuration/)
+
+The official Upload Worker Module API also accepts the bundle with multipart
+metadata. It requires an authorized API token and explicit module/binding metadata;
+browser session extraction is unnecessary. Wrangler is the simpler fallback here.
+Neither fallback has been authenticated or executed as part of this documentation
+update. [Upload API](https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/update/)
 
 Implementation references checked October 25, 2026:
 

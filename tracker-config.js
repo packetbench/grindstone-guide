@@ -1,2 +1,2 @@
-/* Shared preview endpoint is configured after its isolated Cloudflare deployment. */
-window.GRINDSTONE_TRACKER_CONFIG = { endpoint: '' };
+/* Public group teaching records; local builder drafts remain on this device. */
+window.GRINDSTONE_TRACKER_CONFIG = { endpoint: 'https://grindstone-tracker-preview.tjschne2.workers.dev' };

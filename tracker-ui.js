@@ -10,7 +10,15 @@
   const today = () => { const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).map(p => [p.type,p.value])); return parts.year + '-' + parts.month + '-' + parts.day; };
   const defaultSeason = () => { const date = today(), y = Number(date.slice(0,4)) - (Number(date.slice(5,7)) < 7 ? 1 : 0); return y + '-' + (y + 1); };
   const visitedSeasons = new Set();
+  const historyDrafts = new Map();
   let root, state, ticket = 0;
+  const draftKey = record => record.season + '\n' + record.group;
+  function forgetHistoryDraft(editor) { if (editor?.record) historyDrafts.delete(draftKey(editor.record)); }
+  function rememberHistoryDraft() {
+    if (!root?.isConnected || !state?.editor?.dirty || !['session','curriculum'].includes(state.editor.kind)) return;
+    captureEditor();
+    historyDrafts.set(draftKey(state.editor.record),{editor:state.editor,view:state.view});
+  }
   function seasonOptions() {
     visitedSeasons.add(state.season);
     const currentYear = Number(defaultSeason().slice(0,4)), years = new Set();
@@ -48,10 +56,13 @@
     return {id:uid(),revision:0,season:state.season,group:state.group,date:today(),startTime:plan?.startTime || g.start || '',location:g.location || '',author:plan?.owner || plan?.author || currentActor(),lead:'',name:plan?.name || 'Group practice',status:'planned',plan:clone(plan) || null,skills:[],notes:'',noSkillReason:'',actor:currentActor()};
   }
   function render(params) {
+    rememberHistoryDraft();
     const valid = M()?.groups || [];
     const requested = param(params,'group');
+    let builderGroup = '';
+    if (param(params,'from') === 'builder') { try { builderGroup = B()?.current()?.program || ''; } catch (_) { /* The loader reports unreadable builder data without changing it. */ } }
     const season = String(param(params,'season') || '').trim();
-    state = {group:valid.some(g => g.id === requested) ? requested : 'blue',season:season && season.length <= 80 && !/[\u0000-\u001f\u007f]/.test(season) ? season : defaultSeason(),data:{sessions:[],curricula:[],mode:'local'},view:param(params,'view') === 'coverage' ? 'coverage' : 'schedule',editor:null,actor:state?.actor || '',message:'',error:false,loading:true,loaded:false,fromBuilder:param(params,'from') === 'builder',filter:'',history:null};
+    state = {group:valid.some(g => g.id === requested) ? requested : valid.some(g => g.id === builderGroup) ? builderGroup : 'blue',season:season && season.length <= 80 && !/[\u0000-\u001f\u007f]/.test(season) ? season : defaultSeason(),data:{sessions:[],curricula:[],mode:'local'},view:param(params,'view') === 'coverage' ? 'coverage' : 'schedule',editor:null,actor:state?.actor || '',message:'',error:false,loading:true,loaded:false,fromBuilder:param(params,'from') === 'builder',filter:'',history:null};
     return '<section id="practice-tracker" class="practice-tracker"><p role="status">Loading group schedules…</p></section>';
   }
   function header() {
@@ -106,7 +117,8 @@
     return '<div class="tracker-skill-options">' + (e.options.length ? e.options.map(s => '<label class="tracker-check"><input type="checkbox" data-tracker-skill="' + esc(s.id) + '"' + (e.selected.has(s.id) ? ' checked' : '') + '><span>' + esc(s.title) + '<small><span class="tracker-skill-id">' + esc(s.id) + '</span>' + (s.category ? ' · ' + esc(s.category) : '') + '</small></span></label>').join('') : '<p class="tracker-fine">No skills selected yet. Add them from the library or enter a coach-written skill below.</p>') + '</div>';
   }
   function pickerHtml() {
-    return '<details class="tracker-picker"' + (!state.editor.options.length ? ' open' : '') + '><summary>Add skills from the library or your own notes</summary><label>Find a skill<input type="search" data-tracker-skill-search placeholder="Try double leg, stand-up or sprawl"></label><div data-tracker-skill-results class="tracker-skill-results">' + skillResults('') + '</div><div class="tracker-manual-skill"><label>Coach-written skill<input data-tracker-manual maxlength="120" placeholder="A specific skill not in the library"></label>' + button('add-manual','Add skill') + '</div><p class="tracker-fine">Use the same library skill when possible so reviews update its existing history.</p></details>';
+    const e = state.editor;
+    return '<details class="tracker-picker"' + (e.pickerOpen ?? !e.options.length ? ' open' : '') + '><summary>Add skills from the library or your own notes</summary><label>Find a skill<input type="search" data-tracker-skill-search value="' + esc(e.skillSearch || '') + '" placeholder="Try double leg, stand-up or sprawl"></label><div data-tracker-skill-results class="tracker-skill-results">' + skillResults(e.skillSearch || '') + '</div><div class="tracker-manual-skill"><label>Coach-written skill<input data-tracker-manual maxlength="120" value="' + esc(e.manualSkill || '') + '" placeholder="A specific skill not in the library"></label>' + button('add-manual','Add skill') + '</div><p class="tracker-fine">Use the same library skill when possible so reviews update its existing history.</p></details>';
   }
   function skillResults(query) {
     const included = new Set(state.editor.options.map(s => s.id));
@@ -125,6 +137,7 @@
     const shared = state.data.sessions.filter(s => s.plan && s.id !== d.id).sort((a,b) => b.date.localeCompare(a.date));
     return '<section class="tracker-editor" data-tracker-editor tabindex="-1"><div class="tracker-section-heading"><div><p class="eyebrow">' + esc(group().name) + ' · ' + esc(state.season) + '</p><h2 data-tracker-editor-title>' + sessionEditorTitle(e) + '</h2></div>' + button('close-editor','Close') + '</div><form data-tracker-session-form>' +
       '<div class="tracker-form-grid"><label class="tracker-wide">Saved practice<select data-tracker-plan><option value="">' + (d.plan ? 'Keep the attached plan' : 'Choose a saved practice, or leave unattached') + '</option>' + (saved.length ? '<optgroup label="Saved in this browser">' + saved.map((p,i) => '<option value="local:' + i + '">' + esc(p.name || 'Untitled practice') + '</option>').join('') + '</optgroup>' : '') + (shared.length ? '<optgroup label="Plans already in this season’s tracker">' + shared.map(s => '<option value="session:' + esc(s.id) + '">' + esc(s.name) + ' · ' + esc(s.group) + ' · ' + dateLabel(s.date) + '</option>').join('') + '</optgroup>' : '') + '</select></label></div>' + (savedError ? '<p role="alert" class="tracker-message is-error">' + esc(savedError) + ' Existing data has not been changed. You can still use a plan already in the tracker.</p>' : '') + '<div data-tracker-plan-summary>' + planSummary(d.plan) + '</div>' +
+      '<div class="tracker-form-grid"><label class="tracker-wide">Practice group<select name="group" data-tracker-session-group' + (d.revision ? ' disabled aria-describedby="tracker-group-locked"' : '') + '>' + M().groups.map(g => '<option value="' + esc(g.id) + '"' + (d.group === g.id ? ' selected' : '') + '>' + esc(g.name) + '</option>').join('') + '</select></label></div>' + (d.revision ? '<p id="tracker-group-locked" class="tracker-fine">This saved record stays with its group. If it was filed under the wrong group, cancel it here and schedule its saved plan under the correct group. Earlier history remains available.</p>' : '<p class="tracker-fine">Changing the group updates its default location and time. A location or time you already customized is kept.</p>') +
       '<div class="tracker-form-grid">' + input('name','Practice name',d.name,'required maxlength="160"') + '<label>Status<select name="status"><option value="planned"' + (d.status === 'planned' ? ' selected' : '') + '>Planned</option><option value="completed"' + (d.status === 'completed' ? ' selected' : '') + '>Completed — confirm skills below</option><option value="cancelled"' + (d.status === 'cancelled' ? ' selected' : '') + '>Cancelled</option></select></label>' +
       input('date','Practice date',d.date,'type="date" required') + input('startTime','Start time',d.startTime,'type="time"') + input('location','Building / location',d.location,'required maxlength="160"') + input('author','Plan author',d.author,'required maxlength="120"') + input('lead','Coach who leads / led it',d.lead,'maxlength="120"') + input('actor','Your name (saving this change)',d.actor || currentActor(),'required maxlength="120" autocomplete="name"') + '</div>' +
       '<label>Public group practice notes<textarea name="notes" rows="3" maxlength="8000" placeholder="What worked, what to revisit, equipment or a coaching handoff.">' + esc(d.notes) + '</textarea></label>' +
@@ -179,7 +192,11 @@
       const data = await S().load(state.season);
       if (current !== ticket || active !== state || !root?.isConnected) return;
       state.data = data; state.loading = false; state.loaded = true;
-      if (state.fromBuilder) { state.fromBuilder = false; const plan = B()?.current(); if (plan?.blocks?.length) openSession(sessionDefaults(plan),false,false); else notify('Start or save a plan in the practice builder, then schedule it here.',false); }
+      const savedDraft = historyDrafts.get(draftKey(state));
+      if (savedDraft) {
+        historyDrafts.delete(draftKey(state)); state.editor = savedDraft.editor; state.view = savedDraft.view; state.fromBuilder = false;
+        notify('Restored your unsaved ' + (state.editor.kind === 'curriculum' ? 'season expectations' : 'practice changes') + ' after browser navigation. Review and save them when ready; nothing was published automatically.',false);
+      } else if (state.fromBuilder) { state.fromBuilder = false; const plan = B()?.current(); if (plan?.blocks?.length) openSession(sessionDefaults(plan),false,false); else notify('Start or save a plan in the practice builder, then schedule it here.',false); }
       paint(!!state.editor);
     } catch (error) { if (current !== ticket || active !== state) return; state.loading = false; notify(error.message || 'Could not load the tracker. Refresh to try again.',true); paint(); }
   }
@@ -191,7 +208,16 @@
     ['name','date','startTime','location','author','lead','actor','notes','noSkillReason','status'].forEach(key => { if (data.has(key)) e.record[key] = String(data.get(key)).trim(); });
     e.correction = String(data.get('correction') || '').trim();
   }
-  function captureEditor() { captureSession(); if (state.editor?.kind === 'curriculum') { const actor = root.querySelector('[data-tracker-curriculum-form] [name="actor"]'); if (actor) state.editor.record.actor = actor.value; } }
+  function captureEditor() {
+    captureSession();
+    if (state.editor?.kind === 'curriculum') { const actor = root.querySelector('[data-tracker-curriculum-form] [name="actor"]'); if (actor) state.editor.record.actor = actor.value; }
+    if (state.editor) {
+      const search = root.querySelector('[data-tracker-skill-search]'), manual = root.querySelector('[data-tracker-manual]'), picker = root.querySelector('.tracker-picker');
+      if (search) state.editor.skillSearch = search.value;
+      if (manual) state.editor.manualSkill = manual.value;
+      if (picker) state.editor.pickerOpen = picker.open;
+    }
+  }
   function openSession(record,complete,restoring) {
     const d = clone(record), existing = Number(d.revision) > 0;
     if (complete) d.status = 'completed';
@@ -209,8 +235,8 @@
     state.editor = {kind:'curriculum',record:d,options:options.map(skill),selected:new Set(options.map(s => s.id)),restoring:!!restoring,dirty:false};
     state.history = null; paint(true);
   }
-  function discard() { return !state.editor?.dirty || window.confirm('Discard your unsaved tracker changes?'); }
-  function closeEditor() { if (!discard()) return; state.editor = null; paint(); }
+  function discard() { if (!state.editor?.dirty) return true; if (!window.confirm('Discard your unsaved tracker changes?')) return false; forgetHistoryDraft(state.editor); state.editor.dirty = false; return true; }
+  function closeEditor() { if (!discard()) return; forgetHistoryDraft(state.editor); state.editor = null; paint(); }
   function refreshSkills() {
     root.querySelector('[data-tracker-chosen]').innerHTML = chosenSkillsHtml();
     const query = root.querySelector('[data-tracker-skill-search]')?.value || '';
@@ -251,6 +277,7 @@
       } else record = M().cleanCurriculum({...e.record,actor:new FormData(form).get('actor'),skills:selectedSkills()});
       e.saving = true; form.querySelectorAll('button').forEach(b => { b.disabled = true; });
       const result = await (kind === 'session' ? S().saveSession(record) : S().saveCurriculum(record));
+      e.saving = false; e.dirty = false; forgetHistoryDraft(e);
       if (e !== state.editor) return;
       state.actor = record.actor;
       const list = kind === 'session' ? state.data.sessions : state.data.curricula, index = list.findIndex(s => s.id === result.id);
@@ -283,14 +310,14 @@
     else if (action === 'curriculum-history') await showHistory('curriculum',id);
     else if (action === 'close-history') { state.history = null; paint(); }
     else if (action === 'restore') restore(id);
-    else if (action === 'add-skill') { const s = allSkills().find(item => item.id === id); if (s) addSkills([s]); }
+    else if (action === 'add-skill') { const s = allSkills().find(item => item.id === id); if (s) { addSkills([s]); Array.from(root.querySelectorAll('[data-tracker-skill]')).find(field => field.dataset.trackerSkill === s.id)?.focus(); } }
     else if (action === 'add-manual') {
       const field = root.querySelector('[data-tracker-manual]'), title = field.value.trim();
       if (!title) { field.focus(); return; }
       const normalized = title.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
       let hash = 2166136261; for (const c of normalized || title) hash = Math.imul(hash ^ c.charCodeAt(0),16777619);
       const slug = (normalized.slice(0,65) || 'skill') + '-' + (hash >>> 0).toString(36);
-      addSkills([{id:'manual:' + slug,title,path:'',category:'Coach-written skill'}]); field.value = '';
+      addSkills([{id:'manual:' + slug,title,path:'',category:'Coach-written skill'}]); field.value = ''; field.focus();
     } else if (action === 'suggestions') addSkills(M().seed(state.group,B()?.catalog() || [],window.GRINDSTONE_PATHWAY || {}));
     else if (action === 'select-all' || action === 'unselect-all') { state.editor.selected = new Set(action === 'select-all' ? state.editor.options.map(s => s.id) : []); state.editor.dirty = true; refreshSkills(); }
     else if (action === 'latest') {
@@ -311,6 +338,11 @@
       if (event.target.matches('[data-tracker-skill-search]')) root.querySelector('[data-tracker-skill-results]').innerHTML = skillResults(event.target.value);
       if (event.target.closest('[data-tracker-editor]') && state.editor && !event.target.matches('[data-tracker-skill-search]')) state.editor.dirty = true;
     });
+    root.addEventListener('keydown',event => {
+      if (event.key !== 'Enter' || event.isComposing) return;
+      if (event.target.matches('[data-tracker-skill-search]')) { event.preventDefault(); return; }
+      if (event.target.matches('[data-tracker-manual]')) { event.preventDefault(); Promise.resolve(action({dataset:{trackerAction:'add-manual'}})).catch(error => notify(error.message || 'Could not add that skill.',true)); }
+    });
     root.addEventListener('change',event => {
       const target = event.target, e = state.editor;
       if (target.name === 'season' && target.closest('[data-tracker-season]')) {
@@ -318,6 +350,14 @@
         if (!discard()) { target.value = state.season; return; }
         state.season = target.value; state.editor = null; state.history = null; state.message = ''; state.loading = true; state.loaded = false; updateAddress(); paint(); load();
         return;
+      }
+      if (target.matches('[data-tracker-session-group]') && e?.kind === 'session') {
+        if (e.record.revision || !M().groups.some(g => g.id === target.value)) { target.value = e.record.group; return; }
+        const before = M().groups.find(g => g.id === e.record.group), next = M().groups.find(g => g.id === target.value);
+        captureSession(); e.record.group = next.id; state.group = next.id;
+        if (!e.record.location || e.record.location === before?.location) e.record.location = next.location;
+        if (!e.record.startTime || e.record.startTime === before?.start) e.record.startTime = next.start;
+        e.dirty = true; state.filter = ''; updateAddress(); paint(true); return;
       }
       if (target.matches('[data-tracker-skill]') && e) { if (target.checked) e.selected.add(target.dataset.trackerSkill); else e.selected.delete(target.dataset.trackerSkill); e.dirty = true; }
       if (target.matches('[data-tracker-plan]') && target.value !== '' && e?.kind === 'session') {
@@ -353,8 +393,11 @@
     const href = link.getAttribute('href');
     if (!href || href === '#' || href === window.location.hash) return;
     if (!window.confirm('Leave the tracker and discard your unsaved changes?')) { event.preventDefault(); event.stopImmediatePropagation(); }
-    else state.editor.dirty = false;
+    else { forgetHistoryDraft(state.editor); state.editor.dirty = false; }
   },true);
+  // Registered before the app router: capture visible form values before Back/Forward replaces the page.
+  window.addEventListener('popstate',rememberHistoryDraft);
+  window.addEventListener('hashchange',rememberHistoryDraft);
   window.addEventListener('beforeunload', event => { if (root?.isConnected && state?.editor?.dirty) { event.preventDefault(); event.returnValue = ''; } });
   window.GRINDSTONE_TRACKER = {render,bind};
 }());
