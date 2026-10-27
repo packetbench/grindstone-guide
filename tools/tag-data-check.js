@@ -4,7 +4,7 @@ const fs = require('node:fs'), path = require('node:path'), vm = require('node:v
 const base = path.resolve(__dirname,'..');
 const context = {window:{},URL,URLSearchParams};
 vm.createContext(context);
-const files = ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-top-additions.js','series-neutral-additions.js','series-ready-additions.js',"series-neutral-next.js","series-top-next.js","series-defense-next.js","series-switch-next.js",'series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js',"series-teaching-groups.js"];
+const files = ['data.js','game-video-fixes.js','kyle-data.js','kyle-instruction-data.js','video-additions.js','game-guides-a.js','game-guides-b.js','game-guides-c.js','game-guide-library.js','move-tags.js','series-moves.js','series-bottom.js','series-neutral.js','series-top.js','series-escapes.js','series-foundation.js','series-top-additions.js','series-neutral-additions.js','series-ready-additions.js',"series-neutral-next.js","series-top-next.js","series-defense-next.js","series-switch-next.js","series-western.js","series-navy.js",'series-library.js','practice-frameworks.js','pathway-data.js','series-expansion.js',"series-teaching-groups.js"];
 for (const file of files) vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
 const before = JSON.stringify(context.window);
 vm.runInContext(fs.readFileSync(path.join(base,'catalog-tags.js'),'utf8'),context,{filename:'catalog-tags.js'});

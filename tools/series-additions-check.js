@@ -3,7 +3,7 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const base=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(base,'index.html'),'utf8');
 const scripts=[...html.matchAll(/<script defer src="([^"?]+)(?:\?[^"]*)?"/g)].map(m=>m[1]);
-const ctx={window:{localStorage:{getItem:()=>null,setItem(){}},confirm:()=>true},URL,URLSearchParams,console,Blob,setTimeout};
+const ctx={document:{addEventListener(){}},window:{addEventListener(){},localStorage:{getItem:()=>null,setItem(){}},confirm:()=>true},URL,URLSearchParams,console,Blob,setTimeout};
 vm.createContext(ctx);
 for(const file of scripts.filter(f=>f!=='app.js'))vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),ctx,{filename:file});
 const w=ctx.window,t=w.GRINDSTONE_BUILDER.testing,catalog=t.normalizeCatalog(),map=new Map(catalog.map(x=>[x.id,x]));

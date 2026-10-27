@@ -5,6 +5,31 @@
   "use strict";
   const links = [
     {
+      from: "N61", to: "N62", kind: "continuation",
+      condition: "From your Navy far-thigh scoop, bottom lies on the side facing away and the upper shoulder is available. Use the taught shoulder cup to turn the shoulders back with the supported thigh; do not pull the neck.",
+      reverse: "Begin beside the hips in N61 with the far thigh held by your back arm. The free hand takes the available top shoulder. This is your turning option, not bottom's escape."
+    },
+    {
+      from: "N61", to: "N63", kind: "continuation",
+      condition: "The near wrist can be held by your free front hand while your back arm retains the far thigh. Keep those controls separate and use the separately rehearsed low tabletop support.",
+      reverse: "Start with N61's far-thigh control and collect a separate near-wrist one-on-one. The wrist stays in the front hand; do not substitute N64's wrist feed or lift the body by its arm."
+    },
+    {
+      from: "N61", to: "N64", kind: "continuation",
+      condition: "The near wrist can reach your far-thigh scooping hand comfortably. Complete that handoff before the front hand moves to the upper arm; turn only after both controls are secure.",
+      reverse: "Build N61 first, then feed the near wrist to the hand under the far thigh. The free hand guides above the elbow. This specific Navy variation differs from keeping the wrist and thigh controls separate in N63."
+    },
+    {
+      from: "N58", to: "N59", kind: "continuation",
+      condition: "With your Western ankle hook established, the partner stays in a supported base and leaves the under-chest three-quarter nelson route available. Use the separately taught stack; keep the leg aligned and reset if the head or shoulder cannot move freely.",
+      reverse: "Begin with your same-side leg holding the partner's ankle in N58. The stack is a turn you choose from that ride, not the definition of the ride. Rehearse the grip and receiving before combining them."
+    },
+    {
+      from: "N58", to: "N60", kind: "continuation",
+      condition: "The partner lowers the hooked leg while you retain the Western hook and balanced top contact. Use the deep tight-waist breakdown to follow them belly-down; do not pull the ankle sideways or force the stack opening.",
+      reverse: "This is the rider's answer when the partner brings the hooked leg down. Keep the ankle hook and establish the separate waist-and-shoulder controls described in N60. It ends at a breakdown, not a guaranteed pin."
+    },
+    {
       from: "A19", to: "N55", kind: "response",
       condition: "At the opening spiral position, before you capture the wrist, bottom can use N55's changeover against sustained forward pressure. Re-establish the named spiral start and teach the response separately; this is not a late escape from A19's finished wrist ride.",
       reverse: "Answer the initial armpit-and-far-thigh spiral while the inside hand is free. A captured wrist, inserted leg or half nelson changes the lesson and calls for a reset."

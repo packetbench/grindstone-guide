@@ -2,7 +2,7 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const base=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(base,'index.html'),'utf8');
 const scripts=[...html.matchAll(/<script defer src="([^"?]+)(?:\?[^"]*)?"/g)].map(m=>m[1]);
-const context={window:{localStorage:{getItem:()=>null,setItem(){}},confirm:()=>true},location:{href:'http://127.0.0.1:50784/'},URL,URLSearchParams,console,Blob,setTimeout};
+const context={document:{addEventListener(){}},window:{addEventListener(){},localStorage:{getItem:()=>null,setItem(){}},confirm:()=>true},location:{href:'http://127.0.0.1:50784/'},URL,URLSearchParams,console,Blob,setTimeout};
 vm.createContext(context);
 for(const file of scripts.filter(file=>file!=='app.js'))vm.runInContext(fs.readFileSync(path.join(base,file),'utf8'),context,{filename:file});
 const w=context.window,plain=value=>JSON.parse(JSON.stringify(value));
@@ -86,11 +86,17 @@ check('blank operations sheets remain linked to their original proposals',()=>{
 check('coach question references remain stable when research records are reordered',()=>{
  const baseline=Object.fromEntries(w.GRINDSTONE_RESEARCH_QUEUE.items.map(item=>[item.source_key,item.id]));
  const other={window:{GRINDSTONE_IN_PROGRESS:{documents:[]}},URL};
- for(const key of ['GRINDSTONE_SERIES_NEUTRAL_NEXT','GRINDSTONE_SERIES_TOP_NEXT','GRINDSTONE_SERIES_DEFENSE_NEXT']){
+ for(const key of ['GRINDSTONE_SERIES_NEUTRAL_NEXT','GRINDSTONE_SERIES_TOP_NEXT','GRINDSTONE_SERIES_DEFENSE_NEXT','GRINDSTONE_SERIES_WESTERN','GRINDSTONE_SERIES_NAVY']){
   other.window[key]=plain(w[key]);other.window[key].research_status.held.reverse();
  }
  vm.createContext(other);vm.runInContext(fs.readFileSync(path.join(base,'series-research-status.js'),'utf8'),other);
  for(const item of other.window.GRINDSTONE_RESEARCH_QUEUE.items)assert.equal(item.id,baseline[item.source_key]);
+ assert.deepEqual(plain(other.window.GRINDSTONE_RESEARCH_QUEUE.items.map(item=>item.source_key)).sort(),Object.keys(baseline).sort(),'Reordering must not drop old or new research questions');
+ for(const [key,id] of [['western-extended-turk','Q17'],['navy-low-leg-transition','Q18']]){
+  const item=w.GRINDSTONE_RESEARCH_QUEUE.items.find(item=>item.source_key===key);
+  assert(item&&item.id===id);assert(item.research_update&&item.guide_links.length);
+  assert(w.GRINDSTONE_DRAFTS.render('technique-coach-input').includes('data-scroll="research-'+id.toLowerCase()+'"'));
+ }
  assert.equal(w.GRINDSTONE_RESEARCH_QUEUE.items.find(item=>item.move_id==='A11').id,'Q05');
  assert(w.GRINDSTONE_DRAFTS.render('technique-coach-input').includes('data-scroll="research-q16"'));
 });

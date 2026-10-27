@@ -1,7 +1,7 @@
 /* Unresolved technique questions stay separate from usable move instructions. */
 (() => {
   'use strict';
-  const modules = [window.GRINDSTONE_SERIES_NEUTRAL_NEXT, window.GRINDSTONE_SERIES_TOP_NEXT, window.GRINDSTONE_SERIES_DEFENSE_NEXT].filter(Boolean);
+  const modules = [window.GRINDSTONE_SERIES_NEUTRAL_NEXT, window.GRINDSTONE_SERIES_TOP_NEXT, window.GRINDSTONE_SERIES_DEFENSE_NEXT, window.GRINDSTONE_SERIES_WESTERN, window.GRINDSTONE_SERIES_NAVY].filter(Boolean);
   const held = modules.flatMap(module => module.research_status?.held || []);
   const clarified = modules.flatMap(module => module.research_status?.resolved || []);
   held.unshift({
@@ -30,7 +30,9 @@
     'top-two-on-one-half': 'Q13',
     'top-two-on-one-stack': 'Q14',
     'top-claw-options': 'Q15',
-    'top-far-side-tilt': 'Q16'
+    'top-far-side-tilt': 'Q16',
+    'western-extended-turk': 'Q17',
+    'navy-low-leg-transition': 'Q18'
   };
   const records = [...held, ...clarified].map(item => {
     const key = item.id || item.title;
@@ -38,7 +40,7 @@
     return {...item, source_key:key, id:questionNumbers[key]};
   }).sort((a,b) => a.id.localeCompare(b.id));
   const openCount = records.filter(item => item.status !== 'clarified').length;
-  window.GRINDSTONE_RESEARCH_QUEUE = {reviewed:'2026-10-24', status:openCount + ' open research items; ' + (records.length - openCount) + ' clarified', items:records};
+  window.GRINDSTONE_RESEARCH_QUEUE = {reviewed:'2026-10-27', status:openCount + ' open research items; ' + (records.length - openCount) + ' clarified', items:records};
   const drafts = window.GRINDSTONE_IN_PROGRESS;
   if (!drafts) return;
   drafts.documents.push({
