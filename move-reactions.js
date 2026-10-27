@@ -5,6 +5,46 @@
   "use strict";
   const links = [
     {
+      from: "N65", to: "N73", kind: "response",
+      condition: "Bottom can work from the separately taught one-hook defensive hip-sit. Establish N73's start first; this is an answer to an inserted leg, not the Western ankle hook.",
+      reverse: "Your opponent has one inserted boot. Identify the trapped leg and keep the upper body free enough for the named seated start before beginning the clearance."
+    },
+    {
+      from: "N65", to: "N76", kind: "response",
+      condition: "If the rider crosses their own ankles around the single inserted-leg control, bottom has the distinct N76 counter. This remains one inserted leg; crossed ankles do not automatically mean two boots.",
+      reverse: "Start in the checked seated one-leg position with the rider's ankles crossed. Clear that connection before moving the hips into the taught reversal."
+    },
+    {
+      from: "N69", to: "N77", kind: "response",
+      condition: "Bottom uses the two-boot recovery lesson when each leg is hooked. Teach the defensive position separately with the rider following; do not insert a surprise escape during a half turn.",
+      reverse: "Your opponent has two established hooks, one around each leg. N77 identifies the recovery position for this problem rather than borrowing a one-leg clearance."
+    },
+    {
+      from: "N73", to: "N74", kind: "continuation",
+      condition: "From the balanced one-leg hip-sit, use the free foot to hold the rider's hook down while withdrawing the trapped knee. Finish at a usable base before choosing an exit.",
+      reverse: "Begin in N73's established seated one-hook position with a free support hand and free leg. This is your clearance, not the rider's counter."
+    },
+    {
+      from: "N77", to: "N78", kind: "continuation",
+      condition: "From the taught two-boot seated position, control a reachable boot, clear it past the knee and move the hips across using N78. A hook still attached calls for further clearance, not a forced turn.",
+      reverse: "Use after recovering N77's checked position. Keep track of both hooks and the remaining upper-body grip before claiming a reversal or escape."
+    },
+    {
+      from: "N74", to: "B17", kind: "continuation",
+      condition: "After the hook is fully clear and you have rebuilt a stable base, use the familiar stand-up and hand-control finish. Leg clearance alone does not score an escape.",
+      reverse: "N74 has removed the leg hook. Re-establish B17's base and waist-hand controls before standing; never stand with an inserted leg still attached."
+    },
+    {
+      from: "N76", to: "N61", kind: "continuation",
+      condition: "Once the counter puts you on top with the thigh scooped, check N61's exact Navy control before choosing a turn. The reversal and subsequent ride are separate checkpoints.",
+      reverse: "N76 can bring you to top control from the crossed-ankle one-leg position. Check the far-thigh scoop and your balance before continuing the Navy series."
+    },
+    ...[['N65','N66'],['N65','N67'],['N65','N68'],['N69','N70'],['N69','N71'],['N69','N72']].map(([from,to]) => ({
+      from, to, kind: 'continuation',
+      condition: 'Use this separately taught option only when its named posture or opening is present. Retain the series foundation and check the guide before combining the actions.',
+      reverse: 'This is the original rider\'s option from the shared leg-riding foundation. Establish the guide\'s exact start rather than treating every branch as a required sequence.'
+    })),
+    {
       from: "N61", to: "N62", kind: "continuation",
       condition: "From your Navy far-thigh scoop, bottom lies on the side facing away and the upper shoulder is available. Use the taught shoulder cup to turn the shoulders back with the supported thigh; do not pull the neck.",
       reverse: "Begin beside the hips in N61 with the far thigh held by your back arm. The free hand takes the available top shoulder. This is your turning option, not bottom's escape."

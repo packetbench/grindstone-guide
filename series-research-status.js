@@ -1,7 +1,7 @@
 /* Unresolved technique questions stay separate from usable move instructions. */
 (() => {
   'use strict';
-  const modules = [window.GRINDSTONE_SERIES_NEUTRAL_NEXT, window.GRINDSTONE_SERIES_TOP_NEXT, window.GRINDSTONE_SERIES_DEFENSE_NEXT, window.GRINDSTONE_SERIES_WESTERN, window.GRINDSTONE_SERIES_NAVY].filter(Boolean);
+  const modules = [window.GRINDSTONE_SERIES_NEUTRAL_NEXT, window.GRINDSTONE_SERIES_TOP_NEXT, window.GRINDSTONE_SERIES_DEFENSE_NEXT, window.GRINDSTONE_SERIES_WESTERN, window.GRINDSTONE_SERIES_NAVY, window.GRINDSTONE_SERIES_LEG_ONE, window.GRINDSTONE_SERIES_LEG_TWO, window.GRINDSTONE_SERIES_LEG_ESCAPES].filter(Boolean);
   const held = modules.flatMap(module => module.research_status?.held || []);
   const clarified = modules.flatMap(module => module.research_status?.resolved || []);
   held.unshift({
@@ -32,7 +32,12 @@
     'top-claw-options': 'Q15',
     'top-far-side-tilt': 'Q16',
     'western-extended-turk': 'Q17',
-    'navy-low-leg-transition': 'Q18'
+    'navy-low-leg-transition': 'Q18',
+    'parallel-wrist-videos': 'Q19',
+    'parallel-armbar-followups': 'Q20',
+    'leg-switch-review': 'Q21',
+    'leg-defense-full-video-endpoint': 'Q22',
+    'one-leg-power-half-finish': 'Q23'
   };
   const records = [...held, ...clarified].map(item => {
     const key = item.id || item.title;
@@ -45,7 +50,7 @@
   if (!drafts) return;
   drafts.documents.push({
     id:'technique-coach-input', title:'Technique questions — needs coach input', category:'Technique research', kind:'research', status:'Research backlog',
-    summary:openCount + ' open research items. Q01 has a free alternative ready for a guide rewrite; Q02 and Q03 are clarified. Question numbers stay the same. Help with any remaining question you know while other work continues.',
+    summary:openCount + ' open research items. Q01 has a free alternative ready for a guide rewrite; Q02, Q03 and Q04 are clarified. Question numbers stay the same. Help with any remaining question you know while other work continues.',
     why:'A name or course outline can identify a useful move without establishing its exact grips, reaction or finish. Free alternatives are checked for those details before they replace a source. Unresolved instructions are kept out of the usable library.',
     sections:[
       {title:'How to help', paragraphs:['Reply in the coaches’ text group with the question number and the version you teach. A description or short demonstration should identify both wrestlers’ starting grips, the reaction, the moving hand or leg, the finish and the release.'],bullets:['No purchase or subscription is required to keep this work moving.', 'An answer will be checked against the existing move so that a different variant gets its own clear label.', 'These questions are research notes, not instructions to rehearse an unfinished technique.']},

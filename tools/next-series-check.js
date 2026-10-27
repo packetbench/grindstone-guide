@@ -86,7 +86,7 @@ check('blank operations sheets remain linked to their original proposals',()=>{
 check('coach question references remain stable when research records are reordered',()=>{
  const baseline=Object.fromEntries(w.GRINDSTONE_RESEARCH_QUEUE.items.map(item=>[item.source_key,item.id]));
  const other={window:{GRINDSTONE_IN_PROGRESS:{documents:[]}},URL};
- for(const key of ['GRINDSTONE_SERIES_NEUTRAL_NEXT','GRINDSTONE_SERIES_TOP_NEXT','GRINDSTONE_SERIES_DEFENSE_NEXT','GRINDSTONE_SERIES_WESTERN','GRINDSTONE_SERIES_NAVY']){
+ for(const key of ['GRINDSTONE_SERIES_NEUTRAL_NEXT','GRINDSTONE_SERIES_TOP_NEXT','GRINDSTONE_SERIES_DEFENSE_NEXT','GRINDSTONE_SERIES_WESTERN','GRINDSTONE_SERIES_NAVY','GRINDSTONE_SERIES_LEG_ONE','GRINDSTONE_SERIES_LEG_TWO','GRINDSTONE_SERIES_LEG_ESCAPES']){
   other.window[key]=plain(w[key]);other.window[key].research_status.held.reverse();
  }
  vm.createContext(other);vm.runInContext(fs.readFileSync(path.join(base,'series-research-status.js'),'utf8'),other);

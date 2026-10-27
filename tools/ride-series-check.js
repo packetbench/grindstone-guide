@@ -12,13 +12,15 @@ for (const file of scripts.filter(file => file !== 'app.js')) vm.runInContext(fs
 const w = context.window, builder = w.GRINDSTONE_BUILDER, b = builder.testing, components = w.GRINDSTONE_COMPONENTS;
 const plain = value => JSON.parse(JSON.stringify(value));
 const catalog = b.normalizeCatalog(), byId = new Map(catalog.map(item => [item.id, item]));
-function checkRide(moduleName, seriesId, scriptFile, label) {
+function checkRide(moduleName, seriesId, scriptFile, label, expectedPosition = 'top') {
 const moduleData = w['GRINDSTONE_SERIES_' + moduleName];
 assert(moduleData, label + ' module must be loaded by the actual page');
 const series = w.GRINDSTONE_PATHWAY.series.find(item => item.id === seriesId);
 assert(series, label + ' series must reach the shared pathway');
 const item = byId.get('series:' + series.id);
 const canonical = id => byId.has(id) ? id : byId.has('kyle:' + id) ? 'kyle:' + id : byId.has('facebook:' + id) ? 'facebook:' + id : id;
+const seriesMoveIds = new Set([...series.move_ids, ...series.members.map(member => member.move_id)].map(canonical));
+const seriesMoves = moduleData.moves.filter(move => seriesMoveIds.has(canonical(move.id)));
 const foundationIds = series.members.filter(member => /^foundation$/i.test(member.role)).map(member => canonical(member.move_id));
 const branchKey = components.testing.branchKey;
 const expectedIds = branches => [...new Set([...foundationIds, ...branches.flatMap(branch => branch.move_ids.map(canonical))])];
@@ -60,20 +62,30 @@ check(label + ' has a reusable foundation and distinct choices', () => {
   }
 });
 
-for (const move of moduleData.moves) check(move.id + ' is a complete standalone guide with source provenance and searchable series tags', () => {
+for (const move of seriesMoves) check(move.id + ' is a complete standalone guide with source provenance and searchable series tags', () => {
   const guide = byId.get(move.id), tags = w.GRINDSTONE_CATALOG_TAGS.resolve(move.id);
   assert(guide && tags);
+  assert.equal(guide.setup, move.setup, move.id + ' must retain its exact starting configuration in the builder');
   assert(move.steps.length >= 4 && move.cues.length);
   for (const field of ['purpose', 'prerequisite', 'setup', 'drill', 'boundary', 'error', 'fix', 'verification']) text(move[field], move.id + ' ' + field);
-  assert(move.sources.length && move.video);
-  sourceUrl(move.video.url);
+  assert(move.sources.length);
+  if (move.video?.url) {
+    sourceUrl(move.video.url);
+    text(move.video.note, 'Video scope');
+    assert.equal(guide.video, move.video.url);
+  } else {
+    assert.equal(move.video, null, 'A written-only lesson must explicitly omit a video');
+    assert.equal(guide.video, '', 'No unrelated demonstration may fill a written-only lesson');
+    assert(!w.GRINDSTONE.videos[move.id]?.video, 'The library must not invent a video');
+    const links = components.testing.trustedLinks(components.testing.snapshot(guide), catalog);
+    assert(!links.includes('Watch source video'));
+    assert(links.includes('#move/' + move.id), 'Written-only lessons still link to their full guide');
+  }
   for (const source of move.sources) { sourceUrl(source.url); text(source.title, 'Source title'); }
-  text(move.video.note, 'Video scope');
-  assert.equal(guide.video, move.video.url);
   assert.equal(guide.path, '#move/' + move.id);
   assert(tags.memberships.some(membership => membership.id === series.id));
   for (const key of ['positions', 'purposes', 'uses', 'age_groups']) assert.deepEqual(plain(tags[key]), plain(move[key]), move.id + ' ' + key);
-  assert(tags.positions.includes('top'));
+  assert(tags.positions.includes(expectedPosition));
   assert(!tags.age_groups.includes('4-6'), 'This ride/turn collection is not a default Pup lesson');
   assert(tags.searchText.includes(series.title.toLowerCase()));
   assert(tags.age_groups.length && guide.readiness, 'Age does not replace explicit readiness');
@@ -167,7 +179,7 @@ check('coaches can insert water between the new moves, reorder and undo without 
   b.action('undo', -1); assert.deepEqual(state().plan, waterPlan);
 });
 check('new reaction links retain valid actor-aware navigation in both directions', () => {
-  const ids = new Set(moduleData.moves.map(move => move.id));
+  const ids = new Set(seriesMoves.map(move => move.id));
   const links = w.GRINDSTONE_REACTIONS.links.filter(link => ids.has(link.from) || ids.has(link.to));
   assert(links.length, label + ' choices need reaction/continuation navigation');
   for (const link of links) {
@@ -179,7 +191,85 @@ check('new reaction links retain valid actor-aware navigation in both directions
     assert(reverse[link.kind === 'response' ? 'answers' : 'buildsFrom'].some(item => item.id === canonical(link.from)));
   }
 });
+if (moduleName === 'LEG_ESCAPES') check(label + ' is an opponent response rather than the rider continuing their own attack', () => {
+  const attackIds = new Set([...w.GRINDSTONE_SERIES_LEG_ONE.moves, ...w.GRINDSTONE_SERIES_LEG_TWO.moves].map(move => move.id));
+  const answerIds = new Set(seriesMoves.map(move => move.id));
+  const responses = w.GRINDSTONE_REACTIONS.links.filter(link => attackIds.has(link.from) && answerIds.has(link.to));
+  assert(responses.length, 'An established-ride escape needs navigation from its attacking position');
+  for (const link of responses) {
+    assert.equal(link.kind, 'response', link.from + ' to ' + link.to + ' changes the acting wrestler');
+    assert(byId.get(link.from).positions.includes('top'));
+    assert(byId.get(link.to).positions.includes('bottom'));
+  }
+});
+check(label + ' rejects a slot too short for its guides without losing work, then accepts the minimum', () => {
+  b.reset(); values.clear(); mount();
+  const minimum = expectedIds(series.branches).length * 0.5;
+  const shortSlot = b.blockFrom(null, 'custom');
+  shortSlot.name = ''; shortSlot.minutes = minimum - 0.5; shortSlot.section = 'teach';
+  const testPlan = b.newPlan();
+  Object.assign(testPlan, {age: series.age_groups[0], target: 60, blocks: [b.blockFrom(null, 'water'), shortSlot, b.blockFrom(null, 'water')]});
+  b.replaceDraft(testPlan);
+  picker('destination', shortSlot.id); picker('type', 'series'); picker('selected', item.id);
+  branchFields = series.branches.map(branch => ({value: branchKey(branch), checked: true}));
+  const original = state().plan;
+  b.action('add', -1);
+  assert.equal(state().pendingReplacement, null);
+  assert(state().placementError);
+  assert.deepEqual(state().plan, original);
+  const enough = plain(original); enough.blocks[1].minutes = minimum;
+  b.replaceDraft(enough);
+  b.action('add', -1);
+  assert(state().pendingReplacement?.blocks);
+  assert(state().pendingReplacement.blocks.every(block => block.minutes === 0.5));
+  assert.deepEqual(state().plan, enough, 'Review alone must not replace the selected slot');
+  b.action('confirm-replace', -1);
+  const accepted = state().plan;
+  assert.equal(total(accepted), total(enough)); assert.equal(accepted.target, enough.target);
+  assert.deepEqual(accepted.blocks[0], enough.blocks[0]);
+  assert.deepEqual(accepted.blocks.at(-1), enough.blocks.at(-1));
+  assert.deepEqual(accepted.blocks.slice(1, -1).map(block => block.sourceId), expectedIds(series.branches));
+  b.action('undo', -1); assert.deepEqual(state().plan, enough);
+});
+check(label + ' remains searchable in both pickers and keeps explicit teaching groups', () => {
+  b.reset(); values.clear(); mount();
+  const foundation = byId.get(foundationIds[0]);
+  const searches = [[foundation, foundation.aliases[0] || foundation.title], [item, series.title]];
+  for (const [guide, search] of searches) {
+    const station = components.testing.stationPicker({}); station.search = search;
+    picker('search', search);
+    for (const age of series.age_groups) {
+      const current = b.newPlan(); current.age = age; b.replaceDraft(current);
+      assert(b.catalogMatches(guide), guide.id + ' main picker for ' + age);
+      assert(components.testing.stationMatches(guide, station, age), guide.id + ' station picker for ' + age);
+    }
+    const pups = b.newPlan(); pups.age = '4-6'; b.replaceDraft(pups);
+    assert(!b.catalogMatches(guide), guide.id + ' must not silently appear for Pups');
+    assert(!components.testing.stationMatches(guide, station, '4-6'));
+  }
+});
+if (moduleName === 'LEG_ONE') check('one-leg goals and linked-guide demonstrations retain the playable creator page', () => {
+  assert(byId.get('N66').purposes.includes('breakdown'));
+  for (const id of ['N67', 'N68']) assert(byId.get(id).purposes.includes('turn'));
+  for (const id of ['N66', 'N67', 'N68']) assert(!byId.get(id).purposes.includes('pin'));
+  const creatorPage = 'https://attackstylewrestling.com/leg-riding-series/';
+  for (const id of ['N66', 'N67']) {
+    const guide = byId.get(id); assert.equal(guide.video, creatorPage);
+    const linkedGuide = components.testing.guideHtml(components.testing.snapshot(guide), catalog, true);
+    assert(linkedGuide.includes('href="' + creatorPage + '"'), 'Linked guide and component print markup use the playable page');
+    assert(!linkedGuide.includes('href="https://player.vimeo.com/video/473939084'));
+    const testPlan = b.newPlan(); testPlan.blocks = [b.blockFrom(guide, 'move')]; b.replaceDraft(testPlan);
+    for (const full of [false, true]) {
+      const printed = b.printHtml(full);
+      assert(!printed.includes('href="https://player.vimeo.com/video/473939084'), 'Do not print the privacy-blocked direct player');
+    }
+  }
+});
 console.log(checks + ' ' + label + ' runtime checks passed. Source URL checks do not claim video playback review.');
 }
 checkRide('WESTERN', 'S43', 'series-western.js', 'Western ride');
 if (fs.existsSync(path.join(base, 'series-navy.js'))) checkRide('NAVY', 'S44', 'series-navy.js', 'Navy ride');
+checkRide('LEG_ONE', 'S45', 'series-leg-one.js', 'One-leg ride');
+checkRide('LEG_TWO', 'S46', 'series-leg-two.js', 'Two-leg ride');
+checkRide('LEG_ESCAPES', 'S47', 'series-leg-escapes.js', 'One-leg ride escapes', 'bottom');
+checkRide('LEG_ESCAPES', 'S48', 'series-leg-escapes.js', 'Two-leg ride escapes', 'bottom');
