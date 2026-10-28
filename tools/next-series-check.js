@@ -86,7 +86,7 @@ check('blank operations sheets remain linked to their original proposals',()=>{
 check('coach question references remain stable when research records are reordered',()=>{
  const baseline=Object.fromEntries(w.GRINDSTONE_RESEARCH_QUEUE.items.map(item=>[item.source_key,item.id]));
  const other={window:{GRINDSTONE_IN_PROGRESS:{documents:[]}},URL};
- for(const key of ['GRINDSTONE_SERIES_NEUTRAL_NEXT','GRINDSTONE_SERIES_TOP_NEXT','GRINDSTONE_SERIES_DEFENSE_NEXT','GRINDSTONE_SERIES_WESTERN','GRINDSTONE_SERIES_NAVY','GRINDSTONE_SERIES_LEG_ONE','GRINDSTONE_SERIES_LEG_TWO','GRINDSTONE_SERIES_LEG_ESCAPES']){
+ for(const key of ['GRINDSTONE_SERIES_NEUTRAL_NEXT','GRINDSTONE_SERIES_TOP_NEXT','GRINDSTONE_SERIES_DEFENSE_NEXT','GRINDSTONE_SERIES_WESTERN','GRINDSTONE_SERIES_NAVY','GRINDSTONE_SERIES_LEG_ONE','GRINDSTONE_SERIES_LEG_TWO','GRINDSTONE_SERIES_LEG_ESCAPES','GRINDSTONE_SERIES_NEXT_NEUTRAL','GRINDSTONE_SERIES_NEXT_TOP','GRINDSTONE_SERIES_NEXT_BOTTOM']){
   other.window[key]=plain(w[key]);other.window[key].research_status.held.reverse();
  }
  vm.createContext(other);vm.runInContext(fs.readFileSync(path.join(base,'series-research-status.js'),'utf8'),other);
@@ -99,6 +99,18 @@ check('coach question references remain stable when research records are reorder
  }
  assert.equal(w.GRINDSTONE_RESEARCH_QUEUE.items.find(item=>item.move_id==='A11').id,'Q05');
  assert(w.GRINDSTONE_DRAFTS.render('technique-coach-input').includes('data-scroll="research-q16"'));
+});
+check('new questions keep persistent references and Q01 distinguishes usable preview from pending variants',()=>{
+ const expected={'overtie-foot-sweep':'Q24','russian-wrist-reaction-options':'Q25','armbar-high-post-continuation':'Q26','rear-quadpod-control-series':'Q27','tripod-shrug-branches':'Q28','low-single-finish-options':'Q29','standing-return-options':'Q30'};
+ for(const [key,id] of Object.entries(expected)){
+  const item=w.GRINDSTONE_RESEARCH_QUEUE.items.find(item=>item.source_key===key);assert(item&&item.id===id);assert(item.research_update&&item.guide_links.length);
+ }
+ assert.equal(w.GRINDSTONE_RESEARCH_QUEUE.reviewed,'2026-10-28');
+ const q01=w.GRINDSTONE_RESEARCH_QUEUE.items.find(item=>item.id==='Q01');assert.notEqual(q01.status,'clarified');
+ for(const href of ['#season?view=series&series=S51','#move/N95','#move/N96','#move/A23'])assert(q01.guide_links.some(link=>link.href===href));
+ assert(q01.known.includes('Mills'));assert(q01.missing.includes('N34/S26'));assert(!byId.has('N34')&&!byId.has('series:S26'));
+ for(const id of ['N95','N96','series:S51'])assert(byId.has(id),'Usable preview missing: '+id);
+ const doc=w.GRINDSTONE_IN_PROGRESS.documents.find(item=>item.id==='technique-coach-input');assert(!doc.summary.includes('ready for a guide rewrite'));assert(doc.summary.includes('preview'));
 });
 check('cross-wrist choices preserve the canonical tilt prerequisite and escape checkpoint',()=>{
  const top=w.GRINDSTONE_PATHWAY.series.find(item=>item.id==='S37');assert.deepEqual(plain(top.age_groups),['11-14']);

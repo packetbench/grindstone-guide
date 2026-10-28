@@ -5,6 +5,61 @@
   "use strict";
   const links = [
     {
+      from: "N79", to: "N80", kind: "continuation",
+      condition: "Your partner rises with your seatbelt, withdraws the near leg and keeps the head low. Shorten to the separately taught underhook snap only while that opening is present; an upright partner or available leg calls for a different choice.",
+      reverse: "Begin as the attacker in N79, with your arm across the back and the partner's whizzer around it. N80 is your response to the announced rise and leg withdrawal, not the whizzer holder's counter."
+    },
+    {
+      from: "N79", to: "N81", kind: "continuation",
+      condition: "The partner posts the near foot while keeping the whizzer. From the low seatbelt, use N81's hip connection and controlled pull-back only after both partners have learned its receiving; do not turn it into a standing throw.",
+      reverse: "Start beside the partner in N79 with the near-leg post offered. You keep the seatbelt while the partner owns the whizzer. Identify that leg post before using the low suck-back."
+    },
+    {
+      from: "N79", to: "N82", kind: "continuation",
+      condition: "The partner remains low and your trapped hand and elbow can move toward your hip. Clear the whizzer completely before circling behind; a fixed arm ends the attempt.",
+      reverse: "Use from N79's seatbelt-against-whizzer start. This is the seatbelt wrestler's arm clearance and go-behind. Keep the clear-arm pause before moving the hips around."
+    },
+    {
+      from: "N83", to: "N84", kind: "continuation",
+      condition: "The partner's collar-tie arm can be cleared and the near leg is within a balanced outside step. Use the separately taught N84 entry and stop at its low head-inside capture before adding any single-leg finish.",
+      reverse: "Establish N83's compact overtie first. N84 changes from head control to the leg only after clearing the collar tie; do not shoot while the head is still being pulled down."
+    },
+    {
+      from: "N83", to: "N85", kind: "continuation",
+      condition: "The partner pushes back into your compact overtie and a path past the shoulder opens. Use N85's collar-tie clearance and slide-by, following to rear control only if the partner continues past.",
+      reverse: "Begin in N83 and offer the familiar forward-pressure reaction. This slide-by belongs to the overtie wrestler; it is not an instruction for the partner to counter their own collar tie."
+    },
+    {
+      from: "N85", to: "N86", kind: "continuation",
+      condition: "Before you reach rear control, the partner turns back close enough to face you. Use N86's level change and release the head tie as you collect both legs. A retreating partner does not create this same entry.",
+      reverse: "Build from N85 only on the rehearsed close turn-back. Learn N86's capture and the receiving for any later double-leg finish separately; slide-by order alone does not make the opening."
+    },
+    {
+      from: "N87", to: "A04", kind: "continuation",
+      condition: "After clearing the head post, pause at a stable head-outside high-crotch capture. Continue with A04 only when its captured leg, outside-head position, hand placement and ready receiving all match; teach the other side separately instead of guessing a mirror.",
+      reverse: "N87 supplies a Russian-tie entry, not an automatic finish. Establish A04's exact high-crotch checkpoint before transferring the inside hand to the far knee for the double. Do not repeat A04's neutral entry while already holding the leg."
+    },
+    {
+      from: "A23", to: "N95", kind: "continuation",
+      condition: "Before the far-wrist turn finishes, the wrist withdraws while the short bar stays comfortable and the opposite armpit opens. Use the separately taught N95 bar-and-half option from that checkpoint, not after A23 has released the bar.",
+      reverse: "Re-establish A23's comfortable short-bar foundation, then select N95 instead of the far-wrist finish. The original rider changes controls; the receiver is not attempting an escape. Direct coach approval of this two-arm turn remains required."
+    },
+    {
+      from: "A23", to: "N96", kind: "continuation",
+      condition: "From the established short bar, neither the far wrist nor the opposite half is available, and N96's checked chin-line contact fits. Select its supported side-turn only after separate instruction; do not force an unavailable head or shoulder path.",
+      reverse: "Use A23's short bar as the starting control, not its completed chest-to-chest finish. N96 is an alternative angle for the same rider and ends before the source's additional pinning pressure. Keep its experienced-partner and direct-supervision requirements."
+    },
+    {
+      from: "A18", to: "N111", kind: "continuation",
+      condition: "The rider has chopped the elevated base back to hands and knees and continues the rehearsed waist-and-chop pressure. Only after reaching N111's exact grounded start, with wrists and ankles free and K19 shoulder-roll readiness, use that escape. Do not roll directly from the feet-supported tripod.",
+      reverse: "This is the bottom wrestler's recovery after A18's rise is broken down. Rebuild the N111 hands-and-knees checkpoint first; its side roll requires the separately learned K19 mechanics and an unloaded head. It is not a new attack by the rider."
+    },
+    {
+      from: "N115", to: "N116", kind: "continuation",
+      condition: "The heel cup, inside support palm and temple-above-knee contact remain close, and the receiver stays upright enough for the basic finish. Use N116 only after its whole-leg rotation and side-hip receiving are taught; this is not the answer to every sprawl.",
+      reverse: "Begin in N115's checked low-single capture. N116 is the same attacker's lasso finish, with hips and knee moving together. Reset if the head contact or heel cup stretches away rather than wrenching the leg to complete it."
+    },
+    {
       from: "N65", to: "N73", kind: "response",
       condition: "Bottom can work from the separately taught one-hook defensive hip-sit. Establish N73's start first; this is an answer to an inserted leg, not the Western ankle hook.",
       reverse: "Your opponent has one inserted boot. Identify the trapped leg and keep the upper body free enough for the named seated start before beginning the clearance."
@@ -163,7 +218,7 @@
   Object.freeze(links);
   function canonicalId(value) {
     const id = String(value || "");
-    if (/^[PBAN]\d{2}$/.test(id)) return id;
+    if (/^[PBAN]\d{2,3}$/.test(id)) return id;
     if (/^(?:kyle:)?K\d{2}$/.test(id)) return "kyle:" + id.replace(/^kyle:/, "");
     if (/^(?:facebook:)?V\d{2}$/.test(id)) return "facebook:" + id.replace(/^facebook:/, "");
     return "";

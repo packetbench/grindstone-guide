@@ -21,7 +21,7 @@ const badge=(s,c="")=>'<span class="badge '+c+'">'+esc(s)+'</span>';
 const saveButton=id=>'<button type="button" class="save-button" data-save="'+esc(id)+'" aria-label="'+(saved.has(id)?'Unsave ':'Save ')+esc(saveRecords[id]?.name||id)+'" aria-pressed="'+saved.has(id)+'">'+(saved.has(id)?'★':'☆')+'</button>';
 const filterBadges=entry=>(entry.unassigned_filters||[]).map(label=>badge(label+" not assigned","unassigned")).join("");
 function updateSavedCount(){const visible=[...saved].filter(id=>!id.startsWith("practice:")).length;const count=document.getElementById("saved-count");count.textContent=visible;document.querySelector(".saved-nav")?.setAttribute("aria-label","Saved items, "+visible);}
-const linked=s=>esc(s).replace(/\b([PBAN]\d{2}|G\d{2})\b/g,id=>byId[id]?'<a class="inline-id" href="#'+(id[0]==="G"?"game":"move")+'/'+id+'" title="'+esc(byId[id].name)+'">'+id+'</a>':id);
+const linked=s=>esc(s).replace(/\b([PBAN]\d{2,3}|G\d{2})\b/g,id=>byId[id]?'<a class="inline-id" href="#'+(id[0]==="G"?"game":"move")+'/'+id+'" title="'+esc(byId[id].name)+'">'+id+'</a>':id);
 const section=(title,body,cls="",id="")=>'<section class="panel '+cls+'"'+(id?' id="'+esc(id)+'" tabindex="-1"':"")+'><h2>'+title+'</h2>'+body+'</section>';
 const p=s=>'<p>'+linked(s)+'</p>';
 const pageTitle=(eyebrow,title,copy)=>'<div class="page-title"><p class="eyebrow">'+eyebrow+'</p><h1>'+title+'</h1><p>'+copy+'</p></div>';
@@ -32,7 +32,7 @@ function safeRouteHash(value){
  if(typeof value!=="string"||value.length>1200||!value.startsWith("#")||/[\u0000-\u001f]/.test(value))return "";
  const [path,query=""]=value.slice(1).split("?");
  const roots=["season","home","moves","games","practices","tracker","saved","coaching","families","family/faq","about","about/kyle","about/coaches","sponsors","downloads","volunteer","moves/kyle","moves/videos","in-progress"];
- if(!roots.includes(path)&&!/^(?:move\/[PBAN]\d{2}|game\/G\d{2}|practice\/(?:4-6|7-10|11-14)\/[1-9]\d?|moves\/(?:kyle\/K\d{2}|videos\/V\d{2})|about\/coach\/[a-z0-9-]+|family\/[a-z0-9-]+|guide\/[a-z0-9-]+|in-progress\/[a-z0-9-]+)$/.test(path))return "";
+ if(!roots.includes(path)&&!/^(?:move\/[PBAN]\d{2,3}|game\/G\d{2}|practice\/(?:4-6|7-10|11-14)\/[1-9]\d?|moves\/(?:kyle\/K\d{2}|videos\/V\d{2})|about\/coach\/[a-z0-9-]+|family\/[a-z0-9-]+|guide\/[a-z0-9-]+|in-progress\/[a-z0-9-]+)$/.test(path))return "";
  const params=new URLSearchParams(query);
  return "#"+path+(params.size?"?"+params:"");
 }
@@ -528,7 +528,7 @@ function matGuideNav(type,id,hasCues=true){
 }
 function moveDetail(id){
  const m=byId[id];if(!m||!D.moves.includes(m))return notFound();
- const prerequisites=[...new Set((m.prerequisite.match(/\b[PBAN]\d{2}\b/g)||[]))];
+ const prerequisites=[...new Set((m.prerequisite.match(/\b[PBAN]\d{2,3}\b/g)||[]))];
  return detailHeader("moves",id,m.name,m.purpose,badge(m.tier,tierClass(m.tier))+categoryTag(m))+matGuideNav("move",id)+section("Say this",m.cues.map(s=>'<p class="cue">“'+esc(s)+'”</p>').join(""),"cue-panel mat-cues","guide-cues-"+id)+'<div class="detail-layout"><div>'+
  section("Before you teach",p(m.prerequisite)+(prerequisites.length?'<div class="chip-links">'+prerequisites.map(i=>'<a href="#move/'+i+'">'+i+' · '+esc(byId[i]?.name||"Open move")+'</a>').join("")+'</div>':""),"","guide-ready-"+id)+
  section("Teach it step by step",'<ol class="steps">'+m.steps.map(s=>'<li>'+linked(s)+'</li>').join("")+'</ol>',"","guide-steps-"+id)+
@@ -551,7 +551,7 @@ function gameDetail(id){
 }
 function practiceDetail(age,num){
  const x=D.practices.find(x=>x.age_group===age&&x.number===Number(num));if(!x)return notFound();
- const ids=[...new Set(JSON.stringify(x).match(/\b[PBAN]\d{2}\b/g)||[])].filter(id=>byId[id]);
+ const ids=[...new Set(JSON.stringify(x).match(/\b[PBAN]\d{2,3}\b/g)||[])].filter(id=>byId[id]);
  let elapsed=0;
  return backLink("#practices?age="+age,"Ages "+age+" practices")+'<div class="detail-heading"><div><div class="badges">'+badge("Ages "+age)+badge(x.duration+" minutes")+'<span class="id">PRACTICE '+String(x.number).padStart(2,"0")+'</span></div><h1>'+esc(x.title)+'</h1><p>'+esc(x.focus)+'</p></div><div class="detail-actions"><button class="button outline" data-print>Print plan</button>'+saveButton(practiceSaveId(x))+'</div></div><div class="detail-layout"><div>'+section("Get ready",'<div class="meta-title">Set up</div>'+p(x.setup)+'<div class="meta-title">Check first</div>'+p(x.check))+section("Run the practice",x.blocks.map(b=>{let start=elapsed;elapsed+=b.minutes;return '<div class="practice-block"><div class="practice-time">'+start+'–'+elapsed+' MIN · '+b.minutes+' MINUTES</div><h3>'+esc(b.name)+'</h3>'+p(b.instructions)+'</div>';}).join(""))+section("Adapt the challenge",'<div class="meta-title">Make it easier</div>'+p(x.easier)+'<div class="meta-title">Add a challenge</div>'+p(x.harder))+section("Watch & reflect",'<div class="meta-title">Coaching boundaries</div>'+p(x.safety)+'<div class="meta-title">Notice success</div>'+p(x.success)+'<div class="meta-title">Ask the athletes</div>'+p(x.question))+'</div><aside>'+section("Moves in this practice",ids.length?'<ul class="link-list">'+ids.map(id=>'<li><a href="#move/'+id+'">'+id+' · '+esc(byId[id].name)+'</a></li>').join("")+'</ul>':'<p class="small-copy">Use the full activity instructions for this session. Browse the move library for related teaching guides.</p><a class="card-link" href="#moves">Browse move guides →</a>')+section("Choose a finish",'<p class="small-copy">Need an alternative ending? Choose a familiar game that fits the group and today’s space.</p><a class="button outline" href="#games?age='+age+'">Browse games</a>')+section("Print this age group",'<a href="downloads/practices-'+age+'.pdf#page='+(x.number+4)+'" target="_blank" rel="noopener">Open the 30-practice book ↗</a><p class="fine" style="margin-top:12px">Print Letter, double-sided, flip on the long edge, at 100%.</p>')+'</aside></div>';
 }
