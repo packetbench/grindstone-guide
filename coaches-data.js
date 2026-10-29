@@ -12,7 +12,7 @@ window.GRINDSTONE_COACHES = {
         "At Delaware Valley, Mike competed at 133 pounds under head coach Brandon Totten. His college competition included the East Stroudsburg Open, Shorty Hitchcock Memorial Classic and East Coast Duals. He earned a 10–5 win over Shippensburg’s Tyler Gilson at the 2005 East Stroudsburg Open.",
         "Mike’s competition experience also includes mixed martial arts. On June 17, 2023, he defeated Edward Barker II at Cagezilla 73 in Manassas, Virginia, winning by submission 1 minute, 18 seconds into the first round.",
         "Mike brings that wrestling experience to the Valkyries, providing a dedicated place for girls ages 5–14 to learn, train and compete together. The program welcomes beginners and experienced wrestlers, with an emphasis on fundamentals, confidence and sportsmanship.",
-        "Competition is optional. Girls’ tournaments in Maryland, Pennsylvania and Virginia give families opportunities to choose events that suit their wrestler’s experience and goals."
+        "The Valkyries compete in the Mason-Dixon Wrestling League (MDWL). Athletes must participate in at least 5 meets to compete at the end of the season. Mike and the Valkyries coaches help families choose events that suit their wrestler’s experience and goals."
       ],
       "highlights": [
         {
