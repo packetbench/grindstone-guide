@@ -102,6 +102,215 @@ window.GRINDSTONE_COACHES = {
       ]
     },
     {
+      "id": "grace-ackermann",
+      "name": "Grace Ackermann",
+      "role": "Valkyries coach",
+      "summary": "Grace Ackermann brings Crofton High School and McDaniel College wrestling experience to Grindstone’s Valkyries coaching team.",
+      "paragraphs": [
+        "Grace wrestled for Crofton High School at 115 pounds and placed sixth at the 2024 MPSSAA girls state championships. She returned to the 4A/3A East regional final in 2025, finishing runner-up during her senior season.",
+        "Her high-school results also include a runner-up finish at 115 pounds in the 2025 Who’s No. 1 tournament. Those competitions gave her experience in tournament finals and on the state podium before moving into college wrestling.",
+        "At McDaniel, Grace joined the 2025–26 wrestling roster at 117 pounds and is listed at the same weight for 2026–27. Her college athletic background also includes field hockey: McDaniel’s 2025 roster lists her as a midfielder.",
+        "Grace now works with the Valkyries, connecting her recent experience as a high-school and college athlete with Grindstone’s girls wrestling program."
+      ],
+      "highlights": [
+        {
+          "label": "At Grindstone",
+          "text": "Valkyries coaching team."
+        },
+        {
+          "label": "Crofton wrestling",
+          "text": "2024 Maryland state sixth-place finisher at 115 pounds; 2025 regional runner-up."
+        },
+        {
+          "label": "College experience",
+          "text": "McDaniel wrestling · 117 pounds; also a member of the field hockey team."
+        }
+      ],
+      "photo": {
+        "src": "assets/coaches/grace-ackermann.jpg",
+        "alt": "Grace Ackermann in McDaniel College’s official 2026–27 wrestling portrait.",
+        "caption": "Grace Ackermann · McDaniel College women’s wrestling, 2026–27. Photograph: McDaniel College Athletics.",
+        "source_url": "https://mcdanielathletics.com/sports/womens-wrestling/roster/grace-ackermann/11754",
+        "source_label": "McDaniel College Athletics · official roster portrait"
+      },
+      "sources": [
+        {
+          "title": "McDaniel · Grace Ackermann, 2026–27 wrestling roster",
+          "url": "https://mcdanielathletics.com/sports/womens-wrestling/roster/grace-ackermann/11754"
+        },
+        {
+          "title": "Legacy Wrestling · 2025 East regional results and 2024 state placement",
+          "url": "https://www.legacywrestling.com/post/4a-3a-east-girls-wrestling-tournament"
+        },
+        {
+          "title": "Legacy Wrestling · 2025 Who’s No. 1 tournament results",
+          "url": "https://www.legacywrestling.com/post/we-now-know-who-is-1-do-you"
+        },
+        {
+          "title": "McDaniel · Grace Ackermann, 2025 field hockey roster",
+          "url": "https://mcdanielathletics.com/sports/field-hockey/roster/grace-ackermann/10365"
+        }
+      ]
+    },
+    {
+      "id": "dayanara-rico",
+      "name": "Dayanara Rico",
+      "role": "Valkyries coach",
+      "summary": "Dayanara Rico joins the Valkyries with experience at Arundel High School and McDaniel College, after beginning wrestling in high school.",
+      "paragraphs": [
+        "Dayanara began wrestling during the 2023–24 high-school season. In that first season, she qualified for the 2024 MPSSAA Girls State Championships at 155 pounds while representing Arundel High School.",
+        "A member of Arundel’s class of 2025, she continued into McDaniel College’s women’s wrestling program. McDaniel listed her at 160 pounds for 2025–26 and at 180 pounds for the 2026–27 season.",
+        "In her recruiting profile, Dayanara described learning from others, taking on challenges and growing on and off the mat. She credited wrestling with helping her become stronger physically and mentally and build meaningful relationships.",
+        "She brings that experience of learning the sport and continuing into college to her work with Grindstone’s Valkyries. Arundel also recognized her academic work with a place on the Principal’s Honor Roll for the fourth marking period of 2024–25."
+      ],
+      "highlights": [
+        {
+          "label": "At Grindstone",
+          "text": "Valkyries coaching team."
+        },
+        {
+          "label": "High-school wrestling",
+          "text": "Arundel · 2024 Maryland state qualifier at 155 pounds."
+        },
+        {
+          "label": "College experience",
+          "text": "McDaniel women’s wrestling · 2025–26 and 2026–27 rosters."
+        }
+      ],
+      "photo": {
+        "src": "assets/coaches/dayanara-rico.jpg",
+        "alt": "Dayanara Rico in McDaniel College’s official 2026–27 wrestling portrait.",
+        "caption": "Dayanara Rico · McDaniel College women’s wrestling, 2026–27. Photograph: McDaniel College Athletics.",
+        "source_url": "https://mcdanielathletics.com/sports/womens-wrestling/roster/dayanara-rico/11765",
+        "source_label": "McDaniel College Athletics · official roster portrait"
+      },
+      "sources": [
+        {
+          "title": "McDaniel · Dayanara Rico, 2026–27 wrestling roster",
+          "url": "https://mcdanielathletics.com/sports/womens-wrestling/roster/dayanara-rico/11765"
+        },
+        {
+          "title": "MD Mana · Dayanara’s athlete profile",
+          "url": "https://mdmanawrestling.com/athlete-profiles"
+        },
+        {
+          "title": "FloWrestling · 2024 MPSSAA state results, girls 155 pounds",
+          "url": "https://www.flowrestling.org/articles/12215414-2024-mpssaa-maryland-wrestling-state-championship-results-schedule"
+        },
+        {
+          "title": "Arundel / AACPS · 2024–25 fourth-marking-period honor roll, page 7",
+          "url": "https://core-docs.s3.us-east-1.amazonaws.com/documents/asset/uploaded_file/4458/AACPS/4459839/Arundel_High_School.pdf#page=7"
+        }
+      ]
+    },
+    {
+      "id": "taylor-mead",
+      "name": "Taylor Mead",
+      "role": "Valkyries coach",
+      "summary": "Taylor Mead brings a Maryland state title and experience helping launch McDaniel College’s women’s wrestling program to the Valkyries.",
+      "paragraphs": [
+        "Taylor wrestled for Westminster High School, winning the 2023 Maryland girls state championship at 140 pounds. She returned to the state podium with a third-place finish at the same weight in 2024. Her senior-season achievements also included the Carroll County title, won with two pins.",
+        "She joined McDaniel for its inaugural women’s wrestling season in 2024–25. At the program’s first tournament, the ESU Open on November 3, 2024, Taylor recorded the first pin in McDaniel women’s wrestling history. She finished that day with three wins at 145 pounds.",
+        "Taylor continued to place at the college level, finishing third at 145 pounds at the November 2025 Wilkes Open with a 4–1 record. She also earned high honors on McDaniel’s spring 2026 Dean’s List.",
+        "Now part of Grindstone’s Valkyries coaching team, Taylor brings experience from local high-school competition, a state championship and the early years of a new college women’s program."
+      ],
+      "highlights": [
+        {
+          "label": "At Grindstone",
+          "text": "Valkyries coaching team."
+        },
+        {
+          "label": "Maryland state podium",
+          "text": "2023 champion and 2024 third-place finisher · 140 pounds."
+        },
+        {
+          "label": "McDaniel milestone",
+          "text": "Recorded the first pin in the women’s program’s history in November 2024."
+        }
+      ],
+      "photo": {
+        "src": "assets/coaches/taylor-mead.jpg",
+        "alt": "Taylor Mead in McDaniel College’s official 2026–27 wrestling portrait.",
+        "caption": "Taylor Mead · McDaniel College women’s wrestling, 2026–27. Photograph: McDaniel College Athletics.",
+        "source_url": "https://mcdanielathletics.com/sports/womens-wrestling/roster/taylor-mead/11761",
+        "source_label": "McDaniel College Athletics · official roster portrait"
+      },
+      "sources": [
+        {
+          "title": "McDaniel · Taylor Mead, 2026–27 wrestling roster",
+          "url": "https://mcdanielathletics.com/sports/womens-wrestling/roster/taylor-mead/11761"
+        },
+        {
+          "title": "MPSSAA · Winter record book",
+          "url": "https://content.mpssaa.org/view/882803125/"
+        },
+        {
+          "title": "Legacy Wrestling · 2024 girls state championship results",
+          "url": "https://www.legacywrestling.com/post/hs-girls-state-championships"
+        },
+        {
+          "title": "CMSportsNet · Westminster’s Taylor Mead, Athlete of the Week",
+          "url": "https://www.carrollmediacenter.org/episodes/cmsportsnet-athlete-week-westminsters-taylor-mead"
+        },
+        {
+          "title": "McDaniel · 2024 program debut and first pin",
+          "url": "https://mcdanielathletics.com/news/2024/11/3/mead-samuel-highlight-womens-wrestling-debut-at-esu-open.aspx"
+        },
+        {
+          "title": "McDaniel · 2025 Wilkes Open results",
+          "url": "https://mcdanielathletics.com/news/2025/11/16/carter-mead-place-to-lead-womens-wrestling-at-wilkes-open.aspx"
+        },
+        {
+          "title": "McDaniel · Spring 2026 Dean’s List",
+          "url": "https://mcdanielathletics.com/news/2026/6/11/174-student-athletes-named-to-spring-2026-deans-list.aspx"
+        }
+      ]
+    },
+    {
+      "id": "maggie-morley",
+      "name": "Maggie Morley",
+      "role": "Valkyries coach",
+      "summary": "Maggie Morley brings Winters Mill High School wrestling experience and consecutive state-tournament appearances to the Valkyries.",
+      "paragraphs": [
+        "Maggie wrestled for Winters Mill High School and represented the Falcons at the Maryland girls state championships in consecutive seasons: at 135 pounds in 2024 and at 125 pounds in 2025.",
+        "At the 2024 Winters Mill Invitational, she placed fourth at 135 pounds as the Falcons won their 17-team home tournament. That tournament finish was part of a junior season that also included qualification for the state championships.",
+        "Maggie competed outside the school season as well. At the November 2024 MSWA Fall Brawl, she won her 132-pound quarterfinal with a pin in 41 seconds.",
+        "She now works with Grindstone’s Valkyries, bringing firsthand experience of local tournaments and the progression from regional qualification to state competition."
+      ],
+      "highlights": [
+        {
+          "label": "At Grindstone",
+          "text": "Valkyries coaching team."
+        },
+        {
+          "label": "Winters Mill wrestling",
+          "text": "Maryland state participant in 2024 at 135 pounds and 2025 at 125 pounds."
+        },
+        {
+          "label": "Tournament experience",
+          "text": "Fourth at the 2024 Winters Mill Invitational, contributing to the Falcons’ team title."
+        }
+      ],
+      "sources": [
+        {
+          "title": "FloWrestling · 2024 MPSSAA state results, girls 135 pounds",
+          "url": "https://www.flowrestling.org/articles/12215414-2024-mpssaa-maryland-wrestling-state-championship-results-schedule"
+        },
+        {
+          "title": "FloWrestling · 2025 state first-round bout listing, 125 pounds",
+          "url": "https://www.flowrestling.org/events/12908107-2025-mpssaa-md-girls-boys-state-wrestling-championship/videos?limit=60&playing=13877628"
+        },
+        {
+          "title": "Legacy Wrestling · 2024 Winters Mill Invitational",
+          "url": "https://www.legacywrestling.com/post/winters-mill-is-on"
+        },
+        {
+          "title": "USA Wrestling · November 2024 MSWA Fall Brawl results",
+          "url": "https://www.usawmembership.com/usaw_results/12190/results?page=12"
+        }
+      ]
+    },
+    {
       "id": "eric-westervelt",
       "name": "Eric Westervelt",
       "role": "Youth coach · Community sponsorships",

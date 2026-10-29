@@ -1,0 +1,138 @@
+{
+  "prepared": "2026-10-29",
+  "scope": "Four Valkyries coaches; names, identities and club assignments confirmed by Thomas on October 29, 2026.",
+  "notes": [
+    "Existing portraits, research manifests and source downloads were not changed.",
+    "Official McDaniel images were copied unchanged; source attribution does not assert a reuse license.",
+    "Current McDaniel pages were checked live because search caches still showed 2025–26.",
+    "Old MPSSAA /assets/1/6 PDF links return 404 after the site migration; accessible replacement citations are used on the coach pages.",
+    "No individually captioned public photograph of Maggie was located; her profile uses the existing initials treatment.",
+    "Grace’s 2024 regional title and Dayanara’s 2024 East runner-up finish are supported by cached official brackets, but omitted from the public bios pending working source links."
+  ],
+  "profiles": [
+    {
+      "id": "grace-ackermann",
+      "name": "Grace Ackermann",
+      "sources": [
+        {
+          "title": "McDaniel · Grace Ackermann, 2026–27 wrestling roster",
+          "url": "https://mcdanielathletics.com/sports/womens-wrestling/roster/grace-ackermann/11754"
+        },
+        {
+          "title": "Legacy Wrestling · 2025 East regional results and 2024 state placement",
+          "url": "https://www.legacywrestling.com/post/4a-3a-east-girls-wrestling-tournament"
+        },
+        {
+          "title": "Legacy Wrestling · 2025 Who’s No. 1 tournament results",
+          "url": "https://www.legacywrestling.com/post/we-now-know-who-is-1-do-you"
+        },
+        {
+          "title": "McDaniel · Grace Ackermann, 2025 field hockey roster",
+          "url": "https://mcdanielathletics.com/sports/field-hockey/roster/grace-ackermann/10365"
+        }
+      ],
+      "photo": {
+        "path": "assets/coaches/grace-ackermann.jpg",
+        "source_page": "https://mcdanielathletics.com/sports/womens-wrestling/roster/grace-ackermann/11754",
+        "source_url": "https://mcdanielathletics.com/images/2026/10/26/Womens_Wrestling_-_Grace_Ackermann.jpg",
+        "sha256": "bc06f35b582ddadb32e01024369abe8659662a2f99cf28d2625fefd32113a8aa",
+        "bytes": 110698,
+        "credit": "McDaniel College Athletics"
+      }
+    },
+    {
+      "id": "dayanara-rico",
+      "name": "Dayanara Rico",
+      "sources": [
+        {
+          "title": "McDaniel · Dayanara Rico, 2026–27 wrestling roster",
+          "url": "https://mcdanielathletics.com/sports/womens-wrestling/roster/dayanara-rico/11765"
+        },
+        {
+          "title": "MD Mana · Dayanara’s athlete profile",
+          "url": "https://mdmanawrestling.com/athlete-profiles"
+        },
+        {
+          "title": "FloWrestling · 2024 MPSSAA state results, girls 155 pounds",
+          "url": "https://www.flowrestling.org/articles/12215414-2024-mpssaa-maryland-wrestling-state-championship-results-schedule"
+        },
+        {
+          "title": "Arundel / AACPS · 2024–25 fourth-marking-period honor roll, page 7",
+          "url": "https://core-docs.s3.us-east-1.amazonaws.com/documents/asset/uploaded_file/4458/AACPS/4459839/Arundel_High_School.pdf#page=7"
+        }
+      ],
+      "photo": {
+        "path": "assets/coaches/dayanara-rico.jpg",
+        "source_page": "https://mcdanielathletics.com/sports/womens-wrestling/roster/dayanara-rico/11765",
+        "source_url": "https://mcdanielathletics.com/images/2026/10/26/Womens_Wrestling_-_Dayanara_Rico.jpg",
+        "sha256": "d894e517817ef88d7ab5f8e22a0a2a78ee53a4f21b680bb0ae38b8dc0bc4da97",
+        "bytes": 98396,
+        "credit": "McDaniel College Athletics"
+      }
+    },
+    {
+      "id": "taylor-mead",
+      "name": "Taylor Mead",
+      "sources": [
+        {
+          "title": "McDaniel · Taylor Mead, 2026–27 wrestling roster",
+          "url": "https://mcdanielathletics.com/sports/womens-wrestling/roster/taylor-mead/11761"
+        },
+        {
+          "title": "MPSSAA · Winter record book",
+          "url": "https://content.mpssaa.org/view/882803125/"
+        },
+        {
+          "title": "Legacy Wrestling · 2024 girls state championship results",
+          "url": "https://www.legacywrestling.com/post/hs-girls-state-championships"
+        },
+        {
+          "title": "CMSportsNet · Westminster’s Taylor Mead, Athlete of the Week",
+          "url": "https://www.carrollmediacenter.org/episodes/cmsportsnet-athlete-week-westminsters-taylor-mead"
+        },
+        {
+          "title": "McDaniel · 2024 program debut and first pin",
+          "url": "https://mcdanielathletics.com/news/2024/11/3/mead-samuel-highlight-womens-wrestling-debut-at-esu-open.aspx"
+        },
+        {
+          "title": "McDaniel · 2025 Wilkes Open results",
+          "url": "https://mcdanielathletics.com/news/2025/11/16/carter-mead-place-to-lead-womens-wrestling-at-wilkes-open.aspx"
+        },
+        {
+          "title": "McDaniel · Spring 2026 Dean’s List",
+          "url": "https://mcdanielathletics.com/news/2026/6/11/174-student-athletes-named-to-spring-2026-deans-list.aspx"
+        }
+      ],
+      "photo": {
+        "path": "assets/coaches/taylor-mead.jpg",
+        "source_page": "https://mcdanielathletics.com/sports/womens-wrestling/roster/taylor-mead/11761",
+        "source_url": "https://mcdanielathletics.com/images/2026/10/26/Womens_Wrestling_-_Taylor_Mead.jpg",
+        "sha256": "92d7efcf331e33de621b0d2473a489127cafe5383c07ddf78d72a3e5371daf45",
+        "bytes": 122736,
+        "credit": "McDaniel College Athletics"
+      }
+    },
+    {
+      "id": "maggie-morley",
+      "name": "Maggie Morley",
+      "sources": [
+        {
+          "title": "FloWrestling · 2024 MPSSAA state results, girls 135 pounds",
+          "url": "https://www.flowrestling.org/articles/12215414-2024-mpssaa-maryland-wrestling-state-championship-results-schedule"
+        },
+        {
+          "title": "FloWrestling · 2025 state first-round bout listing, 125 pounds",
+          "url": "https://www.flowrestling.org/events/12908107-2025-mpssaa-md-girls-boys-state-wrestling-championship/videos?limit=60&playing=13877628"
+        },
+        {
+          "title": "Legacy Wrestling · 2024 Winters Mill Invitational",
+          "url": "https://www.legacywrestling.com/post/winters-mill-is-on"
+        },
+        {
+          "title": "USA Wrestling · November 2024 MSWA Fall Brawl results",
+          "url": "https://www.usawmembership.com/usaw_results/12190/results?page=12"
+        }
+      ]
+    }
+  ]
+}
