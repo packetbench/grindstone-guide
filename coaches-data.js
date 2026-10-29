@@ -919,64 +919,269 @@ window.GRINDSTONE_COACHES = {
       "id": "tyler-lease",
       "name": "Tyler Lease",
       "role": "Grindstone youth wrestling coach",
-      "summary": "Tyler Lease is a member of Grindstone’s 2026–27 coaching team.",
+      "summary": "Tyler Lease is a Grindstone coach whose local sports background includes Westminster youth baseball.",
       "paragraphs": [
-        "Tyler is part of the Mat Rats and Valkyries coaching roster, supporting Grindstone’s youth wrestling program in the Westminster area."
+        "Tyler is part of Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster, supporting the club’s young wrestlers.",
+        "His youth-sports background includes playing for the Westminster Shorebirds in 1998 and Westminster American in the 2000 District II Little League tournament. A Carroll County Times photograph captured him in action against Thurmont that July.",
+        "Tyler also played with the Westminster Owls travel-baseball team in 2001."
       ],
       "highlights": [
         {
           "label": "At Grindstone",
-          "text": "2026–27 Mat Rats and Valkyries coaching roster."
+          "text": "2026–27 Mat Rats and Valkyries coaching team."
+        },
+        {
+          "label": "Local sports",
+          "text": "Westminster Shorebirds, Westminster American and Westminster Owls youth baseball."
         }
       ],
       "sources": [
         {
-          "title": "About Grindstone Wrestling",
+          "title": "Grindstone Wrestling Club",
           "url": "https://www.grindstonewrestling.org/"
+        },
+        {
+          "title": "Carroll County Times · July 19, 2000 sports page",
+          "url": "https://cctimes.carr.org/documents/CCT_07192000.pdf#page=7"
+        },
+        {
+          "title": "Webb Environmental · Tyler Lease",
+          "url": "https://webbenvironmental.com/verification/"
+        },
+        {
+          "title": "Carroll County Times · April 19, 1998 youth baseball",
+          "url": "https://cctimes.carr.org/documents/CCT_04191998.pdf#page=14"
+        },
+        {
+          "title": "Carroll County Times · April 15, 2001 travel baseball",
+          "url": "https://cctimes.carr.org/documents/CCT_04152001.pdf#page=16"
         }
-      ]
+      ],
+      "gallery_title": "Westminster youth sports",
+      "photo": {
+        "src": "coach-drafts/assets/tyler-webb-2021.jpeg",
+        "alt": "Tyler Lease wearing a Webb Environmental cap and hoodie.",
+        "caption": "Tyler Lease. Portrait published by Webb Environmental.",
+        "source_url": "https://webbenvironmental.com/verification/",
+        "source_label": "Webb Environmental · named portrait"
+      },
+      "gallery": [
+        {
+          "src": "coach-drafts/assets/tyler-baseball-2000.png",
+          "alt": "Tyler Lease playing youth baseball for Westminster American in July 2000.",
+          "caption": "Westminster American’s Tyler Lease playing against Thurmont, July 2000. Photograph: Ken Koons / Carroll County Times, published July 19, 2000.",
+          "source_url": "https://cctimes.carr.org/documents/CCT_07192000.pdf#page=7",
+          "source_label": "Carroll County Times · July 19, 2000"
+        }
+      ],
+      "gallery_label": "Tyler Lease photographs"
     },
     {
       "id": "brad-gabrish",
       "name": "Brad Gabrish",
       "role": "Grindstone youth wrestling coach",
-      "summary": "Brad Gabrish is a member of Grindstone’s 2026–27 coaching team.",
+      "summary": "Brad Gabrish brings high-school, collegiate and youth-coaching experience to Grindstone’s coaching team.",
       "paragraphs": [
-        "Brad is part of the Mat Rats and Valkyries coaching roster, supporting the club’s young wrestlers."
+        "Brad wrestled at Calvert Hall, competing at 135 pounds as a ninth-grader in the 2002 Maryland Independent Schools tournament. As a junior, he won two matches at the 2004 National Prep Championships at 145 pounds. In 2005, he finished eighth at 145 pounds at National Preps and reached the Maryland Independent Schools final.",
+        "Brad continued at McDaniel College, wrestling at 149 pounds during the 2005–06 season. He placed fourth at the November 2005 Messiah Invitational and competed in the Green Terror’s January 2006 dual lineup. He also appears on McDaniel’s wrestling roster in the 2007 yearbook.",
+        "His youth-coaching experience includes serving on Parkville Wrestling Club’s 2010–11 assistant coaching staff. Brad now brings that experience to Grindstone’s Mat Rats and Valkyries coaching roster.",
+        "Brad has continued competing beyond college. He won the 207-pound open bracket at the 2010 Dundalk Hawks Open. At the 2025 Bald & Fat Classic, he won the 185-pound bracket in the event’s “DEAD” division for Lucky Ducks, with an 11–1 major decision, a 17–1 technical fall and a forfeit in the final. Lucky Ducks also won the team championship."
       ],
       "highlights": [
         {
-          "label": "At Grindstone",
-          "text": "2026–27 Mat Rats and Valkyries coaching roster."
+          "label": "Calvert Hall",
+          "text": "2005 National Prep eighth place · 145 pounds."
+        },
+        {
+          "label": "McDaniel College",
+          "text": "Wrestled at 149 pounds in 2005–06; fourth at the Messiah Invitational."
+        },
+        {
+          "label": "Youth coaching",
+          "text": "Parkville assistant staff · 2010–11."
+        },
+        {
+          "label": "Adult competition",
+          "text": "2010 Dundalk Open champion · 2025 Bald & Fat Classic division champion."
         }
       ],
       "sources": [
         {
-          "title": "About Grindstone Wrestling",
-          "url": "https://www.grindstonewrestling.org/"
+          "title": "National Prep individual records · 2005 results, page 80",
+          "url": "https://neiswa.com/wp-content/uploads/2020/04/INDIVIDUAL-RECORDS-Natl-Prep-Wrestling-Champs.pdf#page=80"
+        },
+        {
+          "title": "Original 2005 National Prep brackets",
+          "url": "https://paiswt.com/web_documents/2005_NationalPreps.pdf"
+        },
+        {
+          "title": "Washington and Lee · January 21, 2006 results",
+          "url": "https://generalssports.com/news/2006/1/21/wrestling-generals-turn-back-usmma-and-stevens.aspx"
+        },
+        {
+          "title": "Stevens · January 21, 2006 match report",
+          "url": "https://stevensducks.com/news/2006/1/21/WREST_1248.aspx"
+        },
+        {
+          "title": "Parkville Wrestling Club · 2010–2011 coaching staff",
+          "url": "https://www.teampages.com/teams/981691-PARKVILLE-WRESTLING-CLUB-A-TEAM-wrestling-team-website/announcements/1470643-PARKVILLE-WRESTLING-CLUB"
+        },
+        {
+          "title": "Washington Post · February 20, 2005 Maryland Independent results",
+          "url": "https://www.washingtonpost.com/archive/sports/2005/02/20/maryland-independent-high-sc/bf951ffe-5c03-4fdc-8ab7-7d83742e5a1d/"
+        },
+        {
+          "title": "McDaniel Free Press · November 17, 2005, page 11",
+          "url": "https://hoover.mcdaniel.edu/archives/Newspapers/McDanielFreePress2005-06.pdf#page=60"
+        },
+        {
+          "title": "McDaniel 2006 yearbook · wrestling page",
+          "url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2006.pdf#page=77"
+        },
+        {
+          "title": "Dundalk Hawks Open · 2010 results, page 72",
+          "url": "https://www.eztourns.com/tournresults/2010%20Results/2010DundalkOpen.pdf#page=72"
+        },
+        {
+          "title": "FloWrestling · 2025 Bald & Fat Tournament results",
+          "url": "https://www.flowrestling.org/events/12787486-2025-bald-fat-tournament"
+        },
+        {
+          "title": "Bradley Gabrish · public profile",
+          "url": "https://www.facebook.com/bradley.gabrish"
+        },
+        {
+          "title": "Bald & Fat Classic · 2025 organizer recap",
+          "url": "https://www.facebook.com/BaldFatClassic/posts/pfbid02pfdzAKCySvDM45gnu1YpLo79FRXgzeDDJadEr3XazbDV4vFoscLf5b3FtMq3ymaHl"
+        },
+        {
+          "title": "FloWrestling · named 2025 bracket",
+          "url": "https://www.flowrestling.org/nextgen/events/2m4vFZwIDY6KlflI/brackets?bracket=32DvcLrEwXdjc2yNgG&wrestlerId=1gH4ql3d9FtBPh59&wrestlerName=Brad%20Gabrish"
+        },
+        {
+          "title": "Bald & Fat Classic · official 2025 results",
+          "url": "https://docs.google.com/document/d/149bIi_BOUgP4xGHKj4AegQp8E8Z60mn6IWqCqjIWiLQ/edit?usp=sharing"
+        },
+        {
+          "title": "McDaniel · 2007 wrestling yearbook pages",
+          "url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=66"
+        },
+        {
+          "title": "Maryland Independent Schools · 2002 bracket",
+          "url": "https://www.landon.net/uploaded/IAC/wrestling/Old_Brackets/2002_MIS_tournament_brackets.pdf#page=14"
+        },
+        {
+          "title": "National Preps · 2004 bracket",
+          "url": "https://nepswa.com/wp-content/uploads/2013/05/NP-BRACKETS-2004.pdf#page=31"
         }
-      ]
+      ],
+      "gallery_title": "Wrestling teams and competition",
+      "photo": {
+        "src": "coach-drafts/brad-bouts/bb-portrait-2025.jpg",
+        "alt": "Brad Gabrish.",
+        "caption": "Brad Gabrish, from his public profile photograph.",
+        "source_url": "https://www.facebook.com/photo?fbid=28570170239295446&set=a.100220993383751",
+        "source_label": "Original public photograph"
+      },
+      "gallery": [
+        {
+          "src": "coach-drafts/native-ten/brad-2006-p77.jpg",
+          "alt": "McDaniel’s 2006 wrestling yearbook page listing Brad Gabrish at 149 pounds.",
+          "caption": "McDaniel’s 2006 wrestling page lists Brad Gabrish at 149 pounds. The action photographs are not individually captioned.",
+          "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2006.pdf#page=77",
+          "source_label": "McDaniel 2006 yearbook · printed page 69"
+        },
+        {
+          "src": "coach-drafts/brad-bouts/bb-team-2025.jpg",
+          "alt": "Lucky Ducks championship team at the 2025 Bald & Fat Classic.",
+          "caption": "Lucky Ducks, team champions at the 2025 Bald & Fat Classic. Brad won the 185-pound bracket in the event’s “DEAD” division. Individual positions in the team photograph are not labeled.",
+          "source_url": "https://www.facebook.com/photo?fbid=1078348644324743&set=pcb.1078349877657953",
+          "source_label": "Original public photograph"
+        },
+        {
+          "src": "coach-drafts/brad-bouts/bb-event-2025.jpg",
+          "alt": "Participants at the 2025 Bald & Fat Classic.",
+          "caption": "The 2025 Bald & Fat Classic event group, published by the organizer. Individual participants are not identified in the photo caption.",
+          "source_url": "https://www.facebook.com/photo?fbid=1078348430991431&set=pcb.1078349877657953",
+          "source_label": "Original public photograph"
+        },
+        {
+          "src": "coach-drafts/brad-school/mcd-66-1.jpg",
+          "alt": "McDaniel’s 2007 wrestling yearbook page with Brad Gabrish in the roster.",
+          "caption": "McDaniel’s 2007 yearbook, printed page 64, lists Brad Gabrish in the wrestling roster. The portrait is labeled Coach Gardner; the action photographs are not individually captioned.",
+          "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=66",
+          "source_label": "McDaniel Archives · original yearbook"
+        },
+        {
+          "src": "coach-drafts/brad-school/mcd-67-1.jpg",
+          "alt": "McDaniel wrestling results and action photographs in the 2007 yearbook.",
+          "caption": "McDaniel’s 2007 yearbook, printed page 65: team results and two action photographs. The photographed wrestlers are not individually named.",
+          "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=67",
+          "source_label": "McDaniel Archives · original yearbook"
+        }
+      ],
+      "gallery_label": "Brad Gabrish photographs"
     },
     {
       "id": "daniel-skelonc",
       "name": "Daniel Skelonc",
       "role": "Grindstone youth wrestling coach",
-      "summary": "Daniel Skelonc is a member of Grindstone’s 2026–27 coaching team.",
+      "summary": "Daniel Skelonc brings a Michigan youth and high-school wrestling background to Grindstone’s coaching team.",
       "paragraphs": [
-        "Daniel is part of Grindstone’s Mat Rats and Valkyries coaching roster for the 2026–27 season."
+        "Daniel competed in both freestyle and Greco-Roman wrestling as a young athlete. At the 1997 Northeast Kids Regionals in Syracuse, he placed third in novice freestyle and second in novice Greco-Roman at 120 pounds.",
+        "He continued at Cedar Springs High School in Michigan. As a junior, Dan qualified for the 2002 Division 2 individual state finals at 145 pounds. At the state tournament, he pinned Eaton Rapids’ Jake Strank in 4 minutes, 15 seconds.",
+        "Daniel is part of Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster."
       ],
       "highlights": [
         {
+          "label": "Youth wrestling",
+          "text": "1997 Northeast Kids Regionals · Freestyle third and Greco-Roman runner-up at 120 pounds."
+        },
+        {
+          "label": "Cedar Springs",
+          "text": "2002 Michigan Division 2 state qualifier · 145 pounds."
+        },
+        {
           "label": "At Grindstone",
-          "text": "2026–27 Mat Rats and Valkyries coaching roster."
+          "text": "2026–27 Mat Rats and Valkyries coaching team."
         }
       ],
       "sources": [
         {
-          "title": "About Grindstone Wrestling",
-          "url": "https://www.grindstonewrestling.org/"
+          "title": "USA Wrestling · May 25, 1997 Northeast regional results",
+          "url": "https://content.usawmembership.com/articles/3266"
+        },
+        {
+          "title": "MHSAA · 2002 Division 2 first-round entries",
+          "url": "https://staging.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/02d2/02d2pr001.htm"
+        },
+        {
+          "title": "MHSAA · Cedar Springs 2002 tournament results",
+          "url": "https://my.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/02d2/02d2rtltm072.htm"
+        },
+        {
+          "title": "MPD · November 20, 2023 achievement awards",
+          "url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect"
         }
-      ]
+      ],
+      "gallery_title": "Community recognition",
+      "photo": {
+        "src": "coach-drafts/assets/daniel-portrait-2023.png",
+        "alt": "Daniel Skelonc in a Metropolitan Police Department award portrait.",
+        "caption": "Daniel Skelonc in the Metropolitan Police Department’s November 20, 2023 award announcement.",
+        "source_url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
+        "source_label": "Metropolitan Police Department · November 20, 2023"
+      },
+      "gallery": [
+        {
+          "src": "coach-drafts/assets/daniel-mpd-award-2023.png",
+          "alt": "Metropolitan Police Department award graphic naming Daniel Skelonc second from left.",
+          "caption": "The full November 20, 2023 Metropolitan Police Department award graphic. Its printed caption identifies Detective Daniel Skelonc in the second portrait from the left.",
+          "source_url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
+          "source_label": "MPD · original award announcement"
+        }
+      ],
+      "gallery_label": "Daniel Skelonc photographs"
     },
     {
       "id": "jessica-hughes",

@@ -1536,18 +1536,19 @@ window.COACH_DRAFTS = {
       "id": "tyler-lease",
       "name": "Tyler Lease",
       "roster_name": "Tyler Lease",
-      "status": "likely",
+      "status": "confirmed",
       "role": "Grindstone youth wrestling coach",
-      "summary": "Tyler Lease is listed among Grindstone Wrestling Club’s coaches for the 2026–2027 season.",
+      "summary": "Tyler Lease is a Grindstone coach whose local sports background includes Westminster youth baseball.",
       "paragraphs": [
-        "Tyler is part of the season’s Mat Rats and Valkyries coaching roster, supporting Grindstone’s local youth wrestling program.",
-        "His local sports background includes playing for Westminster American in the District II Little League tournament in 2000. A Carroll County Times sports photograph captured him in action against Thurmont. The page uses that named local athlete as the working match for Coach Tyler while his wrestling background is researched.",
-        "The same local baseball name appears across several seasons: a 1998 report names Tyler as a Westminster Shorebirds player, and an April 2001 report lists him with the Westminster Owls travel-baseball team. These newspaper references broaden the proposed local sports history; they do not establish his wrestling background."
+        "Tyler is part of Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster, supporting the club’s young wrestlers.",
+        "His youth-sports background includes playing for the Westminster Shorebirds in 1998 and Westminster American in the 2000 District II Little League tournament. A Carroll County Times photograph captured him in action against Thurmont that July.",
+        "Tyler also played with the Westminster Owls travel-baseball team in 2001."
       ],
-      "review_title": "Local employer portrait proposed for review",
-      "identity_note": "This draft assumes the Tyler Lease named by local employer Webb Environmental and the captioned Westminster youth baseball player are Coach Tyler. The exact name and local context support these working matches; the coach connection still needs review.",
-      "review_prompt": "Review the proposed portrait and local sports history; add Tyler’s wrestling background or usual practice group.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed this coach’s identity and portrait on October 28, 2026. The main coaching page includes the supported biography and credited photographs.",
+      "review_prompt": "Identity confirmed. Share any updates to the biography, coaching role or photograph captions.",
       "research_notes": [
+        "On October 28, 2026, the user confirmed that the proposed Brad Gabrish identity, Daniel Skelonc police portrait and Tyler Lease employer portrait are the correct coaches. Earlier working-match notes below describe the research history before that confirmation.",
         "Caption identifies Tyler Lease playing for Westminster American. Locality and exact name support the proposed match; the coach connection remains an assumption.",
         "Full source PDF and native image crop are retained.",
         "South Dakota and Indiana sports namesakes were not substituted for the local candidate.",
@@ -1558,59 +1559,54 @@ window.COACH_DRAFTS = {
       ],
       "highlights": [
         {
-          "label": "2026–2027",
-          "text": "Named on the Mat Rat & Valkyries coaching roster."
+          "label": "At Grindstone",
+          "text": "2026–27 Mat Rats and Valkyries coaching team."
+        },
+        {
+          "label": "Local sports",
+          "text": "Westminster Shorebirds, Westminster American and Westminster Owls youth baseball."
         }
       ],
       "sources": [
         {
           "title": "Grindstone Wrestling Club",
-          "url": "https://www.grindstonewrestling.org/",
-          "supports": "General youth-program context."
+          "url": "https://www.grindstonewrestling.org/"
         },
         {
           "title": "Carroll County Times · July 19, 2000 sports page",
-          "url": "https://cctimes.carr.org/documents/CCT_07192000.pdf#page=7",
-          "supports": "Captioned Tyler Lease baseball photograph and local youth-sports context."
+          "url": "https://cctimes.carr.org/documents/CCT_07192000.pdf#page=7"
         },
         {
           "title": "Webb Environmental · Tyler Lease",
-          "url": "https://webbenvironmental.com/verification/",
-          "supports": "Public page names Tyler Lease; linked original photo is used as a provisional portrait."
+          "url": "https://webbenvironmental.com/verification/"
         },
         {
           "title": "Carroll County Times · April 19, 1998 youth baseball",
-          "url": "https://cctimes.carr.org/documents/CCT_04191998.pdf#page=14",
-          "supports": "Westminster Optimist Little League Shorebirds player Tyler Lease."
+          "url": "https://cctimes.carr.org/documents/CCT_04191998.pdf#page=14"
         },
         {
           "title": "Carroll County Times · April 15, 2001 travel baseball",
-          "url": "https://cctimes.carr.org/documents/CCT_04152001.pdf#page=16",
-          "supports": "Tyler Lease listed among Westminster Owls players. The pictured player is Jordan Wike, not Tyler."
+          "url": "https://cctimes.carr.org/documents/CCT_04152001.pdf#page=16"
         }
       ],
       "photo": {
         "src": "assets/tyler-webb-2021.jpeg",
-        "alt": "Tyler Lease in a Webb Environmental cap and hoodie, proposed as Coach Tyler’s portrait.",
-        "caption": "Proposed portrait: Tyler Lease, named on Webb Environmental’s public page. Original publisher image; the 2021 upload date is not a confirmed capture date.",
+        "alt": "Tyler Lease wearing a Webb Environmental cap and hoodie.",
+        "caption": "Tyler Lease. Portrait published by Webb Environmental.",
         "source_url": "https://webbenvironmental.com/verification/",
-        "source_label": "Webb Environmental · named portrait",
-        "kind": "Proposed employer portrait"
+        "source_label": "Webb Environmental · named portrait"
       },
-      "gallery_title": "Local sports and portrait sources",
+      "gallery_title": "Westminster youth sports",
       "gallery": [
         {
           "src": "assets/tyler-baseball-2000.png",
-          "archive": true,
-          "native": true,
-          "alt": "Captioned Tyler Lease youth baseball action photo, proposed as Coach Tyler’s historical image.",
-          "caption": "Working match: Westminster American’s Tyler Lease, July 2000. Photo: Ken Koons / Carroll County Times. The dark source scan is preserved without AI enhancement.",
+          "alt": "Tyler Lease playing youth baseball for Westminster American in July 2000.",
+          "caption": "Westminster American’s Tyler Lease playing against Thurmont, July 2000. Photograph: Ken Koons / Carroll County Times, published July 19, 2000.",
           "source_url": "https://cctimes.carr.org/documents/CCT_07192000.pdf#page=7",
-          "source_label": "Carroll County Times · July 19, 2000",
-          "kind": "Proposed historical image"
+          "source_label": "Carroll County Times · July 19, 2000"
         }
       ],
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 28, 2026"
     },
     {
       "id": "mike-handleman",
@@ -1763,21 +1759,20 @@ window.COACH_DRAFTS = {
       "id": "brad-gabrish",
       "name": "Brad Gabrish",
       "roster_name": "Brad Gabrish",
-      "status": "likely",
+      "status": "confirmed",
       "role": "Grindstone youth wrestling coach",
-      "summary": "Brad Gabrish brings high-school, collegiate and youth-coaching experience to Grindstone’s 2026–2027 coaching team.",
+      "summary": "Brad Gabrish brings high-school, collegiate and youth-coaching experience to Grindstone’s coaching team.",
       "paragraphs": [
-        "Brad’s Calvert Hall wrestling record reaches back to the 2002 Maryland Independent Schools tournament, where he competed at 135 pounds as a ninth-grader. He entered the 2004 National Prep Championships at 145 pounds as a junior and won two matches. The next year, he finished eighth at 145 pounds at National Preps and reached the Maryland Independent Schools final at that weight.",
-        "Brad went on to compete for McDaniel College at 149 pounds during the 2005–2006 season. Official January 2006 match reports identify him in the Green Terror lineup. In November 2005, he placed fourth at 149 pounds at the Messiah Invitational. Brad is also listed on the wrestling roster in McDaniel’s 2007 yearbook.",
-        "His earlier youth-coaching experience includes serving on Parkville Wrestling Club’s 2010–2011 assistant coaching staff. That background connects local prep and college competition with work in a Maryland youth wrestling program.",
-        "Brad’s competition history extends beyond college. He won the 207-pound open bracket at the 2010 Dundalk Hawks Open. In April 2025, the Bald & Fat Tournament results list him representing Lucky Ducks and winning the 185-pound bracket in the event’s “DEAD” division. His route included an 11–1 major decision, a 17–1 technical fall and a forfeit in the final.",
-        "USA Wrestling’s public lookup provides another coaching reference: The Maryland record named Bradley Gabrish lists Copper in its National Coaches Education Program field, checked October 24, 2026.",
-        "The 2025 organizer recap also recognizes Lucky Ducks as team champions with 103.5 points. The championship-team photograph is retained in full because the source supplies no left-to-right name key."
+        "Brad wrestled at Calvert Hall, competing at 135 pounds as a ninth-grader in the 2002 Maryland Independent Schools tournament. As a junior, he won two matches at the 2004 National Prep Championships at 145 pounds. In 2005, he finished eighth at 145 pounds at National Preps and reached the Maryland Independent Schools final.",
+        "Brad continued at McDaniel College, wrestling at 149 pounds during the 2005–06 season. He placed fourth at the November 2005 Messiah Invitational and competed in the Green Terror’s January 2006 dual lineup. He also appears on McDaniel’s wrestling roster in the 2007 yearbook.",
+        "His youth-coaching experience includes serving on Parkville Wrestling Club’s 2010–11 assistant coaching staff. Brad now brings that experience to Grindstone’s Mat Rats and Valkyries coaching roster.",
+        "Brad has continued competing beyond college. He won the 207-pound open bracket at the 2010 Dundalk Hawks Open. At the 2025 Bald & Fat Classic, he won the 185-pound bracket in the event’s “DEAD” division for Lucky Ducks, with an 11–1 major decision, a 17–1 technical fall and a forfeit in the final. Lucky Ducks also won the team championship."
       ],
-      "review_title": "Wrestling history with a new proposed portrait",
-      "identity_note": "The proposed portrait comes from Bradley Gabrish’s public profile, which lists Calvert Hall Class of 2005 and matches the documented wrestler’s school year. The roster-to-profile match remains open for review. His position in the Lucky Ducks team photograph is not assigned.",
-      "review_prompt": "Is this the right Brad? Confirm his current practice role and add or select a portrait.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed this coach’s identity and portrait on October 28, 2026. The main coaching page includes the supported biography and credited photographs.",
+      "review_prompt": "Identity confirmed. Share any updates to the biography, coaching role or photograph captions.",
       "research_notes": [
+        "On October 28, 2026, the user confirmed that the proposed Brad Gabrish identity, Daniel Skelonc police portrait and Tyler Lease employer portrait are the correct coaches. Earlier working-match notes below describe the research history before that confirmation.",
         "The Parkville announcement was migrated/posted in 2019 but explicitly describes its 2010–2011 staff. The draft uses the season, not the page timestamp.",
         "A February 2025 county volunteer list includes Bradley A. Gabrish with Westminster Area. It is a historical identity lead, not evidence of current screening status.",
         "No clearly labeled Brad portrait was found in the indexed college, prep-school or Parkville material.",
@@ -1799,108 +1794,85 @@ window.COACH_DRAFTS = {
         },
         {
           "label": "McDaniel College",
-          "text": "Wrestled at 149 pounds in the 2005–06 season."
+          "text": "Wrestled at 149 pounds in 2005–06; fourth at the Messiah Invitational."
         },
         {
           "label": "Youth coaching",
-          "text": "Parkville assistant staff · 2010–2011."
+          "text": "Parkville assistant staff · 2010–11."
+        },
+        {
+          "label": "Adult competition",
+          "text": "2010 Dundalk Open champion · 2025 Bald & Fat Classic division champion."
         }
       ],
       "sources": [
         {
           "title": "National Prep individual records · 2005 results, page 80",
-          "url": "https://neiswa.com/wp-content/uploads/2020/04/INDIVIDUAL-RECORDS-Natl-Prep-Wrestling-Champs.pdf#page=80",
-          "supports": "Calvert Hall, 145 pounds, eighth place."
+          "url": "https://neiswa.com/wp-content/uploads/2020/04/INDIVIDUAL-RECORDS-Natl-Prep-Wrestling-Champs.pdf#page=80"
         },
         {
           "title": "Original 2005 National Prep brackets",
-          "url": "https://paiswt.com/web_documents/2005_NationalPreps.pdf",
-          "supports": "Bracket independently identifies Brad Gabrish and his placement."
+          "url": "https://paiswt.com/web_documents/2005_NationalPreps.pdf"
         },
         {
           "title": "Washington and Lee · January 21, 2006 results",
-          "url": "https://generalssports.com/news/2006/1/21/wrestling-generals-turn-back-usmma-and-stevens.aspx",
-          "supports": "Brad Gabrish in McDaniel’s 149-pound lineup."
+          "url": "https://generalssports.com/news/2006/1/21/wrestling-generals-turn-back-usmma-and-stevens.aspx"
         },
         {
           "title": "Stevens · January 21, 2006 match report",
-          "url": "https://stevensducks.com/news/2006/1/21/WREST_1248.aspx",
-          "supports": "Independent college competition corroboration."
+          "url": "https://stevensducks.com/news/2006/1/21/WREST_1248.aspx"
         },
         {
           "title": "Parkville Wrestling Club · 2010–2011 coaching staff",
-          "url": "https://www.teampages.com/teams/981691-PARKVILLE-WRESTLING-CLUB-A-TEAM-wrestling-team-website/announcements/1470643-PARKVILLE-WRESTLING-CLUB",
-          "supports": "Names Brad Gabrish among assistant coaches."
+          "url": "https://www.teampages.com/teams/981691-PARKVILLE-WRESTLING-CLUB-A-TEAM-wrestling-team-website/announcements/1470643-PARKVILLE-WRESTLING-CLUB"
         },
         {
           "title": "Washington Post · February 20, 2005 Maryland Independent results",
-          "url": "https://www.washingtonpost.com/archive/sports/2005/02/20/maryland-independent-high-sc/bf951ffe-5c03-4fdc-8ab7-7d83742e5a1d/",
-          "supports": "145-pound runner-up."
+          "url": "https://www.washingtonpost.com/archive/sports/2005/02/20/maryland-independent-high-sc/bf951ffe-5c03-4fdc-8ab7-7d83742e5a1d/"
         },
         {
           "title": "McDaniel Free Press · November 17, 2005, page 11",
-          "url": "https://hoover.mcdaniel.edu/archives/Newspapers/McDanielFreePress2005-06.pdf#page=60",
-          "supports": "Fourth at 149 pounds at the Messiah Invitational. Verified competition report; no athlete photographs on this page."
+          "url": "https://hoover.mcdaniel.edu/archives/Newspapers/McDanielFreePress2005-06.pdf#page=60"
         },
         {
           "title": "McDaniel 2006 yearbook · wrestling page",
-          "url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2006.pdf#page=77",
-          "supports": "Roster lists Brad Gabrish at 149 pounds. Individual athletes in the photographs are not named."
+          "url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2006.pdf#page=77"
         },
         {
           "title": "Dundalk Hawks Open · 2010 results, page 72",
-          "url": "https://www.eztourns.com/tournresults/2010%20Results/2010DundalkOpen.pdf#page=72",
-          "supports": "Brad Gabrish, Maryland, 207-pound open champion."
+          "url": "https://www.eztourns.com/tournresults/2010%20Results/2010DundalkOpen.pdf#page=72"
         },
         {
           "title": "FloWrestling · 2025 Bald & Fat Tournament results",
-          "url": "https://www.flowrestling.org/events/12787486-2025-bald-fat-tournament",
-          "supports": "Lucky Ducks; 185-pound DEAD division winner; quarterfinal, semifinal and final results."
-        },
-        {
-          "title": "USA Wrestling · public membership lookup",
-          "url": "https://www.usawmembership.com/verify_membership",
-          "supports": "Bradley Gabrish; Maryland; public NCEP codes C. Checked October 24, 2026."
-        },
-        {
-          "title": "USA Wrestling · coaching certification levels",
-          "url": "https://www.themat.com/coaches/ncep-certification",
-          "supports": "Explains Copper, Bronze and Teal coaching education."
+          "url": "https://www.flowrestling.org/events/12787486-2025-bald-fat-tournament"
         },
         {
           "title": "Bradley Gabrish · public profile",
-          "url": "https://www.facebook.com/bradley.gabrish",
-          "supports": "Self-reported Calvert Hall Class of 2005 links the proposed 2025 profile portrait to the school record."
+          "url": "https://www.facebook.com/bradley.gabrish"
         },
         {
           "title": "Bald & Fat Classic · 2025 organizer recap",
-          "url": "https://www.facebook.com/BaldFatClassic/posts/pfbid02pfdzAKCySvDM45gnu1YpLo79FRXgzeDDJadEr3XazbDV4vFoscLf5b3FtMq3ymaHl",
-          "supports": "Lucky Ducks team champions; named team photo and event group. Does not establish Brad attended Liberty High."
+          "url": "https://www.facebook.com/BaldFatClassic/posts/pfbid02pfdzAKCySvDM45gnu1YpLo79FRXgzeDDJadEr3XazbDV4vFoscLf5b3FtMq3ymaHl"
         },
         {
           "title": "FloWrestling · named 2025 bracket",
-          "url": "https://www.flowrestling.org/nextgen/events/2m4vFZwIDY6KlflI/brackets?bracket=32DvcLrEwXdjc2yNgG&wrestlerId=1gH4ql3d9FtBPh59&wrestlerName=Brad%20Gabrish",
-          "supports": "Quarterfinal #5 mat 2, semifinal #40 mat 2 and final #92 mat 3."
+          "url": "https://www.flowrestling.org/nextgen/events/2m4vFZwIDY6KlflI/brackets?bracket=32DvcLrEwXdjc2yNgG&wrestlerId=1gH4ql3d9FtBPh59&wrestlerName=Brad%20Gabrish"
         },
         {
           "title": "Bald & Fat Classic · official 2025 results",
-          "url": "https://docs.google.com/document/d/149bIi_BOUgP4xGHKj4AegQp8E8Z60mn6IWqCqjIWiLQ/edit?usp=sharing",
-          "supports": "Organizer result document confirms Brad Gabrish of Lucky Ducks first at Dead 185; Lucky Ducks team champions with 103.5 points."
+          "url": "https://docs.google.com/document/d/149bIi_BOUgP4xGHKj4AegQp8E8Z60mn6IWqCqjIWiLQ/edit?usp=sharing"
         },
         {
           "title": "McDaniel · 2007 wrestling yearbook pages",
-          "url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=66",
-          "supports": "Printed page 64 explicitly lists Brad Gabrish in the wrestling roster. No weights or class years are printed. Page 65 discusses the team season and the 2007 NCAA championships."
+          "url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=66"
         },
         {
           "title": "Maryland Independent Schools · 2002 bracket",
-          "url": "https://www.landon.net/uploaded/IAC/wrestling/Old_Brackets/2002_MIS_tournament_brackets.pdf#page=14",
-          "supports": "Brad Gabrish, Calvert Hall, ninth grade, entered at 135 pounds. Two wins and two losses; no placing."
+          "url": "https://www.landon.net/uploaded/IAC/wrestling/Old_Brackets/2002_MIS_tournament_brackets.pdf#page=14"
         },
         {
           "title": "National Preps · 2004 bracket",
-          "url": "https://nepswa.com/wp-content/uploads/2013/05/NP-BRACKETS-2004.pdf#page=31",
-          "supports": "Brad Gabrish, Calvert Hall junior, entered at 145 pounds with a 26–9 record. Two wins; no placing. The entry record is not a final season record."
+          "url": "https://nepswa.com/wp-content/uploads/2013/05/NP-BRACKETS-2004.pdf#page=31"
         }
       ],
       "leads": [
@@ -1923,88 +1895,67 @@ window.COACH_DRAFTS = {
       "gallery": [
         {
           "src": "native-ten/brad-2006-p77.jpg",
-          "alt": "McDaniel’s 2006 wrestling page lists Brad Gabrish at 149 pounds; photographed athletes are not individually labeled.",
-          "caption": "Team context only: Brad appears in the roster at 149 pounds. The four action photos are not individually captioned, so none is claimed to show Brad. Original full-resolution JPEG extracted directly from the source PDF; no enlargement, reconstruction or recompression.",
+          "alt": "McDaniel’s 2006 wrestling yearbook page listing Brad Gabrish at 149 pounds.",
+          "caption": "McDaniel’s 2006 wrestling page lists Brad Gabrish at 149 pounds. The action photographs are not individually captioned.",
           "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2006.pdf#page=77",
-          "source_label": "McDaniel 2006 yearbook · printed page 69",
-          "selection": "context",
-          "kind": "Team context",
-          "coach": "brad-gabrish",
-          "name": "Brad Gabrish",
-          "native": true
+          "source_label": "McDaniel 2006 yearbook · printed page 69"
         },
         {
           "src": "brad-bouts/bb-team-2025.jpg",
-          "alt": "Bald and Fat Classic — Team Champs - Lucky Ducks. The promoter captions the seven-person trophy photo as Lucky Ducks team champions. The exact event participant roster has seven Lucky Ducks entrants including Brad Gabrish. No individually named left-to-right key or photo tag was observed. Do not assign Brad a position by visual comparison.",
-          "caption": "Bald and Fat Classic — Team Champs - Lucky Ducks. The promoter captions the seven-person trophy photo as Lucky Ducks team champions. The exact event participant roster has seven Lucky Ducks entrants including Brad Gabrish. No individually named left-to-right key or photo tag was observed. Do not assign Brad a position by visual comparison.",
+          "alt": "Lucky Ducks championship team at the 2025 Bald & Fat Classic.",
+          "caption": "Lucky Ducks, team champions at the 2025 Bald & Fat Classic. Brad won the 185-pound bracket in the event’s “DEAD” division. Individual positions in the team photograph are not labeled.",
           "source_url": "https://www.facebook.com/photo?fbid=1078348644324743&set=pcb.1078349877657953",
-          "source_label": "Original public photograph",
-          "native": true,
-          "kind": "Championship team / event context",
-          "selection": "gallery"
+          "source_label": "Original public photograph"
         },
         {
           "src": "brad-bouts/bb-event-2025.jpg",
-          "alt": "Bald and Fat Classic — The O.G. Bald and Fat Classic 2025. The organizer publishes this full-event group alongside the Lucky Ducks team championship photo. No individual caption identifies Brad.",
-          "caption": "Bald and Fat Classic — The O.G. Bald and Fat Classic 2025. The organizer publishes this full-event group alongside the Lucky Ducks team championship photo. No individual caption identifies Brad.",
+          "alt": "Participants at the 2025 Bald & Fat Classic.",
+          "caption": "The 2025 Bald & Fat Classic event group, published by the organizer. Individual participants are not identified in the photo caption.",
           "source_url": "https://www.facebook.com/photo?fbid=1078348430991431&set=pcb.1078349877657953",
-          "source_label": "Original public photograph",
-          "native": true,
-          "kind": "Championship team / event context",
-          "selection": "gallery"
+          "source_label": "Original public photograph"
         },
         {
           "src": "brad-school/mcd-66-1.jpg",
-          "alt": "McDaniel’s 2007 yearbook, printed page 64. Brad Gabrish is listed in the wrestling roster. Three action photographs are uncaptioned; the separate portrait is labeled Coach Gardner. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
-          "caption": "McDaniel’s 2007 yearbook, printed page 64. Brad Gabrish is listed in the wrestling roster. Three action photographs are uncaptioned; the separate portrait is labeled Coach Gardner. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+          "alt": "McDaniel’s 2007 wrestling yearbook page with Brad Gabrish in the roster.",
+          "caption": "McDaniel’s 2007 yearbook, printed page 64, lists Brad Gabrish in the wrestling roster. The portrait is labeled Coach Gardner; the action photographs are not individually captioned.",
           "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=66",
-          "source_label": "McDaniel Archives · original yearbook",
-          "native": true,
-          "kind": "Unassigned college team context",
-          "selection": "gallery"
+          "source_label": "McDaniel Archives · original yearbook"
         },
         {
           "src": "brad-school/mcd-67-1.jpg",
-          "alt": "McDaniel’s 2007 yearbook, printed page 65. Two action photographs accompany the team results without individual captions. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
-          "caption": "McDaniel’s 2007 yearbook, printed page 65. Two action photographs accompany the team results without individual captions. Team context only: no pictured athlete is assigned to Brad. Native page image extracted without recompression.",
+          "alt": "McDaniel wrestling results and action photographs in the 2007 yearbook.",
+          "caption": "McDaniel’s 2007 yearbook, printed page 65: team results and two action photographs. The photographed wrestlers are not individually named.",
           "source_url": "https://hoover.mcdaniel.edu/archives/Yearbooks/YB2007.pdf#page=67",
-          "source_label": "McDaniel Archives · original yearbook",
-          "native": true,
-          "kind": "Unassigned college team context",
-          "selection": "gallery"
+          "source_label": "McDaniel Archives · original yearbook"
         }
       ],
       "photo": {
         "src": "brad-bouts/bb-portrait-2025.jpg",
-        "alt": "Proposed Brad portrait from a public Bradley Gabrish profile listing Calvert Hall Class of 2005. Original 2035 × 2036 image retained; coach identity is awaiting review.",
-        "caption": "Proposed Brad portrait from a public Bradley Gabrish profile listing Calvert Hall Class of 2005. Original 2035 × 2036 image retained; coach identity is awaiting review.",
+        "alt": "Brad Gabrish.",
+        "caption": "Brad Gabrish, from his public profile photograph.",
         "source_url": "https://www.facebook.com/photo?fbid=28570170239295446&set=a.100220993383751",
-        "source_label": "Original public photograph",
-        "native": true,
-        "kind": "Proposed portrait",
-        "selection": "profile",
-        "archive": true
+        "source_label": "Original public photograph"
       },
-      "gallery_title": "Adult competition and college archives",
-      "profile_review_status": "Draft awaiting user review"
+      "gallery_title": "Wrestling teams and competition",
+      "profile_review_status": "Identity confirmed by user October 28, 2026"
     },
     {
       "id": "daniel-skelonc",
       "name": "Daniel Skelonc",
       "roster_name": "Daniel Skelonc",
-      "status": "tentative",
+      "status": "confirmed",
       "role": "Grindstone youth wrestling coach",
-      "summary": "Daniel Skelonc is part of Grindstone’s coaching team for the 2026–2027 season.",
+      "summary": "Daniel Skelonc brings a Michigan youth and high-school wrestling background to Grindstone’s coaching team.",
       "paragraphs": [
-        "Daniel’s wrestling background includes both freestyle and Greco-Roman competition as a young athlete. At the 1997 Northeast Kids Regionals in Syracuse, he placed third in novice freestyle and second in novice Greco-Roman at 120 pounds.",
+        "Daniel competed in both freestyle and Greco-Roman wrestling as a young athlete. At the 1997 Northeast Kids Regionals in Syracuse, he placed third in novice freestyle and second in novice Greco-Roman at 120 pounds.",
         "He continued at Cedar Springs High School in Michigan. As a junior, Dan qualified for the 2002 Division 2 individual state finals at 145 pounds. At the state tournament, he pinned Eaton Rapids’ Jake Strank in 4 minutes, 15 seconds.",
-        "A possible additional chapter in Daniel’s athletic background is distance running. The official 2000 Old Kent Riverbank Run results list a Cedar Springs teenager named Daniel Skelonc completing the 25K in 2:02:15 chip time. The exact name, hometown and school-era timing fit this draft’s Michigan athlete, though the connection to Coach Daniel remains provisional.",
-        "Daniel is now named on Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster. This proposed biography connects his early experience across wrestling styles with his current youth-coaching role."
+        "Daniel is part of Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster."
       ],
-      "review_title": "Working match: wrestling history and a named portrait",
-      "identity_note": "This draft provisionally connects Coach Daniel with the Cedar Springs wrestler and the Detective Daniel Skelonc named in a Washington, D.C. award announcement. The portrait is explicitly labeled in that source; its connection to this coach remains a working match for review.",
-      "review_prompt": "Is Daniel the wrestler from Cedar Springs, Michigan? If not, mark Wrong person and the historical paragraphs can be removed.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed this coach’s identity and portrait on October 28, 2026. The main coaching page includes the supported biography and credited photographs.",
+      "review_prompt": "Identity confirmed. Share any updates to the biography, coaching role or photograph captions.",
       "research_notes": [
+        "On October 28, 2026, the user confirmed that the proposed Brad Gabrish identity, Daniel Skelonc police portrait and Tyler Lease employer portrait are the correct coaches. Earlier working-match notes below describe the research history before that confirmation.",
         "Current Grindstone membership is established by the supplied handout.",
         "The 1997 source gives Daniel Skelonc (MI); the 2002 source gives Dan Skelonc, Cedar Springs. Linking them to each other and to Grindstone is an explicit draft assumption.",
         "No state championship or placing is claimed for 2002. The later MPD award graphic supplies a named portrait, provisionally connected to this coach.",
@@ -2017,63 +1968,54 @@ window.COACH_DRAFTS = {
       ],
       "highlights": [
         {
-          "label": "Confirmed roster",
-          "text": "Grindstone · 2026–2027 season."
+          "label": "Youth wrestling",
+          "text": "1997 Northeast Kids Regionals · Freestyle third and Greco-Roman runner-up at 120 pounds."
         },
         {
-          "label": "Provisional background",
-          "text": "Michigan youth wrestling and Cedar Springs; identity needs review."
+          "label": "Cedar Springs",
+          "text": "2002 Michigan Division 2 state qualifier · 145 pounds."
+        },
+        {
+          "label": "At Grindstone",
+          "text": "2026–27 Mat Rats and Valkyries coaching team."
         }
       ],
       "sources": [
         {
           "title": "USA Wrestling · May 25, 1997 Northeast regional results",
-          "url": "https://content.usawmembership.com/articles/3266",
-          "supports": "Daniel Skelonc (MI), novice 120-pound freestyle third and Greco-Roman runner-up; event held May 16–18."
+          "url": "https://content.usawmembership.com/articles/3266"
         },
         {
           "title": "MHSAA · 2002 Division 2 first-round entries",
-          "url": "https://staging.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/02d2/02d2pr001.htm",
-          "supports": "Dan Skelonc, Cedar Springs, junior, 145 pounds."
+          "url": "https://staging.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/02d2/02d2pr001.htm"
         },
         {
           "title": "MHSAA · Cedar Springs 2002 tournament results",
-          "url": "https://my.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/02d2/02d2rtltm072.htm",
-          "supports": "Historical school results; retrieval may be intermittent."
+          "url": "https://my.mhsaa.com/MHSAA_ARCHIVE/sports/wrst/02d2/02d2rtltm072.htm"
         },
         {
           "title": "MPD · November 20, 2023 achievement awards",
-          "url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
-          "supports": "Official graphic explicitly names Detective Daniel Skelonc second from left; proposed coach portrait."
-        },
-        {
-          "title": "Classic Race Management · 2000 Old Kent 25K",
-          "url": "https://classicrace.com/results00/25k.htm",
-          "supports": "Daniel Skelonc, Cedar Springs, men 14–19; chip 2:02:15. Exact-name/city candidate, not a confirmed coach identity."
+          "url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect"
         }
       ],
       "photo": {
         "src": "assets/daniel-portrait-2023.png",
-        "archive": true,
-        "native": true,
-        "alt": "Named official portrait of Detective Daniel Skelonc, proposed as Coach Daniel.",
-        "caption": "Working identity match: Detective Daniel Skelonc, named in MPD’s November 2023 award graphic. Native crop; complete original is retained below.",
+        "alt": "Daniel Skelonc in a Metropolitan Police Department award portrait.",
+        "caption": "Daniel Skelonc in the Metropolitan Police Department’s November 20, 2023 award announcement.",
         "source_url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
-        "source_label": "Metropolitan Police Department · November 20, 2023",
-        "kind": "Proposed portrait · named official source"
+        "source_label": "Metropolitan Police Department · November 20, 2023"
       },
       "gallery": [
         {
           "src": "assets/daniel-mpd-award-2023.png",
-          "native": true,
-          "alt": "Official award graphic naming Detective Daniel Skelonc second from left.",
-          "caption": "Full original graphic. The printed left-to-right caption identifies Detective Daniel Skelonc in the second portrait. The coach connection is a working match. Source: Metropolitan Police Department.",
+          "alt": "Metropolitan Police Department award graphic naming Daniel Skelonc second from left.",
+          "caption": "The full November 20, 2023 Metropolitan Police Department award graphic. Its printed caption identifies Detective Daniel Skelonc in the second portrait from the left.",
           "source_url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
-          "source_label": "MPD · original award announcement",
-          "selection": "gallery"
+          "source_label": "MPD · original award announcement"
         }
       ],
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 28, 2026",
+      "gallery_title": "Community recognition"
     },
     {
       "id": "jessica-hughes",
