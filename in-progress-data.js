@@ -152,13 +152,13 @@ window.GRINDSTONE_IN_PROGRESS = {
       "id": "coach-profiles",
       "title": "Coach biographies and photos",
       "category": "Club people",
-      "status": "Working research for coach review",
-      "summary": "Review 13 coach drafts and 89 historical images and source pages, alongside 41 original club photographs. The October 24 research pass adds wrestling, college and combat-sport records and clearly marked photo candidates. Jessica and Cody Hughes share a recognition page. Current official biographies remain available.",
-      "why": "The club roster includes more people than the published biography directory. These working pages gather research and photographs so coaches can correct identities, roles and wording together.",
+      "status": "Available in Our coaches",
+      "summary": "The approved coaching biographies and photographs are available in Our coaches. Jessica Hughes has her own Coach profile. Research pages and original photo sources remain available for future corrections.",
+      "why": "The coaching directory brings the approved biographies together. The research collection preserves photographs and sources so coaches can continue to correct and expand the pages.",
       "existing": [
         {
-          "label": "Open the coach drafts and photo collection",
-          "href": "coach-drafts/index.html"
+          "label": "Meet the coaching team",
+          "href": "#about/coaches"
         },
         {
           "label": "Identify public club photographs",
@@ -169,8 +169,8 @@ window.GRINDSTONE_IN_PROGRESS = {
           "href": "coach-drafts/facebook-queue.html"
         },
         {
-          "label": "Jessica and Cody Hughes — shared recognition",
-          "href": "coach-drafts/hughes-family.html"
+          "label": "Jessica Hughes — Coach",
+          "href": "#about/coach/jessica-hughes"
         },
         {
           "label": "Who we are not — confirmed mistaken matches",
@@ -181,8 +181,8 @@ window.GRINDSTONE_IN_PROGRESS = {
           "href": "coach-drafts/index.html#not-us/brian-leaf-pinks"
         },
         {
-          "label": "Current published coach biographies",
-          "href": "#about/coaches"
+          "label": "Coach research and photo archive",
+          "href": "coach-drafts/index.html"
         }
       ],
       "sections": [
@@ -194,7 +194,7 @@ window.GRINDSTONE_IN_PROGRESS = {
           "bullets": [
             "Check the name, team role, career details and photo captions.",
             "Tell the coaches which photo and person you mean when suggesting a correction.",
-            "Jessica and Cody are presented as a team.",
+            "Jessica Hughes is listed as Coach with her own page.",
             "The PINKS/Mustang racer Brian Leaf is confirmed to be a different person. His material appears only in the clearly labeled mistaken-match section."
           ]
         },

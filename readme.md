@@ -386,3 +386,10 @@ Prepared in the audit preview for review; not published.
 - Family pages, FAQ, TeamSnap instructions, the quickstart and its two-sided PDF share this wording. In Progress distinguishes confirmed decisions from unresolved proposals. These edits remain on the review branch pending publication approval.
 - Skin-return refinement: caregivers arrange assessment and retain the release; clinicians diagnose, treat and document return; coaches check current documentation before contact. No Grindstone collection, photography, upload or retention of medical documents.
 - The health page links the current 2026–27 NFHS form (approved May 2026) and summarizes condition-specific minimums with clinical requirements. No public MMWL-issued form or timetable was verified; the local Predators club example is distinguished from league adoption. The available meeting transcript supports written clearance before return but supplies no numeric treatment interval.
+
+
+## Main coaching pages · October 28, 2026
+
+The approved coach research is incorporated into the main About Us → Our coaches directory. Jessica Hughes has an individual `#about/coach/jessica-hughes` page with the user-confirmed role **Coach**, without an assigned group. Her coaching biography retains her confirmed coordination, events and outreach contributions. The earlier combined Hughes supporter card is removed; `coach-drafts/hughes-family.html` redirects to her individual profile. This supersedes the earlier combined-recognition notes above.
+
+The draft directory and photo collection include Jessica. Her portrait reuses the original `coach-drafts/hughes-photos/jessica-portrait.jpg`, whose provenance remains in `hughes-source-index.json`. Original photographs, photo indexes and the received public/integration manifests are preserved as historical research records; the current display files are later revisions, not replacements of those frozen snapshots. Earlier research-only names and captions remain in those records.

@@ -2525,6 +2525,23 @@ window.COACH_PHOTOS = {
       "sha256": "f084aaac8ec8b78d46d6b6dcf3389b10bee13aeda58467f31bd863c9279db162",
       "width": 2355,
       "height": 3186
+    },
+    {
+      "src": "hughes-photos/jessica-portrait.jpg",
+      "alt": "Jessica Hughes smiling in her public profile portrait.",
+      "caption": "Jessica Hughes. Public profile portrait, January 2025.",
+      "source_url": "https://www.facebook.com/photo/?fbid=10222048797888525&set=a.1272591474422",
+      "source_label": "Original public photograph",
+      "native": true,
+      "kind": "Profile portrait",
+      "coach": "jessica-hughes",
+      "name": "Jessica Hughes",
+      "selection": "profile",
+      "path": "hughes-photos/jessica-portrait.jpg",
+      "bytes": 119612,
+      "sha256": "197406c9bd4c472d0dea1ff29060f15a5a134d247ffdffa8920fc3572577c0fb",
+      "width": 1069,
+      "height": 1056
     }
   ],
   "documents": [

@@ -321,7 +321,7 @@ function kyleBio(){
  '<div class="coach-bio-layout"><article class="prose coach-bio"><p class="coach-intro">'+esc(coach.intro||"")+'</p>'+(coach.paragraphs||[]).map(text=>'<p>'+esc(text)+'</p>').join("")+
  ((coach.milestones||[]).length?'<h2>On the mat and in the corner</h2><dl class="coach-milestones">'+coach.milestones.map(m=>'<div><dt>'+esc(m.label)+'</dt><dd>'+esc(m.text)+'</dd></div>').join("")+'</dl>':"")+
  ((coach.sources||[]).length?'<h2>Sources & photo credits</h2><ul class="link-list">'+coach.sources.map(s=>'<li>'+ext(s.url,esc(s.title))+'</li>').join("")+'</ul>':"")+
- '<div class="buttons"><a class="button" href="#moves/kyle">Explore Coach Kyle’s videos →</a></div></article><aside class="coach-gallery" aria-label="Photos from Coach Kyle’s wrestling years">'+gallery+'</aside></div>';
+ '<div class="buttons"><a class="button" href="#moves/kyle">Explore Coach Kyle’s videos →</a></div></article><aside class="coach-gallery" aria-label="Coach Kyle photographs">'+gallery+'</aside></div>';
 }
 function kyleDetail(id){
  const entries=K.entries||[],index=entries.findIndex(e=>e.id===id);if(index<0)return notFound();

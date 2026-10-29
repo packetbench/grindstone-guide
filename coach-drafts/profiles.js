@@ -2074,6 +2074,46 @@ window.COACH_DRAFTS = {
         }
       ],
       "profile_review_status": "Draft awaiting user review"
+    },
+    {
+      "id": "jessica-hughes",
+      "name": "Jessica Hughes",
+      "roster_name": "Jessica M. Hughes",
+      "role": "Coach",
+      "summary": "Jessica Hughes joins Grindstone’s coaching team while continuing her work in team coordination, events and community outreach.",
+      "paragraphs": [
+        "Jessica helps keep Grindstone’s season running, from coordinating team activities and events to supporting community outreach. She pitches in wherever the program needs a hand.",
+        "She is now taking on a coaching role with Grindstone, bringing that same commitment to working with the club’s young wrestlers."
+      ],
+      "highlights": [
+        {
+          "label": "Role",
+          "text": "Coach"
+        },
+        {
+          "label": "Around the program",
+          "text": "Team coordination, events, community outreach and general program support."
+        }
+      ],
+      "sources": [],
+      "photo": {
+        "src": "hughes-photos/jessica-portrait.jpg",
+        "alt": "Jessica Hughes smiling in her public profile portrait.",
+        "caption": "Jessica Hughes. Public profile portrait, January 2025.",
+        "source_url": "https://www.facebook.com/photo/?fbid=10222048797888525&set=a.1272591474422",
+        "source_label": "Original public photograph",
+        "native": true
+      },
+      "status": "confirmed",
+      "review_title": "Coaching role confirmed",
+      "identity_note": "Jessica’s name, coaching role and contributions to Grindstone were supplied by the club. Her role is listed as Coach without a specific group assignment.",
+      "review_prompt": "Review the biography and portrait. Additional coaching details can be added as her role develops.",
+      "research_notes": [
+        "The user confirmed Jessica M. Hughes’s name and contributions in team coordination, events and community outreach.",
+        "On October 28, 2026, the user confirmed that Jessica will coach and requested the role label Coach.",
+        "The portrait is the preserved public, self-attributed photograph recorded in hughes-source-index.json. No image edits were made."
+      ],
+      "source_note": "Jessica’s coaching role and program contributions were supplied by the club. Her portrait links to its original public source."
     }
   ],
   "rejected_matches": [

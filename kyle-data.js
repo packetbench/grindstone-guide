@@ -656,7 +656,7 @@ window.GRINDSTONE_KYLE = {
       "Kyle wrestled for Columbia High School in Columbia Station, Ohio, appearing on the school’s wrestling teams throughout his four high-school years. His career developed from a sectional runner-up finish as a sophomore to a sectional championship and district runner-up finish as a junior at 171 pounds. As a junior, he also shared Columbia’s wrestling Raider Award and earned Lorain County All-Star recognition.",
       "As a senior, Kyle moved to 189 pounds and won sectional, district and state championships. At the 1993 Ohio Division III state tournament, he defeated Keith Capizzi of Sandusky St. Mary’s Central Catholic 6–5 in the championship final. Columbia’s 1993 yearbook also records the team’s third-place state finish.",
       "Kyle was also a standout football player and a National Honor Society member. In his senior year, Columbia recognized him with its football Player of the Year and Captain’s awards, alongside MAC-8 first-team honors.",
-      "He continued his wrestling career at Cleveland State University.",
+      "After Columbia, Kyle continued his wrestling career at Cleveland State University. His competitive wrestling years spanned 1987–1996.",
       "His coaching also extends to Grindstone’s youth camps. Kyle is the instructor listed for the club’s 2026 youth camp at Winters Mill High School, a program for ages 8–18 focused on wrestling technique and mindset.",
       "Today, Kyle leads Grindstone’s next chapter. Coach Kyle’s Corner of Excellence gathers instructional videos for coaches and wrestlers, connecting his role at the club with a practical resource for developing skills."
     ],
@@ -684,28 +684,52 @@ window.GRINDSTONE_KYLE = {
     ],
     "gallery": [
       {
-        "src": "assets/kyle-rutledge.webp",
-        "alt": "Columbia High School’s framed portrait of Kyle Rutledge, labeled 1993 State Champion Wrestling.",
-        "caption": "Kyle’s 1993 state-champion portrait in Columbia High School’s athletics archive.",
-        "source_url": "https://display.gogipper.com/827/37901/37904/38277/39230/",
-        "source_label": "Columbia High School athletics archive",
-        "view": "portrait"
+        "src": "coach-drafts/club-intros/kyle-portrait.png",
+        "alt": "Coach Kyle Rutledge in Westminster Mat Rats’ October 2024 coach introduction.",
+        "caption": "Coach Kyle in the club’s October 2024 introduction.",
+        "source_url": "https://www.facebook.com/photo/?fbid=1126771975549088&set=a.563786781847613",
+        "source_label": "Westminster Mat Rats • Meet Coach Kyle!",
+        "view": "profile"
       },
       {
-        "src": "assets/kyle-team.png",
+        "src": "coach-drafts/native-ten/kyle-1993-p58.jpg",
         "alt": "Columbia’s 1993 wrestling team. The yearbook caption identifies Kyle Rutledge in the center of the seated front row, holding a trophy.",
-        "caption": "Columbia High School wrestling team, 1993. Kyle is seated in the center of the front row. The yearbook records a third-place state finish.",
+        "caption": "Columbia High School wrestling team, 1993. Kyle is seated in the center of the front row. Columbia placed third at state; Kyle won the individual Division III 189-pound title.",
         "source_url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=58",
         "source_label": "1993 Emerald yearbook, wrestling page • Lorain Public Library System",
         "view": "yearbook-team"
       },
       {
-        "src": "assets/kyle-athletic.png",
+        "src": "coach-drafts/native-ten/kyle-1993-p114.jpg",
         "alt": "The 1993 yearbook’s Most Athletic photo, captioned Joanna Pietch and Kyle Rutledge, with Kyle on the right.",
-        "caption": "Senior Most Athletic recognition, 1993. The yearbook caption names Joanna Pietch and Kyle Rutledge.",
+        "caption": "Senior Most Athletic recognition, 1993. The yearbook caption names Joanna Pietch and Kyle Rutledge, with Kyle on the right.",
         "source_url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=114",
         "source_label": "1993 Emerald yearbook, senior recognition page • Lorain Public Library System",
         "view": "yearbook-athletic"
+      },
+      {
+        "src": "coach-drafts/native-ten/kyle-1993-p77.jpg",
+        "alt": "Columbia’s 1993 Senior Court page, with Kyle Rutledge explicitly labeled in the lower-left portrait.",
+        "caption": "Kyle’s labeled Senior Court portrait appears at lower left on this page from Columbia’s 1993 yearbook.",
+        "source_url": "https://s3.amazonaws.com/omeka-lorain/original/fbb35278940ee71c01c7360b2b7b1198.pdf#page=77",
+        "source_label": "1993 Emerald yearbook · PDF page 77",
+        "view": "profile"
+      },
+      {
+        "src": "coach-drafts/club-intros/kyle-intro.jpg",
+        "alt": "Westminster Mat Rats’ October 8, 2024 coach-introduction graphic for Kyle Rutledge.",
+        "caption": "Meet Coach Kyle! The club’s October 8, 2024 introduction celebrates his wrestling background and fourth year coaching Mat Rats.",
+        "source_url": "https://www.facebook.com/photo/?fbid=1126771975549088&set=a.563786781847613",
+        "source_label": "Westminster Mat Rats • Meet Coach Kyle!",
+        "view": "profile"
+      },
+      {
+        "src": "coach-drafts/assets/kyle-rutledge.webp",
+        "alt": "Columbia High School’s framed portrait of Kyle Rutledge, labeled 1993 State Champion Wrestling.",
+        "caption": "Kyle’s 1993 state-champion portrait in Columbia High School’s athletics archive.",
+        "source_url": "https://display.gogipper.com/827/37901/37904/38277/39230/",
+        "source_label": "Columbia High School athletics archive",
+        "view": "portrait"
       }
     ],
     "sources": [
@@ -748,6 +772,10 @@ window.GRINDSTONE_KYLE = {
       {
         "title": "Carroll County Recreation & Parks • 2026 Grindstone youth camp (page 9)",
         "url": "https://ccgprod2.carrollcountymd.gov/media/nzyhogjv/ccrp_program-guide_camps_2026.pdf#page=9"
+      },
+      {
+        "title": "Westminster Mat Rats · Meet Coach Kyle!",
+        "url": "https://www.facebook.com/photo/?fbid=1126771975549088&set=a.563786781847613"
       }
     ]
   },
