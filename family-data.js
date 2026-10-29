@@ -6,7 +6,7 @@ window.GRINDSTONE_FAMILY = {
       "id": "first-practice",
       "title": "Your first Grindstone practice",
       "description": "Choose your program, confirm the details, pack the bag, and arrive ready to learn.",
-      "reviewed": "2026-10-25",
+      "reviewed": "2026-10-28",
       "sections": [
         {
           "title": "Start with your program",
@@ -22,11 +22,11 @@ window.GRINDSTONE_FAMILY = {
         },
         {
           "title": "Pack a simple practice bag",
-          "html": "<ul><li>Comfortable athletic clothes that allow movement; ask the coach about any clothing restrictions.</li><li>A labeled personal water bottle.</li><li>Wrestling shoes and any headgear or other equipment requested for your group.</li><li>Street shoes for outside the wrestling area and a change of clothes for afterward.</li></ul><p>Before buying gear, ask what is required on day one and what the registration package includes. Change into clean mat footwear at the room, keep jewelry off the mat and follow the coach’s equipment instructions.</p><p><strong>Mat footwear:</strong> Do not wear wrestling shoes outside or street shoes on the mats. Keep nails trimmed and change shoes at the room.</p>"
+          "html": "<ul><li>Comfortable athletic clothes that allow movement; ask the coach about any clothing restrictions.</li><li>A labeled personal water bottle.</li><li>Wrestling shoes and any headgear or other equipment requested for your group.</li><li>Street shoes for outside the wrestling area and a change of clothes for afterward.</li></ul><p><strong>Registration does not include practice gear.</strong> Ask a coach what your child needs for the first practice. If your family needs help with wrestling shoes or headgear, <strong>contact the club early</strong>; donated gear is subject to available sizes and supplies. Change into clean mat footwear at the room, keep jewelry off the mat and follow the coach’s equipment instructions.</p><p><strong>Mat footwear:</strong> Do not wear wrestling shoes outside or street shoes on the mats. Keep nails trimmed and change shoes at the room.</p>"
         },
         {
           "title": "Growing feet, shared gear",
-          "html": "<p>Grindstone keeps donated wrestling shoes and headgear from previous seasons to help outfit children who need them. Many wrestlers outgrow shoes well before wearing them out; passing usable gear along helps another family and reduces waste.</p><p>Ask a coach about available sizes and fit before buying new equipment. If you have outgrown gear to donate, check with the club about its condition and where to bring it.</p>"
+          "html": "<p>Grindstone keeps donated wrestling shoes and headgear from previous seasons to help families who need support. <strong>Supplies and sizes are limited, and gear is not always available.</strong> Registration does not include practice gear.</p><p><strong>Reach out to a coach as early as possible if your family needs gear.</strong> The club can check current supplies and sizes with you; availability is not guaranteed. Many children outgrow shoes before wearing them out, so donating usable gear helps another family and reduces waste. If you have outgrown gear to donate, ask about its condition and where to bring it.</p>"
         },
         {
           "title": "When you arrive",
@@ -321,7 +321,7 @@ window.GRINDSTONE_FAMILY = {
         },
         {
           "title": "Before and after practice",
-          "html": "<ul class=\"quickstart-checklist\"><li>Check TeamSnap before leaving. Arrive early enough to change shoes and be ready at the start.</li><li>Pack athletic clothes, a labeled water bottle, wrestling shoes and headgear. Ask a coach about donated shoes/headgear before buying; sizes vary.</li><li>Keep wrestling shoes off outdoor surfaces. Keep street shoes off the mats. Change at the room and remove jewelry.</li><li>Keep nails trimmed. Tell the coach about an injury, illness or skin concern before contact; use the <a href=\"#family/health\">health guide</a> for next steps.</li><li>After training, shower and clean used clothing and gear. Encourage effort and ask what your wrestler enjoyed or learned.</li></ul><p class=\"no-print\"><a href=\"#family/first-practice\">Read the first-practice guide</a> · <a href=\"#family/health\">Health habits and getting help</a></p><p class=\"quickstart-print-tip no-print\">Printing: use the print button above for a two-page Letter companion. Print double-sided, flip on the long edge, at 100% scale; turn off browser headers and footers.</p>"
+          "html": "<ul class=\"quickstart-checklist\"><li>Check TeamSnap before leaving. Arrive early enough to change shoes and be ready at the start.</li><li>Pack athletic clothes, a labeled water bottle, wrestling shoes and headgear.</li><li><strong>Registration does not include practice gear.</strong> If your family needs help, contact a coach early about donated shoes or headgear. Supplies and sizes are limited; availability is not guaranteed.</li><li>Keep wrestling shoes off outdoor surfaces. Keep street shoes off the mats. Change at the room and remove jewelry.</li><li>Keep nails trimmed. Tell the coach about an injury, illness or skin concern before contact; use the <a href=\"#family/health\">health guide</a> for next steps.</li><li>After training, shower and clean used clothing and gear. Encourage effort and ask what your wrestler enjoyed or learned.</li></ul><p class=\"no-print\"><a href=\"#family/first-practice\">Read the first-practice guide</a> · <a href=\"#family/health\">Health habits and getting help</a></p><p class=\"quickstart-print-tip no-print\">Printing: use the print button above for a two-page Letter companion. Print double-sided, flip on the long edge, at 100% scale; turn off browser headers and footers.</p>"
         },
         {
           "title": "Get every caregiver connected",
@@ -392,7 +392,7 @@ window.GRINDSTONE_FAMILY = {
   "faq": [
     {
       "question": "Can the club help with wrestling shoes or headgear?",
-      "answer": "Grindstone keeps donated shoes and headgear from earlier seasons to help outfit children and give outgrown gear another useful season. Ask a coach about sizes, fit and donations. <a href=\"#family/first-practice\">Prepare for your first practice</a>."
+      "answer": "Registration does not include practice gear. Donated wrestling shoes and headgear may be available to help families who need support, but supplies and sizes are limited. Contact a coach early if you need help; availability is not guaranteed. Ask the club about passing along outgrown gear, too. <a href=\"#family/first-practice\">Prepare for your first practice</a>."
     },
     {
       "question": "Which Grindstone program and practice group should we choose?",
