@@ -10,7 +10,7 @@ A self-contained, buildless website for GitHub Pages. Open `index.html` directly
 - 37 games: the original 30, two team favorites, and five coaching adaptations, with demonstration/source links and clear variation notes.
 - Full program blueprint, coach toolkit, and print downloads.
 - Genuine Shorts when suitable; standard videos when the more useful source is a full lesson.
-- No analytics or build dependencies. Builder drafts and saved items use browser-local storage. The optional shared practice tracker uses a Cloudflare Worker and D1; its name-only editing does not verify a coach's identity.
+- No build dependencies. Cloudflare Web Analytics measures visits to the published site. Builder drafts and saved items use browser-local storage. The optional shared practice tracker uses a Cloudflare Worker and D1; its name-only editing does not verify a coach's identity.
 
 ## Shared practice tracker — October 25, 2026
 
@@ -395,3 +395,26 @@ The approved coach research is incorporated into the main About Us → Our coach
 The draft directory and photo collection include Jessica. Her portrait reuses the original `coach-drafts/hughes-photos/jessica-portrait.jpg`, whose provenance remains in `hughes-source-index.json`. Original photographs, photo indexes and the received public/integration manifests are preserved as historical research records; the current display files are later revisions, not replacements of those frozen snapshots. Earlier research-only names and captions remain in those records.
 
 On October 28, 2026, the user specifically confirmed Brad Gabrish’s proposed identity, Daniel Skelonc’s police portrait and Tyler Lease’s employer portrait. Their supported biographies and named portraits are now promoted to the main coaching pages. Draft labels record this confirmation; original source records and photo bytes remain unchanged. Unnamed team/action images retain their original identification limits.
+
+## Website analytics — October 29, 2026
+
+Cloudflare Web Analytics is separate from the shared practice tracker and D1 database.
+GitHub Pages continues to host the website. `analytics.js` loads Cloudflare's supplied
+beacon only on `packetbench.github.io/grindstone-guide/`; localhost, file previews,
+other hosts and URLs containing `?preview=` do not report. The main library and the
+three public coach-research pages are instrumented; the legacy redirect is excluded.
+
+To view reports, sign in to [Cloudflare Web Analytics](https://dash.cloudflare.com/8735deabf9a615b56b1e709b2747a7c1/web-analytics),
+select `packetbench.github.io`, then choose the date range. The sidebar path is
+Observability → Analytics → Web analytics. Visits are incoming visits, not an exact
+count of unique people. Page views can include repeated visits. Collection starts
+with this deployment; historical website traffic is not backfilled. Browser blockers
+can prevent reporting, and Cloudflare currently retains six months of analytics.
+
+The site uses hash routes. Do not promise separate reports for Moves, Families or
+individual skills until the live dashboard confirms how those routes are represented.
+The beacon receives no custom practice plans, coach names or tracker records.
+
+[Cloudflare setup](https://developers.cloudflare.com/web-analytics/get-started/)
+· [Metric definitions](https://developers.cloudflare.com/web-analytics/data-metrics/high-level-metrics/)
+· [FAQ](https://developers.cloudflare.com/web-analytics/faq/)
