@@ -387,21 +387,21 @@
         {
           "id": "brian-leaf-21",
           "text": "\"Brian Leaf\" \"Owen J. Roberts\"",
-          "purpose": "Test the newly discovered 2007 school candidate, not a claim of identity.",
+          "purpose": "Retired school route: the user rejected the brian.leaf1 candidate photograph on October 24, 2026. Do not assign this namesake’s school, town or youth program to Coach Brian.",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Owen%20J.%20Roberts%22",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Owen%20J.%20Roberts%22",
           "research_status": "duplicate/superseded",
-          "research_note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "research_note": "Superseded by the user’s rejection of this school-profile candidate. Retained as a historical query; do not rerun it as an active identity lead.",
           "research_report": "fb-check-d.json"
         },
         {
           "id": "brian-leaf-22",
           "text": "\"Brian Leaf\" \"Spring City\" wrestling",
-          "purpose": "Look for a public youth-club or sports caption connecting the Pennsylvania candidate.",
+          "purpose": "Retired school route: the user rejected the brian.leaf1 candidate photograph on October 24, 2026. Do not assign this namesake’s school, town or youth program to Coach Brian.",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Spring%20City%22%20wrestling",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Spring%20City%22%20wrestling",
           "research_status": "duplicate/superseded",
-          "research_note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "research_note": "Superseded by the user’s rejection of this school-profile candidate. Retained as a historical query; do not rerun it as an active identity lead.",
           "research_report": "fb-check-d.json"
         },
         {
@@ -442,9 +442,9 @@
           "text": "\"Brian Leaf\" \"Owen J Roberts\" wrestling",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Owen%20J%20Roberts%22%20wrestling",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Owen%20J%20Roberts%22%20wrestling",
-          "purpose": "Test the weak prior school candidate only; not a claim that this is the coach.",
+          "purpose": "Retired school route: the user rejected the brian.leaf1 candidate photograph on October 24, 2026. Do not assign this namesake’s school, town or youth program to Coach Brian.",
           "research_status": "duplicate/superseded",
-          "research_note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "research_note": "Superseded by the user’s rejection of this school-profile candidate. Retained as a historical query; do not rerun it as an active identity lead.",
           "research_report": "fb-check-d.json"
         },
         {
@@ -500,12 +500,11 @@
           "text": "\"Brian Leaf\" \"Norchester\"",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Norchester%22",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Norchester%22",
-          "purpose": "The school’s own directory identifies Norchester Wildcats as its K–8 feeder. This is only a conditional route for the unconfirmed Owen J. Roberts Class of 2007 candidate; no Brian membership is established. Seek a named youth-team caption, scrapbook or roster key. Five 2004–06 varsity dual lineups lacked Leaf, but those partial records do not rule out youth participation. The public archive index confirms this exact capture, but the snapshot returned HTTP 429; its roster/photo contents remain uninspected. Retry only when archive access changes.",
+          "purpose": "Retired school route: the user rejected the brian.leaf1 candidate photograph on October 24, 2026. Do not assign this namesake’s school, town or youth program to Coach Brian.",
           "source_url": "https://web.archive.org/web/20061228095830/http://www.norchesterwrestling.com/",
           "source_label": "Norchester · exact December 28, 2006 capture",
-          "status": "pending",
           "research_status": "reviewed-no-result",
-          "research_note": "Norchester query returned no relevant connection; the old school candidate remains unadopted.",
+          "research_note": "Superseded by the user’s rejection of this school-profile candidate. Retained as a historical query; do not rerun it as an active identity lead.",
           "research_report": "fb-check-d.json"
         },
         {
@@ -513,12 +512,11 @@
           "text": "\"Owen J. Roberts\" \"2007\" \"Ledger\" wrestling",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Owen%20J.%20Roberts%22%20%222007%22%20%22Ledger%22%20wrestling",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Owen%20J.%20Roberts%22%20%222007%22%20%22Ledger%22%20wrestling",
-          "purpose": "Seek a 2004–07 yearbook index or named wrestling-team caption. The candidate school remains unconfirmed. The inspected alumni directories did not expose a period scan; do not repeat the five opponent dual lineups or statewide surname database.",
+          "purpose": "Retired school route: the user rejected the brian.leaf1 candidate photograph on October 24, 2026. Do not assign this namesake’s school, town or youth program to Coach Brian.",
           "source_url": "https://nces.ojrsd.com/about-us/activities/community-sports-leagues",
           "source_label": "Conditional OJR archive route",
-          "status": "pending",
           "research_status": "duplicate/superseded",
-          "research_note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "research_note": "Superseded by the user’s rejection of this school-profile candidate. Retained as a historical query; do not rerun it as an active identity lead.",
           "research_report": "fb-check-d.json"
         }
       ],

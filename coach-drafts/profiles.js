@@ -295,7 +295,7 @@ window.COACH_DRAFTS = {
         "Exact-name Pennsylvania, heavyweight, youth, high-school, results and spelling-variant searches have not yet established his school or club.",
         "PAJW, MAWA, Pennsylvania school/tournament and name-variant searches did not establish a school or photo. User-supplied youth heavyweight history retained. Confirmed wrong racer remains in Who we are not.",
         "Earlier research, superseded by the October 29 confirmation: the professional-directory lead was initially unresolved. Stephanie’s public posts and Leaf Builders’ own business page now establish the business connection. The directory’s middle-name claim is not adopted.",
-        "Direct PA-Wrestling surname search returned no Brian/Bryan Leaf among 25 Leaf-substring records. Its high-school coverage does not rule out the user-supplied youth wrestling history. Recent public Mat Rats team captions also supplied no individual Brian tag. New school lead is queued, not assigned.",
+        "Direct PA-Wrestling surname search returned no Brian/Bryan Leaf among 25 Leaf-substring records; its high-school coverage does not rule out the club-supplied youth history. The Owen J. Roberts / Spring City profile candidate and portrait were subsequently rejected by the user on October 24, 2026 and are excluded.",
         "Additional youth-specific checks covered PJW champions, PA Mat Rankings and surviving 1999, 2008 and 2013 MAWA records without an attributable Brian Leaf match. Several 1997–2004 archive links are defunct or inaccessible. These incomplete records cannot establish that he did not wrestle; the user’s Pennsylvania heavyweight background is retained.",
         "October 29 update: the user confirmed the adult in Stephanie Leaf’s public photograph as Coach Brian. Leaf Builders’ page and service post name Brian Leaf as their contact. The photo is not a historical wrestling image; school, youth-club and competitive-year details remain unresolved."
       ],
@@ -352,9 +352,9 @@ window.COACH_DRAFTS = {
           "supports": "Supplementary directory record. The biography uses the company’s own named contact information; the directory’s middle name and any legal ownership implication are not adopted."
         },
         {
-          "title": "Brian Leaf · unresolved Pennsylvania school profile",
+          "title": "Rejected namesake · Pennsylvania school profile",
           "url": "https://www.facebook.com/brian.leaf1",
-          "supports": "Public profile lists Owen J. Roberts Class of 2007 and Spring City. No wrestling, Maryland or Grindstone connection established; school and portrait are not adopted."
+          "supports": "The user rejected this profile’s candidate photograph on October 24, 2026 (\"none of those are him\"). Its Owen J. Roberts / Spring City background is excluded from Coach Brian’s biography. Retained only to prevent repeating this namesake lead."
         },
         {
           "title": "Leaf Builders LLC · confirmed business connection",
