@@ -57,6 +57,7 @@
     return '<p><strong>Drive archive.</strong> ' + esc(status) + '</p><p><a href="' + esc(archiveFolderUrl()) + '" target="_blank" rel="noopener noreferrer">Open practice archive folder</a>. Coaches need permission to view this restricted folder.</p>';
   }
   function archiveRetryHtml(item) {
+    if (state.library) return '<p class="tracker-fine"><a href="#tracker?season=' + esc(encodeURIComponent(state.season)) + '&amp;group=' + esc(item.group) + '">Manage this copy in the tracker</a>.</p>';
     return (state.archiveRetryFailed.has(item.id) ? '<p class="tracker-fine" role="status">The retry could not be requested. Use Refresh records to check the latest status.</p>' : '') + '<p class="tracker-actions">' + button('retry-archive',state.archiveRetrying.has(item.id) ? 'Requesting retry…' : 'Retry Drive copy',item.id,state.archiveRetrying.has(item.id) ? ' disabled' : '') + '</p>';
   }
   function archiveCardHtml(item) {
@@ -77,7 +78,7 @@
     const summary = root.querySelector('[data-tracker-archive-summary]');
     if (summary) summary.innerHTML = archiveSummaryHtml();
     root.querySelectorAll('[data-tracker-archive-session]').forEach(element => {
-      const item = records().find(record => record.id === element.dataset.trackerArchiveSession);
+      const item = state.data.sessions.find(record => record.season === state.season && record.id === element.dataset.trackerArchiveSession);
       if (item) element.innerHTML = archiveCardHtml(item);
     });
   }
@@ -126,20 +127,79 @@
     const g = group();
     return {id:uid(),revision:0,season:state.season,group:state.group,date:today(),startTime:plan?.startTime || g.start || '',location:g.location || '',author:plan?.owner || plan?.author || currentActor(),lead:'',name:plan?.name || 'Group practice',status:'planned',plan:clone(plan) || null,skills:[],notes:'',noSkillReason:'',actor:currentActor()};
   }
-  function render(params) {
+  function render(params, library = false) {
     rememberHistoryDraft();
     const valid = M()?.groups || [];
     const requested = param(params,'group');
     let builderGroup = '';
-    if (param(params,'from') === 'builder') { try { builderGroup = B()?.current()?.program || ''; } catch (_) { /* The loader reports unreadable builder data without changing it. */ } }
+    if (!library && param(params,'from') === 'builder') { try { builderGroup = B()?.current()?.program || ''; } catch (_) { /* The loader reports unreadable builder data without changing it. */ } }
     const season = String(param(params,'season') || '').trim();
-    state = {group:valid.some(g => g.id === requested) ? requested : valid.some(g => g.id === builderGroup) ? builderGroup : 'blue',season:season && season.length <= 80 && !/[\u0000-\u001f\u007f]/.test(season) ? season : defaultSeason(),data:{sessions:[],curricula:[],mode:'local'},view:param(params,'view') === 'coverage' ? 'coverage' : 'schedule',editor:null,actor:state?.actor || '',message:'',error:false,loading:true,loaded:false,fromBuilder:param(params,'from') === 'builder',filter:'',history:null,archive:{enabled:false,jobs:[]},archiveLoading:true,archiveLoaded:false,archiveError:false,archiveRetrying:new Set(),archiveRetryFailed:new Set()};
-    return '<section id="practice-tracker" class="practice-tracker"><p role="status">Loading group schedules…</p></section>';
+    state = {library,group:valid.some(g => g.id === requested) ? requested : library ? 'all' : valid.some(g => g.id === builderGroup) ? builderGroup : 'blue',season:season && season.length <= 80 && !/[\u0000-\u001f\u007f]/.test(season) ? season : defaultSeason(),data:{sessions:[],curricula:[],mode:'local'},view:param(params,'view') === 'coverage' ? 'coverage' : 'schedule',editor:null,copyPending:false,actor:state?.actor || '',message:'',error:false,loading:true,loaded:false,fromBuilder:!library && param(params,'from') === 'builder',planStatus:['active','planned','completed','cancelled','all'].includes(param(params,'status')) ? param(params,'status') : 'active',planId:/^[A-Za-z0-9][A-Za-z0-9_.:-]{0,99}$/.test(param(params,'plan') || '') ? param(params,'plan') : '',filter:library ? String(param(params,'q') || '').trim().slice(0,200) : '',history:null,archive:{enabled:false,jobs:[]},archiveLoading:true,archiveLoaded:false,archiveError:false,archiveRetrying:new Set(),archiveRetryFailed:new Set()};
+    return '<section id="practice-tracker" class="practice-tracker' + (library ? ' practice-plans' : '') + '"><p role="status">' + (library ? 'Loading saved practices…' : 'Loading group schedules…') + '</p></section>';
+  }
+  function renderPlans(params) { return render(params,true); }
+  const planBlocks = plan => Array.isArray(plan?.blocks) ? plan.blocks.filter(block => block && typeof block === 'object' && !Array.isArray(block)) : [];
+  const blockMinutes = block => Number.isFinite(Number(block.minutes)) && Number(block.minutes) >= 0 ? Number(block.minutes) : 0;
+  const planMinutes = plan => Math.round(planBlocks(plan).reduce((total,block) => total + blockMinutes(block),0) * 10) / 10;
+  const groupName = id => M().groups.find(group => group.id === id)?.name || id;
+  const statusName = status => status === 'completed' ? 'Completed' : status === 'cancelled' ? 'Cancelled' : 'Scheduled';
+  function plansPath(overrides = {}) {
+    const next = {group:state.group,season:state.season,status:state.planStatus,q:state.filter,plan:state.planId,...overrides};
+    const params = new URLSearchParams({season:next.season});
+    if (next.group && next.group !== 'all') params.set('group',next.group);
+    if (next.status && next.status !== 'active') params.set('status',next.status);
+    if (next.q) params.set('q',next.q);
+    if (next.plan) params.set('plan',next.plan);
+    return '#plans?' + params.toString();
+  }
+  function plansHeader() {
+    const options = (entries,value) => entries.map(([id,label]) => '<option value="' + esc(id) + '"' + (id === value ? ' selected' : '') + '>' + esc(label) + '</option>').join('');
+    return '<div class="tracker-heading"><p class="eyebrow">Grindstone practice library</p><h1>Practice Plans</h1><p class="page-title">Find a scheduled or completed practice, open its saved instructions, then print it or reuse a separate copy. The shared original stays unchanged.</p></div>' +
+      '<div class="tracker-actions plans-navigation"><a class="button secondary" href="#practices">Build a practice</a><a class="button secondary" href="#tracker?season=' + esc(encodeURIComponent(state.season)) + (state.group !== 'all' ? '&amp;group=' + esc(state.group) : '') + '">Practice tracker</a>' + button('refresh','Refresh records') + '</div>' +
+      '<form class="plans-filters" data-plans-filters><label>Season<select data-plan-filter="season" name="season">' + seasonOptions() + '</select></label><label>Group<select data-plan-filter="group" name="group">' + options([['all','All groups'],...M().groups.map(g => [g.id,g.name])],state.group) + '</select></label><label>Practices<select data-plan-filter="status" name="status">' + options([['active','Scheduled & completed'],['planned','Scheduled'],['completed','Completed'],['cancelled','Cancelled'],['all','All, including cancelled']],state.planStatus) + '</select></label><label class="plans-search">Search plans<input type="search" data-plan-filter="q" name="q" maxlength="200" value="' + esc(state.filter) + '" placeholder="Name, coach, focus or activity"></label><button type="submit" class="tracker-primary">Find plans</button></form>' +
+      '<p class="tracker-mode' + (state.loaded && state.data.mode === 'shared' ? ' is-shared' : '') + '">' + (!state.loaded ? (state.loading ? 'Loading shared practice snapshots…' : 'Practice records could not be loaded. Refresh to try again.') : state.data.mode === 'shared' ? '<strong>Shared practice snapshots.</strong> Browser-only builder drafts are not included. Schedule a plan in the tracker to make it available here.' : '<strong>Local tracker preview only.</strong> These snapshots are saved in this browser, not shared with other coaches. Browser-only builder drafts are not included.') + '</p>' +
+      '<details class="plans-archive-info"><summary>Drive copies and access</summary><div data-tracker-archive-summary>' + archiveSummaryHtml() + '</div></details>' +
+      '<div data-tracker-message class="tracker-message' + (state.error ? ' is-error' : '') + '" role="' + (state.error ? 'alert' : 'status') + '">' + esc(state.message) + '</div>';
+  }
+  function snapshotNames(item, depth = 0) {
+    if (!item || typeof item !== 'object' || depth > 12) return [];
+    const names = [item.name,item.title,item.coach].filter(value => typeof value === 'string');
+    for (const key of ['components','activities','rotation','stations','guide','guides','series','selections']) {
+      const child = item[key];
+      if (Array.isArray(child)) names.push(...child.flatMap(entry => snapshotNames(entry,depth + 1)));
+      else if (child && typeof child === 'object') names.push(...snapshotNames(child,depth + 1));
+    }
+    return names;
+  }
+  function planRows() {
+    const words = state.filter.toLocaleLowerCase().split(/\s+/).filter(Boolean);
+    const statusMatches = item => state.planStatus === 'all' || (state.planStatus === 'active' ? item.status !== 'cancelled' : item.status === state.planStatus);
+    return state.data.sessions.filter(item => item.season === state.season && (state.group === 'all' || item.group === state.group) && statusMatches(item)).filter(item => planBlocks(item.plan).length).filter(item => {
+      const haystack = [item.name,item.author,item.lead,item.location,item.plan?.name,item.plan?.focus,...planBlocks(item.plan).flatMap(block => snapshotNames(block))].join(' ').toLocaleLowerCase();
+      return words.every(word => haystack.includes(word));
+    }).sort((a,b) => {
+      const aPlanned = a.status === 'planned', bPlanned = b.status === 'planned';
+      if (aPlanned !== bPlanned) return aPlanned ? -1 : 1;
+      const dates = (a.date + a.startTime).localeCompare(b.date + b.startTime);
+      return (aPlanned ? dates : -dates) || a.id.localeCompare(b.id);
+    });
+  }
+  function planCard(item) {
+    return '<article class="tracker-session"><div class="tracker-card-heading"><div><span class="tracker-badge ' + esc(item.status) + '">' + statusName(item.status) + '</span><h3><a href="' + esc(plansPath({plan:item.id})) + '">' + esc(item.name) + '</a></h3></div><p class="tracker-date">' + dateLabel(item.date) + (item.startTime ? '<br>' + timeLabel(item.startTime) : '') + '</p></div><p class="tracker-fine"><strong>' + esc(groupName(item.group)) + '</strong> · ' + planMinutes(item.plan) + ' minutes · revision ' + item.revision + '</p><dl class="tracker-details"><div><dt>Location</dt><dd>' + esc(item.location || 'Not set') + '</dd></div><div><dt>Lead coach</dt><dd>' + esc(item.lead || 'To be assigned') + '</dd></div><div><dt>Plan author</dt><dd>' + esc(item.author || 'Not recorded') + '</dd></div></dl>' + (item.plan?.focus ? '<p class="tracker-fine">' + esc(item.plan.focus) + '</p>' : '') + '<p class="tracker-actions"><a class="button secondary" href="' + esc(plansPath({plan:item.id})) + '">Open saved plan</a></p>' + (item.status === 'completed' ? '<div data-tracker-archive-session="' + esc(item.id) + '">' + archiveCardHtml(item) + '</div>' : '') + '</article>';
+  }
+  function plansListHtml() {
+    const rows = planRows();
+    return '<section class="tracker-panel plans-results"><h2>Saved plans <span class="tracker-fine">(' + rows.length + ')</span></h2><p class="tracker-fine">Only sessions with an attached plan appear here. Sessions recorded without a plan remain in the <a href="#tracker?season=' + esc(encodeURIComponent(state.season)) + '">tracker</a>.</p><div class="tracker-card-grid">' + (rows.length ? rows.map(planCard).join('') : '<p class="tracker-empty">No saved plan snapshots match these filters. Try another group or season, clear the search, or schedule a saved plan in the tracker.</p>') + '</div></section>';
+  }
+  function applyPlansFilters() {
+    const read = key => root.querySelector('[data-plan-filter="' + key + '"]')?.value || '';
+    const next = plansPath({season:read('season'),group:read('group'),status:read('status'),q:read('q').trim().slice(0,200),plan:''});
+    window.location.hash = next;
   }
   function header() {
     return '<div class="tracker-heading"><p class="eyebrow">Coach planning</p><h1>Practice & season tracker</h1><p class="page-title">Schedule a saved plan. After practice, confirm what you taught. Your group’s first-covered and last-reviewed dates update from those completed practices.</p></div>' +
       '<nav class="tracker-groups" aria-label="Practice groups">' + M().groups.map(g => '<button type="button" data-tracker-action="group" data-id="' + esc(g.id) + '" aria-pressed="' + (g.id === state.group) + '">' + esc(g.name) + '</button>').join('') + '</nav>' +
-      '<div class="tracker-toolbar"><form data-tracker-season><label>Season<select name="season" aria-describedby="tracker-season-help">' + seasonOptions() + '</select></label><span id="tracker-season-help" class="tracker-fine">Choose a season to view its schedule and teaching history.</span></form><div class="tracker-actions">' + button('refresh','Refresh records') + '<a class="button secondary" href="#practices">Practice builder</a></div></div>' +
+      '<div class="tracker-toolbar"><form data-tracker-season><label>Season<select name="season" aria-describedby="tracker-season-help">' + seasonOptions() + '</select></label><span id="tracker-season-help" class="tracker-fine">Choose a season to view its schedule and teaching history.</span></form><div class="tracker-actions">' + button('refresh','Refresh records') + '<a class="button secondary" href="#practices">Practice builder</a><a class="button secondary" href="#plans?season=' + esc(encodeURIComponent(state.season)) + '&amp;group=' + esc(state.group) + '">Browse practice plans</a></div></div>' +
       '<p class="tracker-mode ' + (state.loaded && state.data.mode === 'shared' ? 'is-shared' : '') + '">' + (!state.loaded ? (state.loading ? 'Checking tracker storage…' : 'Records have not loaded. Refresh to try again; no teaching history has been changed.') : state.data.mode === 'shared' ? '<strong>Shared tracker.</strong> Saved changes are visible to other coaches and families. Enter your name when making a change.' : '<strong>Local preview only.</strong> These records stay in this browser. Other coaches cannot see them until shared storage is connected.') + '</p>' +
       '<div class="tracker-mode" data-tracker-archive-summary>' + archiveSummaryHtml() + '</div>' +
       (state.group === 'valkyries' ? '<p class="tracker-fine tracker-independent">Valkyries have their own schedule and season goals. Nothing here copies dates, attendance rules or expectations from Mat Rats.</p>' : '') +
@@ -222,32 +282,48 @@
     return '<section class="tracker-editor" data-tracker-editor tabindex="-1"><div class="tracker-section-heading"><div><p class="eyebrow">' + esc(group().name) + ' · ' + esc(state.season) + '</p><h2>' + (e.restoring ? 'Restore earlier season expectations' : 'Choose season expectations') + '</h2></div>' + button('close-editor','Close') + '</div><form data-tracker-curriculum-form><p>Choose what you expect this group to learn. Removing a goal does not erase completed teaching history.</p>' + input('actor','Your name (saving these goals)',e.record.actor || currentActor(),'required maxlength="120" autocomplete="name"') + '<div class="tracker-actions">' + button('suggestions','Add suggested pathway skills') + button('select-all','Check all listed skills') + button('unselect-all','Uncheck all listed skills') + '</div><div data-tracker-chosen>' + chosenSkillsHtml() + '</div>' + pickerHtml() + '<p data-tracker-form-error class="tracker-message is-error" role="alert"></p><div class="tracker-actions"><button type="submit" class="tracker-primary">Save season expectations</button>' + button('close-editor','Cancel changes') + '</div></form></section>';
   }
   function snapshotFields(entries) { return entries.filter(([,value]) => typeof value === 'string' && value.trim()).map(([label,value]) => '<p class="tracker-preline"><strong>' + esc(label) + ':</strong> ' + esc(value) + '</p>').join(''); }
-  function guideSnapshotHtml(guide) {
+  function stepsHtml(steps) { return Array.isArray(steps) && steps.length ? '<ol class="tracker-snapshot-steps">' + steps.filter(step => typeof step === 'string').map(step => '<li>' + esc(step) + '</li>').join('') + '</ol>' : ''; }
+  function guideSnapshotHtml(guide, print = false) {
     if (!guide || typeof guide !== 'object') return '';
     const steps = Array.isArray(guide.steps) ? guide.steps : [], cues = Array.isArray(guide.cues) ? guide.cues.join(' · ') : guide.cues;
-    return '<details class="tracker-snapshot-guide"><summary>Saved teaching guide: ' + esc(guide.title || 'Instruction') + '</summary>' + snapshotFields([['Setup',guide.setup],['Task',guide.task]]) + (steps.length ? '<ol>' + steps.map(step => '<li>' + esc(step) + '</li>').join('') + '</ol>' : '') + snapshotFields([['Cues',cues],['Ready when',guide.readiness],['Boundaries',guide.boundary],['Age guidance',guide.ageNote],['Adaptations',guide.adaptation],['Source scope',guide.sourceNote]]) + '</details>';
+    return '<details class="tracker-snapshot-guide"' + (print ? ' open' : '') + '><summary>Saved teaching guide: ' + esc(guide.title || 'Instruction') + '</summary>' + snapshotFields([['Setup',guide.setup],['Task',guide.task]]) + (steps.length ? '<ol>' + steps.map(step => '<li>' + esc(step) + '</li>').join('') + '</ol>' : '') + snapshotFields([['Cues',cues],['Ready when',guide.readiness],['Boundaries',guide.boundary],['Age guidance',guide.ageNote],['Adaptations',guide.adaptation],['Source scope',guide.sourceNote]]) + '</details>';
   }
-  function seriesSnapshotHtml(series) {
+  function seriesSnapshotHtml(series, print = false) {
     if (!series || typeof series !== 'object') return '';
     const selections = Array.isArray(series.selections) ? series.selections : [], guides = Array.isArray(series.guides) ? series.guides : [];
-    return '<section class="tracker-snapshot-series"><h5>' + (series.kind === 'foundation' ? 'Selected foundation skills' : 'Selected series options') + '</h5>' + (selections.length ? '<ul>' + selections.map(s => '<li>' + esc(s.title || '') + '</li>').join('') + '</ul>' : '') + guides.map(guideSnapshotHtml).join('') + '</section>';
+    return '<section class="tracker-snapshot-series"><h5>' + (series.kind === 'foundation' ? 'Selected foundation skills' : 'Selected series options') + '</h5>' + (selections.length ? '<ul>' + selections.map(s => '<li>' + esc(s.title || '') + '</li>').join('') + '</ul>' : '') + guides.map(guide => guideSnapshotHtml(guide,print)).join('') + '</section>';
   }
-  function activitySnapshotHtml(activity,label) {
+  function activitySnapshotHtml(activity,label,print = false) {
     if (!activity || typeof activity !== 'object') return '';
-    return '<article class="tracker-snapshot-activity"><h4>' + esc(label) + ': ' + esc(activity.name || activity.title || 'Activity') + '</h4>' + snapshotFields([['Task',activity.task || activity.instructions],['Cues',Array.isArray(activity.cues) ? activity.cues.join(' · ') : activity.cues],['Coach',activity.coach],['Equipment',activity.equipment],['Space',activity.space],['Partner groups',activity.group],['Turns & recovery',activity.rounds],['Simpler version',activity.simpler],['Success',activity.success],['Stop / reset',activity.stop]]) + guideSnapshotHtml(activity.guide) + seriesSnapshotHtml(activity.series) + '</article>';
+    return '<article class="tracker-snapshot-activity"><h4>' + esc(label) + ': ' + esc(activity.name || activity.title || 'Activity') + '</h4>' + snapshotFields([['Task',activity.task || activity.instructions],['Cues',Array.isArray(activity.cues) ? activity.cues.join(' · ') : activity.cues],['Coach',activity.coach],['Equipment',activity.equipment],['Space',activity.space],['Partner groups',activity.group],['Turns & recovery',activity.rounds],['Simpler version',activity.simpler],['Success',activity.success],['Stop / reset',activity.stop],['Source scope',activity.sourceNote],['Setup',activity.setup],['Boundaries',activity.boundary],['Ready when',activity.readiness]]) + stepsHtml(activity.steps) + guideSnapshotHtml(activity.guide,print) + seriesSnapshotHtml(activity.series,print) + '</article>';
   }
-  function componentsSnapshotHtml(block) {
+  function componentsSnapshotHtml(block, print = false) {
     const c = block.components || {}, activities = Array.isArray(c.activities) ? c.activities : Array.isArray(block.activities) ? block.activities : [], rotation = c.rotation, stations = Array.isArray(rotation?.stations) ? rotation.stations : [];
     const minutes = value => typeof value === 'number' && Number.isFinite(value) ? value : 'not recorded';
-    return (activities.length ? '<section class="tracker-snapshot-components"><h4>Additional activities in this slot</h4><p class="tracker-fine">These activities share the block’s ' + minutes(block.minutes) + ' minutes, including its main task.</p>' + activities.map((a,i) => activitySnapshotHtml(a,'Activity ' + (i + 1))).join('') + '</section>' : '') + seriesSnapshotHtml(c.series) + (rotation ? '<section class="tracker-snapshot-components"><h4>Simultaneous station rotation</h4><p class="tracker-fine">One shared clock: ' + minutes(rotation.rounds) + ' rounds × ' + minutes(rotation.workMinutes) + ' minutes of work; ' + minutes(rotation.changeMinutes) + ' minutes between rounds. Briefing: ' + minutes(rotation.briefingMinutes) + ' minutes. Finish / reset: ' + minutes(rotation.finishMinutes) + ' minutes.</p>' + stations.map((s,i) => activitySnapshotHtml(s,'Station ' + (i + 1))).join('') + '</section>' : '');
+    return (activities.length ? '<section class="tracker-snapshot-components"><h4>Additional activities in this slot</h4><p class="tracker-fine">These activities share the block’s ' + minutes(block.minutes) + ' minutes, including its main task.</p>' + activities.map((a,i) => activitySnapshotHtml(a,'Activity ' + (i + 1),print)).join('') + '</section>' : '') + seriesSnapshotHtml(c.series,print) + (rotation ? '<section class="tracker-snapshot-components"><h4>Simultaneous station rotation</h4><p class="tracker-fine">One shared clock: ' + minutes(rotation.rounds) + ' rounds × ' + minutes(rotation.workMinutes) + ' minutes of work; ' + minutes(rotation.changeMinutes) + ' minutes between rounds. Briefing: ' + minutes(rotation.briefingMinutes) + ' minutes. Finish / reset: ' + minutes(rotation.finishMinutes) + ' minutes.</p>' + stations.map((s,i) => activitySnapshotHtml(s,'Station ' + (i + 1),print)).join('') + '</section>' : '');
   }
-  function planViewHtml() {
-    const d = state.editor.record, p = d.plan;
-    const blocks = p?.blocks || []; let elapsed = 0;
-    return '<section class="tracker-editor" data-tracker-editor tabindex="-1"><div class="tracker-section-heading"><div><p class="eyebrow">Saved practice snapshot</p><h2>' + esc(p?.name || d.name) + '</h2></div>' + button('close-editor','Close') + '</div>' + planSummary(p) + '<ol class="tracker-plan-blocks">' + blocks.map(b => {
-      const start = elapsed; elapsed += Number(b.minutes || 0);
-      return '<li><h3>' + esc(b.title || b.name || b.type || 'Practice block') + '</h3><p class="tracker-fine">' + start + '–' + elapsed + ' min · ' + Number(b.minutes || 0) + ' minutes</p>' + (b.instructions ? '<p class="tracker-preline">' + esc(b.instructions) + '</p>' : '') + snapshotFields([['Setup',b.setup],['Cues',Array.isArray(b.cues) ? b.cues.join(' · ') : b.cues],['Ready when',b.readiness],['Boundaries',b.boundary],['Age guidance',b.ageNote],['Adaptations',b.adaptation]]) + componentsSnapshotHtml(b) + (b.notes ? '<p class="tracker-preline">' + esc(b.notes) + '</p>' : '') + '</li>';
-    }).join('') + '</ol>' + (p?.notes ? '<p class="tracker-preline">' + esc(p.notes) + '</p>' : '') + '<div class="tracker-actions">' + button('builder-copy','Open a separate copy in builder') + button('close-editor','Close plan') + '</div></section>';
+  function copyConfirmationHtml() {
+    if (!state.library || !state.copyPending) return '';
+    return '<section class="tracker-notice" role="region" aria-labelledby="tracker-copy-confirm-title" aria-describedby="tracker-copy-confirm-help" data-plan-copy-confirm tabindex="-1"><h3 id="tracker-copy-confirm-title">Open a separate builder copy?</h3><p id="tracker-copy-confirm-help">This replaces your current browser draft with a new copy of this saved plan. The shared plan stays unchanged. In the builder, Undo last structural change can restore your previous draft.</p><div class="tracker-actions">' + button('confirm-builder-copy','Open separate copy','',' class="tracker-primary"') + button('cancel-builder-copy','Keep current draft') + '</div></section>';
+  }
+  function planActionsHtml() { return '<div class="tracker-actions">' + button('print-plan','Print saved plan') + button('builder-copy','Open a separate copy in builder') + '</div>'; }
+  function planViewHtml(print = false) {
+    const d = state.editor.record, p = d.plan, blocks = planBlocks(p); let elapsed = 0;
+    const close = state.library ? '<a class="button secondary" href="' + esc(plansPath({plan:''})) + '">Back to plans</a>' : button('close-editor','Close plan');
+    return '<section class="tracker-editor tracker-plan-view"' + (print ? '' : ' data-tracker-editor tabindex="-1"') + '><div class="tracker-section-heading"><div><p class="eyebrow">Grindstone · saved practice snapshot</p><' + (print ? 'h1' : 'h2') + '>' + esc(p?.name || d.name) + '</' + (print ? 'h1' : 'h2') + '></div>' + (print ? '' : close) + '</div><p><strong>' + esc(groupName(d.group)) + '</strong> · ' + dateLabel(d.date) + (d.startTime ? ' · ' + timeLabel(d.startTime) : '') + ' · ' + statusName(d.status) + ' · revision ' + d.revision + '</p>' + snapshotFields([['Location',d.location],['Plan author',d.author],['Lead coach',d.lead],['Focus',p?.focus]]) + planSummary(p) + (print ? '' : planActionsHtml() + copyConfirmationHtml()) + snapshotFields([['Planning week',p?.weekContext?.label],['Shared week focus',p?.weekContext?.focus],['Shared cue',p?.weekContext?.cue],['Desired outcome',p?.weekContext?.outcome]]) +
+      (d.status === 'completed' ? '<section class="tracker-confirmed-skills"><h3>Confirmed teaching</h3><p class="tracker-fine">These are the skills confirmed after practice. The saved plan below may include activities that were skipped.</p>' + (d.skills?.length ? '<ul>' + d.skills.map(item => '<li>' + esc(item.title) + '</li>').join('') + '</ul>' : '<p>' + esc(d.noSkillReason || 'No skills recorded.') + '</p>') + snapshotFields([['Practice reflection',d.notes]]) + '</section>' : snapshotFields([['Session notes',d.notes]])) +
+      '<ol class="tracker-plan-blocks">' + blocks.map(b => {
+        const start = elapsed; elapsed = Math.round((elapsed + blockMinutes(b)) * 10) / 10;
+        return '<li><h3>' + esc(b.title || b.name || b.type || 'Practice block') + '</h3><p class="tracker-fine">' + start + '–' + elapsed + ' min · ' + blockMinutes(b) + ' minutes</p>' + snapshotFields([['Task',b.instructions],['Setup',b.setup],['Cues',Array.isArray(b.cues) ? b.cues.join(' · ') : b.cues],['Ready when',b.readiness],['Boundaries',b.boundary],['Age guidance',b.ageNote],['Adaptations',b.adaptation],['Source scope',b.sourceNote],['Delivery',b.delivery],['Partner / station plan',b.rotation]]) + stepsHtml(b.steps) + componentsSnapshotHtml(b,print) + snapshotFields([['Notes',b.notes]]) + '</li>';
+      }).join('') + '</ol>' + snapshotFields([['Plan notes',p?.notes]]) + (Object.values(p?.handoff || {}).some(value => typeof value === 'string' && value.trim()) ? '<section><h3>Handoff saved with the source plan</h3>' + snapshotFields([['Actually taught',p.handoff.taught],['Changed from the plan',p.handoff.changed],['What worked',p.handoff.worked],['Reliable skills',p.handoff.reliable],['Next coach',p.handoff.revisit]]) + '</section>' : '') + (print ? '' : (d.status === 'completed' ? '<div data-tracker-archive-session="' + esc(d.id) + '">' + archiveCardHtml(d) + '</div>' : '') + '<div class="tracker-actions">' + button('print-plan','Print saved plan') + button('builder-copy','Open a separate copy in builder') + close + '</div>') + '</section>';
+  }
+  function printPlan() {
+    if (state.editor?.kind !== 'plan' || !planBlocks(state.editor.record.plan).length) return;
+    const sheet = root.querySelector('.tracker-print-sheet');
+    if (!sheet) return;
+    sheet.innerHTML = planViewHtml(true); sheet.setAttribute('data-ready','true');
+    try { window.print(); }
+    finally { sheet.removeAttribute('data-ready'); sheet.innerHTML = ''; }
   }
   function historyHtml() {
     if (!state.history) return '';
@@ -256,7 +332,7 @@
   }
   function paint(focusEditor) {
     if (!root || !state) return;
-    root.innerHTML = header() + (state.loading ? '<p role="status">Loading records…</p>' : !state.loaded ? '' : (state.editor ? state.editor.kind === 'session' ? sessionEditorHtml() : state.editor.kind === 'curriculum' ? curriculumEditorHtml() : planViewHtml() : '') + historyHtml() + (state.view === 'coverage' ? coverageHtml() : scheduleHtml()));
+    root.innerHTML = (state.library ? plansHeader() : header()) + (state.loading ? '<p role="status">Loading records…</p>' : !state.loaded ? '' : (state.editor ? state.editor.kind === 'session' ? sessionEditorHtml() : state.editor.kind === 'curriculum' ? curriculumEditorHtml() : planViewHtml() : '') + (state.library ? plansListHtml() : historyHtml() + (state.view === 'coverage' ? coverageHtml() : scheduleHtml()))) + '<div class="tracker-print-sheet" aria-hidden="true"></div>';
     if (focusEditor) root.querySelector('[data-tracker-editor]')?.focus();
   }
   async function load() {
@@ -266,13 +342,23 @@
       const data = await S().load(state.season);
       if (current !== ticket || active !== state || !root?.isConnected) return;
       state.data = data; state.loading = false; state.loaded = true;
+      if (state.library) {
+        state.message = ''; state.error = false;
+        const selected = state.data.sessions.find(item => item.season === state.season && item.id === state.planId && planBlocks(item.plan).length);
+        state.editor = selected ? {kind:'plan',record:selected,dirty:false} : null;
+        if (state.planId && !selected) notify('This saved plan was not found in the selected season. Choose another plan below or check the shared link.',true);
+        paint();
+        const restored = window.GRINDSTONE_NAVIGATION?.plansReady?.({selected:!!selected});
+        if (selected && !restored) root.querySelector('[data-tracker-editor]')?.focus();
+        return;
+      }
       const savedDraft = historyDrafts.get(draftKey(state));
       if (savedDraft) {
         historyDrafts.delete(draftKey(state)); state.editor = savedDraft.editor; state.view = savedDraft.view; state.fromBuilder = false;
         notify('Restored your unsaved ' + (state.editor.kind === 'curriculum' ? 'season expectations' : 'practice changes') + ' after browser navigation. Review and save them when ready; nothing was published automatically.',false);
       } else if (state.fromBuilder) { state.fromBuilder = false; const plan = B()?.current(); if (plan?.blocks?.length) openSession(sessionDefaults(plan),false,false); else notify('Start or save a plan in the practice builder, then schedule it here.',false); }
       paint(!!state.editor);
-    } catch (error) { if (current !== ticket || active !== state) return; state.loading = false; notify(error.message || 'Could not load the tracker. Refresh to try again.',true); paint(); }
+    } catch (error) { if (current !== ticket || active !== state) return; state.loading = false; notify(error.message || 'Could not load the tracker. Refresh to try again.',true); paint(); if (state.library) window.GRINDSTONE_NAVIGATION?.plansReady?.({selected:false}); }
   }
   function selectedSkills() { const e = state.editor; return e.options.filter(s => e.selected.has(s.id)).map(skill); }
   function captureSession() {
@@ -371,17 +457,28 @@
     const action = buttonElement.dataset.trackerAction, id = buttonElement.dataset.id;
     const record = () => state.data.sessions.find(s => s.id === id);
     if (state.editor?.saving) return;
+    if (state.library && !['refresh','builder-copy','confirm-builder-copy','cancel-builder-copy','print-plan'].includes(action)) return;
     captureEditor();
     if (action === 'new') { if (discard()) openSession(sessionDefaults(),false,false); }
     else if (action === 'edit' || action === 'complete') { if (record() && discard()) openSession(record(),action === 'complete',false); }
     else if (action === 'close-editor') closeEditor();
     else if (action === 'group') { if (!discard()) return; state.editor = null; state.history = null; state.group = id; state.filter = ''; state.message = ''; updateAddress(); paint(); void loadArchive(); }
     else if (action === 'schedule-view' || action === 'coverage-view') { state.view = action === 'coverage-view' ? 'coverage' : 'schedule'; updateAddress(); captureSession(); paint(); }
-    else if (action === 'refresh') { if (!discard()) return; state.editor = null; state.history = null; state.loading = true; paint(); await load(); }
+    else if (action === 'refresh') { if (!discard()) return; state.copyPending = false; state.editor = null; state.history = null; state.loading = true; paint(); await load(); }
+    else if (action === 'print-plan') printPlan();
     else if (action === 'retry-archive') await retryArchive(id);
     else if (action === 'curriculum') { if (discard()) openCurriculum(); }
     else if (action === 'view-plan') { if (record() && discard()) { state.editor = {kind:'plan',record:record(),dirty:false}; state.history = null; paint(true); } }
-    else if (action === 'builder-copy') { const plan = state.editor?.record.plan; if (plan) { if (B().current()?.blocks?.length && !window.confirm('Open this plan as a separate builder draft? The builder’s Undo can restore your current draft.')) return; B().importPlan(clone(plan)); state.editor = null; window.location.hash = '#practices'; } }
+    else if (action === 'cancel-builder-copy' && state.library) { state.copyPending = false; paint(); root.querySelector('[data-tracker-action="builder-copy"]')?.focus(); }
+    else if (action === 'builder-copy' || action === 'confirm-builder-copy' && state.library && state.copyPending) {
+      const plan = state.editor?.record.plan;
+      if (!plan) return;
+      if (action === 'builder-copy' && B().current()?.blocks?.length) {
+        if (state.library) { state.copyPending = true; paint(); root.querySelector('[data-plan-copy-confirm]')?.focus(); return; }
+        if (!window.confirm('Open this plan as a separate builder draft? The builder’s Undo can restore your current draft.')) return;
+      }
+      B().importPlan(clone(plan)); state.copyPending = false; state.editor = null; window.location.hash = '#practices';
+    }
     else if (action === 'history') await showHistory('session',id);
     else if (action === 'curriculum-history') await showHistory('curriculum',id);
     else if (action === 'close-history') { state.history = null; paint(); }
@@ -415,12 +512,14 @@
       if (event.target.closest('[data-tracker-editor]') && state.editor && !event.target.matches('[data-tracker-skill-search]')) state.editor.dirty = true;
     });
     root.addEventListener('keydown',event => {
+      if (state.library && state.copyPending && event.key === 'Escape') { event.preventDefault(); void action({dataset:{trackerAction:'cancel-builder-copy'}}); return; }
       if (event.key !== 'Enter' || event.isComposing) return;
       if (event.target.matches('[data-tracker-skill-search]')) { event.preventDefault(); return; }
       if (event.target.matches('[data-tracker-manual]')) { event.preventDefault(); Promise.resolve(action({dataset:{trackerAction:'add-manual'}})).catch(error => notify(error.message || 'Could not add that skill.',true)); }
     });
     root.addEventListener('change',event => {
       const target = event.target, e = state.editor;
+      if (state.library && target.matches('[data-plan-filter]') && target.dataset.planFilter !== 'q') { applyPlansFilters(); return; }
       if (target.name === 'season' && target.closest('[data-tracker-season]')) {
         if (target.value === state.season) return;
         if (!discard()) { target.value = state.season; return; }
@@ -454,7 +553,8 @@
     });
     root.addEventListener('submit',event => {
       const form = event.target;
-      if (form.matches('[data-tracker-session-form]')) { event.preventDefault(); save(form,'session'); }
+      if (state.library && form.matches('[data-plans-filters]')) { event.preventDefault(); applyPlansFilters(); }
+      else if (form.matches('[data-tracker-session-form]')) { event.preventDefault(); save(form,'session'); }
       else if (form.matches('[data-tracker-curriculum-form]')) { event.preventDefault(); save(form,'curriculum'); }
       else if (form.matches('[data-tracker-season]')) {
         event.preventDefault();
@@ -475,5 +575,5 @@
   window.addEventListener('popstate',rememberHistoryDraft);
   window.addEventListener('hashchange',rememberHistoryDraft);
   window.addEventListener('beforeunload', event => { if (root?.isConnected && state?.editor?.dirty) { event.preventDefault(); event.returnValue = ''; } });
-  window.GRINDSTONE_TRACKER = {render,bind};
+  window.GRINDSTONE_TRACKER = {render,renderPlans,bind};
 }());

@@ -83,6 +83,13 @@ const listingId=h.history.state.grindstone.id,historyLength=h.snapshot().stack.l
  for(const invalid of ['#tracker/unknown','#tracker/../../other','#tracker/<script>'])assert.equal(tracker.api.safeRouteHash(invalid),'');checks++;
  const builder=harness('#practices?age=7-10');builder.scroll(510);builder.navigate('#tracker?group=blue&from=builder');builder.scroll(215);builder.history.back();builder.flush();assert.equal(builder.location.hash,'#practices?age=7-10');assert.equal(builder.window.scrollY,510);builder.history.forward();builder.flush();assert.equal(builder.location.hash,'#tracker?group=blue&from=builder');assert.equal(builder.window.scrollY,215);checks++;
 }
+{
+ const plans=harness('#plans?season=2026-2027&group=pups&q=stance');
+ assert(plans.elements.main.innerHTML.includes('practice-plans'));plans.window.GRINDSTONE_NAVIGATION.plansReady({selected:false});plans.flush();checks++;
+ const selected='#plans?season=2026-2027&group=pups&q=stance&plan=session-public';
+ assert.equal(plans.api.safeRouteHash(selected),selected);plans.scroll(320);plans.navigate(selected);plans.window.GRINDSTONE_NAVIGATION.plansReady({selected:true});plans.flush();plans.scroll(120);plans.history.back();plans.flush();plans.scroll(0);assert.equal(plans.api.navigationSnapshot().scroll,320);plans.window.GRINDSTONE_NAVIGATION.plansReady({selected:false});plans.flush();assert.equal(plans.location.hash,'#plans?season=2026-2027&group=pups&q=stance');assert.equal(plans.window.scrollY,320);plans.history.forward();plans.flush();plans.scroll(0);assert.equal(plans.api.navigationSnapshot().scroll,120);plans.window.GRINDSTONE_NAVIGATION.plansReady({selected:true});plans.flush();assert.equal(plans.location.hash,selected);assert.equal(plans.window.scrollY,120);checks++;
+ assert.equal(plans.api.safeRouteHash('#plans/../../tracker'),'');plans.navigate('#practices');assert.equal(plans.window.GRINDSTONE_NAVIGATION.plansReady({selected:false}),false);assert(plans.elements.main.innerHTML.includes('href="#plans"'));checks++;
+}
 const D=h.context.window.GRINDSTONE,S=h.context.window.GRINDSTONE_PATHWAY;
 const frameworkData=h.context.window.GRINDSTONE_FRAMEWORKS;
 const expansionModules=[h.context.window.GRINDSTONE_SERIES_NEUTRAL,h.context.window.GRINDSTONE_SERIES_TOP,h.context.window.GRINDSTONE_SERIES_ESCAPES,h.context.window.GRINDSTONE_SERIES_FOUNDATION];
