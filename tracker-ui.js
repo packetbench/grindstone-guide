@@ -11,7 +11,7 @@
   const defaultSeason = () => { const date = today(), y = Number(date.slice(0,4)) - (Number(date.slice(5,7)) < 7 ? 1 : 0); return y + '-' + (y + 1); };
   const visitedSeasons = new Set();
   const historyDrafts = new Map();
-  let root, state, ticket = 0;
+  let root, state, ticket = 0, archiveTicket = 0;
   const draftKey = record => record.season + '\n' + record.group;
   function forgetHistoryDraft(editor) { if (editor?.record) historyDrafts.delete(draftKey(editor.record)); }
   function rememberHistoryDraft() {
@@ -45,6 +45,77 @@
   function curriculum() { return state.data.curricula.find(item => item.group === state.group && item.season === state.season); }
   function expected() { return curriculum() || {id:curriculumId(),revision:0,group:state.group,season:state.season,skills:[]}; }
   function button(action, label, id, extra) { return '<button type="button" data-tracker-action="' + action + '"' + (id ? ' data-id="' + esc(id) + '"' : '') + (extra || '') + '>' + label + '</button>'; }
+  function archiveFolderUrl() {
+    const configured = window.GRINDSTONE_TRACKER_CONFIG?.archiveFolderUrl;
+    return typeof configured === 'string' && /^https:\/\/drive\.google\.com\/drive\/folders\/[A-Za-z0-9_-]+$/.test(configured) ? configured : 'https://drive.google.com/drive/folders/1nH6QOx1E0mTWGiRg9MroZ6iJX9PQuXK_';
+  }
+  function archiveFileUrl(value) {
+    return typeof value === 'string' && /^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]+\/view$/.test(value) ? value : '';
+  }
+  function archiveSummaryHtml() {
+    const status = state.archiveLoading ? 'Checking the Drive archive connection…' : state.archiveError ? 'Drive archive status is unavailable. Use Refresh records to try again; tracker records and teaching history are separate.' : !state.archiveLoaded ? 'Drive archive status has not loaded.' : state.archive.enabled ? 'Newly completed practices automatically queue for PDF and JSON copies, normally within about 5 minutes. Corrections create a separate revision. Each practice’s status confirms when its files are ready.' : 'Connection pending. Newly completed practices will automatically queue for PDF and JSON copies once the Drive connection is enabled. Copies normally take about 5 minutes; corrections will create separate revisions.';
+    return '<p><strong>Drive archive.</strong> ' + esc(status) + '</p><p><a href="' + esc(archiveFolderUrl()) + '" target="_blank" rel="noopener noreferrer">Open practice archive folder</a>. Coaches need permission to view this restricted folder.</p>';
+  }
+  function archiveRetryHtml(item) {
+    return (state.archiveRetryFailed.has(item.id) ? '<p class="tracker-fine" role="status">The retry could not be requested. Use Refresh records to check the latest status.</p>' : '') + '<p class="tracker-actions">' + button('retry-archive',state.archiveRetrying.has(item.id) ? 'Requesting retry…' : 'Retry Drive copy',item.id,state.archiveRetrying.has(item.id) ? ' disabled' : '') + '</p>';
+  }
+  function archiveCardHtml(item) {
+    if (item.status !== 'completed') return '';
+    if (state.archiveLoading) return '<p class="tracker-fine">Checking Drive copy status…</p>';
+    if (state.archiveError || !state.archiveLoaded) return '<p class="tracker-fine">Drive copy status unavailable. Use Refresh records to check again.</p>';
+    if (!state.archive.enabled) return '<p class="tracker-fine">Drive connection pending.</p>';
+    const job = state.archive.jobs.find(entry => entry.sessionId === item.id && entry.revision === item.revision);
+    if (!job) return item.archive?.warning ? '<p class="tracker-fine">The practice is saved, but its Drive copy was not queued. Retry the copy for this revision.</p>' + archiveRetryHtml(item) : '<p class="tracker-fine">No Drive copy for this revision.</p>';
+    if (job.status === 'pending') return '<p class="tracker-fine">Drive copy queued for revision ' + Number(item.revision) + '. PDF and JSON are not ready yet. Use Refresh records to check progress.</p>';
+    if (job.status === 'failed') return '<p class="tracker-fine">Drive copy could not be completed for revision ' + Number(item.revision) + '. ' + (job.retryable ? 'The archive service can retry this copy.' : 'The archive connection may need attention before another attempt.') + '</p>' + archiveRetryHtml(item);
+    const pdf = archiveFileUrl(job.pdfUrl), json = archiveFileUrl(job.jsonUrl);
+    if (!pdf || !json) return '<p class="tracker-fine">Drive reports this revision archived, but its file links are unavailable. Use Refresh records or the archive folder to check.</p>';
+    return '<p class="tracker-fine">Drive copy ready · revision ' + Number(item.revision) + '.</p><p class="tracker-actions"><a href="' + esc(pdf) + '" target="_blank" rel="noopener noreferrer">Open PDF</a><a href="' + esc(json) + '" target="_blank" rel="noopener noreferrer">Open JSON</a></p>';
+  }
+  function paintArchive() {
+    if (!root?.isConnected) return;
+    const summary = root.querySelector('[data-tracker-archive-summary]');
+    if (summary) summary.innerHTML = archiveSummaryHtml();
+    root.querySelectorAll('[data-tracker-archive-session]').forEach(element => {
+      const item = records().find(record => record.id === element.dataset.trackerArchiveSession);
+      if (item) element.innerHTML = archiveCardHtml(item);
+    });
+  }
+  async function loadArchive() {
+    const current = ++archiveTicket, active = state, season = state.season, selectedGroup = state.group;
+    state.archiveLoading = true; state.archiveLoaded = false; state.archiveError = false; state.archive = {enabled:false,jobs:[]};
+    paintArchive();
+    try {
+      const result = S()?.archiveStatus ? await S().archiveStatus(season) : {enabled:false,jobs:[]};
+      if (current !== archiveTicket || active !== state || season !== state.season || selectedGroup !== state.group || !root?.isConnected) return;
+      if (!result || typeof result.enabled !== 'boolean' || !Array.isArray(result.jobs)) throw new Error('Invalid archive status');
+      state.archive = {enabled:result.enabled,jobs:result.jobs.filter(job => job && typeof job.sessionId === 'string' && Number.isSafeInteger(job.revision) && job.revision > 0 && ['pending','archived','failed'].includes(job.status)).map(job => ({sessionId:job.sessionId,revision:job.revision,status:job.status,pdfUrl:archiveFileUrl(job.pdfUrl),jsonUrl:archiveFileUrl(job.jsonUrl),retryable:job.retryable === true}))};
+      state.archiveLoaded = true;
+    } catch (_) {
+      if (current !== archiveTicket || active !== state || season !== state.season || selectedGroup !== state.group || !root?.isConnected) return;
+      state.archiveError = true;
+    }
+    state.archiveLoading = false; paintArchive();
+  }
+  async function retryArchive(id) {
+    const item = records().find(record => record.id === id && record.status === 'completed');
+    const job = state.archive.jobs.find(entry => entry.sessionId === id && entry.revision === item?.revision);
+    if (!item || (job ? job.status !== 'failed' : !item.archive?.warning) || !state.archive.enabled || state.archiveRetrying.has(id)) return;
+    const actor = currentActor() || String(window.prompt('Your name for this Drive archive retry:') || '').trim();
+    if (!actor) return;
+    const active = state, season = state.season, selectedGroup = state.group;
+    state.actor = actor; state.archiveRetrying.add(id); state.archiveRetryFailed.delete(id); paintArchive();
+    try {
+      await S().retryArchive(id,item.revision,actor);
+      active.archiveRetrying.delete(id);
+      if (active !== state || season !== state.season || selectedGroup !== state.group || !root?.isConnected) return;
+      void loadArchive();
+    } catch (_) {
+      active.archiveRetrying.delete(id);
+      if (active !== state || season !== state.season || selectedGroup !== state.group || !root?.isConnected) return;
+      state.archiveRetryFailed.add(id); paintArchive();
+    }
+  }
   function notify(message, error) {
     state.message = message; state.error = !!error;
     const box = root?.querySelector('[data-tracker-message]');
@@ -62,7 +133,7 @@
     let builderGroup = '';
     if (param(params,'from') === 'builder') { try { builderGroup = B()?.current()?.program || ''; } catch (_) { /* The loader reports unreadable builder data without changing it. */ } }
     const season = String(param(params,'season') || '').trim();
-    state = {group:valid.some(g => g.id === requested) ? requested : valid.some(g => g.id === builderGroup) ? builderGroup : 'blue',season:season && season.length <= 80 && !/[\u0000-\u001f\u007f]/.test(season) ? season : defaultSeason(),data:{sessions:[],curricula:[],mode:'local'},view:param(params,'view') === 'coverage' ? 'coverage' : 'schedule',editor:null,actor:state?.actor || '',message:'',error:false,loading:true,loaded:false,fromBuilder:param(params,'from') === 'builder',filter:'',history:null};
+    state = {group:valid.some(g => g.id === requested) ? requested : valid.some(g => g.id === builderGroup) ? builderGroup : 'blue',season:season && season.length <= 80 && !/[\u0000-\u001f\u007f]/.test(season) ? season : defaultSeason(),data:{sessions:[],curricula:[],mode:'local'},view:param(params,'view') === 'coverage' ? 'coverage' : 'schedule',editor:null,actor:state?.actor || '',message:'',error:false,loading:true,loaded:false,fromBuilder:param(params,'from') === 'builder',filter:'',history:null,archive:{enabled:false,jobs:[]},archiveLoading:true,archiveLoaded:false,archiveError:false,archiveRetrying:new Set(),archiveRetryFailed:new Set()};
     return '<section id="practice-tracker" class="practice-tracker"><p role="status">Loading group schedules…</p></section>';
   }
   function header() {
@@ -70,6 +141,7 @@
       '<nav class="tracker-groups" aria-label="Practice groups">' + M().groups.map(g => '<button type="button" data-tracker-action="group" data-id="' + esc(g.id) + '" aria-pressed="' + (g.id === state.group) + '">' + esc(g.name) + '</button>').join('') + '</nav>' +
       '<div class="tracker-toolbar"><form data-tracker-season><label>Season<select name="season" aria-describedby="tracker-season-help">' + seasonOptions() + '</select></label><span id="tracker-season-help" class="tracker-fine">Choose a season to view its schedule and teaching history.</span></form><div class="tracker-actions">' + button('refresh','Refresh records') + '<a class="button secondary" href="#practices">Practice builder</a></div></div>' +
       '<p class="tracker-mode ' + (state.loaded && state.data.mode === 'shared' ? 'is-shared' : '') + '">' + (!state.loaded ? (state.loading ? 'Checking tracker storage…' : 'Records have not loaded. Refresh to try again; no teaching history has been changed.') : state.data.mode === 'shared' ? '<strong>Shared tracker.</strong> Saved changes are visible to other coaches and families. Enter your name when making a change.' : '<strong>Local preview only.</strong> These records stay in this browser. Other coaches cannot see them until shared storage is connected.') + '</p>' +
+      '<div class="tracker-mode" data-tracker-archive-summary>' + archiveSummaryHtml() + '</div>' +
       (state.group === 'valkyries' ? '<p class="tracker-fine tracker-independent">Valkyries have their own schedule and season goals. Nothing here copies dates, attendance rules or expectations from Mat Rats.</p>' : '') +
       '<p class="tracker-fine">Track group teaching here. Keep individual athlete, health and caregiver details out of public notes. “Covered” records a teaching opportunity, not an individual wrestler’s mastery.</p>' +
       '<div data-tracker-message class="tracker-message' + (state.error ? ' is-error' : '') + '" role="' + (state.error ? 'alert' : 'status') + '">' + esc(state.message) + '</div>' +
@@ -79,6 +151,7 @@
     return '<article class="tracker-session"><div class="tracker-card-heading"><div><span class="tracker-badge ' + esc(item.status) + '">' + esc(item.status === 'completed' ? 'Completed' : item.status === 'cancelled' ? 'Cancelled' : 'Planned') + '</span><h3>' + esc(item.name) + '</h3></div><p class="tracker-date">' + dateLabel(item.date) + (item.startTime ? '<br>' + timeLabel(item.startTime) : '') + '</p></div><dl class="tracker-details"><div><dt>Location</dt><dd>' + esc(item.location || 'Not set') + '</dd></div><div><dt>Lead coach</dt><dd>' + esc(item.lead || 'To be assigned') + '</dd></div><div><dt>Plan author</dt><dd>' + esc(item.author || 'Not recorded') + '</dd></div></dl>' +
       (item.status === 'completed' ? '<p class="tracker-fine">' + (item.skills?.length ? item.skills.length + ' confirmed skills: ' + item.skills.slice(0,4).map(s => esc(s.title)).join(', ') + (item.skills.length > 4 ? '…' : '') : 'No skills recorded: ' + esc(item.noSkillReason || 'See practice notes')) + '</p>' : '') +
       (item.notes ? '<details><summary>Practice notes</summary><p class="tracker-preline">' + esc(item.notes) + '</p></details>' : '') +
+      (item.status === 'completed' ? '<div data-tracker-archive-session="' + esc(item.id) + '">' + archiveCardHtml(item) + '</div>' : '') +
       '<div class="tracker-actions">' + (item.status === 'planned' ? button('complete','Confirm what was taught',item.id,' class="tracker-primary"') : '') + button('edit',item.status === 'completed' ? 'Correct completed record' : 'Edit practice',item.id) + (item.plan ? button('view-plan','View saved plan',item.id) : '') + button('history','History',item.id) + '</div></article>';
   }
   function scheduleHtml() {
@@ -188,6 +261,7 @@
   }
   async function load() {
     const current = ++ticket, active = state;
+    void loadArchive();
     try {
       const data = await S().load(state.season);
       if (current !== ticket || active !== state || !root?.isConnected) return;
@@ -283,8 +357,9 @@
       const list = kind === 'session' ? state.data.sessions : state.data.curricula, index = list.findIndex(s => s.id === result.id);
       if (index >= 0) list[index] = result; else list.push(result);
       state.editor = null;
-      notify(kind === 'session' ? result.status === 'completed' ? 'Practice confirmed. Checked skills now update this group’s teaching history.' : result.status === 'cancelled' ? 'Practice marked cancelled. It does not count toward teaching coverage.' : 'Practice scheduled. Confirm what was taught after practice to update coverage.' : 'Season expectations saved for ' + group().name + '.',false);
+      notify(kind === 'session' ? result.status === 'completed' ? 'Practice confirmed. Checked skills now update this group’s teaching history.' + (result.archive?.warning ? ' The practice is saved, but its Drive copy needs attention. Check the archive status below.' : '') : result.status === 'cancelled' ? 'Practice marked cancelled. It does not count toward teaching coverage.' : 'Practice scheduled. Confirm what was taught after practice to update coverage.' : 'Season expectations saved for ' + group().name + '.',false);
       paint(); root.querySelector('[data-tracker-message]')?.scrollIntoView({block:'nearest'});
+      if (kind === 'session' && result.status === 'completed') void loadArchive();
     } catch (error) {
       e.saving = false; form.querySelectorAll('button').forEach(b => { b.disabled = false; });
       errorBox.textContent = error.message || 'Could not save. Your changes are still here.';
@@ -300,9 +375,10 @@
     if (action === 'new') { if (discard()) openSession(sessionDefaults(),false,false); }
     else if (action === 'edit' || action === 'complete') { if (record() && discard()) openSession(record(),action === 'complete',false); }
     else if (action === 'close-editor') closeEditor();
-    else if (action === 'group') { if (!discard()) return; state.editor = null; state.history = null; state.group = id; state.filter = ''; state.message = ''; updateAddress(); paint(); }
+    else if (action === 'group') { if (!discard()) return; state.editor = null; state.history = null; state.group = id; state.filter = ''; state.message = ''; updateAddress(); paint(); void loadArchive(); }
     else if (action === 'schedule-view' || action === 'coverage-view') { state.view = action === 'coverage-view' ? 'coverage' : 'schedule'; updateAddress(); captureSession(); paint(); }
     else if (action === 'refresh') { if (!discard()) return; state.editor = null; state.history = null; state.loading = true; paint(); await load(); }
+    else if (action === 'retry-archive') await retryArchive(id);
     else if (action === 'curriculum') { if (discard()) openCurriculum(); }
     else if (action === 'view-plan') { if (record() && discard()) { state.editor = {kind:'plan',record:record(),dirty:false}; state.history = null; paint(true); } }
     else if (action === 'builder-copy') { const plan = state.editor?.record.plan; if (plan) { if (B().current()?.blocks?.length && !window.confirm('Open this plan as a separate builder draft? The builder’s Undo can restore your current draft.')) return; B().importPlan(clone(plan)); state.editor = null; window.location.hash = '#practices'; } }
@@ -357,7 +433,7 @@
         captureSession(); e.record.group = next.id; state.group = next.id;
         if (!e.record.location || e.record.location === before?.location) e.record.location = next.location;
         if (!e.record.startTime || e.record.startTime === before?.start) e.record.startTime = next.start;
-        e.dirty = true; state.filter = ''; updateAddress(); paint(true); return;
+        e.dirty = true; state.filter = ''; updateAddress(); paint(true); void loadArchive(); return;
       }
       if (target.matches('[data-tracker-skill]') && e) { if (target.checked) e.selected.add(target.dataset.trackerSkill); else e.selected.delete(target.dataset.trackerSkill); e.dirty = true; }
       if (target.matches('[data-tracker-plan]') && target.value !== '' && e?.kind === 'session') {

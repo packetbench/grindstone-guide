@@ -133,7 +133,14 @@
     const encoded = JSON.stringify(record);
     if (new TextEncoder().encode(encoded).byteLength > MAX_BYTES) throw problem("This practice record is too large to save. Use a smaller practice snapshot.", "too_large", 413);
     const base = endpoint(), key = base + "\n" + kind + "\n" + encoded, op = operation(key);
-    if (base) return clean(kind, await request(base, "/api/" + kind, record, op));
+    if (base) {
+      const response = await request(base, "/api/" + kind, record, op);
+      const saved = clean(kind,response);
+      if (response.archive && ['pending','archived','failed','disabled'].includes(response.archive.status)) {
+        saved.archive = {status:response.archive.status,...(response.archive.warning ? {warning:'The practice is saved, but its Drive copy needs attention.'} : {})};
+      }
+      return saved;
+    }
     return localSave(kind, record, op, key);
   }
   async function load(season) {
@@ -157,7 +164,36 @@
     }
     return readLocal().value.entries.filter(item => item.kind === kind && item.record.id === id).sort((a, b) => b.record.revision - a.record.revision).map(item => ({ revision: item.record.revision, actor: item.record.actor, savedAt: item.record.savedAt, record: clean(kind, item.record) }));
   }
-  const api = Object.freeze({ load, saveSession: record => save("session", record), saveCurriculum: record => save("curriculum", record), history, setCode(value) { coachCode = typeof value === "string" ? value : ""; } });
+  async function archiveStatus(season) {
+    seasonValue(season);
+    const base = endpoint();
+    if (!base) return {enabled:false,jobs:[],local:true};
+    let data;
+    try { data = await request(base,"/api/archive/status?season=" + encodeURIComponent(season)); }
+    catch (error) {
+      // The preview can run against the previous server while the connection is prepared.
+      if (error.status === 404 && error.code === 'not_found') return {enabled:false,jobs:[],notConnected:true};
+      throw error;
+    }
+    if (!data || typeof data.enabled !== 'boolean' || !Array.isArray(data.jobs) || data.jobs.length > 10000) throw problem('Drive copy status could not be read. Saved practice records are unaffected.','invalid_response',502);
+    const driveLink = value => typeof value === 'string' && /^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]{10,200}\/view$/.test(value) ? value : '';
+    const jobs = data.jobs.map(item => {
+      if (!item || typeof item.sessionId !== 'string' || !Number.isSafeInteger(item.revision) || item.revision < 1 || !['pending','archived','failed'].includes(item.status)) throw problem('Drive copy status was invalid. Saved practice records are unaffected.','invalid_response',502);
+      return {jobId:String(item.jobId || ''),sessionId:item.sessionId,revision:item.revision,status:item.status,
+        pdfUrl:driveLink(item.pdfUrl),jsonUrl:driveLink(item.jsonUrl),updatedAt:String(item.updatedAt || ''),
+        retryable:item.retryable === true,error:item.status === 'failed' ? 'The Drive copy needs attention. The shared practice remains saved.' : ''};
+    });
+    return {enabled:data.enabled,jobs};
+  }
+  async function retryArchive(sessionId, revision, actor) {
+    if (typeof sessionId !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9_.:-]{0,99}$/.test(sessionId) || !Number.isSafeInteger(revision) || revision < 1) throw problem('Choose a saved practice revision.','invalid_record',400);
+    if (typeof actor !== 'string' || !actor.trim() || actor.trim().length > 120 || /[\u0000-\u001f\u007f]/.test(actor)) throw problem('Enter your name to retry this Drive copy.','invalid_record',400);
+    const base = endpoint();
+    if (!base) throw problem('Drive copies require the shared tracker.','archive_disabled',503);
+    const record = {sessionId,revision,actor:actor.trim()};
+    return request(base,'/api/archive/retry',record,operation(base+'\narchive-retry\n'+JSON.stringify(record)));
+  }
+  const api = Object.freeze({ load, archiveStatus, retryArchive, saveSession: record => save("session", record), saveCurriculum: record => save("curriculum", record), history, setCode(value) { coachCode = typeof value === "string" ? value : ""; } });
   root.GRINDSTONE_TRACKER_STORE = api;
   if (typeof window !== "undefined") window.GRINDSTONE_TRACKER_STORE = api;
 })(typeof globalThis !== "undefined" ? globalThis : window);

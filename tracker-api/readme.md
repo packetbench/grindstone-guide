@@ -156,10 +156,93 @@ It is a short recovery window, not a season archive. [Time Travel](https://devel
 
 The tracker has no bulk export/import UI yet. Opening a saved plan in the builder
 and exporting its JSON preserves that **plan**, not the session, curriculum or
-revision history. Google Drive archiving remains separate and deferred. Connecting
+revision history. Google Drive archiving is a separate, optional connection described
+below; it is not a full database backup. Connecting
 the shared endpoint does not migrate local preview records: identify any real
 records to carry forward, preserve the local original, and review a deliberate
 transfer. Do not automatically upload test seasons or overwrite shared history.
+
+## Automatic completed-practice archive
+
+Enabled October 30, 2026 after release approval. The additive migration and both
+indexes were applied to the existing D1 database. Worker version
+`20e945c6-d8b2-4352-beef-754332da0a21` preserves the existing DB binding and allowed
+origins. Its connection secret matches the Google Script Property; it is not in
+the repository. Public status reports enabled, authenticated queue access returns
+the intended folder, and the owner-run Google function completed successfully
+against that empty queue. The Triggers page confirms exactly one time-driven
+`archiveCompletedPractices` trigger with an **Every 5 minutes** interval.
+
+All ten current-season practices were still planned at activation. No teaching
+records were changed to manufacture a test. The first genuine completed-practice
+PDF/JSON copy and its actual Google PDF layout remain to be verified. Passing
+mocked tests and a successful empty-queue run do not prove that file round trip.
+
+After a coach confirms a shared practice as completed, the Worker queues that
+exact saved revision. Only consecutive numeric seasons such as `2026-2027` are
+eligible; named QA seasons and browser-local records are excluded. There is no
+automatic historical backfill. Corrections produce new files and retain earlier
+revisions. A Drive failure never rolls back the teaching record in D1.
+
+The owner-run Apps Script checks the queue approximately every five minutes and
+saves a printable PDF plus JSON in the selected **Practices** folder:
+`1nH6QOx1E0mTWGiRg9MroZ6iJX9PQuXK_`. The JSON includes the original builder snapshot,
+confirmed skills and tracker metadata; where a builder plan exists, it can be
+imported into the builder. No-plan records use a distinct tracker export format.
+Neither the script nor the website changes Drive sharing. The folder is restricted;
+a public tracker link does not grant access to its Drive files.
+
+For a fresh connection, after review and publication approval, configure it in
+this order:
+
+1. Keep `DRIVE_ARCHIVE_ENABLED` unset or `false`. Apply the additive `archive.sql`
+   migration to the existing D1 database. Do not replace the database or its history.
+2. In an owner-controlled Google Apps Script project, load `tracker-archive.js`
+   followed by `drive-archive/archive.gs`. Use `drive-archive/appsscript.json`,
+   including the Advanced Drive v3 service. The staged project is named
+   `grindstone-practice-archive` under the folder owner's Google account.
+3. Have the owner authorize the script and run `checkDriveFolder`. Google requests
+   broad Drive access, external requests and trigger access; it is not a
+   folder-scoped grant, even though this implementation uses one fixed folder.
+   There is no public web-app deployment or public privileged upload endpoint.
+4. Generate a strong random connection key through a secure administrator workflow.
+   Set the identical value as the Worker secret `DRIVE_ARCHIVE_KEY` and an Apps
+   Script property of that name. Never commit it, log it, include it in a URL or
+   put it in browser/site configuration.
+5. Rebuild and deploy the reviewed Worker while preserving its DB binding and
+   exact allowed origins. Set `DRIVE_ARCHIVE_ENABLED=true`. Run
+   `installArchiveTrigger` once; it verifies the connection and creates at most
+   one five-minute trigger. Verify the trigger in Google rather than assuming
+   that authorization created it.
+6. Verify a genuine completed practice, or an explicitly isolated integration-test
+   deployment/folder. Do not manufacture a completed real-season teaching record.
+   Check both resulting files, PDF layout, JSON import, correct revision and the
+   tracker links. Repeat processing to verify it reuses the existing pair.
+7. Publish the reviewed front end. Until the connection is enabled, it reports
+   that Drive setup is pending. Distinguish an enabled connection from a verified
+   successful PDF/JSON copy until the real file round trip has been checked.
+
+The queue uses fixed destination checks, full-record hashes and immutable file
+metadata. A retry reconciles an existing PDF/JSON pair instead of duplicating it;
+an unrelated or conflicting file is preserved and reported for review. Failed jobs
+back off and stop after five attempts. The tracker offers a named-coach retry.
+An Apps Script execution failure also appears in its execution history. Turning
+off `DRIVE_ARCHIVE_ENABLED` stops queue access without deleting tracker records,
+archive jobs or Drive files. Old copies are retained if a later revision cancels
+or corrects a practice; consult the tracker for current status.
+
+Archive contracts:
+
+- Public `GET /api/archive/status?season=...` returns status and validated Drive links.
+- Browser `POST /api/archive/retry` accepts only session ID, revision and actor.
+- Service-only `GET /api/archive/queue?limit=3` and `POST /api/archive/ack` require
+  the connection key as a bearer token. They do not accept destination overrides.
+
+Run `tools/tracker-api-check.js`, `tools/tracker-ui-check.js`,
+`tools/tracker-archive-store-check.js`, `tools/tracker-archive-check.js` and
+`tools/drive-archive-check.js` with Node. The Google service tests are mocked and
+make no Drive writes. Real authorization, conversion and upload require the
+separate integration check above.
 
 ## Alternative when the dashboard editor is unavailable
 
