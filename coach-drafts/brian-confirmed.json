@@ -1,0 +1,48 @@
+{
+  "reviewed": "2026-10-29",
+  "coach": "brian-leaf",
+  "name": "Brian Leaf",
+  "photo": {
+    "src": "brian-club/brian-public.jpg",
+    "alt": "Brian Leaf, wearing a baseball cap, with a child on a carousel.",
+    "caption": "Brian Leaf in a public photo shared by Stephanie Leaf on January 11, 2020.",
+    "source_url": "https://www.facebook.com/photo.php?fbid=2765937763429363",
+    "source_label": "Public photo shared by Stephanie Leaf",
+    "view": "profile",
+    "native": true,
+    "archive": true,
+    "kind": "Public photograph · user-confirmed identity",
+    "coach": "brian-leaf",
+    "name": "Brian Leaf",
+    "selection": "profile",
+    "path": "brian-club/brian-public.jpg",
+    "bytes": 77965,
+    "sha256": "324247c9a27db0334ea72b21ddc201c782d5a2582ac88fb85465ad71c7d10cbc",
+    "width": 720,
+    "height": 960,
+    "processing": "Original publicly displayed JPEG, unchanged; no crop, enhancement or AI reconstruction.",
+    "posted": "2020-01-11",
+    "visibility": "Public; Facebook globe and Shared with Public label checked in browser.",
+    "identity_basis": "User explicitly confirmed the adult wearing the baseball cap in this exact photograph.",
+    "confirmed_on": "2026-10-29",
+    "credit": "Shared publicly by Stephanie Leaf; photographer and reuse license not stated.",
+    "capture_date": "Not established; date is the post date, not an asserted capture date."
+  },
+  "business": {
+    "name": "Leaf Builders LLC",
+    "source_url": "https://www.facebook.com/leafhomebuilders",
+    "service_post_url": "https://www.facebook.com/leafhomebuilders/posts/pfbid02z8e7ZmjjEgNXZj2XJeERyQhQbADoT3mkrYPw6MZ9fxXboYWR3sG94YBXZg9z3EJnl",
+    "evidence": "Company page and service post name Brian Leaf as their contact. The user supplied the correct Stephanie Leaf connection; her public business posts associate Brian with the company.",
+    "published_claim": "Outside the wrestling room, Brian works with Leaf Builders LLC, a local home-improvement business offering renovations, masonry and repair services.",
+    "ownership": "Not established; not asserted."
+  },
+  "remaining": [
+    "Historical wrestling photograph",
+    "Specific youth team, school and competitive dates"
+  ],
+  "notes": [
+    "Child is not identified or assigned a relationship.",
+    "Prior completed research reports and manifests remain unchanged.",
+    "No middle name or unrelated racing biography adopted."
+  ]
+}

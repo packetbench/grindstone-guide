@@ -282,10 +282,11 @@ window.COACH_DRAFTS = {
       "role": "Grindstone youth wrestling coach",
       "summary": "Brian Leaf’s wrestling roots are in Pennsylvania, where he competed as a youngster in the heavyweight division. He is part of Grindstone’s 2026–27 coaching team.",
       "paragraphs": [
-        "Brian brings his early experience in Pennsylvania youth wrestling to the Mat Rats and Valkyries coaching roster. The club supplied his youth heavyweight background; the specific school, youth club and competitive years are still being researched."
+        "Brian brings his early experience in Pennsylvania youth wrestling to the Mat Rats and Valkyries coaching roster. The club supplied his youth heavyweight background; the specific school, youth club and competitive years are still being researched.",
+        "Outside the wrestling room, Brian works with Leaf Builders LLC, a local home-improvement business offering renovations, masonry and repair services."
       ],
       "review_title": "Identity confirmed",
-      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below. His Pennsylvania youth-heavyweight background is club supplied. The previously rejected PINKS racer remains excluded; no new historical wrestling photo is assigned.",
+      "identity_note": "The user confirmed Brian as the adult wearing the baseball cap in Stephanie Leaf’s public January 11, 2020 photo. His Pennsylvania youth-heavyweight background is club supplied. Leaf Builders’ own page names him as its contact; ownership is not asserted. The rejected PINKS racer remains excluded.",
       "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Club-supplied background: Brian wrestled heavyweight as a youngster in Pennsylvania.",
@@ -293,10 +294,10 @@ window.COACH_DRAFTS = {
         "Brian Wayne Leaf in the county recreation list remains an unresolved lead; rejecting the racer does not confirm or reject that separate record.",
         "Exact-name Pennsylvania, heavyweight, youth, high-school, results and spelling-variant searches have not yet established his school or club.",
         "PAJW, MAWA, Pennsylvania school/tournament and name-variant searches did not establish a school or photo. User-supplied youth heavyweight history retained. Confirmed wrong racer remains in Who we are not.",
-        "New professional-directory lead is unresolved and could still belong to the rejected racing namesake. Public PA school, sports, alumni and company-photo checks supplied no attributable portrait in this pass.",
+        "Earlier research, superseded by the October 29 confirmation: the professional-directory lead was initially unresolved. Stephanie’s public posts and Leaf Builders’ own business page now establish the business connection. The directory’s middle-name claim is not adopted.",
         "Direct PA-Wrestling surname search returned no Brian/Bryan Leaf among 25 Leaf-substring records. Its high-school coverage does not rule out the user-supplied youth wrestling history. Recent public Mat Rats team captions also supplied no individual Brian tag. New school lead is queued, not assigned.",
         "Additional youth-specific checks covered PJW champions, PA Mat Rankings and surviving 1999, 2008 and 2013 MAWA records without an attributable Brian Leaf match. Several 1997–2004 archive links are defunct or inaccessible. These incomplete records cannot establish that he did not wrestle; the user’s Pennsylvania heavyweight background is retained.",
-        "The public Leaf Builders business page supplies a direct professional source, but its internal Brian search yielded service posts and no named owner portrait; its wrestling search returned no results. The exact-name USA Wrestling Pennsylvania lookup also returned no record. Neither check disproves the club-supplied youth wrestling history or identifies Coach Brian."
+        "October 29 update: the user confirmed the adult in Stephanie Leaf’s public photograph as Coach Brian. Leaf Builders’ page and service post name Brian Leaf as their contact. The photo is not a historical wrestling image; school, youth-club and competitive-year details remain unresolved."
       ],
       "highlights": [
         {
@@ -313,9 +314,32 @@ window.COACH_DRAFTS = {
           "title": "Grindstone Wrestling Club",
           "url": "https://www.grindstonewrestling.org/",
           "supports": "Westminster-area youth program and volunteer staffing; the handout supplies Brian’s membership."
+        },
+        {
+          "title": "Stephanie Leaf · public photograph, January 11, 2020",
+          "url": "https://www.facebook.com/photo.php?fbid=2765937763429363",
+          "supports": "Public visibility checked in Facebook; the user confirmed the adult wearing the baseball cap as Coach Brian on October 29, 2026."
+        },
+        {
+          "title": "Leaf Builders LLC · public business page",
+          "url": "https://www.facebook.com/leafhomebuilders",
+          "supports": "Names Brian Leaf as its business contact and describes home-improvement services. No ownership title is stated."
+        },
+        {
+          "title": "Leaf Builders LLC · named service post",
+          "url": "https://www.facebook.com/leafhomebuilders/posts/pfbid02z8e7ZmjjEgNXZj2XJeERyQhQbADoT3mkrYPw6MZ9fxXboYWR3sG94YBXZg9z3EJnl",
+          "supports": "Names Brian Leaf alongside renovation, masonry and repair services."
         }
       ],
-      "photo": null,
+      "photo": {
+        "src": "brian-club/brian-public.jpg",
+        "alt": "Brian Leaf, wearing a baseball cap, with a child on a carousel.",
+        "caption": "Brian Leaf in a public photo shared by Stephanie Leaf on January 11, 2020.",
+        "source_url": "https://www.facebook.com/photo.php?fbid=2765937763429363",
+        "source_label": "Public photo shared by Stephanie Leaf",
+        "view": "profile",
+        "native": true
+      },
       "leads": [
         {
           "title": "Carroll County · April 2026 volunteer list, page 38",
@@ -323,9 +347,9 @@ window.COACH_DRAFTS = {
           "supports": "Brian Wayne Leaf, Westminster Area; possible local recreation match."
         },
         {
-          "title": "Leaf Builders LLC · provisional local professional lead",
+          "title": "Leaf Builders LLC · directory record",
           "url": "https://www.buildzoom.com/contractor/leaf-builders-llc",
-          "supports": "Directory names Brian Wayne Leaf in Westminster, matching the recreation-list name. Neither source ties him to Grindstone or Pennsylvania wrestling; employment is not added to the biography."
+          "supports": "Supplementary directory record. The biography uses the company’s own named contact information; the directory’s middle name and any legal ownership implication are not adopted."
         },
         {
           "title": "Brian Leaf · unresolved Pennsylvania school profile",
@@ -333,9 +357,9 @@ window.COACH_DRAFTS = {
           "supports": "Public profile lists Owen J. Roberts Class of 2007 and Spring City. No wrestling, Maryland or Grindstone connection established; school and portrait are not adopted."
         },
         {
-          "title": "Leaf Builders LLC · public business page",
+          "title": "Leaf Builders LLC · confirmed business connection",
           "url": "https://www.facebook.com/leafhomebuilders",
-          "supports": "The user supplied a correct local connection on October 29. Business posts on that profile associate Brian with Leaf Builders, giving this route new context. No named wrestling photograph or career record was found through it."
+          "supports": "The user-supplied Stephanie Leaf connection and the company’s own named contact information support Brian’s role with Leaf Builders. The biography does not claim ownership."
         }
       ],
       "profile_review_status": "Identity confirmed by user October 29, 2026",

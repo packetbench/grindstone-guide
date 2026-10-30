@@ -207,7 +207,7 @@
     {
       "id": "brian-leaf",
       "name": "Brian Leaf",
-      "context": "Brian’s identity and Pennsylvania youth-heavyweight background are club confirmed. The new user-supplied connection provides a better starting point than unassigned school namesakes. No historical wrestling portrait is assigned.",
+      "context": "Brian’s identity and Pennsylvania youth-heavyweight background are club confirmed. The user also confirmed him in Stephanie Leaf’s public photograph. Leaf Builders’ own page names him as its contact. A historical wrestling photograph and specific youth-team details remain open.",
       "queries": [
         {
           "id": "brian-leaf-01",
@@ -349,20 +349,20 @@
           "text": "\"Brian Leaf\" \"Leaf Builders\"",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Brian%20Leaf%22%20%22Leaf%20Builders%22",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Brian%20Leaf%22%20%22Leaf%20Builders%22",
-          "purpose": "Look for a public professional profile or caption that links the new local business candidate to the coach. The business lead may still be the rejected PINKS racer; do not treat it as Coach Brian without a new wrestling or club connection.",
+          "purpose": "Business connection established through the user-supplied Stephanie Leaf profile and Leaf Builders’ own named contact information. Any future ownership or wrestling-history claim needs its own evidence.",
           "research_status": "reviewed-found",
-          "research_note": "The user supplied a correct connection profile. Its business posts associate Brian with Leaf Builders; no wrestling portrait or career record established.",
-          "research_report": "fb-check-d.json"
+          "research_note": "Reviewed the company’s named contact information. Brian’s public photo is separately confirmed by the user and recorded in brian-confirmed.json. No ownership claim is made.",
+          "research_report": "brian-confirmed.json"
         },
         {
           "id": "brian-leaf-18",
           "text": "\"Leaf Builders\" Westminster",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Leaf%20Builders%22%20Westminster",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Leaf%20Builders%22%20Westminster",
-          "purpose": "Look for a public company page with a named owner or team photograph. The business lead may still be the rejected PINKS racer; do not treat it as Coach Brian without a new wrestling or club connection.",
+          "purpose": "Business connection established through the user-supplied Stephanie Leaf profile and Leaf Builders’ own named contact information. Any future ownership or wrestling-history claim needs its own evidence.",
           "research_status": "duplicate/superseded",
-          "research_note": "Business variants consolidated into the user-supplied connection review. No separate exact search claimed.",
-          "research_report": "fb-check-d.json"
+          "research_note": "Business variants consolidated into the direct company-page review; no separate exact search claimed. Brian’s public photo is separately confirmed by the user and recorded in brian-confirmed.json. No ownership claim is made.",
+          "research_report": "brian-confirmed.json"
         },
         {
           "id": "brian-leaf-19",
@@ -488,13 +488,12 @@
           "text": "\"Leaf Builders\" \"wrestling\" Brian",
           "photos_url": "https://www.facebook.com/search/photos/?q=%22Leaf%20Builders%22%20%22wrestling%22%20Brian",
           "posts_url": "https://www.facebook.com/search/posts/?q=%22Leaf%20Builders%22%20%22wrestling%22%20Brian",
-          "purpose": "The direct business page names Brian Leaf, but its Brian and wrestling searches supplied no club connection or named portrait. Seek a public club sponsor tag or explicitly named wrestling connection; this could still be the rejected racer.",
-          "status": "pending",
+          "purpose": "Business connection established through the user-supplied Stephanie Leaf profile and Leaf Builders’ own named contact information. Any future ownership or wrestling-history claim needs its own evidence.",
           "source_url": "https://www.facebook.com/leafhomebuilders",
-          "source_label": "Unresolved public business lead",
+          "source_label": "Leaf Builders LLC · confirmed business connection",
           "research_status": "duplicate/superseded",
-          "research_note": "Business variants consolidated into the user-supplied connection review. No separate exact search claimed.",
-          "research_report": "fb-check-d.json"
+          "research_note": "Business variants consolidated into the direct company-page review; no separate exact search claimed. Brian’s public photo is separately confirmed by the user and recorded in brian-confirmed.json. No ownership claim is made.",
+          "research_report": "brian-confirmed.json"
         },
         {
           "id": "brian-leaf-31",
@@ -525,10 +524,10 @@
       ],
       "research": {
         "reviewed": "2026-10-29",
-        "summary": "Identity confirmed. The user’s new connection lead associates Brian with Leaf Builders, but this pass found no attributable historical wrestling photo. Club searches on both Mat Rats and legacy Winters Mill returned no results.",
-        "report": "fb-check-d.json",
+        "summary": "Public portrait found and confirmed by the user: Brian is the adult wearing the baseball cap in Stephanie Leaf’s January 11, 2020 post. The photo is now on his coach page. His connection to Leaf Builders is supported by its named contact information; ownership is not asserted.",
+        "report": "brian-confirmed.json",
         "remaining": [
-          "A public named wrestling or coaching photograph.",
+          "A public named historical wrestling or coaching photograph.",
           "A named youth-team source supporting specific career dates or school affiliation."
         ]
       }
@@ -2226,6 +2225,12 @@
       "title": "Coach Ryan in Mat Rats gear",
       "url": "https://www.facebook.com/photo/?fbid=10108817500365692&set=pcb.10108817507745902",
       "note": "Publicly posted by Ryan. His shirt reads Coach Ryan and Mat Rats Wrestling. Photographer credit is not visible; no identity is assigned to the young wrestler beside him."
+    },
+    {
+      "coach": "Brian Leaf",
+      "title": "User-confirmed public photograph",
+      "url": "https://www.facebook.com/photo.php?fbid=2765937763429363",
+      "note": "Public photo shared by Stephanie Leaf on January 11, 2020. The user confirmed Brian as the adult wearing the baseball cap on October 29, 2026. Photographer credit is not stated; the child is not identified."
     }
   ]
 }

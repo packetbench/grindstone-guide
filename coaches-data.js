@@ -761,7 +761,8 @@ window.GRINDSTONE_COACHES = {
       "role": "Grindstone youth wrestling coach",
       "summary": "Brian Leaf brings a background in Pennsylvania youth wrestling to Grindstone’s coaching team.",
       "paragraphs": [
-        "Brian wrestled in Pennsylvania as a youngster, competing in the heavyweight division. He is part of Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster."
+        "Brian wrestled in Pennsylvania as a youngster, competing in the heavyweight division. He is part of Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster.",
+        "Outside the wrestling room, Brian works with Leaf Builders LLC, a local home-improvement business offering renovations, masonry and repair services."
       ],
       "highlights": [
         {
@@ -777,8 +778,20 @@ window.GRINDSTONE_COACHES = {
         {
           "title": "About Grindstone Wrestling",
           "url": "https://www.grindstonewrestling.org/"
+        },
+        {
+          "title": "Leaf Builders LLC · public business page",
+          "url": "https://www.facebook.com/leafhomebuilders"
         }
-      ]
+      ],
+      "photo": {
+        "src": "coach-drafts/brian-club/brian-public.jpg",
+        "alt": "Brian Leaf, wearing a baseball cap, with a child on a carousel.",
+        "caption": "Brian Leaf in a public photo shared by Stephanie Leaf on January 11, 2020.",
+        "source_url": "https://www.facebook.com/photo.php?fbid=2765937763429363",
+        "source_label": "Public photo shared by Stephanie Leaf",
+        "view": "profile"
+      }
     },
     {
       "id": "kaia-condon",

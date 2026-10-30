@@ -2508,6 +2508,26 @@ window.COACH_PHOTOS = {
       "sha256": "197406c9bd4c472d0dea1ff29060f15a5a134d247ffdffa8920fc3572577c0fb",
       "width": 1069,
       "height": 1056
+    },
+    {
+      "src": "brian-club/brian-public.jpg",
+      "alt": "Brian Leaf, wearing a baseball cap, with a child on a carousel.",
+      "caption": "Brian Leaf in a public photo shared by Stephanie Leaf on January 11, 2020.",
+      "source_url": "https://www.facebook.com/photo.php?fbid=2765937763429363",
+      "source_label": "Public photo shared by Stephanie Leaf",
+      "view": "profile",
+      "native": true,
+      "archive": true,
+      "kind": "Public photograph · user-confirmed identity",
+      "coach": "brian-leaf",
+      "name": "Brian Leaf",
+      "selection": "profile",
+      "path": "brian-club/brian-public.jpg",
+      "bytes": 77965,
+      "sha256": "324247c9a27db0334ea72b21ddc201c782d5a2582ac88fb85465ad71c7d10cbc",
+      "width": 720,
+      "height": 960,
+      "processing": "Original publicly displayed JPEG, unchanged; no crop, enhancement or AI reconstruction."
     }
   ],
   "documents": [
