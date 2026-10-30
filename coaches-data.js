@@ -738,20 +738,6 @@ window.GRINDSTONE_COACHES = {
           "caption": "Eaton Rapids’ regional championship team, 2009. Posted by Lori Loomis Chapman on March 2, 2009, with the caption “Regional Champs!” Thomas is tagged in the original photo.",
           "source_url": "https://www.facebook.com/photo.php?fbid=1091665017774&set=t.1134555199&type=3",
           "source_label": "Original team photo • Lori Loomis Chapman"
-        },
-        {
-          "src": "coach-drafts/tom-public/tom-dog-portrait.jpg",
-          "alt": "Thomas Schnepp holding a puppy.",
-          "caption": "Thomas Schnepp with a puppy, from his public profile album.",
-          "source_url": "https://www.facebook.com/photo/?fbid=10232398189154025&set=a.1548911839445",
-          "source_label": "Original public profile photograph"
-        },
-        {
-          "src": "coach-drafts/tom-public/tom-selfie-2015.jpg",
-          "alt": "Thomas Schnepp in a 2015 public photograph.",
-          "caption": "Thomas Schnepp, 2015.",
-          "source_url": "https://www.facebook.com/photo.php?fbid=10207217831540822&set=pb.1134555199.-2207520000&type=3",
-          "source_label": "Original public profile photograph"
         }
       ],
       "sources": [

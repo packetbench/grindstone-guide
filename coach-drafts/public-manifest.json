@@ -2,7 +2,7 @@
   "prepared": "2026-10-24",
   "profiles": 13,
   "portraits": 12,
-  "coach_images": 146,
+  "coach_images": 144,
   "rejected_matches": 1,
   "club_images": 71,
   "omitted": "AI reconstruction, local scripts, full PDFs, private review storage and absolute source paths",
@@ -111,16 +111,6 @@
       "path": "assets/thomas-regional-team-2009.jpg",
       "bytes": 44967,
       "sha256": "16a55ec74bd5d0cf0787f9e3c72b3cb4f9be252e5ddd5f07f6de3ea1a75729d9"
-    },
-    {
-      "path": "tom-public/tom-dog-portrait.jpg",
-      "bytes": 46355,
-      "sha256": "5a8db0e623b4916623d482c08c82cf32a0ef20699007a9feb4e7838fc9dc55b9"
-    },
-    {
-      "path": "tom-public/tom-selfie-2015.jpg",
-      "bytes": 28825,
-      "sha256": "157935cd206ea25698206e5602a645c69bcc01dbe2a67713d3f226f5b48b197e"
     },
     {
       "path": "assets/kaia-condon.png",
@@ -1233,5 +1223,6 @@
       "sha256": "ccac5b5c700b81956b36824b8e805a9c71e2563481c3a0a7041e7818f9ca73aa"
     }
   ],
-  "community_images": 8
+  "community_images": 8,
+  "publication_note": "Two Thomas gallery photographs were removed at his request on 2026-10-29. Remaining snapshot entries retain their original provenance; later site edits can differ from those historical checksums."
 }

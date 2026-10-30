@@ -244,24 +244,6 @@ window.COACH_DRAFTS = {
           "caption": "Eaton Rapids’ regional championship team, 2009. Posted by Lori Loomis Chapman on March 2, 2009, with the caption “Regional Champs!” Thomas is tagged in the original photo.",
           "source_url": "https://www.facebook.com/photo.php?fbid=1091665017774&set=t.1134555199&type=3",
           "source_label": "Original team photo • Lori Loomis Chapman"
-        },
-        {
-          "src": "tom-public/tom-dog-portrait.jpg",
-          "alt": "Public profile-picture post by Thomas Schnepp showing a person holding a puppy. Post date only; capture date unknown. Reached from public View as photo index. Clear alternative portrait.",
-          "caption": "Public profile-picture post by Thomas Schnepp showing a person holding a puppy. Post date only; capture date unknown. Reached from public View as photo index. Clear alternative portrait. Full source image preserved unchanged.",
-          "source_url": "https://www.facebook.com/photo/?fbid=10232398189154025&set=a.1548911839445",
-          "source_label": "Original public profile photograph",
-          "native": true,
-          "kind": "Public profile photograph"
-        },
-        {
-          "src": "tom-public/tom-selfie-2015.jpg",
-          "alt": "Thomas Schnepp public photo index and Shared with Public source viewer; solo formal-clothing selfie. Historical gallery candidate.",
-          "caption": "Thomas Schnepp public photo index and Shared with Public source viewer; solo formal-clothing selfie. Historical gallery candidate. Full source image preserved unchanged.",
-          "source_url": "https://www.facebook.com/photo.php?fbid=10207217831540822&set=pb.1134555199.-2207520000&type=3",
-          "source_label": "Original public profile photograph",
-          "native": true,
-          "kind": "Public profile photograph"
         }
       ],
       "status": "existing",
@@ -276,7 +258,7 @@ window.COACH_DRAFTS = {
         "The 2009 Eaton Rapids state-quarterfinal lineup names Trevor Schnepp at 160 pounds. Trevor’s bout results are not assigned to Thomas.",
         "The tagged 2009 regional team photograph is retained in the gallery; the new public profile photograph now leads the draft.",
         "Verified the explicit Thomas tag in the existing public team photo. Adjacent friends-only photos were not retrieved. Public yearbook scans were not available; named search leads queued.",
-        "Four public portrait/family originals are now preserved through the explicit 2009 team-photo tag. The November 2024 profile image is the lead; post dates do not establish capture dates. No biography details from non-public profile fields were used."
+        "The November 2024 profile image remains the lead, alongside the approved 2009 team photograph. Two additional gallery portraits were removed at Thomas’s request on October 29, 2026. No biography details from non-public profile fields were used."
       ],
       "photo": {
         "src": "tom-public/tom-profile-2024.jpg",

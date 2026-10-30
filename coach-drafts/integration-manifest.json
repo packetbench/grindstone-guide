@@ -1263,11 +1263,6 @@
       "sha256": "b7c912fd5a515f126ce67162fd31388a03a17d8e3612b04784dcb5083a03125d"
     },
     {
-      "path": "tom-public/tom-dog-portrait.jpg",
-      "bytes": 46355,
-      "sha256": "5a8db0e623b4916623d482c08c82cf32a0ef20699007a9feb4e7838fc9dc55b9"
-    },
-    {
       "path": "tom-public/tom-family-2017.jpg",
       "bytes": 20896,
       "sha256": "a34c3911aff7ca55fea7b169d3975ba2cd399cb056a08f31c6f824d6a146e7d6"
@@ -1276,11 +1271,7 @@
       "path": "tom-public/tom-profile-2024.jpg",
       "bytes": 88868,
       "sha256": "c87fb91ab16fb73c2db3c84ebc631c0889a6bfcb73b5fe35189a197d3959a9ae"
-    },
-    {
-      "path": "tom-public/tom-selfie-2015.jpg",
-      "bytes": 28825,
-      "sha256": "157935cd206ea25698206e5602a645c69bcc01dbe2a67713d3f226f5b48b197e"
     }
-  ]
+  ],
+  "publication_note": "Two Thomas gallery photographs were removed at his request on 2026-10-29. Remaining snapshot entries retain their original provenance; later site edits can differ from those historical checksums."
 }
