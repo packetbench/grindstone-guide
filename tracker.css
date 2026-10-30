@@ -132,16 +132,31 @@
 @media(max-width:560px){.plans-filters{grid-template-columns:1fr 1fr;gap:12px}.plans-filters>label:nth-child(3),.plans-filters .plans-search,.plans-filters>button{grid-column:1/-1}.plans-navigation>*{flex:1;text-align:center}.practice-plans .tracker-card-heading{flex-wrap:wrap}.practice-plans .tracker-date{text-align:left;flex-basis:100%;margin-bottom:12px}.tracker-plan-view>.tracker-actions>*{flex-basis:100%;text-align:center}.tracker-plan-view>.tracker-section-heading>.button{width:100%}}
 @media print{
   body:has(.tracker-print-sheet[data-ready=true]) .site-header,body:has(.tracker-print-sheet[data-ready=true])>footer,body:has(.tracker-print-sheet[data-ready=true]) #toast,body:has(.tracker-print-sheet[data-ready=true]) .skip{display:none!important}
+  body:has(.tracker-print-sheet[data-ready=true]) main{max-width:none;margin:0;padding:0}
   .practice-tracker:has(.tracker-print-sheet[data-ready=true])>:not(.tracker-print-sheet){display:none!important}
-  .tracker-print-sheet[data-ready=true]{display:block!important;color:#000;font:10pt/1.4 system-ui,sans-serif}
+  .tracker-print-sheet[data-ready=true]{display:block!important;color:#000;font:10pt/1.25 system-ui,sans-serif;page:grindstone-practice}
   .tracker-print-sheet .tracker-editor{border:0;padding:0;margin:0;background:white}
-  .tracker-print-sheet h1{font-size:21pt;margin:0 0 10pt}
-  .tracker-print-sheet h2{font-size:14pt}.tracker-print-sheet h3{font-size:12pt}.tracker-print-sheet h4,.tracker-print-sheet h5{font-size:11pt}
-  .tracker-print-sheet :where(p,li,.tracker-fine){font-size:10pt;line-height:1.4;color:#000;orphans:3;widows:3}
-  .tracker-print-sheet :where(h1,h2,h3,h4,h5,summary){break-after:avoid}
-  .tracker-print-sheet .tracker-snapshot-activity{border:0;border-top:1px solid #aaa;padding:8pt 0;background:white}
-  .tracker-print-sheet .tracker-confirmed-skills,.tracker-print-sheet .tracker-plan-summary{background:white;border-left:0;padding:6pt 0}
-  .tracker-print-sheet details>summary{min-height:0;margin-bottom:5pt}
-  .tracker-print-sheet .tracker-plan-blocks>li{break-inside:auto;padding:10pt 0}
-  .tracker-print-sheet .tracker-plan-blocks,.tracker-print-sheet .tracker-snapshot-steps{padding-left:18pt}
+  .tracker-print-sheet h1{font-size:17pt;line-height:1.15;margin:0 0 4pt}
+  .tracker-print-sheet h2{font-size:12pt;line-height:1.2;margin:5pt 0 3pt}
+  .tracker-print-sheet h3{font-size:11pt;line-height:1.2;margin:4pt 0 2pt}
+  .tracker-print-sheet :where(h4,h5){font-size:10pt;line-height:1.2;margin:4pt 0 2pt}
+  .tracker-print-sheet .tracker-plan-view :where(p,li,.tracker-fine){font-size:10pt;line-height:1.25;color:#000;orphans:2;widows:2;margin:0 0 2.5pt}
+  .tracker-print-sheet :where(h1,h2,h3,h4,h5,summary){break-after:avoid;page-break-after:avoid}
+  .tracker-print-sheet :where(article,section,details,p,ul,ol,li){break-inside:auto;page-break-inside:auto;max-height:none;overflow:visible}
+  .tracker-print-sheet .tracker-section-heading{display:block;margin:0 0 5pt;gap:0}
+  .tracker-print-sheet .tracker-section-heading .eyebrow{font-size:8pt;line-height:1.2;margin:0 0 3pt}
+  .tracker-print-sheet .tracker-section-heading :where(h2,h3){font-size:12pt;line-height:1.2;margin:0 0 3pt}
+  .tracker-print-sheet .tracker-snapshot-activity{border:0;border-top:.5pt solid #aaa;border-radius:0;padding:4pt 0;margin:4pt 0;background:white}
+  .tracker-print-sheet :where(.tracker-snapshot-components,.tracker-snapshot-series){margin:5pt 0}
+  .tracker-print-sheet .tracker-snapshot-guide{padding:3pt 0;margin:3pt 0;border-top:.5pt solid #bbb}
+  .tracker-print-sheet .tracker-snapshot-guide>summary{font-size:10pt;line-height:1.25;min-height:0;margin:0 0 3pt}
+  .tracker-print-sheet :where(.tracker-confirmed-skills,.tracker-plan-summary){background:white;border-left:0;border-radius:0;padding:4pt 0;margin:4pt 0}
+  .tracker-print-sheet .tracker-plan-blocks{padding-left:15pt;margin:4pt 0}
+  .tracker-print-sheet .tracker-plan-blocks>li{break-inside:auto;page-break-inside:auto;padding:5pt 0 4pt;margin:0;border-bottom:.5pt solid #aaa}
+  .tracker-print-sheet .tracker-plan-blocks :where(ol,ul){padding-left:15pt;margin:3pt 0}
+  .tracker-print-sheet .tracker-snapshot-steps{padding-left:15pt;margin:3pt 0}
+  .tracker-print-sheet :where(a,a:visited){color:#000}
+  .tracker-print-sheet a[href]:after{content:none!important}
 }
+
+@media print{body:has(.tracker-print-sheet[data-ready=true])>:not(main){display:none!important}}

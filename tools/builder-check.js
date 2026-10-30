@@ -1215,5 +1215,17 @@ async function checkAsync(name,fn){await fn();checks++;console.log('PASS '+name)
     assert.equal(root.querySelector('[data-tracker-plan-link]').href,'#tracker?from=builder');
     assert(!api.render(new URLSearchParams()).includes('#tracker?from=builder&amp;group='));
   });
+  check('compact print omits empty fields and repeated target while retaining task metadata', () => {
+    resetCase();
+    const p=t.newPlan();p.name='Compact print test';p.program='';p.session='';p.stage='';p.target=8;
+    const b=t.blockFrom(catalog.find(item=>item.id==='P01'),'move');b.minutes=8;b.section='teach';b.delivery='pairs';b.instructions='';b.cues='Keep hands ready.';b.boundary='Stop on the signal.';b.rotation='Switch partners halfway.';p.blocks=[b];
+    t.replaceDraft(p);const html=t.printHtml(false);
+    assert(!html.includes('<div class="builder-print-meta">'));
+    assert(!html.includes('<p class="builder-preline"></p>'));
+    assert(!html.includes('target 8 minutes'));
+    assert(html.includes('Section:</strong> Foundation &amp; option · <strong>Delivery:</strong> Partners'));
+    for(const text of [b.cues,b.boundary,b.rotation])assert(html.includes(text));
+    p.target=10;t.replaceDraft(p);assert(t.printHtml(false).includes('target 10 minutes'));
+  });
   console.log('\n'+checks+' builder checks passed. No files written.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

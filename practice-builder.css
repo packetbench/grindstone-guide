@@ -203,28 +203,28 @@
 }
 @media print{
   .practice-tabs,.builder-tabs,.builder-no-print,.pathway-controls,.pathway-sources{display:none!important}
-  body:has(#practice-builder){background:white;color:black;font-size:10pt;line-height:1.35}
+  body:has(#practice-builder){background:white;color:black;font-size:10pt;line-height:1.25}
   body:has(#practice-builder) .site-header,body:has(#practice-builder)>footer,body:has(#practice-builder) #toast{display:none!important}
   body:has(#practice-builder) main{max-width:none;margin:0;padding:0}
   .practice-builder>:not(.builder-print-sheet){display:none!important}
-  .builder-print-sheet{display:block!important;color:black;font-size:10pt;line-height:1.4}
-  .builder-print-sheet h1{font-size:23pt;line-height:1.15;margin:0 0 8pt;letter-spacing:-.02em;max-width:none}
-  .builder-print-sheet h2{font-size:13pt;margin:0 0 7pt;line-height:1.25}
-  .builder-print-sheet h3{font-size:11pt;margin:0 0 5pt;line-height:1.3}
-  .builder-print-sheet :where(p,li){font-size:10pt;line-height:1.4;orphans:3;widows:3;margin-bottom:6pt}
-  .builder-print-sheet .eyebrow{font-size:8pt;color:#333;letter-spacing:.12em;margin-bottom:8pt}
+  .builder-print-sheet{display:block!important;color:black;font-size:10pt;line-height:1.25;page:grindstone-practice}
+  .builder-print-sheet h1{font-size:17pt;line-height:1.15;margin:0 0 4pt;letter-spacing:-.02em;max-width:none}
+  .builder-print-sheet h2{font-size:11.5pt;margin:0 0 3pt;line-height:1.2}
+  .builder-print-sheet h3{font-size:10.5pt;margin:4pt 0 2pt;line-height:1.2}
+  .builder-print-sheet :where(p,li){font-size:10pt;line-height:1.25;orphans:2;widows:2;margin:0 0 2.5pt}
+  .builder-print-sheet .eyebrow{font-size:8pt;color:#333;letter-spacing:.08em;margin-bottom:3pt}
   .builder-print-sheet :where(a,a:visited){color:black;text-decoration:none}
   .builder-print-sheet a[href]:after{content:none!important}
-  .builder-print-sheet>header,.builder-print-sheet>.builder-print-meta{border-bottom:2pt solid #333;padding-bottom:11pt;margin-bottom:13pt;break-inside:avoid}
-  .builder-print-sheet .builder-print-meta{font-size:9pt;line-height:1.45}
-  .builder-print-sheet .builder-print-meta p{margin-bottom:4pt}
-  .builder-print-block{padding:10pt 0;border-bottom:.5pt solid #aaa;break-inside:avoid;page-break-inside:avoid}
-  .builder-print-block>header{display:flex;align-items:baseline;justify-content:space-between;gap:12pt;margin:0 0 6pt}
+  .builder-print-sheet>header,.builder-print-sheet>.builder-print-meta{border-bottom:.75pt solid #555;padding-bottom:5pt;margin-bottom:5pt;break-inside:auto}
+  .builder-print-sheet .builder-print-meta{font-size:10pt;line-height:1.25}
+  .builder-print-sheet .builder-print-meta p{margin:0 0 2pt}
+  .builder-print-block{padding:5pt 0 4pt;border-bottom:.5pt solid #aaa;break-inside:auto;page-break-inside:auto}
+  .builder-print-block>header{display:flex;align-items:baseline;justify-content:space-between;gap:8pt;margin:0 0 3pt}
   .builder-print-block>header h2,.builder-print-block>header h3{margin:0;flex:1}
   .builder-print-block>header :where(span,small,p){font-size:9pt;font-weight:700;margin:0;white-space:nowrap}
-  .builder-print-block :where(ul,ol){padding-left:17pt;margin:6pt 0}
-  .builder-print-block li{break-inside:avoid;margin-bottom:4pt}
-  .builder-print-sheet .builder-print-notes{border-top:1pt solid #555;padding-top:11pt;margin-top:16pt;break-inside:avoid;white-space:pre-wrap}
+  .builder-print-block :where(ul,ol){padding-left:15pt;margin:3pt 0}
+  .builder-print-block li{break-inside:auto;page-break-inside:auto;margin-bottom:1.5pt}
+  .builder-print-sheet .builder-print-notes{border-top:1pt solid #555;padding-top:5pt;margin-top:6pt;break-inside:auto;white-space:pre-wrap}
   .builder-print-sheet .fine{font-size:8pt;color:#333}
   .pathway-overview{background:white;color:black;border:1px solid #aaa;padding:14pt;break-inside:avoid}
   .pathway-overview :where(p,a,.eyebrow){color:black}.pathway-overview h2{font-size:17pt}
@@ -278,8 +278,8 @@
 .practice-builder button[data-action=print]{background:var(--navy);color:white;border-color:var(--navy)}
 .practice-builder button[data-action=print]:hover:not(:disabled){background:#353d42;color:white;border-color:#353d42}
 @media print{
-  .builder-print-sheet>footer{display:block!important;max-width:none;margin-top:16pt;padding:8pt 0 0;border-top:.5pt solid #aaa;font-size:8pt;color:#333}
-  .builder-print-sheet>section{margin-top:15pt;break-inside:avoid}
+  .builder-print-sheet>footer{display:block!important;max-width:none;margin-top:6pt;padding:4pt 0 0;border-top:.5pt solid #aaa;font-size:8pt;color:#333}
+  .builder-print-sheet>section{margin-top:6pt;break-inside:auto}
   .builder-print-block h2 small{font-size:9pt;font-weight:400;white-space:nowrap}
 }
 /* Six learning phases and nested activity cards match the pathway renderer. */
@@ -375,3 +375,21 @@
 /* Shared practice picker and explicit save-back context. */
 .builder-shared{border:1px solid var(--border,#ccc);border-radius:12px;padding:1rem;margin:1rem 0;background:var(--surface,#fff)}
 .builder-shared h2{margin-top:0}.builder-shared-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin:.75rem 0}.builder-shared label{display:flex;flex-direction:column;gap:.35rem;min-width:0}.builder-shared input,.builder-shared select,.builder-shared textarea{width:100%;max-width:100%;min-width:0;box-sizing:border-box}.builder-shared-edit,.builder-shared-confirm{border-left:4px solid #d9a441;padding:.75rem;margin-top:1rem;background:#f9f5eb;color:#222}.builder-shared-error{color:#8b2323;font-weight:600}.builder-shared button{min-height:44px}.builder-shared summary{cursor:pointer;min-height:44px;align-content:center}.builder-shared .builder-actions{flex-wrap:wrap}@media(max-width:600px){.builder-shared-fields{grid-template-columns:1fr}.builder-shared .builder-actions button{flex:1 1 100%;white-space:normal}.builder-shared{padding:.75rem}}
+
+/* Print sheets may flow across pages; a whole activity is not a page-sized card. */
+@page grindstone-practice{margin:.45in .5in}
+@media print{
+  .builder-print-sheet :where(h1,h2,h3,h4,h5,summary){break-after:avoid;page-break-after:avoid}
+  .builder-print-sheet :where(h4,h5){font-size:10pt;line-height:1.2;margin:4pt 0 2pt}
+  .builder-print-sheet .component-print{font-size:10pt;line-height:1.25;margin:4pt 0 0}
+  .builder-print-sheet :where(article,section,details,p,ul,ol){break-inside:auto;page-break-inside:auto;max-height:none;overflow:visible}
+  .builder-print-sheet .component-print :where(.component-activity,.component-guide,.component-station-print){break-inside:auto;page-break-inside:auto;padding:4pt 0;margin:4pt 0;border-radius:0;background:white}
+  .builder-print-sheet .component-print :where(p,li){font-size:10pt;line-height:1.25;margin:0 0 2.5pt;orphans:2;widows:2}
+  .builder-print-sheet .component-print :where(ul,ol){margin:3pt 0;padding-left:15pt}
+  .builder-print-sheet .component-print :where(.component-timing,.component-shared-time){break-inside:auto;padding:4pt;margin:4pt 0}
+  .builder-print-sheet .component-print :where(.component-activities,.component-links){margin:4pt 0}
+  .builder-print-sheet .builder-print-handoff p{break-inside:auto;page-break-inside:auto}
+  .builder-print-sheet .builder-unfilled-warning{break-inside:auto;padding:5pt;margin:4pt 0}
+}
+
+@media print{body:has(#practice-builder)>:not(main){display:none!important}}

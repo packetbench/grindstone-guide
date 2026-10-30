@@ -242,9 +242,10 @@
       (saved ? '<div class="tracker-actions">' + button('curriculum-history','Season-goal history',saved.id) + '</div>' : '') + '</section>';
   }
   function input(name,label,value,attributes) { return '<label>' + label + '<input name="' + name + '" value="' + esc(value) + '" ' + (attributes || '') + '></label>'; }
-  function planSummary(plan) {
-    if (!plan) return '<p class="tracker-fine">No plan attached. You can still confirm skills after this practice.</p>';
+  function planSummary(plan, print = false) {
+    if (!plan) return '<p class="tracker-fine">' + (print ? 'No saved plan attached.' : 'No plan attached. You can still confirm skills after this practice.') + '</p>';
     const blocks = plan.blocks || [], total = blocks.reduce((n,b) => n + Number(b.minutes || 0),0);
+    if (print) return '<p class="tracker-plan-summary">' + blocks.length + ' ' + (blocks.length === 1 ? 'block' : 'blocks') + ' · ' + total + ' minutes</p>';
     return '<p class="tracker-plan-summary"><strong>' + esc(plan.name || 'Saved practice') + '</strong> · ' + blocks.length + ' blocks · ' + total + ' minutes. Changes to this saved practice take effect only when saved explicitly. Earlier revisions stay in its history.</p>';
   }
   function chosenSkillsHtml() {
@@ -284,11 +285,19 @@
     return '<section class="tracker-editor" data-tracker-editor tabindex="-1"><div class="tracker-section-heading"><div><p class="eyebrow">' + esc(group().name) + ' · ' + esc(state.season) + '</p><h2>' + (e.restoring ? 'Restore earlier season expectations' : 'Choose season expectations') + '</h2></div>' + button('close-editor','Close') + '</div><form data-tracker-curriculum-form><p>Choose what you expect this group to learn. Removing a goal does not erase completed teaching history.</p>' + input('actor','Your name (saving these goals)',e.record.actor || currentActor(),'required maxlength="120" autocomplete="name"') + '<div class="tracker-actions">' + button('suggestions','Add suggested pathway skills') + button('select-all','Check all listed skills') + button('unselect-all','Uncheck all listed skills') + '</div><div data-tracker-chosen>' + chosenSkillsHtml() + '</div>' + pickerHtml() + '<p data-tracker-form-error class="tracker-message is-error" role="alert"></p><div class="tracker-actions"><button type="submit" class="tracker-primary">Save season expectations</button>' + button('close-editor','Cancel changes') + '</div></form></section>';
   }
   function snapshotFields(entries) { return entries.filter(([,value]) => typeof value === 'string' && value.trim()).map(([label,value]) => '<p class="tracker-preline"><strong>' + esc(label) + ':</strong> ' + esc(value) + '</p>').join(''); }
+  function snapshotMetadata(entries) {
+    const values = entries.filter(([,value]) => typeof value === 'string' && value.trim());
+    return values.length ? '<p class="tracker-print-meta-row">' + values.map(([label,value]) => '<span class="tracker-preline"><strong>' + esc(label) + ':</strong> ' + esc(value) + '</span>').join(' · ') + '</p>' : '';
+  }
+  function sameSnapshotText(left,right) {
+    return typeof left === 'string' && typeof right === 'string' && left.trim() && left.trim().replace(/\s+/g,' ') === right.trim().replace(/\s+/g,' ');
+  }
   function stepsHtml(steps) { return Array.isArray(steps) && steps.length ? '<ol class="tracker-snapshot-steps">' + steps.filter(step => typeof step === 'string').map(step => '<li>' + esc(step) + '</li>').join('') + '</ol>' : ''; }
-  function guideSnapshotHtml(guide, print = false) {
+  function guideSnapshotHtml(guide, print = false, repeated = null) {
     if (!guide || typeof guide !== 'object') return '';
     const steps = Array.isArray(guide.steps) ? guide.steps : [], cues = Array.isArray(guide.cues) ? guide.cues.join(' · ') : guide.cues;
-    return '<details class="tracker-snapshot-guide"' + (print ? ' open' : '') + '><summary>Saved teaching guide: ' + esc(guide.title || 'Instruction') + '</summary>' + snapshotFields([['Setup',guide.setup],['Task',guide.task]]) + (steps.length ? '<ol>' + steps.map(step => '<li>' + esc(step) + '</li>').join('') + '</ol>' : '') + snapshotFields([['Cues',cues],['Ready when',guide.readiness],['Boundaries',guide.boundary],['Age guidance',guide.ageNote],['Adaptations',guide.adaptation],['Source scope',guide.sourceNote]]) + '</details>';
+    const unique = (key,value) => print && repeated && sameSnapshotText(value,repeated[key]) ? '' : value;
+    return '<details class="tracker-snapshot-guide"' + (print ? ' open' : '') + '><summary>Saved teaching guide: ' + esc(guide.title || 'Instruction') + '</summary>' + snapshotFields([['Setup',unique('setup',guide.setup)],['Task',unique('task',guide.task)]]) + (steps.length ? '<ol>' + steps.map(step => '<li>' + esc(step) + '</li>').join('') + '</ol>' : '') + snapshotFields([['Cues',unique('cues',cues)],['Ready when',guide.readiness],['Boundaries',guide.boundary],['Age guidance',guide.ageNote],['Adaptations',guide.adaptation],['Source scope',guide.sourceNote]]) + '</details>';
   }
   function seriesSnapshotHtml(series, print = false) {
     if (!series || typeof series !== 'object') return '';
@@ -297,7 +306,8 @@
   }
   function activitySnapshotHtml(activity,label,print = false) {
     if (!activity || typeof activity !== 'object') return '';
-    return '<article class="tracker-snapshot-activity"><h4>' + esc(label) + ': ' + esc(activity.name || activity.title || 'Activity') + '</h4>' + snapshotFields([['Task',activity.task || activity.instructions],['Cues',Array.isArray(activity.cues) ? activity.cues.join(' · ') : activity.cues],['Coach',activity.coach],['Equipment',activity.equipment],['Space',activity.space],['Partner groups',activity.group],['Turns & recovery',activity.rounds],['Simpler version',activity.simpler],['Success',activity.success],['Stop / reset',activity.stop],['Source scope',activity.sourceNote],['Setup',activity.setup],['Boundaries',activity.boundary],['Ready when',activity.readiness]]) + stepsHtml(activity.steps) + guideSnapshotHtml(activity.guide,print) + seriesSnapshotHtml(activity.series,print) + '</article>';
+    const task = activity.task || activity.instructions, cues = Array.isArray(activity.cues) ? activity.cues.join(' · ') : activity.cues;
+    return '<article class="tracker-snapshot-activity"><h4>' + esc(label) + ': ' + esc(activity.name || activity.title || 'Activity') + '</h4>' + snapshotFields([['Task',task],['Cues',cues],['Coach',activity.coach],['Equipment',activity.equipment],['Space',activity.space],['Partner groups',activity.group],['Turns & recovery',activity.rounds],['Simpler version',activity.simpler],['Success',activity.success],['Stop / reset',activity.stop],['Source scope',activity.sourceNote],['Setup',activity.setup],['Boundaries',activity.boundary],['Ready when',activity.readiness]]) + stepsHtml(activity.steps) + guideSnapshotHtml(activity.guide,print,{task,cues,setup:activity.setup}) + seriesSnapshotHtml(activity.series,print) + '</article>';
   }
   function componentsSnapshotHtml(block, print = false) {
     const c = block.components || {}, activities = Array.isArray(c.activities) ? c.activities : Array.isArray(block.activities) ? block.activities : [], rotation = c.rotation, stations = Array.isArray(rotation?.stations) ? rotation.stations : [];
@@ -318,7 +328,9 @@
   function planViewHtml(print = false) {
     const d = state.editor.record, p = d.plan, blocks = planBlocks(p); let elapsed = 0;
     const close = state.library ? '<a class="button secondary" href="' + esc(plansPath({plan:''})) + '">Back to plans</a>' : button('close-editor','Close plan');
-    return '<section class="tracker-editor tracker-plan-view"' + (print ? '' : ' data-tracker-editor tabindex="-1"') + '><div class="tracker-section-heading"><div><p class="eyebrow">Grindstone · saved practice snapshot</p><' + (print ? 'h1' : 'h2') + '>' + esc(p?.name || d.name) + '</' + (print ? 'h1' : 'h2') + '></div>' + (print ? '' : close) + '</div><p><strong>' + esc(groupName(d.group)) + '</strong> · ' + dateLabel(d.date) + (d.startTime ? ' · ' + timeLabel(d.startTime) : '') + ' · ' + statusName(d.status) + ' · revision ' + d.revision + '</p>' + snapshotFields([['Location',d.location],['Plan author',d.author],['Lead coach',d.lead],['Focus',p?.focus]]) + planCorrectionHtml(p) + planSummary(p) + (print ? '' : planActionsHtml() + copyConfirmationHtml()) + snapshotFields([['Planning week',p?.weekContext?.label],['Shared week focus',p?.weekContext?.focus],['Shared cue',p?.weekContext?.cue],['Desired outcome',p?.weekContext?.outcome]]) +
+    const people = [['Location',d.location],['Plan author',d.author],['Lead coach',d.lead]], planning = [['Planning week',p?.weekContext?.label],['Shared week focus',p?.weekContext?.focus],['Shared cue',p?.weekContext?.cue],['Desired outcome',p?.weekContext?.outcome]];
+    const metadata = print ? snapshotMetadata(people) + snapshotFields([['Focus',p?.focus]]) : snapshotFields([...people,['Focus',p?.focus]]);
+    return '<section class="tracker-editor tracker-plan-view"' + (print ? '' : ' data-tracker-editor tabindex="-1"') + '><div class="tracker-section-heading"><div><p class="eyebrow">Grindstone · saved practice snapshot</p><' + (print ? 'h1' : 'h2') + '>' + esc(p?.name || d.name) + '</' + (print ? 'h1' : 'h2') + '></div>' + (print ? '' : close) + '</div><p><strong>' + esc(groupName(d.group)) + '</strong> · ' + dateLabel(d.date) + (d.startTime ? ' · ' + timeLabel(d.startTime) : '') + ' · ' + statusName(d.status) + ' · revision ' + d.revision + '</p>' + metadata + planCorrectionHtml(p) + planSummary(p,print) + (print ? '' : planActionsHtml() + copyConfirmationHtml()) + (print ? snapshotMetadata(planning) : snapshotFields(planning)) +
       (d.status === 'completed' ? '<section class="tracker-confirmed-skills"><h3>Confirmed teaching</h3><p class="tracker-fine">These are the skills confirmed after practice. The saved plan below may include activities that were skipped.</p>' + (d.skills?.length ? '<ul>' + d.skills.map(item => '<li>' + esc(item.title) + '</li>').join('') + '</ul>' : '<p>' + esc(d.noSkillReason || 'No skills recorded.') + '</p>') + snapshotFields([['Practice reflection',d.notes]]) + '</section>' : snapshotFields([['Session notes',d.notes]])) +
       '<ol class="tracker-plan-blocks">' + blocks.map(b => {
         const start = elapsed; elapsed = Math.round((elapsed + blockMinutes(b)) * 10) / 10;
