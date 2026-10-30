@@ -1,0 +1,1022 @@
+{
+  "prepared": "2026-10-29",
+  "researcher": "western_integration",
+  "scope": "Facebook coach queue, group B; read-only research with one new JSON handoff",
+  "authorization": "Current user confirmed displayed coach identities; public sources only for public biography material.",
+  "method": {
+    "surface": "Signed-in Chrome Facebook UI; own research tab only",
+    "browser_inventory_note": "Requested browser 3 unavailable; fresh inventory exposed signed-in Chrome browser 1. Parent notified. Own tab 966948041.",
+    "web_index_supplement": "None used in this pass. Existing local sources were read as prior evidence, not counted as fresh Facebook searches.",
+    "bounds": "Reviewed rendered result sets, expanded relevant captions and opened selected strongest public photographs. Not an exhaustive traversal of every result or album. Duplicate aliases and already-resolved entries are explicitly not counted as searches.",
+    "privacy": "No messages, friend requests, reactions, media downloads or site edits. Private/restricted content and private photo URLs omitted from this report. Public visibility does not establish copyright permission or club ownership.",
+    "identification": "No facial recognition/comparison; names, explicit captions, printed text and user-confirmed existing identities only."
+  },
+  "coaches": [
+    {
+      "id": "jerome-featherstone",
+      "name": "Jerome Featherstone",
+      "identity_status": "confirmed by user; latest confirmation 2026-10-29 applies to displayed coach identities, not unrelated new namesakes",
+      "summary": "New public named championship celebration and fight poster found; public Upton Brawlers coaching attribution added as research evidence. No additional attributable prep/college photo.",
+      "recommended_source_refs": [
+        "j-champion",
+        "j-poster",
+        "j-upton"
+      ],
+      "gaps": [
+        "Individually captioned Boys Latin/Salisbury photos",
+        "Any additional Oklahoma wrestling photograph beyond existing newspaper scans",
+        "Direct caption for the previously proposed 2015 Jason Bell bout photo"
+      ],
+      "queries": [
+        {
+          "id": "jerome-featherstone-01",
+          "query": "Jerome Featherstone Grindstone",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Grindstone",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Grindstone",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Public personal fight poster and public coaching acknowledgment surfaced. Opened named poster and verified Public plus January 8, 2024 date.",
+          "source_refs": [
+            "j-poster",
+            "j-coaching"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "jerome-featherstone-02",
+          "query": "Jerome Featherstone Boys Latin",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Boys%20Latin",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Boys%20Latin",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "School-name route surfaced public Beat the Streets Upton Brawlers registration post. Expanded caption explicitly names Jerome Featherstone and Jaaziah Bethea as coaches; contains Fall 2018 program context. No newly attributable Boys Latin wrestling photograph.",
+          "source_refs": [
+            "j-upton"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "jerome-featherstone-03",
+          "query": "Jerome Featherstone Salisbury 2004",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Salisbury%202004",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Salisbury%202004",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Salisbury 2004 search rendered MMA/coaching results, not a named Salisbury school photograph. A new Shogun championship photo was discovered incidentally and then verified under query 05.",
+          "source_refs": [
+            "j-champion"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "jerome-featherstone-04",
+          "query": "Jerome Featherstone Oklahoma 2005",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Oklahoma%202005",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Oklahoma%202005",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Oklahoma 2005 search rendered MMA and unrelated results. No newly attributable college wrestling photo; existing Oklahoma newspaper captioned photos remain valid.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "jerome-featherstone-05",
+          "query": "Jerome Featherstone Shogun 25",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Shogun%2025",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Shogun%2025",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Shogun 25 route surfaced championship and title-defense posts. Opened Carl Kus championship photograph; Public and November 13, 2022 date verified visually.",
+          "source_refs": [
+            "j-champion",
+            "j-defense"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "jerome-featherstone-06",
+          "query": "Jerome Featherstone Shogun 28",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Shogun%2028",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Shogun%2028",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Shogun 28 route reproduced the champion photo, a public title-defense post, and a public-group Elijah Harris title-win post. Group title is not evidence the Harris bout occurred at Shogun 28.",
+          "source_refs": [
+            "j-champion",
+            "j-defense",
+            "j-harris"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "jerome-featherstone-07",
+          "query": "Jerome Featherstone Beat the Streets",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Beat%20the%20Streets",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Beat%20the%20Streets",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. The independent Boys Latin query already produced and expanded the directly relevant public Beat the Streets coaching post.",
+          "source_refs": [
+            "j-upton"
+          ],
+          "related_query_ids": [
+            "jerome-featherstone-02"
+          ]
+        },
+        {
+          "id": "jerome-featherstone-08",
+          "query": "Jerome Featherstone Mad House Boxing",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Mad%20House%20Boxing",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Mad%20House%20Boxing",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Mad House Boxing route surfaced public gym-related material and a public Powerhouse Wrestling Academy website announcement. No new named authentic staff portrait; the academy graphic is labeled AI content and is not a photo candidate.",
+          "source_refs": [
+            "j-powerhouse"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "jerome-featherstone-09",
+          "query": "Jerome Featherstone Jason Bell March 21 2015",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Jerome%20Featherstone%20Jason%20Bell%20March%2021%202015",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Jerome%20Featherstone%20Jason%20Bell%20March%2021%202015",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Exact Jason Bell/March 21 2015 route rendered unrelated Jason Bell posts. No new named image establishes the older bout-sequence photo.",
+          "source_refs": [],
+          "related_query_ids": []
+        }
+      ]
+    },
+    {
+      "id": "eric-westervelt",
+      "name": "Eric Westervelt",
+      "identity_status": "confirmed by user; latest confirmation 2026-10-29 applies to displayed coach identities, not unrelated new namesakes",
+      "summary": "No new public attributable photo or college attendance-year statement. Existing captioned 1999 final photo and public 2024 club introduction remain best.",
+      "recommended_source_refs": [
+        "e-existing-wrestling",
+        "e-existing-intro"
+      ],
+      "gaps": [
+        "Public statement of college attendance/graduation year before targeting more yearbooks",
+        "No promotion of unrelated employer/middle-initial namesake lead"
+      ],
+      "queries": [
+        {
+          "id": "eric-westervelt-01",
+          "query": "Eric Westervelt Grindstone",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Grindstone",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Grindstone",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "No new public attributable club photo in rendered results. Existing 2024 public Mat Rats introduction is already in the main site.",
+          "source_refs": [
+            "e-existing-intro"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "eric-westervelt-02",
+          "query": "Eric Westervelt Westminster wrestling",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Westminster%20wrestling",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Westminster%20wrestling",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Westminster wrestling query produced no new public attributable Eric wrestling photo. Restricted personal results were excluded.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "eric-westervelt-03",
+          "query": "Westminster wrestling 1998 Eric Westervelt",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Westminster%20wrestling%201998%20Eric%20Westervelt",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Westminster%20wrestling%201998%20Eric%20Westervelt",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "1998 season query rendered current WHS JV material and unrelated wrestling posts, not a named historical Eric photograph.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "eric-westervelt-04",
+          "query": "Eric Westervelt Carroll County 1999",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Carroll%20County%201999",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Carroll%20County%201999",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. Same 1999 county-final target is covered by the more discriminating Eric/Chris Currence route and existing captioned February 1999 newspaper photo.",
+          "source_refs": [
+            "e-existing-wrestling"
+          ],
+          "related_query_ids": [
+            "eric-westervelt-06"
+          ]
+        },
+        {
+          "id": "eric-westervelt-05",
+          "query": "Westminster wrestling 1999 171",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Westminster%20wrestling%201999%20171",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Westminster%20wrestling%201999%20171",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. Same 1999 county-final target is covered by the more discriminating Eric/Chris Currence route and existing captioned February 1999 newspaper photo.",
+          "source_refs": [
+            "e-existing-wrestling"
+          ],
+          "related_query_ids": [
+            "eric-westervelt-06"
+          ]
+        },
+        {
+          "id": "eric-westervelt-06",
+          "query": "Eric Westervelt Chris Currence",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Chris%20Currence",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Chris%20Currence",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Named-opponent route did not produce a new usable public Eric photograph. Restricted personal results excluded; the existing newspaper final photo remains the attributable source.",
+          "source_refs": [
+            "e-existing-wrestling"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "eric-westervelt-07",
+          "query": "Henry Mohlhenrich Westminster wrestling 1998 1999",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Henry%20Mohlhenrich%20Westminster%20wrestling%201998%201999",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Henry%20Mohlhenrich%20Westminster%20wrestling%201998%201999",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Henry Mohlhenrich/1998/1999 route rendered a public personal portrait. Opened it: a musician portrait, not an Eric wrestling archive; no Eric-specific attribution.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "eric-westervelt-08",
+          "query": "Westminster Owls wrestling 1998",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Westminster%20Owls%20wrestling%201998",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Westminster%20Owls%20wrestling%201998",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. Broad Owls/1998 alias superseded by Eric-specific 1998 season query.",
+          "source_refs": [],
+          "related_query_ids": [
+            "eric-westervelt-03"
+          ]
+        },
+        {
+          "id": "eric-westervelt-09",
+          "query": "Westminster wrestling 1999 Stephen Cherry",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Westminster%20wrestling%201999%20Stephen%20Cherry",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Westminster%20wrestling%201999%20Stephen%20Cherry",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Stephen Cherry/1999 route returned unrelated wrestling memories and a reunion post; no Eric-attributed image or photographer archive.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "eric-westervelt-10",
+          "query": "Stephen Cherry Westervelt",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Stephen%20Cherry%20Westervelt",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Stephen%20Cherry%20Westervelt",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. Photographer-name alias duplicates the more specific Stephen Cherry/Westminster/1999 route.",
+          "source_refs": [],
+          "related_query_ids": [
+            "eric-westervelt-09"
+          ]
+        },
+        {
+          "id": "eric-westervelt-11",
+          "query": "Eric Westervelt McDaniel graduation",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20McDaniel%20graduation",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20McDaniel%20graduation",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "McDaniel graduation query did not produce public education-year evidence. Restricted personal material excluded. No college graduation year or college-wrestling claim inferred.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "eric-westervelt-12",
+          "query": "Eric Westervelt Western Maryland College yearbook",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Eric%20Westervelt%20Western%20Maryland%20College%20yearbook",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Eric%20Westervelt%20Western%20Maryland%20College%20yearbook",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. College-name and middle-initial variants remain dependent on a public attendance-year statement; McDaniel route and employer-biography route yielded no such public evidence. Namesake roster lead not promoted.",
+          "source_refs": [],
+          "related_query_ids": [
+            "eric-westervelt-11",
+            "eric-westervelt-14"
+          ]
+        },
+        {
+          "id": "eric-westervelt-13",
+          "query": "\"Eric M. Westervelt\" \"McDaniel\"",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=%22Eric%20M.%20Westervelt%22%20%22McDaniel%22",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=%22Eric%20M.%20Westervelt%22%20%22McDaniel%22",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. College-name and middle-initial variants remain dependent on a public attendance-year statement; McDaniel route and employer-biography route yielded no such public evidence. Namesake roster lead not promoted.",
+          "source_refs": [],
+          "related_query_ids": [
+            "eric-westervelt-11",
+            "eric-westervelt-14"
+          ]
+        },
+        {
+          "id": "eric-westervelt-14",
+          "query": "\"Eric Westervelt\" \"Western Regional Park\" biography",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=%22Eric%20Westervelt%22%20%22Western%20Regional%20Park%22%20biography",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=%22Eric%20Westervelt%22%20%22Western%20Regional%20Park%22%20biography",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Exact Western Regional Park biography route produced no public attributable education biography. Restricted personal results excluded; independent employer/namesake match not asserted.",
+          "source_refs": [],
+          "related_query_ids": []
+        }
+      ]
+    },
+    {
+      "id": "tyler-lease",
+      "name": "Tyler Lease",
+      "identity_status": "confirmed by user; latest confirmation 2026-10-29 applies to displayed coach identities, not unrelated new namesakes",
+      "summary": "Confirmed employer portrait and 2000 newspaper baseball photo remain best. New public employer group and unrelated wrestling results do not identify Tyler individually.",
+      "recommended_source_refs": [
+        "t-existing-portrait",
+        "t-existing-baseball"
+      ],
+      "gaps": [
+        "Public named wrestling/team-coaching photograph",
+        "Any independently sourced wrestling background; do not infer from unrelated Tyler/Leese results"
+      ],
+      "queries": [
+        {
+          "id": "tyler-lease-01",
+          "query": "Tyler Lease Grindstone",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Grindstone",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Grindstone",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Club query rendered current WHS wrestling material without a Tyler Lease attribution. No new public coach photograph.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "tyler-lease-02",
+          "query": "Tyler Lease Westminster",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Westminster",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Westminster",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. Broad Westminster identity search is superseded by the specific club, wrestling, historical baseball, and confirmed employer routes.",
+          "source_refs": [],
+          "related_query_ids": [
+            "tyler-lease-01",
+            "tyler-lease-03",
+            "tyler-lease-05",
+            "tyler-lease-07"
+          ]
+        },
+        {
+          "id": "tyler-lease-03",
+          "query": "Tyler Lease wrestling",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20wrestling",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20wrestling",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Wrestling query produced unrelated Canton/other Tyler content. No explicit Tyler Lease/Grindstone wrestling photo; no same-first-name or face match used.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "tyler-lease-04",
+          "query": "Tyler Lease Mat Rats",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Mat%20Rats",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Mat%20Rats",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. Club alias duplicates current Grindstone route and prior completed Mat Rats page search.",
+          "source_refs": [],
+          "related_query_ids": [
+            "tyler-lease-01",
+            "tyler-lease-08"
+          ]
+        },
+        {
+          "id": "tyler-lease-05",
+          "query": "Tyler Lease Westminster American",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Westminster%20American",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Westminster%20American",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Westminster American query rendered unrelated current Westminster posts, not a newly named historical baseball photo. Existing 2000 newspaper photograph remains strongest.",
+          "source_refs": [
+            "t-existing-baseball"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "tyler-lease-06",
+          "query": "Tyler Leese Westminster baseball",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Leese%20Westminster%20baseball",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Leese%20Westminster%20baseball",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. Leese spelling alias was not adopted as another person; exact Lease plus Westminster American is the stronger historical route and identity is confirmed.",
+          "source_refs": [],
+          "related_query_ids": [
+            "tyler-lease-05"
+          ]
+        },
+        {
+          "id": "tyler-lease-07",
+          "query": "Tyler Lease Webb Environmental",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20Webb%20Environmental",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20Webb%20Environmental",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Employer query returned public Webb Environmental holiday/team and business posts. No newly individually named Tyler image established. Official website portrait is already confirmed; a holiday group must not be cropped/identified by resemblance.",
+          "source_refs": [
+            "t-webb-holiday",
+            "t-existing-portrait"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "tyler-lease-08",
+          "query": "Tyler WestminsterMatRats",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20WestminsterMatRats",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20WestminsterMatRats",
+          "status": "already-resolved",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not rerun. Queue itself records completed October 24 page search with no results; retained as prior evidence, not counted as a fresh attempt.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "tyler-lease-09",
+          "query": "Tyler Lease WintersMillWrestling",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20Lease%20WintersMillWrestling",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20Lease%20WintersMillWrestling",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Fresh legacy Winters Mill page search for Tyler returned a public regional-results post, not a new individually named Tyler Lease coaching photo. Prior queue also records a different Tyler, so no identity expansion.",
+          "source_refs": [],
+          "related_query_ids": [],
+          "actual_page_url": "https://www.facebook.com/profile/100063519762289/search/?q=Tyler",
+          "page_query": "Tyler"
+        },
+        {
+          "id": "tyler-lease-10",
+          "query": "Tyler WebbEnvironmental",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Tyler%20WebbEnvironmental",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Tyler%20WebbEnvironmental",
+          "status": "already-resolved",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not rerun. Prior employer page search and subsequent user confirmation resolve the portrait identity. Current exact employer query reviewed new public context without inferring unnamed group faces.",
+          "source_refs": [
+            "t-existing-portrait"
+          ],
+          "related_query_ids": [
+            "tyler-lease-07"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mike-handleman",
+      "name": "Mike Handleman",
+      "identity_status": "confirmed by user; latest confirmation 2026-10-29 applies to displayed coach identities, not unrelated new namesakes",
+      "summary": "New public CCK Cagezilla post-bout collage found. Public girls-clinic and recruitment material supports coaching role. No new attributable college photo; restricted material excluded.",
+      "recommended_source_refs": [
+        "m-cagezilla",
+        "m-clinic"
+      ],
+      "gaps": [
+        "Individually named DelVal wrestling photo",
+        "No identification of unnamed yearbook athletes",
+        "Additional public individually attributed Mike coaching photo rather than team-only group"
+      ],
+      "queries": [
+        {
+          "id": "mike-handleman-01",
+          "query": "Mike Handleman Grindstone",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Grindstone",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Grindstone",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "No useful new public club result. Relevant-looking restricted material was excluded immediately after visibility check; no private contents or photo URLs retained.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "mike-handleman-02",
+          "query": "Michael Handleman wrestling",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Michael%20Handleman%20wrestling",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Michael%20Handleman%20wrestling",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Formal-name wrestling route surfaced public girls-wrestling recruitment and public coaching recommendation. Their equivalent public Valkyries program route is retained under query 09.",
+          "source_refs": [
+            "m-valkyries"
+          ],
+          "related_query_ids": [
+            "mike-handleman-09"
+          ]
+        },
+        {
+          "id": "mike-handleman-03",
+          "query": "Mike Handleman Arundel",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Arundel",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Arundel",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Arundel route surfaced a public Mike-authored girls-only clinic post naming Nicole J. Tyson, Robert Connolly/Arundel Wrestling and JCharles Bows/Mid Shore, and explicitly mentioning Valkyries. First photo opened: a girls group photo, not an individually attributed Mike portrait.",
+          "source_refs": [
+            "m-clinic"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "mike-handleman-04",
+          "query": "Michael Handleman Delaware Valley wrestling",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Michael%20Handleman%20Delaware%20Valley%20wrestling",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Michael%20Handleman%20Delaware%20Valley%20wrestling",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Delaware Valley formal-name query rendered youth/girls wrestling or unrelated posts, not a new individually captioned college photo.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "mike-handleman-05",
+          "query": "Mike Handleman DelVal",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20DelVal",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20DelVal",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. College alias duplicates the Delaware Valley college route; identity already confirmed. No claim of a separate photo search. ",
+          "source_refs": [],
+          "related_query_ids": [
+            "mike-handleman-04"
+          ]
+        },
+        {
+          "id": "mike-handleman-06",
+          "query": "Mike Handleman Cagezilla 73",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Cagezilla%2073",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Cagezilla%2073",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Public CCK Martial Arts/Kenpo Self Defense post explicitly congratulates Mike on his Cagezilla victory. Opened photo and verified Public and June 18, 2023 date.",
+          "source_refs": [
+            "m-cagezilla"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "mike-handleman-07",
+          "query": "Mike Handleman Taylor Sims",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Taylor%20Sims",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Taylor%20Sims",
+          "status": "already-resolved",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately searched. User has already confirmed the Taylor Sims Cagezilla 73 portrait; current main biography uses it. Unnamed additional bout frames remain unconfirmed.",
+          "source_refs": [
+            "m-existing-portrait"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "mike-handleman-08",
+          "query": "Mike Handleman Danger Zone",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Danger%20Zone",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Danger%20Zone",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Danger Zone route reproduced the public CCK Cagezilla congratulatory photo and girls-wrestling recruitment. No separate newly attributable Danger Zone photo.",
+          "source_refs": [
+            "m-cagezilla"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "mike-handleman-09",
+          "query": "Mike Handleman Valkyries",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Mike%20Handleman%20Valkyries",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Mike%20Handleman%20Valkyries",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Public Winters Mill High School Wrestling share explicitly promotes Mike and the Valkyries girls junior-league program. Original shared recruitment photo permalink retained; historical second-season language is not a current-season schedule.",
+          "source_refs": [
+            "m-valkyries"
+          ],
+          "related_query_ids": []
+        }
+      ]
+    },
+    {
+      "id": "daniel-skelonc",
+      "name": "Daniel Skelonc",
+      "identity_status": "confirmed by user; latest confirmation 2026-10-29 applies to displayed coach identities, not unrelated new namesakes",
+      "summary": "Confirmed MPD portrait remains current. Specific school/1997/club Facebook routes yielded no new individually attributable wrestling photo. Public club album/Pups sources remain general context only.",
+      "recommended_source_refs": [
+        "d-existing-portrait"
+      ],
+      "gaps": [
+        "Captioned Cedar Springs wrestling photo",
+        "1997 regional photograph",
+        "External 2002 gallery and newspaper archives remain blocked/unsearched in this pass"
+      ],
+      "queries": [
+        {
+          "id": "daniel-skelonc-01",
+          "query": "Daniel Skelonc Grindstone",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20Skelonc%20Grindstone",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20Skelonc%20Grindstone",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Club query returned unrelated current content, not a named Daniel coach photograph.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "daniel-skelonc-02",
+          "query": "Dan Skelonc wrestling",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Dan%20Skelonc%20wrestling",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Dan%20Skelonc%20wrestling",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Dan Skelonc wrestling query returned unrelated Dan Severn/other names, not Daniel. No face or first-name identification used.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "daniel-skelonc-03",
+          "query": "Daniel Skelonc Maryland",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20Skelonc%20Maryland",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20Skelonc%20Maryland",
+          "status": "already-resolved",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately searched. User confirmed the displayed Daniel identity and MPD portrait; generic Maryland identity search is unnecessary.",
+          "source_refs": [
+            "d-existing-portrait"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "daniel-skelonc-04",
+          "query": "Dan Skelonc Cedar Springs",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Dan%20Skelonc%20Cedar%20Springs",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Dan%20Skelonc%20Cedar%20Springs",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. These school/state aliases are covered by the more specific Cedar Springs/2002/Dan Skelonc photo query.",
+          "source_refs": [],
+          "related_query_ids": [
+            "daniel-skelonc-10"
+          ]
+        },
+        {
+          "id": "daniel-skelonc-05",
+          "query": "Cedar Springs wrestling 2002 Skelonc",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Cedar%20Springs%20wrestling%202002%20Skelonc",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Cedar%20Springs%20wrestling%202002%20Skelonc",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. These school/state aliases are covered by the more specific Cedar Springs/2002/Dan Skelonc photo query.",
+          "source_refs": [],
+          "related_query_ids": [
+            "daniel-skelonc-10"
+          ]
+        },
+        {
+          "id": "daniel-skelonc-06",
+          "query": "Daniel Skelonc Michigan wrestling",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20Skelonc%20Michigan%20wrestling",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20Skelonc%20Michigan%20wrestling",
+          "status": "duplicate/superseded",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "Not separately entered. These school/state aliases are covered by the more specific Cedar Springs/2002/Dan Skelonc photo query.",
+          "source_refs": [],
+          "related_query_ids": [
+            "daniel-skelonc-10"
+          ]
+        },
+        {
+          "id": "daniel-skelonc-07",
+          "query": "Daniel Skelonc Northeast Kids Regionals 1997",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Daniel%20Skelonc%20Northeast%20Kids%20Regionals%201997",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Daniel%20Skelonc%20Northeast%20Kids%20Regionals%201997",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "1997 Northeast Kids Regionals exact route rendered unrelated wrestling/sports posts, no attributable Daniel historical photograph.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "daniel-skelonc-08",
+          "query": "Skelonc WestminsterMatRats",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Skelonc%20WestminsterMatRats",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Skelonc%20WestminsterMatRats",
+          "status": "reviewed-found",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Mat Rats route surfaced public first Pups-season post, public 25-26 season photo album and meet-coach promotion. Expanded Pups caption; it does not name Daniel. Retain as contextual club sources only, not Daniel portrait identifications.",
+          "source_refs": [
+            "d-pups",
+            "d-club-album"
+          ],
+          "related_query_ids": []
+        },
+        {
+          "id": "daniel-skelonc-09",
+          "query": "Skelonc Winters Mill Wrestling",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Skelonc%20Winters%20Mill%20Wrestling",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Skelonc%20Winters%20Mill%20Wrestling",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Opened supplied legacy Winters Mill page search for Skelonc. Facebook explicitly displayed We did not find any results.",
+          "source_refs": [],
+          "related_query_ids": [],
+          "actual_page_url": "https://www.facebook.com/profile/100063519762289/search/?q=Skelonc",
+          "page_query": "Skelonc"
+        },
+        {
+          "id": "daniel-skelonc-10",
+          "query": "Cedar Springs wrestling 2002 Dan Skelonc ",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Cedar%20Springs%20wrestling%202002%20Dan%20Skelonc%20",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Cedar%20Springs%20wrestling%202002%20Dan%20Skelonc%20",
+          "status": "reviewed-no-result",
+          "attempted_this_pass": true,
+          "method": "signed-in Facebook UI; entered queued search in Search Facebook, or supplied page-search route",
+          "evidence": "Specific Cedar Springs/2002/Dan Skelonc query completed with no attributable public school-wrestling photo in rendered results. Search text trimmed the queue trailing space.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "daniel-skelonc-11",
+          "query": "2002 MHSAA Division 2 145 Dan Skelonc Cedar Springs",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=2002%20MHSAA%20Division%202%20145%20Dan%20Skelonc%20Cedar%20Springs",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=2002%20MHSAA%20Division%202%20145%20Dan%20Skelonc%20Cedar%20Springs",
+          "status": "blocked",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "No fresh archive attempt in this Facebook pass. Queue records the exact 2002 gallery as previously returning 429; live domain is unrelated. Historical-photo target remains open, not claimed searched or resolved.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "daniel-skelonc-12",
+          "query": "Grand Rapids Press Skelonc February March 2002",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Grand%20Rapids%20Press%20Skelonc%20February%20March%202002",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Grand%20Rapids%20Press%20Skelonc%20February%20March%202002",
+          "status": "blocked",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "No licensed-library search attempted. Queue requires legitimate KDL/library access; no such access supplied. Search route is external archive work, not counted as completed Facebook work.",
+          "source_refs": [],
+          "related_query_ids": []
+        },
+        {
+          "id": "daniel-skelonc-13",
+          "query": "Skelonc Cedar Springs Cadence February March 2002",
+          "queued_posts_url": "https://www.facebook.com/search/posts/?q=Skelonc%20Cedar%20Springs%20Cadence%20February%20March%202002",
+          "queued_photos_url": "https://www.facebook.com/search/photos/?q=Skelonc%20Cedar%20Springs%20Cadence%20February%20March%202002",
+          "status": "blocked",
+          "attempted_this_pass": false,
+          "method": null,
+          "evidence": "No fresh archive attempt in this Facebook pass. Queue records prior public Cadence collection 403. Retain external archive lead separately rather than falsely marking searched.",
+          "source_refs": [],
+          "related_query_ids": []
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "j-poster",
+      "url": "https://www.facebook.com/photo/?fbid=3649371105319086&set=a.2166463386943206",
+      "credit": "Jerome Featherstone Facebook; poster designer/photographer not stated",
+      "date": "2024-01-08",
+      "visibility": "Public; photo viewer and screenshot verified",
+      "review": "Opened photo and read poster. Featherstone versus Alsaghir, January 13, Wayne MI; pro lightweight bout. Named poster is a source candidate, not an action photograph."
+    },
+    {
+      "id": "j-champion",
+      "url": "https://www.facebook.com/photo/?fbid=5726869790702423&set=a.1825582217497886",
+      "credit": "Carl Kus Facebook; photographer not stated",
+      "date": "2022-11-13",
+      "visibility": "Public; photo viewer and screenshot verified",
+      "review": "Caption names Jerome as new 155-lb Shogun champion; photograph shows belt celebration with corner team. Use full contextual image or caption-linked subject, not face comparison."
+    },
+    {
+      "id": "j-upton",
+      "url": "https://www.facebook.com/photo/?fbid=1485185091569118&set=pcb.1485185151569112",
+      "alternate_url": "https://www.facebook.com/photo/?fbid=1485185114902449&set=pcb.1485185151569112",
+      "credit": "Beat the Streets - Baltimore",
+      "date": null,
+      "visibility": "Search post explicitly Public",
+      "review": "Expanded original post names Jerome Featherstone and Jaaziah Bethea as Upton Brawlers coaches; Fall 2018 context. Photo links observed; individual photos not opened or individually identified."
+    },
+    {
+      "id": "j-coaching",
+      "url": "https://www.facebook.com/photo/?fbid=10234453790266579&set=pcb.10234453791226603",
+      "credit": "Rob McCraw Facebook",
+      "visibility": "Search post explicitly Public",
+      "review": "Post thanks Coach Jerome by name. Search-card-only contextual acknowledgment; no individual photo identification or personal athlete details retained."
+    },
+    {
+      "id": "j-defense",
+      "url": "https://www.facebook.com/photo/?fbid=10160727683851208&set=pcb.10160727684251208",
+      "credit": "Rob Owings Facebook",
+      "visibility": "Search post explicitly Public",
+      "review": "Caption explicitly praises Jerome title defense at Shogun. Photo not opened; no per-person identification or exact bout date asserted."
+    },
+    {
+      "id": "j-harris",
+      "url": "https://www.facebook.com/photo/?fbid=122111704340235323&set=pcb.668255438683432",
+      "credit": "Shogun Fights post in Shogun Fights 28 public group",
+      "visibility": "Search post explicitly Public group",
+      "review": "Post names Jerome versus Elijah Harris and unanimous decision for vacant 155-lb title. Group name must not be used as bout number. Photos not individually reviewed."
+    },
+    {
+      "id": "j-powerhouse",
+      "url": "https://www.facebook.com/photo/?fbid=4516598498596338&set=a.2166463386943206",
+      "credit": "Jerome Featherstone Facebook",
+      "visibility": "Search post explicitly Public",
+      "review": "Public website launch announcement for Powerhouse Wrestling Academy, Westminster. Future professional-context lead only. Image labeled AI content; excluded as authentic coach photo."
+    },
+    {
+      "id": "m-cagezilla",
+      "url": "https://www.facebook.com/photo/?fbid=775911130991169&set=a.590078242907793",
+      "credit": "CCK Martial Arts/Kenpo Self Defense Facebook; photographer not stated",
+      "date": "2023-06-18",
+      "visibility": "Public; opened photo and screenshot verified",
+      "review": "Cage plus post-bout group collage; caption explicitly names Mike and Cagezilla win. Caption rounds time to about 1.5 minutes; keep the existing official commission result 1:18 rather than replacing with rounded social text."
+    },
+    {
+      "id": "m-clinic",
+      "url": "https://www.facebook.com/photo/?fbid=10162338215065855&set=pcb.10162338215585855",
+      "alternate_urls": [
+        "https://www.facebook.com/photo/?fbid=10162338215135855&set=pcb.10162338215585855",
+        "https://www.facebook.com/photo/?fbid=10162338215215855&set=pcb.10162338215585855",
+        "https://www.facebook.com/photo/?fbid=10162338215365855&set=pcb.10162338215585855",
+        "https://www.facebook.com/photo/?fbid=10162338215485855&set=pcb.10162338215585855"
+      ],
+      "credit": "Mike Handleman Facebook; photographer not stated",
+      "date_note": "Photo viewer displayed June 25 without year; no year inferred.",
+      "visibility": "Public; first photo opened and screenshot verified",
+      "review": "Mike-authored girls-clinic post explicitly mentions Valkyries and organizers. First photo is a girls group shot. No individually named Mike portrait established. Other album links observed but not opened."
+    },
+    {
+      "id": "m-valkyries",
+      "url": "https://www.facebook.com/photo/?fbid=10159838780430855&set=a.10153524166170855",
+      "credit": "Mike Handleman, publicly shared by Winters Mill High School Wrestling",
+      "visibility": "Public share and original shared post marked Public in results",
+      "review": "Historical program recruitment post explicitly names Mike and Valkyries. Do not reuse historical second-season date as current schedule. Photo not opened."
+    },
+    {
+      "id": "m-existing-portrait",
+      "url": "https://www.smugmug.com/gallery/n-RxnBZf/i-mJnSWqb/A",
+      "credit": "Taylor Sims",
+      "visibility": "Existing published public source; not rechecked in this pass",
+      "review": "User-confirmed Cagezilla 73 portrait already used in main coaches page; identity question resolved."
+    },
+    {
+      "id": "e-existing-intro",
+      "url": "https://www.facebook.com/photo/?fbid=1126004295625856&set=a.563786781847613",
+      "credit": "Westminster Mat Rats Wrestling",
+      "date": "2024-10-07",
+      "visibility": "Existing manifest says Public; not reopened this pass",
+      "review": "Already in main gallery. Historic coaching-year counts describe 2024, not current tenure."
+    },
+    {
+      "id": "e-existing-wrestling",
+      "url": "https://cctimes.carr.org/documents/CCT_02211999.pdf#page=9",
+      "credit": "Stephen Cherry / Carroll County Times",
+      "date": "1999-02-21",
+      "visibility": "Existing public newspaper source; not rechecked this pass",
+      "review": "Caption names Eric versus Chris Currence in county 171-lb final; current gallery already uses it."
+    },
+    {
+      "id": "t-existing-baseball",
+      "url": "https://cctimes.carr.org/documents/CCT_07192000.pdf#page=7",
+      "credit": "Ken Koons / Carroll County Times",
+      "date": "2000-07-19",
+      "visibility": "Existing public newspaper source; not rechecked this pass",
+      "review": "Existing captioned Tyler Westminster American baseball image."
+    },
+    {
+      "id": "t-existing-portrait",
+      "url": "https://webbenvironmental.com/verification/",
+      "credit": "Webb Environmental",
+      "visibility": "Existing public employer source; user-confirmed identity",
+      "review": "Already adopted current coach portrait. No fresh download or identity guessing."
+    },
+    {
+      "id": "t-webb-holiday",
+      "url": "https://www.facebook.com/photo/?fbid=875268214604776&set=a.522728066525461",
+      "credit": "Webb Environmental",
+      "visibility": "Search post explicitly Public",
+      "review": "Holiday employee/family group post. No individual Tyler caption established; do not crop an assumed Tyler from the group. Not opened."
+    },
+    {
+      "id": "d-existing-portrait",
+      "url": "https://mpdc.dc.gov/release/mpd-officers-awarded-after-quickly-apprehending-robbery-suspect",
+      "credit": "Metropolitan Police Department",
+      "date": "2023-11-20",
+      "visibility": "Existing official public source; user-confirmed identity",
+      "review": "Printed award graphic names Daniel second from left; already current portrait and full gallery image."
+    },
+    {
+      "id": "d-pups",
+      "url": "https://www.facebook.com/photo/?fbid=1225095179050100&set=a.563786781847613",
+      "credit": "Westminster Mat Rats Wrestling",
+      "visibility": "Search post explicitly Public",
+      "review": "Expanded first Pups-season caption does not name Daniel. General club context only; not a Daniel photo match."
+    },
+    {
+      "id": "d-club-album",
+      "url": "https://www.facebook.com/photo/?fbid=1776152197277726&set=pcb.1776154463944166",
+      "credit": "Westminster Mat Rats Wrestling",
+      "visibility": "Search post explicitly Public",
+      "review": "25-26 season album; no Daniel-specific caption observed. Photos not opened or identified by faces."
+    }
+  ],
+  "extra_check": {
+    "name": "Brian Leaf",
+    "route": "Legacy Winters Mill High School Wrestling page",
+    "actual_page_url": "https://www.facebook.com/profile/100063519762289/search/?q=Brian",
+    "method": "Changed Search this user from Skelonc to Brian through Facebook UI",
+    "status": "reviewed-no-result",
+    "evidence": "Facebook explicitly displayed We did not find any results."
+  },
+  "counts": {
+    "queue_queries": 55,
+    "fresh_query_attempts": 34,
+    "dispositions": {
+      "reviewed-found": 12,
+      "reviewed-no-result": 22,
+      "duplicate/superseded": 14,
+      "already-resolved": 4,
+      "blocked": 3
+    }
+  },
+  "handoff": "New photo sources are candidates, not downloaded assets. Root owns integration. Current biography facts and original assets remain untouched."
+}

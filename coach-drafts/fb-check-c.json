@@ -1,0 +1,793 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-10-29",
+  "task": "Remaining Facebook coach searches: batch C",
+  "identity_confirmation": {
+    "status": "confirmed",
+    "basis": "User confirmed displayed coach identities on 2026-10-29, including Brad Gabrish, Andy Millman and Jordan Millman. Stale queue identity warnings are superseded.",
+    "limits": "Confirmation applies to these known coach profiles; unrelated namesakes and unlabeled faces are not automatically assigned."
+  },
+  "method": {
+    "browser": "Signed-in Chrome via browser-control UI, own temporary research tab only.",
+    "scope": "Public captions, explicit name/tag evidence and public school/event context.",
+    "privacy": "Only evidence with explicit Public badge or publicly accessible publisher content retained. Unrelated/private material not retained.",
+    "face_matching": false,
+    "messages_sent": false,
+    "reactions": false,
+    "friend_requests": false,
+    "media_downloads": false,
+    "site_edits": false,
+    "publication": false,
+    "negative_results": "No-result means no relevant item in the reviewed visible result set; it is not a claim that no such material exists anywhere.",
+    "deduplication": "Every existing queue ID is dispositioned. actually_searched=false explicitly distinguishes duplicate or already-resolved leads from searches performed now."
+  },
+  "coaches": [
+    {
+      "id": "jordan-millman",
+      "name": "Jordan Millman",
+      "summary": "No new precise coaching assignment or captioned coaching action photo. Actual Facebook searches return the existing public Mat Rats gear post or business context. Confirmed identity/coach status no longer requires research.",
+      "actual_searches": [
+        {
+          "id": "jordan-fb-grindstone",
+          "surface": "Facebook global search entered through search box",
+          "query": "Jordan Millman Grindstone",
+          "queue_ids": [
+            "jordan-millman-01"
+          ],
+          "result": "Existing public business/event context and profile photos, no new authored coaching-role detail."
+        },
+        {
+          "id": "jordan-profile-coach",
+          "surface": "Facebook profile internal search",
+          "query": "coach",
+          "queue_ids": [
+            "jordan-millman-10"
+          ],
+          "result": "Only unrelated third-party mass-tagged posts; no authored coaching assignment. These posts were not retained as biography evidence.",
+          "url": "https://www.facebook.com/profile/100041217559124/search/?q=coach"
+        },
+        {
+          "id": "jordan-profile-wrestling",
+          "surface": "Facebook profile internal search",
+          "query": "wrestling",
+          "queue_ids": [
+            "jordan-millman-03"
+          ],
+          "result": "Returned already-retained Mat Rats gear post; explicit Public badge and Andy profile tag verified. Caption does not identify an exact coach group.",
+          "url": "https://www.facebook.com/profile/100041217559124/search/?q=wrestling"
+        }
+      ],
+      "query_reviews": [
+        {
+          "queue_id": "jordan-millman-01",
+          "queued_query": "Jordan Millman Grindstone",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "jordan-fb-grindstone"
+          ],
+          "note": "Existing public business/event context and profile photos, no new authored coaching-role detail."
+        },
+        {
+          "queue_id": "jordan-millman-02",
+          "queued_query": "Jordan Millman Westminster",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping club/location query not separately run; actual Grindstone and internal coach/wrestling searches recorded separately."
+        },
+        {
+          "queue_id": "jordan-millman-03",
+          "queued_query": "Jordan Millman wrestling",
+          "status": "already-resolved",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "jordan-profile-wrestling"
+          ],
+          "note": "Returned already-retained Mat Rats gear post; explicit Public badge and Andy profile tag verified. Caption does not identify an exact coach group."
+        },
+        {
+          "queue_id": "jordan-millman-04",
+          "queued_query": "Jordan Milman wrestling",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Spelling variant superseded by user-confirmed Jordan Millman identity; not searched."
+        },
+        {
+          "queue_id": "jordan-millman-05",
+          "queued_query": "Jordan Milliman Maryland",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Spelling variant superseded by user-confirmed Jordan Millman identity; not searched."
+        },
+        {
+          "queue_id": "jordan-millman-06",
+          "queued_query": "Grindstone Wrestling Jordan",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping club/location query not separately run; actual Grindstone and internal coach/wrestling searches recorded separately."
+        },
+        {
+          "queue_id": "jordan-millman-07",
+          "queued_query": "Jordon Millman Grindstone",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Spelling variant superseded by user-confirmed Jordan Millman identity; not searched."
+        },
+        {
+          "queue_id": "jordan-millman-08",
+          "queued_query": "Jordyn Millman Westminster",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Spelling variant superseded by user-confirmed Jordan Millman identity; not searched."
+        },
+        {
+          "queue_id": "jordan-millman-09",
+          "queued_query": "Jordan Millman Grindstone wrestling",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping club/location query not separately run; actual Grindstone and internal coach/wrestling searches recorded separately."
+        },
+        {
+          "queue_id": "jordan-millman-10",
+          "queued_query": "Grindstone public posts tagging Andy Millman or Jordan Millman as coaches",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "jordan-profile-coach"
+          ],
+          "note": "Only unrelated third-party mass-tagged posts; no authored coaching assignment. These posts were not retained as biography evidence."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "jordan-known-mat-rats",
+          "source_url": "https://www.facebook.com/joashley1991/posts/pfbid0nM6L1rGo8QKNWRUJCn3wkYoHGpTWxrZvGeJKX7BHK2nukM8G2d8RWnk9PXyh6bRAl",
+          "photo_source_url": "https://www.facebook.com/photo/?fbid=1639945137389389&set=a.118068996243685",
+          "publisher": "Jordan Millman",
+          "posted": "2025-11-11",
+          "visibility": "Shared with Public badge observed in internal wrestling search.",
+          "kind": "Already retained Mat Rats gear post",
+          "caption_summary": "Jordan describes the family starting wrestling season and enthusiasm for their Mat Rats; Andy's known profile is tagged.",
+          "supports": [
+            "Family participation in Mat Rats and direct Andy profile connection"
+          ],
+          "limits": [
+            "Gear photograph, not a new named coaching action photo.",
+            "Does not establish which group Jordan coaches; user-confirmed identity and role may stand separately."
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "Exact group/season coaching assignment remains unspecified in reviewed public captions.",
+        "No new explicitly named coaching action photograph from this pass."
+      ]
+    },
+    {
+      "id": "andy-millman",
+      "name": "Andy Millman",
+      "summary": "No new named bout photo or verified outcome. Facebook profile filter returns the known public pre-event cover. Public Flo metadata confirms a named match recording exists; promoter results omit the pairing, so outcome remains unresolved.",
+      "actual_searches": [
+        {
+          "id": "andy-fb-mehl",
+          "surface": "Facebook global search entered through search box",
+          "query": "Michael Mehl Andrew Millman Fight2Win109",
+          "queue_ids": [
+            "andy-millman-15"
+          ],
+          "result": "Visible results unrelated to the named bout; no result or action photo."
+        },
+        {
+          "id": "andy-profile-2019",
+          "surface": "Facebook millman1 profile date filter",
+          "query": "Profile > Filters > ending year 2019 > May > Done; inspected feed and scrolled",
+          "queue_ids": [
+            "andy-millman-16"
+          ],
+          "result": "Only the already-known April13 public event-cover post surfaced. No bout outcome or named action photo.",
+          "url": "https://www.facebook.com/millman1"
+        }
+      ],
+      "query_reviews": [
+        {
+          "queue_id": "andy-millman-01",
+          "queued_query": "Andy Millman Grindstone",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Identity/location/club connection confirmed by user and approved profile; not independently re-searched. Precise group assignment remains a separate gap."
+        },
+        {
+          "queue_id": "andy-millman-02",
+          "queued_query": "Andrew Millman Westminster",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Identity/location/club connection confirmed by user and approved profile; not independently re-searched. Precise group assignment remains a separate gap."
+        },
+        {
+          "queue_id": "andy-millman-03",
+          "queued_query": "Andrew J Millman wrestling",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Identity/location/club connection confirmed by user and approved profile; not independently re-searched. Precise group assignment remains a separate gap."
+        },
+        {
+          "queue_id": "andy-millman-04",
+          "queued_query": "Andy Millman Mat Rats",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Identity/location/club connection confirmed by user and approved profile; not independently re-searched. Precise group assignment remains a separate gap."
+        },
+        {
+          "queue_id": "andy-millman-05",
+          "queued_query": "Grindstone Wrestling Andy",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Identity/location/club connection confirmed by user and approved profile; not independently re-searched. Precise group assignment remains a separate gap."
+        },
+        {
+          "queue_id": "andy-millman-06",
+          "queued_query": "Andrew Millman Manchester Maryland",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Identity/location/club connection confirmed by user and approved profile; not independently re-searched. Precise group assignment remains a separate gap."
+        },
+        {
+          "queue_id": "andy-millman-07",
+          "queued_query": "Andy Millman Captain Jerrys",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Captain Jerry's business/owner identity and history already established in approved profile; no separate business query this pass."
+        },
+        {
+          "queue_id": "andy-millman-08",
+          "queued_query": "Andrew Millman Captain Cool",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Captain Jerry's business/owner identity and history already established in approved profile; no separate business query this pass."
+        },
+        {
+          "queue_id": "andy-millman-09",
+          "queued_query": "Captain Jerrys Andy",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Captain Jerry's business/owner identity and history already established in approved profile; no separate business query this pass."
+        },
+        {
+          "queue_id": "andy-millman-10",
+          "queued_query": "Andy Millman Hampstead",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Identity/location/club connection confirmed by user and approved profile; not independently re-searched. Precise group assignment remains a separate gap."
+        },
+        {
+          "queue_id": "andy-millman-11",
+          "queued_query": "Captain Jerry’s Andy team",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Captain Jerry's business/owner identity and history already established in approved profile; no separate business query this pass."
+        },
+        {
+          "queue_id": "andy-millman-12",
+          "queued_query": "Captain Jerry’s Andy behind the scenes",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Captain Jerry's business/owner identity and history already established in approved profile; no separate business query this pass."
+        },
+        {
+          "queue_id": "andy-millman-13",
+          "queued_query": "Captain Jerry’s Andy 2011",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "Captain Jerry's business/owner identity and history already established in approved profile; no separate business query this pass."
+        },
+        {
+          "queue_id": "andy-millman-14",
+          "queued_query": "Andy Millman Relson Gracie",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Same F2W109 outcome/photo purpose reviewed through exact named-bout search and dated profile feed; known promoter schedule is not a result."
+        },
+        {
+          "queue_id": "andy-millman-15",
+          "queued_query": "Michael Mehl Andrew Millman Fight2Win109",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "andy-fb-mehl"
+          ],
+          "note": "Visible results unrelated to the named bout; no result or action photo."
+        },
+        {
+          "queue_id": "andy-millman-16",
+          "queued_query": "Andy Millman profile — April 2019 Fight2Win109 or Michael Mehl",
+          "status": "already-resolved",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "andy-profile-2019"
+          ],
+          "note": "Only the already-known April13 public event-cover post surfaced. No bout outcome or named action photo."
+        },
+        {
+          "queue_id": "andy-millman-17",
+          "queued_query": "Andy Millman Fight2Win109 April 2019",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Same F2W109 outcome/photo purpose reviewed through exact named-bout search and dated profile feed; known promoter schedule is not a result."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "andy-known-cover",
+          "source_url": "https://www.facebook.com/photo/?fbid=10214482546637237&set=a.4689705840410",
+          "publisher": "Andy Millman",
+          "posted": "2019-04-13",
+          "visibility": "Shared with Public badge observed on filtered profile feed.",
+          "kind": "Previously retained event-cover post",
+          "supports": [
+            "Public pre-event Fight To Win context"
+          ],
+          "limits": [
+            "No result stated; this review did not discover an additional captioned bout photo."
+          ],
+          "recommended_action": "Keep prior evidence; do not infer a win, loss or cancellation."
+        },
+        {
+          "id": "andy-rss-card-results",
+          "source_url": "https://promotions2838.rssing.com/chan-67545365/all_p18.html",
+          "publisher": "RSS mirror of Fight 2 Win Promotions",
+          "visibility": "Public web page; reviewed through web tool, not Facebook.",
+          "kind": "Archived promoter card and result list",
+          "supports": [
+            "Card lists Michael Mehl versus Andrew Millman, 145-pound purple-belt gi at F2W109."
+          ],
+          "limits": [
+            "April25,2019 result list omits this pairing; omission does not establish whether it took place or was cancelled.",
+            "A mirror of the promoter is not a fresh official result confirmation."
+          ]
+        },
+        {
+          "id": "andy-flo-index",
+          "source_url": "https://www.flograppling.com/events/6339057-fight-2-win-109/videos?playing=6457488",
+          "publisher": "FloGrappling",
+          "visibility": "Public indexed metadata; video marked Pro.",
+          "kind": "Match video metadata",
+          "supports": [
+            "Lists a 5:25 Michael Mehl versus Andrew Millman F2W109 video, dated Apr24,2019."
+          ],
+          "limits": [
+            "Video not watched; no winner/finish determined.",
+            "Direct video page web fetch failed; no paywall bypass attempted."
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "Exact F2W109 outcome and a named match image remain unverified.",
+        "No inference of current belt rank from the 2019 card.",
+        "Precise Grindstone group assignment should come from club/user confirmation if needed."
+      ]
+    },
+    {
+      "id": "brad-gabrish",
+      "name": "Brad Gabrish",
+      "summary": "Found one new public named 2025 tournament composite from Elevate Fitness. Organizer Instagram carousel is now accessible but lacks an individual name key. Named bout, school, college, historical coaching and older podium searches did not produce an additional relevant captioned photo.",
+      "actual_searches": [
+        {
+          "id": "brad-fb-wrestling",
+          "surface": "signed-in Chrome Facebook posts search",
+          "query": "\"Brad Gabrish\" wrestling",
+          "queue_ids": [
+            "brad-gabrish-14"
+          ],
+          "result": "Found Elevate Fitness public named tournament composite; opened photo viewer, inspected caption, image and Public badge.",
+          "url": "https://www.facebook.com/search/posts/?q=%22Brad%20Gabrish%22%20wrestling"
+        },
+        {
+          "id": "brad-instagram-carousel",
+          "surface": "public Instagram carousel in Chrome",
+          "query": "Opened joeytakedowns DIKH-bwtsEK; dismissed signup modal and advanced through all five images",
+          "queue_ids": [
+            "brad-gabrish-30"
+          ],
+          "result": "Public event/team caption and five photos accessible. No individual Brad name key, positional tag or named bout image.",
+          "url": "https://www.instagram.com/joeytakedowns/p/DIKH-bwtsEK/"
+        },
+        {
+          "id": "brad-fb-estep",
+          "surface": "Facebook global search entered through search box",
+          "query": "\"Brad Gabrish\" \"Jared Estep\"",
+          "queue_ids": [
+            "brad-gabrish-22"
+          ],
+          "result": "Visible results were unrelated people/posts; no relevant named bout footage."
+        },
+        {
+          "id": "brad-fb-bau",
+          "surface": "Facebook global search entered through search box",
+          "query": "Brad Gabrish John Bau-Madsen",
+          "queue_ids": [
+            "brad-gabrish-23"
+          ],
+          "result": "Visible results unrelated; no relevant named bout footage."
+        },
+        {
+          "id": "brad-fb-calvert",
+          "surface": "Facebook global search entered through search box",
+          "query": "Brad Gabrish Calvert Hall",
+          "queue_ids": [
+            "brad-gabrish-04",
+            "brad-gabrish-16"
+          ],
+          "result": "Known Elevate composite and unrelated results; no new school/team/action photo. Year not included in actual query."
+        },
+        {
+          "id": "brad-fb-mcdaniel",
+          "surface": "Facebook global search entered through search box",
+          "query": "Brad Gabrish McDaniel",
+          "queue_ids": [
+            "brad-gabrish-06",
+            "brad-gabrish-19"
+          ],
+          "result": "Known Elevate composite and unrelated results; no named collegiate photo. Years not included in actual query."
+        },
+        {
+          "id": "brad-fb-parkville",
+          "surface": "Facebook global search entered through search box",
+          "query": "Brad Gabrish Parkville",
+          "queue_ids": [
+            "brad-gabrish-08",
+            "brad-gabrish-18"
+          ],
+          "result": "Known Elevate composite and unrelated results; no named historical coaching image. Year not included in actual query."
+        },
+        {
+          "id": "brad-fb-dundalk",
+          "surface": "Facebook global search entered through search box",
+          "query": "Brad Gabrish Dundalk",
+          "queue_ids": [
+            "brad-gabrish-20"
+          ],
+          "result": "Known Elevate composite plus unrelated modern team/local results; no 2010 named podium image."
+        },
+        {
+          "id": "brad-fb-gardner",
+          "surface": "Facebook global search entered through search box",
+          "query": "Brad Gabrish Sam Gardner",
+          "queue_ids": [
+            "brad-gabrish-31"
+          ],
+          "result": "Known Elevate composite plus unrelated results; no McDaniel photo name key."
+        }
+      ],
+      "query_reviews": [
+        {
+          "queue_id": "brad-gabrish-01",
+          "queued_query": "Brad Gabrish Grindstone",
+          "status": "already-resolved",
+          "actually_searched": false,
+          "note": "User confirmed coach identity; identity-only search not repeated."
+        },
+        {
+          "queue_id": "brad-gabrish-02",
+          "queued_query": "Bradley Gabrish wrestling",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Bradley-name variant not separately searched; correct-name school/photo search and confirmed profile cover this purpose."
+        },
+        {
+          "queue_id": "brad-gabrish-03",
+          "queued_query": "Brad Grabish wrestling",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Misspelling variant superseded by confirmed Gabrish identity and actual correct-name searches."
+        },
+        {
+          "queue_id": "brad-gabrish-04",
+          "queued_query": "Brad Gabrish Calvert Hall 2005",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-calvert"
+          ],
+          "note": "Known Elevate composite and unrelated results; no new school/team/action photo. Year not included in actual query."
+        },
+        {
+          "queue_id": "brad-gabrish-05",
+          "queued_query": "Bradley Gabrish Calvert Hall",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Bradley-name variant not separately searched; correct-name school/photo search and confirmed profile cover this purpose."
+        },
+        {
+          "queue_id": "brad-gabrish-06",
+          "queued_query": "Brad Gabrish McDaniel 2006",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-mcdaniel"
+          ],
+          "note": "Known Elevate composite and unrelated results; no named collegiate photo. Years not included in actual query."
+        },
+        {
+          "queue_id": "brad-gabrish-07",
+          "queued_query": "Brad Grabish McDaniel",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Misspelling variant superseded by confirmed Gabrish identity and actual correct-name searches."
+        },
+        {
+          "queue_id": "brad-gabrish-08",
+          "queued_query": "Brad Gabrish Parkville 2010",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-parkville"
+          ],
+          "note": "Known Elevate composite and unrelated results; no named historical coaching image. Year not included in actual query."
+        },
+        {
+          "queue_id": "brad-gabrish-09",
+          "queued_query": "Brad Gabrish Lucky Ducks",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-10",
+          "queued_query": "Brad Gabrish Bald Fat April 5 2025",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-11",
+          "queued_query": "Lucky Ducks York 185 2025",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-12",
+          "queued_query": "Brad Gabrish Lucky Ducks April 5 2025",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-13",
+          "queued_query": "Bald Fat April 5 2025 podium",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-14",
+          "queued_query": "\"Brad Gabrish\" wrestling",
+          "status": "reviewed-found",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-wrestling"
+          ],
+          "note": "Found Elevate Fitness public named tournament composite; opened photo viewer, inspected caption, image and Public badge."
+        },
+        {
+          "queue_id": "brad-gabrish-15",
+          "queued_query": "\"Lucky Ducks\" \"Bald and Fat\" \"2025\"",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-16",
+          "queued_query": "\"Brad Gabrish\" \"Calvert Hall\"",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-calvert"
+          ],
+          "note": "Known Elevate composite and unrelated results; no new school/team/action photo. Year not included in actual query."
+        },
+        {
+          "queue_id": "brad-gabrish-17",
+          "queued_query": "\"Calvert Hall wrestling\" \"2005\"",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Broad 2005 team search not rerun. Targeted Calvert Hall search reviewed under brad-fb-calvert; unassigned historical images remain unassigned."
+        },
+        {
+          "queue_id": "brad-gabrish-18",
+          "queued_query": "\"Parkville Wrestling\" \"2010\" Brad",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-parkville"
+          ],
+          "note": "Known Elevate composite and unrelated results; no named historical coaching image. Year not included in actual query."
+        },
+        {
+          "queue_id": "brad-gabrish-19",
+          "queued_query": "\"McDaniel wrestling\" \"2005\" Gabrish",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-mcdaniel"
+          ],
+          "note": "Known Elevate composite and unrelated results; no named collegiate photo. Years not included in actual query."
+        },
+        {
+          "queue_id": "brad-gabrish-20",
+          "queued_query": "\"Brad Gabrish\" \"Dundalk\"",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-dundalk"
+          ],
+          "note": "Known Elevate composite plus unrelated modern team/local results; no 2010 named podium image."
+        },
+        {
+          "queue_id": "brad-gabrish-21",
+          "queued_query": "\"Brad Gabrish\" \"Bald\"",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-22",
+          "queued_query": "\"Brad Gabrish\" \"Jared Estep\"",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-estep"
+          ],
+          "note": "Visible results were unrelated people/posts; no relevant named bout footage."
+        },
+        {
+          "queue_id": "brad-gabrish-23",
+          "queued_query": "\"Brad Gabrish\" \"John Bau-Madsen\"",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-bau"
+          ],
+          "note": "Visible results unrelated; no relevant named bout footage."
+        },
+        {
+          "queue_id": "brad-gabrish-24",
+          "queued_query": "\"Lucky Ducks\" \"West York\" 2025",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-25",
+          "queued_query": "\"Lucky Ducks\" \"Dominic Bonvegna\"",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-26",
+          "queued_query": "\"Lucky Ducks\" \"Mike Cain\"",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-27",
+          "queued_query": "\"Lucky Ducks\" \"Mark Meissner\"",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-28",
+          "queued_query": "\"Lucky Ducks\" \"Joe Zaccagnini\"",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-29",
+          "queued_query": "\"Lucky Ducks\" \"Tony Zeller\"",
+          "status": "duplicate/superseded",
+          "actually_searched": false,
+          "note": "Overlapping 2025 event/team/name-key lead not separately queried. Direct organizer carousel and new named Elevate post were reviewed; teammate-name variants were not run and are not claimed as searched."
+        },
+        {
+          "queue_id": "brad-gabrish-30",
+          "queued_query": "Brad Gabrish Lucky Ducks joeytakedowns",
+          "status": "reviewed-found",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-instagram-carousel"
+          ],
+          "note": "Public event/team caption and five photos accessible. No individual Brad name key, positional tag or named bout image."
+        },
+        {
+          "queue_id": "brad-gabrish-31",
+          "queued_query": "\"Brad Gabrish\" \"Sam Gardner\"",
+          "status": "reviewed-no-result",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "brad-fb-gardner"
+          ],
+          "note": "Known Elevate composite plus unrelated results; no McDaniel photo name key."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "brad-elevate-2025",
+          "source_url": "https://www.facebook.com/photo/?fbid=1239103658216331&set=a.503509121775792",
+          "publisher": "Elevate Fitness",
+          "publisher_url": "https://www.facebook.com/elevateeldersburg",
+          "posted": "2025-04-11",
+          "visibility": "Shared with Public badge observed in Facebook search and opened photo viewer.",
+          "kind": "Public captioned composite tournament photo",
+          "caption_summary": "Elevate congratulates Brad Gabrish for first place and Clayton Arnold for second in the 185-pound Fat & Bald Classic in York, Pennsylvania.",
+          "visible_image_text": "BRAD GABRISH 1ST / CLAYTON ARNOLD 2ND",
+          "photo_urls": [
+            "https://scontent-lga3-3.xx.fbcdn.net/v/t39.30808-6/503745241_1288055926654437_6306026727391899948_n.jpg?stp=dst-jpg_tt6&cstp=mx940x788&ctp=s940x788&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=gVjwmKCPNboQ7kNvwH8yoIm&_nc_oc=AdqGr2ziFNhMs16CPZT7tTMxkhP7Aa3nIsm3Nr2kbsYE16YMWSwjxqErg-pK8pdP7qY&_nc_zt=23&_nc_ht=scontent-lga3-3.xx&_nc_gid=KUT8BKl7nb1oYVxF3krznA&_nc_ss=7b2a8&oh=00_AQS7Wz8Hkg8vIaaK-rTdS4zmxjT06jYy0LC3eocSk2QVMQ&oe=6AE9C5C3"
+          ],
+          "credit": "Elevate Fitness; underlying photographer not identified in the post.",
+          "supports": [
+            "Brad's named 2025 tournament result",
+            "Full composite photo with a printed name/event key"
+          ],
+          "limits": [
+            "No explicit left/right name tags on the individuals; preserve full composite rather than assigning a face crop.",
+            "The gym caption does not specify age division; existing official results provide DEAD division context.",
+            "CDN URL is temporary; use the stable Facebook source URL for provenance.",
+            "Public availability does not by itself establish a reuse license."
+          ],
+          "recommended_action": "Consider the full credited composite for Brad's draft photo gallery after normal image review; no download performed."
+        },
+        {
+          "id": "brad-joey-carousel",
+          "source_url": "https://www.instagram.com/joeytakedowns/p/DIKH-bwtsEK/",
+          "publisher": "Joey Takedowns (@joeytakedowns)",
+          "posted": "2025-04-07",
+          "visibility": "Public carousel accessible after dismissing signup modal; no login completed by agent.",
+          "kind": "Five-image event carousel",
+          "caption_summary": "Organizer credits West York for the event and reports Lucky Ducks from Liberty High, Maryland ahead of the Carthage Comets in the team competition.",
+          "supports": [
+            "Lucky Ducks event/team context"
+          ],
+          "limits": [
+            "All five slides reviewed; no individual Brad caption, tag, positional key or comments identifying him.",
+            "Slides show groups/team or event participants, not a named Brad bout.",
+            "Potential overlap with retained team/event photos was not hash-tested because media downloads were not authorized."
+          ],
+          "recommended_action": "Close the old login-blocked note; retain as event context, not a newly identified individual photo."
+        }
+      ],
+      "remaining_gaps": [
+        "A named historical Calvert Hall or McDaniel wrestling image remains unavailable from this pass.",
+        "No named public action footage found for the 2025 Estep or Bau-Madsen bouts.",
+        "No individual left/right tags on the new Elevate composite; do not guess a crop.",
+        "The five Instagram group images still have no individual name key."
+      ]
+    }
+  ],
+  "supplementary_web_queries": [
+    "\"Andrew Millman\" \"Michael Mehl\"",
+    "\"Andy Millman\" \"Fight 2 Win\" 109 result",
+    "\"Brad Gabrish\" \"Jared Estep\"",
+    "\"Jordan Millman\" \"Grindstone\"",
+    "\"Andrew Millman\" grappling",
+    "\"Michael Mehl\" \"Millman\" result",
+    "\"Andy Millman\" \"2019\" \"Facebook\"",
+    "\"Jordan Millman\" \"wrestling\"",
+    "\"Andy Millman\" \"Grindstone\"",
+    "\"Brad Gabrish\" \"Sam Gardner\""
+  ],
+  "source_records_read": [
+    "facebook-queue.json",
+    "profiles.js",
+    "public-manifest.json",
+    "integration-manifest.json",
+    "../coaches-data.js"
+  ],
+  "untouched_manifest_hashes_before": {
+    "public-manifest.json": "60E1EF231A35D89FD6C2BEEAD0E41899122470A23B60C6327DA069BEBC41D9A8",
+    "integration-manifest.json": "8CF66339FAC70031978ED90F7E34E1B04FF31287CDD715DAD46978BC6F8B5B07"
+  },
+  "output_path": "C:\\Users\\Thoma\\OneDrive\\Documents\\ChatGPT\\practice\\grindstone-review\\coach-drafts\\fb-check-c.json"
+}

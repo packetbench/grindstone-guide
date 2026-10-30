@@ -1,6 +1,6 @@
 window.COACH_DRAFTS = {
   "prepared": "2026-10-24",
-  "status": "Public working draft for coach and community review",
+  "status": "Confirmed coach identities; continuing career and photo research",
   "roster_source": "User-supplied Grindstone Wrestling 2026–2027 Season photograph",
   "profiles": [
     {
@@ -167,9 +167,9 @@ window.COACH_DRAFTS = {
       ],
       "status": "existing",
       "roster_name": "Kyle Rutledge",
-      "review_title": "Existing profile carried forward",
-      "identity_note": "This biography and its photo sources were already present in the Grindstone website. Earlier club-supplied details are preserved; review the current season role.",
-      "review_prompt": "Keep the existing biography, or note any updates for this season.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
@@ -180,7 +180,9 @@ window.COACH_DRAFTS = {
         "Latest pass checked Cleveland Memory’s CSU/Fenn collection and broader archive results; no additional attributable college photograph. Physical Cleveland State archives remain a lead. Public USAW training added.",
         "Twenty school pages now have original embedded JPEG versions, roughly 2,350 × 3,190 pixels, recovered from the already-preserved source PDFs. These contain three to four-and-a-half times the pixels of the earlier display copies. Existing captions and identity limits are unchanged; every reduced copy remains available."
       ],
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "thomas-schnepp",
@@ -264,9 +266,9 @@ window.COACH_DRAFTS = {
       ],
       "status": "existing",
       "roster_name": "Tom Schnepp",
-      "review_title": "Existing profile carried forward",
-      "identity_note": "This biography and its photo sources were already present in the Grindstone website. Earlier club-supplied details are preserved; review the current season role.",
-      "review_prompt": "Keep the existing biography, or note any updates for this season.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
@@ -286,21 +288,23 @@ window.COACH_DRAFTS = {
         "kind": "Public profile photograph",
         "archive": true
       },
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "brian-leaf",
       "name": "Brian Leaf",
       "roster_name": "Brian Leaf",
-      "status": "roster",
+      "status": "confirmed",
       "role": "Grindstone youth wrestling coach",
       "summary": "Brian Leaf’s wrestling roots are in Pennsylvania, where he competed as a youngster in the heavyweight division. He is part of Grindstone’s 2026–27 coaching team.",
       "paragraphs": [
         "Brian brings his early experience in Pennsylvania youth wrestling to the Mat Rats and Valkyries coaching roster. The club supplied his youth heavyweight background; the specific school, youth club and competitive years are still being researched."
       ],
-      "review_title": "Pennsylvania wrestling background confirmed",
-      "identity_note": "Club-supplied background confirms that Brian wrestled as a youngster in Pennsylvania in the heavyweight division. The club contact ruled out the PINKS/Mustang racer; that mistaken match appears in “Who we are not.”",
-      "review_prompt": "Add Brian’s Pennsylvania school or youth club, competitive years, coaching responsibilities, or a photo you recognize.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below. His Pennsylvania youth-heavyweight background is club supplied. The previously rejected PINKS racer remains excluded; no new historical wrestling photo is assigned.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Club-supplied background: Brian wrestled heavyweight as a youngster in Pennsylvania.",
         "The user explicitly rejected the PINKS/Mustang racing namesake on October 24, 2026. Racing photographs, stories and results must not be attributed to Coach Brian. The original evidence is preserved in Who we are not.",
@@ -349,10 +353,12 @@ window.COACH_DRAFTS = {
         {
           "title": "Leaf Builders LLC · public business page",
           "url": "https://www.facebook.com/leafhomebuilders",
-          "supports": "Public business posts name Brian Leaf and describe work in Maryland and Pennsylvania. No wrestling or Grindstone link was found. This remains an unresolved lead and may still be the rejected racing namesake; no employment or portrait is adopted."
+          "supports": "The user supplied a correct local connection on October 29. Business posts on that profile associate Brian with Leaf Builders, giving this route new context. No named wrestling photograph or career record was found through it."
         }
       ],
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "kaia-condon",
@@ -369,9 +375,9 @@ window.COACH_DRAFTS = {
         "Away from the mat, Kaia also contributed to school theatre. The Cappies’ 2023–24 critics’ choices list credits her alongside Natalie McMurry and the Albert Einstein lighting crew for the school’s production of Lavender.",
         "At Grindstone, Kaia is part of the 2026–27 Mat Rats and Valkyries coaching roster. Her path from Maryland high-school tournaments to collegiate competition gives young wrestlers a local example of the opportunities available as they progress in the sport."
       ],
-      "review_title": "Identity confirmed; profile and photo choices await review",
-      "identity_note": "You confirmed that this is Kaia and that she is a current college wrestler. This biography and its photo selections remain drafts for review. The new college action photographs are matched using meet records and photo-sequence evidence.",
-      "review_prompt": "Review the writing and photo choices; add Kaia’s usual Grindstone practice group or coaching responsibilities.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Identity confirmed directly by the user on October 24, 2026.",
         "The college portrait is explicitly labeled Kaia Condon. The Einstein alumni collage also names her in its lower panel.",
@@ -645,7 +651,9 @@ window.COACH_DRAFTS = {
           "selection": "gallery"
         }
       ],
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "jerome-featherstone",
@@ -835,9 +843,9 @@ window.COACH_DRAFTS = {
       ],
       "status": "existing",
       "roster_name": "Jerome Featherstone",
-      "review_title": "Existing profile carried forward",
-      "identity_note": "This biography and its photo sources were already present in the Grindstone website. Earlier club-supplied details are preserved; review the current season role.",
-      "review_prompt": "Keep the existing biography, or note any updates for this season.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
@@ -849,7 +857,16 @@ window.COACH_DRAFTS = {
         "The 2012 event poster names Jerome directly. The retained 2015 portrait is a proposed match from bout order, photo timestamps and the printed gym affiliation; it is not individually captioned.",
         "Added an explicitly named 2012 boxing poster, retained a proposed 2015 bout-sequence portrait and a small named staff photograph. Added college/Golden Gloves results and public USAW training evidence."
       ],
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29",
+      "leads": [
+        {
+          "title": "Named championship photo",
+          "url": "https://www.facebook.com/photo/?fbid=5726869790702423&set=a.1825582217497886",
+          "supports": "Carl Kus, November 13, 2022. Caption identifies Jerome as the new Shogun Fights 155-pound champion; includes his corner team."
+        }
+      ]
     },
     {
       "id": "eric-westervelt",
@@ -942,9 +959,9 @@ window.COACH_DRAFTS = {
       ],
       "status": "existing",
       "roster_name": "Eric Westervelt",
-      "review_title": "Existing profile carried forward",
-      "identity_note": "This biography and its photo sources were already present in the Grindstone website. Earlier club-supplied details are preserved; review the current season role.",
-      "review_prompt": "Keep the existing biography, or note any updates for this season.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
@@ -970,7 +987,9 @@ window.COACH_DRAFTS = {
         }
       ],
       "gallery_title": "From Eric’s wrestling years",
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "ryan-devries",
@@ -1143,9 +1162,9 @@ window.COACH_DRAFTS = {
       ],
       "status": "existing",
       "roster_name": "Ryan DeVries",
-      "review_title": "Existing profile carried forward",
-      "identity_note": "This biography and its photo sources were already present in the Grindstone website. Earlier club-supplied details are preserved; review the current season role.",
-      "review_prompt": "Keep the existing biography, or note any updates for this season.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
@@ -1155,13 +1174,22 @@ window.COACH_DRAFTS = {
         "Retrieved eight Proviso West source pages and six native crops: named senior portrait, wrestling, football, baseball and CAD classroom. Added football captain context. Sources and original PDFs remain preserved locally."
       ],
       "gallery_title": "From Proviso West to college wrestling",
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29",
+      "leads": [
+        {
+          "title": "Coach Ryan in Mat Rats gear",
+          "url": "https://www.facebook.com/photo/?fbid=10108817500365692&set=pcb.10108817507745902",
+          "supports": "Publicly posted by Ryan. His shirt reads Coach Ryan and Mat Rats Wrestling. Photographer credit is not visible; no identity is assigned to the young wrestler beside him."
+        }
+      ]
     },
     {
       "id": "jordan-millman",
       "name": "Jordan Millman",
       "roster_name": "Jordan Millman",
-      "status": "likely",
+      "status": "confirmed",
       "role": "Grindstone youth wrestling coach",
       "summary": "Jordan Millman is on Grindstone’s 2026–27 coaching roster. This proposed local match brings experience in community events and live apparel printing.",
       "paragraphs": [
@@ -1170,9 +1198,9 @@ window.COACH_DRAFTS = {
         "In an October 2026 post, Jordan described developing that event work since September 2025 and reaching a thirteenth live-printing event. This supplies a more detailed picture of her local involvement while the proposed coach match is reviewed.",
         "The public trail now connects this proposed profile with wrestling and grappling as well. Andy’s March 2022 Gracie Charlottesville open-mat post explicitly tags Jordan. In November 2025, Jordan celebrated the start of Mat Rats season, tagged Andy and identified the Blue team in a reply. Those posts strengthen the local match while leaving the precise coaching role for review."
       ],
-      "review_title": "New local candidate with public photographs",
-      "identity_note": "Proposed Coach Jordan match: the Jordan Millman linked by Captain Jerry’s. Public posts now connect the same profile to Mat Rats Blue-team participation and a grappling open mat with Andy. The precise coaching role remains for review.",
-      "review_prompt": "Review this proposed identity, writing and photo choices; add Jordan’s wrestling background or coaching responsibilities.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "New source trail: Captain Jerry’s public business page tags Jordan Millman and links facebook.com/joashley1991. Jordan’s profile-photo tag links Andy Millman.",
         "Jordan’s assignment in the right side of her own public profile photographs is a working source-context hypothesis. No facial comparison was used.",
@@ -1304,13 +1332,15 @@ window.COACH_DRAFTS = {
           "selection": "gallery"
         }
       ],
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "andy-millman",
       "name": "Andy Millman",
       "roster_name": "Andy Millman",
-      "status": "likely",
+      "status": "confirmed",
       "role": "Grindstone volunteer coach",
       "summary": "Andy Millman is part of Grindstone’s coaching roster. This working profile connects him with the owner of Baltimore’s Captain Jerry’s apparel business.",
       "paragraphs": [
@@ -1319,9 +1349,9 @@ window.COACH_DRAFTS = {
         "The proposed Andy profile also has a documented grappling background. Public Relson Gracie training photographs explicitly tag him in September 2015, and his March 2022 post describes attending an open mat at Gracie Charlottesville with Jordan. These sources support participation in grappling without establishing a belt rank or teaching credential.",
         "In April 2019, the Fight To Win 109 promoter scheduled Andy against Michael Mehl in Baltimore and linked his public profile directly in the match announcement. The archived card lists Andrew Millman of Relson Gracie in a 145-pound purple-belt gi matchup. The result has not been verified; the historical listing does not establish a current belt rank."
       ],
-      "review_title": "Proposed local identity with named photo sources",
-      "identity_note": "Proposed Coach Andy match: Captain Jerry’s owner Andy Millman. Public photo tags connect the same profile to Relson Gracie training, an open mat with Jordan and Mat Rats season posts. The final roster-to-profile match remains for review.",
-      "review_prompt": "Review this proposed identity, biography and portrait; add Andy’s wrestling background or coaching responsibilities.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Captain Jerry’s public page directly tags Jordan Millman. Her current profile photograph explicitly tags Andy at left and links his own profile, which also shares company posts.",
         "The two coach identities remain proposed. The public tags establish the photo and business trail; no family relationship is inferred.",
@@ -1530,7 +1560,9 @@ window.COACH_DRAFTS = {
           "selection": "gallery"
         }
       ],
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "tyler-lease",
@@ -1545,8 +1577,8 @@ window.COACH_DRAFTS = {
         "Tyler also played with the Westminster Owls travel-baseball team in 2001."
       ],
       "review_title": "Identity confirmed",
-      "identity_note": "The user confirmed this coach’s identity and portrait on October 28, 2026. The main coaching page includes the supported biography and credited photographs.",
-      "review_prompt": "Identity confirmed. Share any updates to the biography, coaching role or photograph captions.",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "On October 28, 2026, the user confirmed that the proposed Brad Gabrish identity, Daniel Skelonc police portrait and Tyler Lease employer portrait are the correct coaches. Earlier working-match notes below describe the research history before that confirmation.",
         "Caption identifies Tyler Lease playing for Westminster American. Locality and exact name support the proposed match; the coach connection remains an assumption.",
@@ -1606,7 +1638,9 @@ window.COACH_DRAFTS = {
           "source_label": "Carroll County Times · July 19, 2000"
         }
       ],
-      "profile_review_status": "Identity confirmed by user October 28, 2026"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "mike-handleman",
@@ -1741,9 +1775,9 @@ window.COACH_DRAFTS = {
       },
       "status": "existing",
       "roster_name": "Mike Handleman",
-      "review_title": "Existing profile carried forward",
-      "identity_note": "This biography and its photo sources were already present in the Grindstone website. Earlier club-supplied details are preserved; review the current season role.",
-      "review_prompt": "Keep the existing biography, or note any updates for this season.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "Existing club-supplied biographical details are carried forward. This pass reviewed the public wrestling history and looked for additional labeled photographs.",
         "Photo credits and original source references are retained. An attributed public image is not recorded as club-owned or openly licensed.",
@@ -1753,7 +1787,16 @@ window.COACH_DRAFTS = {
         "Retrieved three original 1,600-pixel Taylor Sims gallery renditions. The existing identified portrait is followed by two bout images with matching clothing and event sequence; the next image begins another bout. Both action photos remain proposed sequence matches. The earlier portrait file is retained unchanged.",
         "Cagezilla 73 gallery yielded a larger existing photograph and two adjacent bout-action images. Next image starts a different bout. Added 2013/2019 promoter results. Public originals preserved without resizing."
       ],
-      "profile_review_status": "Draft awaiting user review"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29",
+      "leads": [
+        {
+          "title": "Public Cagezilla win photo",
+          "url": "https://www.facebook.com/photo/?fbid=775911130991169&set=a.590078242907793",
+          "supports": "CCK Martial Arts/Kenpo Self Defense, June 18, 2023. The caption congratulates Mike on his win; group collage retained at its original source."
+        }
+      ]
     },
     {
       "id": "brad-gabrish",
@@ -1769,8 +1812,8 @@ window.COACH_DRAFTS = {
         "Brad has continued competing beyond college. He won the 207-pound open bracket at the 2010 Dundalk Hawks Open. At the 2025 Bald & Fat Classic, he won the 185-pound bracket in the event’s “DEAD” division for Lucky Ducks, with an 11–1 major decision, a 17–1 technical fall and a forfeit in the final. Lucky Ducks also won the team championship."
       ],
       "review_title": "Identity confirmed",
-      "identity_note": "The user confirmed this coach’s identity and portrait on October 28, 2026. The main coaching page includes the supported biography and credited photographs.",
-      "review_prompt": "Identity confirmed. Share any updates to the biography, coaching role or photograph captions.",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "On October 28, 2026, the user confirmed that the proposed Brad Gabrish identity, Daniel Skelonc police portrait and Tyler Lease employer portrait are the correct coaches. Earlier working-match notes below describe the research history before that confirmation.",
         "The Parkville announcement was migrated/posted in 2019 but explicitly describes its 2010–2011 staff. The draft uses the season, not the page timestamp.",
@@ -1877,6 +1920,11 @@ window.COACH_DRAFTS = {
       ],
       "leads": [
         {
+          "title": "Named 2025 tournament photo",
+          "url": "https://www.facebook.com/photo/?fbid=1239103658216331&set=a.503509121775792",
+          "supports": "Elevate Fitness, April 11, 2025. The composite names Brad first and Clayton Arnold second. Keep the full composite; no individual crop has been assigned."
+        },
+        {
           "title": "Carroll County · February 3, 2025 volunteer list, page 17",
           "url": "https://www.carrollcountymd.gov/media/onjdgdgx/approved-volunteers-232025.pdf#page=17",
           "supports": "Bradley A. Gabrish listed with Westminster Area."
@@ -1937,7 +1985,9 @@ window.COACH_DRAFTS = {
         "source_label": "Original public photograph"
       },
       "gallery_title": "Wrestling teams and competition",
-      "profile_review_status": "Identity confirmed by user October 28, 2026"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "daniel-skelonc",
@@ -1952,8 +2002,8 @@ window.COACH_DRAFTS = {
         "Daniel is part of Grindstone’s 2026–27 Mat Rats and Valkyries coaching roster."
       ],
       "review_title": "Identity confirmed",
-      "identity_note": "The user confirmed this coach’s identity and portrait on October 28, 2026. The main coaching page includes the supported biography and credited photographs.",
-      "review_prompt": "Identity confirmed. Share any updates to the biography, coaching role or photograph captions.",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "On October 28, 2026, the user confirmed that the proposed Brad Gabrish identity, Daniel Skelonc police portrait and Tyler Lease employer portrait are the correct coaches. Earlier working-match notes below describe the research history before that confirmation.",
         "Current Grindstone membership is established by the supplied handout.",
@@ -2014,8 +2064,10 @@ window.COACH_DRAFTS = {
           "source_label": "MPD · original award announcement"
         }
       ],
-      "profile_review_status": "Identity confirmed by user October 28, 2026",
-      "gallery_title": "Community recognition"
+      "profile_review_status": "Identity confirmed by user October 29, 2026",
+      "gallery_title": "Community recognition",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29"
     },
     {
       "id": "jessica-hughes",
@@ -2047,15 +2099,18 @@ window.COACH_DRAFTS = {
         "native": true
       },
       "status": "confirmed",
-      "review_title": "Coaching role confirmed",
-      "identity_note": "Jessica’s name, coaching role and contributions to Grindstone were supplied by the club. Her role is listed as Coach without a specific group assignment.",
-      "review_prompt": "Review the biography and portrait. Additional coaching details can be added as her role develops.",
+      "review_title": "Identity confirmed",
+      "identity_note": "The user confirmed that this is the correct coach. Career sources, photo captions and additional research remain available below. Jessica is listed as Coach, without a specific group assignment.",
+      "review_prompt": "Share any corrections to the biography, current group assignment, or photo captions. The coach’s identity is confirmed.",
       "research_notes": [
         "The user confirmed Jessica M. Hughes’s name and contributions in team coordination, events and community outreach.",
         "On October 28, 2026, the user confirmed that Jessica will coach and requested the role label Coach.",
         "The portrait is the preserved public, self-attributed photograph recorded in hughes-source-index.json. No image edits were made."
       ],
-      "source_note": "Jessica’s coaching role and program contributions were supplied by the club. Her portrait links to its original public source."
+      "source_note": "Jessica’s coaching role and program contributions were supplied by the club. Her portrait links to its original public source.",
+      "identity_confirmed": true,
+      "identity_confirmed_on": "2026-10-29",
+      "profile_review_status": "Identity confirmed by user October 29, 2026"
     }
   ],
   "rejected_matches": [

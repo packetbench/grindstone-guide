@@ -1,0 +1,536 @@
+{
+  "version": 1,
+  "reviewed": "2026-10-29",
+  "researcher": "western_foundation",
+  "method": "Signed-in Facebook Chrome UI, own temporary tab; rendered DOM, accessibility tree and screenshots only. Local existing profiles and manifests compared first.",
+  "scope": [
+    "kyle-rutledge",
+    "thomas-schnepp",
+    "kaia-condon",
+    "ryan-devries"
+  ],
+  "identity_confirmation": "User confirmed the current displayed coach identities on 2026-10-29. This does not identify unlabeled people in photographs or adopt unrelated same-name search results.",
+  "privacy": "Only verified Public Facebook material is retained as new evidence. No friends-only text or photo links retained. Thomas's explicit restriction to the public 2009 wrestling team photo was honored. No media downloaded, messages sent, reactions added, or website files edited.",
+  "limitations": "A reviewed-no-result status describes the bounded visible Facebook results reviewed, not proof that no such photo exists. Already-resolved and duplicate/superseded items were not claimed as newly searched. Facebook can return unrelated partial-name matches.",
+  "coaches": [
+    {
+      "id": "kyle-rutledge",
+      "name": "Kyle Rutledge",
+      "summary": "Existing public club introduction and labeled Columbia yearbook material already cover coaching and high-school photographs. The remaining college-photo routes produced no attributable Kyle photograph.",
+      "compared_existing": [
+        "kyle-data.js",
+        "coach-drafts/profiles.js",
+        "coach-drafts/facebook-queue.json"
+      ],
+      "queries": [
+        {
+          "query_id": "kyle-rutledge-01",
+          "query": "Kyle Rutledge Grindstone",
+          "status": "already-resolved",
+          "attempted_urls": [],
+          "result": "Not searched again: the current profile already preserves the public Grindstone coach introduction.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/photo/?fbid=1126771975549088&set=a.563786781847613",
+              "public_visibility": "Public status recorded in existing approved research; not rechecked this pass",
+              "credit": "Grindstone Wrestling / Mat Rats"
+            }
+          ]
+        },
+        {
+          "query_id": "kyle-rutledge-02",
+          "query": "Kyle Rutledge Columbia wrestling",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/photos/?q=Kyle%20Rutledge%20Columbia%20wrestling"
+          ],
+          "result": "Facebook explicitly displayed 'We didn't find any results'.",
+          "evidence": []
+        },
+        {
+          "query_id": "kyle-rutledge-03",
+          "query": "Columbia wrestling 1993",
+          "status": "already-resolved",
+          "attempted_urls": [],
+          "result": "Not searched again: named 1993 Columbia yearbook material and championship history already retained in the current Kyle profile.",
+          "evidence": []
+        },
+        {
+          "query_id": "kyle-rutledge-04",
+          "query": "Kyle Rutledge Cleveland State",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Kyle%20Rutledge%20Cleveland%20State"
+          ],
+          "result": "Visible results were unrelated Kyle Rutledge personal/name matches and an athletic-training namesake. No named Cleveland State wrestling photo or additional career claim established.",
+          "evidence": []
+        },
+        {
+          "query_id": "kyle-rutledge-05",
+          "query": "Columbia Station wrestling 1990 1993",
+          "status": "already-resolved",
+          "attempted_urls": [],
+          "result": "Not searched again: the Columbia 1990–1993 yearbook route is already documented with named original pages. The exact-name Columbia Facebook photo query was independently checked under query02.",
+          "evidence": []
+        },
+        {
+          "query_id": "kyle-rutledge-06",
+          "query": "Grindstone Coach Kyle",
+          "status": "duplicate/superseded",
+          "attempted_urls": [],
+          "result": "Same club-introduction objective as query01, already retained; not searched again.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/photo/?fbid=1126771975549088&set=a.563786781847613",
+              "public_visibility": "Existing approved public source",
+              "credit": "Grindstone Wrestling / Mat Rats"
+            }
+          ]
+        },
+        {
+          "query_id": "kyle-rutledge-07",
+          "query": "Cleveland State wrestling 1993-94",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/photos/?q=Cleveland%20State%20wrestling%201993-94"
+          ],
+          "result": "Facebook explicitly displayed 'We didn't find any results'.",
+          "evidence": []
+        },
+        {
+          "query_id": "kyle-rutledge-08",
+          "query": "Cleveland State wrestling alumni Rutledge",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Cleveland%20State%20wrestling%20alumni%20Rutledge",
+            "https://www.facebook.com/groups/207635429263619/",
+            "https://www.facebook.com/groups/207635429263619/search/?q=Rutledge"
+          ],
+          "result": "Global results led to the public Cleveland State University Wrestling Alumni group. Searching that group for Rutledge explicitly returned 'We didn't find anything in this group'.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/groups/207635429263619/",
+              "public_visibility": "Group displayed Public group; anyone can see members/posts",
+              "credit": "Cleveland State University Wrestling Alumni",
+              "supports": "Archive route, not a Kyle photograph or new biography claim"
+            }
+          ]
+        }
+      ],
+      "new_public_photos": [],
+      "outstanding": [
+        "A named or caption-identified Cleveland State wrestling action/team photograph remains missing. Existing Columbia yearbook photographs are already usable."
+      ]
+    },
+    {
+      "id": "thomas-schnepp",
+      "name": "Thomas Schnepp",
+      "summary": "No additional public, attributable high-school wrestling photograph was established. The public 2009 Regional Champs team photo remains the approved wrestling image. A public Greater Lansing sports archive surfaced, but the inspected Eaton Rapids album covered championship years before Thomas's high-school period.",
+      "compared_existing": [
+        "coaches-data.js",
+        "coach-drafts/profiles.js",
+        "coach-drafts/facebook-queue.json"
+      ],
+      "queries": [
+        {
+          "query_id": "thomas-schnepp-01",
+          "query": "Thomas Schnepp Grindstone",
+          "status": "already-resolved",
+          "attempted_urls": [],
+          "result": "Current Grindstone role is user-confirmed and already in the main biography; not searched again.",
+          "evidence": []
+        },
+        {
+          "query_id": "thomas-schnepp-02",
+          "query": "Tom Schnepp Eaton Rapids wrestling",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/photos/?q=Tom%20Schnepp%20Eaton%20Rapids%20wrestling"
+          ],
+          "result": "Facebook explicitly displayed 'We didn't find any results'.",
+          "evidence": []
+        },
+        {
+          "query_id": "thomas-schnepp-03",
+          "query": "Thomas Schnepp Eaton Rapids",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Thomas%20Schnepp%20Eaton%20Rapids"
+          ],
+          "result": "Visible results included general personal/name matches but no newly attributable historical wrestling material. No private content or photo links retained.",
+          "evidence": []
+        },
+        {
+          "query_id": "thomas-schnepp-04",
+          "query": "Eaton Rapids wrestling regional champions 2009",
+          "status": "already-resolved",
+          "attempted_urls": [],
+          "result": "The public Regional Champs photo, dated March2,2009 and tagged Thomas, is already preserved and specifically approved by the user; not searched again.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/photo.php?fbid=1091665017774&set=t.1134555199&type=3",
+              "public_visibility": "Previously verified public and explicitly user-approved; not rechecked this pass",
+              "credit": "Lori Loomis Chapman",
+              "supports": "2009 Eaton Rapids regional team photo"
+            }
+          ]
+        },
+        {
+          "query_id": "thomas-schnepp-05",
+          "query": "Eaton Rapids wrestling 2010",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/photos/?q=Eaton%20Rapids%20wrestling%202010"
+          ],
+          "result": "Facebook explicitly displayed 'We didn't find any results'.",
+          "evidence": []
+        },
+        {
+          "query_id": "thomas-schnepp-06",
+          "query": "Tom Schnepp wrestling heavyweight",
+          "status": "duplicate/superseded",
+          "attempted_urls": [],
+          "result": "No separate search: the weight-range fact is already user-confirmed (171 pounds through heavyweight), while exact-name historical photo routes were checked under02,03,07,08. This is not a claim that the heavyweight query was executed.",
+          "evidence": []
+        },
+        {
+          "query_id": "thomas-schnepp-07",
+          "query": "Thomas Schnepp Eaton Rapids wrestling 2007",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Thomas%20Schnepp%20Eaton%20Rapids%20wrestling%202007"
+          ],
+          "result": "Visible results did not provide an attributable 2007 Eaton Rapids wrestling photo or article. General personal/name matches were not retained.",
+          "evidence": []
+        },
+        {
+          "query_id": "thomas-schnepp-08",
+          "query": "Tom Schnepp Eaton Rapids wrestling 2008",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Tom%20Schnepp%20Eaton%20Rapids%20wrestling%202008"
+          ],
+          "result": "Visible results did not provide an eligible 2008 wrestling source. A friends-only result was excluded; its content and permalink were not retained.",
+          "evidence": []
+        },
+        {
+          "query_id": "thomas-schnepp-09",
+          "query": "Eaton Rapids wrestling Regional Champs 2009 Lori Loomis Chapman",
+          "status": "duplicate/superseded",
+          "attempted_urls": [],
+          "result": "Same approved public2009team-photo objective as query04; not searched again.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/photo.php?fbid=1091665017774&set=t.1134555199&type=3",
+              "public_visibility": "Existing approved public source",
+              "credit": "Lori Loomis Chapman"
+            }
+          ]
+        },
+        {
+          "query_id": "thomas-schnepp-10",
+          "query": "Eaton Rapids wrestling 2010 yearbook",
+          "status": "reviewed-found",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Eaton%20Rapids%20wrestling%202010%20yearbook",
+            "https://www.facebook.com/photo/?fbid=122113015209286628&set=pcb.122113016583286628",
+            "https://www.facebook.com/profile.php?id=61588598850841"
+          ],
+          "result": "Found Capital Area Sports Archives public Eaton Rapids album. Expanded caption lists championship years1977,1985,1986,1987,1991,1993,1997,1999 and credits Newspapers.com. It is historical school context, not Thomas-era evidence. The page's internal Search dialog stayed on Loading before any search text could be submitted.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/photo/?fbid=122113015209286628&set=pcb.122113016583286628",
+              "public_visibility": "Shared with Public badge observed on album post",
+              "credit": "Capital Area Sports Archives; post credits Newspapers.com",
+              "supports": "Pre-2000 school championship context only; do not attach to Thomas as personal evidence"
+            },
+            {
+              "url": "https://www.facebook.com/profile.php?id=61588598850841",
+              "public_visibility": "Public page; inspected post separately had Public badge",
+              "credit": "Capital Area Sports Archives",
+              "supports": "Potential public local archive for a future targeted2006–2010 search"
+            }
+          ]
+        }
+      ],
+      "new_public_photos": [],
+      "additional_attempts": [
+        {
+          "url": "https://www.facebook.com/profile.php?id=61588598850841",
+          "action": "Opened page menu Search",
+          "status": "blocked",
+          "result": "Search dialog remained Loading. No2009query submitted, so no scoped result claimed."
+        }
+      ],
+      "outstanding": [
+        "A new public, named Eaton Rapids2006–2010 action photo or article remains missing.",
+        "Capital Area Sports Archives may be worth a later scoped2006–2010 search if its page-search UI loads; inspected album is not from Thomas's era."
+      ],
+      "restrictions": "Do not add the friends-only2008/2009 wrestling photos. Only the already-approved public2009team photo is cleared as Thomas wrestling photography."
+    },
+    {
+      "id": "kaia-condon",
+      "name": "Kaia Condon",
+      "summary": "No new named public photo established. School/event queries largely returned the already-saved official McDaniel Performance of the Week graphic and Ursinus recap, unrelated partial-name matches, or no photo results. A direct search of the women's program page for Kaia also returned no results.",
+      "compared_existing": [
+        "coaches-data.js",
+        "coach-drafts/profiles.js",
+        "coach-drafts/facebook-queue.json"
+      ],
+      "queries": [
+        {
+          "query_id": "kaia-condon-01",
+          "query": "Kaia Condon Grindstone",
+          "status": "already-resolved",
+          "attempted_urls": [],
+          "result": "User has confirmed identity and club role; current profile already reflects it. Not searched again.",
+          "evidence": []
+        },
+        {
+          "query_id": "kaia-condon-02",
+          "query": "Kaia Condon Einstein",
+          "status": "reviewed-found",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20Einstein"
+          ],
+          "result": "Relevant results were the already-saved official recognition graphic and existing Ursinus recap, not new Einstein material.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/photo/?fbid=1346629403921905&set=a.462561812328673",
+              "public_visibility": "Shared with Public badge observed in search result",
+              "credit": "McDaniel Wrestling",
+              "supports": "Already-preserved two-pins recognition; no new claim"
+            }
+          ]
+        },
+        {
+          "query_id": "kaia-condon-03",
+          "query": "Kaia Condon McDaniel",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/profile.php?id=61553046147494",
+            "https://www.facebook.com/profile/61553046147494/search/?q=Kaia"
+          ],
+          "result": "Instead of repeating global McDaniel search, followed the program page surfaced in query10 and used its Search control for Kaia. Scoped results explicitly displayed 'We didn't find any results'. Existing official McDaniel named graphic remains available.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/photo/?fbid=1346629403921905&set=a.462561812328673",
+              "public_visibility": "Public badge rechecked under query02",
+              "credit": "McDaniel Wrestling",
+              "supports": "Already-preserved named college photo graphic"
+            }
+          ]
+        },
+        {
+          "query_id": "kaia-condon-04",
+          "query": "Kaia Condon Whitman 2024",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20Whitman%202024"
+          ],
+          "result": "Facebook explicitly displayed 'We didn't find any results'.",
+          "evidence": []
+        },
+        {
+          "query_id": "kaia-condon-05",
+          "query": "Kaia Condon Whitman 2025",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20Whitman%202025"
+          ],
+          "result": "Visible results were unrelated partial-name/personal posts. No attributable Whitman2025photo established; no unrelated personal material retained.",
+          "evidence": []
+        },
+        {
+          "query_id": "kaia-condon-06",
+          "query": "Kaia Condon DCSAA 2023",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20DCSAA%202023"
+          ],
+          "result": "No new DCSAA2023image or report established. Relevant result was the already-preserved McDaniel recognition graphic; unrelated personal results excluded.",
+          "evidence": []
+        },
+        {
+          "query_id": "kaia-condon-07",
+          "query": "Kaia Condon wrestling",
+          "status": "duplicate/superseded",
+          "attempted_urls": [],
+          "result": "Broad name-and-wrestling query not separately executed because the remaining independent school, tournament, college and photographer routes were checked under02–06 and08–11.",
+          "evidence": []
+        },
+        {
+          "query_id": "kaia-condon-08",
+          "query": "Kaia Condon Marymount January 17 2026",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Kaia%20Condon%20Marymount%20January%2017%202026"
+          ],
+          "result": "Relevant results were the already-saved McDaniel recognition and Ursinus recap, not a named MarymountJan17,2026photo. Existing Marymount sequence-based candidates remain distinct from caption-identified images.",
+          "evidence": []
+        },
+        {
+          "query_id": "kaia-condon-09",
+          "query": "McDaniel women wrestling York December 6 2025",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/photos/?q=McDaniel%20women%20wrestling%20York%20December%206%202025"
+          ],
+          "result": "Facebook explicitly displayed 'We didn't find any results'. This did not revisit or bypass the photographer site's existing CAPTCHA blocker.",
+          "evidence": []
+        },
+        {
+          "query_id": "kaia-condon-10",
+          "query": "McDaniel women wrestling November 23 2025 Sinclair",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=McDaniel%20women%20wrestling%20November%2023%202025%20Sinclair",
+            "https://www.facebook.com/profile.php?id=61553046147494"
+          ],
+          "result": "Results were generic Sam Case Classic promotions and a2024countdown, not a named Kaia photo or Sinclair2025album. Followed surfaced McDaniel College Women's Wrestling page and searched it under03.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/profile.php?id=61553046147494",
+              "public_visibility": "Public program page; inspected posts had Public badges",
+              "credit": "McDaniel College Women's Wrestling",
+              "supports": "Program archive route; visible November2024posts predate Kaia's documented2025–26college season"
+            }
+          ]
+        },
+        {
+          "query_id": "kaia-condon-11",
+          "query": "Kaia Condon MPSSAA 2022 135 third place",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/photos/?q=Kaia%20Condon%20MPSSAA%202022%20135%20third%20place"
+          ],
+          "result": "Facebook explicitly displayed 'We didn't find any results'. Existing original bracket and named Flo match thumbnail already establish the third-place result, but this search did not locate a named podium photograph.",
+          "evidence": []
+        }
+      ],
+      "new_public_photos": [],
+      "outstanding": [
+        "No new named2022podium, Whitman or college action photograph established in this pass.",
+        "Existing SinclairNovember23/December6,2025gallery leads remain blocked from prior CAPTCHA review; this pass did not bypass or reattempt the CAPTCHA.",
+        "Do not identify people in unlabeled team/action images by face. Existing sequence-based Marymount candidates require their existing evidence caveats."
+      ]
+    },
+    {
+      "id": "ryan-devries",
+      "name": "Ryan DeVries",
+      "summary": "New public club portrait found through an actual wrestling search. The posting account is Ryan DeVries and the image's shirt text reads COACH RYAN / MAT RATS WRESTLING. No face comparison was used. Remaining college searches did not establish a named college image.",
+      "compared_existing": [
+        "coaches-data.js",
+        "coach-drafts/profiles.js",
+        "coach-drafts/facebook-queue.json"
+      ],
+      "queries": [
+        {
+          "query_id": "ryan-devries-01",
+          "query": "Ryan DeVries Grindstone",
+          "status": "already-resolved",
+          "attempted_urls": [],
+          "result": "Existing main biography preserves the club's Coach Ryan introduction; not searched again.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/photo/?fbid=1131078835118402&set=a.563786781847613",
+              "public_visibility": "Existing approved public source; not rechecked this pass",
+              "credit": "Grindstone Wrestling / Mat Rats"
+            }
+          ]
+        },
+        {
+          "query_id": "ryan-devries-02",
+          "query": "Ryan DeVries Proviso West wrestling",
+          "status": "already-resolved",
+          "attempted_urls": [],
+          "result": "Labeled Proviso West high-school yearbook photographs and sports history are already preserved; not searched again.",
+          "evidence": []
+        },
+        {
+          "query_id": "ryan-devries-03",
+          "query": "Ryan De Vries wrestling",
+          "status": "reviewed-found",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Ryan%20De%20Vries%20wrestling",
+            "https://www.facebook.com/photo/?fbid=10108817500365692&set=pcb.10108817507745902"
+          ],
+          "result": "Opened a public Ryan DeVries season-end post/photo. Screenshot shows a photographed studio print with Mat Rats backdrop and COACH RYAN shirt embroidery. The viewer explicitly displayed Shared with Public. Date label showed March15 without a verified year.",
+          "evidence": [
+            {
+              "url": "https://www.facebook.com/photo/?fbid=10108817500365692&set=pcb.10108817507745902",
+              "post_url": "https://www.facebook.com/ryan.devries.106/posts/pfbid024SQTWViTrA6EoFkocE3HxXH8rTcNGimT3otehhwPK8KHEtM5itPaLTHh5MCiPHwfl",
+              "public_visibility": "Shared with Public badge observed in opened photo viewer",
+              "credit": "Posted publicly by Ryan DeVries; studio photographer not credited visibly",
+              "supports": "New named club portrait with a young wrestler; child identity/relationship not inferred",
+              "identity_basis": "Posting name plus visible COACH RYAN / MAT RATS WRESTLING shirt text; not facial identification"
+            }
+          ]
+        },
+        {
+          "query_id": "ryan-devries-04",
+          "query": "Proviso West wrestling 2000 2001 2002",
+          "status": "already-resolved",
+          "attempted_urls": [],
+          "result": "Named Proviso West2000/2002yearbook material already preserved; not searched again.",
+          "evidence": []
+        },
+        {
+          "query_id": "ryan-devries-05",
+          "query": "Ryan DeVries Eastern Illinois",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/posts/?q=Ryan%20DeVries%20Eastern%20Illinois"
+          ],
+          "result": "Visible results included Ryan's general personal posts and unrelated namesakes but no attributable Eastern Illinois wrestling photograph or new college claim.",
+          "evidence": []
+        },
+        {
+          "query_id": "ryan-devries-06",
+          "query": "EIU wrestling 2002 2003",
+          "status": "reviewed-no-result",
+          "attempted_urls": [
+            "https://www.facebook.com/search/photos/?q=EIU%20wrestling%202002%202003"
+          ],
+          "result": "Facebook explicitly displayed 'We didn't find any results'.",
+          "evidence": []
+        },
+        {
+          "query_id": "ryan-devries-07",
+          "query": "Grindstone Ryan",
+          "status": "duplicate/superseded",
+          "attempted_urls": [],
+          "result": "Same existing club-introduction route as01;03 additionally found a new labeled Mat Rats portrait. This exact query was not separately run.",
+          "evidence": []
+        }
+      ],
+      "new_public_photos": [
+        {
+          "url": "https://www.facebook.com/photo/?fbid=10108817500365692&set=pcb.10108817507745902",
+          "post_url": "https://www.facebook.com/ryan.devries.106/posts/pfbid024SQTWViTrA6EoFkocE3HxXH8rTcNGimT3otehhwPK8KHEtM5itPaLTHh5MCiPHwfl",
+          "caption_draft": "Coach Ryan in a Mat Rats team portrait.",
+          "credit": "Publicly posted by Ryan DeVries; photographer credit not visible",
+          "public_visibility": "Public badge verified in photo viewer",
+          "observed_content": "Photo of a studio print: Mat Rats backdrop, adult shirt embroidered COACH RYAN and MAT RATS WRESTLING, young wrestler beside him.",
+          "date": "Post displays March15; year not established.",
+          "limits": "No child identity or relationship inferred. No image downloaded, cropped, or face-matched. Source photographer attribution should be checked before selecting it for the site."
+        }
+      ],
+      "outstanding": [
+        "A labeled Eastern Illinois college wrestling photo remains missing.",
+        "If the new public studio portrait is selected, retain source credit and avoid inventing the photo date or photographer."
+      ]
+    }
+  ],
+  "totals": {
+    "coaches": 4,
+    "queries": 36,
+    "by_status": {
+      "already-resolved": 9,
+      "reviewed-no-result": 19,
+      "duplicate/superseded": 5,
+      "reviewed-found": 3
+    },
+    "new_public_photo_candidates": 1
+  }
+}

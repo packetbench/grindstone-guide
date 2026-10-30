@@ -1,0 +1,544 @@
+{
+  "version": 1,
+  "checked_on": "2026-10-29",
+  "method": "Actual signed-in Facebook UI searches. Repeated variants are dispositioned, not represented as separately executed. Private content excluded. Current roster identities confirmed by the user.",
+  "coaches": [
+    {
+      "id": "brian-leaf",
+      "name": "Brian Leaf",
+      "summary": "Identity confirmed. The user’s new connection lead associates Brian with Leaf Builders, but this pass found no attributable historical wrestling photo. Club searches on both Mat Rats and legacy Winters Mill returned no results.",
+      "actual_searches": [
+        {
+          "id": "b-matrats",
+          "query": "Brian",
+          "surface": "Mat Rats page internal search",
+          "url": "https://www.facebook.com/profile/100046488894033/search/?q=Brian",
+          "result": "Explicit no-results message."
+        },
+        {
+          "id": "b-winters",
+          "query": "Brian",
+          "surface": "Legacy Winters Mill page internal search; specialist B",
+          "url": "https://www.facebook.com/profile/100063519762289/search/?q=Brian",
+          "result": "Explicit no-results message. Logged in specialist B report as well; counted once."
+        },
+        {
+          "id": "b-norchester",
+          "query": "Brian Leaf Norchester",
+          "surface": "Facebook global search",
+          "url": "https://www.facebook.com/search/top/?q=Brian%20Leaf%20Norchester",
+          "result": "Visible results did not establish a youth-club connection."
+        },
+        {
+          "id": "b-wrestling",
+          "query": "Brian Leaf wrestling",
+          "surface": "Facebook global search",
+          "url": "https://www.facebook.com/search/top/?q=Brian%20Leaf%20wrestling",
+          "result": "Unrelated wrestling posts and an unassigned namesake photo; no coach attribution established."
+        },
+        {
+          "id": "b-connection",
+          "query": "Brian",
+          "surface": "User-supplied connection profile internal search",
+          "url": "https://www.facebook.com/profile/100000395008432/search/?q=Brian",
+          "result": "Business posts connect the supplied profile with Brian and Leaf Builders. Family material excluded from the coaching research."
+        },
+        {
+          "id": "b-connection-wrestling",
+          "query": "wrestling",
+          "surface": "User-supplied connection profile internal search",
+          "url": "https://www.facebook.com/profile/100000395008432/search/?q=wrestling",
+          "result": "Explicit no-results message."
+        }
+      ],
+      "query_reviews": [
+        {
+          "queue_id": "brian-leaf-01",
+          "queued_query": "Brian Leaf Grindstone",
+          "status": "reviewed-no-result",
+          "note": "Consolidated club check used the Mat Rats page’s Brian search, not this exact global phrase. No results.",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "b-matrats"
+          ]
+        },
+        {
+          "queue_id": "brian-leaf-02",
+          "queued_query": "Brian Wayne Leaf",
+          "status": "duplicate/superseded",
+          "note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-03",
+          "queued_query": "Brian Leaf Westminster wrestling",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-04",
+          "queued_query": "Brian Leaf Mat Rats",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-13",
+          "queued_query": "Brian Leaf Pennsylvania heavyweight wrestling",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-06",
+          "queued_query": "Grindstone Wrestling Brian",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-07",
+          "queued_query": "Brian Leaf Pennsylvania wrestling",
+          "status": "reviewed-no-result",
+          "note": "Broad Brian Leaf wrestling search did not establish an attributable wrestling source.",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "b-wrestling"
+          ]
+        },
+        {
+          "queue_id": "brian-leaf-08",
+          "queued_query": "Brian Leaf heavyweight",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-09",
+          "queued_query": "Brian Leaf PA junior wrestling",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-10",
+          "queued_query": "Brian Leaf 275",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-11",
+          "queued_query": "Brian Leaf 285",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-12",
+          "queued_query": "Brian Leaf Pennsylvania yearbook",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-14",
+          "queued_query": "Brian Wayne Leaf wrestling",
+          "status": "duplicate/superseded",
+          "note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-15",
+          "queued_query": "Brian Leaf PAJW",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-16",
+          "queued_query": "Brian Leaf MAWA",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-17",
+          "queued_query": "\"Brian Leaf\" \"Leaf Builders\"",
+          "status": "reviewed-found",
+          "note": "The user supplied a correct connection profile. Its business posts associate Brian with Leaf Builders; no wrestling portrait or career record established.",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "b-connection",
+            "b-connection-wrestling"
+          ]
+        },
+        {
+          "queue_id": "brian-leaf-18",
+          "queued_query": "\"Leaf Builders\" Westminster",
+          "status": "duplicate/superseded",
+          "note": "Business variants consolidated into the user-supplied connection review. No separate exact search claimed.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-19",
+          "queued_query": "\"Brian Leaf\" \"Winters Mill Wrestling\"",
+          "status": "reviewed-no-result",
+          "note": "Legacy Winters Mill page’s Brian search returned no results.",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "b-winters"
+          ]
+        },
+        {
+          "queue_id": "brian-leaf-20",
+          "queued_query": "\"Brian Leaf\" \"Grindstone\" photos",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-21",
+          "queued_query": "\"Brian Leaf\" \"Owen J. Roberts\"",
+          "status": "duplicate/superseded",
+          "note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-22",
+          "queued_query": "\"Brian Leaf\" \"Spring City\" wrestling",
+          "status": "duplicate/superseded",
+          "note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-23",
+          "queued_query": "\"Brian Leaf\" \"Westminster Mat Rats\"",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-24",
+          "queued_query": "\"Brian Leaf\" \"junior wrestling\"",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-25",
+          "queued_query": "\"Brian Leaf\" \"PJW\"",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-26",
+          "queued_query": "\"Brian Leaf\" \"Owen J Roberts\" wrestling",
+          "status": "duplicate/superseded",
+          "note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-27",
+          "queued_query": "\"Brian Leaf\" \"Mat Rats\" \"2026\"",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-28",
+          "queued_query": "\"Coach Brian\" \"Westminster\" wrestling",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-29",
+          "queued_query": "\"Brian Leaf\" \"Grindstone\" volunteer",
+          "status": "duplicate/superseded",
+          "note": "Overlapping club or wrestling query consolidated into the recorded Mat Rats, Winters Mill, and broad wrestling checks; this exact phrase was not rerun.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-30",
+          "queued_query": "\"Leaf Builders\" \"wrestling\" Brian",
+          "status": "duplicate/superseded",
+          "note": "Business variants consolidated into the user-supplied connection review. No separate exact search claimed.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "brian-leaf-31",
+          "queued_query": "\"Brian Leaf\" \"Norchester\"",
+          "status": "reviewed-no-result",
+          "note": "Norchester query returned no relevant connection; the old school candidate remains unadopted.",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "b-norchester"
+          ]
+        },
+        {
+          "queue_id": "brian-leaf-32",
+          "queued_query": "\"Owen J. Roberts\" \"2007\" \"Ledger\" wrestling",
+          "status": "duplicate/superseded",
+          "note": "Unassigned middle-name or school candidate. Superseded by the user’s specific connection lead; not rerun and not included in the biography.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        }
+      ],
+      "remaining_gaps": [
+        "A public named wrestling or coaching photograph.",
+        "A named youth-team source supporting specific career dates or school affiliation."
+      ]
+    },
+    {
+      "id": "jessica-cody-hughes",
+      "name": "Jessica M. Hughes",
+      "summary": "Coach Jessica’s identity, role, and existing public portrait are confirmed. No additional public coaching photo found. The North Carroll lacrosse result uses a separate profile and has not been added to her biography.",
+      "actual_searches": [
+        {
+          "id": "j-matrats",
+          "query": "Jessica",
+          "surface": "Mat Rats page internal search",
+          "url": "https://www.facebook.com/profile/100046488894033/search/?q=Jessica",
+          "result": "Account-visible results were friends-only. No private post contents or photo links retained."
+        },
+        {
+          "id": "j-westcarroll",
+          "query": "Jessica Hughes West Carroll",
+          "surface": "Facebook global search",
+          "url": "https://www.facebook.com/search/top/?q=Jessica%20Hughes%20West%20Carroll",
+          "result": "Unrelated visible results; no attributable role or portrait."
+        },
+        {
+          "id": "j-lacrosse",
+          "query": "Jessica Hughes North Carroll lacrosse",
+          "surface": "Facebook global search",
+          "url": "https://www.facebook.com/search/top/?q=Jessica%20Hughes%20North%20Carroll%20lacrosse",
+          "result": "Lacrosse posts link Jes Hughes at jes.markle. This does not connect to the confirmed jessica.m.larue profile; excluded from Jessica’s biography."
+        }
+      ],
+      "query_reviews": [
+        {
+          "queue_id": "jessica-cody-hughes-01",
+          "queued_query": "Jessica Hughes Grindstone",
+          "status": "already-resolved",
+          "note": "Jessica’s identity and coaching role are confirmed, with an existing credited public portrait. Cody is not a current coach profile. No new search needed to reconfirm this.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-02",
+          "queued_query": "Jessica Hughes Mat Rats",
+          "status": "reviewed-no-result",
+          "note": "Consolidated Mat Rats Jessica search produced restricted posts only; excluded from public research.",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "j-matrats"
+          ]
+        },
+        {
+          "queue_id": "jessica-cody-hughes-03",
+          "queued_query": "Jessica M Hughes Grindstone",
+          "status": "already-resolved",
+          "note": "Jessica’s identity and coaching role are confirmed, with an existing credited public portrait. Cody is not a current coach profile. No new search needed to reconfirm this.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-04",
+          "queued_query": "Cody Hughes Grindstone",
+          "status": "already-resolved",
+          "note": "Jessica’s identity and coaching role are confirmed, with an existing credited public portrait. Cody is not a current coach profile. No new search needed to reconfirm this.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-05",
+          "queued_query": "Hughes family Grindstone Wrestling",
+          "status": "already-resolved",
+          "note": "Jessica’s identity and coaching role are confirmed, with an existing credited public portrait. Cody is not a current coach profile. No new search needed to reconfirm this.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-06",
+          "queued_query": "Jessica Cody Grindstone",
+          "status": "already-resolved",
+          "note": "Jessica’s identity and coaching role are confirmed, with an existing credited public portrait. Cody is not a current coach profile. No new search needed to reconfirm this.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-07",
+          "queued_query": "Hughes Grindstone banquet",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-08",
+          "queued_query": "WintersMillWrestling Jessica Hughes",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-09",
+          "queued_query": "WintersMillWrestling Cody Hughes",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-10",
+          "queued_query": "WintersMillWrestling Hughes banquet",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-11",
+          "queued_query": "WintersMillWrestling volunteer Hughes",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-12",
+          "queued_query": "Jessica Hughes Winters Mill Wrestling",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-13",
+          "queued_query": "Cody Hughes Grindstone banquet",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-14",
+          "queued_query": "Hughes Grindstone volunteers",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-15",
+          "queued_query": "\"Cody Hughes\" \"West Carroll\"",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-16",
+          "queued_query": "\"Jessica Hughes\" \"West Carroll\"",
+          "status": "reviewed-no-result",
+          "note": "West Carroll query produced no attributable role or photo.",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "j-westcarroll"
+          ]
+        },
+        {
+          "queue_id": "jessica-cody-hughes-17",
+          "queued_query": "\"Jessica Morgan Hughes\" wrestling",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-18",
+          "queued_query": "\"Hughes\" \"FSK Jr Eagles\"",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-19",
+          "queued_query": "\"Hughes\" \"gowcrc\"",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-20",
+          "queued_query": "\"Cody Hughes\" \"New Windsor\" wrestling",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-21",
+          "queued_query": "\"Jessica Hughes\" \"Union Bridge\" wrestling",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-22",
+          "queued_query": "Jessica M Hughes Cody Hughes Mat Rats banquet",
+          "status": "duplicate/superseded",
+          "note": "Retained historical query; overlapping club/recreation variants were consolidated into the three recorded checks. This exact query was not rerun and its unproven background is not adopted.",
+          "actually_searched": false,
+          "actual_search_ids": []
+        },
+        {
+          "queue_id": "jessica-cody-hughes-23",
+          "queued_query": "\"Jessica Hughes\" \"North Carroll\" lacrosse",
+          "status": "reviewed-no-result",
+          "note": "Lacrosse material points to a separate profile URL; no source links that profile to Coach Jessica. Not adopted.",
+          "actually_searched": true,
+          "actual_search_ids": [
+            "j-lacrosse"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "A public named coaching or club-event photograph."
+      ]
+    }
+  ]
+}
