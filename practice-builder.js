@@ -3,6 +3,7 @@
   'use strict';
   const VERSION = 1;
   const weeks = () => window.GRINDSTONE_WEEKS;
+  const shared = () => window.GRINDSTONE_PRACTICE_SAVED;
   const components = () => window.GRINDSTONE_COMPONENTS;
   const DRAFT_KEY = 'grindstone-practice-draft-v1';
   const PLANS_KEY = 'grindstone-practice-plans-v1';
@@ -15,7 +16,7 @@
   let pendingContext = null;
   const MAX_BLOCKS = 100;
   let catalog = [], byId = new Map(), plan, saved = [], root, ready = false;
-  let storageError = '', notice = '', undoState = null, undoAttachment = null, initialBackup = null, savedReadable = true, printListenerInstalled = false;
+  let storageError = '', notice = '', undoState = null, undoAttachment = null, undoSharedAttachment = null, initialBackup = null, savedReadable = true, printListenerInstalled = false;
   const emptyPicker = () => ({ type: '', search: '', matchAge: true, selected: '', family: '', destination: '', position: '', purpose: '', use: '', category: '', seriesChoices: {} });
   let picker = emptyPicker();
   let pendingReplacement = null, placementNotice = '', placementError = false;
@@ -49,7 +50,7 @@
     return '#season';
   }
   function pathwayPath() { return '#season' + (plan.age ? '?age=' + encodeURIComponent(plan.age) : ''); }
-  function trackerPath() { return '#tracker?from=builder' + (known(frameworks().programs,plan.program) ? '&group=' + encodeURIComponent(plan.program) : ''); }
+  function trackerPath() { const source=shared()?.attached()?.record; if(source) return '#tracker?' + new URLSearchParams({group:source.group,season:source.season,session:source.id}).toString(); return '#tracker?from=builder' + (known(frameworks().programs,plan.program) ? '&group=' + encodeURIComponent(plan.program) : ''); }
   const tierAges = tier => tier === 'Pup' ? AGES : ['Beginner', 'Intermediate'].includes(tier) ? ['7-10', '11-14'] : tier === 'Advanced' ? ['11-14'] : [];
   const groupAge = () => plan.age || (plan.program === 'pups' ? '4-6' : '');
   function gameAges(game) {
@@ -125,7 +126,8 @@
     if (typeof value !== 'string' || value.length > limit) throw new Error(name + ' must be text of at most ' + limit + ' characters.');
     return value.replace(/\u0000/g, '');
   }
-  function cleanPlan(raw) {
+  function cleanPlan(raw, options = {}) {
+    const preserve = options.preserveSnapshot === true || raw?.status === 'completed';
     if (!raw || typeof raw !== 'object' || Array.isArray(raw)) throw new Error('This file does not contain a practice.');
     if (raw.version !== VERSION) throw new Error('This practice uses an unsupported file version.');
     if (!Array.isArray(raw.blocks) || raw.blocks.length > MAX_BLOCKS) throw new Error('A practice can have at most ' + MAX_BLOCKS + ' blocks.');
@@ -144,21 +146,21 @@
       let blockId = typeof b.id === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(b.id) ? b.id : 'b-' + i;
       if (blockIds.has(blockId)) { let suffix = 1; while (blockIds.has('b-' + i + '-' + suffix)) suffix++; blockId = 'b-' + i + '-' + suffix; }
       blockIds.add(blockId);
-      const clean = { id: blockId, type: b.type, minutes: b.minutes, sourceId: source || raw.status === 'completed' ? sourceId : '', name: boundedString(b.name, 'Block title', 200, true), instructions: boundedString(b.instructions, 'Block task', 16000, false), cues: boundedString(b.cues, 'Coaching cues', 6000, false), setup: boundedString(b.setup, 'Setup', 6000, false), readiness: boundedString(b.readiness, 'Readiness', 6000, false), boundary: boundedString(b.boundary, 'Boundaries', 10000, false), adaptation: boundedString(b.adaptation, 'Age adaptations', 12000, false), steps: [] };
-      clean.adaptation = raw.status === 'completed' ? boundedString(b.adaptation, 'Age adaptations', 12000, false) : retainedNote(b.adaptation, source?.adaptation, 'Age adaptations');
-      clean.ageNote = raw.status === 'completed' ? boundedString(b.ageNote, 'Teaching-group guidance', 12000, false) : retainedNote(b.ageNote, source?.ageNote, 'Teaching-group guidance');
-      clean.sourceNote = raw.status === 'completed' ? boundedString(b.sourceNote, 'Source scope', 12000, false) : retainedNote(b.sourceNote, source?.sourceNote, 'Source scope');
-      clean.guideMinutes = typeof b.guideMinutes === 'number' && Number.isFinite(b.guideMinutes) && b.guideMinutes > 0 && b.guideMinutes <= 120 ? b.guideMinutes : raw.status !== 'completed' && source?.types.includes('game') ? source.minutes : 0;
+      const clean = { id: blockId, type: b.type, minutes: b.minutes, sourceId: source || preserve ? sourceId : '', name: boundedString(b.name, 'Block title', 200, true), instructions: boundedString(b.instructions, 'Block task', 16000, false), cues: boundedString(b.cues, 'Coaching cues', 6000, false), setup: boundedString(b.setup, 'Setup', 6000, false), readiness: boundedString(b.readiness, 'Readiness', 6000, false), boundary: boundedString(b.boundary, 'Boundaries', 10000, false), adaptation: boundedString(b.adaptation, 'Age adaptations', 12000, false), steps: [] };
+      clean.adaptation = preserve ? boundedString(b.adaptation, 'Age adaptations', 12000, false) : retainedNote(b.adaptation, source?.adaptation, 'Age adaptations');
+      clean.ageNote = preserve ? boundedString(b.ageNote, 'Teaching-group guidance', 12000, false) : retainedNote(b.ageNote, source?.ageNote, 'Teaching-group guidance');
+      clean.sourceNote = preserve ? boundedString(b.sourceNote, 'Source scope', 12000, false) : retainedNote(b.sourceNote, source?.sourceNote, 'Source scope');
+      clean.guideMinutes = typeof b.guideMinutes === 'number' && Number.isFinite(b.guideMinutes) && b.guideMinutes > 0 && b.guideMinutes <= 120 ? b.guideMinutes : !preserve && source?.types.includes('game') ? source.minutes : 0;
       clean.timingConfirmed = b.timingConfirmed === true;
       clean.section = Object.hasOwn(SECTIONS, b.section) ? b.section : '';
       clean.delivery = Object.hasOwn(DELIVERY, b.delivery) ? b.delivery : 'whole';
       clean.rotation = boundedString(b.rotation, 'Station / partner plan', 6000, false);
-      if (raw.status !== 'completed' && source?.kind === 'sequence' && clean.type === 'series') clean.type = 'drill';
+      if (!preserve && source?.kind === 'sequence' && clean.type === 'series') clean.type = 'drill';
       if (b.steps != null && (!Array.isArray(b.steps) || b.steps.length > 60)) throw new Error('A block can contain at most 60 instruction steps.');
       clean.steps = (b.steps || []).map(s => boundedString(s, 'Instruction step', 4000, true));
       if (Object.hasOwn(b,'frameworkPrompt')) clean.frameworkPrompt = boundedString(b.frameworkPrompt, 'Original framework task', 16000, false);
-      else if (raw.status !== 'completed') { const original = inferredFrameworkPrompt(b); if (original) clean.frameworkPrompt = original; }
-      if (components()) Object.assign(clean, components().cleanBlock(b, catalog, {status:raw.status}));
+      else if (!preserve) { const original = inferredFrameworkPrompt(b); if (original) clean.frameworkPrompt = original; }
+      if (components()) Object.assign(clean, components().cleanBlock(b, catalog, {status:preserve ? 'completed' : raw.status}));
       return clean;
     }) };
   }
@@ -180,11 +182,11 @@
     if (ready) return;
     plan = newPlan();
     const draft = storageRead(DRAFT_KEY), library = storageRead(PLANS_KEY);
-    if (draft) { try { const raw = JSON.parse(draft); plan = cleanPlan(raw); weeks()?.readDraft?.(raw); initialBackup = clone(plan); } catch (_) { notice = 'The previous browser draft could not be read. Start a new plan or import a JSON backup.'; } }
+    if (draft) { try { const raw = JSON.parse(draft); plan = cleanPlan(raw, {preserveSnapshot:!!raw.sharedSession}); weeks()?.readDraft?.(raw); shared()?.readDraft(raw); initialBackup = clone(plan); } catch (_) { notice = 'The previous browser draft could not be read. Start a new plan or import a JSON backup.'; } }
     if (library) { try { const parsed = JSON.parse(library); if (!Array.isArray(parsed) || parsed.length > 100) throw new Error(); saved = parsed.map(cleanPlan); } catch (_) { notice += ' Saved plans could not be read; they have not been overwritten. Export this draft to keep it.'; saved = []; savedReadable = false; } }
     ready = true;
   }
-  function autoSave() { const savedDraft = storageWrite(DRAFT_KEY, weeks()?.serializeDraft?.(plan) || plan); updateStatus(); return savedDraft; }
+  function autoSave() { const envelope = weeks()?.serializeDraft?.(plan) || plan; const savedDraft = storageWrite(DRAFT_KEY, shared()?.serializeDraft(envelope) || envelope); updateStatus(); return savedDraft; }
   function timing(blocks) { let elapsed = 0; return blocks.map(b => { const start = elapsed; elapsed += b.minutes; return { start, end: elapsed }; }); }
   function totalMinutes() { return plan.blocks.reduce((n, b) => n + b.minutes, 0); }
 
@@ -250,10 +252,10 @@
     const total = totalMinutes(), delta = total - plan.target, timingCount = plan.blocks.filter(timingMismatch).length, unfilled = unfilledSlots().length;
     return '<strong>' + formatMinutes(total) + ' min planned</strong><span>' + plan.blocks.length + ' block' + (plan.blocks.length === 1 ? '' : 's') + '</span>' + (plan.target ? '<span class="' + (delta > 0 ? 'is-over' : '') + '">' + (delta === 0 ? 'Time on target' : formatMinutes(Math.abs(delta)) + ' min ' + (delta > 0 ? 'over' : 'under') + ' your ' + formatMinutes(plan.target) + '-min target') + '</span>' : '<span>Set a target if useful.</span>') + (timingCount ? '<span class="is-over">' + timingCount + ' game timing ' + (timingCount === 1 ? 'needs' : 'checks need') + ' review</span>' : '') + (unfilled ? '<span class="is-over">' + unfilled + (unfilled === 1 ? ' slot needs a task' : ' slots need a task') + '</span>' : '');
   }
-  function statusText() { return [notice, storageError || 'Draft autosaves in this browser. Saved plans do not sync across devices.'].filter(Boolean).join(' '); }
+  function statusText() { return [notice, storageError || (shared()?.attached() ? 'Your working draft autosaves in this browser. Explicitly saved shared changes are visible to other coaches.' : 'Your working draft and device backups stay in this browser. Shared practices are available through Load a saved practice.')].filter(Boolean).join(' '); }
   function updateStatus() { if (root) { const el = root.querySelector('.builder-status'); if (el) el.textContent = statusText(); } }
   function notify(message) { notice = message; updateStatus(); }
-  function remember() { undoState = clone(plan); undoAttachment = weeks()?.captureAttachment?.() || null; }
+  function remember() { undoState = clone(plan); undoAttachment = weeks()?.captureAttachment?.() || null; undoSharedAttachment = shared()?.captureAttachment() || null; }
   function options(values, selected, label) { return values.map(value => '<option value="' + esc(value) + '"' + (value === selected ? ' selected' : '') + '>' + esc(label ? label(value) : value) + '</option>').join(''); }
 function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definitions?.[key] || []; }
   function tagLabel(key, id) { return tagDefinitions(key).find(item => item.id === id)?.label || id; }
@@ -453,7 +455,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
     if (program) { plan.framework = program.defaultFramework; plan.target = program.minutes; plan.startTime = program.start; }
   }
   function render(params) {
-    init();
+    init(); shared()?.prepare(params);
     const requested = params && (params.get('series') || params.get('sequence'));
     const selectedGuide = byId.get('series:' + requested);
     if (selectedGuide) { picker.type = selectedGuide.types[0]; picker.search = ''; picker.family = ''; picker.position = ''; picker.purpose = ''; picker.use = ''; picker.category = ''; picker.selected = selectedGuide.id; notice = (picker.type === 'series' ? 'Series' : 'Drill') + ' selected below. Review it, then choose its place in the practice.'; }
@@ -472,7 +474,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
     const group = window.GRINDSTONE_PATHWAY?.groups.find(g => g.age_group === requestedAge), phase = group?.phases.find(p => p.id === params?.get('phase'));
     const sessionId = params?.get('session'), cycleKey = { 'core-a': 'core_a', 'core-b': 'core_b', extension: 'extension' }[sessionId];
     pendingContext = phase?.practice_cycle?.[cycleKey] ? { title: phase.title + ' · ' + phase.practice_cycle[cycleKey].title, focus: phase.practice_cycle[cycleKey].focus, age: requestedAge, session: sessionId } : null;
-    return '<section id="practice-builder" class="practice-builder"><div class="builder-no-print"><p class="eyebrow">COACH PLANNING</p><h1>Build a practice</h1><p>Plan the time, choose a foundation, and build the practice your group needs. Keep familiar staples, teach a useful option, then let wrestlers read and respond.</p><ol class="builder-quick-start"><li><strong>Set the time:</strong> choose a program or practice length, then use the time framework.</li><li><strong>Choose the work:</strong> select a slot and choose guides. Individual guides can share a slot; a series creates separate move blocks and divides the slot’s time.</li><li><strong>Make it yours:</strong> adjust minutes, move blocks and add water breaks between them.</li><li><strong>Keep it:</strong> save or export your draft, or print the run sheet.</li></ol><nav class="builder-shortcuts" aria-label="Builder shortcuts"><button type="button" data-action="jump-setup">Setup</button><button type="button" data-action="jump-library">Choose work</button><button type="button" data-action="jump-practice">Your practice</button><button type="button" data-action="save" data-save-label="Save">Save</button><button type="button" data-action="print">Print</button></nav><nav class="builder-tabs" aria-label="Practice planning"><a href="#practices" aria-current="page">Build a practice</a><a data-pathway-link href="' + esc(pathwayPath()) + '">Season pathway</a><a href="#season?view=series">Technique series</a><a href="#tracker">Schedule &amp; coverage</a><a href="#plans">Browse practice plans</a></nav></div><p class="builder-status builder-no-print" role="status" aria-live="polite">' + esc(statusText()) + '</p><div class="builder-record-status builder-no-print" role="status"></div><div class="builder-unfilled-overview builder-no-print">' + unfilledOverview() + '</div>' + (weeks()?.render(params?.get('view') === 'week') || '') + planningHtml() + '<fieldset data-plan-edit class="builder-toolbar builder-no-print"><label>Practice name<input data-plan-field="name" maxlength="120" value="' + esc(plan.name) + '"></label><label for="builder-age">Age group (optional)<select id="builder-age" aria-label="Age group (optional)" data-plan-field="age"><option value="">Choose for this group</option>' + options(AGES, plan.age, a => 'Ages ' + a.replace('-', '–')) + '</select></label><label>Target minutes (optional)<input data-plan-field="target" type="number" min="0" max="240" step="0.5" placeholder="No target" value="' + (plan.target || '') + '"></label><label>Start time (optional)<input data-plan-field="startTime" type="time" value="' + esc(plan.startTime) + '"></label><label>Today’s focus (optional)<input data-plan-field="focus" maxlength="500" value="' + esc(plan.focus) + '" placeholder="e.g. sit-out: hip-heist or rise with forward pressure"></label><label>Practice date<input type="date" data-plan-field="date" value="' + esc(plan.date) + '"></label><label>Coach / owner<input data-plan-field="owner" maxlength="120" value="' + esc(plan.owner) + '"></label><label>Revision label<input data-plan-field="revision" maxlength="80" value="' + esc(plan.revision) + '"></label></fieldset><div class="builder-layout builder-no-print"><aside class="builder-library" aria-labelledby="builder-library-title"><fieldset data-plan-edit>' + pickerHtml() + '</fieldset></aside><section class="builder-draft" aria-labelledby="builder-draft-title"><h2 id="builder-draft-title" tabindex="-1">Your practice</h2><div class="builder-summary" aria-live="polite">' + summaryHtml() + '</div><fieldset data-plan-edit><div class="builder-block-list"></div><label class="builder-notes">Coach notes<textarea data-plan-field="notes" rows="3" maxlength="12000" placeholder="Partner groups, equipment, adaptations or what to revisit next time.">' + esc(plan.notes) + '</textarea></label></fieldset><div class="builder-actions"><button type="button" data-action="save" data-save-label="Save named practice">Save named practice</button><button type="button" data-action="duplicate">Save a copy</button><button type="button" data-action="new">Start blank</button><button type="button" data-action="undo"' + (undoState ? '' : ' disabled') + '>Undo last structural change</button><button type="button" data-action="print">Print run sheet</button></div><label class="builder-check"><input type="checkbox" data-print-details> Include full move instruction in printout</label><p class="fine builder-no-print">Game rules, age restrictions and source scope are always included in the run sheet. Review any timing warning before using it.</p></section></div>' + (weeks()?.handoffHtml(plan) || '') + '<section class="builder-saved builder-no-print"><h2>Saved practices & backups</h2><p><a class="button outline" data-tracker-plan-link href="' + esc(trackerPath()) + '">Schedule this practice / record teaching</a></p><p>Stored on this browser only. Export a JSON file to keep a backup or share with another coach. Import opens a separate local copy. Completed records stay read-only; use Save completed record to keep them in this browser’s saved library.</p><label>Saved practice<select data-saved-plan>' + savedOptions() + '</select></label><div class="builder-actions"><button type="button" data-action="load">Load selected</button><button type="button" data-action="delete">Delete selected</button><button type="button" data-action="export">Export current practice (.json)</button><button type="button" data-action="backup"' + (initialBackup ? '' : ' disabled') + '>Restore draft from page load</button></div><label>Import practice JSON<input type="file" data-import accept=".json,application/json"></label></section><section class="builder-print-sheet" aria-label="Printable practice"></section></section>';
+    return '<section id="practice-builder" class="practice-builder"><div class="builder-no-print"><p class="eyebrow">COACH PLANNING</p><h1>Build a practice</h1><p>Plan the time, choose a foundation, and build the practice your group needs. Keep familiar staples, teach a useful option, then let wrestlers read and respond.</p><ol class="builder-quick-start"><li><strong>Set the time:</strong> choose a program or practice length, then use the time framework.</li><li><strong>Choose the work:</strong> select a slot and choose guides. Individual guides can share a slot; a series creates separate move blocks and divides the slot’s time.</li><li><strong>Make it yours:</strong> adjust minutes, move blocks and add water breaks between them.</li><li><strong>Keep it:</strong> save or export your draft, or print the run sheet.</li></ol><nav class="builder-shortcuts" aria-label="Builder shortcuts"><button type="button" data-action="jump-setup">Setup</button><button type="button" data-action="jump-library">Choose work</button><button type="button" data-action="jump-practice">Your practice</button><button type="button" data-action="save" data-save-label="Save">Save</button><button type="button" data-action="print">Print</button></nav><nav class="builder-tabs" aria-label="Practice planning"><a href="#practices" aria-current="page">Build a practice</a><a data-pathway-link href="' + esc(pathwayPath()) + '">Season pathway</a><a href="#season?view=series">Technique series</a><a href="#tracker">Schedule &amp; coverage</a><a href="#plans">Browse practice plans</a></nav></div><p class="builder-status builder-no-print" role="status" aria-live="polite">' + esc(statusText()) + '</p><div class="builder-record-status builder-no-print" role="status"></div><div class="builder-unfilled-overview builder-no-print">' + unfilledOverview() + '</div>' + (shared()?.render() || '') + (weeks()?.render(params?.get('view') === 'week') || '') + planningHtml() + '<fieldset data-plan-edit class="builder-toolbar builder-no-print"><label>Practice name<input data-plan-field="name" maxlength="120" value="' + esc(plan.name) + '"></label><label for="builder-age">Age group (optional)<select id="builder-age" aria-label="Age group (optional)" data-plan-field="age"><option value="">Choose for this group</option>' + options(AGES, plan.age, a => 'Ages ' + a.replace('-', '–')) + '</select></label><label>Target minutes (optional)<input data-plan-field="target" type="number" min="0" max="240" step="0.5" placeholder="No target" value="' + (plan.target || '') + '"></label><label>Start time (optional)<input data-plan-field="startTime" type="time" value="' + esc(plan.startTime) + '"></label><label>Today’s focus (optional)<input data-plan-field="focus" maxlength="500" value="' + esc(plan.focus) + '" placeholder="e.g. sit-out: hip-heist or rise with forward pressure"></label><label>Practice date<input type="date" data-plan-field="date" value="' + esc(plan.date) + '"></label><label>Coach / owner<input data-plan-field="owner" maxlength="120" value="' + esc(plan.owner) + '"></label><label>Revision label<input data-plan-field="revision" maxlength="80" value="' + esc(plan.revision) + '"></label></fieldset><div class="builder-layout builder-no-print"><aside class="builder-library" aria-labelledby="builder-library-title"><fieldset data-plan-edit>' + pickerHtml() + '</fieldset></aside><section class="builder-draft" aria-labelledby="builder-draft-title"><h2 id="builder-draft-title" tabindex="-1">Your practice</h2><div class="builder-summary" aria-live="polite">' + summaryHtml() + '</div><fieldset data-plan-edit><div class="builder-block-list"></div><label class="builder-notes">Coach notes<textarea data-plan-field="notes" rows="3" maxlength="12000" placeholder="Partner groups, equipment, adaptations or what to revisit next time.">' + esc(plan.notes) + '</textarea></label></fieldset><div class="builder-actions"><button type="button" data-action="save" data-save-label="Save named practice">Save named practice</button><button type="button" data-action="duplicate">Save a local copy</button><button type="button" data-action="save-local">Save local backup</button><button type="button" data-action="new">Start blank</button><button type="button" data-action="undo"' + (undoState ? '' : ' disabled') + '>Undo last structural change</button><button type="button" data-action="print">Print run sheet</button></div><label class="builder-check"><input type="checkbox" data-print-details> Include full move instruction in printout</label><p class="fine builder-no-print">Game rules, age restrictions and source scope are always included in the run sheet. Review any timing warning before using it.</p></section></div>' + (weeks()?.handoffHtml(plan) || '') + '<section class="builder-saved builder-no-print"><h2>On this device / backups</h2><p><a class="button outline" data-tracker-plan-link href="' + esc(trackerPath()) + '">Schedule this practice / record teaching</a></p><p>Stored on this browser only. Export a JSON file to keep a backup or share with another coach. Import opens a separate local copy. Completed records stay read-only; use Save completed record to keep them in this browser’s saved library.</p><label>Practice saved on this device<select data-saved-plan>' + savedOptions() + '</select></label><div class="builder-actions"><button type="button" data-action="load">Load selected</button><button type="button" data-action="delete">Delete selected</button><button type="button" data-action="export">Export current practice (.json)</button><button type="button" data-action="backup"' + (initialBackup ? '' : ' disabled') + '>Restore draft from page load</button></div><label>Import practice JSON<input type="file" data-import accept=".json,application/json"></label></section><section class="builder-print-sheet" aria-label="Printable practice"></section></section>';
   }
   function renderBlocks(focusIndex) {
     if (!root) return;
@@ -484,7 +486,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
     if (focusIndex != null) (root.querySelector('[data-block-index="' + focusIndex + '"] input') || root.querySelector('[data-action="add"]'))?.focus();
   }
   function updateSummary() { if (!root) return; components()?.refresh(root, plan); updateUnfilled(); const summary = root.querySelector('.builder-summary'), markup = summaryHtml(); if (summary.innerHTML !== markup) summary.innerHTML = markup; const times = timing(plan.blocks); root.querySelectorAll('.builder-timing-note').forEach((el, i) => { el.innerHTML = timingNote(plan.blocks[i], true); }); root.querySelectorAll('.builder-block-time').forEach((el, i) => { if (times[i]) el.textContent = timeRange(times[i]); }); }
-  function updatePlanFields() { root.querySelectorAll('[data-plan-field]').forEach(el => { const key = el.dataset.planField; el.value = key === 'target' ? (plan.target || '') : plan[key]; }); root.querySelector('[data-pathway-link]').href = pathwayPath(); const scheduleLink = root.querySelector('[data-tracker-plan-link]'); if (scheduleLink) scheduleLink.href = trackerPath(); updatePlanning(); updateRecord(); weeks()?.refresh(); }
+  function updatePlanFields() { root.querySelectorAll('[data-plan-field]').forEach(el => { const key = el.dataset.planField; el.value = key === 'target' ? (plan.target || '') : plan[key]; }); root.querySelector('[data-pathway-link]').href = pathwayPath(); const scheduleLink = root.querySelector('[data-tracker-plan-link]'); if (scheduleLink) {scheduleLink.href = trackerPath(); scheduleLink.textContent = shared()?.attached() ? 'Open this saved session / record teaching' : 'Schedule this practice / record teaching';} updatePlanning(); updateRecord(); weeks()?.refresh(); }
   function completedNeedsSave() { return plan.status === 'completed' && !saved.some(record => record.id === plan.id && record.status === 'completed'); }
   function updateRecord() {
     if (!root) return;
@@ -492,13 +494,16 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
     root.querySelectorAll('[data-plan-edit]').forEach(el => { el.disabled = completed; });
     root.querySelectorAll('[data-handoff-field]').forEach(el => { el.value = plan.handoff?.[el.dataset.handoffField] || ''; });
     const banner = root.querySelector('.builder-record-status');
+    const scheduleLink=root.querySelector('[data-tracker-plan-link]'); if(scheduleLink){scheduleLink.href=trackerPath();scheduleLink.textContent=shared()?.attached()?'Open this saved session / record teaching':'Schedule this practice / record teaching';}
     const needsSave = completedNeedsSave();
     if (banner) banner.textContent = completed ? 'Completed practice record · ' + (plan.completedAt || '').slice(0, 10) + '. This record is read-only. ' + (needsSave ? 'It is not yet in this browser’s saved library. Use Save completed record to keep its date, teaching notes and handoff unchanged. ' : 'The original is in this browser’s saved library. ') + 'Use Save a copy to plan the next practice or make a correction.' : '';
     const saveButtons = new Set([root.querySelector('[data-action="save"]'), ...root.querySelectorAll('[data-action="save"]')]);
-    saveButtons.forEach(button => { if (!button) return; button.disabled = completed && !needsSave; button.textContent = needsSave ? 'Save completed record' : button.dataset?.saveLabel || 'Save named practice'; });
+    const programField = root.querySelector('[data-plan-field="program"]'); if (programField) programField.disabled = !!shared()?.attached() || completed;
+    saveButtons.forEach(button => { if (!button) return; button.disabled = shared()?.busy() || (completed && !needsSave); button.textContent = shared()?.attached() ? 'Save changes to saved practice' : needsSave ? 'Save completed record' : button.dataset?.saveLabel || 'Save named practice'; });
   }
-  function replaceDraft(next) { remember(); plan = cleanPlan(next); updatePlanFields(); changed('Practice opened in the builder.'); }
+  function replaceDraft(next) { remember(); shared()?.detach(); plan = cleanPlan(next); updatePlanFields(); changed('Practice opened in the builder.'); }
   function completePlan() {
+    if (shared()?.attached()) { notify('Use the tracker to confirm what was taught. Saving this plan does not mark the shared practice completed.'); return; }
     if (!validFields(true)) return;
     if (!savedReadable) { notify('Save is unavailable. Export the practice to preserve your work.'); return; }
     if (!plan.blocks.length || !plan.handoff?.taught?.trim()) { notify('Add a practice block and a short “Actually taught” handoff before completing.'); return; }
@@ -532,19 +537,19 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
     if (!savedReadable) { notify('Existing saved-plan data could not be read, so it is being preserved. Export this practice as JSON to keep your work.'); return; }
     const saveCompleted = !copy && plan.status === 'completed';
     if (saveCompleted && !completedNeedsSave()) { notify('This completed record is already in this browser’s saved library. Use Save a copy to create an editable practice.'); return; }
-    const current = cleanPlan(copy && plan.status === 'completed' && weeks() ? weeks().draftCopy(plan) : plan);
+    const current = cleanPlan(copy && plan.status === 'completed' && weeks() ? weeks().draftCopy(plan) : plan, {preserveSnapshot:!!shared()?.attached()});
     if (copy) { current.id = uid(); current.name = (current.name + ' — copy').slice(0, 120); } else if (saveCompleted || !current.id) current.id = uid();
     const existing = saved.findIndex(p => p.id === current.id);
     if (existing < 0 && saved.length >= 100) { notify('This browser already has 100 saved plans. Export or remove one before saving another.'); return; }
     const next = clone(saved); if (existing < 0) next.push(current); else next[existing] = current;
     if (!storageWrite(PLANS_KEY, next)) { updateStatus(); return; }
-    saved = next; if (copy) weeks()?.detach();
+    if (copy) { remember(); shared()?.detach(); weeks()?.detach(); } saved = next;
     const completedCopy = copy && plan.status === 'completed';
     if (completedCopy) { plan = clone(current); clearPlacement(); }
     else { plan.id = current.id; plan.name = current.name; }
     autoSave(); updatePlanFields(); updateSavedOptions();
     if (completedCopy) renderBlocks();
-    notify((saveCompleted ? 'Saved completed record “' : 'Saved “') + plan.name + '” in this browser.' + (saveCompleted ? ' Its date, teaching notes and handoff remain read-only.' : draftWarning()));
+    notify((saveCompleted ? 'Saved completed record “' : 'Saved “') + plan.name + '” in this browser.' + (saveCompleted ? ' Its date, teaching notes and handoff remain read-only.' : draftWarning()) + (copy ? ' This is a local copy; schedule it in the tracker to share a new practice.' : ''));
   }
   function printHtml(details) {
     const times = timing(plan.blocks);
@@ -557,7 +562,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
   function printDelivery(block) { return (block.section ? '<p><strong>Section:</strong> ' + esc(SECTIONS[block.section]) + '</p>' : '') + '<p><strong>Delivery:</strong> ' + esc(DELIVERY[block.delivery] || 'Whole group') + '</p>' + (block.rotation ? '<p class="builder-preline"><strong>Partner / station plan:</strong> ' + esc(block.rotation) + '</p>' : ''); }
   function exportPlan() {
     if (!validFields()) return;
-    const blob = new Blob([JSON.stringify({ format: 'grindstone-practice', version: VERSION, plan: cleanPlan(plan) }, null, 2)], { type: 'application/json' });
+    const blob = new Blob([JSON.stringify({ format: 'grindstone-practice', version: VERSION, plan: cleanPlan(plan,{preserveSnapshot:!!shared()?.attached()}) }, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob), a = document.createElement('a');
     a.href = url; a.download = 'grindstone-practice-' + (plan.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 34) || 'plan') + '.json'; a.click(); window.setTimeout(() => URL.revokeObjectURL(url), 1000);
     notify('Practice JSON exported. Keep it as a backup or import it on another device.' + draftWarning());
@@ -652,18 +657,19 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
       remember(); clearPlacement(); plan.blocks.splice(index + 1,0,water);
       changed('Added a 2-minute water break. The practice is 2 minutes longer; adjust the break or another block to fit your target.',index + 1);
     }
-    if (name === 'undo' && undoState) { const current = clone(plan), currentAttachment = weeks()?.captureAttachment?.() || null; plan = undoState; undoState = current; const previousAttachment = undoAttachment; undoAttachment = currentAttachment; weeks()?.restoreAttachment?.(previousAttachment); updatePlanFields(); changed('Restored the previous practice structure.'); }
+    if (name === 'undo' && undoState) { const current = clone(plan), currentAttachment = weeks()?.captureAttachment?.() || null, currentShared = shared()?.captureAttachment() || null; plan = undoState; undoState = current; const previousAttachment = undoAttachment; undoAttachment = currentAttachment; const previousShared = undoSharedAttachment; undoSharedAttachment = currentShared; shared()?.restoreAttachment(previousShared); weeks()?.restoreAttachment?.(previousAttachment); updatePlanFields(); changed('Restored the previous practice structure.'); }
     if (name === 'reload-guide' && b && byId.has(b.sourceId)) { if (!window.confirm('Replace this block’s edited task and cues with its guide wording? Timing stays the same.')) return; remember(); let restored = blockFrom(byId.get(b.sourceId), b.type); if (components()) restored = components().reloadBlock(b, restored, catalog); Object.assign(restored, { id: b.id, minutes: b.minutes, section: b.section, delivery: b.delivery, rotation: b.rotation, ...(b.frameworkPrompt ? {frameworkPrompt:b.frameworkPrompt} : {}) }); plan.blocks[index] = restored; changed('Guide details restored.', index); }
     if (name === 'detach-guide' && b) { remember(); b.sourceId = ''; b.type = 'custom'; changed('Kept the task and instructions as a coach-written block.', index); }
     if (name === 'guide-duration' && b && b.guideMinutes) { remember(); b.minutes = b.guideMinutes; b.timingConfirmed = false; changed('Used the guide duration. Review the practice total.', index); }
     if (name === 'confirm-timing' && b && timingMismatch(b)) { remember(); b.timingConfirmed = true; changed('Game timing marked reviewed for this slot. Your edited task and rounds are kept.', index); }
     if (name === 'complete') completePlan();
-    if (name === 'save') saveNamed(false);
+    if (name === 'save') { if (shared()?.attached()) return shared().save(); saveNamed(false); }
+    if (name === 'save-local') saveNamed(false);
     if (name === 'duplicate') saveNamed(true);
-    if (name === 'new') { if ((plan.blocks.length || plan.notes) && !window.confirm('Start a blank practice? Export or save this draft first if you need to keep it. Undo can restore it during this session.')) return; remember(); weeks()?.detach(); plan = newPlan(); updatePlanFields(); changed('Started a blank practice.'); }
-    if (name === 'load') { const chosen = saved.find(p => p.id === root.querySelector('[data-saved-plan]').value); if (!chosen) { notify('Choose a saved practice first.'); return; } if (plan.blocks.length && !window.confirm('Replace this draft with “' + chosen.name + '”? Undo can restore the current draft.')) return; remember(); weeks()?.detach(); plan = clone(chosen); updatePlanFields(); changed('Loaded “' + chosen.name + '”.'); }
+    if (name === 'new') { if ((plan.blocks.length || plan.notes) && !window.confirm('Start a blank practice? Export or save this draft first if you need to keep it. Undo can restore it during this session.')) return; remember(); shared()?.detach(); weeks()?.detach(); plan = newPlan(); updatePlanFields(); changed('Started a blank practice.'); }
+    if (name === 'load') { const chosen = saved.find(p => p.id === root.querySelector('[data-saved-plan]').value); if (!chosen) { notify('Choose a saved practice first.'); return; } if (plan.blocks.length && !window.confirm('Replace this draft with “' + chosen.name + '”? Undo can restore the current draft.')) return; remember(); shared()?.detach(); weeks()?.detach(); plan = clone(chosen); updatePlanFields(); changed('Loaded “' + chosen.name + '”.'); }
     if (name === 'delete') { const id = root.querySelector('[data-saved-plan]').value, chosen = saved.find(p => p.id === id); if (!chosen) { notify('Choose a saved practice first.'); return; } if (!window.confirm('Delete the saved practice “' + chosen.name + '” from this browser? The current draft is kept. Export the saved plan first if you need a backup.')) return; const next = saved.filter(p => p.id !== id); if (storageWrite(PLANS_KEY, next)) { saved = next; if (plan.id === id) { plan.id = ''; autoSave(); } updateSavedOptions(); updateRecord(); notify('Saved practice deleted. The current draft is unchanged.'); } else updateStatus(); }
-    if (name === 'backup' && initialBackup) { if (!window.confirm('Restore the draft that was present when this page first loaded? Undo can restore your current work.')) return; remember(); weeks()?.detach(); plan = clone(initialBackup); updatePlanFields(); changed('Restored the draft from page load.'); }
+    if (name === 'backup' && initialBackup) { if (!window.confirm('Restore the draft that was present when this page first loaded? Undo can restore your current work.')) return; remember(); shared()?.detach(); weeks()?.detach(); plan = clone(initialBackup); updatePlanFields(); changed('Restored the draft from page load.'); }
     if (name === 'export') exportPlan();
     if (name === 'print') { if (!validFields()) return; if (draftWarning()) notify('Printing a draft with unfinished station tasks.' + draftWarning()); if (!plan.blocks.length) { notify('Add at least one block before printing.'); return; } root.querySelector('.builder-print-sheet').innerHTML = printHtml(root.querySelector('[data-print-details]').checked); window.print(); }
   }
@@ -671,6 +677,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
     root = element; if (!root) return; renderBlocks(); updatePlanning();
     weeks()?.bind(root, {getPlan:() => clone(plan), cleanPlan, newPlan, replacePlan:replaceDraft, notify, valid:validFields, saveDraft:autoSave});
     components()?.bind(root, {getPlan:() => plan, getCatalog:() => catalog, getAge:groupAge, valid:validFields, beforeChange:remember, onChange:({render,message}) => {autoSave(); if(render)renderBlocks(); else updateSummary(); if(message)notify(message);}});
+    shared()?.bind(root, {getPlan:()=>clone(plan), cleanPlan, valid:validFields, saveDraft:autoSave, notify, updateSaveLabels:updateRecord, replaceSharedPlan:(next,context)=>{remember(); shared()?.detach(); weeks()?.detach(); plan=cleanPlan(next,{preserveSnapshot:true}); shared()?.restoreAttachment(context); updatePlanFields(); changed('Practice opened in the builder.');}});
     updateRecord();
     if (!printListenerInstalled && window.addEventListener) {
       window.addEventListener('beforeprint', () => { if (root && root.isConnected) root.querySelector('.builder-print-sheet').innerHTML = printHtml(root.querySelector('[data-print-details]').checked); });
@@ -685,6 +692,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
       const field = el.dataset.planField;
       if (field) {
         if ((field === 'target' || field === 'startTime' || field === 'date') && !el.validity.valid) return;
+        if (field === 'program' && shared()?.attached()) { el.value = plan.program; notify('Change this saved practice’s group in the tracker, or open a separate copy.'); return; }
         if (field === 'program') { clearPlacement(); setProgram(el.value); updatePlanFields(); updatePicker(); notice = 'Schedule and target updated. Existing block lengths stay as written; use the framework button to replace them.'; }
         else { plan[field] = field === 'target' ? number(el.value) : el.value; notice = ''; }
         autoSave(); updateSummary(); updatePlanning();
@@ -705,7 +713,7 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
       if (!el.matches('[data-import]')) return;
       const file = el.files && el.files[0]; if (!file) return;
       if (!validFields()) { el.value = ''; return; }
-      try { if (file.size > 2000000) throw new Error('Choose a JSON file smaller than 2 MB.'); const imported = parseImport(await file.text()); if (plan.blocks.length && !window.confirm('Open the imported practice as this draft? Undo can restore the current draft.')) return; remember(); weeks()?.detach(); plan = imported; updatePlanFields(); changed('Imported “' + plan.name + '”. ' + (plan.status === 'completed' ? 'Use Save completed record to keep this read-only record in the saved library.' : 'Save it in this browser if you want to keep it.')); }
+      try { if (file.size > 2000000) throw new Error('Choose a JSON file smaller than 2 MB.'); const imported = parseImport(await file.text()); if (plan.blocks.length && !window.confirm('Open the imported practice as this draft? Undo can restore the current draft.')) return; remember(); shared()?.detach(); weeks()?.detach(); plan = imported; updatePlanFields(); changed('Imported “' + plan.name + '”. ' + (plan.status === 'completed' ? 'Use Save completed record to keep this read-only record in the saved library.' : 'Save it in this browser if you want to keep it.')); }
       catch (err) { notify('Import stopped: ' + err.message); }
       finally { el.value = ''; }
     });
@@ -723,10 +731,10 @@ function tagDefinitions(key) { return window.GRINDSTONE_CATALOG_TAGS?.definition
       init();
       const imported = cleanPlan(raw);
       const next = weeks()?.draftCopy(imported) || {...imported, id:'', status:'planned', completedAt:''};
-      remember(); weeks()?.detach(); plan = next;
+      remember(); shared()?.detach(); weeks()?.detach(); plan = next;
       if (!autoSave()) throw Error('The practice copy is open in memory, but browser storage is unavailable. Export it before leaving.');
       return clone(plan);
     }
   };
-  window.GRINDSTONE_BUILDER = { render, bind, tracker, testing: { normalizeCatalog, catalogMatches, clearPickerFilters, suggestedUses, splitMinutes, prepareCollection, emptyFrameworkSlot, needsFrameworkTask, unfilledSlots, inferredFrameworkPrompt, cleanPlan, parseImport, timing, esc, safeUrl, blockFrom, action, printHtml, newPlan, replaceDraft, completePlan, keys: { draft: DRAFT_KEY, plans: PLANS_KEY }, getState: () => clone({ plan, saved, storageError, picker, pendingReplacement, placementNotice, placementError }), reset: () => { ready = false; root = null; initialBackup = null; saved = []; savedReadable = true; storageError = ''; notice = ''; undoState = null; undoAttachment = null; picker = emptyPicker(); pendingReplacement = null; placementNotice = ''; placementError = false; pendingContext = null; } } };
+  window.GRINDSTONE_BUILDER = { render, bind, tracker, testing: { normalizeCatalog, catalogMatches, clearPickerFilters, suggestedUses, splitMinutes, prepareCollection, emptyFrameworkSlot, needsFrameworkTask, unfilledSlots, inferredFrameworkPrompt, cleanPlan, parseImport, timing, esc, safeUrl, blockFrom, action, printHtml, newPlan, replaceDraft, completePlan, keys: { draft: DRAFT_KEY, plans: PLANS_KEY }, getState: () => clone({ plan, saved, storageError, picker, pendingReplacement, placementNotice, placementError }), reset: () => { ready = false; root = null; initialBackup = null; saved = []; savedReadable = true; storageError = ''; notice = ''; undoState = null; undoAttachment = null; undoSharedAttachment = null; shared()?.testing.reset(); picker = emptyPicker(); pendingReplacement = null; placementNotice = ''; placementError = false; pendingContext = null; } } };
 })();
