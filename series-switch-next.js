@@ -57,7 +57,14 @@
     readiness: 'Ready 7-10 and 11-14 pairs with a familiar switch, controlled hip changes and immediate release. Intermediate describes choosing between known counters; each counter needs its own lesson first. A pair may work only B20 and N57 until A17 is ready. This complete counter block is not a default Pups assignment.',
     boundaries: 'No forcing a pinned shoulder, pulling a fixed wrist, straight-arm fall, planted-knee twist, jump onto the partner or surprise counter. Stop for a caught arm or leg, lost balance, pain or any stop signal. Regaining top ends the repetition; no extra turn, throw or mat return is added.',
     verification: 'Reviewed 2026-10-24. The creator\'s written page identifies the full switch/re-switch/step-over family. The coach confirmed the shared video covers the entire series and clarified that the wrestler currently being switched on steps the hips over, without needing a far-arm catch. B20 and A17 are the existing canonical guides. No full continuous agent footage/audio review is claimed. Announced choices, role labels, age suggestions, receiving pauses and the ten-minute practice block are Grindstone coaching design.',
-    sources: [source]
+    sources: [
+      source,
+      {
+        title: 'Footwork Trainer — 3 drills for bottom chain wrestling (Facebook reel)',
+        url: 'https://www.facebook.com/reel/999151256556727/',
+        note: 'Supplemental visual reference for the solo leapfrog-to-switch segment only. The clip also shows knee-slide/stand-up/cut and sit-out/turn-in/Granby-to-knee-slide sequences; those are not instruction for this switch-counter series. It has no partner demonstration or full teaching progression. Keep B20 and the existing Kolat demonstration as the instruction.'
+      }
+    ]
   };
   const move = {
     id: 'N57', name: 'Step-Over Counter to a Switch', category: 'counters', tier: 'Intermediate',

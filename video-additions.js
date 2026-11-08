@@ -520,6 +520,36 @@ window.GRINDSTONE_VIDEO_ADDITIONS = {
       "verification": "Original public Facebook reel opened and playback was checked on October 12, 2026. Descriptions are based on publisher labels and visual spot-checks. A complete sequence, audio and written-instruction review has not been completed.",
       "kind": "move",
       "original_url": "https://www.facebook.com/share/r/1FHwYcACNg/"
+    },
+    {
+      "id": "V41",
+      "title": "Head Switch to Double-Leg Finish",
+      "publisher": "Aniciete Training Club (@anicietetrainingclub)",
+      "url": "assets/videos/head-switch-double-leg.mp4",
+      "source_type": "uploaded",
+      "video_type": "local",
+      "category": "attacks",
+      "guide_ids": ["B07"],
+      "keywords": ["head switch", "outside step", "double leg", "finish", "neutral", "takedown"],
+      "positions": ["neutral"],
+      "purposes": ["takedown"],
+      "uses": ["review", "reps"],
+      "tier": "Intermediate",
+      "age_groups": [],
+      "kind": "move",
+      "description": "A supplemental neutral-position video reference: the attacker changes head position, takes an outside step, and finishes with a double leg. The opening grip is obscured, so the exact entry variation cannot be identified from this footage.",
+      "observed": "Visible captions read “SWITCH” and “OUTSIDE STEP TO,” followed by a double-leg finish. The demonstrated finish includes a lift and turning landing.",
+      "relationship": "B07 is the foundation for the double-leg attack. This clip is a separate variation reference; its obscured starting grip is not identified. B07's written finish remains its controlled no-lift version.",
+      "readiness": "Intermediate; use for coach-led review and partner repetitions after athletes know the double-leg foundation and can receive a controlled side landing.",
+      "steps": [
+        "From neutral, change the head position as shown; the exact initial grip is obscured.",
+        "Take the outside step toward the double-leg finish.",
+        "Continue into the finish shown. The video includes a lift and turning landing, which differs from B07's controlled no-lift finish."
+      ],
+      "cues": ["Switch your head over.", "Outside step to the double leg."],
+      "boundaries": "Keep B07's written steps and controlled no-lift finish intact. This clip is a supplemental variation reference, not a replacement for B07. The lift and turning landing are visible features of the video; do not add them to B07's partner repetitions.",
+      "verification": "The supplied 15-second video was visually reviewed. The opening grip is partly obscured; the head-position change, outside-step caption, double-leg finish, lift, turning landing, and Aniciete Training Club watermark @anicietetrainingclub were identified. No original social-media URL was supplied or inferred.",
+      "focus": ["Compare the outside step and head-position change with B07's written foundation; keep the written lesson's no-lift finish separate."]
     }
   ]
 };

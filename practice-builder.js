@@ -31,7 +31,9 @@
   const formatMinutes = n => Number.isInteger(n) ? String(n) : n.toFixed(1);
   const clock = n => Math.floor(n) + ':' + (Math.round((n % 1) * 60)).toString().padStart(2, '0');
   function safeUrl(value) {
-    try { const u = new URL(value); return u.protocol === 'https:' || u.protocol === 'http:' ? u.href : ''; } catch (_) { return ''; }
+    const raw = text(value).trim();
+    if (/^assets\/[a-z0-9/_-]+\.(?:mp4|webm|ogg)$/i.test(raw)) return raw;
+    try { const u = new URL(raw); return u.protocol === 'https:' || u.protocol === 'http:' ? u.href : ''; } catch (_) { return ''; }
   }
   function newPlan() { return { version: VERSION, id: '', name: 'My practice', age: '', target: 0, program: '', framework: '', session: '', stage: '', startTime: '', focus: '', notes: '', blocks: [], ...(weeks()?.cleanMeta({}) || {}) }; }
   function wallClock(offset) {
